@@ -1,11 +1,11 @@
-namespace _2D_RPG_Negiramen;
+ï»¿namespace _2D_RPG_Negiramen;
 
 public partial class MapExplorerPage : ContentPage
 {
-	public MapExplorerPage()
-	{
-		InitializeComponent();
-	}
+    public MapExplorerPage()
+    {
+        InitializeComponent();
+    }
 
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {
@@ -13,10 +13,10 @@ public partial class MapExplorerPage : ContentPage
     }
 
     /// <summary>
-    /// m€–Ú‚ğƒ_ƒuƒ‹ƒNƒŠƒbƒNnƒ{ƒ^ƒ“‰Ÿ‰º
+    /// ï¼»é …ç›®ã‚’ãƒ€ãƒ–ãƒ«ã‚¯ãƒªãƒƒã‚¯ï¼½ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚
     /// </summary>
-    /// <param name="sender">‚±‚ÌƒCƒxƒ“ƒg‚ğŒÄ‚Ño‚µ‚½ƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="e">‚±‚Ì”­¶ƒCƒxƒ“ƒg‚Ì§Œä•Ï”</param>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
     async void DoubleClickItemBtn_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//CreateMapViewPage");

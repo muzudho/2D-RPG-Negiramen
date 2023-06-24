@@ -1,11 +1,11 @@
-namespace _2D_RPG_Negiramen;
+﻿namespace _2D_RPG_Negiramen;
 
 public partial class EditStoryPage : ContentPage
 {
-	public EditStoryPage()
-	{
-		InitializeComponent();
-	}
+    public EditStoryPage()
+    {
+        InitializeComponent();
+    }
 
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {

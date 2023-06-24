@@ -1,13 +1,13 @@
-namespace _2D_RPG_Negiramen;
+ï»¿namespace _2D_RPG_Negiramen;
 
 using System.IO;
 
 public partial class OverwriteProjectToUnityPage : ContentPage
 {
-	public OverwriteProjectToUnityPage()
-	{
-		InitializeComponent();
-	}
+    public OverwriteProjectToUnityPage()
+    {
+        InitializeComponent();
+    }
 
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {
@@ -15,27 +15,27 @@ public partial class OverwriteProjectToUnityPage : ContentPage
     }
 
     /// <summary>
-    /// mUnity‚ÖƒvƒƒWƒFƒNƒg‚ğã‘‚«nƒ{ƒ^ƒ“‰Ÿ‰º
+    /// ï¼»Unityã¸ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’ä¸Šæ›¸ãï¼½ãƒœã‚¿ãƒ³æŠ¼ä¸‹æ™‚
     /// </summary>
-    /// <param name="sender">‚±‚ÌƒCƒxƒ“ƒg‚ğŒÄ‚Ño‚µ‚½ƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="e">‚±‚Ì”­¶ƒCƒxƒ“ƒg‚Ì§Œä•Ï”</param>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
     private void OverwriteProjectToUnityBtn_Clicked(object sender, EventArgs e)
     {
-        // TODO ƒeƒLƒXƒgEƒ{ƒbƒNƒX‚Ì’l‚ğæ“¾
+        // TODO ãƒ†ã‚­ã‚¹ãƒˆãƒ»ãƒœãƒƒã‚¯ã‚¹ã®å€¤ã‚’å–å¾—
         var folderPath = UnityAssetsFolderPath.Text;
 
         if (!Directory.Exists(folderPath))
         {
-            // TODO ƒfƒBƒŒƒNƒgƒŠ[EƒpƒX‚Å‚È‚¯‚ê‚Î¸”s
+            // TODO ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ¼ãƒ»ãƒ‘ã‚¹ã§ãªã‘ã‚Œã°å¤±æ•—
             return;
         }
 
-        // `Assets/Muzudho/2D RPG Negiramen` ƒfƒBƒŒƒNƒgƒŠ[‚Ì—L–³‚ğƒ`ƒFƒbƒN
+        // `Assets/Muzudho/2D RPG Negiramen` ãƒ‡ã‚£ãƒ¬ã‚¯ãƒˆãƒªãƒ¼ã®æœ‰ç„¡ã‚’ãƒã‚§ãƒƒã‚¯
         folderPath = Path.Combine(folderPath, "Muzudho");
 
         if (!Directory.Exists(folderPath))
         {
-            // –³‚¯‚ê‚Îì¬
+            // ç„¡ã‘ã‚Œã°ä½œæˆ
             Directory.CreateDirectory(folderPath);
         }
 
@@ -43,10 +43,10 @@ public partial class OverwriteProjectToUnityPage : ContentPage
 
         if (!Directory.Exists(folderPath))
         {
-            // –³‚¯‚ê‚Îì¬
+            // ç„¡ã‘ã‚Œã°ä½œæˆ
             Directory.CreateDirectory(folderPath);
         }
 
-        // TODO Unity‚ÖƒvƒƒWƒFƒNƒg‚ğã‘‚«
+        // TODO Unityã¸ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’ä¸Šæ›¸ã
     }
 }

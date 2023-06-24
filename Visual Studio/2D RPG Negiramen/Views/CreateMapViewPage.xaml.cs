@@ -1,14 +1,14 @@
-namespace _2D_RPG_Negiramen;
+ï»¿namespace _2D_RPG_Negiramen;
 
 public partial class CreateMapViewPage : ContentPage
 {
-	public CreateMapViewPage()
-	{
-		InitializeComponent();
-	}
+    public CreateMapViewPage()
+    {
+        InitializeComponent();
+    }
 
     /// <summary>
-    ///     ƒpƒ“‚­‚¸ƒŠƒXƒg
+    ///     ãƒ‘ãƒ³ããšãƒªã‚¹ãƒˆ
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -18,7 +18,7 @@ public partial class CreateMapViewPage : ContentPage
     }
 
     /// <summary>
-    ///     ƒpƒ“‚­‚¸ƒŠƒXƒg
+    ///     ãƒ‘ãƒ³ããšãƒªã‚¹ãƒˆ
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>

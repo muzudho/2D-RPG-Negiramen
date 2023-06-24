@@ -1,4 +1,4 @@
-namespace _2D_RPG_Negiramen;
+﻿namespace _2D_RPG_Negiramen;
 
 public partial class CreateBattleViewPage : ContentPage
 {
