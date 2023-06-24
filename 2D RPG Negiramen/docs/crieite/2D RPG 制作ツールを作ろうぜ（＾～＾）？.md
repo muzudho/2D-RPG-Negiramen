@@ -191,11 +191,84 @@ MAUI を調べようぜ？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👇　Qiita の素人記事読むぐらいだったら　公式読むぜ」  
 
-📖　[Upgrade your app with MVVM concepts](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-mvvm/)  
+📖　[Microsoft　＞　Upgrade your app with MVVM concepts](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-mvvm/)  
 
 ![202306_maui_24-2318--views-o2o0.png](https://crieit.now.sh/upload_images/bb76ed4804b6f14a69d37e5a681e640d6496fb6d3f952.png)  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　こうすりゃいいのか」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`MainPage.xaml` も 📂 `Views` フォルダーに入れろだぜ」  
+
+# エクスプローラーが要るんじゃないか？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父ん。  
+プレイヤー・キャラクター編集画面に入る前に、  
+どのプレイヤー・キャラクターを編集するのか　選択する画面が　要るんじゃないか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、そうか！  
+ほとんどの　データ編集ページで　リストが要るぜ！」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　リストでいいの？  
+テーブルじゃなくて　いいの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　エクスプローラー　だ。  
+MAUI にそんなコントロール　あるかな？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　お父ん。コレクション・ビューと、テーブル・ビューを調べてみてくれだぜ」  
+
+📖　[.NET MAUI (UIコントロール)](https://qiita.com/kashin777/items/cb200af6d4f00cc88a63)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　だから　素人が書いた記事なんか　読まねーっつーの」  
+
+📖　[Microsoft　＞　CollectionView](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/collectionview/)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんか知らんが　`ListView` より　かっこいいのが　`CollectionView` らしいぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　考えるの止めるの　わらう」  
+
+📖　[Microsoft　＞　TableView](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/tableview)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コレクション・ビューを使うべきか、テーブル・ビューを使うべきの判断方法が分からん」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ページネーション（Pagination；ページ割り）の機能は付いているのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　調べたいことが　出てこないのが　マイクロソフトの　ドキュメントなんだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　マイクロソフトの　Bing　の人工知能に利いても　MAUI　がなんだか分かってないし」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ、ページネーションも　自力実装することにしよう」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そうであるなら、クリテリア（Criteria；判断基準）が必要だぜ。  
+どのような規則に従って整列しているか、  
+表示されているデータは　何件目～何件目までのデータか、  
+表示されているのは　何ページ目か、  
+昇順か逆順か、  
+フィルタリングされているか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　無いものを　自力実装するのが　プログラマーだぜ。  
+必要だったら　片っ端から　実装していけばいいんだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　迷ったら　テーブル・ビューと　コレクション・ビューの両方実装すりゃいいのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ぬぎぎぎぎ！」  
 
 ＜書きかけ＞

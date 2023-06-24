@@ -55,8 +55,7 @@
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-
-            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*">
 
                 <Button Grid.Row="0" Grid.Column="0"
                         x:Name="EditPlayerCharacterBtn"
@@ -64,19 +63,25 @@
                         SemanticProperties.Hint="Edit the player character"
                         Clicked="EditPlayerCharacterBtn_Clicked"/>
 
-                <Button Grid.Row="0" Grid.Column="1"
+                <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateMonsterBtn"
                         Text="モンスターを編集"
-                        SemanticProperties.Hint="Create the monster view"
+                        SemanticProperties.Hint="Edit the monster"
                         Clicked="CreateMonsterBtn_Clicked"/>
 
-                <Button Grid.Row="1" Grid.Column="0"
+                <Button Grid.Row="1" Grid.Column="1"
+                        x:Name="EditMonsterGroupBtn"
+                        Text="モンスター・グループを編集"
+                        SemanticProperties.Hint="Edit the monster group"
+                        Clicked="EditMonsterGroupBtn_Clicked"/>
+
+                <Button Grid.Row="2" Grid.Column="0"
                         x:Name="CreateItemBtn"
                         Text="アイテムを編集"
                         SemanticProperties.Hint="Edit the item"
-                        Clicked="CreateItemBtn_Clicked"/>
+                        Clicked="EditItemBtn_Clicked"/>
 
-                <Button Grid.Row="1" Grid.Column="1"
+                <Button Grid.Row="2" Grid.Column="1"
                         x:Name="EditorStoryBtn"
                         Text="話しを編集"
                         SemanticProperties.Hint="Edit the story"

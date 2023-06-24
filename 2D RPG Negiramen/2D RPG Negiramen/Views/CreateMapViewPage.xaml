@@ -20,12 +20,26 @@
                     SemanticProperties.Hint="Separator"
                     VerticalTextAlignment="Center"/>
 
+                <Button x:Name="MapExplorerBtn"
+                    Text="Map Explorer"
+                    SemanticProperties.Hint="Back to Map Explorer"
+                    Clicked="MapExplorerBtn_Clicked" />
+
+                <Label
+                    Text="＞"
+                    SemanticProperties.Hint="Separator"
+                    VerticalTextAlignment="Center"/>
+
                 <Label
                     Text="Create a map"
                     SemanticProperties.Hint="Separator"
                     VerticalTextAlignment="Center"/>
             </HorizontalStackLayout>
 
+            <!--
+                本文
+                ====
+            -->
             <Image
                 Source="create_map_page.png"
                 SemanticProperties.Description="map table"

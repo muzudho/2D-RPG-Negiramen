@@ -26,6 +26,10 @@
                     VerticalTextAlignment="Center"/>
             </HorizontalStackLayout>
 
+            <!--
+                本文
+                ====
+            -->
             <Image
                 Source="create_battle_view_page.png"
                 SemanticProperties.Description="battle view"

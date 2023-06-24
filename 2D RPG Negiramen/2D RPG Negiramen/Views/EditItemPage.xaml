@@ -26,6 +26,10 @@
                     VerticalTextAlignment="Center"/>
             </HorizontalStackLayout>
 
+            <!--
+                本文
+                ====
+            -->
             <Image
                 Source="edit_item_page.png"
                 SemanticProperties.Description="edit the item page"

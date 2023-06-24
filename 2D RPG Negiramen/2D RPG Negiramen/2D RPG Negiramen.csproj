@@ -53,6 +53,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\EditMonsterGroupPage.xaml.cs">
+	    <DependentUpon>EditMonsterGroupPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="Views\MapExplorerPage.xaml.cs">
+	    <DependentUpon>MapExplorerPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\EditStoryPage.xaml.cs">
 	    <DependentUpon>EditStoryPage.xaml</DependentUpon>
 	  </Compile>
@@ -80,6 +86,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\EditMonsterGroupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MapExplorerPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\EditStoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -32,7 +32,7 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMapViewBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//CreateMapViewPage");
+        await Shell.Current.GoToAsync("//MapExplorerPage");
     }
 
     /// <summary>
@@ -86,11 +86,21 @@ public partial class MainPage : ContentPage
     }
 
     /// <summary>
+    /// ［モンスター・グループを編集］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void EditMonsterGroupBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//EditMonsterGroupPage");
+    }
+
+    /// <summary>
     /// ［アイテムを編集］ボタン押下時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    async void CreateItemBtn_Clicked(object sender, EventArgs e)
+    async void EditItemBtn_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//EditItemPage");
     }

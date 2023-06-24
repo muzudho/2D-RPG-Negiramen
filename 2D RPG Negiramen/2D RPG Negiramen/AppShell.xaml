@@ -12,6 +12,11 @@
         Route="MainPage" />
 
     <ShellContent
+        Title="Select a map"
+        ContentTemplate="{DataTemplate local:MapExplorerPage}"
+        Route="MapExplorerPage" />
+
+    <ShellContent
         Title="Create a map view"
         ContentTemplate="{DataTemplate local:CreateMapViewPage}"
         Route="CreateMapViewPage" />
@@ -37,9 +42,14 @@
         Route="EditPlayerCharacterPage" />
 
     <ShellContent
-        Title="Edit the monster view"
+        Title="Edit the monster"
         ContentTemplate="{DataTemplate local:EditMonsterPage}"
         Route="EditMonsterPage" />
+
+    <ShellContent
+        Title="Edit the monster group"
+        ContentTemplate="{DataTemplate local:EditMonsterGroupPage}"
+        Route="EditMonsterGroupPage" />
 
     <ShellContent
         Title="Edit the item"

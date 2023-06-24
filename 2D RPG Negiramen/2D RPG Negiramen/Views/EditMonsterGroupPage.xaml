@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="_2D_RPG_Negiramen.EditMonsterPage"
-             Title="Edit the monster">
+             x:Class="_2D_RPG_Negiramen.EditMonsterGroupPage"
+             Title="Edit the monster group">
     <ScrollView>
         <VerticalStackLayout>
             <!--
@@ -21,7 +21,7 @@
                     VerticalTextAlignment="Center"/>
 
                 <Label
-                    Text="Edit the monster"
+                    Text="Create a monster group"
                     SemanticProperties.Hint="Separator"
                     VerticalTextAlignment="Center"/>
             </HorizontalStackLayout>
@@ -31,8 +31,8 @@
                 ====
             -->
             <Image
-                Source="edit_monster_page.png"
-                SemanticProperties.Description="edit the monster"
+                Source="edit_monster_group_page.png"
+                SemanticProperties.Description="edit the monster group"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
