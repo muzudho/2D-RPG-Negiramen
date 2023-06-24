@@ -88,6 +88,8 @@ MAUI を調べようぜ？」
 
 ![202306_maui_24-1941--title image.png](https://crieit.now.sh/upload_images/b97b87e7de3c8c7a2dac34effe6936076496ca3cbaf3c.png)  
 
+使用フォント：　📖　[たぬき油性マジック](https://tanukifont.com/tanuki-permanent-marker/)  
+
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　こんな感じの　ファースト・ビュー　でどうだぜ？」  
 
