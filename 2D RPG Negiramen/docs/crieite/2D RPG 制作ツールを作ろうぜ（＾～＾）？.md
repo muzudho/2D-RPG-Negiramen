@@ -74,4 +74,27 @@ MAUI を調べようぜ？」
 「　今日は　ネギ・ラーメン　にしようぜ？」  
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
-「　メニューって、そのメニューなの？」  
+「　メニューって、そのメニューなの？」
+
+![202306_maui_24-1939--negiramen.png](https://crieit.now.sh/upload_images/85d448436de2ee8bdbebbd35fea8fda76496c7fe11a46.png)  
+
+👆　[2D-RPG-Negiramen](https://github.com/muzudho/2D-RPG-Negiramen)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　リポジトリ―は　作っておいたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ネギ・ラーメンは　リポジトリ―の名前じゃなくない？」  
+
+![202306_maui_24-1941--title image.png](https://crieit.now.sh/upload_images/b97b87e7de3c8c7a2dac34effe6936076496ca3cbaf3c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな感じの　ファースト・ビュー　でどうだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　縦スクロール・バーは　付けておいてくれだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　いいのか　よくないのか　分かんないから　さっさと作って　動かしてみましょう！」  
+
+＜書きかけ＞
