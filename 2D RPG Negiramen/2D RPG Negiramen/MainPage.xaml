@@ -83,7 +83,6 @@
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I"
                 FontSize="18"
                 HorizontalOptions="Center" />
-            -->
 
             <Button
                 x:Name="CounterBtn"
@@ -91,6 +90,7 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Center" />
+            -->
 
         </VerticalStackLayout>
     </ScrollView>

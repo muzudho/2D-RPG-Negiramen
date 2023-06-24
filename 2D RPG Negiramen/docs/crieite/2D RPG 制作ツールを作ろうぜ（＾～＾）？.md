@@ -97,4 +97,29 @@ MAUI を調べようぜ？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　いいのか　よくないのか　分かんないから　さっさと作って　動かしてみましょう！」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　アラートが出てきたぜ。ここ読めだって」  
+
+📖　[Build your first app](https://learn.microsoft.com/en-us/dotnet/maui/get-started/first-app?tabs=vswin&pivots=devices-android)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　わたしが　やりたいことを　説明してくれるのではなく、  
+マイクロソフトが　説明したいことを　説明してくるので　つらいぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面にボタンを置きなさいよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　どこを読めばいいのか　分からない、ドキュメントとの戦いだぜ」  
+
+📖　[Customize the app shell](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-app/?tutorial-step=2)  
+
+![202306_maui_24-2022--title-menu.png](https://crieit.now.sh/upload_images/0b1909f16a43d7eeb0c51e447a7a95736496d217ce30b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　様々な概念が分からなかったが作った、とりあえず　これで」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　とりあえず　マップを作る画面に進みなさいよ」  
+
 ＜書きかけ＞
