@@ -1,5 +1,7 @@
 namespace _2D_RPG_Negiramen;
 
+using System.IO;
+
 public partial class OverwriteProjectToUnityPage : ContentPage
 {
 	public OverwriteProjectToUnityPage()
@@ -20,6 +22,30 @@ public partial class OverwriteProjectToUnityPage : ContentPage
     private void OverwriteProjectToUnityBtn_Clicked(object sender, EventArgs e)
     {
         // TODO テキスト・ボックスの値を取得
+        var folderPath = UnityAssetsFolderPath.Text;
+
+        if (!Directory.Exists(folderPath))
+        {
+            // TODO ディレクトリー・パスでなければ失敗
+            return;
+        }
+
+        // `Assets/Muzudho/2D RPG Negiramen` ディレクトリーの有無をチェック
+        folderPath = Path.Combine(folderPath, "Muzudho");
+
+        if (!Directory.Exists(folderPath))
+        {
+            // 無ければ作成
+            Directory.CreateDirectory(folderPath);
+        }
+
+        folderPath = Path.Combine(folderPath, "2D RPG Negiramen");
+
+        if (!Directory.Exists(folderPath))
+        {
+            // 無ければ作成
+            Directory.CreateDirectory(folderPath);
+        }
 
         // TODO Unityへプロジェクトを上書き
     }

@@ -35,7 +35,7 @@
                     SemanticProperties.Hint="Separator"
                     VerticalTextAlignment="Center"/>
 
-            <Entry x:Name="AssetsFolderPath"
+            <Entry x:Name="UnityAssetsFolderPath"
                    Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"/>
 
             <Button x:Name="OverwriteProjectToUnityBtn"
