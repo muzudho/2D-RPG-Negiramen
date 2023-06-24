@@ -22,5 +22,15 @@ public partial class MainPage : ContentPage
 		SemanticScreenReader.Announce(CounterBtn.Text);
 		*/
 	}
+
+	/// <summary>
+	/// ［マップを作る］ボタン押下時
+	/// </summary>
+	/// <param name="sender"></param>
+	/// <param name="e"></param>
+    async void CreateMapBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//CreateMapPage");
+    }
 }
 

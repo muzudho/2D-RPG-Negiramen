@@ -25,7 +25,7 @@
 「　👆　サイドＰＣを　Ubuntu　に差し替えたんで　Steam　を久しぶりに動かしてみたら、動いたんで驚いたぜ」  
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
-「　えっ？　ＲＰＧ制作ツールを作るのに　ＢＧＭが　ロックマン１１　でいいのかだぜ？？」  
+「　えっ？　ＲＰＧ制作ツールを作るのに　作業用ＢＧＭが　ロックマン１１　でいいのかだぜ？？」  
 
 # MAUI を調べろだぜ
 
@@ -121,5 +121,25 @@ MAUI を調べようぜ？」
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　じゃあ　とりあえず　マップを作る画面に進みなさいよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　？？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画面遷移って　どうやって　やるんだ……？？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　これでも読めだぜ」  
+
+📖 [.NET MAUI (いろんな画面遷移)](https://qiita.com/kashin777/items/2f1abcba9c8fa02b592c)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　うーん？」  
+
+![202306_maui_24-2042--app-shell-o2o0.png](https://crieit.now.sh/upload_images/5839fb5ceef097452e77a24b23b1adea6496d6e4a003c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`AppShell.xml`　というのを　何か設定しないといけない？」  
+
 
 ＜書きかけ＞

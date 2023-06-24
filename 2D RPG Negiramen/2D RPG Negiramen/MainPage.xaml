@@ -26,7 +26,8 @@
                 <Button Grid.Row="0" Grid.Column="0"
                         x:Name="CreateMapBtn"
                         Text="マップを作る"
-                        SemanticProperties.Hint="Create the map" />
+                        SemanticProperties.Hint="Create the map"
+                        Clicked="CreateMapBtn_Clicked"/>
 
                 <Button Grid.Row="0" Grid.Column="1"
                         x:Name="CreateBattleBtn"
