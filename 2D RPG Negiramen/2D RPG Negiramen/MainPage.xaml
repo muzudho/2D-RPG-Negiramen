@@ -11,7 +11,7 @@
 
             <Image
                 Source="title_header.png"
-                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                SemanticProperties.Description="title header"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 

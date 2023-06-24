@@ -11,4 +11,9 @@
         ContentTemplate="{DataTemplate local:MainPage}"
         Route="MainPage" />
 
+    <ShellContent
+        Title="Create a map"
+        ContentTemplate="{DataTemplate local:CreateMapPage}"
+        Route="CreateMapPage" />
+
 </Shell>

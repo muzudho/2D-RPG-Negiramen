@@ -141,5 +141,22 @@ MAUI を調べようぜ？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　`AppShell.xml`　というのを　何か設定しないといけない？」  
 
+![202306_maui_24-2051--create-map-page-view.png](https://crieit.now.sh/upload_images/19cac8b8101b30e6e92873b6df50f5826496d9100dd5c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　画面遷移は　できたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　どうやって　ＨＯＭＥに戻るんだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　パンくずリスト　が有ったらいいんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　パンくずリストのような機能は用意されているのではなく、自力で作らないといけないらしいぜ」  
+
+📖　[.NET Maui Tabs with Breadcrumb Navigation](https://stackoverflow.com/questions/74757711/net-maui-tabs-with-breadcrumb-navigation)  
+
+
 
 ＜書きかけ＞

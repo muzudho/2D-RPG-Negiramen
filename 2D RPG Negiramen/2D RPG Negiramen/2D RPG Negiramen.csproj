@@ -53,13 +53,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="CreateMap.xaml.cs">
-	    <DependentUpon>CreateMap.xaml</DependentUpon>
+	  <Compile Update="CreateMapPage.xaml.cs">
+	    <DependentUpon>CreateMapPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="CreateMap.xaml">
+	  <MauiXaml Update="CreateMapPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
