@@ -66,23 +66,33 @@ public partial class MainPage : ContentPage
     }
 
     /// <summary>
-    /// ［プレイヤー・キャラクターを作る］ボタン押下時
+    /// ［プレイヤー・キャラクターを編集］ボタン押下時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    async void CreatePlayerCharacterBtn_Clicked(object sender, EventArgs e)
+    async void EditPlayerCharacterBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//CreatePlayerCharacterViewPage");
+        await Shell.Current.GoToAsync("//EditPlayerCharacterPage");
     }
 
     /// <summary>
-    /// ［モンスターを作る］ボタン押下時
+    /// ［モンスターを編集］ボタン押下時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMonsterBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//CreateMonsterViewPage");
+        await Shell.Current.GoToAsync("//EditMonsterPage");
+    }
+
+    /// <summary>
+    /// ［アイテムを編集］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void CreateItemBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//EditItemPage");
     }
 }
 

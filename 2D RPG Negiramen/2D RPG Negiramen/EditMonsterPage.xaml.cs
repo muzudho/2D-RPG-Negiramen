@@ -1,8 +1,8 @@
 namespace _2D_RPG_Negiramen;
 
-public partial class CreateMonsterViewPage : ContentPage
+public partial class EditMonsterPage : ContentPage
 {
-	public CreateMonsterViewPage()
+	public EditMonsterPage()
 	{
 		InitializeComponent();
 	}

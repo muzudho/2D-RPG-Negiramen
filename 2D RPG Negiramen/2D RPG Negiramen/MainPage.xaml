@@ -25,19 +25,19 @@
 
                 <Button Grid.Row="0" Grid.Column="0"
                         x:Name="CreateMapViewBtn"
-                        Text="マップを作る"
+                        Text="マップ画面を作る"
                         SemanticProperties.Hint="Create the map view"
                         Clicked="CreateMapViewBtn_Clicked"/>
 
                 <Button Grid.Row="0" Grid.Column="1"
                         x:Name="CreateBattleViewBtn"
-                        Text="戦闘を作る"
+                        Text="戦闘画面を作る"
                         SemanticProperties.Hint="Create the battle view"
                         Clicked="CreateBattleBtn_Clicked"/>
 
                 <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateMenuViewBtn"
-                        Text="メニューを作る"
+                        Text="メニュー画面を作る"
                         SemanticProperties.Hint="Create the menu view"
                         Clicked="CreateMenuViewBtn_Clicked"/>
 
@@ -50,7 +50,7 @@
             </Grid>
 
             <Label
-                Text="データを入力する"
+                Text="データを編集する"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
@@ -59,26 +59,27 @@
             <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
 
                 <Button Grid.Row="0" Grid.Column="0"
-                        x:Name="CreatePlayerCharacterBtn"
-                        Text="プレイヤー・キャラクターを作る"
-                        SemanticProperties.Hint="Create the player character view"
-                        Clicked="CreatePlayerCharacterBtn_Clicked"/>
+                        x:Name="EditPlayerCharacterBtn"
+                        Text="プレイヤー・キャラクターを編集"
+                        SemanticProperties.Hint="Edit the player character"
+                        Clicked="EditPlayerCharacterBtn_Clicked"/>
 
                 <Button Grid.Row="0" Grid.Column="1"
                         x:Name="CreateMonsterBtn"
-                        Text="モンスターを作る"
+                        Text="モンスターを編集"
                         SemanticProperties.Hint="Create the monster view"
                         Clicked="CreateMonsterBtn_Clicked"/>
 
                 <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateItemBtn"
-                        Text="アイテムを作る"
-                        SemanticProperties.Hint="Create the item" />
+                        Text="アイテムを編集"
+                        SemanticProperties.Hint="Edit the item"
+                        Clicked="CreateItemBtn_Clicked"/>
 
                 <Button Grid.Row="1" Grid.Column="1"
                         x:Name="CreateStoryBtn"
-                        Text="話しを作る"
-                        SemanticProperties.Hint="Create the story" />
+                        Text="話しを編集"
+                        SemanticProperties.Hint="Edit the story" />
 
             </Grid>
 

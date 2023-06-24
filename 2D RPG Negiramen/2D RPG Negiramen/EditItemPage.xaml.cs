@@ -1,8 +1,8 @@
 namespace _2D_RPG_Negiramen;
 
-public partial class CreatePlayerCharacterViewPage : ContentPage
+public partial class EditItemPage : ContentPage
 {
-	public CreatePlayerCharacterViewPage()
+	public EditItemPage()
 	{
 		InitializeComponent();
 	}

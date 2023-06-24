@@ -32,13 +32,18 @@
         Route="CreateTalkingViewPage" />
 
     <ShellContent
-        Title="Create a player character view"
-        ContentTemplate="{DataTemplate local:CreatePlayerCharacterViewPage}"
-        Route="CreatePlayerCharacterViewPage" />
+        Title="Edit the player character"
+        ContentTemplate="{DataTemplate local:EditPlayerCharacterPage}"
+        Route="EditPlayerCharacterPage" />
 
     <ShellContent
-        Title="Create a monster view"
-        ContentTemplate="{DataTemplate local:CreateMonsterViewPage}"
-        Route="CreateMonsterViewPage" />
+        Title="Edit the monster view"
+        ContentTemplate="{DataTemplate local:EditMonsterPage}"
+        Route="EditMonsterPage" />
+
+    <ShellContent
+        Title="Edit a item"
+        ContentTemplate="{DataTemplate local:EditItemPage}"
+        Route="EditItemPage" />
 
 </Shell>

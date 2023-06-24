@@ -53,11 +53,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="CreatePlayerCharacterViewPage.xaml.cs">
-	    <DependentUpon>CreatePlayerCharacterViewPage.xaml</DependentUpon>
+	  <Compile Update="EditPlayerCharacterPage.xaml.cs">
+	    <DependentUpon>EditPlayerCharacterPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="CreateMonsterViewPage.xaml.cs">
-	    <DependentUpon>CreateMonsterViewPage.xaml</DependentUpon>
+	  <Compile Update="EditMonsterPage.xaml.cs">
+	    <DependentUpon>EditMonsterPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="EditItemPage.xaml.cs">
+	    <DependentUpon>EditItemPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="CreateTalkingViewPage.xaml.cs">
 	    <DependentUpon>CreateTalkingViewPage.xaml</DependentUpon>
@@ -74,10 +77,13 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="CreatePlayerCharacterViewPage.xaml">
+	  <MauiXaml Update="EditPlayerCharacterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CreateMonsterViewPage.xaml">
+	  <MauiXaml Update="EditMonsterPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="EditItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="CreateTalkingViewPage.xaml">
