@@ -31,4 +31,9 @@
         ContentTemplate="{DataTemplate local:CreateTalkingViewPage}"
         Route="CreateTalkingViewPage" />
 
+    <ShellContent
+        Title="Create a player character view"
+        ContentTemplate="{DataTemplate local:CreatePlayerCharacterViewPage}"
+        Route="CreatePlayerCharacterViewPage" />
+
 </Shell>

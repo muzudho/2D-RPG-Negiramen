@@ -61,7 +61,8 @@
                 <Button Grid.Row="0" Grid.Column="0"
                         x:Name="CreatePlayerCharacterBtn"
                         Text="プレイヤー・キャラクターを作る"
-                        SemanticProperties.Hint="Create the player character" />
+                        SemanticProperties.Hint="Create the player character"
+                        Clicked="CreatePlayerCharacterBtn_Clicked"/>
 
                 <Button Grid.Row="0" Grid.Column="1"
                         x:Name="CreateMonsterBtn"
