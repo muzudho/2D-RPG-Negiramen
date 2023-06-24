@@ -178,4 +178,14 @@ MAUI を調べようぜ？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　つら」  
 
+![202306_maui_24-2302--xaml-o2o0.png](https://crieit.now.sh/upload_images/330a545ed654f0592934639f69ffcf376496f7bfeb6bd.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`.xaml` ファイル増えてきて　邪魔なんだけど、置き場フォルダーは　どう作るのが　ベストプラクティス　なんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　調べろだぜ」  
+
+📖　[MAUI(WinUI3)でMVVMを超単純にやる](https://qiita.com/todu/items/699e5a6abd936421309f)  
+
 ＜書きかけ＞
