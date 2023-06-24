@@ -2,7 +2,9 @@
 
 public partial class MainPage : ContentPage
 {
+    /*
 	int count = 0;
+    */
 
 	public MainPage()
 	{
@@ -71,6 +73,16 @@ public partial class MainPage : ContentPage
     async void CreatePlayerCharacterBtn_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//CreatePlayerCharacterViewPage");
+    }
+
+    /// <summary>
+    /// ［モンスターを作る］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void CreateMonsterBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//CreateMonsterViewPage");
     }
 }
 

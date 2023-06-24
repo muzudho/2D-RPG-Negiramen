@@ -56,6 +56,9 @@
 	  <Compile Update="CreatePlayerCharacterViewPage.xaml.cs">
 	    <DependentUpon>CreatePlayerCharacterViewPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="CreateMonsterViewPage.xaml.cs">
+	    <DependentUpon>CreateMonsterViewPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="CreateTalkingViewPage.xaml.cs">
 	    <DependentUpon>CreateTalkingViewPage.xaml</DependentUpon>
 	  </Compile>
@@ -72,6 +75,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="CreatePlayerCharacterViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CreateMonsterViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="CreateTalkingViewPage.xaml">

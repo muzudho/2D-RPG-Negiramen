@@ -36,4 +36,9 @@
         ContentTemplate="{DataTemplate local:CreatePlayerCharacterViewPage}"
         Route="CreatePlayerCharacterViewPage" />
 
+    <ShellContent
+        Title="Create a monster view"
+        ContentTemplate="{DataTemplate local:CreateMonsterViewPage}"
+        Route="CreateMonsterViewPage" />
+
 </Shell>
