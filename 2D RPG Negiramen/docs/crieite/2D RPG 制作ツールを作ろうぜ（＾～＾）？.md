@@ -299,4 +299,30 @@ MAUI にそんなコントロール　あるかな？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　当然よねえ」  
 
+# Unity プロジェクトを作ろうぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　まあ　無いものは無いで　変数ｘ　とでも置いておいて　解けるところから先に解くのが　数学だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　それを問題の先送りと言う」  
+
+![202306_maui_25-0418--unity-project-o2o0.png](https://crieit.now.sh/upload_images/abf13bd281298f429e57efd366fe8a0e649741edea122.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　テンプレートは　**２D**　を選び、プロジェクト名は **Negiramen Practice** にして  
+プロジェクトを作成しようぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ネギラーメンでは、それが何だか　分かんなくない？  
+検索のサジェスチョンも汚すし」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　聞き慣れてくれば　イカしてくるぜ」  
+
+![202306_maui_25-0427--2D-o2o0.png](https://crieit.now.sh/upload_images/cb8a80f81c28d90c3a0cd3d00d0c3f1e649743fb8b4d7.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　なんか最初から　いろんなものが入っている……、ちょっと見てみるか……」    
+
 ＜書きかけ＞
