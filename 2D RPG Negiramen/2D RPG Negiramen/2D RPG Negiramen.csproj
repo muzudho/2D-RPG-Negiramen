@@ -53,6 +53,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="EditStoryPage.xaml.cs">
+	    <DependentUpon>EditStoryPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="EditPlayerCharacterPage.xaml.cs">
 	    <DependentUpon>EditPlayerCharacterPage.xaml</DependentUpon>
 	  </Compile>
@@ -77,6 +80,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="EditStoryPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="EditPlayerCharacterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

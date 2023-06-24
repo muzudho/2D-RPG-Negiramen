@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="_2D_RPG_Negiramen.EditItemPage"
-             Title="Edit a item">
+             x:Class="_2D_RPG_Negiramen.EditStoryPage"
+             Title="Edit the story">
     <ScrollView>
         <VerticalStackLayout>
             <!--
@@ -21,14 +21,14 @@
                     VerticalTextAlignment="Center"/>
 
                 <Label
-                    Text="Edit the item"
+                    Text="Edit the story"
                     SemanticProperties.Hint="Separator"
                     VerticalTextAlignment="Center"/>
             </HorizontalStackLayout>
 
             <Image
-                Source="edit_item_page.png"
-                SemanticProperties.Description="edit the item page"
+                Source="edit_story_page.png"
+                SemanticProperties.Description="edit the story"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 

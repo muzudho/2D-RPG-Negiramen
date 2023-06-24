@@ -42,8 +42,13 @@
         Route="EditMonsterPage" />
 
     <ShellContent
-        Title="Edit a item"
+        Title="Edit the item"
         ContentTemplate="{DataTemplate local:EditItemPage}"
         Route="EditItemPage" />
+
+    <ShellContent
+        Title="Edit the story"
+        ContentTemplate="{DataTemplate local:EditStoryPage}"
+        Route="EditStoryPage" />
 
 </Shell>

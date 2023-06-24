@@ -94,5 +94,15 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync("//EditItemPage");
     }
+
+    /// <summary>
+    /// ［話しを編集］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void EditorStoryBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//EditStoryPage");
+    }
 }
 

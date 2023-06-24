@@ -77,9 +77,10 @@
                         Clicked="CreateItemBtn_Clicked"/>
 
                 <Button Grid.Row="1" Grid.Column="1"
-                        x:Name="CreateStoryBtn"
+                        x:Name="EditorStoryBtn"
                         Text="話しを編集"
-                        SemanticProperties.Hint="Edit the story" />
+                        SemanticProperties.Hint="Edit the story"
+                        Clicked="EditorStoryBtn_Clicked"/>
 
             </Grid>
 
