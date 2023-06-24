@@ -21,11 +21,60 @@
                 FontSize="32"
                 HorizontalOptions="Center" />
 
-            <Button
-                x:Name="CreateMapBtn"
-                Text="マップを作る"
-                SemanticProperties.Hint="Create the map"
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+
+                <Button Grid.Row="0" Grid.Column="0"
+                        x:Name="CreateMapBtn"
+                        Text="マップを作る"
+                        SemanticProperties.Hint="Create the map" />
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        x:Name="CreateBattleBtn"
+                        Text="戦闘を作る"
+                        SemanticProperties.Hint="Create the battle" />
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        x:Name="CreateMenuBtn"
+                        Text="メニューを作る"
+                        SemanticProperties.Hint="Create the menu" />
+
+                <Button Grid.Row="1" Grid.Column="1"
+                        x:Name="CreateTalkBtn"
+                        Text="会話画面を作る"
+                        SemanticProperties.Hint="Create the talk" />
+
+            </Grid>
+
+            <Label
+                Text="データを入力する"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
                 HorizontalOptions="Center" />
+
+
+            <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
+
+                <Button Grid.Row="0" Grid.Column="0"
+                        x:Name="CreatePlayerCharacterBtn"
+                        Text="プレイヤー・キャラクターを作る"
+                        SemanticProperties.Hint="Create the player character" />
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        x:Name="CreateMonsterBtn"
+                        Text="モンスターを作る"
+                        SemanticProperties.Hint="Create the monster" />
+
+                <Button Grid.Row="1" Grid.Column="0"
+                        x:Name="CreateItemBtn"
+                        Text="アイテムを作る"
+                        SemanticProperties.Hint="Create the item" />
+
+                <Button Grid.Row="1" Grid.Column="1"
+                        x:Name="CreateStoryBtn"
+                        Text="話しを作る"
+                        SemanticProperties.Hint="Create the story" />
+
+            </Grid>
 
             <!--
             <Label
