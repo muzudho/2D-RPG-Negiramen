@@ -26,4 +26,9 @@
         ContentTemplate="{DataTemplate local:CreateMenuViewPage}"
         Route="CreateMenuViewPage" />
 
+    <ShellContent
+        Title="Create a talking view"
+        ContentTemplate="{DataTemplate local:CreateTalkingViewPage}"
+        Route="CreateTalkingViewPage" />
+
 </Shell>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_2D_RPG_Negiramen.CreateTalkingViewPage"
+             Title="Create a talking view">
+    <ScrollView>
+        <VerticalStackLayout>
+            <!--
+                パンくずリスト
+                ==============
+            -->
+            <HorizontalStackLayout>
+                <Button x:Name="HomeBtn"
+                    Text="Home"
+                    SemanticProperties.Hint="Back to the home"
+                    Clicked="HomeBtn_Clicked" />
+
+                <Label
+                    Text="＞"
+                    SemanticProperties.Hint="Separator"
+                    VerticalTextAlignment="Center"/>
+
+                <Label
+                    Text="Create a talking view"
+                    SemanticProperties.Hint="Separator"
+                    VerticalTextAlignment="Center"/>
+            </HorizontalStackLayout>
+
+            <Image
+                Source="create_talking_view_page.png"
+                SemanticProperties.Description="talking view"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

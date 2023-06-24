@@ -42,5 +42,10 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync("//CreateMenuViewPage");
     }
+
+    async void CreateTalkingBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//CreateTalkingViewPage");
+    }
 }
 

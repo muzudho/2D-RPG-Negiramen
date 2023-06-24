@@ -42,9 +42,10 @@
                         Clicked="CreateMenuViewBtn_Clicked"/>
 
                 <Button Grid.Row="1" Grid.Column="1"
-                        x:Name="CreateTalkBtn"
+                        x:Name="CreateTalkingBtn"
                         Text="会話画面を作る"
-                        SemanticProperties.Hint="Create the talk" />
+                        SemanticProperties.Hint="Create the talking view"
+                        Clicked="CreateTalkingBtn_Clicked"/>
 
             </Grid>
 
