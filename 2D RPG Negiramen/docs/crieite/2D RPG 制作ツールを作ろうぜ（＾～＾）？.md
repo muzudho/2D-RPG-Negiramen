@@ -157,6 +157,23 @@ MAUI を調べようぜ？」
 
 📖　[.NET Maui Tabs with Breadcrumb Navigation](https://stackoverflow.com/questions/74757711/net-maui-tabs-with-breadcrumb-navigation)  
 
+![202306_maui_24-2114--breadcrumb-list.png](https://crieit.now.sh/upload_images/04929fb38a8472e03c6b2e32ff5a7f876496de48a2b44.png)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　作り方　分からんので　とりあえず　ボタンとラベルで」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ次は　戦闘を作る画面に進みなさいよ」  
+
+![202306_maui_24-2123--create-battle-view-page.png](https://crieit.now.sh/upload_images/f724f2677c0c038e726424f9db3a20016496e0772c32d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　同様だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　残りも　以下同様で　やってくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　つら」  
 
 ＜書きかけ＞

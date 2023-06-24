@@ -28,9 +28,19 @@ public partial class MainPage : ContentPage
 	/// </summary>
 	/// <param name="sender"></param>
 	/// <param name="e"></param>
-    async void CreateMapBtn_Clicked(object sender, EventArgs e)
+    async void CreateMapViewBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//CreateMapPage");
+        await Shell.Current.GoToAsync("//CreateMapViewPage");
+    }
+
+    async void CreateBattleBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//CreateBattleViewPage");
+    }
+
+    async void CreateMenuViewBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//CreateMenuViewPage");
     }
 }
 

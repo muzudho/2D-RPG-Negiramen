@@ -12,8 +12,18 @@
         Route="MainPage" />
 
     <ShellContent
-        Title="Create a map"
-        ContentTemplate="{DataTemplate local:CreateMapPage}"
-        Route="CreateMapPage" />
+        Title="Create a map view"
+        ContentTemplate="{DataTemplate local:CreateMapViewPage}"
+        Route="CreateMapViewPage" />
+
+    <ShellContent
+        Title="Create a battle view"
+        ContentTemplate="{DataTemplate local:CreateBattleViewPage}"
+        Route="CreateBattleViewPage" />
+
+    <ShellContent
+        Title="Create a menu view"
+        ContentTemplate="{DataTemplate local:CreateMenuViewPage}"
+        Route="CreateMenuViewPage" />
 
 </Shell>

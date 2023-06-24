@@ -53,13 +53,25 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Compile Update="CreateMapPage.xaml.cs">
-	    <DependentUpon>CreateMapPage.xaml</DependentUpon>
+	  <Compile Update="CreateMenuViewPage.xaml.cs">
+	    <DependentUpon>CreateMenuViewPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="CreateBattleViewPage.xaml.cs">
+	    <DependentUpon>CreateBattleViewPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="CreateMapViewPage.xaml.cs">
+	    <DependentUpon>CreateMapViewPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
-	  <MauiXaml Update="CreateMapPage.xaml">
+	  <MauiXaml Update="CreateMenuViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CreateBattleViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="CreateMapViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
