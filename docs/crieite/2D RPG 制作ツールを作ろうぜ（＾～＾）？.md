@@ -354,6 +354,20 @@ MAUI にそんなコントロール　あるかな？」
 ![202306_maui_25-0500--OverwriteProjectToUnityPage.png](https://crieit.now.sh/upload_images/25f4051d2808773ea00e242d3e8b78e364974b8dc8e3b.png)  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　👆　それで　こういうページ作るだろ」  
+「　👆　それで　こういうページ作るだろ。  
+ディレクトリー・パスを入れて　ボタンを押すと……」  
+
+![202306_maui_25-0540--Folders-o2o0.png](https://crieit.now.sh/upload_images/ee7071e309c6fa3adaa35a07964576a06497554762594.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Unity プロジェクトへ　フォルダーや　ファイルを送り付けるという算段だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　Unity の外部で　ゲーム・オブジェクトを作れるの？  
+Unity の外部で　プレファブは作れるの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Unity に　そういう　ＡＰＩ　があるか？　ということだな。  
+調べてみようぜ？」  
 
 ＜書きかけ＞
