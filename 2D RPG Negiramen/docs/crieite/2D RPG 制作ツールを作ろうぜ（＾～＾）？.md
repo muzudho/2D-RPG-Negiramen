@@ -271,4 +271,32 @@ MAUI にそんなコントロール　あるかな？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　ぬぎぎぎぎ！」  
 
+![202306_maui_25-0041--home.png](https://crieit.now.sh/upload_images/a1f78ded35ca26ebd4c2a21ba10d532564970f24880bf.png)  
+
+![202306_maui_25-0042--map-explorer.png](https://crieit.now.sh/upload_images/f7fa2f745b99c523b470ba7eb3b66f1f64970f2d0332f.png)  
+
+![202306_maui_25-0043--create-map.png](https://crieit.now.sh/upload_images/c81a96f9f4ace9f2ffc4205a36cef01364970f3695130.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こういう風に　途中に　検索ページを１枚　挟めばいいんだろ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　デザインを分かってないエンジニアが作りがちな検索画面だぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ぬぎぎぎぎ！」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　動いているところを見ないと　よく分かんないから、  
+明日は　動くところを作ってみましょう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ライセンスが　オープンソースの　２Ｄ　ＲＰＧの素材　なんも　持ってねー　ぬぎぎぎぎぎ！」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　あっ！　**ゲームとして利用するならフリーだが、素材集を　ツールに同梱して　そのまま再配布することを許可している素材が無いのか！**」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　当然よねえ」  
+
 ＜書きかけ＞
