@@ -325,4 +325,35 @@ MAUI にそんなコントロール　あるかな？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　なんか最初から　いろんなものが入っている……、ちょっと見てみるか……」    
 
+![202306_maui_25-0432--2D-Editor.png](https://crieit.now.sh/upload_images/fd6d85d3f0cd08ea624600a258213cd764974512580ed.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　多分　エディターなんだと思うんだが、この１つ１つを調べて行くか」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　お父んが作らなくても、すでに　いいものがあるのでは？」  
+
+📖 [TileMapEditorはいいぞ！](https://qiita.com/RyotaMurohoshi/items/f9a10db24ea9378d47f7)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　オープンソースだけで　やりたいぜ」  
+
+![202306_maui_25-0449--OverwriteProjectToUnity-o2o0.png](https://crieit.now.sh/upload_images/4a2b47916a48a3acdbbbd0a8f6f75fc164974929477f8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ちょっと　ボタンを追加しよう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　それで……、テキスト・ボックスって　どうやって作るんだ？　調べるか……」  
+
+📖　[Microsoft　＞　入力](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/controls/entry)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`Entry` というタグがあるのか」  
+
+![202306_maui_25-0500--OverwriteProjectToUnityPage.png](https://crieit.now.sh/upload_images/25f4051d2808773ea00e242d3e8b78e364974b8dc8e3b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　それで　こういうページ作るだろ」  
+
 ＜書きかけ＞

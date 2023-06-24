@@ -61,4 +61,9 @@
         ContentTemplate="{DataTemplate local:EditStoryPage}"
         Route="EditStoryPage" />
 
+    <ShellContent
+        Title="Overwrite project to Unity"
+        ContentTemplate="{DataTemplate local:OverwriteProjectToUnityPage}"
+        Route="OverwriteProjectToUnityPage" />
+
 </Shell>

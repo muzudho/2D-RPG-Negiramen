@@ -56,6 +56,9 @@
 	  <Compile Update="Views\EditMonsterGroupPage.xaml.cs">
 	    <DependentUpon>EditMonsterGroupPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\OverwriteProjectToUnityPage.xaml.cs">
+	    <DependentUpon>OverwriteProjectToUnityPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\MapExplorerPage.xaml.cs">
 	    <DependentUpon>MapExplorerPage.xaml</DependentUpon>
 	  </Compile>
@@ -87,6 +90,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\EditMonsterGroupPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\OverwriteProjectToUnityPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MapExplorerPage.xaml">

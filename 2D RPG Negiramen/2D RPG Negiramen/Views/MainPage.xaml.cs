@@ -114,5 +114,16 @@ public partial class MainPage : ContentPage
     {
         await Shell.Current.GoToAsync("//EditStoryPage");
     }
+
+
+    /// <summary>
+    /// ［Unityへプロジェクトを上書き］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void OverwriteProjectToUnityBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//OverwriteProjectToUnityPage");
+    }
 }
 
