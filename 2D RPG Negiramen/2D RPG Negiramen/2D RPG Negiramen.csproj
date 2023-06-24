@@ -56,25 +56,25 @@
 	  <Compile Update="Views\EditStoryPage.xaml.cs">
 	    <DependentUpon>EditStoryPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="EditPlayerCharacterPage.xaml.cs">
+	  <Compile Update="Views\EditPlayerCharacterPage.xaml.cs">
 	    <DependentUpon>EditPlayerCharacterPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="EditMonsterPage.xaml.cs">
+	  <Compile Update="Views\EditMonsterPage.xaml.cs">
 	    <DependentUpon>EditMonsterPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="EditItemPage.xaml.cs">
+	  <Compile Update="Views\EditItemPage.xaml.cs">
 	    <DependentUpon>EditItemPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="CreateTalkingViewPage.xaml.cs">
+	  <Compile Update="Views\CreateTalkingViewPage.xaml.cs">
 	    <DependentUpon>CreateTalkingViewPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="CreateMenuViewPage.xaml.cs">
+	  <Compile Update="Views\CreateMenuViewPage.xaml.cs">
 	    <DependentUpon>CreateMenuViewPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="CreateBattleViewPage.xaml.cs">
+	  <Compile Update="Views\CreateBattleViewPage.xaml.cs">
 	    <DependentUpon>CreateBattleViewPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="CreateMapViewPage.xaml.cs">
+	  <Compile Update="Views\CreateMapViewPage.xaml.cs">
 	    <DependentUpon>CreateMapViewPage.xaml</DependentUpon>
 	  </Compile>
 	</ItemGroup>
@@ -83,25 +83,25 @@
 	  <MauiXaml Update="Views\EditStoryPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="EditPlayerCharacterPage.xaml">
+	  <MauiXaml Update="Views\EditPlayerCharacterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="EditMonsterPage.xaml">
+	  <MauiXaml Update="Views\EditMonsterPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="EditItemPage.xaml">
+	  <MauiXaml Update="Views\EditItemPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CreateTalkingViewPage.xaml">
+	  <MauiXaml Update="Views\CreateTalkingViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CreateMenuViewPage.xaml">
+	  <MauiXaml Update="Views\CreateMenuViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CreateBattleViewPage.xaml">
+	  <MauiXaml Update="Views\CreateBattleViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="CreateMapViewPage.xaml">
+	  <MauiXaml Update="Views\CreateMapViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>

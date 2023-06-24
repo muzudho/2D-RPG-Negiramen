@@ -188,4 +188,14 @@ MAUI を調べようぜ？」
 
 📖　[MAUI(WinUI3)でMVVMを超単純にやる](https://qiita.com/todu/items/699e5a6abd936421309f)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　Qiita の素人記事読むぐらいだったら　公式読むぜ」  
+
+📖　[Upgrade your app with MVVM concepts](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-mvvm/)  
+
+![202306_maui_24-2318--views-o2o0.png](https://crieit.now.sh/upload_images/bb76ed4804b6f14a69d37e5a681e640d6496fb6d3f952.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こうすりゃいいのか」  
+
 ＜書きかけ＞
