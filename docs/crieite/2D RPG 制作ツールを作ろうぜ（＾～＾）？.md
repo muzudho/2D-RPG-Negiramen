@@ -450,4 +450,69 @@ Unity の外部で　プレファブは作れるの？」
 「　👆　View　も更新。  
 イベントハンドラを消し、コマンドを追加」  
 
+# ユーザー・データをどこに保存するか？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　いろいろなフォルダーに　ユーザー・データは保存できるが、どこにするんだぜ？」  
+
+📖　[特殊ディレクトリのパスを取得する](https://dobon.net/vb/dotnet/file/getfolderpath.html)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ユースケースによる。  
+２Ｄ　ＲＰＧ　を開発するような　アクターは、  
+いつも　同じ部屋で　同じ１台のパソコンを使って　１人で開発している、という状況設定を押し付けることにしようぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　それ以上のものを要求するユーザーは　ネギラーメン　ではなく  
+もっと　金出して　高級な開発ツールを使えばいいのよ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そりゃそうだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　LocalApplicationData　だな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれっ？」  
+
+```plaintext
+　　C:
+　　└── 📂 Users
+　　　　└── 📂 {ユーザー名}
+　　　　　　└── 📂 AppData
+　　　　　　　　└── 📂 Local
+👉 　　　　　　　　└── 📂 Muzudho
+　　　　　　　　　　　　└── 📂 2D RPG Negiramen
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　他人のローカルＰＣに　わたしの名前のフォルダーが　ポコポコできるの　嫌なんだが……」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　屋号、　サークル名、　ホームページ名など　いろいろあるけど」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　仕事で金取ってないし　屋号もおかしいしな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　サークル名が　一番良いのでは？」  
+
+```plaintext
+　　C:
+　　└── 📂 Users
+　　　　└── 📂 {ユーザー名}
+　　　　　　└── 📂 AppData
+　　　　　　　　└── 📂 Local
+👉 　　　　　　　　└── 📂 Doujin Circle Grayscale
+　　　　　　　　　　　　└── 📂 2D RPG Negiramen
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`Grayscale` だけだと　何だか分からないので、  
+かなり長いけど `Doujin Circle Grayscale` にしよう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ひねりのない　名前にするからよ」  
+
+
 ＜書きかけ＞

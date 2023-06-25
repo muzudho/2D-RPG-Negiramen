@@ -60,7 +60,7 @@
         async Task DoIt() {
             await Task.Run(() =>
             {
-                // TODO テキスト・ボックスの値を取得
+                // テキスト・ボックスから、Unity エディターの Assets フォルダーへのパスを取得
                 var assetsFolderPath = this.UnityAssetsFolderPathAsStr;
 
                 if (!Directory.Exists(assetsFolderPath))
@@ -69,26 +69,31 @@
                     return;
                 }
 
-                // `Assets/Muzudho/2D RPG Negiramen` ディレクトリーの有無をチェック
-                var muzudhoFolderPath = Path.Combine(assetsFolderPath, "Muzudho");
+                // `Assets/Doujin Circle Grayscale/2D RPG Negiramen` ディレクトリーの有無をチェック
+                var doujinCircleGrayscaleFolderPath = Path.Combine(assetsFolderPath, "Doujin Circle Grayscale");
 
-                if (!Directory.Exists(muzudhoFolderPath))
+                if (!Directory.Exists(doujinCircleGrayscaleFolderPath))
                 {
                     // 無ければ作成
-                    Directory.CreateDirectory(muzudhoFolderPath);
+                    Directory.CreateDirectory(doujinCircleGrayscaleFolderPath);
                 }
 
-                CreateMuzudhoFolderMember(muzudhoFolderPath);
+                CreateDoujinCircleGrayscaleFolderMember(doujinCircleGrayscaleFolderPath);
 
                 // TODO Unityへプロジェクトを上書き
+
+                // ここまでくれば成功
+                // ==================
+
+                // TODO Unity エディターの Assets フォルダーへのパスをユーザー・データへ保存
             });
         }
 
         // - メソッド
 
-        void CreateMuzudhoFolderMember(string muzudhoFolderPath)
+        void CreateDoujinCircleGrayscaleFolderMember(string doujinCircleGrayscaleFolderPath)
         {
-            var o2dRPGNegiramenFolderPath = Path.Combine(muzudhoFolderPath, "2D RPG Negiramen");
+            var o2dRPGNegiramenFolderPath = Path.Combine(doujinCircleGrayscaleFolderPath, "2D RPG Negiramen");
 
             if (!Directory.Exists(o2dRPGNegiramenFolderPath))
             {
