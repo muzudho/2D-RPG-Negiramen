@@ -699,4 +699,9 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　接続時だけでなく、切断時の再計算も大変そうだ」  
 
+![202306_maui_26-0529--auto-tile-7.png](https://crieit.now.sh/upload_images/7803ee0cb7cc706250ac3d6d085a45406498a5df76c3a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　でも　オート・タイルの仕様は　理解したな」  
+
 ＜書きかけ＞
