@@ -57,7 +57,8 @@
         /// ［それをする］コマンドを実行
         /// </summary>
         /// <returns></returns>
-        async Task DoIt() {
+        async Task DoIt()
+        {
             await Task.Run(() =>
             {
                 // テキスト・ボックスから、Unity エディターの Assets フォルダーへのパスを取得
@@ -85,7 +86,67 @@
                 // ここまでくれば成功
                 // ==================
 
+                //
+                // AppData フォルダー下は、直接操作してはいけない
+                //
+                // 📖　[C# で AppData 以下にデータを保存するとき](https://teratail.com/questions/65648)
+                // 📖　[■「AppData」フォルダとLocalFolder](http://libro.tuyano.com/index3?id=2596003&page=3)
+
                 // TODO Unity エディターの Assets フォルダーへのパスをユーザー・データへ保存
+                // 📖　[特殊ディレクトリのパスを取得する](https://dobon.net/vb/dotnet/file/getfolderpath.html)
+                var localApplicationDataFolderPath = System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
+
+                // Directory.Exists() メソッドは、キャッシュのせいで失敗することがあるかもしれない。 DirectoryInfo を使うことにする。
+                //
+                // 📖　[存在しないファイルでもFile.Existsがtrueを返すことがある](https://qiita.com/kyamawaki/items/4c8eff5f085b0cf6ffa0)
+                //
+                DirectoryInfo localApplicationDataFolderPathInfo = new DirectoryInfo(localApplicationDataFolderPath);
+
+                var localDoujinCircleGrayscaleFolderPath = System.IO.Path.Combine(localApplicationDataFolderPath, "Doujin Circle Grayscale");
+
+                // ユーザー・データ・フォルダーの下なので、パーミッションを設定しておく
+                // 対応してなかった
+                // Directory.CreateDirectory(localDoujinCircleGrayscaleFolderPath, UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.OtherRead | UnixFileMode.OtherWrite);
+
+                bool isExists = false;
+                foreach (var member in localApplicationDataFolderPathInfo.GetDirectories())
+                {
+                    System.Diagnostics.Trace.WriteLine($"member.Name: {member.Name}");
+                    if (member.Name == "Doujin Circle Grayscale")
+                    {
+                        isExists = true;
+
+                        DirectoryInfo localDoujinCircleGrayscaleFolderPathInfo = new DirectoryInfo(localDoujinCircleGrayscaleFolderPath);
+                    }
+                }
+
+                if (!isExists)
+                {
+                    // 無ければ作成
+                    Directory.CreateDirectory(localDoujinCircleGrayscaleFolderPath, UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.OtherRead | UnixFileMode.OtherWrite);
+                }
+
+                //DirectoryInfo localDoujinCircleGrayscaleFolderPathInfo = new DirectoryInfo(localDoujinCircleGrayscaleFolderPath);
+                //if (!localDoujinCircleGrayscaleFolderPathInfo.Exists)
+                //{
+                //    // 無ければ作成
+                //    Directory.CreateDirectory(localDoujinCircleGrayscaleFolderPath);
+                //}
+
+                var local2DRPGNegiramenFolderPath = System.IO.Path.Combine(localDoujinCircleGrayscaleFolderPath, "2D RPG Negiramen");
+                DirectoryInfo local2DRPGNegiramenFolderPathInfo = new DirectoryInfo(local2DRPGNegiramenFolderPath);
+                if (!local2DRPGNegiramenFolderPathInfo.Exists)
+                {
+                    // 無ければ作成
+                    Directory.CreateDirectory(local2DRPGNegiramenFolderPath);
+                }
+
+                var configurationFilePath = System.IO.Path.Combine(local2DRPGNegiramenFolderPath, "configuration.toml");
+
+                // 設定ファイルの保存
+                System.IO.File.WriteAllText(configurationFilePath, $@"[Paths]
+unity_assets_folder_path = ""{assetsFolderPath}""");
+
             });
         }
 

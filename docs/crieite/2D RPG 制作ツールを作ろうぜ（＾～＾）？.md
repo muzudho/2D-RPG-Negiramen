@@ -514,5 +514,18 @@ Unity の外部で　プレファブは作れるの？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　ひねりのない　名前にするからよ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　あれっ！　MAUI　には　AppData 下の LocalFolder にアクセスする正式な方法が無い！」  
+
+📖　[設定情報とデータの保存 (3/5)](http://libro.tuyano.com/index3?id=2596003&page=3)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　マルチプラットフォームだから　Windows　のフォルダーにアクセスするのが　ナンセンスなんじゃないか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、そうか～！」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI　は他の手段を用意しているのかしら？　調べなさい」  
 
 ＜書きかけ＞
