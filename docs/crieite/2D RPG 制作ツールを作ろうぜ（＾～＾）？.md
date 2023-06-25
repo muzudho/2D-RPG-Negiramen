@@ -556,4 +556,13 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　今どき　合理的な解決方法　してんのねー」  
 
+![202306_maui_25-1954--save-config-file.png](https://crieit.now.sh/upload_images/aa8ee7b59466c8fda7fe2c9c4a66038364981d31e1a32.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　設定ファイルの保存の仕方は　覚え直した……。  
+やり方ぜんぜん変わってた……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　次は　そのファイルを読み取る方法を　覚え直せだぜ」  
+
 ＜書きかけ＞

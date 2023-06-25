@@ -106,24 +106,26 @@
                 // しかし、2D RPG は　Windows PC で開発すると想定する。
                 // そこで、 MAUI の範疇を外れ、Windows 固有のファイル・システムの API を使用することにする
                 //
-                // 📂 `AppData` フォルダーのような 
-                // 直接操作するようなコードは書いてはいけない
-                //
-                // 📖　[C# で AppData 以下にデータを保存するとき](https://teratail.com/questions/65648)
-                // 📖　[■「AppData」フォルダとLocalFolder](http://libro.tuyano.com/index3?id=2596003&page=3)
-                //
-                // また、 .toml ファイル
                 // 📖　[File system helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
                 //
 
-                string mainDir = FileSystem.Current.AppDataDirectory;
+                string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
                 // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
+
+                //
+                // フォルダー名は自動的に与えられているので、これを使う
+                //
+
+                // 保存したいファイル名
+                var configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
+
+                // 設定ファイルの保存
+                System.IO.File.WriteAllText(configurationFilePath, $@"[Paths]
+unity_assets_folder_path = ""{assetsFolderPath}""");
 
                 /*
                 //
 
-                // 保存したいファイル名
-                var settingFileName = "settings.toml";
 
                 // Open the source file
                 using Stream inputStream = await FileSystem.Current.OpenAppPackageFileAsync(filename);
