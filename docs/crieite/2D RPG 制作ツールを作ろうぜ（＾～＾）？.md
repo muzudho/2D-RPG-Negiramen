@@ -650,4 +650,22 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　オブジェクト数が　多い気がするけど、　ＲＰＧ　なら大丈夫なのかなあ？」  
 
+# マップ・エディターの画面デザイン
+
+![202306_maui_26-0312--map-editor.png](https://crieit.now.sh/upload_images/6ef16ba09a3988ffcfb25147f83c16aa6498849bafd25.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　マップ・エディターって　こんなレイアウトで　いいのかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　違うんじゃないか？」  
+
+![202306_maui_26-0318--map-editor-2.png](https://crieit.now.sh/upload_images/df66ea09812b6124f653d3e3957dfe2f6498862c4938f.png)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　描画ツールが　いくつかあるんだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　描画ツールって　どんなけ　あるんだぜ？」  
+
 ＜書きかけ＞
