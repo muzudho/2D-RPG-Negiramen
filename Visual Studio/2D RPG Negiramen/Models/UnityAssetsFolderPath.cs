@@ -12,6 +12,11 @@
         /// <returns>実例</returns>
         internal static UnityAssetsFolderPath FromString(string folderPath)
         {
+            if (folderPath == null)
+            {
+                throw new ArgumentNullException(nameof(folderPath));
+            }
+
             return new UnityAssetsFolderPath(folderPath);
         }
 

@@ -2,9 +2,10 @@
 {
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
-    using Microsoft.Maui.Media;
     using Microsoft.Maui.Storage;
     using System.Windows.Input;
+    using Tomlyn;
+    using Tomlyn.Model;
 
     /// <summary>
     /// ［Unityへプロジェクトを上書きする］ページ用のビューモデル
@@ -30,7 +31,38 @@
         /// </summary>
         public OverwriteProjectToUnityPageViewModel()
         {
-            _unityAssetsFolderPath = Models.UnityAssetsFolderPath.FromString(string.Empty);
+            //
+            // TOML形式ファイルの読取
+            // ======================
+            //
+            // 📖　[Tomlyn　＞　Documentation](https://github.com/xoofx/Tomlyn/blob/main/doc/readme.md)
+            //
+
+            string unity_assets_folder_path = string.Empty;
+
+            try
+            {
+                // フォルダー名は自動的に与えられているので、これを使う
+                string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
+                // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
+
+                // 読取たいファイルへのパス
+                var configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
+
+                // 設定ファイルの読取
+                var configurationText = System.IO.File.ReadAllText(configurationFilePath);
+
+                // TOML
+                var model = Toml.ToModel(configurationText);
+
+                unity_assets_folder_path = (string)((TomlTable)model["paths"]!)["unity_assets_folder_path"];
+            }
+            catch (Exception ex)
+            {
+                // TODO 例外対応、何したらいい（＾～＾）？
+            }
+
+            _unityAssetsFolderPath = Models.UnityAssetsFolderPath.FromString(unity_assets_folder_path);
 
             DoItCommand = new AsyncRelayCommand(DoIt);
         }
@@ -109,92 +141,18 @@
                 // 📖　[File system helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
                 //
 
+                // フォルダー名は自動的に与えられているので、これを使う
                 string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
                 // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
 
-                //
-                // フォルダー名は自動的に与えられているので、これを使う
-                //
-
-                // 保存したいファイル名
+                // 保存したいファイルへのパス
                 var configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
 
-                // 設定ファイルの保存
-                System.IO.File.WriteAllText(configurationFilePath, $@"[Paths]
-unity_assets_folder_path = ""{assetsFolderPath}""");
-
-                /*
-                //
-
-
-                // Open the source file
-                using Stream inputStream = await FileSystem.Current.OpenAppPackageFileAsync(filename);
-
-                // 保存したいファイル名を直接指定
-                string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, settingFileName);
-
-                // 操作を実行
-                using FileStream outputStream = File.Create(targetFile);
-                await inputStream.CopyToAsync(outputStream);
-
-                // まず、 Local のフォルダーを取得
-                var localFolder = ApplicationData.Current.LocalFolder;
-
-                // TODO Unity エディターの Assets フォルダーへのパスをユーザー・データへ保存
-                // 📖　[特殊ディレクトリのパスを取得する](https://dobon.net/vb/dotnet/file/getfolderpath.html)
-                var localApplicationDataFolderPath = System.Environment.GetFolderPath(Environment.SpecialFolder.LocalApplicationData);
-
-                // Directory.Exists() メソッドは、キャッシュのせいで失敗することがあるかもしれない。 DirectoryInfo を使うことにする。
-                //
-                // 📖　[存在しないファイルでもFile.Existsがtrueを返すことがある](https://qiita.com/kyamawaki/items/4c8eff5f085b0cf6ffa0)
-                //
-                DirectoryInfo localApplicationDataFolderPathInfo = new DirectoryInfo(localApplicationDataFolderPath);
-
-                var localDoujinCircleGrayscaleFolderPath = System.IO.Path.Combine(localApplicationDataFolderPath, "Doujin Circle Grayscale");
-
-                // ユーザー・データ・フォルダーの下なので、パーミッションを設定しておく
-                // 対応してなかった
-                // Directory.CreateDirectory(localDoujinCircleGrayscaleFolderPath, UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.OtherRead | UnixFileMode.OtherWrite);
-
-                bool isExists = false;
-                foreach (var member in localApplicationDataFolderPathInfo.GetDirectories())
-                {
-                    System.Diagnostics.Trace.WriteLine($"member.Name: {member.Name}");
-                    if (member.Name == "Doujin Circle Grayscale")
-                    {
-                        isExists = true;
-
-                        DirectoryInfo localDoujinCircleGrayscaleFolderPathInfo = new DirectoryInfo(localDoujinCircleGrayscaleFolderPath);
-                    }
-                }
-
-                if (!isExists)
-                {
-                    // 無ければ作成
-                    Directory.CreateDirectory(localDoujinCircleGrayscaleFolderPath, UnixFileMode.UserRead | UnixFileMode.UserWrite | UnixFileMode.GroupRead | UnixFileMode.GroupWrite | UnixFileMode.OtherRead | UnixFileMode.OtherWrite);
-                }
-
-                //DirectoryInfo localDoujinCircleGrayscaleFolderPathInfo = new DirectoryInfo(localDoujinCircleGrayscaleFolderPath);
-                //if (!localDoujinCircleGrayscaleFolderPathInfo.Exists)
-                //{
-                //    // 無ければ作成
-                //    Directory.CreateDirectory(localDoujinCircleGrayscaleFolderPath);
-                //}
-
-                var local2DRPGNegiramenFolderPath = System.IO.Path.Combine(localDoujinCircleGrayscaleFolderPath, "2D RPG Negiramen");
-                DirectoryInfo local2DRPGNegiramenFolderPathInfo = new DirectoryInfo(local2DRPGNegiramenFolderPath);
-                if (!local2DRPGNegiramenFolderPathInfo.Exists)
-                {
-                    // 無ければ作成
-                    Directory.CreateDirectory(local2DRPGNegiramenFolderPath);
-                }
-
-                var configurationFilePath = System.IO.Path.Combine(local2DRPGNegiramenFolderPath, "configuration.toml");
+                var escapedAssetsFolderPath = assetsFolderPath.Replace("\\", "/");
 
                 // 設定ファイルの保存
-                System.IO.File.WriteAllText(configurationFilePath, $@"[Paths]
-unity_assets_folder_path = ""{assetsFolderPath}""");
-                */
+                System.IO.File.WriteAllText(configurationFilePath, $@"[paths]
+unity_assets_folder_path = ""{escapedAssetsFolderPath}""");
 
             });
         }

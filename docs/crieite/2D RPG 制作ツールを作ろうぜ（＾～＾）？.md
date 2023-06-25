@@ -565,4 +565,26 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　次は　そのファイルを読み取る方法を　覚え直せだぜ」  
 
+# TOML形式ファイルを読み取ろうぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　もう１回　Tomlyn　の調べ直し」  
+
+📖　[Tomlyn　＞　Documentation](https://github.com/xoofx/Tomlyn/blob/main/doc/readme.md)  
+
+![202306_maui_25-2024--load-toml.png](https://crieit.now.sh/upload_images/99d20d8910e5832447e4950134c0ade56498242f58f8f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これで　Toml　も読み込めるぜ」  
+
+![202306_maui_25-2026--memory-o2o0.png](https://crieit.now.sh/upload_images/dc077e79a069faa27b0affd8ffdb6ffe649824a3331f9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　前に入力した内容も　フォームが覚えてくれるようになったから　楽になったぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　先送りにしていた　変数ｘ　は　どうすんの？」  
+
+
+
 ＜書きかけ＞
