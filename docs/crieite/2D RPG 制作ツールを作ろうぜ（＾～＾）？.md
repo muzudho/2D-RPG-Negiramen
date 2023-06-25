@@ -585,6 +585,33 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　先送りにしていた　変数ｘ　は　どうすんの？」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　絵を描くツールも　Windows Paint　と、　GIMP　しかないしな……  
+少し　ネットで調べる」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　特許が取られてるかどうか　分からん」
+
+📖　[WOLF Editor 公式　＞　【ﾏｯﾌﾟﾁｯﾌﾟ素材はどういう風に作ればいいの？】](https://www.silversecond.com/WolfRPGEditor/Guide/MAKEMAT_004.html)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ゲームの特許なんか調べてられん。　ページ開いて出てくるの、こんなんだぜ？」  
+
+📖　[特開2007-244536](https://www.j-platpat.inpit.go.jp/c1800/PU/JP-2007-244536/E79286C057363216D5E71D8D82C3A60F5466927DAC084FBE9C97014C8B662FFE/11/ja)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　訴えられて死ねだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「  
+真理は　避けられず  
+真実は　踏み込んだ者にしか見えず  
+真相は　勝手なものである」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ゲーム業界に首を突っ込みたかったら　死にましょう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　WOLF EDITOR のドキュメントが整理されているので、それ読む」  
 
 ＜書きかけ＞
