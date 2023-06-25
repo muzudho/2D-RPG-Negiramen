@@ -2,6 +2,8 @@
 {
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
+    using Microsoft.Maui.Media;
+    using Microsoft.Maui.Storage;
     using System.Windows.Input;
 
     /// <summary>
@@ -87,10 +89,54 @@
                 // ==================
 
                 //
-                // AppData フォルダー下は、直接操作してはいけない
+                // マルチプラットフォームの MAUI では、
+                // パソコンだけではなく、スマホなどのサンドボックス環境などでの使用も想定されている
+                // 
+                // そのため、設定の保存／読込の操作は最小限のものしかない
+                //
+                // 📖　[Where to save .Net MAUI user settings](https://stackoverflow.com/questions/70599331/where-to-save-net-maui-user-settings)
+                //
+                // // getter
+                // var value = Preferences.Get("nameOfSetting", "defaultValueForSetting");
+                //
+                // // setter
+                // Preferences.Set("nameOfSetting", value);
+                //
+                //
+                // しかし、2D RPG は　Windows PC で開発すると想定する。
+                // そこで、 MAUI の範疇を外れ、Windows 固有のファイル・システムの API を使用することにする
+                //
+                // 📂 `AppData` フォルダーのような 
+                // 直接操作するようなコードは書いてはいけない
                 //
                 // 📖　[C# で AppData 以下にデータを保存するとき](https://teratail.com/questions/65648)
                 // 📖　[■「AppData」フォルダとLocalFolder](http://libro.tuyano.com/index3?id=2596003&page=3)
+                //
+                // また、 .toml ファイル
+                // 📖　[File system helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
+                //
+
+                string mainDir = FileSystem.Current.AppDataDirectory;
+                // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
+
+                /*
+                //
+
+                // 保存したいファイル名
+                var settingFileName = "settings.toml";
+
+                // Open the source file
+                using Stream inputStream = await FileSystem.Current.OpenAppPackageFileAsync(filename);
+
+                // 保存したいファイル名を直接指定
+                string targetFile = Path.Combine(FileSystem.Current.AppDataDirectory, settingFileName);
+
+                // 操作を実行
+                using FileStream outputStream = File.Create(targetFile);
+                await inputStream.CopyToAsync(outputStream);
+
+                // まず、 Local のフォルダーを取得
+                var localFolder = ApplicationData.Current.LocalFolder;
 
                 // TODO Unity エディターの Assets フォルダーへのパスをユーザー・データへ保存
                 // 📖　[特殊ディレクトリのパスを取得する](https://dobon.net/vb/dotnet/file/getfolderpath.html)
@@ -146,6 +192,7 @@
                 // 設定ファイルの保存
                 System.IO.File.WriteAllText(configurationFilePath, $@"[Paths]
 unity_assets_folder_path = ""{assetsFolderPath}""");
+                */
 
             });
         }
