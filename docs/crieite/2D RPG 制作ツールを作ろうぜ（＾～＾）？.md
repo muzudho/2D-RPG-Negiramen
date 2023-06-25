@@ -392,6 +392,8 @@ Unity の外部で　プレファブは作れるの？」
 
 📖　[Tomlyn](https://github.com/xoofx/Tomlyn)  
 
+# MVVM
+
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　あれっ？」  
 
@@ -405,5 +407,35 @@ Unity の外部で　プレファブは作れるの？」
 
 📖　[Microsoft　＞　Upgrade your app with MVVM concepts](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-mvvm/)  
 
+![202306_maui_25-1508--MVVM.png](https://crieit.now.sh/upload_images/b92492bfd9e12e4e78cededee82797d26497d9f92dac0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　📂 `Views` 、 📂 `ViewModels` 、 📂 `Models`　の３フォルダーを揃えよう」  
+
+![202306_maui_25-1518--model-o2o0.png](https://crieit.now.sh/upload_images/6e271686644c51e40fd8a76b6302d5e96497ddac6c8de.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんだか分からないが　Model　は　ただのオブジェクトだろ。イミュータブルに作ったった」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ViewModel　は　なんか複雑だな　説明を　よく読も」  
+
+📖　[Create the About viewmodel](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-mvvm/?tutorial-step=4)  
+
+![202306_maui_25-1613--viewModel-o2o0.png](https://crieit.now.sh/upload_images/88a3db11149efb1bf819bb67fa4339e26497e9410c31d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ViewModel　は　Model　と　変更通知プロパティ　を紐づければいいんだろ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要があるぜ」  
+
+![202306_maui_25-1627--View-o2o0.png](https://crieit.now.sh/upload_images/b09892288a97de3f53119d7043bec5f96497ecc95d14e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　View　は　ここまで書き足したぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ボタンは　コマンドで書き直す必要があるんじゃない？」  
 
 ＜書きかけ＞
