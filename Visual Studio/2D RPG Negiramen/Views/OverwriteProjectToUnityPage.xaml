@@ -39,6 +39,7 @@
                    Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"/>
 
             <Button x:Name="OverwriteProjectToUnityBtn"
+                    WidthRequest="300"
                     Text="Unityへプロジェクトを上書き"
                     SemanticProperties.Hint="Overwrite project to Unity"
                     Clicked="OverwriteProjectToUnityBtn_Clicked" />

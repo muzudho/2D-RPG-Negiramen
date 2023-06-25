@@ -370,4 +370,40 @@ Unity の外部で　プレファブは作れるの？」
 「　Unity に　そういう　ＡＰＩ　があるか？　ということだな。  
 調べてみようぜ？」  
 
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そんなことを　しようという人が少ないのか　記事が見当たらないな」  
+
+# 設定の保存を作れだぜ
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　毎回　📂 `Assets` フォルダーへのパスを入れるのが　面倒なんだけど？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ユーザー・データとして保存したいよな。  
+最近流行りのファイル形式は何だぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　TOML 1.0 はどうだぜ？」  
+
+📖　[公式　＞　toml](https://github.com/toml-lang/toml/wiki)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　Tomlyn を NuGET で入れてみるか」  
+
+📖　[Tomlyn](https://github.com/xoofx/Tomlyn)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれっ？」  
+
+![202306_maui_25-1459--text-box-default-o2o0.png](https://crieit.now.sh/upload_images/c2e22ea1ecfe5617dfa3a5a51878509a6497d83ed2201.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　このテキスト・ボックスの初期値って　どうやって　入れるんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　お父んが　さっき読んでいた記事に書いてあるだろ。 MVVM のところを読み直せだぜ」  
+
+📖　[Microsoft　＞　Upgrade your app with MVVM concepts](https://learn.microsoft.com/en-us/dotnet/maui/tutorials/notes-mvvm/)  
+
+
 ＜書きかけ＞
