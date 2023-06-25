@@ -438,4 +438,16 @@ Unity の外部で　プレファブは作れるの？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　ボタンは　コマンドで書き直す必要があるんじゃない？」  
 
+![202306_maui_25-1646--Command-o2o0.png](https://crieit.now.sh/upload_images/c040e3e89ac58a9f8c17c91ecedafc966497f1280dfd8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ViewModel　に　コマンドを取り付け。  
+ビュー・モデルは　MVVMアーキテクチャーの中で　雑用とか、アシスタント・ディレクターの役割を担当するんだな」  
+
+![202306_maui_25-1657--View-o2o0.png](https://crieit.now.sh/upload_images/7d16c5aa2b5b004595041c770c975dee6497f39425a5b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　View　も更新。  
+イベントハンドラを消し、コマンドを追加」  
+
 ＜書きかけ＞

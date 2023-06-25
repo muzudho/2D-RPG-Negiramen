@@ -48,7 +48,7 @@
                     WidthRequest="300"
                     Text="Unityへプロジェクトを上書き"
                     SemanticProperties.Hint="Overwrite project to Unity"
-                    Clicked="OverwriteProjectToUnityBtn_Clicked" />
+                    Command="{Binding DoItCommand}"/>
 
         </VerticalStackLayout>
     </ScrollView>
