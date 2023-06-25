@@ -668,4 +668,35 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　描画ツールって　どんなけ　あるんだぜ？」  
 
+![202306_maui_26-0318--map-editor-3.png](https://crieit.now.sh/upload_images/d927ca1a3044be961f15a20f3e520e60649888762a522.png)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　分からん。これぐらいから　始めればどうか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　境界線ペンの仕様が　はっきり分かんないかしら？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　オート・タイルか。　説明が　よく分かんないんだよな」  
+
+![202306_maui_26-0358--auto-tile-4.png](https://crieit.now.sh/upload_images/fcbcef837936039d85a3e984eb1b964664989f5be3297.png)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　お父んに　分かりやすいように　まとめたぜ。  
+空間充填問題　好きだろ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　うわっ　二ム計算みたいなの　出てきた」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　あー、はいはい、分かりました」  
+
+![202306_maui_26-0504--auto-tile-5.png](https://crieit.now.sh/upload_images/5c6991ff6a6d52a54d728c03758279736498a248ee8da.png)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　こんな役割なのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　接続時だけでなく、切断時の再計算も大変そうだ」  
+
 ＜書きかけ＞
