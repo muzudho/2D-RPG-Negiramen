@@ -609,9 +609,45 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 真相は　勝手なものである」  
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
-「　ゲーム業界に首を突っ込みたかったら　死にましょう」  
+「　ゲーム業界に首を突っ込みたかったら　死にましょう。  
+生きて帰るな。代わりに　徹底的に世界を破壊しなさい」  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　WOLF EDITOR のドキュメントが整理されているので、それ読む」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ピクセル・アートを描くのに　良い無料のツールって　どんなのだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　有料のフォトショップしか　選択肢　無いのに……」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　こんなサイトがあった。後で調べよう」  
+
+📖　[www.pixilart.com](https://www.pixilart.com/draw)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　マップ・タイルは　16 x 16 ピクセル・サイズが単位のようだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　それを　どれぐらいのサイズのキャンバスの中に　敷き詰めんの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　マルチ・プラットフォームなのだから、答えはないぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Nintendo Switch　は、　1080 x 720　だそうだぜ。  
+これを　参考に試算しよう」  
+
+📖　[Nintendo　＞　Switch　＞　Technical Specs](https://www.nintendo.com/switch/tech-specs/)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイル数で言うと、 67.5 x 45　枚だな。スクリーン上に　3037.5　枚のタイルがあるぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　一層で？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　オブジェクト数が　多い気がするけど、　ＲＰＧ　なら大丈夫なのかなあ？」  
 
 ＜書きかけ＞
