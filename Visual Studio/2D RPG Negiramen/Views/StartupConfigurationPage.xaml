@@ -26,33 +26,68 @@
             本文
             ====
         -->
-        <Grid RowDefinitions="*,*,*">
-            <Label Grid.Row="0" Grid.Column="0"
+        <Grid RowDefinitions="*,*" ColumnDefinitions="20,2*,20,*,20,*,20,*">
+            <Label Grid.Row="0" Grid.Column="1"
                    Text="Unity プロジェクトの 📂 `Assets` フォルダーへのパス"
                    SemanticProperties.Hint="Separator"
                    VerticalTextAlignment="Center"/>
 
-            <Label Grid.Row="0" Grid.Column="1"
+            <Label Grid.Row="0" Grid.Column="3"
                    Text="あなたのサークル名"
                    SemanticProperties.Hint="Separator"
                    VerticalTextAlignment="Center"/>
 
-            <Label Grid.Row="0" Grid.Column="2"
+            <Label Grid.Row="0" Grid.Column="5"
                    Text="あなたの作品名"
                    SemanticProperties.Hint="Separator"
                    VerticalTextAlignment="Center"/>
 
-            <Entry Grid.Row="1" Grid.Column="0"
+            <Label Grid.Row="0" Grid.Column="7"
+                   Text="このフォルダーの下は自動編集されます"
+                   SemanticProperties.Hint="Separator"
+                   VerticalTextAlignment="Center"/>
+
+            <Label Grid.Row="1" Grid.Column="0"
+                   Text="📂"
+                   SemanticProperties.Hint="Folder"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
+
+            <Entry Grid.Row="1" Grid.Column="1"
                    Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"
                    Text="{Binding UnityAssetsFolderPathAsStr}"/>
 
-            <Entry Grid.Row="1" Grid.Column="1"
+            <Label Grid.Row="1" Grid.Column="2"
+                   Text="/"
+                   SemanticProperties.Hint="Separator"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
+
+            <Entry Grid.Row="1" Grid.Column="3"
                    Placeholder="Mr. Negiramen"
                    Text="{Binding YourCircleNameAsStr}"/>
 
-            <Entry Grid.Row="1" Grid.Column="2"
+            <Label Grid.Row="1" Grid.Column="4"
+                   Text="/"
+                   SemanticProperties.Hint="Separator"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
+
+            <Entry Grid.Row="1" Grid.Column="5"
                    Placeholder="Negiramen Quest"
                    Text="{Binding YourWorkNameAsStr}"/>
+
+            <Label Grid.Row="1" Grid.Column="6"
+                   Text="/"
+                   SemanticProperties.Hint="Separator"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"/>
+
+            <Label Grid.Row="1" Grid.Column="7"
+                   Text="Negiramen"
+                   SemanticProperties.Hint="Fixed folder name"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Center"/>
         </Grid>
 
 
