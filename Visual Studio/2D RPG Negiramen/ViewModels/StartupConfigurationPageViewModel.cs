@@ -42,38 +42,19 @@
         /// </summary>
         public StartupConfigurationPageViewModel()
         {
-            //
-            // TOML形式ファイルの読取
-            // ======================
-            //
-            // 📖　[Tomlyn　＞　Documentation](https://github.com/xoofx/Tomlyn/blob/main/doc/readme.md)
-            //
-
-            string unity_assets_folder_path = string.Empty;
-
             try
             {
-                // フォルダー名は自動的に与えられているので、これを使う
-                string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
-                // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
+                // 構成ファイル
+                var configuration = Configuration.LoadToml();
 
-                // 読取たいファイルへのパス
-                var configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
-
-                // 設定ファイルの読取
-                var configurationText = System.IO.File.ReadAllText(configurationFilePath);
-
-                // TOML
-                var model = Toml.ToModel(configurationText);
-
-                unity_assets_folder_path = (string)((TomlTable)model["paths"]!)["unity_assets_folder_path"];
+                UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
+                YourCircleNameAsStr = configuration.YourCircleName.AsStr;
+                YourWorkNameAsStr = configuration.YourWorkName.AsStr;
             }
             catch (Exception ex)
             {
                 // TODO 例外対応、何したらいい（＾～＾）？
             }
-
-            _unityAssetsFolderPath = Models.UnityAssetsFolderPath.FromString(unity_assets_folder_path);
 
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
             PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
