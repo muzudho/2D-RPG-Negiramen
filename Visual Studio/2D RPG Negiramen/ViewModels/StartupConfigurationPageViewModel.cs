@@ -39,9 +39,11 @@
         /// </summary>
         public StartupConfigurationPageViewModel()
         {
-            // 構成ファイル
+            // 構成ファイルの再読込
             if (Configuration.LoadTOML(out Configuration configuration))
             {
+                App.Configuration = configuration;
+
                 UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
                 YourCircleNameAsStr = configuration.YourCircleName.AsStr;
                 YourWorkNameAsStr = configuration.YourWorkName.AsStr;
@@ -113,34 +115,24 @@
             {
                 // テキスト・ボックスから、Unity エディターの Assets フォルダーへのパスを取得
                 var assetsFolderPath = this.UnityAssetsFolderPathAsStr;
+                var escapedAssetsFolderPathAsStr = assetsFolderPath.Replace("\\", "/");
 
+                // 構成ファイルの更新差分
+                var configurationDifference = new ConfigurationDifference()
+                {
+                    UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr),
+                    YourCircleName = _yourCircleName,
+                    YourWorkName = _yourWorkName,
+                };
+
+                // 設定ファイルの保存
+                Configuration.SaveTOML(App.Configuration, configurationDifference);
+
+                // Unity の Assets フォルダ―へ初期設定をコピー
                 if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPath))
                 {
                     // TODO 異常時の処理
                     return;
-                }
-
-                // TODO Unityへプロジェクトを上書き
-
-                // ここまでくれば成功
-                // ==================
-
-
-                var escapedAssetsFolderPathAsStr = assetsFolderPath.Replace("\\", "/");
-
-                // 現在の構成ファイル
-                if (Configuration.LoadTOML(out Configuration configuration))
-                {
-                    // 構成ファイルの更新差分
-                    var configurationDifference = new ConfigurationDifference()
-                    {
-                        UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr),
-                        YourCircleName = _yourCircleName,
-                        YourWorkName = _yourWorkName,
-                    };
-
-                    // 設定ファイルの保存
-                    Configuration.SaveTOML(configuration, configurationDifference);
                 }
             });
         }

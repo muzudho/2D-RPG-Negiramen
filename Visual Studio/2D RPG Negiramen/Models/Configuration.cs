@@ -182,6 +182,16 @@
         /// <summary>
         /// 生成
         /// </summary>
+        internal Configuration() : this(
+            UnityAssetsFolderPath.Empty,
+            YourCircleName.Empty,
+            YourWorkName.Empty)
+        {
+        }
+
+        /// <summary>
+        /// 生成
+        /// </summary>
         /// <param name="unityAssetsFolderPath">Unity の Assets フォルダーへのパス</param>
         /// <param name="yourCircleName">あなたのサークル名</param>
         /// <param name="yourWorkName">あなたの作品名</param>
