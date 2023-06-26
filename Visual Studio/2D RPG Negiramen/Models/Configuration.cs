@@ -60,7 +60,7 @@
                         if (profileObj != null && profileObj is TomlTable profile)
                         {
                             // あなたのサークル名
-                            if (document.TryGetValue("your_circle_name", out object yourCircleNameObj))
+                            if (profile.TryGetValue("your_circle_name", out object yourCircleNameObj))
                             {
                                 if (yourCircleNameObj != null && yourCircleNameObj is string yourCircleNameAsStr)
                                 {
@@ -69,7 +69,7 @@
                             }
 
                             // あなたの作品名
-                            if (document.TryGetValue("your_work_name", out object yourWorkNameObj))
+                            if (profile.TryGetValue("your_work_name", out object yourWorkNameObj))
                             {
                                 if (yourWorkNameObj != null && yourWorkNameObj is string yourWorkNameAsStr)
                                 {

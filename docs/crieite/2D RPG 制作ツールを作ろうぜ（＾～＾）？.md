@@ -749,4 +749,16 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 設定無しで　行けるようにしよう。  
 そこで何か　ボタンを押したら　初期設定画面へ」  
 
+![202306_maui_27-0412--startup-configuration-page.png](https://crieit.now.sh/upload_images/a8edf5a6750f3134f704ddef7aada5266499e35ea38bc.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　パンくずリストで　どう表現したらいいんだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　サイト・マップのツリー構造を崩したくないから、  
+モーダル・ダイアログ・ボックス的に　ページ遷移せず出てくる　サブ・ウィンドウみたいにできないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　やり方分からん。調査だな」  
+
 ＜書きかけ＞

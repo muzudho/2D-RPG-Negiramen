@@ -31,11 +31,11 @@
         public ICommand PushStartupToUnityAssetsFolderCommand { get; }
 
         /// <summary>
-        /// 生成
-        /// 
-        /// <list type="bullet">
-        ///     <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
-        /// </list>
+        ///     生成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
+        ///     </list>
         /// </summary>
         public StartupConfigurationPageViewModel()
         {
