@@ -13,17 +13,17 @@
         /// <summary>
         /// Unity の Assets フォルダーへのパス
         /// </summary>
-        private Models.UnityAssetsFolderPath _unityAssetsFolderPath;
+        private UnityAssetsFolderPath _unityAssetsFolderPath = UnityAssetsFolderPath.Empty;
 
         /// <summary>
         /// あなたのサークル名
         /// </summary>
-        private Models.YourCircleName _yourCircleName;
+        private YourCircleName _yourCircleName = YourCircleName.Empty;
 
         /// <summary>
         /// あなたの作品名
         /// </summary>
-        private Models.YourWorkName _yourWorkName;
+        private YourWorkName _yourWorkName = YourWorkName.Empty;
 
         /// <summary>
         /// Unity の Assets フォルダ―へ初期設定をコピーするコマンド
@@ -39,18 +39,12 @@
         /// </summary>
         public StartupConfigurationPageViewModel()
         {
-            try
+            // 構成ファイル
+            if (Configuration.LoadTOML(out Configuration configuration))
             {
-                // 構成ファイル
-                var configuration = Configuration.LoadTOML();
-
                 UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
                 YourCircleNameAsStr = configuration.YourCircleName.AsStr;
                 YourWorkNameAsStr = configuration.YourWorkName.AsStr;
-            }
-            catch (Exception ex)
-            {
-                // TODO 例外対応、何したらいい（＾～＾）？
             }
 
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
@@ -135,18 +129,19 @@
                 var escapedAssetsFolderPathAsStr = assetsFolderPath.Replace("\\", "/");
 
                 // 現在の構成ファイル
-                var configuration = Configuration.LoadTOML();
-
-                // 構成ファイルの更新差分
-                var configurationDifference = new ConfigurationDifference()
+                if (Configuration.LoadTOML(out Configuration configuration))
                 {
-                    UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr),
-                    YourCircleName = _yourCircleName,
-                    YourWorkName = _yourWorkName,
-                };
+                    // 構成ファイルの更新差分
+                    var configurationDifference = new ConfigurationDifference()
+                    {
+                        UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr),
+                        YourCircleName = _yourCircleName,
+                        YourWorkName = _yourWorkName,
+                    };
 
-                // 設定ファイルの保存
-                Configuration.SaveTOML(configuration, configurationDifference);
+                    // 設定ファイルの保存
+                    Configuration.SaveTOML(configuration, configurationDifference);
+                }
             });
         }
     }

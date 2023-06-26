@@ -5,6 +5,13 @@
     /// </summary>
     class YourCircleName
     {
+        // - 静的プロパティ
+
+        /// <summary>
+        /// 空オブジェクト
+        /// </summary>
+        internal static YourCircleName Empty { get; } = new YourCircleName();
+
         /// <summary>
         /// 文字列を与えて初期化
         /// </summary>

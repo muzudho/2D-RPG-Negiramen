@@ -5,6 +5,13 @@
     /// </summary>
     class YourWorkName
     {
+        // - 静的プロパティ
+
+        /// <summary>
+        /// 空オブジェクト
+        /// </summary>
+        internal static YourWorkName Empty { get; } = new YourWorkName();
+
         /// <summary>
         /// 文字列を与えて初期化
         /// </summary>

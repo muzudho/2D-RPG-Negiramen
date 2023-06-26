@@ -29,16 +29,10 @@
         /// </summary>
         public OverwriteProjectToUnityPageViewModel()
         {
-            try
+            // 構成ファイル
+            if (Configuration.LoadTOML(out Configuration configuration))
             {
-                // 構成ファイル
-                var configuration = Configuration.LoadTOML();
-
                 _unityAssetsFolderPath = configuration.UnityAssetsFolderPath;
-            }
-            catch (Exception ex)
-            {
-                // TODO 例外対応、何したらいい（＾～＾）？
             }
 
             DoItCommand = new AsyncRelayCommand(DoIt);
@@ -89,16 +83,17 @@
                 var escapedAssetsFolderPathAsStr = assetsFolderPath.Replace("\\", "/");
 
                 // 現在の構成ファイル
-                var configuration = Configuration.LoadTOML();
-
-                // 構成ファイルの更新差分
-                var configurationDifference = new ConfigurationDifference()
+                if (Configuration.LoadTOML(out Configuration configuration))
                 {
-                    UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr)
-                };
+                    // 構成ファイルの更新差分
+                    var configurationDifference = new ConfigurationDifference()
+                    {
+                        UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr)
+                    };
 
-                // 設定ファイルの保存
-                Configuration.SaveTOML(configuration, configurationDifference);
+                    // 設定ファイルの保存
+                    Configuration.SaveTOML(configuration, configurationDifference);
+                }
             });
         }
     }

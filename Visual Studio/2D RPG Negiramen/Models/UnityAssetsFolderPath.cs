@@ -5,6 +5,13 @@
     /// </summary>
     class UnityAssetsFolderPath
     {
+        // - 静的プロパティ
+
+        /// <summary>
+        /// 空オブジェクト
+        /// </summary>
+        internal static UnityAssetsFolderPath Empty { get; } = new UnityAssetsFolderPath();
+
         /// <summary>
         /// 文字列を与えて初期化
         /// </summary>

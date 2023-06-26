@@ -19,7 +19,7 @@
         ///     </pre>
         /// </summary>
         /// <returns>TOMLテーブルまたはヌル</returns>
-        internal static Configuration LoadTOML()
+        internal static bool LoadTOML(out Configuration configuration)
         {
             try
             {
@@ -33,54 +33,64 @@
                 // 設定ファイルの読取
                 var configurationText = System.IO.File.ReadAllText(configurationFilePath);
 
-                UnityAssetsFolderPath unityAssetsFolderPath = default(UnityAssetsFolderPath);
-                YourCircleName yourCircleName = default(YourCircleName);
-                YourWorkName yourWorkName = default(YourWorkName);
+                UnityAssetsFolderPath unityAssetsFolderPath = new UnityAssetsFolderPath();
+                YourCircleName yourCircleName = new YourCircleName();
+                YourWorkName yourWorkName = new YourWorkName();
 
                 // TOML
                 TomlTable document = Toml.ToModel(configurationText);
 
                 if (document != null)
                 {
-                    var pathsObj = document["paths"];
-                    if (pathsObj != null && pathsObj is TomlTable paths)
+                    if (document.TryGetValue("paths", out object pathsObj))
                     {
-                        // Unity の Assets フォルダ―へのパス
-                        var unityAssetsFolderPathObj = paths["unity_assets_folder_path"];
-                        if (unityAssetsFolderPathObj != null && unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
+                        if (pathsObj != null && pathsObj is TomlTable paths)
                         {
-                            unityAssetsFolderPath = UnityAssetsFolderPath.FromString(unityAssetsFolderPathAsStr);
+                            // Unity の Assets フォルダ―へのパス
+                            var unityAssetsFolderPathObj = paths["unity_assets_folder_path"];
+                            if (unityAssetsFolderPathObj != null && unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
+                            {
+                                unityAssetsFolderPath = UnityAssetsFolderPath.FromString(unityAssetsFolderPathAsStr);
+                            }
                         }
                     }
 
-                    var profileObj = document["profile"];
-                    if (profileObj != null && profileObj is TomlTable profile)
+                    if (document.TryGetValue("profile", out object profileObj))
                     {
-                        // あなたのサークル名
-                        var yourCircleNameObj = profile["your_circle_name"];
-                        if (yourCircleNameObj != null && yourCircleNameObj is string yourCircleNameAsStr)
+                        if (profileObj != null && profileObj is TomlTable profile)
                         {
-                            yourCircleName = YourCircleName.FromString(yourCircleNameAsStr);
-                        }
+                            // あなたのサークル名
+                            if (document.TryGetValue("your_circle_name", out object yourCircleNameObj))
+                            {
+                                if (yourCircleNameObj != null && yourCircleNameObj is string yourCircleNameAsStr)
+                                {
+                                    yourCircleName = YourCircleName.FromString(yourCircleNameAsStr);
+                                }
+                            }
 
-                        // あなたの作品名
-                        var yourWorkNameObj = profile["your_work_name"];
-                        if (yourWorkNameObj != null && yourWorkNameObj is string yourWorkNameAsStr)
-                        {
-                            yourWorkName = YourWorkName.FromString(yourWorkNameAsStr);
+                            // あなたの作品名
+                            if (document.TryGetValue("your_work_name", out object yourWorkNameObj))
+                            {
+                                if (yourWorkNameObj != null && yourWorkNameObj is string yourWorkNameAsStr)
+                                {
+                                    yourWorkName = YourWorkName.FromString(yourWorkNameAsStr);
+                                }
+                            }
                         }
                     }
                 }
 
-                return new Configuration(
+                configuration = new Configuration(
                     unityAssetsFolderPath,
                     yourCircleName,
                     yourWorkName);
+                return true;
             }
             catch (Exception ex)
             {
                 // TODO 例外対応、何したらいい（＾～＾）？
-                return null;
+                configuration = null;
+                return false;
             }
         }
 
@@ -118,6 +128,7 @@
 
             builder.AppendLine("[paths]");
 
+            // Unity の Assets フォルダ―へのパス
             if (difference.UnityAssetsFolderPath == null)
             {
                 builder.AppendLine($"unity_assets_folder_path = \"{current.UnityAssetsFolderPath.AsStr}\"");
@@ -125,6 +136,28 @@
             else
             {
                 builder.AppendLine($"unity_assets_folder_path = \"{difference.UnityAssetsFolderPath.AsStr}\"");
+            }
+
+            builder.AppendLine("[profile]");
+
+            // あなたのサークル名
+            if (difference.YourCircleName == null)
+            {
+                builder.AppendLine($"your_circle_name = \"{current.YourCircleName.AsStr}\"");
+            }
+            else
+            {
+                builder.AppendLine($"your_circle_name = \"{difference.YourCircleName.AsStr}\"");
+            }
+
+            // あなたの作品名
+            if (difference.YourWorkName == null)
+            {
+                builder.AppendLine($"your_work_name = \"{current.YourWorkName.AsStr}\"");
+            }
+            else
+            {
+                builder.AppendLine($"your_work_name = \"{difference.YourWorkName.AsStr}\"");
             }
 
             // 上書き
@@ -146,12 +179,20 @@
         /// </summary>
         internal YourWorkName YourWorkName { get; }
 
+        /// <summary>
+        /// 生成
+        /// </summary>
+        /// <param name="unityAssetsFolderPath">Unity の Assets フォルダーへのパス</param>
+        /// <param name="yourCircleName">あなたのサークル名</param>
+        /// <param name="yourWorkName">あなたの作品名</param>
         Configuration(
             UnityAssetsFolderPath unityAssetsFolderPath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)
         {
-
+            this.UnityAssetsFolderPath = unityAssetsFolderPath;
+            this.YourCircleName = yourCircleName;
+            this.YourWorkName = yourWorkName;
         }
     }
 }
