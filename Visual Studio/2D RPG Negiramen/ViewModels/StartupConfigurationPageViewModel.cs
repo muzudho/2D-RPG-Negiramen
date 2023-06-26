@@ -9,9 +9,9 @@
     using Tomlyn.Model;
 
     /// <summary>
-    /// ［Unityへプロジェクトを上書きする］ページ用のビューモデル
+    /// ［初期設定］ページ用のビューモデル
     /// </summary>
-    class OverwriteProjectToUnityPageViewModel : ObservableObject
+    class StartupConfigurationPageViewModel : ObservableObject
     {
         /// <summary>
         /// Unity の Assets フォルダーへのパス
@@ -19,9 +19,19 @@
         private Models.UnityAssetsFolderPath _unityAssetsFolderPath;
 
         /// <summary>
-        /// それをするコマンド
+        /// あなたのサークル名
         /// </summary>
-        public ICommand DoItCommand { get; }
+        private Models.YourCircleName _yourCircleName;
+
+        /// <summary>
+        /// あなたの作品名
+        /// </summary>
+        private Models.YourWorkName _yourWorkName;
+
+        /// <summary>
+        /// Unity の Assets フォルダ―へ初期設定をコピーするコマンド
+        /// </summary>
+        public ICommand PushStartupToUnityAssetsFolderCommand { get; }
 
         /// <summary>
         /// 生成
@@ -30,7 +40,7 @@
         ///     <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
         /// </list>
         /// </summary>
-        public OverwriteProjectToUnityPageViewModel()
+        public StartupConfigurationPageViewModel()
         {
             //
             // TOML形式ファイルの読取
@@ -65,7 +75,8 @@
 
             _unityAssetsFolderPath = Models.UnityAssetsFolderPath.FromString(unity_assets_folder_path);
 
-            DoItCommand = new AsyncRelayCommand(DoIt);
+            // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
+            PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
         }
 
         // - 変更通知プロパティ
@@ -86,13 +97,45 @@
             }
         }
 
+        /// <summary>
+        /// あなたのサークル名
+        /// </summary>
+        public string YourCircleNameAsStr
+        {
+            get => _yourCircleName.AsStr;
+            set
+            {
+                if (_yourCircleName.AsStr != value)
+                {
+                    _yourCircleName = Models.YourCircleName.FromString(value);
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// あなたの作品名
+        /// </summary>
+        public string YourWorkNameAsStr
+        {
+            get => _yourWorkName.AsStr;
+            set
+            {
+                if (_yourWorkName.AsStr != value)
+                {
+                    _yourWorkName = Models.YourWorkName.FromString(value);
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         // - コマンド
 
         /// <summary>
-        /// ［それをする］コマンドを実行
+        /// ［Unity の Assets フォルダ―へ初期設定をコピーする］コマンドを実行
         /// </summary>
         /// <returns></returns>
-        async Task DoIt()
+        async Task PushStartupToUnityAssetsFolder()
         {
             await Task.Run(() =>
             {

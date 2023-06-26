@@ -1,4 +1,4 @@
-# はじめに
+# 📅 2023-06-25 はじめに
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　２Ｄ　ＲＰＧ　制作ツールを作ろうぜ？」  
@@ -27,7 +27,7 @@
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　えっ？　ＲＰＧ制作ツールを作るのに　作業用ＢＧＭが　ロックマン１１　でいいのかだぜ？？」  
 
-# MAUI を調べろだぜ
+## MAUI を調べろだぜ
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👇　企画と　アーキテクチャーを　長々と　説明しても　あれなんで……  
@@ -201,7 +201,7 @@ MAUI を調べようぜ？」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　`MainPage.xaml` も 📂 `Views` フォルダーに入れろだぜ」  
 
-# エクスプローラーが要るんじゃないか？
+## エクスプローラーが要るんじゃないか？
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　お父ん。  
@@ -299,7 +299,7 @@ MAUI にそんなコントロール　あるかな？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　当然よねえ」  
 
-# Unity プロジェクトを作ろうぜ？
+## Unity プロジェクトを作ろうぜ？
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　まあ　無いものは無いで　変数ｘ　とでも置いておいて　解けるところから先に解くのが　数学だぜ」  
@@ -373,7 +373,7 @@ Unity の外部で　プレファブは作れるの？」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　そんなことを　しようという人が少ないのか　記事が見当たらないな」  
 
-# 設定の保存を作れだぜ
+## 設定の保存を作れだぜ
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　毎回　📂 `Assets` フォルダーへのパスを入れるのが　面倒なんだけど？」  
@@ -392,7 +392,7 @@ Unity の外部で　プレファブは作れるの？」
 
 📖　[Tomlyn](https://github.com/xoofx/Tomlyn)  
 
-# MVVM
+## MVVM
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　あれっ？」  
@@ -450,7 +450,7 @@ Unity の外部で　プレファブは作れるの？」
 「　👆　View　も更新。  
 イベントハンドラを消し、コマンドを追加」  
 
-# ユーザー・データをどこに保存するか？
+## ユーザー・データをどこに保存するか？
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　👇　いろいろなフォルダーに　ユーザー・データは保存できるが、どこにするんだぜ？」  
@@ -565,7 +565,7 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　次は　そのファイルを読み取る方法を　覚え直せだぜ」  
 
-# TOML形式ファイルを読み取ろうぜ？
+## TOML形式ファイルを読み取ろうぜ？
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👇　もう１回　Tomlyn　の調べ直し」  
@@ -650,7 +650,7 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　オブジェクト数が　多い気がするけど、　ＲＰＧ　なら大丈夫なのかなあ？」  
 
-# マップ・エディターの画面デザイン
+## マップ・エディターの画面デザイン
 
 ![202306_maui_26-0312--map-editor.png](https://crieit.now.sh/upload_images/6ef16ba09a3988ffcfb25147f83c16aa6498849bafd25.png)  
 
@@ -729,5 +729,24 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　じゃあ　これを最初のマップタイルとして　MAUI　の画面に表示してみようぜ？」  
+
+## 初期設定
+
+![202306_maui_26-2031--startup-config.png](https://crieit.now.sh/upload_images/51c863a93677a1d9ba7d018d335ffd0b649979a2b5790.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　初期設定として　これだけ入力してくれないと　つらい」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ほとんどの人は　ディレクトリー・パスも入力できず　投げるんじゃないの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ファースト・ビューで　ユーザーが入力できるのは、  
+自分の名前と　メール・アドレスぐらいだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　ファースト・ビューのボタンを　クリックするところまでは  
+設定無しで　行けるようにしよう。  
+そこで何か　ボタンを押したら　初期設定画面へ」  
 
 ＜書きかけ＞
