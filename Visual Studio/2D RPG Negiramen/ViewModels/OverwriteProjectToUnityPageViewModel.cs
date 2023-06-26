@@ -99,22 +99,11 @@
                 // テキスト・ボックスから、Unity エディターの Assets フォルダーへのパスを取得
                 var assetsFolderPath = this.UnityAssetsFolderPathAsStr;
 
-                if (!Directory.Exists(assetsFolderPath))
+                if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPath))
                 {
-                    // TODO ディレクトリー・パスでなければ失敗
+                    // TODO 異常時の処理
                     return;
                 }
-
-                // `Assets/Doujin Circle Grayscale/2D RPG Negiramen` ディレクトリーの有無をチェック
-                var doujinCircleGrayscaleFolderPath = Path.Combine(assetsFolderPath, "Doujin Circle Grayscale");
-
-                if (!Directory.Exists(doujinCircleGrayscaleFolderPath))
-                {
-                    // 無ければ作成
-                    Directory.CreateDirectory(doujinCircleGrayscaleFolderPath);
-                }
-
-                UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(doujinCircleGrayscaleFolderPath);
 
                 // TODO Unityへプロジェクトを上書き
 

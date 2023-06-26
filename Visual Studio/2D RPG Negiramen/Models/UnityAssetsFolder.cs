@@ -13,8 +13,16 @@
         ///     </pre>
         /// </summary>
         /// <param name="unityAssetsFolderPath">Unityのアセット・フォルダーへのパス</param>
-        internal static void PushStartupMemberToUnityAssetsFolder(string unityAssetsFolderPath)
+        /// <returns>完了した</returns>
+        internal static bool PushStartupMemberToUnityAssetsFolder(string unityAssetsFolderPath)
         {
+
+            if (!Directory.Exists(unityAssetsFolderPath))
+            {
+                // TODO Unity の Assets フォルダ―へのパスでなければ失敗
+                return false;
+            }
+
             var yourProductFolderPath = Path.Combine(unityAssetsFolderPath, "Your Folder");
 
             if (!Directory.Exists(yourProductFolderPath))
@@ -24,6 +32,8 @@
             }
 
             UnityAssetsFolder.PushStartupMemberToYourProductFolder(yourProductFolderPath);
+
+            return true;
         }
 
         /// <summary>
