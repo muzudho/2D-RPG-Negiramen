@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels
 {
+    using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using Microsoft.Maui.Storage;
@@ -113,7 +114,7 @@
                     Directory.CreateDirectory(doujinCircleGrayscaleFolderPath);
                 }
 
-                CreateDoujinCircleGrayscaleFolderMember(doujinCircleGrayscaleFolderPath);
+                UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(doujinCircleGrayscaleFolderPath);
 
                 // TODO Unityへプロジェクトを上書き
 
@@ -156,120 +157,5 @@ unity_assets_folder_path = ""{escapedAssetsFolderPath}""");
 
             });
         }
-
-        // - メソッド
-
-        void CreateDoujinCircleGrayscaleFolderMember(string doujinCircleGrayscaleFolderPath)
-        {
-            var o2dRPGNegiramenFolderPath = Path.Combine(doujinCircleGrayscaleFolderPath, "2D RPG Negiramen");
-
-            if (!Directory.Exists(o2dRPGNegiramenFolderPath))
-            {
-                // 無ければ作成
-                Directory.CreateDirectory(o2dRPGNegiramenFolderPath);
-            }
-
-            Create2DRPGNegiramenFolderMember(o2dRPGNegiramenFolderPath);
-        }
-
-        void Create2DRPGNegiramenFolderMember(string o2dRPGNegiramenFolderPath)
-        {
-            // データ・フォルダー
-            var dataFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Data");
-            if (!Directory.Exists(dataFolderPath))
-            {
-                Directory.CreateDirectory(dataFolderPath);
-            }
-            CreateDataFolderMember(dataFolderPath);
-
-            // エディター・フォルダー
-            var editorFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Editor");
-            if (!Directory.Exists(editorFolderPath))
-            {
-                Directory.CreateDirectory(editorFolderPath);
-            }
-            CreateDataFolderMember(dataFolderPath);
-
-            // 画像フォルダー
-            var imagesFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Images");
-            if (!Directory.Exists(imagesFolderPath))
-            {
-                Directory.CreateDirectory(imagesFolderPath);
-            }
-
-            // 材質フォルダー
-            var materialsFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Materials");
-            if (!Directory.Exists(materialsFolderPath))
-            {
-                Directory.CreateDirectory(materialsFolderPath);
-            }
-
-            // 映像フォルダー
-            var moviesFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Movies");
-            if (!Directory.Exists(moviesFolderPath))
-            {
-                Directory.CreateDirectory(moviesFolderPath);
-            }
-
-            // プレファブ・フォルダー
-            var prefabFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Prefabs");
-            if (!Directory.Exists(prefabFolderPath))
-            {
-                Directory.CreateDirectory(prefabFolderPath);
-            }
-
-            // シーン・フォルダー
-            var scenesFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Scenes");
-            if (!Directory.Exists(scenesFolderPath))
-            {
-                Directory.CreateDirectory(scenesFolderPath);
-            }
-
-            // スクリプト・フォルダー
-            var scriptsFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Scripts");
-            if (!Directory.Exists(scriptsFolderPath))
-            {
-                Directory.CreateDirectory(scriptsFolderPath);
-            }
-
-            // スクリプティング・オブジェクト・フォルダー
-            var scriptingObjectsFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Scripting Objects");
-            if (!Directory.Exists(scriptingObjectsFolderPath))
-            {
-                Directory.CreateDirectory(scriptingObjectsFolderPath);
-            }
-
-            // 音フォルダー
-            var soundsFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Sounds");
-            if (!Directory.Exists(soundsFolderPath))
-            {
-                Directory.CreateDirectory(soundsFolderPath);
-            }
-
-            // システム・フォルダー
-            var systemFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "System");
-            if (!Directory.Exists(systemFolderPath))
-            {
-                Directory.CreateDirectory(systemFolderPath);
-            }
-
-            // テキスト・フォルダー
-            var textsFolderPath = Path.Combine(o2dRPGNegiramenFolderPath, "Texts");
-            if (!Directory.Exists(textsFolderPath))
-            {
-                Directory.CreateDirectory(textsFolderPath);
-            }
-        }
-
-        void CreateDataFolderMember(string dataFolderPath)
-        {
-            // JSON形式ファイル・フォルダー
-            var jsonFolderPath = Path.Combine(dataFolderPath, "JSON");
-            if (!Directory.Exists(jsonFolderPath))
-            {
-                Directory.CreateDirectory(jsonFolderPath);
-            }
-        }
-
     }
 }

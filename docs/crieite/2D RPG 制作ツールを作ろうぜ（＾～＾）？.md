@@ -683,7 +683,7 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　👆　お父んに　分かりやすいように　まとめたぜ。  
-空間充填問題　好きだろ」  
+空間充填問題も　セル・オートマトンも　好きだろ」  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　うわっ　二ム計算みたいなの　出てきた」  
@@ -703,5 +703,31 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　でも　オート・タイルの仕様は　理解したな」  
+
+# 📅 2023-06-26 素材が何もない
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　pixelart.com の使い方を練習する」  
+
+📖　[www.pixilart.com](https://www.pixilart.com/draw)  
+
+![202306_maui_26-1940--adventure-field.png](https://crieit.now.sh/upload_images/e4993a4e6ec072db8dcafbe69ba5014f64996b689e42d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あれっ？　64 x 64 pixel のつもりで描いたのに　でかいな……」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　1216 x 1216 pixel あるわよ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　使えないなあ」  
+
+![202306_maui_26-1944--adventure-field.png](https://crieit.now.sh/upload_images/7a184b3af9015b62e7a795b16599b62364996c40edec0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Save じゃなく、 Download すればいいのか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　これを最初のマップタイルとして　MAUI　の画面に表示してみようぜ？」  
 
 ＜書きかけ＞
