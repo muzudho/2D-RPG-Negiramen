@@ -4,66 +4,72 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:_2D_RPG_Negiramen"
+    xmlns:views="clr-namespace:_2D_RPG_Negiramen.Views"
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
         Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
+        ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />
 
     <ShellContent
         Title="Select a map"
-        ContentTemplate="{DataTemplate local:MapExplorerPage}"
+        ContentTemplate="{DataTemplate views:MapExplorerPage}"
         Route="MapExplorerPage" />
 
     <ShellContent
         Title="Create a map view"
-        ContentTemplate="{DataTemplate local:CreateMapViewPage}"
+        ContentTemplate="{DataTemplate views:CreateMapViewPage}"
         Route="CreateMapViewPage" />
 
     <ShellContent
         Title="Create a battle view"
-        ContentTemplate="{DataTemplate local:CreateBattleViewPage}"
+        ContentTemplate="{DataTemplate views:CreateBattleViewPage}"
         Route="CreateBattleViewPage" />
 
     <ShellContent
         Title="Create a menu view"
-        ContentTemplate="{DataTemplate local:CreateMenuViewPage}"
+        ContentTemplate="{DataTemplate views:CreateMenuViewPage}"
         Route="CreateMenuViewPage" />
 
     <ShellContent
         Title="Create a talking view"
-        ContentTemplate="{DataTemplate local:CreateTalkingViewPage}"
+        ContentTemplate="{DataTemplate views:CreateTalkingViewPage}"
         Route="CreateTalkingViewPage" />
 
     <ShellContent
         Title="Edit the player character"
-        ContentTemplate="{DataTemplate local:EditPlayerCharacterPage}"
+        ContentTemplate="{DataTemplate views:EditPlayerCharacterPage}"
         Route="EditPlayerCharacterPage" />
 
     <ShellContent
         Title="Edit the monster"
-        ContentTemplate="{DataTemplate local:EditMonsterPage}"
+        ContentTemplate="{DataTemplate views:EditMonsterPage}"
         Route="EditMonsterPage" />
 
     <ShellContent
         Title="Edit the monster group"
-        ContentTemplate="{DataTemplate local:EditMonsterGroupPage}"
+        ContentTemplate="{DataTemplate views:EditMonsterGroupPage}"
         Route="EditMonsterGroupPage" />
 
     <ShellContent
         Title="Edit the item"
-        ContentTemplate="{DataTemplate local:EditItemPage}"
+        ContentTemplate="{DataTemplate views:EditItemPage}"
         Route="EditItemPage" />
 
     <ShellContent
         Title="Edit the story"
-        ContentTemplate="{DataTemplate local:EditStoryPage}"
+        ContentTemplate="{DataTemplate views:EditStoryPage}"
         Route="EditStoryPage" />
 
     <ShellContent
         Title="Overwrite project to Unity"
-        ContentTemplate="{DataTemplate local:OverwriteProjectToUnityPage}"
+        ContentTemplate="{DataTemplate views:OverwriteProjectToUnityPage}"
         Route="OverwriteProjectToUnityPage" />
+
+    <ShellContent
+        Title="Startup configuration"
+        ContentTemplate="{DataTemplate views:StartupConfigurationPage}"
+        Route="StartupConfigurationPage" />
 
 </Shell>

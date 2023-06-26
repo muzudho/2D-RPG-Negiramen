@@ -47,11 +47,11 @@
                    Text="{Binding UnityAssetsFolderPathAsStr}"/>
 
             <Entry Grid.Row="1" Grid.Column="1"
-                   Placeholder="Nanashino Gonbee"
+                   Placeholder="Mr. Negiramen"
                    Text="{Binding YourCircleNameAsStr}"/>
 
             <Entry Grid.Row="1" Grid.Column="2"
-                   Placeholder="Gonbee Quest"
+                   Placeholder="Negiramen Quest"
                    Text="{Binding YourWorkNameAsStr}"/>
         </Grid>
 

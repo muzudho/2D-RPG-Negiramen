@@ -3,10 +3,7 @@
     using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
-    using Microsoft.Maui.Storage;
     using System.Windows.Input;
-    using Tomlyn;
-    using Tomlyn.Model;
 
     /// <summary>
     /// ［初期設定］ページ用のビューモデル
@@ -45,7 +42,7 @@
             try
             {
                 // 構成ファイル
-                var configuration = Configuration.LoadToml();
+                var configuration = Configuration.LoadTOML();
 
                 UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
                 YourCircleNameAsStr = configuration.YourCircleName.AsStr;
@@ -134,40 +131,22 @@
                 // ここまでくれば成功
                 // ==================
 
-                //
-                // マルチプラットフォームの MAUI では、
-                // パソコンだけではなく、スマホなどのサンドボックス環境などでの使用も想定されている
-                // 
-                // そのため、設定の保存／読込の操作は最小限のものしかない
-                //
-                // 📖　[Where to save .Net MAUI user settings](https://stackoverflow.com/questions/70599331/where-to-save-net-maui-user-settings)
-                //
-                // // getter
-                // var value = Preferences.Get("nameOfSetting", "defaultValueForSetting");
-                //
-                // // setter
-                // Preferences.Set("nameOfSetting", value);
-                //
-                //
-                // しかし、2D RPG は　Windows PC で開発すると想定する。
-                // そこで、 MAUI の範疇を外れ、Windows 固有のファイル・システムの API を使用することにする
-                //
-                // 📖　[File system helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
-                //
 
-                // フォルダー名は自動的に与えられているので、これを使う
-                string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
-                // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
+                var escapedAssetsFolderPathAsStr = assetsFolderPath.Replace("\\", "/");
 
-                // 保存したいファイルへのパス
-                var configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
+                // 現在の構成ファイル
+                var configuration = Configuration.LoadTOML();
 
-                var escapedAssetsFolderPath = assetsFolderPath.Replace("\\", "/");
+                // 構成ファイルの更新差分
+                var configurationDifference = new ConfigurationDifference()
+                {
+                    UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr),
+                    YourCircleName = _yourCircleName,
+                    YourWorkName = _yourWorkName,
+                };
 
                 // 設定ファイルの保存
-                System.IO.File.WriteAllText(configurationFilePath, $@"[paths]
-unity_assets_folder_path = ""{escapedAssetsFolderPath}""");
-
+                Configuration.SaveTOML(configuration, configurationDifference);
             });
         }
     }

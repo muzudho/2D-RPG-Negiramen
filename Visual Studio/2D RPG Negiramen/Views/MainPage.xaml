@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="_2D_RPG_Negiramen.MainPage">
+             x:Class="_2D_RPG_Negiramen.Views.MainPage">
 
     <ScrollView>
         <VerticalStackLayout
@@ -102,7 +102,12 @@
                         Text="Unityへプロジェクトを上書き"
                         SemanticProperties.Hint="Overwrite project to Unity"
                         Clicked="OverwriteProjectToUnityBtn_Clicked"/>
-                
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        Text="初期設定"
+                        SemanticProperties.Hint="Startup configuration"
+                        Clicked="StartupConfigurationBtn_Clicked"/>
+
             </Grid>
 
             <!--

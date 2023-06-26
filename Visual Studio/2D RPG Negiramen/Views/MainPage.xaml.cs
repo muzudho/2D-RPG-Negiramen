@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen;
+﻿namespace _2D_RPG_Negiramen.Views;
 
 public partial class MainPage : ContentPage
 {
@@ -124,6 +124,16 @@ public partial class MainPage : ContentPage
     async void OverwriteProjectToUnityBtn_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//OverwriteProjectToUnityPage");
+    }
+
+    /// <summary>
+    /// ［初期設定］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void StartupConfigurationBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//StartupConfigurationPage");
     }
 }
 
