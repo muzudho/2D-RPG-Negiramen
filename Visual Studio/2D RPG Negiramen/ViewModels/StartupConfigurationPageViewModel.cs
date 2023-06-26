@@ -118,7 +118,7 @@
                 var escapedAssetsFolderPathAsStr = assetsFolderPath.Replace("\\", "/");
 
                 // 構成ファイルの更新差分
-                var configurationDifference = new ConfigurationDifference()
+                var configurationDifference = new ConfigurationBuffer()
                 {
                     UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr),
                     YourCircleName = _yourCircleName,
@@ -126,14 +126,18 @@
                 };
 
                 // 設定ファイルの保存
-                Configuration.SaveTOML(App.Configuration, configurationDifference);
-
-                // Unity の Assets フォルダ―へ初期設定をコピー
-                if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPath))
+                if(Configuration.SaveTOML(App.Configuration, configurationDifference, out Configuration newConfiguration))
                 {
-                    // TODO 異常時の処理
-                    return;
+                    App.Configuration = newConfiguration;
+
+                    // Unity の Assets フォルダ―へ初期設定をコピー
+                    if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPath))
+                    {
+                        // TODO 異常時の処理
+                        return;
+                    }
                 }
+
             });
         }
     }

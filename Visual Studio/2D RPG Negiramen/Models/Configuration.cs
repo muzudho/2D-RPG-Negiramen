@@ -94,7 +94,7 @@
             }
         }
 
-        internal static void SaveTOML(Configuration current, ConfigurationDifference difference)
+        internal static bool SaveTOML(Configuration current, ConfigurationBuffer difference, out Configuration newConfiguration)
         {
             //
             // マルチプラットフォームの MAUI では、
@@ -124,44 +124,36 @@
             // 保存したいファイルへのパス
             var configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
 
-            StringBuilder builder = new StringBuilder();
+            var configurationBuffer = new ConfigurationBuffer();
 
-            builder.AppendLine("[paths]");
+            // 差分適用
+            configurationBuffer.UnityAssetsFolderPath = difference.UnityAssetsFolderPath == null ? current.UnityAssetsFolderPath : difference.UnityAssetsFolderPath;
+            configurationBuffer.YourCircleName = difference.YourCircleName == null ? current.YourCircleName : difference.YourCircleName;
+            configurationBuffer.YourWorkName = difference.YourWorkName == null ? current.YourWorkName : difference.YourWorkName;
 
-            // Unity の Assets フォルダ―へのパス
-            if (difference.UnityAssetsFolderPath == null)
-            {
-                builder.AppendLine($"unity_assets_folder_path = \"{current.UnityAssetsFolderPath.AsStr}\"");
-            }
-            else
-            {
-                builder.AppendLine($"unity_assets_folder_path = \"{difference.UnityAssetsFolderPath.AsStr}\"");
-            }
+            var text = $@"[paths]
 
-            builder.AppendLine("[profile]");
+# Unity の Assets フォルダ―へのパス
+unity_assets_folder_path = ""{configurationBuffer.UnityAssetsFolderPath.AsStr}""
 
-            // あなたのサークル名
-            if (difference.YourCircleName == null)
-            {
-                builder.AppendLine($"your_circle_name = \"{current.YourCircleName.AsStr}\"");
-            }
-            else
-            {
-                builder.AppendLine($"your_circle_name = \"{difference.YourCircleName.AsStr}\"");
-            }
+[profile]
 
-            // あなたの作品名
-            if (difference.YourWorkName == null)
-            {
-                builder.AppendLine($"your_work_name = \"{current.YourWorkName.AsStr}\"");
-            }
-            else
-            {
-                builder.AppendLine($"your_work_name = \"{difference.YourWorkName.AsStr}\"");
-            }
+# あなたのサークル名
+your_circle_name = ""{configurationBuffer.YourCircleName.AsStr}""
+
+# あなたの作品名
+your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
+";
 
             // 上書き
-            System.IO.File.WriteAllText(configurationFilePath, builder.ToString());
+            System.IO.File.WriteAllText(configurationFilePath, text);
+
+            // イミュータブル・オブジェクトを生成
+            newConfiguration = new Configuration(
+                configurationBuffer.UnityAssetsFolderPath,
+                configurationBuffer.YourCircleName,
+                configurationBuffer.YourWorkName);
+            return true;
         }
 
         /// <summary>
@@ -195,7 +187,7 @@
         /// <param name="unityAssetsFolderPath">Unity の Assets フォルダーへのパス</param>
         /// <param name="yourCircleName">あなたのサークル名</param>
         /// <param name="yourWorkName">あなたの作品名</param>
-        Configuration(
+        internal Configuration(
             UnityAssetsFolderPath unityAssetsFolderPath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)

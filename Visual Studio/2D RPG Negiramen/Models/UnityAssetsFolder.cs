@@ -23,15 +23,15 @@
                 return false;
             }
 
-            var yourProductFolderPath = Path.Combine(unityAssetsFolderPath, "Your Folder");
+            var yourCircleNameFolderPath = Path.Combine(unityAssetsFolderPath, App.Configuration.YourCircleName.AsStr);
 
-            if (!Directory.Exists(yourProductFolderPath))
+            if (!Directory.Exists(yourCircleNameFolderPath))
             {
                 // 無ければ作成
-                Directory.CreateDirectory(yourProductFolderPath);
+                Directory.CreateDirectory(yourCircleNameFolderPath);
             }
 
-            UnityAssetsFolder.PushStartupMemberToYourProductFolder(yourProductFolderPath);
+            UnityAssetsFolder.PushStartupMemberToYourCircleNameFolder(yourCircleNameFolderPath);
 
             return true;
         }
@@ -45,17 +45,17 @@
         ///     </pre>
         /// </summary>
         /// <param name="yourCircleNameFolderPath">あなたのサークル名フォルダ―へのパス</param>
-        static void PushStartupMemberToYourFolder(string yourCircleNameFolderPath)
+        static void PushStartupMemberToYourCircleNameFolder(string yourCircleNameFolderPath)
         {
-            var yourProductFolderPath = Path.Combine(yourCircleNameFolderPath, "Your Circle Name");
+            var yourWorkNameFolderPath = Path.Combine(yourCircleNameFolderPath, App.Configuration.YourWorkName.AsStr);
 
-            if (!Directory.Exists(yourProductFolderPath))
+            if (!Directory.Exists(yourWorkNameFolderPath))
             {
                 // 無ければ作成
-                Directory.CreateDirectory(yourProductFolderPath);
+                Directory.CreateDirectory(yourWorkNameFolderPath);
             }
 
-            UnityAssetsFolder.PushStartupMemberToYourProductFolder(yourProductFolderPath);
+            UnityAssetsFolder.PushStartupMemberToYourWorkNameFolder(yourWorkNameFolderPath);
         }
 
         /// <summary>
@@ -68,7 +68,7 @@
         ///     </pre>
         /// </summary>
         /// <param name="yourWorkNameFolderPath">あなたの作品名フォルダ―へのパス</param>
-        static void PushStartupMemberToYourProductFolder(string yourWorkNameFolderPath)
+        static void PushStartupMemberToYourWorkNameFolder(string yourWorkNameFolderPath)
         {
             var negiramenFolderPath = Path.Combine(yourWorkNameFolderPath, "Negiramen");
 

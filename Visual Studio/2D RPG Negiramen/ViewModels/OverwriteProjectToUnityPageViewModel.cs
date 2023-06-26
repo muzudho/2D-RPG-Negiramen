@@ -85,13 +85,16 @@
                 var escapedAssetsFolderPathAsStr = assetsFolderPath.Replace("\\", "/");
 
                 // 構成ファイルの更新差分
-                var configurationDifference = new ConfigurationDifference()
+                var configurationDifference = new ConfigurationBuffer()
                 {
                     UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr)
                 };
 
                 // 設定ファイルの保存
-                Configuration.SaveTOML(App.Configuration, configurationDifference);
+                if(Configuration.SaveTOML(App.Configuration, configurationDifference, out Configuration newConfiguration))
+                {
+                    App.Configuration = newConfiguration;
+                }
             });
         }
     }

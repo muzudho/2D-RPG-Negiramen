@@ -3,7 +3,7 @@
     /// <summary>
     /// 構成ファイルの差分
     /// </summary>
-    internal class ConfigurationDifference
+    internal class ConfigurationBuffer
     {
         /// <summary>
         /// Unity の Assets フォルダーへのパス

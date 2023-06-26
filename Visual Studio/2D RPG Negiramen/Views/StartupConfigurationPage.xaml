@@ -69,7 +69,7 @@
                    VerticalTextAlignment="Center"/>
 
             <Entry Grid.Row="1" Grid.Column="3"
-                   Placeholder="Mr. Negiramen"
+                   Placeholder="Doujin Circle Negiramen"
                    Text="{Binding YourCircleNameAsStr}"/>
 
             <Label Grid.Row="1" Grid.Column="4"
