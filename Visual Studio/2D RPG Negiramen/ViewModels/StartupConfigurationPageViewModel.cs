@@ -139,6 +139,9 @@
                 }
 
             });
+
+            // 画面遷移、戻る
+            await Shell.Current.GoToAsync("..");
         }
     }
 }

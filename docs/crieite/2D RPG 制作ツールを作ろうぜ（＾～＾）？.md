@@ -804,9 +804,9 @@ string mainDir = FileSystem.Current.AppDataDirectory;
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void TestShowWindowButton_Clicked(object sender, EventArgs e)
+    async void TestShowWindowButton_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new StartupConfigurationPage());
+        await Navigation.PushAsync(new StartupConfigurationPage());
     }
 ```
 
@@ -818,5 +818,23 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　ウィンドウを閉じるボタンは、どう書くんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　`Navigation.PopAsync();` じゃないのかだぜ？」  
+
+📖　[.NET MAUI (いろんな画面遷移)](https://qiita.com/kashin777/items/2f1abcba9c8fa02b592c)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ContentPage クラスを継承したコード・ビハインド　には　Navigation　書けるけど、  
+ViewModel のプロパティーである Command にはどこから　Navigation　持ってくるんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　Backwards Navigation があるんじゃないか？  
+`await Shell.Current.GoToAsync("..");` を試せだぜ」  
+
+📖　[Backwards navigation](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/shell/navigation#backwards-navigation)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　おー、戻れたぜ」  
 
 ＜書きかけ＞

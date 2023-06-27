@@ -130,7 +130,7 @@ public partial class MainPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void TestShowWindowButton_Clicked(object sender, EventArgs e)
+    async void TestShowWindowButton_Clicked(object sender, EventArgs e)
     {
         /*
         var secondWindow = new Window
@@ -146,7 +146,7 @@ public partial class MainPage : ContentPage
         Application.Current.OpenWindow(secondWindow);
         */
 
-        Navigation.PushAsync(new StartupConfigurationPage());
+        await Navigation.PushAsync(new StartupConfigurationPage());
     }
 }
 
