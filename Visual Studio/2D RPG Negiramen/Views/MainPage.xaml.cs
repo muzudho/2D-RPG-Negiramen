@@ -115,17 +115,6 @@ public partial class MainPage : ContentPage
         await Shell.Current.GoToAsync("//EditStoryPage");
     }
 
-
-    /// <summary>
-    /// ［Unityへプロジェクトを上書き］ボタン押下時
-    /// </summary>
-    /// <param name="sender">このイベントを呼び出したコントロール</param>
-    /// <param name="e">この発生イベントの制御変数</param>
-    async void OverwriteProjectToUnityBtn_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//OverwriteProjectToUnityPage");
-    }
-
     /// <summary>
     /// ［初期設定］ボタン押下時
     /// </summary>
@@ -134,6 +123,24 @@ public partial class MainPage : ContentPage
     async void StartupConfigurationBtn_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//StartupConfigurationPage");
+    }
+
+    /// <summary>
+    /// ［ウィンドウ表示テスト］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void TestShowWindowButton_Clicked(object sender, EventArgs e)
+    {
+        var secondWindow = new Window
+        {
+            Page = new StartupConfigurationPage
+            {
+                // ...
+            }
+        };
+
+        Application.Current.OpenWindow(secondWindow);
     }
 }
 

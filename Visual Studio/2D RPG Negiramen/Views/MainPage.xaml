@@ -97,11 +97,15 @@
 
             <Grid ColumnDefinitions="*,*" RowDefinitions="*">
 
-
-                <Button Grid.Row="0" Grid.Column="1"
+                <Button Grid.Row="0" Grid.Column="0"
                         Text="初期設定"
                         SemanticProperties.Hint="Startup configuration"
                         Clicked="StartupConfigurationBtn_Clicked"/>
+
+                <Button Grid.Row="0" Grid.Column="1"
+                        Text="ウィンドウ表示テスト"
+                        SemanticProperties.Hint="Test show window"
+                        Clicked="TestShowWindowButton_Clicked"/>
 
             </Grid>
             
