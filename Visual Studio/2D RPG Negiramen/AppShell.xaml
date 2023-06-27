@@ -63,11 +63,6 @@
         Route="EditStoryPage" />
 
     <ShellContent
-        Title="Overwrite project to Unity"
-        ContentTemplate="{DataTemplate views:OverwriteProjectToUnityPage}"
-        Route="OverwriteProjectToUnityPage" />
-
-    <ShellContent
         Title="Startup configuration"
         ContentTemplate="{DataTemplate views:StartupConfigurationPage}"
         Route="StartupConfigurationPage" />
