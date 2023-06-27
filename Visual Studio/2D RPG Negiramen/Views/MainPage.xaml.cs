@@ -137,7 +137,9 @@ public partial class MainPage : ContentPage
             Page = new StartupConfigurationPage
             {
                 // ...
-            }
+            },
+            Width = 1200,
+            Height = 400,
         };
 
         Application.Current.OpenWindow(secondWindow);

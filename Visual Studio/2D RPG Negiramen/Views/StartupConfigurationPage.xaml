@@ -31,7 +31,11 @@
             本文
             ====
         -->
-        <Grid RowDefinitions="*,*" ColumnDefinitions="20,2*,20,*,20,*,20,*">
+        <Label Text="Unity プロジェクトを先に作っておいてください"
+               SemanticProperties.Hint="Separator"
+               VerticalTextAlignment="Center"/>
+
+        <Grid RowDefinitions="*,*" ColumnDefinitions="20,4*,20,2*,20,2*,20,*">
             <Label Grid.Row="0" Grid.Column="1"
                    Text="Unity プロジェクトの 📂 `Assets` フォルダーへのパス"
                    SemanticProperties.Hint="Separator"
@@ -48,7 +52,7 @@
                    VerticalTextAlignment="Center"/>
 
             <Label Grid.Row="0" Grid.Column="7"
-                   Text="このフォルダーの下は自動編集されます"
+                   Text="このフォルダーの下は&#10;自動編集されます"
                    SemanticProperties.Hint="Separator"
                    VerticalTextAlignment="Center"/>
 
