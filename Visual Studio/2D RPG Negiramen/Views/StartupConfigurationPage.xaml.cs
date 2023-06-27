@@ -6,9 +6,4 @@ public partial class StartupConfigurationPage : ContentPage
 	{
 		InitializeComponent();
 	}
-
-    async void HomeBtn_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//MainPage");
-    }
 }

@@ -866,5 +866,15 @@ Special Directory に無いの？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　`Application.ImageDirectory` を調べてみるかだぜ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　XAML の中にしか書けないらしい」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ワーキング・ディレクトリーの設定方法を調べた方がいいのでは？」  
+
+📖 [How to change the Current Working Directory of Maui Blazor App](https://stackoverflow.com/questions/74956504/how-to-change-the-current-working-directory-of-maui-blazor-app)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　まず　`AppDomain.CurrentDomain.BaseDirectory`　が何を出力するか　調べてみてくれだぜ」  
 
 ＜書きかけ＞
