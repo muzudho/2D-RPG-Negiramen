@@ -38,7 +38,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//MapExplorerPage");
 
         // フォルダーが準備できているなら、画面遷移する
-        if (App.Configuration.ExistsNegiramenFolder())
+        if (App.GetOrLoadConfiguration().ExistsNegiramenFolder())
         {
             await Shell.Current.GoToAsync(shellNavigationState);
         }

@@ -23,7 +23,7 @@
                 return false;
             }
 
-            var yourCircleNameFolderPath = Path.Combine(unityAssetsFolderPath, App.Configuration.YourCircleName.AsStr);
+            var yourCircleNameFolderPath = Path.Combine(unityAssetsFolderPath, App.GetOrLoadConfiguration().YourCircleName.AsStr);
 
             if (!Directory.Exists(yourCircleNameFolderPath))
             {
@@ -47,7 +47,7 @@
         /// <param name="yourCircleNameFolderPath">あなたのサークル名フォルダ―へのパス</param>
         static void PushStartupMemberToYourCircleNameFolder(string yourCircleNameFolderPath)
         {
-            var yourWorkNameFolderPath = Path.Combine(yourCircleNameFolderPath, App.Configuration.YourWorkName.AsStr);
+            var yourWorkNameFolderPath = Path.Combine(yourCircleNameFolderPath, App.GetOrLoadConfiguration().YourWorkName.AsStr);
 
             if (!Directory.Exists(yourWorkNameFolderPath))
             {

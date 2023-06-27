@@ -39,15 +39,12 @@
         /// </summary>
         public StartupConfigurationPageViewModel()
         {
-            // 構成ファイルの再読込
-            if (Configuration.LoadTOML(out Configuration configuration))
-            {
-                App.Configuration = configuration;
+            // 構成ファイル取得
+            var configuration = App.GetOrLoadConfiguration();
 
-                UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
-                YourCircleNameAsStr = configuration.YourCircleName.AsStr;
-                YourWorkNameAsStr = configuration.YourWorkName.AsStr;
-            }
+            UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
+            YourCircleNameAsStr = configuration.YourCircleName.AsStr;
+            YourWorkNameAsStr = configuration.YourWorkName.AsStr;
 
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
             PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
@@ -126,9 +123,10 @@
                 };
 
                 // 設定ファイルの保存
-                if(Configuration.SaveTOML(App.Configuration, configurationDifference, out Configuration newConfiguration))
+                if (Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Configuration newConfiguration))
                 {
-                    App.Configuration = newConfiguration;
+                    // グローバル変数を更新
+                    App.SetConfiguration(newConfiguration);
 
                     // Unity の Assets フォルダ―へ初期設定をコピー
                     if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPath))
@@ -147,7 +145,7 @@
             var shellNavigationState = App.NextPage.Pop();
 
             // フォルダーが準備できているなら、画面遷移する
-            if (App.Configuration.ExistsNegiramenFolder())
+            if (App.GetOrLoadConfiguration().ExistsNegiramenFolder())
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
             }
