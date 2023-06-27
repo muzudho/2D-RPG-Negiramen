@@ -32,7 +32,17 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMapViewBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//MapExplorerPage");
+        // 初期設定を要求
+        if (!App.Configuration.ExistsNegiramenFolder())
+        {
+            await Navigation.PushAsync(new StartupConfigurationPage());
+            // ここは通り抜ける
+        }
+
+        if (App.Configuration.ExistsNegiramenFolder())
+        {
+            await Shell.Current.GoToAsync("//MapExplorerPage");
+        }
     }
 
     /// <summary>

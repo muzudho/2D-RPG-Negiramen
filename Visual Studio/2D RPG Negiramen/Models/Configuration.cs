@@ -196,5 +196,21 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
             this.YourCircleName = yourCircleName;
             this.YourWorkName = yourWorkName;
         }
+
+        // - メソッド
+
+        /// <summary>
+        /// 📂{Unity の Assets}/{Your Circle Name}/{Your Work Name}/Negiramen フォルダ―は存在するか？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool ExistsNegiramenFolder()
+        {
+            var path = System.IO.Path.Combine(
+                this.UnityAssetsFolderPath.AsStr,
+                this.YourCircleName.AsStr,
+                this.YourWorkName.AsStr);
+
+            return System.IO.Directory.Exists(path);
+        }
     }
 }
