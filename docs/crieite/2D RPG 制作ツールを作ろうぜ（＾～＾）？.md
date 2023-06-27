@@ -877,4 +877,20 @@ Special Directory に無いの？」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　まず　`AppDomain.CurrentDomain.BaseDirectory`　が何を出力するか　調べてみてくれだぜ」  
 
+![202306_maui_27-2252--base-directory-o2o0.png](https://crieit.now.sh/upload_images/c5fcf73a18d6d9e4b8e87c0d1ccb02aa649ae9cbcdb1c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　bin ディレクトリーの方を向いていて、 Resources フォルダーなんか見にこないぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　マップ・タイル画像は　ネギラーメンの実行ファイルとは別に　配ったらいいんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Git Hub にでも置いとけば　拾っていくかな？」  
+
+![202306_maui_27-2304--working-directory-o2o0.png](https://crieit.now.sh/upload_images/3a082e62b1f4933040a203924701f1d6649aecce32a55.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　ここに置いておくぜ」  
+
 ＜書きかけ＞
