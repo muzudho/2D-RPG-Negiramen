@@ -761,7 +761,7 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　やり方分からん。調査だな」  
 
-## モーダル・ダイアログボックスを作れるかだぜ？
+# 📅 2023-06-27 モーダル・ダイアログボックスを作れるかだぜ？
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👇　マイクロソフトのドキュメントって、スクリーンショットを使った説明が　圧倒的に足りないよな」  
@@ -842,5 +842,29 @@ ViewModel のプロパティーである Command にはどこから　Navigation
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　グローバル変数で　進みたい画面を覚えさせとくかー」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　構成設定の要求を　ページ間に挟むのは　でけた」  
+
+## タイル・マップを Unity の Assets フォルダー下へコピーしろだぜ
+
+![202306_maui_27-2147--tile-map.png](https://crieit.now.sh/upload_images/97fa90cb563b7578b614ae1ddfc4cab8649adb0fd5598.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　この画像を　Unity の Assets フォルダーへコピーしたいけど……」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　この画像のファイル・パスって　どうやって指すんだぜ？  
+カレント・ディレクトリー　どこよ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　指せるからこその Resources ディレクトリーなんじゃないの？  
+Special Directory に無いの？」  
+
+📖 [Windowsの既定のイメージ ディレクトリ](https://learn.microsoft.com/ja-jp/dotnet/maui/windows/platform-specifics/default-image-directory)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`Application.ImageDirectory` を調べてみるかだぜ」  
+
 
 ＜書きかけ＞
