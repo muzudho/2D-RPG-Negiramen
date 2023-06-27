@@ -17,12 +17,14 @@
         /// </summary>
         /// <param name="folderPath">フォルダーへのパス</param>
         /// <returns>実例</returns>
-        internal static UnityAssetsFolderPath FromString(string folderPath)
+        internal static UnityAssetsFolderPath FromStringAndReplaceSeparators(string folderPath)
         {
             if (folderPath == null)
             {
                 throw new ArgumentNullException(nameof(folderPath));
             }
+
+            folderPath = folderPath.Replace("\\", "/");
 
             return new UnityAssetsFolderPath(folderPath);
         }
@@ -47,5 +49,10 @@
         /// 文字列形式
         /// </summary>
         internal string AsStr { get; }
+
+        /// <summary>
+        /// 暗黙的な文字列形式
+        /// </summary>
+        public override string ToString() => AsStr;
     }
 }

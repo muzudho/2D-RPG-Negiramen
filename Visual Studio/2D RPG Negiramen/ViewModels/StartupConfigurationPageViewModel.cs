@@ -68,7 +68,7 @@
             {
                 if (_negiramenWorkspaceFolderPath.AsStr != value)
                 {
-                    _negiramenWorkspaceFolderPath = Models.NegiramenWorkspaceFolderPath.FromString(value);
+                    _negiramenWorkspaceFolderPath = Models.NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(value);
                     OnPropertyChanged();
                 }
             }
@@ -84,7 +84,7 @@
             {
                 if (_unityAssetsFolderPath.AsStr != value)
                 {
-                    _unityAssetsFolderPath = Models.UnityAssetsFolderPath.FromString(value);
+                    _unityAssetsFolderPath = Models.UnityAssetsFolderPath.FromStringAndReplaceSeparators(value);
                     OnPropertyChanged();
                 }
             }
@@ -133,13 +133,13 @@
             await Task.Run(() =>
             {
                 // テキスト・ボックスから、Unity エディターの Assets フォルダーへのパスを取得
-                var assetsFolderPath = this.UnityAssetsFolderPathAsStr;
-                var escapedAssetsFolderPathAsStr = assetsFolderPath.Replace("\\", "/");
+                var assetsFolderPathAsStr = this.UnityAssetsFolderPathAsStr;
 
                 // 構成ファイルの更新差分
                 var configurationDifference = new ConfigurationBuffer()
                 {
-                    UnityAssetsFolderPath = UnityAssetsFolderPath.FromString(escapedAssetsFolderPathAsStr),
+                    NegiramenWorkspaceFolderPath = this._negiramenWorkspaceFolderPath,
+                    UnityAssetsFolderPath = this._unityAssetsFolderPath,
                     YourCircleName = _yourCircleName,
                     YourWorkName = _yourWorkName,
                 };
@@ -151,7 +151,7 @@
                     App.SetConfiguration(newConfiguration);
 
                     // Unity の Assets フォルダ―へ初期設定をコピー
-                    if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPath))
+                    if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
                     {
                         // TODO 異常時の処理
                         return;
@@ -168,8 +168,7 @@
 
             // 全ての入力が準備できているなら、画面遷移する
             var newConfiguration = App.GetOrLoadConfiguration();
-            if (newConfiguration.ExistsNegiramenWorkspaceFolder() &&
-                newConfiguration.ExistsUnityAssetsNegiramenFolder())
+            if (newConfiguration.IsReady())
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
             }

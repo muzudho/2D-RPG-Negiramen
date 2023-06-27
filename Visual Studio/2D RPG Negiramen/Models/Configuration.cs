@@ -51,7 +51,7 @@
                             {
                                 if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
                                 {
-                                    negiramenWorkspaceFolderPath = NegiramenWorkspaceFolderPath.FromString(negiramenWorkspaceFolderPathAsStr);
+                                    negiramenWorkspaceFolderPath = NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(negiramenWorkspaceFolderPathAsStr);
                                 }
                             }
 
@@ -60,7 +60,7 @@
                             {
                                 if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
                                 {
-                                    unityAssetsFolderPath = UnityAssetsFolderPath.FromString(unityAssetsFolderPathAsStr);
+                                    unityAssetsFolderPath = UnityAssetsFolderPath.FromStringAndReplaceSeparators(unityAssetsFolderPathAsStr);
                                 }
                             }
                         }
@@ -147,7 +147,7 @@
             var text = $@"[paths]
 
 # ネギラーメンの 📂 `Workspace` フォルダ―へのパス
-negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolderPath}""
+negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolderPath.AsStr}""
 
 # Unity の Assets フォルダ―へのパス
 unity_assets_folder = ""{configurationBuffer.UnityAssetsFolderPath.AsStr}""
@@ -226,10 +226,19 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         // - メソッド
 
         /// <summary>
+        /// 構成ファイルは有効か？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool IsReady()
+        {
+            return this.ExistsNegiramenWorkspaceFolder() && this.ExistsUnityAssetsNegiramenFolder();
+        }
+
+        /// <summary>
         /// ネギラーメンの 📂 `Workspace` フォルダ―は存在するか？
         /// </summary>
         /// <returns>そうだ</returns>
-        internal bool ExistsNegiramenWorkspaceFolder()
+        bool ExistsNegiramenWorkspaceFolder()
         {
             return System.IO.Directory.Exists(this.NegiramenWorkspaceFolderPath.AsStr);
         }
@@ -238,7 +247,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// 📂{Unity の Assets}/{Your Circle Name}/{Your Work Name}/Negiramen フォルダ―は存在するか？
         /// </summary>
         /// <returns>そうだ</returns>
-        internal bool ExistsUnityAssetsNegiramenFolder()
+        bool ExistsUnityAssetsNegiramenFolder()
         {
             var path = System.IO.Path.Combine(
                 this.UnityAssetsFolderPath.AsStr,

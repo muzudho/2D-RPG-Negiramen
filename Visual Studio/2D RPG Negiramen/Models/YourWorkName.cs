@@ -47,5 +47,10 @@
         /// 文字列形式
         /// </summary>
         internal string AsStr { get; }
+
+        /// <summary>
+        /// 暗黙的な文字列形式
+        /// </summary>
+        public override string ToString() => AsStr;
     }
 }
