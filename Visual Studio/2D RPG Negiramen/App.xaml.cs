@@ -59,5 +59,5 @@ public partial class App : Application
     ///			<item>ミュータブル</item>
     ///		</list>
     /// </summary>
-    static Configuration Configuration { get; set; } = new Configuration();
+    static Configuration Configuration { get; set; }
 }

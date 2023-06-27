@@ -70,7 +70,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateBattleBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//CreateBattleViewPage");
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//CreateBattleViewPage"));
     }
 
     /// <summary>
@@ -80,7 +81,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMenuViewBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//CreateMenuViewPage");
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//CreateMenuViewPage"));
     }
 
     /// <summary>
@@ -90,7 +92,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateTalkingBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//CreateTalkingViewPage");
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//CreateTalkingViewPage"));
     }
 
     /// <summary>
@@ -100,7 +103,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void EditPlayerCharacterBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//EditPlayerCharacterPage");
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditPlayerCharacterPage"));
     }
 
     /// <summary>
@@ -110,7 +114,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMonsterBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//EditMonsterPage");
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditMonsterPage"));
     }
 
     /// <summary>
@@ -120,7 +125,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void EditMonsterGroupBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//EditMonsterGroupPage");
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditMonsterGroupPage"));
     }
 
     /// <summary>
@@ -130,7 +136,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void EditItemBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//EditItemPage");
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditItemPage"));
     }
 
     /// <summary>
@@ -140,7 +147,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void EditorStoryBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//EditStoryPage");
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditStoryPage"));
     }
 
     /// <summary>
@@ -150,7 +158,10 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void StartupConfigurationBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//StartupConfigurationPage");
+        // 必ず、初期設定を要求
+        App.NextPage.Push(new ShellNavigationState("//StartupConfigurationPage"));
+        await Navigation.PushAsync(new StartupConfigurationPage());
+        // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
 
     /// <summary>
