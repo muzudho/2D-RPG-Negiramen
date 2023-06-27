@@ -869,6 +869,8 @@ Special Directory に無いの？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　XAML の中にしか書けないらしい」  
 
+# 📅 2023-06-28 初期素材をどこに置くんだぜ？ 
+
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👇　ワーキング・ディレクトリーの設定方法を調べた方がいいのでは？」  
 
@@ -892,5 +894,22 @@ Special Directory に無いの？」
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　とりあえず　ここに置いておくぜ」  
+
+![202306_maui_28-0814--configuration.png](https://crieit.now.sh/upload_images/0adecef231b607343638cbbe9f9d67dd649b6df52f56e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　さらに調整」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ツクラーは　こんな設定　できないから　ＲＭＵは　全部入りのパッケージで売るのよ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　**ソフトを自分で選んで　インストールして　設定するような**  
+**パソコンの正しい使い方をしたくないのが、　ツクラーだぜ**」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ネギラーメンは　ツクラーの思想とは　おさらばだぜ。  
+ネギラーメンは　ただの食材を　ユニティーにコピーする　トッピング・ソフト　だぜ」  
+
 
 ＜書きかけ＞
