@@ -28,19 +28,20 @@ public partial class MainPage : ContentPage
     */
 
     /// <summary>
-    /// ［マップを作る］ボタン押下時
+    /// 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+    /// 
+    /// <list type="bullet">
+    ///     <item>構成ファイルの設定は、ユーザーは苦手とするだろうから、必要となるまで設定を要求しないようにする仕掛け</item>
+    /// </list>
     /// </summary>
-    /// <param name="sender">このイベントを呼び出したコントロール</param>
-    /// <param name="e">この発生イベントの制御変数</param>
-    async void CreateMapViewBtn_Clicked(object sender, EventArgs e)
+    /// <param name="shellNavigationState">遷移先ページ</param>
+    async Task GoToNextPageRequiredConfiguration(ShellNavigationState shellNavigationState)
     {
-        // 遷移先
-        var shellNavigationState = new ShellNavigationState("//MapExplorerPage");
-
-        // フォルダーが準備できているなら、画面遷移する
+        // フォルダーが準備できているなら、そのまま画面遷移する
         if (App.GetOrLoadConfiguration().ExistsNegiramenFolder())
         {
             await Shell.Current.GoToAsync(shellNavigationState);
+            // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
         }
         // そうでなければ、初期設定を要求
         else
@@ -49,6 +50,17 @@ public partial class MainPage : ContentPage
             await Navigation.PushAsync(new StartupConfigurationPage());
             // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
         }
+    }
+
+    /// <summary>
+    /// ［マップを作る］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void CreateMapViewBtn_Clicked(object sender, EventArgs e)
+    {
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//MapExplorerPage"));
     }
 
     /// <summary>

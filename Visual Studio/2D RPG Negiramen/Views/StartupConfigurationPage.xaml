@@ -10,20 +10,12 @@
 
     <VerticalStackLayout>
         <!--
-            パンくずリスト
-            ==============
+            パンくずリストはありません
+            ==========================
         -->
         <HorizontalStackLayout>
-            <Button Text="Home"
-                    SemanticProperties.Hint="Back to the home"
-                    Clicked="HomeBtn_Clicked" />
-
-            <Label Text="＞"
-                   SemanticProperties.Hint="Separator"
-                   VerticalTextAlignment="Center"/>
-
-            <Label Text="Startup Configuration Page"
-                   SemanticProperties.Hint="Startup Configuration Page"
+            <Label Text="戻るボタンは、タイトルバーの左上にあります"
+                   SemanticProperties.Hint="Back button on Top Left Titile bar"
                    VerticalTextAlignment="Center"/>
         </HorizontalStackLayout>
 
@@ -31,7 +23,7 @@
             本文
             ====
         -->
-        <Label Text="Unity プロジェクトを先に作っておいてください"
+        <Label Text="Unity プロジェクトを先に作っておいてください。&#10;そのあと、以下のフォルダ―を設定してください"
                SemanticProperties.Hint="Separator"
                VerticalTextAlignment="Center"/>
 
