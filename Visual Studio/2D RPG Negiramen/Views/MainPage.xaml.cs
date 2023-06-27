@@ -1,4 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.Views;
+﻿using Microsoft.Maui.Controls;
+
+namespace _2D_RPG_Negiramen.Views;
 
 public partial class MainPage : ContentPage
 {
@@ -6,10 +8,10 @@ public partial class MainPage : ContentPage
 	int count = 0;
     */
 
-	public MainPage()
-	{
-		InitializeComponent();
-	}
+    public MainPage()
+    {
+        InitializeComponent();
+    }
 
     /*
     private void OnCounterClicked(object sender, EventArgs e)
@@ -32,16 +34,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMapViewBtn_Clicked(object sender, EventArgs e)
     {
-        // 初期設定を要求
-        if (!App.Configuration.ExistsNegiramenFolder())
-        {
-            await Navigation.PushAsync(new StartupConfigurationPage());
-            // ここは通り抜ける
-        }
+        // 遷移先
+        var shellNavigationState = new ShellNavigationState("//MapExplorerPage");
 
+        // フォルダーが準備できているなら、画面遷移する
         if (App.Configuration.ExistsNegiramenFolder())
         {
-            await Shell.Current.GoToAsync("//MapExplorerPage");
+            await Shell.Current.GoToAsync(shellNavigationState);
+        }
+        // そうでなければ、初期設定を要求
+        else
+        {
+            App.NextPage.Push(shellNavigationState);
+            await Navigation.PushAsync(new StartupConfigurationPage());
+            // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
         }
     }
 

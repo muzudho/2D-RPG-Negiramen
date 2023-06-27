@@ -142,6 +142,15 @@
 
             // 画面遷移、戻る
             await Shell.Current.GoToAsync("..");
+
+            // 履歴は戻しておく
+            var shellNavigationState = App.NextPage.Pop();
+
+            // フォルダーが準備できているなら、画面遷移する
+            if (App.Configuration.ExistsNegiramenFolder())
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+            }
         }
     }
 }

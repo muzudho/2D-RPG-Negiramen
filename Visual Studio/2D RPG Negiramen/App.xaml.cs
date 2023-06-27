@@ -14,9 +14,14 @@ public partial class App : Application
 	static internal Configuration Configuration { get; set; } = new Configuration();
 
 	/// <summary>
-	/// 生成
+	/// 画面遷移先の一時記憶
 	/// </summary>
-	public App()
+	static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
+
+    /// <summary>
+    /// 生成
+    /// </summary>
+    public App()
 	{
 		InitializeComponent();
 
