@@ -11,6 +11,11 @@
     class StartupConfigurationPageViewModel : ObservableObject
     {
         /// <summary>
+        /// ネギラーメンの 📂 `Workspace` フォルダーへのパス
+        /// </summary>
+        private NegiramenWorkspaceFolderPath _negiramenWorkspaceFolderPath = NegiramenWorkspaceFolderPath.Empty;
+
+        /// <summary>
         /// Unity の Assets フォルダーへのパス
         /// </summary>
         private UnityAssetsFolderPath _unityAssetsFolderPath = UnityAssetsFolderPath.Empty;
@@ -42,6 +47,7 @@
             // 構成ファイル取得
             var configuration = App.GetOrLoadConfiguration();
 
+            NegiramenWorkspaceFolderPathAsStr = configuration.NegiramenWorkspaceFolderPath.AsStr;
             UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
             YourCircleNameAsStr = configuration.YourCircleName.AsStr;
             YourWorkNameAsStr = configuration.YourWorkName.AsStr;
@@ -51,6 +57,22 @@
         }
 
         // - 変更通知プロパティ
+
+        /// <summary>
+        /// ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式
+        /// </summary>
+        public string NegiramenWorkspaceFolderPathAsStr
+        {
+            get => _negiramenWorkspaceFolderPath.AsStr;
+            set
+            {
+                if (_negiramenWorkspaceFolderPath.AsStr != value)
+                {
+                    _negiramenWorkspaceFolderPath = Models.NegiramenWorkspaceFolderPath.FromString(value);
+                    OnPropertyChanged();
+                }
+            }
+        }
 
         /// <summary>
         /// Unity の Assets フォルダーへのパス。文字列形式
@@ -144,8 +166,10 @@
             // 履歴は戻しておく
             var shellNavigationState = App.NextPage.Pop();
 
-            // フォルダーが準備できているなら、画面遷移する
-            if (App.GetOrLoadConfiguration().ExistsNegiramenFolder())
+            // 全ての入力が準備できているなら、画面遷移する
+            var newConfiguration = App.GetOrLoadConfiguration();
+            if (newConfiguration.ExistsNegiramenWorkspaceFolder() &&
+                newConfiguration.ExistsUnityAssetsNegiramenFolder())
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
             }

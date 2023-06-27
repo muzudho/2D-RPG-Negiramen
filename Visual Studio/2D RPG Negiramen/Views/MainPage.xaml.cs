@@ -38,7 +38,7 @@ public partial class MainPage : ContentPage
     async Task GoToNextPageRequiredConfiguration(ShellNavigationState shellNavigationState)
     {
         // フォルダーが準備できているなら、そのまま画面遷移する
-        if (App.GetOrLoadConfiguration().ExistsNegiramenFolder())
+        if (App.GetOrLoadConfiguration().ExistsUnityAssetsNegiramenFolder())
         {
             await Shell.Current.GoToAsync(shellNavigationState);
             // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する

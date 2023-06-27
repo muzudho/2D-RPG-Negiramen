@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
-    using System.Text;
     using Tomlyn;
     using Tomlyn.Model;
 
@@ -33,6 +32,7 @@
                 // 設定ファイルの読取
                 var configurationText = System.IO.File.ReadAllText(configurationFilePath);
 
+                NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath = new NegiramenWorkspaceFolderPath();
                 UnityAssetsFolderPath unityAssetsFolderPath = new UnityAssetsFolderPath();
                 YourCircleName yourCircleName = new YourCircleName();
                 YourWorkName yourWorkName = new YourWorkName();
@@ -46,11 +46,22 @@
                     {
                         if (pathsObj != null && pathsObj is TomlTable paths)
                         {
-                            // Unity の Assets フォルダ―へのパス
-                            var unityAssetsFolderPathObj = paths["unity_assets_folder_path"];
-                            if (unityAssetsFolderPathObj != null && unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
+                            // ネギラーメンの 📂 `Workspace` フォルダ―へのパス
+                            if (paths.TryGetValue("negiramen_workspace_folder", out object negiramenWorkspaceFolderPathObj))
                             {
-                                unityAssetsFolderPath = UnityAssetsFolderPath.FromString(unityAssetsFolderPathAsStr);
+                                if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
+                                {
+                                    negiramenWorkspaceFolderPath = NegiramenWorkspaceFolderPath.FromString(negiramenWorkspaceFolderPathAsStr);
+                                }
+                            }
+
+                            // Unity の Assets フォルダ―へのパス
+                            if (paths.TryGetValue("unity_assets_folder", out object unityAssetsFolderPathObj))
+                            {
+                                if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
+                                {
+                                    unityAssetsFolderPath = UnityAssetsFolderPath.FromString(unityAssetsFolderPathAsStr);
+                                }
                             }
                         }
                     }
@@ -81,6 +92,7 @@
                 }
 
                 configuration = new Configuration(
+                    negiramenWorkspaceFolderPath,
                     unityAssetsFolderPath,
                     yourCircleName,
                     yourWorkName);
@@ -127,14 +139,18 @@
             var configurationBuffer = new ConfigurationBuffer();
 
             // 差分適用
+            configurationBuffer.NegiramenWorkspaceFolderPath = difference.NegiramenWorkspaceFolderPath == null ? current.NegiramenWorkspaceFolderPath : difference.NegiramenWorkspaceFolderPath;
             configurationBuffer.UnityAssetsFolderPath = difference.UnityAssetsFolderPath == null ? current.UnityAssetsFolderPath : difference.UnityAssetsFolderPath;
             configurationBuffer.YourCircleName = difference.YourCircleName == null ? current.YourCircleName : difference.YourCircleName;
             configurationBuffer.YourWorkName = difference.YourWorkName == null ? current.YourWorkName : difference.YourWorkName;
 
             var text = $@"[paths]
 
+# ネギラーメンの 📂 `Workspace` フォルダ―へのパス
+negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolderPath}""
+
 # Unity の Assets フォルダ―へのパス
-unity_assets_folder_path = ""{configurationBuffer.UnityAssetsFolderPath.AsStr}""
+unity_assets_folder = ""{configurationBuffer.UnityAssetsFolderPath.AsStr}""
 
 [profile]
 
@@ -150,11 +166,17 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 
             // イミュータブル・オブジェクトを生成
             newConfiguration = new Configuration(
+                configurationBuffer.NegiramenWorkspaceFolderPath,
                 configurationBuffer.UnityAssetsFolderPath,
                 configurationBuffer.YourCircleName,
                 configurationBuffer.YourWorkName);
             return true;
         }
+
+        /// <summary>
+        /// ネギラーメン・ワークスペース・フォルダーへのパス
+        /// </summary>
+        internal NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; }
 
         /// <summary>
         /// Unity の Assets フォルダーへのパス
@@ -175,6 +197,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// 生成
         /// </summary>
         internal Configuration() : this(
+            NegiramenWorkspaceFolderPath.Empty,
             UnityAssetsFolderPath.Empty,
             YourCircleName.Empty,
             YourWorkName.Empty)
@@ -184,14 +207,17 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <summary>
         /// 生成
         /// </summary>
+        /// <param name="negiramenWorkspaceFolderPath">ネギラーメン・ワークスペース・フォルダーへのパス</param>
         /// <param name="unityAssetsFolderPath">Unity の Assets フォルダーへのパス</param>
         /// <param name="yourCircleName">あなたのサークル名</param>
         /// <param name="yourWorkName">あなたの作品名</param>
         internal Configuration(
+            NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath,
             UnityAssetsFolderPath unityAssetsFolderPath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)
         {
+            this.NegiramenWorkspaceFolderPath = negiramenWorkspaceFolderPath;
             this.UnityAssetsFolderPath = unityAssetsFolderPath;
             this.YourCircleName = yourCircleName;
             this.YourWorkName = yourWorkName;
@@ -200,10 +226,19 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         // - メソッド
 
         /// <summary>
+        /// ネギラーメンの 📂 `Workspace` フォルダ―は存在するか？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool ExistsNegiramenWorkspaceFolder()
+        {
+            return System.IO.Directory.Exists(this.NegiramenWorkspaceFolderPath.AsStr);
+        }
+
+        /// <summary>
         /// 📂{Unity の Assets}/{Your Circle Name}/{Your Work Name}/Negiramen フォルダ―は存在するか？
         /// </summary>
         /// <returns>そうだ</returns>
-        internal bool ExistsNegiramenFolder()
+        internal bool ExistsUnityAssetsNegiramenFolder()
         {
             var path = System.IO.Path.Combine(
                 this.UnityAssetsFolderPath.AsStr,

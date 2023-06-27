@@ -6,6 +6,11 @@
     internal class ConfigurationBuffer
     {
         /// <summary>
+        /// ネギラーメンのワークスペース・フォルダーへのパス
+        /// </summary>
+        internal NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
+
+        /// <summary>
         /// Unity の Assets フォルダーへのパス
         /// </summary>
         internal UnityAssetsFolderPath UnityAssetsFolderPath { get; set; }
