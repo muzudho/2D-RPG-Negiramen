@@ -761,4 +761,62 @@ string mainDir = FileSystem.Current.AppDataDirectory;
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　やり方分からん。調査だな」  
 
+## モーダル・ダイアログボックスを作れるかだぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　マイクロソフトのドキュメントって、スクリーンショットを使った説明が　圧倒的に足りないよな」  
+
+📖　[.NET MAUI ウィンドウ](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/windows)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　じゃあ　まず　普通のサブ・ウィンドウを出して、閉じるところまで　やってくれだぜ」  
+
+📖 [Opening a new window in MAUI](https://stackoverflow.com/questions/70866169/opening-a-new-window-in-maui)  
+
+```cs
+    /// <summary>
+    /// ［ウィンドウ表示テスト］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void TestShowWindowButton_Clicked(object sender, EventArgs e)
+    {
+        var secondWindow = new Window
+        {
+            Page = new StartupConfigurationPage
+            {
+                // ...
+            },
+            Width = 1200,
+            Height = 400,
+        };
+
+        Application.Current.OpenWindow(secondWindow);
+    }
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これで　ウィンドウは　ポップアップされるけど、もっと簡単な書き方無いかなあ？」  
+
+```cs
+    /// <summary>
+    /// ［ウィンドウ表示テスト］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void TestShowWindowButton_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new StartupConfigurationPage());
+    }
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こう書くと　同じウィンドウで　ページだけ　スライドする演出付きで　切り替わるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　戻るボタンも　付いてるし、こっちの方が　かっこいいわよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ウィンドウを閉じるボタンは、どう書くんだぜ？」  
+
 ＜書きかけ＞
