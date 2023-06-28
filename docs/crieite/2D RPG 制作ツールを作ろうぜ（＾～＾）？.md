@@ -1098,6 +1098,32 @@ Special Directory に無いの？」
 「　コード・ビハインドと　ビュー・モデルと　何の関係があるんだぜ？」  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　WPFの依存関係プロパティみたいなものがないか　調べてみるぜ」  
+「　👇　WPFの依存関係プロパティみたいなものがないか　調べてみるぜ」  
+
+📖 [How to use DependencyProperty in Maui?](https://stackoverflow.com/questions/73384133/how-to-use-dependencyproperty-in-maui)  
+
+📖 [Microsoft　＞　Bindable properties](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/bindable-properties)  
+
+📖 [How can I bind a property to a view model in MAUI?](https://stackoverflow.com/questions/70347196/how-can-i-bind-a-property-to-a-view-model-in-maui)  
+
+![202306_maui_29-0821--BindContext-o2o0.png](https://crieit.now.sh/upload_images/87d459ce067ff5dbea0cb45b7cd2796a649cc0bc4a4e6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コード・ビハインドから、ビューにバインドされてる　ビュー・モデル　取れた……。  
+WPF の DataContext と同じ考えだ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　簡単ねえ」  
+
+![202306_maui_29-0831--Method-o2o0.png](https://crieit.now.sh/upload_images/d39615ad5ffa875a7ed25468bee5da88649cc32390fd0.png)  
+
+![202306_maui_29-0826--CoordinateOnTheImage-o2o0.png](https://crieit.now.sh/upload_images/91834b5c3894a174c69bd61ebabb549d649cc2666d183.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画像上の座標　取れた……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　それを　いったん　ウィンドウ上の座標に変換して、  
+32 x 32 pixels サイズのタイルを囲む枠を　置いてくれだぜ」  
 
 ＜書きかけ＞

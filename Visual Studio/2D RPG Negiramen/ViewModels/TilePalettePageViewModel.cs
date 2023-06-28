@@ -11,13 +11,6 @@
     /// </summary>
     internal class TilePalettePageViewModel : ObservableObject
     {
-        // - プロパティ
-
-        /// <summary>
-        ///     タイル画像上のマウス・カーソルのキャプチャーに利用
-        /// </summary>
-        public PointerGestureRecognizer PointerGestureRecognizer { get; set; }
-
         // - 変更通知プロパティ
 
         /// <summary>
@@ -70,23 +63,6 @@
         {
             this.XAsInt = x.AsInt;
             this.YAsInt = y.AsInt;
-
-            // ポインター・ジェスチャーを実装
-            this.PointerGestureRecognizer = new PointerGestureRecognizer();
-            this.PointerGestureRecognizer.PointerEntered += (s, e) =>
-            {
-                // Handle the pointer entered event
-            };
-            this.PointerGestureRecognizer.PointerExited += (s, e) =>
-            {
-                // Handle the pointer exited event
-            };
-            this.PointerGestureRecognizer.PointerMoved += (s, e) =>
-            {
-                Trace.WriteLine("[TilePalettePageViewModel PointerMoved]");
-                Trace.WriteLine($"[TilePalettePageViewModel PointerMoved] e.GetPosition((Element)s).Value.X = {e.GetPosition((Element)s).Value.X}");
-                Trace.WriteLine($"[TilePalettePageViewModel PointerMoved] e.GetPosition((Element)s).Value.Y = {e.GetPosition((Element)s).Value.Y}");
-            };
         }
 
         // - プライベート・フィールド
