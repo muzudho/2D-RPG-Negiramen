@@ -972,4 +972,20 @@ Special Directory に無いの？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　そこに　タイルの画像を表示しましょう！」  
 
+![202306_maui_28-2144--Image-o2o0.png](https://crieit.now.sh/upload_images/2dcab1a7afaa1ad2df88be1d5c7f07d8649c2b7dd2087.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな風に　絶対パス書いたら　画像出てくるかな？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　さっさと　試せだぜ」  
+
+![202306_maui_28-2147--Image.png](https://crieit.now.sh/upload_images/087ce5c5b977b0fa465f41a500ca2cf3649c2c1e7fb58.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　出たけど　画像サイズが　さっぱり……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そのサイズを　ぴったり　合わせてくれだぜ」  
+
 ＜書きかけ＞
