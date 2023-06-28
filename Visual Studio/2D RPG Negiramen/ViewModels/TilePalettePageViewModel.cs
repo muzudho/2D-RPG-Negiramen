@@ -2,7 +2,10 @@
 {
     using CommunityToolkit.Mvvm.ComponentModel;
 
-    internal class TilePalettePopupViewModel : ObservableObject
+    /// <summary>
+    /// ［タイル・パレット・ページ］ビューモデル
+    /// </summary>
+    internal class TilePalettePageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
 
@@ -40,12 +43,19 @@
 
         // - その他
 
-        internal TilePalettePopupViewModel() : this(
+        /// <summary>
+        ///     生成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
+        ///     </list>
+        /// </summary>
+        public TilePalettePageViewModel() : this(
             Models.X.Empty, Models.Y.Empty)
         {
         }
 
-        internal TilePalettePopupViewModel(Models.X x, Models.Y y)
+        internal TilePalettePageViewModel(Models.X x, Models.Y y)
         {
             this.XAsInt = x.AsInt;
             this.YAsInt = y.AsInt;

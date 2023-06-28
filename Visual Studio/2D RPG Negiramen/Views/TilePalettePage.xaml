@@ -1,12 +1,16 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+    タイル・パレット・ページ
+    ========================
+-->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              x:Class="_2D_RPG_Negiramen.Views.TilePalettePage"
-             Title="NewPage1">
+             Title="タイル・パレット">
 
     <ContentPage.BindingContext>
-        <viewModels:StartupConfigurationPageViewModel />
+        <viewModels:TilePalettePageViewModel />
     </ContentPage.BindingContext>
     
     <ScrollView>
@@ -17,9 +21,9 @@
                   RowDefinitions="*" ColumnDefinitions="*">
 
                 <Image WidthRequest="64"
-                   HeightRequest="64"
-                   Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/adventure_field.png"
-                   />
+                       HeightRequest="64"
+                       Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/adventure_field.png"
+                       />
 
             </Grid>
 
@@ -28,9 +32,9 @@
                   BackgroundColor="SkyBlue">
 
                 <Label Text="(" />
-                <Label Text="100" />
+                <Label Text="{Binding XAsInt}" />
                 <Label Text="," />
-                <Label Text="100" />
+                <Label Text="{Binding YAsInt}" />
                 <Label Text=")" />
 
             </Grid>
