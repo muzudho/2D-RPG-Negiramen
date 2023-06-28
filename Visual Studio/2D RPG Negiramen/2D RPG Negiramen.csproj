@@ -96,6 +96,9 @@
 	  <Compile Update="Views\CreateMapViewPage.xaml.cs">
 	    <DependentUpon>CreateMapViewPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\TilePalettePage.xaml.cs">
+	    <DependentUpon>TilePalettePage.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -127,6 +130,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\CreateMapViewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\TilePalettePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\StartupConfigurationPage.xaml">

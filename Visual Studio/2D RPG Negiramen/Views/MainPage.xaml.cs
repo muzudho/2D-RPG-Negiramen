@@ -214,8 +214,8 @@ public partial class MainPage : ContentPage
             {
                 // ...
             },
-            Width = 1200,
-            Height = 400,
+            Width = 600,
+            Height = 300,
         };
 
         Application.Current.OpenWindow(secondWindow);
