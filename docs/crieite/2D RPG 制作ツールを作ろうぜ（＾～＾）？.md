@@ -1065,4 +1065,39 @@ Special Directory に無いの？」
 「　👆　反応はしてるから、後は　引数を取りたいぜ。  
 もう少し調べるか」  
 
+📖 [Microsoft　＞　PointerGestureRecognizer.PointerMovedCommandParameter Property](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.pointergesturerecognizer.pointermovedcommandparameter?view=net-maui-7.0)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　パラメーターも　コマンドなんだ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　いや、取れない」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　何か無いか」  
+
+📖 [.NET MAUI Custom control with command and parameters](https://stackoverflow.com/questions/74889265/net-maui-custom-control-with-command-and-parameters)  
+
+![202306_maui_29-0738--Command-o2o0.png](https://crieit.now.sh/upload_images/f8dafd13b5f2867db83d002a1436ee01649cb6ae2f33c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　このコマンドから、何か引数にアクセスできないか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　コマンドは　実行することしか　できないわねえ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　コマンドを使っちゃいけないんだ」  
+
+![202306_maui_29-0759--Code-Behind-o2o0.png](https://crieit.now.sh/upload_images/1bb040e82be83c0fb097c83ad18c5097649cbb8d9a4f8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コード・ビハインド　を使うと　画像上の座標を取ることはできるが……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　コード・ビハインドと　ビュー・モデルと　何の関係があるんだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　WPFの依存関係プロパティみたいなものがないか　調べてみるぜ」  
+
 ＜書きかけ＞

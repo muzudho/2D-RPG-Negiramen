@@ -26,7 +26,7 @@
                        Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/adventure_field.png"
                        >
                     <Image.GestureRecognizers>
-                        <PointerGestureRecognizer PointerMovedCommand="{Binding PointerMovedCommand}"/>
+                        <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved" />
 
                     </Image.GestureRecognizers>
                 </Image>
