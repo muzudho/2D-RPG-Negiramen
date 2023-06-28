@@ -988,4 +988,12 @@ Special Directory に無いの？」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　そのサイズを　ぴったり　合わせてくれだぜ」  
 
+![202306_maui_28-2230--WidthHeight-o2o0.png](https://crieit.now.sh/upload_images/1e57f6f3832d16d9f84df18443692626649c3651e1d3b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ウィトス（WIdth；横幅）と　ハイト（Height；縦幅）を　指定すればいいのか」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　なんか変なデバッグ用のツールバーと被ってるから　真ん中らへんに表示しましょう！」  
+
 ＜書きかけ＞
