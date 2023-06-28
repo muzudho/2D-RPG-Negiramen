@@ -20,10 +20,16 @@
             <Grid Grid.Column="0"
                   RowDefinitions="*" ColumnDefinitions="*">
 
-                <Image WidthRequest="64"
+                <Image x:Name="tileImage"
+                       WidthRequest="64"
                        HeightRequest="64"
                        Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/adventure_field.png"
-                       />
+                       >
+                    <Image.GestureRecognizers>
+                        <PointerGestureRecognizer PointerMovedCommand="{Binding PointerMovedCommand}"/>
+
+                    </Image.GestureRecognizers>
+                </Image>
 
             </Grid>
 

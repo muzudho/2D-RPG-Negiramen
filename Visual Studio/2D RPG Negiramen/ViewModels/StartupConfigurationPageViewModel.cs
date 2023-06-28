@@ -10,10 +10,14 @@
     /// </summary>
     class StartupConfigurationPageViewModel : ObservableObject
     {
+        // - プロパティ
+
         /// <summary>
         /// Unity の Assets フォルダ―へ初期設定をコピーするコマンド
         /// </summary>
         public ICommand PushStartupToUnityAssetsFolderCommand { get; }
+
+        // - その他
 
         /// <summary>
         ///     生成

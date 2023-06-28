@@ -1019,4 +1019,50 @@ Special Directory に無いの？」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　マウス・カーソルの位置を取得できないか、調べてみてくれだぜ」  
 
+# 📅 2023-06-29 マウス・キャプチャーしてくれだぜ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　マウス・キャプチャー自体　どうやるんだぜ？」  
+
+📖 [How to capture global touch events in MAUI app](https://stackoverflow.com/questions/71911160/how-to-capture-global-touch-events-in-maui-app)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI には　マウス・キャプチャーは無いのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　Windows プログラミングかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　その前に　ジェスチャーを調べてくれだぜ」  
+
+📖 [Recognize a tap gesture](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/gestures/tap)  
+
+![202306_maui_29-0642--Gesture.png](https://crieit.now.sh/upload_images/dd634f13650e0594fb465b39776d1273649ca9555c19f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんか　いっぱいある。  
+この `PointerGestureRecognizer` とか　それっぽくないかだぜ？
+👇　調べるか」  
+
+📖 [Recognize a pointer gesture](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/gestures/pointer)  
+
+## コマンドに引数をよこせだぜ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれっ？　どうやって　コマンドに引数を渡すんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　調べろだぜ」  
+
+📖 [Microsoft　＞　Commanding](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/data-binding/commanding)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　WPF みたいなものんか？」  
+
+![202306_maui_29-0709--MouseCapture-o2o0.png](https://crieit.now.sh/upload_images/68fb9a38b95e11395dc593993293c042649cafb6ce729.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　反応はしてるから、後は　引数を取りたいぜ。  
+もう少し調べるか」  
+
 ＜書きかけ＞
