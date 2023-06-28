@@ -160,7 +160,8 @@ public partial class MainPage : ContentPage
     async void StartupConfigurationBtn_Clicked(object sender, EventArgs e)
     {
         // 必ず、初期設定を要求
-        App.NextPage.Push(new ShellNavigationState("//StartupConfigurationPage"));
+        // 戻り先はホーム
+        App.NextPage.Push(new ShellNavigationState("//MainPage"));
         await Navigation.PushAsync(new StartupConfigurationPage());
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
