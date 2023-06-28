@@ -210,18 +210,23 @@
             }
 
             var configuration = App.GetOrLoadConfiguration();
-
-            // 📄 `Tile Set` ファイルを複写
-            File.Copy(
-                sourceFileName: Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tile Set", "adventure_field.png"),
-                destFileName: Path.Combine(
+            var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tile Set", "adventure_field.png");
+            var destination = Path.Combine(
                     configuration.UnityAssetsFolderPath.AsStr,
                     configuration.YourCircleName.AsStr,
                     configuration.YourWorkName.AsStr,
                     "Auto Generated",
                     "Images",
                     "Tile Set",
-                    "adventure_field.png"));
+                    "adventure_field.png");
+
+            if (!File.Exists(destination))
+            {
+                // 📄 `Tile Set` ファイルを複写
+                File.Copy(
+                    sourceFileName: source,
+                    destFileName: destination);
+            }
         }
 
         /// <summary>
