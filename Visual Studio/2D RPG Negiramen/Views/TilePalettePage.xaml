@@ -31,11 +31,15 @@
                   RowDefinitions="*,30"
                   BackgroundColor="SkyBlue">
 
-                <Label Text="(" />
-                <Label Text="{Binding XAsInt}" />
-                <Label Text="," />
-                <Label Text="{Binding YAsInt}" />
-                <Label Text=")" />
+                <HorizontalStackLayout>
+                    <Label Text="(" />
+                    <Label Text="{Binding XAsInt}" />
+                    <Label Text="," />
+                    <Label Text="{Binding YAsInt}" />
+                    <Label Text=")" />
+
+                </HorizontalStackLayout>
+                
 
             </Grid>
         </Grid>
