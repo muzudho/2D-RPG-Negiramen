@@ -996,4 +996,27 @@ Special Directory に無いの？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　なんか変なデバッグ用のツールバーと被ってるから　真ん中らへんに表示しましょう！」  
 
+![202306_maui_28-2236--Grid.png](https://crieit.now.sh/upload_images/e8c5fc8dfeee179c7a92b9a8c050ebe6649c377ea3f82.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　グリッドを使って真ん中へ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　画像にマウスカーソルを合わせたら、枠が出るようにしてみてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　オン・マウス・オーバー　みたいなイベントハンドラが無いか　探してみるかだぜ」  
+
+📖 [Mouse hover detection in .NET MAUI](https://stackoverflow.com/questions/73088203/mouse-hover-detection-in-net-maui)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI　は、スマホのようなタッチ・デバイスで使われることを想定していて、  
+デスクトップのようなマウス操作は　想定していないそうよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　クソじゃないか」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　マウス・カーソルの位置を取得できないか、調べてみてくれだぜ」  
+
 ＜書きかけ＞

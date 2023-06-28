@@ -3,13 +3,31 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.TilePalettePage"
              Title="NewPage1">
+    <ScrollView>
 
-    <VerticalStackLayout>
-    
-        <Image Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/adventure_field.png"
-               WidthRequest="64"
-               HeightRequest="64"/>
+        <Grid ColumnDefinitions="*,100">
+
+            <Grid Grid.Column="0"
+                  RowDefinitions="*" ColumnDefinitions="*">
+
+                <Image WidthRequest="64"
+                   HeightRequest="64"
+                   Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/adventure_field.png"
+                   />
+
+            </Grid>
+
+            <Grid Grid.Column="1"
+                  RowDefinitions="*,30"
+                  BackgroundColor="SkyBlue">
+
+                <Label Text="(100,100)"
+                    />
+
+            </Grid>
+        </Grid>
         
-    </VerticalStackLayout>
-    
+        
+    </ScrollView>
+
 </ContentPage>
