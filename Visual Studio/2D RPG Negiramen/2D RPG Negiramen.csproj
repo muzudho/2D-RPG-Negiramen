@@ -49,6 +49,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Resources\Images\Tile Set\**" />
+	  <Compile Remove="Resources\Images\Tile Set\**" />
+	  <EmbeddedResource Remove="Resources\Images\Tile Set\**" />
+	  <MauiCss Remove="Resources\Images\Tile Set\**" />
+	  <MauiImage Remove="Resources\Images\Tile Set\**" />
+	  <MauiXaml Remove="Resources\Images\Tile Set\**" />
+	  <None Remove="Resources\Images\Tile Set\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.0" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
 		<PackageReference Include="Tomlyn" Version="0.16.2" />
@@ -121,10 +131,6 @@
 	  <MauiXaml Update="Views\StartupConfigurationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <Folder Include="Resources\Images\Tile Set\" />
 	</ItemGroup>
 
 </Project>

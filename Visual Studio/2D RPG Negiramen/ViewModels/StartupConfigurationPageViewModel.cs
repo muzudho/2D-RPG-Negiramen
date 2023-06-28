@@ -150,12 +150,22 @@
                     // グローバル変数を更新
                     App.SetConfiguration(newConfiguration);
 
+                    // ネギラーメンのワークスペース・フォルダーの内容を確認
+                    var isOk = NegiramenWorkspaceFolder.Check();
+                    if(!isOk)
+                    {
+                        // TODO 異常時の処理
+                        return;
+                    }
+
                     // Unity の Assets フォルダ―へ初期設定をコピー
                     if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
                     {
                         // TODO 異常時の処理
                         return;
                     }
+
+
                 }
 
             });
