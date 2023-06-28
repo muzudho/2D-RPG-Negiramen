@@ -67,4 +67,9 @@
         ContentTemplate="{DataTemplate views:StartupConfigurationPage}"
         Route="StartupConfigurationPage" />
 
+    <ShellContent
+        Title="Tile palette"
+        ContentTemplate="{DataTemplate views:TilePalettePopup}"
+        Route="TilePalettePopup" />
+
 </Shell>

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 namespace _2D_RPG_Negiramen;
 
@@ -15,8 +16,15 @@ public static class MauiProgram
 				fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
 			});
 
+		//
+        // 手動で追加。こんなん分からんて
+		//
+        // 📖 [.NET MAUI Community Toolkit Popup PopupHandler is incompatible](https://stackoverflow.com/questions/72506202/net-maui-community-toolkit-popup-popuphandler-is-incompatible)
+		//
+        builder.UseMauiApp<App>().UseMauiCommunityToolkit();
+
 #if DEBUG
-		builder.Logging.AddDebug();
+        builder.Logging.AddDebug();
 #endif
 
 		return builder.Build();

@@ -911,5 +911,48 @@ Special Directory に無いの？」
 「　ネギラーメンは　ツクラーの思想とは　おさらばだぜ。  
 ネギラーメンは　ただの食材を　ユニティーにコピーする　トッピング・ソフト　だぜ」  
 
+## コピーしろだぜ
+
+![202306_maui_28-1929--Duplicator.png](https://crieit.now.sh/upload_images/e9c2b56496ee4d3c28a0d336f258fa15649c0c0ea5594.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　さらに調整。  
+ハードコーディングしてしまったが、ただの `Copy` だぜ」  
+
+## タイルを選ばせろだぜ
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　タイル・パレットを作ってみましょう。  
+この画像を　MAUI　に表示して、草原、砂漠、岩、海を　クリックできるようにしましょう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　このポップアップというやつは　画面上に　画像が浮くやつじゃないか？  
+試してみようぜ？」  
+
+📖 [マイクロソフト　＞　ポップアップ](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/maui/views/popup)  
+📖 [Microsoft　＞　Popup](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/views/popup)
+
+![202306_maui_28-2053--CommunityToolkit-Maui-o2o0.png](https://crieit.now.sh/upload_images/bfdb5a5797404c34ca0560b50d510101649c1fc01ac74.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんの説明も無いが、このパッケージが要るのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　全然　ビルド通らないなあ。調べるか」  
+
+📖 [.NET MAUI Community Toolkit Popup PopupHandler is incompatible](https://stackoverflow.com/questions/72506202/net-maui-community-toolkit-popup-popuphandler-is-incompatible)  
+
+![202306_maui_28-2108--MauiProgram-o2o0.png](https://crieit.now.sh/upload_images/a565cbb5a22a37ec08495ccd100fb3e2649c2311659b9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんなん書く必要があるのかだぜ、分からんって」  
+
+![202306_maui_28-2117--Popup.png](https://crieit.now.sh/upload_images/b448957cb7ad3de052ba4b462b8d7d62649c24f345a9c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　思ってるのと違って　モーダル・ダイアログボックスみたいなのが　出てきたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面の真ん中じゃなくて、ボタンをクリックしたマウスの近くに　出せないの？」  
 
 ＜書きかけ＞

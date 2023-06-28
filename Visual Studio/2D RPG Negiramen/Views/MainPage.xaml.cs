@@ -1,6 +1,5 @@
-﻿using Microsoft.Maui.Controls;
-
-namespace _2D_RPG_Negiramen.Views;
+﻿namespace _2D_RPG_Negiramen.Views;
+using CommunityToolkit.Maui.Views;
 
 public partial class MainPage : ContentPage
 {
@@ -188,6 +187,18 @@ public partial class MainPage : ContentPage
         */
 
         await Navigation.PushAsync(new StartupConfigurationPage());
+    }
+
+    /// <summary>
+    /// ［タイル・パレット表示］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void PopupTilePaletteButton_Clicked(object sender, EventArgs e)
+    {
+        var popup = new TilePalettePopup();
+
+        this.ShowPopup(popup);
     }
 }
 
