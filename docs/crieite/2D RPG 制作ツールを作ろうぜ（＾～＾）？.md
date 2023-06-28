@@ -955,4 +955,21 @@ Special Directory に無いの？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　画面の真ん中じゃなくて、ボタンをクリックしたマウスの近くに　出せないの？」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　分からん」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ポップアップではなく、サブ・ウィンドウにしろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　くそっ」  
+
+![202306_maui_28-2132--SubWindow.png](https://crieit.now.sh/upload_images/d88420c35746975b905745a8ee3151b6649c288a0e8de.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　サブ・ウィンドウを出すのは　前にやったんで」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　そこに　タイルの画像を表示しましょう！」  
+
 ＜書きかけ＞

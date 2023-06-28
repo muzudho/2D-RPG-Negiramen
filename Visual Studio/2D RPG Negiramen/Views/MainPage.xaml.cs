@@ -190,15 +190,35 @@ public partial class MainPage : ContentPage
     }
 
     /// <summary>
-    /// ［タイル・パレット表示］ボタン押下時
+    /// ［ポップアップ練習］ボタン押下時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void PopupTilePaletteButton_Clicked(object sender, EventArgs e)
+    private void PopupPracticeButton_Clicked(object sender, EventArgs e)
     {
         var popup = new TilePalettePopup();
 
         this.ShowPopup(popup);
+    }
+
+    /// <summary>
+    /// ［タイル・パレット表示］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void ShowTilePalette_Clicked(object sender, EventArgs e)
+    {
+        var secondWindow = new Window
+        {
+            Page = new TilePalettePage
+            {
+                // ...
+            },
+            Width = 1200,
+            Height = 400,
+        };
+
+        Application.Current.OpenWindow(secondWindow);
     }
 }
 
