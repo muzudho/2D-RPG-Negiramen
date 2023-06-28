@@ -69,8 +69,8 @@
 
     <ShellContent
         Title="Tile palette"
-        ContentTemplate="{DataTemplate views:TilePalettePopup}"
-        Route="TilePalettePopup" />
+        ContentTemplate="{DataTemplate views:PopupPractice}"
+        Route="PopupPractice" />
 
     <ShellContent
         Title="Tile palette"

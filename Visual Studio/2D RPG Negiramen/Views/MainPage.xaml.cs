@@ -196,7 +196,7 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     private void PopupPracticeButton_Clicked(object sender, EventArgs e)
     {
-        var popup = new TilePalettePopup();
+        var popup = new PopupPractice();
 
         this.ShowPopup(popup);
     }

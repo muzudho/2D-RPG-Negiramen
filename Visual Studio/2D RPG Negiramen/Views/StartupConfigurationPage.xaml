@@ -4,6 +4,7 @@
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              x:Class="_2D_RPG_Negiramen.Views.StartupConfigurationPage"
              Title="構成">
+    
     <ContentPage.BindingContext>
         <viewModels:StartupConfigurationPageViewModel />
     </ContentPage.BindingContext>

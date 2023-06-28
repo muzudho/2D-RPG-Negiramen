@@ -1,8 +1,14 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              x:Class="_2D_RPG_Negiramen.Views.TilePalettePage"
              Title="NewPage1">
+
+    <ContentPage.BindingContext>
+        <viewModels:StartupConfigurationPageViewModel />
+    </ContentPage.BindingContext>
+    
     <ScrollView>
 
         <Grid ColumnDefinitions="*,100">
@@ -21,8 +27,11 @@
                   RowDefinitions="*,30"
                   BackgroundColor="SkyBlue">
 
-                <Label Text="(100,100)"
-                    />
+                <Label Text="(" />
+                <Label Text="100" />
+                <Label Text="," />
+                <Label Text="100" />
+                <Label Text=")" />
 
             </Grid>
         </Grid>

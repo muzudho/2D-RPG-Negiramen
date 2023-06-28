@@ -11,26 +11,6 @@
     class StartupConfigurationPageViewModel : ObservableObject
     {
         /// <summary>
-        /// ネギラーメンの 📂 `Workspace` フォルダーへのパス
-        /// </summary>
-        private NegiramenWorkspaceFolderPath _negiramenWorkspaceFolderPath = NegiramenWorkspaceFolderPath.Empty;
-
-        /// <summary>
-        /// Unity の Assets フォルダーへのパス
-        /// </summary>
-        private UnityAssetsFolderPath _unityAssetsFolderPath = UnityAssetsFolderPath.Empty;
-
-        /// <summary>
-        /// あなたのサークル名
-        /// </summary>
-        private YourCircleName _yourCircleName = YourCircleName.Empty;
-
-        /// <summary>
-        /// あなたの作品名
-        /// </summary>
-        private YourWorkName _yourWorkName = YourWorkName.Empty;
-
-        /// <summary>
         /// Unity の Assets フォルダ―へ初期設定をコピーするコマンド
         /// </summary>
         public ICommand PushStartupToUnityAssetsFolderCommand { get; }
@@ -183,5 +163,27 @@
                 await Shell.Current.GoToAsync(shellNavigationState);
             }
         }
+
+        // - プライベート・フィールド
+
+        /// <summary>
+        /// ネギラーメンの 📂 `Workspace` フォルダーへのパス
+        /// </summary>
+        private NegiramenWorkspaceFolderPath _negiramenWorkspaceFolderPath = NegiramenWorkspaceFolderPath.Empty;
+
+        /// <summary>
+        /// Unity の Assets フォルダーへのパス
+        /// </summary>
+        private UnityAssetsFolderPath _unityAssetsFolderPath = UnityAssetsFolderPath.Empty;
+
+        /// <summary>
+        /// あなたのサークル名
+        /// </summary>
+        private YourCircleName _yourCircleName = YourCircleName.Empty;
+
+        /// <summary>
+        /// あなたの作品名
+        /// </summary>
+        private YourWorkName _yourWorkName = YourWorkName.Empty;
     }
 }

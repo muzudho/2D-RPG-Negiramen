@@ -99,6 +99,9 @@
 	  <Compile Update="Views\TilePalettePage.xaml.cs">
 	    <DependentUpon>TilePalettePage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\PopupPractice.xaml.cs">
+	    <DependentUpon>PopupPractice.xaml</DependentUpon>
+	  </Compile>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -138,7 +141,7 @@
 	  <MauiXaml Update="Views\StartupConfigurationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TilePalettePopup.xaml">
+	  <MauiXaml Update="Views\PopupPractice.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
