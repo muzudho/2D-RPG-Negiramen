@@ -28,7 +28,6 @@ public partial class TilePalettePage : ContentPage
         Trace.WriteLine("[TilePalettePage PointerGestureRecognizer_PointerMoved]");
 
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
-
         Image image = (Image)sender;
 
         context.PointingXOnImageAsInt = (int)e.GetPosition(image).Value.X;
@@ -48,8 +47,14 @@ public partial class TilePalettePage : ContentPage
     /// <param name="e">イベント</param>
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        var x = e.GetPosition((Element)sender).Value.X;
-        var y = e.GetPosition((Element)sender).Value.Y;
-        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] x:{x} y:{y}");
+        var tappedX = e.GetPosition((Element)sender).Value.X;
+        var tappedY = e.GetPosition((Element)sender).Value.Y;
+        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] x:{tappedX} y:{tappedY}");
+
+        TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
+        Image image = (Image)sender;
+
+        context.TappedXOnImageAsInt = (int)tappedX;
+        context.TappedYOnImageAsInt = (int)tappedY;
     }
 }

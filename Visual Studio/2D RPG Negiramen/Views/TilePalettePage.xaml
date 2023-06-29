@@ -87,7 +87,7 @@
                         <Label Text="{Binding TappedXOnImageAsInt}" />
                         <Label Text="," />
                         <Label Text="{Binding TappedYOnImageAsInt}" />
-                        <Label Text=") on window" />
+                        <Label Text=") tapped" />
                     </HorizontalStackLayout>
 
                 </VerticalStackLayout>
