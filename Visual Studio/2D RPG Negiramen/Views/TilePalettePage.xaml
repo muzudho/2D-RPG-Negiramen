@@ -55,7 +55,7 @@
 
                 <VerticalStackLayout>
                     <!--
-                        画像上の座標
+                        画像上のポインティング座標
                         ============
                     -->
                     <HorizontalStackLayout>
@@ -64,18 +64,6 @@
                         <Label Text="," />
                         <Label Text="{Binding PointingYOnImageAsInt}" />
                         <Label Text=") on image" />
-                    </HorizontalStackLayout>
-
-                    <!--
-                        ウィンドウ上の座標
-                        ==================
-                    -->
-                    <HorizontalStackLayout>
-                        <Label Text="(" />
-                        <Label Text="{Binding PointingXOnWindowAsInt}" />
-                        <Label Text="," />
-                        <Label Text="{Binding PointingYOnWindowAsInt}" />
-                        <Label Text=") on window" />
                     </HorizontalStackLayout>
 
                     <!--
@@ -88,6 +76,30 @@
                         <Label Text="," />
                         <Label Text="{Binding TappedYOnImageAsInt}" />
                         <Label Text=") tapped" />
+                    </HorizontalStackLayout>
+
+                    <!--
+                        ウィンドウ上のポインティング座標
+                        ==================
+                    -->
+                    <HorizontalStackLayout>
+                        <Label Text="(" />
+                        <Label Text="{Binding PointingXOnWindowAsInt}" />
+                        <Label Text="," />
+                        <Label Text="{Binding PointingYOnWindowAsInt}" />
+                        <Label Text=") on window" />
+                    </HorizontalStackLayout>
+
+                    <!--
+                        ウィンドウ上のタイル・カーソル座標
+                        ==================
+                    -->
+                    <HorizontalStackLayout>
+                        <Label Text="(" />
+                        <Label Text="{Binding TileCursorXOnWindowAsInt}" />
+                        <Label Text="," />
+                        <Label Text="{Binding TileCursorYOnWindowAsInt}" />
+                        <Label Text=") cursor" />
                     </HorizontalStackLayout>
 
                 </VerticalStackLayout>

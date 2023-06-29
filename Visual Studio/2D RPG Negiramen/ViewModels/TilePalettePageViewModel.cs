@@ -42,6 +42,38 @@
         }
 
         /// <summary>
+        /// 画像上のタップ座標ｘ
+        /// </summary>
+        public int TappedXOnImageAsInt
+        {
+            get => _tappedPointOnImage.X.AsInt;
+            set
+            {
+                if (_tappedPointOnImage.X.AsInt != value)
+                {
+                    _tappedPointOnImage = new Models.Point(new Models.X(value), _tappedPointOnImage.Y);
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// 画像上のタップ座標ｙ
+        /// </summary>
+        public int TappedYOnImageAsInt
+        {
+            get => _tappedPointOnImage.Y.AsInt;
+            set
+            {
+                if (_tappedPointOnImage.Y.AsInt != value)
+                {
+                    _tappedPointOnImage = new Models.Point(_tappedPointOnImage.X, new Models.Y(value));
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
         /// ウィンドウ上のポインティング座標ｘ
         /// </summary>
         public int PointingXOnWindowAsInt
@@ -74,32 +106,32 @@
         }
 
         /// <summary>
-        /// 画像上のタップ座標ｘ
+        /// ウィンドウ上のタイル・カーソル座標ｘ
         /// </summary>
-        public int TappedXOnImageAsInt
+        public int TileCursorXOnWindowAsInt
         {
-            get => _tappedPointOnImage.X.AsInt;
+            get => _tileCursorPointOnWindow.X.AsInt;
             set
             {
-                if (_tappedPointOnImage.X.AsInt != value)
+                if (_tileCursorPointOnWindow.X.AsInt != value)
                 {
-                    _tappedPointOnImage = new Models.Point(new Models.X(value), _tappedPointOnImage.Y);
+                    _tileCursorPointOnWindow = new Models.Point(new Models.X(value), _tileCursorPointOnWindow.Y);
                     OnPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// 画像上のタップ座標ｙ
+        /// ウィンドウ上のタイル・カーソル座標ｙ
         /// </summary>
-        public int TappedYOnImageAsInt
+        public int TileCursorYOnWindowAsInt
         {
-            get => _tappedPointOnImage.Y.AsInt;
+            get => _tileCursorPointOnWindow.Y.AsInt;
             set
             {
-                if (_tappedPointOnImage.Y.AsInt != value)
+                if (_tileCursorPointOnWindow.Y.AsInt != value)
                 {
-                    _tappedPointOnImage = new Models.Point(_tappedPointOnImage.X, new Models.Y(value));
+                    _tileCursorPointOnWindow = new Models.Point(_tileCursorPointOnWindow.X, new Models.Y(value));
                     OnPropertyChanged();
                 }
             }
@@ -122,16 +154,19 @@
         ///     生成。初期値を指定したいときに
         /// </summary>
         /// <param name="pointingPointOnImage">画像上のポインティング座標</param>
-        /// <param name="pointingPointOnWindow">ウィンドウ上のポインティング座標</param>
         /// <param name="tappedPointOnImage">画像上のタップ座標</param>
+        /// <param name="pointingPointOnWindow">ウィンドウ上のポインティング座標</param>
+        /// <param name="tileCursorPointOnWindow">ウィンドウ上のタイル・カーソル座標</param>
         internal TilePalettePageViewModel(
             Models.Point pointingPointOnImage,
+            Models.Point tappedPointOnImage,
             Models.Point pointingPointOnWindow,
-            Models.Point tappedPointOnImage)
+            Models.Point tileCursorPointOnWindow)
         {
             this._pointingPointOnImage = pointingPointOnImage;
-            this._pointingPointOnWindow = pointingPointOnWindow;
             this._tappedPointOnImage = tappedPointOnImage;
+            this._pointingPointOnWindow = pointingPointOnWindow;
+            this._tileCursorPointOnWindow = tileCursorPointOnWindow;
         }
 
         // - プライベート・フィールド
@@ -142,13 +177,18 @@
         Models.Point _pointingPointOnImage = Models.Point.Empty;
 
         /// <summary>
-        /// ウィンドウ上のポインティング座標ｘ
+        /// 画像上のタップ座標
+        /// </summary>
+        Models.Point _tappedPointOnImage = Models.Point.Empty;
+
+        /// <summary>
+        /// ウィンドウ上のポインティング座標
         /// </summary>
         Models.Point _pointingPointOnWindow = Models.Point.Empty;
 
         /// <summary>
-        /// 画像上のタップ座標
+        /// ウィンドウ上のタイル・カーソル座標
         /// </summary>
-        Models.Point _tappedPointOnImage = Models.Point.Empty;
+        Models.Point _tileCursorPointOnWindow = Models.Point.Empty;
     }
 }

@@ -47,14 +47,18 @@ public partial class TilePalettePage : ContentPage
     /// <param name="e">イベント</param>
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        var tappedX = e.GetPosition((Element)sender).Value.X;
-        var tappedY = e.GetPosition((Element)sender).Value.Y;
+        int tappedX = (int)e.GetPosition((Element)sender).Value.X;
+        int tappedY = (int)e.GetPosition((Element)sender).Value.Y;
         Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] x:{tappedX} y:{tappedY}");
 
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
         Image image = (Image)sender;
 
-        context.TappedXOnImageAsInt = (int)tappedX;
-        context.TappedYOnImageAsInt = (int)tappedY;
+        context.TappedXOnImageAsInt = tappedX;
+        context.TappedYOnImageAsInt = tappedY;
+
+        // タイル・カーソルの座標を算出
+        context.TileCursorXOnWindowAsInt = tappedX / 16 * 16;
+        context.TileCursorYOnWindowAsInt = tappedY / 16 * 16;
     }
 }
