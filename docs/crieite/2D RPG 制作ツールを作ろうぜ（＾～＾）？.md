@@ -1182,4 +1182,18 @@ MAUI の画面上に　矩形を描く命令　あるかだぜ？」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　それっぽく　なったわねえ」  
 
+## 入力透過
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイル・マップを　クリックしたいのに、  
+その上のカーソルが　邪魔なんだが」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　入力透過を使えだぜ」  
+
+📖 [VisualElement.InputTransparent プロパティ](https://learn.microsoft.com/ja-jp/dotnet/api/microsoft.maui.controls.visualelement.inputtransparent?view=net-maui-7.0)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　よし、それでイケてるぜ」  
+
 ＜書きかけ＞
