@@ -5,10 +5,15 @@
 -->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:models="clr-namespace:_2D_RPG_Negiramen.Models"
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              x:Class="_2D_RPG_Negiramen.Views.TilePalettePage"
              Title="タイル・パレット">
 
+    <ContentPage.Resources>
+        <models:CursorOnTile x:Key="MyCursorOnTile" />
+    </ContentPage.Resources>
+    
     <ContentPage.BindingContext>
         <viewModels:TilePalettePageViewModel />
     </ContentPage.BindingContext>
@@ -31,6 +36,15 @@
                     </Image.GestureRecognizers>
                 </Image>
 
+                <!--
+                    タイル状のカーソル
+                    ==================
+                -->
+                <GraphicsView 
+                    x:Name="Canvas"                 
+                    HorizontalOptions="Fill"
+                    Drawable="{StaticResource MyCursorOnTile}" 
+                    WidthRequest="20" HeightRequest="20"/>
             </Grid>
 
             <Grid Grid.Column="1"
