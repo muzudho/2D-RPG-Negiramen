@@ -19,9 +19,19 @@
         /// <param name="dirtyRect">矩形</param>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
+            // 線の色
             canvas.StrokeColor = Colors.Red;
-            canvas.StrokeSize = 6;
-            canvas.DrawLine(10, 10, 90, 100);
+
+            // 線の太さ
+            var thin = 4;
+            canvas.StrokeSize = thin;
+
+            // 線の太さを考えて位置とサイズ指定
+            canvas.DrawRectangle(new Rect(
+                thin / 2,
+                thin / 2,
+                32,
+                32));
         }
     }
 }

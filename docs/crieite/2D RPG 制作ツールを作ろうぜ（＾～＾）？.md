@@ -1151,5 +1151,10 @@ MAUI の画面上に　矩形を描く命令　あるかだぜ？」
 
 📖 [.net MAUI: how to draw on canvas](https://stackoverflow.com/questions/71001039/net-maui-how-to-draw-on-canvas)  
 
+![202306_maui_29-2135--CursorOnTile.png](https://crieit.now.sh/upload_images/6a8adf578fa1e9d55eb361231d9a01f1649d7ab3a20cd.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　赤い枠は出せたけど、位置調整が大変だ」  
+
 
 ＜書きかけ＞

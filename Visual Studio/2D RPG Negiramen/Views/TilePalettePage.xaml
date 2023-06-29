@@ -44,7 +44,7 @@
                     x:Name="Canvas"                 
                     HorizontalOptions="Fill"
                     Drawable="{StaticResource MyCursorOnTile}" 
-                    WidthRequest="20" HeightRequest="20"/>
+                    WidthRequest="36" HeightRequest="36"/>
             </Grid>
 
             <Grid Grid.Column="1"
