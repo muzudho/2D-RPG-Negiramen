@@ -1196,4 +1196,21 @@ MAUI の画面上に　矩形を描く命令　あるかだぜ？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　よし、それでイケてるぜ」  
 
+## マウス・クリックした座標から、カーソルの位置を算出しろだぜ
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　隣の砂漠をクリックしたら、タイル・カーソルがそこを指すようにしなさいよ」  
+
+![202306_maui_29-2332--CursorCoord.png](https://crieit.now.sh/upload_images/41235ad7870711f5a831f4ad2af665ee649d9658dae58.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　グリッドが　３２ピクセル固定で　ハードコーディングして　いけたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　そのタイルを　マップ・エディター　で使いたいけど、  
+マップ・エディターが　まだ無いのよねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　明日から　マップ・エディター　だな」  
+
 ＜書きかけ＞
