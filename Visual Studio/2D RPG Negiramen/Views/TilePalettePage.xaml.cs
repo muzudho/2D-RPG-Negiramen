@@ -18,6 +18,11 @@ public partial class TilePalettePage : ContentPage
 
     // - メソッド
 
+    /// <summary>
+    /// カーソル移動時
+    /// </summary>
+    /// <param name="sender">このイベントを送っているコントロール</param>
+    /// <param name="e">イベント</param>
     private void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
     {
         Trace.WriteLine("[TilePalettePage PointerGestureRecognizer_PointerMoved]");
@@ -34,5 +39,17 @@ public partial class TilePalettePage : ContentPage
 
         context.PointingXOnWindowAsInt = context.PointingXOnImageAsInt + (int)image.X;
         context.PointingYOnWindowAsInt = context.PointingYOnImageAsInt + (int)image.Y;
+    }
+
+    /// <summary>
+    /// タップ時
+    /// </summary>
+    /// <param name="sender">このイベントを送っているコントロール</param>
+    /// <param name="e">イベント</param>
+    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    {
+        var x = e.GetPosition((Element)sender).Value.X;
+        var y = e.GetPosition((Element)sender).Value.Y;
+        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] x:{x} y:{y}");
     }
 }

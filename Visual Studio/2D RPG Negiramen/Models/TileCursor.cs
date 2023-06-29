@@ -10,7 +10,7 @@
     ///         📖 [.net MAUI: how to draw on canvas](https://stackoverflow.com/questions/71001039/net-maui-how-to-draw-on-canvas)
     ///     </pre>
     /// </summary>
-    internal class CursorOnTile : IDrawable
+    internal class TileCursor : IDrawable
     {
         /// <summary>
         /// 図形描画

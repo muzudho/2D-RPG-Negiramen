@@ -11,7 +11,7 @@
              Title="タイル・パレット">
 
     <ContentPage.Resources>
-        <models:CursorOnTile x:Key="MyCursorOnTile" />
+        <models:TileCursor x:Key="MyTileCursor" />
     </ContentPage.Resources>
     
     <ContentPage.BindingContext>
@@ -33,6 +33,7 @@
                     
                     <Image.GestureRecognizers>
                         <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Image.GestureRecognizers>
                     
                 </Image>
@@ -45,7 +46,7 @@
                               HorizontalOptions="Start" VerticalOptions="Start"
                               WidthRequest="40" HeightRequest="40"
                               InputTransparent="True"
-                              Drawable="{StaticResource MyCursorOnTile}"/>
+                              Drawable="{StaticResource MyTileCursor}"/>
             </Grid>
 
             <Grid Grid.Column="1"
