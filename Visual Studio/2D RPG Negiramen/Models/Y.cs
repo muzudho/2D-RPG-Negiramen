@@ -33,7 +33,7 @@
                 return false;
             }
 
-            return (c1.source == c2.source) && (c1.source == c2.source);
+            return c1.source == c2.source;
         }
 
         /// <summary>

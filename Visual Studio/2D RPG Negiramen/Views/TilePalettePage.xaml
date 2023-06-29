@@ -78,6 +78,18 @@
                         <Label Text=") on window" />
                     </HorizontalStackLayout>
 
+                    <!--
+                        画像上のタップ座標
+                        ==================
+                    -->
+                    <HorizontalStackLayout>
+                        <Label Text="(" />
+                        <Label Text="{Binding TappedXOnImageAsInt}" />
+                        <Label Text="," />
+                        <Label Text="{Binding TappedYOnImageAsInt}" />
+                        <Label Text=") on window" />
+                    </HorizontalStackLayout>
+
                 </VerticalStackLayout>
 
             </Grid>
