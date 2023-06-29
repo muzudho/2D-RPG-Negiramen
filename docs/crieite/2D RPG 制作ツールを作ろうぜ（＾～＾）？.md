@@ -1146,6 +1146,10 @@ MAUI の画面上に　矩形を描く命令　あるかだぜ？」
 📖 [Draw a rectangle](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/graphics/draw#draw-a-rectangle)  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　👆　`canvas` って　どっから出てきたんだぜ　調べるか」  
+「　👆　`canvas` って　どっから出てきたんだぜ？
+👇　調べるか」  
+
+📖 [.net MAUI: how to draw on canvas](https://stackoverflow.com/questions/71001039/net-maui-how-to-draw-on-canvas)  
+
 
 ＜書きかけ＞
