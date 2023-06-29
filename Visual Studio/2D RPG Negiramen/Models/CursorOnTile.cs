@@ -30,8 +30,8 @@
             canvas.DrawRectangle(new Rect(
                 thin / 2,
                 thin / 2,
-                32,
-                32));
+                32 + thin,
+                32 + thin));
         }
     }
 }

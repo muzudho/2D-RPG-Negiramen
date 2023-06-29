@@ -10,64 +10,64 @@
         // - 変更通知プロパティ
 
         /// <summary>
-        /// 画像上の座標ｘ
+        /// 画像上のポインティング座標ｘ
         /// </summary>
-        public int XOnImageAsInt
+        public int PointingXOnImageAsInt
         {
-            get => _xOnImage.AsInt;
+            get => _pointingXOnImage.AsInt;
             set
             {
-                if (_xOnImage.AsInt != value)
+                if (_pointingXOnImage.AsInt != value)
                 {
-                    _xOnImage = new Models.X(value);
+                    _pointingXOnImage = new Models.X(value);
                     OnPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// 画像上の座標ｙ
+        /// 画像上のポインティング座標ｙ
         /// </summary>
-        public int YOnImageAsInt
+        public int PointingYOnImageAsInt
         {
-            get => _yOnImage.AsInt;
+            get => _pointingYOnImage.AsInt;
             set
             {
-                if (_yOnImage.AsInt != value)
+                if (_pointingYOnImage.AsInt != value)
                 {
-                    _yOnImage = new Models.Y(value);
+                    _pointingYOnImage = new Models.Y(value);
                     OnPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// ウィンドウ上の座標ｘ
+        /// ウィンドウ上のポインティング座標ｘ
         /// </summary>
-        public int XOnWindowAsInt
+        public int PointingXOnWindowAsInt
         {
-            get => _xOnWindow.AsInt;
+            get => _pointingXOnWindow.AsInt;
             set
             {
-                if (_xOnWindow.AsInt != value)
+                if (_pointingXOnWindow.AsInt != value)
                 {
-                    _xOnWindow = new Models.X(value);
+                    _pointingXOnWindow = new Models.X(value);
                     OnPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// ウィンドウ上の座標ｙ
+        /// ウィンドウ上のポインティング座標ｙ
         /// </summary>
-        public int YOnWindowAsInt
+        public int PointingYOnWindowAsInt
         {
-            get => _yOnWindow.AsInt;
+            get => _pointingYOnWindow.AsInt;
             set
             {
-                if (_yOnWindow.AsInt != value)
+                if (_pointingYOnWindow.AsInt != value)
                 {
-                    _yOnWindow = new Models.Y(value);
+                    _pointingYOnWindow = new Models.Y(value);
                     OnPropertyChanged();
                 }
             }
@@ -89,38 +89,38 @@
         /// <summary>
         ///     生成。初期値を指定したいときに
         /// </summary>
-        /// <param name="xOnImage">画像上の座標ｘ</param>
-        /// <param name="yOnImage">画像上の座標ｙ</param>
-        /// <param name="xOnWindow">ウィンドウ上の座標ｘ</param>
-        /// <param name="yOnWindow">ウィンドウ上の座標ｙ</param>
-        internal TilePalettePageViewModel(Models.X xOnImage, Models.Y yOnImage, Models.X xOnWindow, Models.Y yOnWindow)
+        /// <param name="pointingXOnImage">画像上のポインティング座標ｘ</param>
+        /// <param name="pointingYOnImage">画像上のポインティング座標ｙ</param>
+        /// <param name="pointingXOnWindow">ウィンドウ上のポインティング座標ｘ</param>
+        /// <param name="pointingYOnWindow">ウィンドウ上のポインティング座標ｙ</param>
+        internal TilePalettePageViewModel(Models.X pointingXOnImage, Models.Y pointingYOnImage, Models.X pointingXOnWindow, Models.Y pointingYOnWindow)
         {
-            this.XOnImageAsInt = xOnImage.AsInt;
-            this.YOnImageAsInt = yOnImage.AsInt;
-            this.XOnWindowAsInt = xOnWindow.AsInt;
-            this.YOnWindowAsInt = yOnWindow.AsInt;
+            this.PointingXOnImageAsInt = pointingXOnImage.AsInt;
+            this.PointingYOnImageAsInt = pointingYOnImage.AsInt;
+            this.PointingXOnWindowAsInt = pointingXOnWindow.AsInt;
+            this.PointingYOnWindowAsInt = pointingYOnWindow.AsInt;
         }
 
         // - プライベート・フィールド
 
         /// <summary>
-        /// 画像上の座標ｘ
+        /// 画像上のポインティング座標ｘ
         /// </summary>
-        private Models.X _xOnImage = Models.X.Empty;
+        private Models.X _pointingXOnImage = Models.X.Empty;
 
         /// <summary>
-        /// 画像上の座標ｙ
+        /// 画像上のポインティング座標ｙ
         /// </summary>
-        private Models.Y _yOnImage = Models.Y.Empty;
+        private Models.Y _pointingYOnImage = Models.Y.Empty;
 
         /// <summary>
-        /// ウィンドウ上の座標ｘ
+        /// ウィンドウ上のポインティング座標ｘ
         /// </summary>
-        private Models.X _xOnWindow = Models.X.Empty;
+        private Models.X _pointingXOnWindow = Models.X.Empty;
 
         /// <summary>
-        /// ウィンドウ上の座標ｙ
+        /// ウィンドウ上のポインティング座標ｙ
         /// </summary>
-        private Models.Y _yOnWindow = Models.Y.Empty;
+        private Models.Y _pointingYOnWindow = Models.Y.Empty;
     }
 }

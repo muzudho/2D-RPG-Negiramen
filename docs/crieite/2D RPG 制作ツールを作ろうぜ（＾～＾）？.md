@@ -1156,5 +1156,30 @@ MAUI の画面上に　矩形を描く命令　あるかだぜ？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　赤い枠は出せたけど、位置調整が大変だ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　マウスカーソルは　１ピクセルずつ動いて欲しいけど、  
+赤い枠は　３２ピクセルずつ　動いて欲しい」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　グリッド　が要るんだ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　センタリングされていて、座標計算が　めんどくさい」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　左上が基準で　いいんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　なんで　`Alignment` じゃなくて `Options` って名前なんだ？」  
+
+📖 [.NET MAUI コントロールの配置と配置](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/align-position)  
+
+![202306_maui_29-2155--Cursor.png](https://crieit.now.sh/upload_images/9c47d184c1f7b884ff1d0d9aeb6053c4649d7f5676550.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　例えば　こんな感じ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　それっぽく　なったわねえ」  
 
 ＜書きかけ＞

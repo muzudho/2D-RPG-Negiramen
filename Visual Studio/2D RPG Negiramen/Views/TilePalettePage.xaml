@@ -26,25 +26,25 @@
                   RowDefinitions="*" ColumnDefinitions="*">
 
                 <Image x:Name="tileImage"
-                       WidthRequest="64"
-                       HeightRequest="64"
-                       Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/adventure_field.png"
-                       >
+                       Margin="4,4,0,0"
+                       HorizontalOptions="Start" VerticalOptions="Start"
+                       WidthRequest="64" HeightRequest="64"
+                       Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/adventure_field.png">
+                    
                     <Image.GestureRecognizers>
                         <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved" />
-
                     </Image.GestureRecognizers>
+                    
                 </Image>
 
                 <!--
                     タイル状のカーソル
                     ==================
                 -->
-                <GraphicsView 
-                    x:Name="Canvas"                 
-                    HorizontalOptions="Fill"
-                    Drawable="{StaticResource MyCursorOnTile}" 
-                    WidthRequest="36" HeightRequest="36"/>
+                <GraphicsView x:Name="Canvas"
+                              HorizontalOptions="Start" VerticalOptions="Start"
+                              WidthRequest="40" HeightRequest="40"
+                              Drawable="{StaticResource MyCursorOnTile}"/>
             </Grid>
 
             <Grid Grid.Column="1"
@@ -58,9 +58,9 @@
                     -->
                     <HorizontalStackLayout>
                         <Label Text="(" />
-                        <Label Text="{Binding XOnImageAsInt}" />
+                        <Label Text="{Binding PointingXOnImageAsInt}" />
                         <Label Text="," />
-                        <Label Text="{Binding YOnImageAsInt}" />
+                        <Label Text="{Binding PointingYOnImageAsInt}" />
                         <Label Text=") on image" />
                     </HorizontalStackLayout>
 
@@ -70,9 +70,9 @@
                     -->
                     <HorizontalStackLayout>
                         <Label Text="(" />
-                        <Label Text="{Binding XOnWindowAsInt}" />
+                        <Label Text="{Binding PointingXOnWindowAsInt}" />
                         <Label Text="," />
-                        <Label Text="{Binding YOnWindowAsInt}" />
+                        <Label Text="{Binding PointingYOnWindowAsInt}" />
                         <Label Text=") on window" />
                     </HorizontalStackLayout>
 

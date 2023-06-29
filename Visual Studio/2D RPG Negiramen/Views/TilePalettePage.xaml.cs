@@ -26,13 +26,13 @@ public partial class TilePalettePage : ContentPage
 
         Image image = (Image)sender;
 
-        context.XOnImageAsInt = (int)e.GetPosition(image).Value.X;
-        context.YOnImageAsInt = (int)e.GetPosition(image).Value.Y;
+        context.PointingXOnImageAsInt = (int)e.GetPosition(image).Value.X;
+        context.PointingYOnImageAsInt = (int)e.GetPosition(image).Value.Y;
 
         Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.X = {image.X}");
         Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.Y = {image.Y}");
 
-        context.XOnWindowAsInt = context.XOnImageAsInt + (int)image.X;
-        context.YOnWindowAsInt = context.YOnImageAsInt + (int)image.Y;
+        context.PointingXOnWindowAsInt = context.PointingXOnImageAsInt + (int)image.X;
+        context.PointingYOnWindowAsInt = context.PointingYOnImageAsInt + (int)image.Y;
     }
 }
