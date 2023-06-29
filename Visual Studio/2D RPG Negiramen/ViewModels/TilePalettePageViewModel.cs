@@ -14,12 +14,12 @@
         /// </summary>
         public int PointingXOnImageAsInt
         {
-            get => _pointingXOnImage.AsInt;
+            get => _pointingPointOnImage.X.AsInt;
             set
             {
-                if (_pointingXOnImage.AsInt != value)
+                if (_pointingPointOnImage.X.AsInt != value)
                 {
-                    _pointingXOnImage = new Models.X(value);
+                    _pointingPointOnImage = new Models.Point(new Models.X(value), _pointingPointOnImage.Y);
                     OnPropertyChanged();
                 }
             }
@@ -30,12 +30,12 @@
         /// </summary>
         public int PointingYOnImageAsInt
         {
-            get => _pointingYOnImage.AsInt;
+            get => _pointingPointOnImage.Y.AsInt;
             set
             {
-                if (_pointingYOnImage.AsInt != value)
+                if (_pointingPointOnImage.Y.AsInt != value)
                 {
-                    _pointingYOnImage = new Models.Y(value);
+                    _pointingPointOnImage = new Models.Point(_pointingPointOnImage.X, new Models.Y(value));
                     OnPropertyChanged();
                 }
             }
@@ -121,18 +121,15 @@
         /// <summary>
         ///     生成。初期値を指定したいときに
         /// </summary>
-        /// <param name="pointingXOnImage">画像上のポインティング座標ｘ</param>
-        /// <param name="pointingYOnImage">画像上のポインティング座標ｙ</param>
+        /// <param name="pointingPointOnImage">画像上のポインティング座標</param>
         /// <param name="pointingPointOnWindow">ウィンドウ上のポインティング座標</param>
         /// <param name="tappedPointOnImage">画像上のタップ座標</param>
         internal TilePalettePageViewModel(
-            Models.X pointingXOnImage,
-            Models.Y pointingYOnImage,
+            Models.Point pointingPointOnImage,
             Models.Point pointingPointOnWindow,
             Models.Point tappedPointOnImage)
         {
-            this.PointingXOnImageAsInt = pointingXOnImage.AsInt;
-            this.PointingYOnImageAsInt = pointingYOnImage.AsInt;
+            this._pointingPointOnImage = pointingPointOnImage;
             this._pointingPointOnWindow = pointingPointOnWindow;
             this._tappedPointOnImage = tappedPointOnImage;
         }
@@ -140,23 +137,18 @@
         // - プライベート・フィールド
 
         /// <summary>
-        /// 画像上のポインティング座標ｘ
+        /// 画像上のポインティング座標
         /// </summary>
-        private Models.X _pointingXOnImage = Models.X.Empty;
-
-        /// <summary>
-        /// 画像上のポインティング座標ｙ
-        /// </summary>
-        private Models.Y _pointingYOnImage = Models.Y.Empty;
+        Models.Point _pointingPointOnImage = Models.Point.Empty;
 
         /// <summary>
         /// ウィンドウ上のポインティング座標ｘ
         /// </summary>
-        private Models.Point _pointingPointOnWindow = Models.Point.Empty;
+        Models.Point _pointingPointOnWindow = Models.Point.Empty;
 
         /// <summary>
         /// 画像上のタップ座標
         /// </summary>
-        private Models.Point _tappedPointOnImage = Models.Point.Empty;
+        Models.Point _tappedPointOnImage = Models.Point.Empty;
     }
 }
