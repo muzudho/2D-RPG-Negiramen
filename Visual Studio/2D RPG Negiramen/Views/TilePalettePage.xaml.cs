@@ -25,7 +25,7 @@ public partial class TilePalettePage : ContentPage
     /// <param name="e">イベント</param>
     private void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
     {
-        Trace.WriteLine("[TilePalettePage PointerGestureRecognizer_PointerMoved]");
+        //Trace.WriteLine("[TilePalettePage PointerGestureRecognizer_PointerMoved]");
 
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
         Image image = (Image)sender;
@@ -33,8 +33,8 @@ public partial class TilePalettePage : ContentPage
         context.PointingXOnImageAsInt = (int)e.GetPosition(image).Value.X;
         context.PointingYOnImageAsInt = (int)e.GetPosition(image).Value.Y;
 
-        Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.X = {image.X}");
-        Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.Y = {image.Y}");
+        //Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.X = {image.X}");
+        //Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.Y = {image.Y}");
 
         context.PointingXOnWindowAsInt = context.PointingXOnImageAsInt + (int)image.X;
         context.PointingYOnWindowAsInt = context.PointingYOnImageAsInt + (int)image.Y;
@@ -49,7 +49,7 @@ public partial class TilePalettePage : ContentPage
     {
         int tappedX = (int)e.GetPosition((Element)sender).Value.X;
         int tappedY = (int)e.GetPosition((Element)sender).Value.Y;
-        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] x:{tappedX} y:{tappedY}");
+        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tappedX} y:{tappedY}");
 
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
         Image image = (Image)sender;
@@ -58,7 +58,11 @@ public partial class TilePalettePage : ContentPage
         context.TappedYOnImageAsInt = tappedY;
 
         // タイル・カーソルの座標を算出
-        context.TileCursorXOnWindowAsInt = tappedX / 16 * 16;
-        context.TileCursorYOnWindowAsInt = tappedY / 16 * 16;
+        int cursorX = tappedX / 16 * 16;
+        int cursorY = tappedY / 16 * 16;
+        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] cursor x:{cursorX} y:{cursorY}");
+
+        context.TileCursorXOnWindowAsInt = cursorX;
+        context.TileCursorYOnWindowAsInt = cursorY;
     }
 }

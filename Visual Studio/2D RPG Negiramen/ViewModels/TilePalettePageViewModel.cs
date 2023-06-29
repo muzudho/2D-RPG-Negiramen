@@ -20,7 +20,7 @@
                 if (_pointingPointOnImage.X.AsInt != value)
                 {
                     _pointingPointOnImage = new Models.Point(new Models.X(value), _pointingPointOnImage.Y);
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(PointingXOnImageAsInt));
                 }
             }
         }
@@ -36,7 +36,7 @@
                 if (_pointingPointOnImage.Y.AsInt != value)
                 {
                     _pointingPointOnImage = new Models.Point(_pointingPointOnImage.X, new Models.Y(value));
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(PointingYOnImageAsInt));
                 }
             }
         }
@@ -52,7 +52,7 @@
                 if (_tappedPointOnImage.X.AsInt != value)
                 {
                     _tappedPointOnImage = new Models.Point(new Models.X(value), _tappedPointOnImage.Y);
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(TappedXOnImageAsInt));
                 }
             }
         }
@@ -68,7 +68,7 @@
                 if (_tappedPointOnImage.Y.AsInt != value)
                 {
                     _tappedPointOnImage = new Models.Point(_tappedPointOnImage.X, new Models.Y(value));
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(TappedYOnImageAsInt));
                 }
             }
         }
@@ -84,7 +84,7 @@
                 if (_pointingPointOnWindow.X.AsInt != value)
                 {
                     _pointingPointOnWindow = new Models.Point(new Models.X(value), _pointingPointOnWindow.Y);
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(PointingXOnWindowAsInt));
                 }
             }
         }
@@ -100,7 +100,7 @@
                 if (_pointingPointOnWindow.Y.AsInt != value)
                 {
                     _pointingPointOnWindow = new Models.Point(_pointingPointOnWindow.X, new Models.Y(value));
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(PointingYOnWindowAsInt));
                 }
             }
         }
@@ -116,7 +116,17 @@
                 if (_tileCursorPointOnWindow.X.AsInt != value)
                 {
                     _tileCursorPointOnWindow = new Models.Point(new Models.X(value), _tileCursorPointOnWindow.Y);
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(TileCursorXOnWindowAsInt));
+
+                    this.TileCursorPointAsMargin = new Thickness(
+                        // 左
+                        this.TileCursorXOnWindowAsInt,
+                        // 上
+                        this.TileCursorYOnWindowAsInt,
+                        // 右
+                        0,
+                        // 下
+                        0);
                 }
             }
         }
@@ -132,7 +142,33 @@
                 if (_tileCursorPointOnWindow.Y.AsInt != value)
                 {
                     _tileCursorPointOnWindow = new Models.Point(_tileCursorPointOnWindow.X, new Models.Y(value));
-                    OnPropertyChanged();
+                    OnPropertyChanged(nameof(TileCursorYOnWindowAsInt));
+
+                    this.TileCursorPointAsMargin = new Thickness(
+                        // 左
+                        this.TileCursorXOnWindowAsInt,
+                        // 上
+                        this.TileCursorYOnWindowAsInt,
+                        // 右
+                        0,
+                        // 下
+                        0);
+                }
+            }
+        }
+
+        /// <summary>
+        /// ウィンドウ上のタイル・カーソル座標
+        /// </summary>
+        public Thickness TileCursorPointAsMargin
+        {
+            get => _tileCursorThickness;
+            set
+            {
+                if (_tileCursorThickness != value)
+                {
+                    _tileCursorThickness = value;
+                    OnPropertyChanged(nameof(TileCursorPointAsMargin));
                 }
             }
         }
@@ -190,5 +226,10 @@
         /// ウィンドウ上のタイル・カーソル座標
         /// </summary>
         Models.Point _tileCursorPointOnWindow = Models.Point.Empty;
+
+        /// <summary>
+        /// ウィンドウ上のタイル・カーソルのマージン
+        /// </summary>
+        Thickness _tileCursorThickness = Thickness.Zero;
     }
 }

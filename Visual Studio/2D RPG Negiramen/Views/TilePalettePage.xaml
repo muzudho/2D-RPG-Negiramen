@@ -44,9 +44,11 @@
                 -->
                 <GraphicsView x:Name="Canvas"
                               HorizontalOptions="Start" VerticalOptions="Start"
+                              Margin="{Binding TileCursorPointAsMargin}"
                               WidthRequest="40" HeightRequest="40"
                               InputTransparent="True"
-                              Drawable="{StaticResource MyTileCursor}"/>
+                              Drawable="{StaticResource MyTileCursor}">
+                </GraphicsView>
             </Grid>
 
             <Grid Grid.Column="1"
