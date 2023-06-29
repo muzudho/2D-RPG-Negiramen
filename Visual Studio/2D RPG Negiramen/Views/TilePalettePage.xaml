@@ -12,7 +12,7 @@
     <ContentPage.BindingContext>
         <viewModels:TilePalettePageViewModel />
     </ContentPage.BindingContext>
-    
+
     <ScrollView>
 
         <Grid ColumnDefinitions="*,100">
@@ -34,23 +34,40 @@
             </Grid>
 
             <Grid Grid.Column="1"
-                  RowDefinitions="*,30"
+                  RowDefinitions="*,40"
                   BackgroundColor="SkyBlue">
 
-                <HorizontalStackLayout>
-                    <Label Text="(" />
-                    <Label Text="{Binding XAsInt}" />
-                    <Label Text="," />
-                    <Label Text="{Binding YAsInt}" />
-                    <Label Text=")" />
+                <VerticalStackLayout>
+                    <!--
+                        画像上の座標
+                        ============
+                    -->
+                    <HorizontalStackLayout>
+                        <Label Text="(" />
+                        <Label Text="{Binding XOnImageAsInt}" />
+                        <Label Text="," />
+                        <Label Text="{Binding YOnImageAsInt}" />
+                        <Label Text=") on image" />
+                    </HorizontalStackLayout>
 
-                </HorizontalStackLayout>
-                
+                    <!--
+                        ウィンドウ上の座標
+                        ==================
+                    -->
+                    <HorizontalStackLayout>
+                        <Label Text="(" />
+                        <Label Text="{Binding XOnWindowAsInt}" />
+                        <Label Text="," />
+                        <Label Text="{Binding YOnWindowAsInt}" />
+                        <Label Text=") on window" />
+                    </HorizontalStackLayout>
+
+                </VerticalStackLayout>
 
             </Grid>
         </Grid>
-        
-        
+
+
     </ScrollView>
 
 </ContentPage>

@@ -1126,4 +1126,18 @@ WPF の DataContext と同じ考えだ」
 「　それを　いったん　ウィンドウ上の座標に変換して、  
 32 x 32 pixels サイズのタイルを囲む枠を　置いてくれだぜ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　調べるか……」  
+
+📖 [How to get MAUI UI element absolute coordinates](https://stackoverflow.com/questions/75587601/how-to-get-maui-ui-element-absolute-coordinates)  
+
+![202306_maui_29-1936--CoordinateOnTheWindow-o2o0.png](https://crieit.now.sh/upload_images/a06de2f8a40e09a7393bde4f01d97f96649d5f4866ecf.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　画像の座標は取れるのか。だったら　それ使えばいいんじゃ……」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　次は　枠を描こうぜ。  
+MAUI の画面上に　矩形を描く命令　あるかだぜ？」  
+
 ＜書きかけ＞

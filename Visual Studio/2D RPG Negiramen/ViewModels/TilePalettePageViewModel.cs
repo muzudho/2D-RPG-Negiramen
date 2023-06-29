@@ -1,10 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels
 {
     using CommunityToolkit.Mvvm.ComponentModel;
-    using CommunityToolkit.Mvvm.Input;
-    using Microsoft.Maui.Controls;
-    using System.Diagnostics;
-    using System.Windows.Input;
 
     /// <summary>
     /// ［タイル・パレット・ページ］ビューモデル
@@ -14,32 +10,64 @@
         // - 変更通知プロパティ
 
         /// <summary>
-        /// X
+        /// 画像上の座標ｘ
         /// </summary>
-        public int XAsInt
+        public int XOnImageAsInt
         {
-            get => _x.AsInt;
+            get => _xOnImage.AsInt;
             set
             {
-                if (_x.AsInt != value)
+                if (_xOnImage.AsInt != value)
                 {
-                    _x = new Models.X(value);
+                    _xOnImage = new Models.X(value);
                     OnPropertyChanged();
                 }
             }
         }
 
         /// <summary>
-        /// Y
+        /// 画像上の座標ｙ
         /// </summary>
-        public int YAsInt
+        public int YOnImageAsInt
         {
-            get => _y.AsInt;
+            get => _yOnImage.AsInt;
             set
             {
-                if (_y.AsInt != value)
+                if (_yOnImage.AsInt != value)
                 {
-                    _y = new Models.Y(value);
+                    _yOnImage = new Models.Y(value);
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// ウィンドウ上の座標ｘ
+        /// </summary>
+        public int XOnWindowAsInt
+        {
+            get => _xOnWindow.AsInt;
+            set
+            {
+                if (_xOnWindow.AsInt != value)
+                {
+                    _xOnWindow = new Models.X(value);
+                    OnPropertyChanged();
+                }
+            }
+        }
+
+        /// <summary>
+        /// ウィンドウ上の座標ｙ
+        /// </summary>
+        public int YOnWindowAsInt
+        {
+            get => _yOnWindow.AsInt;
+            set
+            {
+                if (_yOnWindow.AsInt != value)
+                {
+                    _yOnWindow = new Models.Y(value);
                     OnPropertyChanged();
                 }
             }
@@ -54,27 +82,45 @@
         ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
         ///     </list>
         /// </summary>
-        public TilePalettePageViewModel() : this(
-            Models.X.Empty, Models.Y.Empty)
+        public TilePalettePageViewModel()
         {
         }
 
-        internal TilePalettePageViewModel(Models.X x, Models.Y y)
+        /// <summary>
+        ///     生成。初期値を指定したいときに
+        /// </summary>
+        /// <param name="xOnImage">画像上の座標ｘ</param>
+        /// <param name="yOnImage">画像上の座標ｙ</param>
+        /// <param name="xOnWindow">ウィンドウ上の座標ｘ</param>
+        /// <param name="yOnWindow">ウィンドウ上の座標ｙ</param>
+        internal TilePalettePageViewModel(Models.X xOnImage, Models.Y yOnImage, Models.X xOnWindow, Models.Y yOnWindow)
         {
-            this.XAsInt = x.AsInt;
-            this.YAsInt = y.AsInt;
+            this.XOnImageAsInt = xOnImage.AsInt;
+            this.YOnImageAsInt = yOnImage.AsInt;
+            this.XOnWindowAsInt = xOnWindow.AsInt;
+            this.YOnWindowAsInt = yOnWindow.AsInt;
         }
 
         // - プライベート・フィールド
 
         /// <summary>
-        /// X
+        /// 画像上の座標ｘ
         /// </summary>
-        private Models.X _x = Models.X.Empty;
+        private Models.X _xOnImage = Models.X.Empty;
 
         /// <summary>
-        /// Y
+        /// 画像上の座標ｙ
         /// </summary>
-        private Models.Y _y = Models.Y.Empty;
+        private Models.Y _yOnImage = Models.Y.Empty;
+
+        /// <summary>
+        /// ウィンドウ上の座標ｘ
+        /// </summary>
+        private Models.X _xOnWindow = Models.X.Empty;
+
+        /// <summary>
+        /// ウィンドウ上の座標ｙ
+        /// </summary>
+        private Models.Y _yOnWindow = Models.Y.Empty;
     }
 }

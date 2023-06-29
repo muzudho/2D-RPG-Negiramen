@@ -1,34 +1,38 @@
-using _2D_RPG_Negiramen.ViewModels;
+Ôªøusing _2D_RPG_Negiramen.ViewModels;
+using Microsoft.Maui.Controls;
 using System.Diagnostics;
 
 namespace _2D_RPG_Negiramen.Views;
 
 public partial class TilePalettePage : ContentPage
 {
-    // - ÇªÇÃëº
+    // - „Åù„ÅÆ‰ªñ
 
     /// <summary>
-    /// ê∂ê¨
+    /// ÁîüÊàê
     /// </summary>
 	public TilePalettePage()
 	{
 		InitializeComponent();
 	}
 
-    // - ÉÅÉ\ÉbÉh
+    // - „É°„ÇΩ„ÉÉ„Éâ
 
     private void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
     {
         Trace.WriteLine("[TilePalettePage PointerGestureRecognizer_PointerMoved]");
-        //Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] e.GetPosition((Element)s).Value.X = {e.GetPosition((Element)sender).Value.X}");
-        //Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] e.GetPosition((Element)s).Value.Y = {e.GetPosition((Element)sender).Value.Y}");
-        //Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] this.BindingContext.GetType().Name = {this.BindingContext.GetType().Name}");
-        Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] sender.GetType().Name = {sender.GetType().Name}");
 
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
 
         Image image = (Image)sender;
-        context.XAsInt = (int)e.GetPosition(image).Value.X;
-        context.YAsInt = (int)e.GetPosition(image).Value.Y;
+
+        context.XOnImageAsInt = (int)e.GetPosition(image).Value.X;
+        context.YOnImageAsInt = (int)e.GetPosition(image).Value.Y;
+
+        Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.X = {image.X}");
+        Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.Y = {image.Y}");
+
+        context.XOnWindowAsInt = context.XOnImageAsInt + (int)image.X;
+        context.YOnWindowAsInt = context.YOnImageAsInt + (int)image.Y;
     }
 }
