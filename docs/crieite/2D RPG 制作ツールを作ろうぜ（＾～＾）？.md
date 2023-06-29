@@ -1140,4 +1140,12 @@ WPF の DataContext と同じ考えだ」
 「　じゃあ　次は　枠を描こうぜ。  
 MAUI の画面上に　矩形を描く命令　あるかだぜ？」  
 
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　これを読めだぜ」  
+
+📖 [Draw a rectangle](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/graphics/draw#draw-a-rectangle)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`canvas` って　どっから出てきたんだぜ　調べるか」  
+
 ＜書きかけ＞
