@@ -58,8 +58,9 @@ public partial class TilePalettePage : ContentPage
         context.TappedYOnImageAsInt = tappedY;
 
         // タイル・カーソルの座標を算出
-        int cursorX = tappedX / 16 * 16;
-        int cursorY = tappedY / 16 * 16;
+        int tileSize = 32;
+        int cursorX = tappedX / tileSize * tileSize;
+        int cursorY = tappedY / tileSize * tileSize;
         Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] cursor x:{cursorX} y:{cursorY}");
 
         context.TileCursorXOnWindowAsInt = cursorX;
