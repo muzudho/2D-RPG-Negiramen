@@ -1,0 +1,4 @@
+code           , file        ,  x,  y, width, height, comment
+tool_box.pen   , tool_box.png,  0,  0,    32,     32, ペン
+tool_box.eraser, tool_box.png, 32,  0,    32,     32, 消しゴム
+tool_box.bucket, tool_box.png,  0, 32,    32,     32, 塗りつぶし

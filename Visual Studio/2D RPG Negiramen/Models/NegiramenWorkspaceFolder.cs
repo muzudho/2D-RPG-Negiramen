@@ -18,7 +18,7 @@
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         👉　└─ 📂 Workspace
-        ///         　　　　　└─ 📂 Assets
+        ///         　　　　　└─ 📂 For Unity Assets
         ///     </pre>
         /// </summary>
         internal static bool Check()
@@ -27,12 +27,12 @@
 
             var workspaceInfo = new DirectoryInfo(workspacePath.AsStr);
 
-            // 📂 `Assets` が含まれていれば OK
+            // 📂 `For Unity Assets` が含まれていれば OK
             DirectoryInfo assetsInfo = null;
 
             foreach(var dirInfo in workspaceInfo.EnumerateDirectories())
             {
-                if(dirInfo.Name == "Assets")
+                if(dirInfo.Name == "For Unity Assets")
                 {
                     assetsInfo = dirInfo;
                     break;
@@ -45,25 +45,25 @@
                 return false;
             }
 
-            // 📂 `Assets` フォルダーのチェック
-            bool isOk = CheckAssetsFolder(assetsInfo);
+            // 📂 `For Unity Assets` フォルダーのチェック
+            bool isOk = CheckForUnityAssetsFolder(assetsInfo);
 
             return isOk;
         }
 
         /// <summary>
         ///     <pre>
-        ///         Assets フォルダーの内容を確認します
+        ///         `For Unity Assets` フォルダーの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         　　└─ 📂 Workspace
-        ///         👉 　　　└─ 📂 Assets
+        ///         👉 　　　└─ 📂 For Unity Assets
         ///         　　　　　　　└─ 📂 Images
         ///     </pre>
         /// </summary>
         /// <param name="assetsInfo"></param>
         /// <returns></returns>
-        static bool CheckAssetsFolder(DirectoryInfo assetsInfo)
+        static bool CheckForUnityAssetsFolder(DirectoryInfo assetsInfo)
         {
             // 📂 `Images` が含まれていれば OK
             DirectoryInfo imagesInfo = null;
@@ -95,7 +95,7 @@
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         　　└─ 📂 Workspace
-        ///         　　　　└─ 📂 Assets
+        ///         　　　　└─ 📂 For Unity Assets
         ///         👉 　　　　└─ 📂 Images
         ///         　　　　　　　　└─ 📂 Tile Set
         ///     </pre>
@@ -134,7 +134,7 @@
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         　　└─ 📂 Workspace
-        ///         　　　　└─ 📂 Assets
+        ///         　　　　└─ 📂 For Unity Assets
         ///         　　　　　　└─ 📂 Images
         ///         👉 　　　　　　└─ 📂 Tile Set
         ///         　　　　　　　　　　└─ 📄 adventure_field.png

@@ -1254,8 +1254,16 @@ crop_image("tool_box.png", 0, 0, 32, 32)
 ```csv
 code           , file        ,  x,  y, width, height, comment
 tool_box.pen   , tool_box.png,  0,  0,    32,     32, ペン
-tool_box.eraser, tool_box.png, 32,  0,    32,     32, ペン
-tool_box.bucket, tool_box.png,  0, 32,    32,     32, ペン
+tool_box.eraser, tool_box.png, 32,  0,    32,     32, 消しゴム
+tool_box.bucket, tool_box.png,  0, 32,    32,     32, 塗りつぶし
+```
+
+```csv
+code                  , file               ,  x,  y, width, height, comment
+adventure_field.grass , adventure_field.png,  0,  0,    32,     32, 草原
+adventure_field.desert, adventure_field.png, 32,  0,    32,     32, 砂漠
+adventure_field.rock  , adventure_field.png,  0, 32,    32,     32, 岩
+adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 ```
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
@@ -1271,16 +1279,33 @@ tool_box.bucket, tool_box.png,  0, 32,    32,     32, ペン
 　　　　│ 　　　└── 📄 tool_box.png
 　　　　└── 📂 For Unity Assets
 　　　　　　├── 📂 CSV
-　　　　　　│ 　└── 📄 tiles.csv
+👉 　　　　│ 　└── 📄 tiles.csv
 　　　　　　└── 📂 Images
 　　　　　　　　└── 📂 Tile Set
 　　　　　　　　　　└── 📄 adventure_field.png
 ```
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　👆　そのファイルの置き場所は　ネギラーメンの　📄 `Workspace/Assets/CSV/tiles.csv` でいいかな？」  
+「　👆　ツール・ボックスのアイコン・ファイルの置き場所は  
+ネギラーメンの　📄 `Workspace/Assets/CSV/tiles.csv` でいいかな？」  
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　他のフォルダーも　けっこう　いじるんだな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　その　`tiles.csv`　を作るエディターが欲しいわよね」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイル・パレット編集画面、みたいなやつかだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　どんな画面レイアウトだぜ？」  
+
+## タイル・パレット編集画面を作ろうぜ？
+
+![202306_maui_30-2021--tile-palette-editor-2.png](https://crieit.now.sh/upload_images/08ddfc30327f22a09527a986c28a0ab0649ec22d550ab.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コメントを入力することを考えると、横に広く使いたいしな」  
 
 ＜書きかけ＞

@@ -1,0 +1,5 @@
+code                  , file               ,  x,  y, width, height, comment
+adventure_field.grass , adventure_field.png,  0,  0,    32,     32, 草原
+adventure_field.desert, adventure_field.png, 32,  0,    32,     32, 砂漠
+adventure_field.rock  , adventure_field.png,  0, 32,    32,     32, 岩
+adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
