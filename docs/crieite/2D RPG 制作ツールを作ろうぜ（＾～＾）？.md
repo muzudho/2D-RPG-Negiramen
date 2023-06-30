@@ -1338,6 +1338,8 @@ adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　それで行くか」  
 
+## パンくずリストと、タイトル
+
 ![202306_maui_30-2305--tile-palette-editor-o2o0.png](https://crieit.now.sh/upload_images/230c62e9f9a6e6602a61c238320796d2649ee174d7fca.png)  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
@@ -1362,5 +1364,20 @@ adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　初期状態は　こう書いてるのと　多分　おんなじらしい。  
 これをベースに改造してみようぜ？」  
+
+![202306_maui_30-2331--title-view-o2o0.png](https://crieit.now.sh/upload_images/86737243d2445653e27728f658a47ef5649ee79f04b98.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　パンくずリストと　ページ・タイトルを　同じ行に　まとめたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　スマホの画面には　タイトル・バーが無いから、ページの中に作るのね」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ＰＣは　クローム（※）が付くんだな」  
+
+※クローム　…　ウィンドウの枠。タイトルバーなどを含む  
+
+## グリッドの線、引こうぜ？
 
 ＜書きかけ＞
