@@ -4,6 +4,11 @@
              xmlns:modelsDrawing="clr-namespace:_2D_RPG_Negiramen.Models.Drawing"
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage">
 
+    <ContentPage.Resources>
+        <modelsDrawing:TileSetGrid x:Key="MyTileSetGrid" />
+        <modelsDrawing:TileCursor x:Key="MyTileCursor" />
+    </ContentPage.Resources>
+
     <!--
         画面内タイトル
         ==============
@@ -37,10 +42,6 @@
                    TextColor="White" />
         </HorizontalStackLayout>
     </Shell.TitleView>
-    
-    <ContentPage.Resources>
-        <modelsDrawing:TileSetGrid x:Key="MyTileSetGrid" />
-    </ContentPage.Resources>
 
     <Grid RowDefinitions="80,*,144">
 
@@ -49,48 +50,83 @@
             ==========
         -->
         <Grid Grid.Row="0"
-              RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,*"
+              RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
-            <Label Grid.Row="0" Grid.Column="0"
-                   Text="グリッド"/>
-
+            <!--
+                １段目
+                ======
+            -->
             <Label Grid.Row="0" Grid.Column="1"
-                   HorizontalTextAlignment="End"
-                   Text="ひだり"/>
-
-            <Label Grid.Row="0" Grid.Column="2"
-                   HorizontalTextAlignment="End"
-                   Text="うえ"/>
-
-            <Label Grid.Row="0" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    Text="よこ"/>
 
-            <Label Grid.Row="0" Grid.Column="4"
+            <Label Grid.Row="0" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    Text="たて"/>
 
+            <Label Grid.Row="0" Grid.Column="4"
+                   HorizontalTextAlignment="End"
+                   Text="ひだり"/>
+
+            <Label Grid.Row="0" Grid.Column="5"
+                   HorizontalTextAlignment="End"
+                   Text="うえ"/>
+
+            <Label Grid.Row="0" Grid.Column="6"
+                   HorizontalTextAlignment="End"
+                   Text="よこ"/>
+
+            <Label Grid.Row="0" Grid.Column="7"
+                   HorizontalTextAlignment="End"
+                   Text="たて"/>
+
+            <!--
+                ２段目
+                ======
+            -->
+            <Label Grid.Row="1" Grid.Column="0"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="画像"/>
+
             <Entry Grid.Row="1" Grid.Column="1"
-                   HorizontalTextAlignment="End"
-                   Placeholder="0"
-                   Text="0"
-                   BackgroundColor="White"/>
-
-            <Entry Grid.Row="1" Grid.Column="2"
-                   HorizontalTextAlignment="End"
-                   Placeholder="0"
-                   Text="0"
-                   BackgroundColor="White"/>
-
-            <Entry Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="32"
                    BackgroundColor="White"/>
 
+            <Entry Grid.Row="1" Grid.Column="2"
+                   HorizontalTextAlignment="End"
+                   Placeholder="32"
+                   Text="32"
+                   BackgroundColor="White"/>
+
+            <Label Grid.Row="1" Grid.Column="3"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="グリッド"/>
+
             <Entry Grid.Row="1" Grid.Column="4"
+                   HorizontalTextAlignment="End"
+                   Placeholder="0"
+                   Text="0"
+                   BackgroundColor="White"/>
+
+            <Entry Grid.Row="1" Grid.Column="5"
+                   HorizontalTextAlignment="End"
+                   Placeholder="0"
+                   Text="0"
+                   BackgroundColor="White"/>
+
+            <Entry Grid.Row="1" Grid.Column="6"
+                   HorizontalTextAlignment="End"
+                   Placeholder="32"
+                   Text="32"
+                   BackgroundColor="White"/>
+
+            <Entry Grid.Row="1" Grid.Column="7"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="32"
@@ -125,11 +161,21 @@
                 * グリッド線の太さを 2px として、 Margin の左と上は グリッド線の太さの半分 1 を引いて 3 から始める
                 * その代わり、画像サイズは縦横 2px 増やす
             -->
-            <GraphicsView x:Name="Canvas"
-                          HorizontalOptions="Start" VerticalOptions="Start"
+            <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                           Margin="3,3,0,0"
                           WidthRequest="66" HeightRequest="66"
                           Drawable="{StaticResource MyTileSetGrid}"
+                          InputTransparent="True">
+            </GraphicsView>
+
+            <!--
+                    タイル状のカーソル
+                    ==================
+                -->
+            <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
+                          Margin="{Binding TileCursorPointAsMargin}"
+                          WidthRequest="40" HeightRequest="40"
+                          Drawable="{StaticResource MyTileCursor}"
                           InputTransparent="True">
             </GraphicsView>
 
@@ -144,16 +190,17 @@
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
-            <Label Grid.Row="0" Grid.Column="1"
-                   Text="タイル"/>
-
+            <!--
+                １段目
+                ======
+            -->
             <Label Grid.Row="0" Grid.Column="2"
                    HorizontalTextAlignment="End"
-                   Text="ｘ"/>
+                   Text="ひだり"/>
 
             <Label Grid.Row="0" Grid.Column="3"
                    HorizontalTextAlignment="End"
-                   Text="ｙ"/>
+                   Text="うえ"/>
 
             <Label Grid.Row="0" Grid.Column="4"
                    HorizontalTextAlignment="End"
@@ -163,8 +210,17 @@
                    HorizontalTextAlignment="End"
                    Text="たて"/>
 
+            <!--
+                ２段目
+                ======
+            -->
             <Button Grid.Row="1" Grid.Column="0"
                     Text="保存"/>
+
+            <Label Grid.Row="1" Grid.Column="1"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="タイル"/>
 
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
@@ -190,10 +246,10 @@
                    Text="32"
                    FontSize="24"/>
 
-            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6"
+            <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5"
                    Text="コメント"/>
 
-            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="6"
+            <Entry Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5"
                    Placeholder="草原"
                    Text=""
                    BackgroundColor="White"/>
