@@ -1338,4 +1338,29 @@ adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　それで行くか」  
 
+![202306_maui_30-2305--tile-palette-editor-o2o0.png](https://crieit.now.sh/upload_images/230c62e9f9a6e6602a61c238320796d2649ee174d7fca.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　パンくずリスト付けたら　もっさり　したんだが、  
+ヘッダーと　パンくずリスト　を１つに　まとめる方法　無い？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　タイトルバーに見えるところ、自動で付くのよねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　ナビゲーションじゃないか？　調べてみろだぜ」  
+
+📖 [Microsoft　＞　NavigationPage](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/pages/navigationpage)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ソースの中には　いじれそうなものは無かった。もっと探そう」  
+
+📖 [How to customize the navigation title view of MAUI ContentPage](https://stackoverflow.com/questions/74350962/how-to-customize-the-navigation-title-view-of-maui-contentpage)  
+
+![202306_maui_30-2323--title-view-o2o0.png](https://crieit.now.sh/upload_images/dff54a3f11546e61beec3c71c17a9f1d649ee5872cd3d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　初期状態は　こう書いてるのと　多分　おんなじらしい。  
+これをベースに改造してみようぜ？」  
+
 ＜書きかけ＞
