@@ -209,8 +209,33 @@
                 Directory.CreateDirectory(tileSetFolderPath);
             }
 
+            CopyTileSet("adventure_field.png");
+            CopyTileSet("map-tile-format-8x19.png");
+
+            //var configuration = App.GetOrLoadConfiguration();
+            //var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tile Set", "adventure_field.png");
+            //var destination = Path.Combine(
+            //        configuration.UnityAssetsFolderPath.AsStr,
+            //        configuration.YourCircleName.AsStr,
+            //        configuration.YourWorkName.AsStr,
+            //        "Auto Generated",
+            //        "Images",
+            //        "Tile Set",
+            //        "adventure_field.png");
+
+            //if (!File.Exists(destination))
+            //{
+            //    // 📄 `Tile Set` ファイルを複写
+            //    File.Copy(
+            //        sourceFileName: source,
+            //        destFileName: destination);
+            //}
+        }
+
+        static void CopyTileSet(string fileName)
+        {
             var configuration = App.GetOrLoadConfiguration();
-            var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tile Set", "adventure_field.png");
+            var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "For Unity Assets", "Images", "Tile Set", fileName);
             var destination = Path.Combine(
                     configuration.UnityAssetsFolderPath.AsStr,
                     configuration.YourCircleName.AsStr,
@@ -218,7 +243,7 @@
                     "Auto Generated",
                     "Images",
                     "Tile Set",
-                    "adventure_field.png");
+                    fileName);
 
             if (!File.Exists(destination))
             {
