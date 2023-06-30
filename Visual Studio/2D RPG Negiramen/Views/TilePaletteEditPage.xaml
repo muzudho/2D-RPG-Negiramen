@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage"
+             Title="タイル・パレット編集">
+    <Grid RowDefinitions="80,*,112">
+
+        <!--
+            上メニュー
+            ==========
+        -->
+        <Grid Grid.Row="0"
+              RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,*"
+              Padding="0,8,0,8"
+              BackgroundColor="SkyBlue">
+
+            <Label Grid.Row="0" Grid.Column="0"
+                   Text="グリッド"/>
+
+            <Label Grid.Row="0" Grid.Column="1"
+                   HeightRequest="16"
+                   Text="ひだり"/>
+
+            <Label Grid.Row="0" Grid.Column="2"
+                   Text="うえ"/>
+
+            <Label Grid.Row="0" Grid.Column="3"
+                   Text="よこ"/>
+
+            <Label Grid.Row="0" Grid.Column="4"
+                   Text="たて"/>
+
+            <Entry Grid.Row="1" Grid.Column="1"
+                   Placeholder="0"
+                   Text="0"
+                   BackgroundColor="White"/>
+
+            <Entry Grid.Row="1" Grid.Column="2"
+                   Placeholder="0"
+                   Text="0"
+                   BackgroundColor="White"/>
+
+            <Entry Grid.Row="1" Grid.Column="3"
+                   Placeholder="32"
+                   Text="32"
+                   BackgroundColor="White"/>
+
+            <Entry Grid.Row="1" Grid.Column="4"
+                   Placeholder="32"
+                   Text="32"
+                   BackgroundColor="White"/>
+
+        </Grid>
+
+        <VerticalStackLayout Grid.Row="1">
+            <Label 
+            Text="Welcome to .NET MAUI!"
+            VerticalOptions="Center" 
+            HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!--
+            下メニュー
+            ==========
+        -->
+        <Grid Grid.Row="2"
+              RowDefinitions="16,40,16,40" ColumnDefinitions="*,*,*,*,*,*"
+              BackgroundColor="SkyBlue">
+
+            <Label Grid.Row="0" Grid.Column="1"
+                   Text="タイル"/>
+
+            <Label Grid.Row="0" Grid.Column="2"
+                   Text="ｘ"/>
+
+            <Label Grid.Row="0" Grid.Column="3"
+                   Text="ｙ"/>
+
+            <Label Grid.Row="0" Grid.Column="4"
+                   Text="よこ"/>
+
+            <Label Grid.Row="0" Grid.Column="5"
+                   Text="たて"/>
+
+            <Button Grid.Row="1" Grid.Column="0"
+                    Text="保存"/>
+
+            <Entry Grid.Row="1" Grid.Column="1"
+                   Placeholder="0"
+                   Text="ｘ"/>
+
+            <Entry Grid.Row="1" Grid.Column="2"
+                   Placeholder="0"
+                   Text="ｙ"/>
+
+            <Entry Grid.Row="1" Grid.Column="3"
+                   Placeholder="32"
+                   Text="よこ"/>
+
+            <Entry Grid.Row="1" Grid.Column="4"
+                   Placeholder="32"
+                   Text="たて"/>
+
+            <Label Grid.Row="2" Grid.Column="1"
+                   Text="コメント"/>
+
+            <Entry Grid.Row="3" Grid.Column="1"
+                   Placeholder="草原"
+                   Text=""
+                   BackgroundColor="White"/>
+
+        </Grid>
+    </Grid>
+</ContentPage>

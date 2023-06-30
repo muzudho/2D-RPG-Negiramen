@@ -226,7 +226,7 @@ public partial class MainPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void Button_Clicked(object sender, EventArgs e)
+    private void MapDrawingButton_Clicked(object sender, EventArgs e)
     {
         var secondWindow = new Window
         {
@@ -239,6 +239,17 @@ public partial class MainPage : ContentPage
         };
 
         Application.Current.OpenWindow(secondWindow);
+    }
+
+    /// <summary>
+    /// ［タイル・パレット編集］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void TilePaletteEditButton_Clicked(object sender, EventArgs e)
+    {
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//TilePaletteEditPage"));
     }
 }
 
