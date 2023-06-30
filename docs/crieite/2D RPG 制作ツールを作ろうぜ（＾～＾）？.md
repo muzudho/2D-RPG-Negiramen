@@ -1464,4 +1464,20 @@ adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 
 📖　[www.pixilart.com](https://www.pixilart.com/draw)  
 
+![map-tile-format-8x19.png](https://crieit.now.sh/upload_images/a2b9378330e366e963608623f2531aba649efd9bb11f7.png)  
+
+![202307_maui_01-0118--scroll-view.png](https://crieit.now.sh/upload_images/3487861757d85388d7bccffada24dd42649f00713e84b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ハリボテだが　スクロールバーは　付けれるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父んの思想と　ウルフエディターの素材作成勢とで　相性が悪いの　わらう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　意匠は　相容れない方が　著作権を差別化できて有利なのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　明日は　このハリボテに　動きを付けていこうぜ？」  
+
 ＜書きかけ＞
