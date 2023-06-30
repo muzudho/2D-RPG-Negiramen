@@ -30,22 +30,24 @@
             var imageWidth = 64;
             var imageHeight = 64;
 
+            // 線の太さの半分
+            var halfThin = 1;
             // 線の太さ
-            var thin = 2;
+            var thin = 2 * halfThin;
             canvas.StrokeSize = thin;
 
             // 縦線を引いていこう
-            int y1 = marginTop;
-            int y2 = imageHeight + marginTop;
-            for (var x = 0; x < imageWidth; x += tileWidth)
+            int y1 = marginTop + halfThin;
+            int y2 = imageHeight + marginTop + halfThin;
+            for (var x = halfThin; x < imageWidth+thin; x += tileWidth)
             {
                 canvas.DrawLine(x, y1, x, y2);
             }
 
             // 横線を引いていこう
-            int x1 = marginLeft;
-            int x2 = imageHeight + marginLeft;
-            for (var y = 0; y < imageHeight; y += tileHeight)
+            int x1 = marginLeft + halfThin;
+            int x2 = imageHeight + marginLeft + halfThin;
+            for (var y = halfThin; y < imageHeight + thin; y += tileHeight)
             {
                 canvas.DrawLine(x1, y, x2, y);
             }

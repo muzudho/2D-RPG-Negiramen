@@ -1380,4 +1380,15 @@ adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 
 ## グリッドの線、引こうぜ？
 
+![202307_maui_01-0007--grid.png](https://crieit.now.sh/upload_images/1bb0f0eefa123ef87e72b6fa35da0321649eeffc6311c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ひとまず　ハードコーディングで　半透明の赤い色で　グリッドを置いてみたが　どうだろうか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　まずは　いいんじゃないの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　元画像の　横幅、縦幅も　表示してくれだぜ」  
+
 ＜書きかけ＞
