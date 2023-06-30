@@ -220,5 +220,25 @@ public partial class MainPage : ContentPage
 
         Application.Current.OpenWindow(secondWindow);
     }
+
+    /// <summary>
+    /// ［マップ描画ページ表示］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void Button_Clicked(object sender, EventArgs e)
+    {
+        var secondWindow = new Window
+        {
+            Page = new MapDrawingPage
+            {
+                // ...
+            },
+            Width = 600,
+            Height = 300,
+        };
+
+        Application.Current.OpenWindow(secondWindow);
+    }
 }
 

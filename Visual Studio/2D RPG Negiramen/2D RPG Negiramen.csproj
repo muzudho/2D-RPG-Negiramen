@@ -108,6 +108,9 @@
 	  <MauiXaml Update="Views\EditMonsterGroupPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\MapDrawingPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\MapExplorerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

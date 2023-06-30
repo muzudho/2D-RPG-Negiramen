@@ -77,4 +77,9 @@
         ContentTemplate="{DataTemplate views:TilePalettePage}"
         Route="TilePalettePage" />
 
+    <ShellContent
+        Title="Map drawing page"
+        ContentTemplate="{DataTemplate views:MapDrawingPage}"
+        Route="MapDrawingPage" />
+
 </Shell>

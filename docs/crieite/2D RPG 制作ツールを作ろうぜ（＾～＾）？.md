@@ -1213,4 +1213,74 @@ MAUI の画面上に　矩形を描く命令　あるかだぜ？」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　じゃあ　明日から　マップ・エディター　だな」  
 
+# 📅 2023-06-30 ツール・アイコンが欲しいぜ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ペンのアイコンの絵を描くぜ」  
+
+📖　[www.pixilart.com](https://www.pixilart.com/draw)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　無くていいのに……」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　気分が出る！」  
+
+![202306_maui_30-1905--tool-box.png](https://crieit.now.sh/upload_images/5005075469e18b3f7c4634029811b48f649ea907e9fef.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　pixilart.com のツールに　グリッドのサイズ指定が無いから　枠線　引いてしまう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　どの画像の　何個目のタイルを表示するのか　名前で指定できるようにしたくない？」
+
+```plaintext
+tool_box.pen
+```
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　カテゴリー名と、そのメンバーを　ドット・シンタックスで指定して」  
+
+```plaintext
+crop_image("tool_box.png", 0, 0, 32, 32)
+```
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　画像のロードまで　やってくれるような」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　ＣＳＶ形式で記録したらどうだぜ？」  
+
+```csv
+code           , file        ,  x,  y, width, height, comment
+tool_box.pen   , tool_box.png,  0,  0,    32,     32, ペン
+tool_box.eraser, tool_box.png, 32,  0,    32,     32, ペン
+tool_box.bucket, tool_box.png,  0, 32,    32,     32, ペン
+```
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　例は　こうだぜ」  
+
+```plaintext
+　　例：　C:\Users\むずでょ\Documents\GitHub\2D-RPG-Negiramen
+　　└── 📂 Workspace
+　　　　├── 📂 Assets
+　　　　│ 　├── 📂 CSV
+👉 　　│ 　│ 　└── 📄 tiles.csv
+　　　　│ 　└── 📂 Image
+　　　　│ 　　　└── 📄 tool_box.png
+　　　　└── 📂 For Unity Assets
+　　　　　　├── 📂 CSV
+　　　　　　│ 　└── 📄 tiles.csv
+　　　　　　└── 📂 Images
+　　　　　　　　└── 📂 Tile Set
+　　　　　　　　　　└── 📄 adventure_field.png
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　そのファイルの置き場所は　ネギラーメンの　📄 `Workspace/Assets/CSV/tiles.csv` でいいかな？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　他のフォルダーも　けっこう　いじるんだな」  
+
 ＜書きかけ＞
