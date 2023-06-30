@@ -1308,4 +1308,34 @@ adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　コメントを入力することを考えると、横に広く使いたいしな」  
 
+![202306_maui_30-2200--tile-palette-editor.png](https://crieit.now.sh/upload_images/2c734aa1bcde4ca654ceecc2556ff644649ed22592445.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな雰囲気で　どうだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　配色が　ＲＯＣＫＭＡＮ　だな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　グリッドを引きなさいよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　グリッド引くなら　ループ文を使うのが鉄板だと思うが  
+ＭＡＵＩで　ループ文があるのか　分からん……」  
+
+📖 [MAUI equivalent to CSS background-repeat: repeat;](https://stackoverflow.com/questions/75267102/maui-equivalent-to-css-background-repeat-repeat)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Webみたいに　背景画像をタイルにしてリピートできるなら　グリッドが作れるかと思ったが  
+それも無いみたいだし」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　動的に XAML の要素を追加・削除する方法も分からん」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　透明なキャンバスに　罫線引いて　タイル・マップの上に　覆い被せりゃいいんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　それで行くか」  
+
 ＜書きかけ＞
