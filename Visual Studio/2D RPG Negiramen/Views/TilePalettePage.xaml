@@ -6,12 +6,13 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:models="clr-namespace:_2D_RPG_Negiramen.Models"
+             xmlns:modelsDrawing="clr-namespace:_2D_RPG_Negiramen.Models.Drawing"
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              x:Class="_2D_RPG_Negiramen.Views.TilePalettePage"
              Title="タイル・パレット">
 
     <ContentPage.Resources>
-        <models:TileCursor x:Key="MyTileCursor" />
+        <modelsDrawing:TileCursor x:Key="MyTileCursor" />
     </ContentPage.Resources>
     
     <ContentPage.BindingContext>
