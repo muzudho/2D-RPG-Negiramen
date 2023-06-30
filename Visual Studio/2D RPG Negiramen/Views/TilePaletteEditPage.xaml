@@ -91,17 +91,19 @@
                    VerticalTextAlignment="Center"
                    Text="画像"/>
 
-            <Entry Grid.Row="1" Grid.Column="1"
+            <Label Grid.Row="1" Grid.Column="1"
                    HorizontalTextAlignment="End"
-                   Placeholder="32"
-                   Text="32"
-                   BackgroundColor="White"/>
+                   VerticalTextAlignment="Center"
+                   FontSize="24"
+                   Text="64"
+                   BackgroundColor="SkyBlue"/>
 
-            <Entry Grid.Row="1" Grid.Column="2"
+            <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
-                   Placeholder="32"
-                   Text="32"
-                   BackgroundColor="White"/>
+                   VerticalTextAlignment="Center"
+                   FontSize="24"
+                   Text="64"
+                   BackgroundColor="SkyBlue"/>
 
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"

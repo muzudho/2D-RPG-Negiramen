@@ -1391,4 +1391,77 @@ adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　元画像の　横幅、縦幅も　表示してくれだぜ」  
 
+![202307_maui_01-0035--tile-palette-editor.png](https://crieit.now.sh/upload_images/ad27942d9459a1d36bccbad4ecd78074649ef68d428a0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　さらに細かく調整」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　タイル画像が大きかったとき、スクロールできんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　この画面は　ハリボテ　なんで……。  
+動きを付ける段階になったら　調べるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイルＩｄを表示してくれだぜ」  
+
+## 画像サイズを調べようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　その前に　１枚の画像にタイルが　１００枚ぐらいなのか、　１０００枚ぐらいなのか、　１００００枚ぐらいなのか、  
+規模を知りたいぜ」  
+
+📖 [WOLF RPG エディター(ウディタ)でゲームを作る3　～マップチップとオートタイルを増やす～](https://nihamasoblog.com/wolf-editor-beginner3/)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　素材集の中を覗いてみないと　分からんな……」  
+
+📖 [画像・音声素材データ集](https://silsec.sakura.ne.jp/WolfRPGEditor/MaterialList/html/)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あれっ、思ってたより小さい……  
+横 332 × 縦 772 かだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　なんだ　その　中途半端な数は？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれっ？　枠が付いてある……　これは使用例のスクリーンショットか。  
+横 256 x 縦 608 のものもあるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　なんだ　その　中途半端な数は？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　横 256 x 縦 544 のものもあるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　決まってないのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　横はニゴロ（２５６）のようだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　縦長　になるんだ。ポートレートだ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　１つのタイル・サイズは　３２ｘ３２　を最小として、  
+６４ｘ６４　とか　９６ｘ６４　とか　自由気ままに配置されているぜ！」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　６０８　は　３２　で割り切れるわねえ。１９よ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　素数だ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　どういうシステムなんだ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ分かった、　256 × 608　を画面に表示してみようぜ？  
+👇　画像を作るぜ」  
+
+📖　[www.pixilart.com](https://www.pixilart.com/draw)  
+
 ＜書きかけ＞
