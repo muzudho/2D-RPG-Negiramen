@@ -3,8 +3,32 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage">
 
+    <!--
+        画面内タイトル
+        ==============
+    -->
     <Shell.TitleView>
+        <!--
+            パンくずリスト
+            ==============
+        -->
         <HorizontalStackLayout>
+           
+            <Button x:Name="HomeBtn"
+                    Text="Home"
+                    SemanticProperties.Hint="Back to the home"
+                    Clicked="HomeBtn_Clicked"
+                    BorderColor="SkyBlue"/>
+
+            <Label Text="＞"
+                   TextColor="White"
+                   SemanticProperties.Hint="Separator"
+                   VerticalTextAlignment="Center"/>
+
+            <!--
+                ページ・タイトル
+                ================
+            -->
             <Label Text="タイル・パレット編集"
                    VerticalOptions="Center"
                    HorizontalOptions="Center"
@@ -19,33 +43,13 @@
     </ContentPage.Resources>
     -->
 
-    <Grid RowDefinitions="48,80,*,144">
-
-        <!--
-                パンくずリスト
-                ==============
-            -->
-        <HorizontalStackLayout Grid.Row="0"
-                               BackgroundColor="SkyBlue">
-            <Button x:Name="HomeBtn"
-                    Text="Home"
-                    SemanticProperties.Hint="Back to the home"
-                    Clicked="HomeBtn_Clicked" />
-
-            <Label Text="＞"
-                   SemanticProperties.Hint="Separator"
-                   VerticalTextAlignment="Center"/>
-
-            <Label Text="Tile palette editor"
-                   SemanticProperties.Hint="Tile palette editor"
-                   VerticalTextAlignment="Center"/>
-        </HorizontalStackLayout>
+    <Grid RowDefinitions="80,*,144">
 
         <!--
             上メニュー
             ==========
         -->
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="0"
               RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
@@ -95,7 +99,7 @@
 
         </Grid>
 
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="1"
               RowDefinitions="*" ColumnDefinitions="*">
             
             <Image x:Name="tileImage"
@@ -134,7 +138,7 @@
             下メニュー
             ==========
         -->
-        <Grid Grid.Row="3"
+        <Grid Grid.Row="2"
               RowDefinitions="16,48,16,48" ColumnDefinitions="128,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
