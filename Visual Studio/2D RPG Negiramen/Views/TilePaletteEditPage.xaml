@@ -3,13 +3,40 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage"
              Title="タイル・パレット編集">
-    <Grid RowDefinitions="80,*,144">
+
+    <!--
+    <ContentPage.Resources>
+        <models:TileCursor x:Key="MyTileCursor" />
+    </ContentPage.Resources>
+    -->
+
+    <Grid RowDefinitions="48,80,*,144">
+
+        <!--
+                パンくずリスト
+                ==============
+            -->
+        <HorizontalStackLayout Grid.Row="0"
+                               BackgroundColor="SkyBlue">
+            <Button x:Name="HomeBtn"
+                    Text="Home"
+                    SemanticProperties.Hint="Back to the home"
+                    Clicked="HomeBtn_Clicked" />
+
+            <Label Text="＞"
+                   SemanticProperties.Hint="Separator"
+                   VerticalTextAlignment="Center"/>
+
+            <Label Text="Tile palette editor"
+                   SemanticProperties.Hint="Tile palette editor"
+                   VerticalTextAlignment="Center"/>
+        </HorizontalStackLayout>
 
         <!--
             上メニュー
             ==========
         -->
-        <Grid Grid.Row="0"
+        <Grid Grid.Row="1"
               RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
@@ -59,10 +86,11 @@
 
         </Grid>
 
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="2"
               RowDefinitions="*" ColumnDefinitions="*">
             
             <Image x:Name="tileImage"
+                   Grid.Row="0" Grid.Column="0"
                    Margin="4,4,0,0"
                    WidthRequest="64" HeightRequest="64"
                    HorizontalOptions="Start" VerticalOptions="Start"
@@ -76,14 +104,28 @@
                 -->
 
             </Image>
-            
+
+
+            <!--
+                グリッド
+                ========
+
+                Drawable="{StaticResource MyTileCursor}"
+            -->
+            <GraphicsView x:Name="Canvas"
+                          HorizontalOptions="Start" VerticalOptions="Start"
+                          Margin="4,4,0,0"
+                          WidthRequest="40" HeightRequest="40"
+                          InputTransparent="True">
+            </GraphicsView>
+
         </Grid>
 
         <!--
             下メニュー
             ==========
         -->
-        <Grid Grid.Row="2"
+        <Grid Grid.Row="3"
               RowDefinitions="16,48,16,48" ColumnDefinitions="128,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">

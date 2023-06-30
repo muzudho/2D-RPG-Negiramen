@@ -6,4 +6,8 @@ public partial class TilePaletteEditPage : ContentPage
 	{
 		InitializeComponent();
 	}
+    async void HomeBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//MainPage");
+    }
 }
