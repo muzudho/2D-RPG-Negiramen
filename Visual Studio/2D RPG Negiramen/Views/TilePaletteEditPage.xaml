@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:modelsDrawing="clr-namespace:_2D_RPG_Negiramen.Models.Drawing"
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage">
 
     <!--
@@ -37,11 +38,9 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
     
-    <!--
     <ContentPage.Resources>
-        <models:TileCursor x:Key="MyTileCursor" />
+        <modelsDrawing:TileSetGrid x:Key="MyTileSetGrid" />
     </ContentPage.Resources>
-    -->
 
     <Grid RowDefinitions="80,*,144">
 
@@ -123,12 +122,12 @@
                 グリッド
                 ========
 
-                Drawable="{StaticResource MyTileCursor}"
             -->
             <GraphicsView x:Name="Canvas"
                           HorizontalOptions="Start" VerticalOptions="Start"
                           Margin="4,4,0,0"
-                          WidthRequest="40" HeightRequest="40"
+                          WidthRequest="64" HeightRequest="64"
+                          Drawable="{StaticResource MyTileSetGrid}"
                           InputTransparent="True">
             </GraphicsView>
 

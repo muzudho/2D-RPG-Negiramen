@@ -13,7 +13,7 @@
     internal class TileCursor : IDrawable
     {
         /// <summary>
-        /// 図形描画
+        ///     描画
         /// </summary>
         /// <param name="canvas">キャンバス</param>
         /// <param name="dirtyRect">矩形</param>
