@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage"
              Title="タイル・パレット編集">
-    <Grid RowDefinitions="80,*,112">
+    <Grid RowDefinitions="80,*,144">
 
         <!--
             上メニュー
@@ -11,7 +11,7 @@
         -->
         <Grid Grid.Row="0"
               RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,*"
-              Padding="0,8,0,8"
+              Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
             <Label Grid.Row="0" Grid.Column="0"
@@ -64,7 +64,8 @@
             ==========
         -->
         <Grid Grid.Row="2"
-              RowDefinitions="16,40,16,40" ColumnDefinitions="*,*,*,*,*,*"
+              RowDefinitions="16,48,16,48" ColumnDefinitions="128,64,64,64,64,64,*"
+              Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
             <Label Grid.Row="0" Grid.Column="1"
@@ -85,26 +86,30 @@
             <Button Grid.Row="1" Grid.Column="0"
                     Text="保存"/>
 
-            <Entry Grid.Row="1" Grid.Column="1"
-                   Placeholder="0"
-                   Text="ｘ"/>
+            <Label Grid.Row="1" Grid.Column="2"
+                   VerticalTextAlignment="Center"
+                   Text="0"
+                   FontSize="24"/>
 
-            <Entry Grid.Row="1" Grid.Column="2"
-                   Placeholder="0"
-                   Text="ｙ"/>
+            <Label Grid.Row="1" Grid.Column="3"
+                   VerticalTextAlignment="Center"
+                   Text="0"
+                   FontSize="24"/>
 
-            <Entry Grid.Row="1" Grid.Column="3"
-                   Placeholder="32"
-                   Text="よこ"/>
+            <Label Grid.Row="1" Grid.Column="4"
+                   VerticalTextAlignment="Center"
+                   Text="32"
+                   FontSize="24"/>
 
-            <Entry Grid.Row="1" Grid.Column="4"
-                   Placeholder="32"
-                   Text="たて"/>
+            <Label Grid.Row="1" Grid.Column="5"
+                   VerticalTextAlignment="Center"
+                   Text="32"
+                   FontSize="24"/>
 
-            <Label Grid.Row="2" Grid.Column="1"
+            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6"
                    Text="コメント"/>
 
-            <Entry Grid.Row="3" Grid.Column="1"
+            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="6"
                    Placeholder="草原"
                    Text=""
                    BackgroundColor="White"/>
