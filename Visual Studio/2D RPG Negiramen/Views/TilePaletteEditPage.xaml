@@ -130,13 +130,13 @@
             <Entry Grid.Row="1" Grid.Column="6"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
-                   Text="32"
+                   Text="{Binding GridTileWidthAsInt}"
                    BackgroundColor="White"/>
 
             <Entry Grid.Row="1" Grid.Column="7"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
-                   Text="32"
+                   Text="{Binding GridTileHeightAsInt}"
                    BackgroundColor="White"/>
 
         </Grid>

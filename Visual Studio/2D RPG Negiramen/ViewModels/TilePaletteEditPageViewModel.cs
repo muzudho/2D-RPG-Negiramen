@@ -73,6 +73,38 @@
             }
         }
 
+        /// <summary>
+        /// グリッド・タイルの横幅
+        /// </summary>
+        public int GridTileWidthAsInt
+        {
+            get => _gridTileSize.Width.AsInt;
+            set
+            {
+                if (_gridTileSize.Width.AsInt != value)
+                {
+                    _gridTileSize = new Models.Size(new Models.Width(value), _gridTileSize.Height);
+                    OnPropertyChanged(nameof(GridTileWidthAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        /// グリッド・タイルの縦幅
+        /// </summary>
+        public int GridTileHeightAsInt
+        {
+            get => _gridTileSize.Height.AsInt;
+            set
+            {
+                if (_gridTileSize.Height.AsInt != value)
+                {
+                    _gridTileSize = new Models.Size(_gridTileSize.Width, new Models.Height(value));
+                    OnPropertyChanged(nameof(GridTileHeightAsInt));
+                }
+            }
+        }
+
         // - その他
 
         /// <summary>
@@ -92,10 +124,15 @@
         /// </summary>
         /// <param name="imageSize">画像サイズ</param>
         /// <param name="gridLeftTopPoint">グリッドの左上の座標</param>
-        TilePaletteEditPageViewModel(Models.Size imageSize, Models.Point gridLeftTopPoint)
+        /// <param name="gridTileSize">グリッド・タイル・サイズ</param>
+        TilePaletteEditPageViewModel(
+            Models.Size imageSize,
+            Models.Point gridLeftTopPoint,
+            Models.Size gridTileSize)
         {
             this._imageSize = imageSize;
             this._gridLeftTopPoint = gridLeftTopPoint;
+            this._gridTileSize = gridTileSize;
         }
 
         // - プライベート・フィールド
@@ -109,5 +146,10 @@
         /// グリッドの左上位置
         /// </summary>
         Models.Point _gridLeftTopPoint = Models.Point.Empty;
+
+        /// <summary>
+        /// グリッド・タイル・サイズ
+        /// </summary>
+        Models.Size _gridTileSize = Models.Size.Empty;
     }
 }
