@@ -254,6 +254,25 @@
         }
 
         /// <summary>
+        ///     <pre>
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        void RefreshGraphicsViewOfGrid()
+        {
+            if (this.InternalGridImageWidthAsInt % 2 == 1)
+            {
+                this.InternalGridImageWidthAsInt--;
+            }
+            else
+            {
+                this.InternalGridImageWidthAsInt++;
+            }
+        }
+
+        /// <summary>
         ///     グリッド・タイルの横幅
         /// </summary>
         public int GridTileWidthAsInt
@@ -266,12 +285,8 @@
                     App.WorkingGridTileSize = new Models.Size(new Models.Width(value), App.WorkingGridTileSize.Height);
                     OnPropertyChanged(nameof(GridTileWidthAsInt));
 
-                    // HACK: 内部的なグリッド画像の横幅が変わったわけではないが、再描画させたいので変更通知を送る
-                    {
-                        var current = this.InternalGridImageWidthAsInt;
-                        this.InternalGridImageWidthAsInt = current + 1;
-                        // this.InternalGridImageWidthAsInt = current;
-                    }
+                    // グリッドを再描画
+                    RefreshGraphicsViewOfGrid();
                 }
             }
         }
@@ -289,12 +304,8 @@
                     App.WorkingGridTileSize = new Models.Size(App.WorkingGridTileSize.Width, new Models.Height(value));
                     OnPropertyChanged(nameof(GridTileHeightAsInt));
 
-                    // HACK: 内部的なグリッド画像の横幅が変わったわけではないが、再描画させたいので変更通知を送る
-                    {
-                        var current = this.InternalGridImageWidthAsInt;
-                        this.InternalGridImageWidthAsInt = current + 1;
-                        this.InternalGridImageWidthAsInt = current;
-                    }
+                    // グリッドを再描画
+                    RefreshGraphicsViewOfGrid();
                 }
             }
         }

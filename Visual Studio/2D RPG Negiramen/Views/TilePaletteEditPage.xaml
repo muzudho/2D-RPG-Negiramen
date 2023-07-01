@@ -182,7 +182,7 @@
                     グリッド
                     ========
 
-                    * グリッド線の太さを 2px として、 Margin の左と上は グリッド線の太さの半分 1 を引いて 3 から始める
+                    * タイル・カーソルの線の太さを 4px として、 Margin の左と上は グリッドの線の太さの半分 1 を引いて 3 から始める
                     * その代わり、画像サイズは縦横 2px 増やす
                 
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
