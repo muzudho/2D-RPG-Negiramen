@@ -118,13 +118,13 @@
             <Entry Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
-                   Text="0"
+                   Text="{Binding GridLeftAsInt}"
                    BackgroundColor="White"/>
 
             <Entry Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
-                   Text="0"
+                   Text="{Binding GridTopAsInt}"
                    BackgroundColor="White"/>
 
             <Entry Grid.Row="1" Grid.Column="6"
