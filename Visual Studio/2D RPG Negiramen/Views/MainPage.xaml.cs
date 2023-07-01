@@ -27,29 +27,47 @@ public partial class MainPage : ContentPage
     */
 
     /// <summary>
-    /// 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-    /// 
-    /// <list type="bullet">
-    ///     <item>構成ファイルの設定は、ユーザーは苦手とするだろうから、必要となるまで設定を要求しないようにする仕掛け</item>
-    /// </list>
+    ///     環境が構成ファイル通りか判定する
+    ///     
+    ///     <list type="bullet">
+    ///         <item>構成ファイルの設定は、ユーザーは苦手とするだろうから、必要となるまで設定を要求しないようにする仕掛け</item>
+    ///         <item>📖 [同期メソッドを非同期メソッドに変換する（ex. Action → Func＜Task＞）](https://qiita.com/mxProject/items/81ba8dd331484717ee01)</item>
+    ///     </list>
     /// </summary>
-    /// <param name="shellNavigationState">遷移先ページ</param>
-    async Task GoToNextPageRequiredConfiguration(ShellNavigationState shellNavigationState)
+    /// <paramref name="onNotYetConfiguration">構成ファイル通りだ</paramref>
+    /// <paramref name="onNotYetConfiguration">構成ファイル通りではない</paramref>
+    async Task ReadyGoToNext(
+        Func<Task> onOk,
+        Func<Task> onNotYetConfiguration)
     {
-        // フォルダーが準備できているなら、そのまま画面遷移する
+        // 構成を取得
         var configuration = App.GetOrLoadConfiguration();
+
+        // 構成通り準備できているなら、そのまま画面遷移する
         if (configuration.IsReady())
         {
-            await Shell.Current.GoToAsync(shellNavigationState);
-            // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            await onOk();
         }
-        // そうでなければ、初期設定を要求
+        // そうでなければ、初期構成を要求
         else
         {
-            App.NextPage.Push(shellNavigationState);
-            await Navigation.PushAsync(new StartupConfigurationPage());
+            await onNotYetConfiguration();
             // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
         }
+    }
+
+    /// <summary>
+    ///     <pre>
+    ///         本来の移動先をグローバル変数へ記憶して、構成ページへ移動。
+    ///         構成が終わったら、一旦構成ページから戻ったあと、本来の移動先へ遷移
+    ///     </pre>
+    /// </summary>
+    /// <param name="shellNavigationState">本来の移動先</param>
+    async Task GoToConfigurationPage(ShellNavigationState shellNavigationState)
+    {
+        App.NextPage.Push(shellNavigationState);
+        await Navigation.PushAsync(new StartupConfigurationPage());
+        // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
 
     /// <summary>
@@ -59,8 +77,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMapViewBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//MapExplorerPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//MapExplorerPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -70,8 +100,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateBattleBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//CreateBattleViewPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//CreateBattleViewPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -81,8 +123,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMenuViewBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//CreateMenuViewPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//CreateMenuViewPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -92,8 +146,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateTalkingBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//CreateTalkingViewPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//CreateTalkingViewPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -103,8 +169,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void EditPlayerCharacterBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//EditPlayerCharacterPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditPlayerCharacterPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -114,8 +192,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void CreateMonsterBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//EditMonsterPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditMonsterPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -125,8 +215,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void EditMonsterGroupBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//EditMonsterGroupPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditMonsterGroupPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -136,8 +238,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void EditItemBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//EditItemPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditItemPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -147,8 +261,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void EditorStoryBtn_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//EditStoryPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//EditStoryPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 
     /// <summary>
@@ -248,8 +374,20 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void TilePaletteEditButton_Clicked(object sender, EventArgs e)
     {
+        var shellNavigationState = new ShellNavigationState("//TilePaletteEditPage");
+
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await GoToNextPageRequiredConfiguration(new ShellNavigationState("//TilePaletteEditPage"));
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
     }
 }
 
