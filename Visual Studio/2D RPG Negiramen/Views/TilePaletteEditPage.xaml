@@ -187,9 +187,9 @@
                 </GraphicsView>
 
                 <!--
-                        タイル状のカーソル
-                        ==================
-                    -->
+                    タイル状のカーソル
+                    ==================
+                -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="{Binding TileCursorPointAsMargin}"
                               WidthRequest="40" HeightRequest="40"

@@ -105,16 +105,6 @@
             }
         }
 
-
-
-
-
-
-
-
-
-
-
         /// <summary>
         /// タイルの位置ｘ
         /// </summary>
@@ -195,6 +185,22 @@
             }
         }
 
+        /// <summary>
+        /// コメント
+        /// </summary>
+        public string TileSetImageFilePathAsStr
+        {
+            get => _tileSetImageFilePath.AsStr;
+            set
+            {
+                if (_tileSetImageFilePath.AsStr != value)
+                {
+                    _tileSetImageFilePath = new Models.TileSetImageFilePath(value);
+                    OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
+                }
+            }
+        }
+
         // - その他
 
         /// <summary>
@@ -216,19 +222,22 @@
         /// <param name="gridLeftTopPoint">グリッドの左上の座標</param>
         /// <param name="gridTileSize">グリッド・タイル・サイズ</param>
         /// <param name="tileRect">タイル矩形</param>
-        /// <param name="commentAsStr">コメント</param>
+        /// <param name="comment">コメント</param>
+        /// <param name="tileSetImageFilePath">タイル・セット画像ファイル・パス</param>
         TilePaletteEditPageViewModel(
             Models.Size imageSize,
             Models.Point gridLeftTopPoint,
             Models.Size gridTileSize,
             Models.Rectangle tileRect,
-            string commentAsStr)
+            Models.Comment comment,
+            Models.TileSetImageFilePath tileSetImageFilePath)
         {
             this._imageSize = imageSize;
             this._gridLeftTopPoint = gridLeftTopPoint;
             this._gridTileSize = gridTileSize;
             this._tileRect = tileRect;
-            CommentAsStr = commentAsStr;
+            this._comment = comment;
+            this._tileSetImageFilePath = tileSetImageFilePath;
         }
 
         // - プライベート・フィールド
@@ -257,5 +266,10 @@
         /// コメント
         /// </summary>
         Models.Comment _comment = Models.Comment.Empty;
+
+        /// <summary>
+        /// タイル・セット画像ファイルへのパス
+        /// </summary>
+        Models.TileSetImageFilePath _tileSetImageFilePath = Models.TileSetImageFilePath.FromStringAndReplaceSeparators("C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png");
     }
 }
