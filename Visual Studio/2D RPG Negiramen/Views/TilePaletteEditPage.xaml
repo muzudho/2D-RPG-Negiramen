@@ -270,7 +270,7 @@
 
             <Entry Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5"
                    Placeholder="草原"
-                   Text=""
+                   Text="{Binding CommentAsStr}"
                    BackgroundColor="White"/>
 
         </Grid>

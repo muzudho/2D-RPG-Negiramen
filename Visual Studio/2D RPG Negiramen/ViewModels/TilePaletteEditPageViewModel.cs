@@ -179,6 +179,22 @@
             }
         }
 
+        /// <summary>
+        /// コメント
+        /// </summary>
+        public string CommentAsStr
+        {
+            get => _comment.AsStr;
+            set
+            {
+                if (_comment.AsStr != value)
+                {
+                    _comment = new Models.Comment(value);
+                    OnPropertyChanged(nameof(CommentAsStr));
+                }
+            }
+        }
+
         // - その他
 
         /// <summary>
@@ -200,16 +216,19 @@
         /// <param name="gridLeftTopPoint">グリッドの左上の座標</param>
         /// <param name="gridTileSize">グリッド・タイル・サイズ</param>
         /// <param name="tileRect">タイル矩形</param>
+        /// <param name="commentAsStr">コメント</param>
         TilePaletteEditPageViewModel(
             Models.Size imageSize,
             Models.Point gridLeftTopPoint,
             Models.Size gridTileSize,
-            Models.Rectangle tileRect)
+            Models.Rectangle tileRect,
+            string commentAsStr)
         {
             this._imageSize = imageSize;
             this._gridLeftTopPoint = gridLeftTopPoint;
             this._gridTileSize = gridTileSize;
             this._tileRect = tileRect;
+            CommentAsStr = commentAsStr;
         }
 
         // - プライベート・フィールド
@@ -233,5 +252,10 @@
         /// タイル矩形
         /// </summary>
         Models.Rectangle _tileRect = Models.Rectangle.Empty;
+
+        /// <summary>
+        /// コメント
+        /// </summary>
+        Models.Comment _comment = Models.Comment.Empty;
     }
 }
