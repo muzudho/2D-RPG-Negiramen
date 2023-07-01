@@ -208,6 +208,7 @@
         }
         #endregion
 
+        #region タイルの矩形
         /// <summary>
         ///     タイルの位置ｘ
         /// </summary>
@@ -271,7 +272,9 @@
                 }
             }
         }
+        #endregion
 
+        #region タイルのコメント
         /// <summary>
         ///     コメント
         /// </summary>
@@ -303,6 +306,7 @@
                 }
             }
         }
+        #endregion
 
         /// <summary>
         ///     ウィンドウ上のタイル・カーソル座標ｘ

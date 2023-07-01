@@ -1558,4 +1558,72 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　つら」  
 
+## GraphicsView はどうやってリフレッシュするんだぜ？
+
+![202307_maui_02-2236--graphics-view.png](https://crieit.now.sh/upload_images/ff0567a511f881be175dcc342d5d604664a02c3754d3f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　グリッドは `GraphicsView` を使ってプログラム的に描画しているが、  
+これは　どうやって再描画するんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　調べろだぜ」  
+
+📖 [Microsoft　＞　GraphicsView](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/controls/graphicsview)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`graphicsView.Invalidate();` を呼び出せばいいのか。やってみるかだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ビューモデルから　どうやって　`graphicsView`　にアクセスするんだぜ？」  
+
+📖 [Binding from view to GraphicsView property in .NET MAUI](https://stackoverflow.com/questions/74144361/binding-from-view-to-graphicsview-property-in-net-maui)  
+📖 [How to databind imageview with drawable in viewmodel?](https://stackoverflow.com/questions/57243160/how-to-databind-imageview-with-drawable-in-viewmodel)  
+📖 [.NET MAUI: Dynamic behaviour of graphic elements when using MVVM](https://stackoverflow.com/questions/74901102/net-maui-dynamic-behaviour-of-graphic-elements-when-using-mvvm)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　同じ悩みを持ってるやつらが　見つからんなあ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`Drawable` に変更通知プロパティを　仕掛けられないの？」  
+
+![202307_maui_01-2259--tile-set-grid.png](https://crieit.now.sh/upload_images/1a5a552a1d076a74d993e9d1a395fcad64a03175a0cdd.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビュー・モデルから　IDrawable 実装インスタンスの Draw をコールする方法も分からん」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ビュー・モデルから　ビューに　アクセスできないのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　調べてみるか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ビュー・モデルは　変更通知プロパティ　をビューに仕込んで連携できるだけだな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ビュー・モデルの方から　ビューのキャンバスを変更できないと　グリッド・サイズを更新できなくない？」  
+
+![202307_maui_01-2311--contentPage-resource-o2o0.png](https://crieit.now.sh/upload_images/de98d77bf4fdbe8a84ec75d36ec8bead64a03427a3e78.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　リソースに　引数を渡す方法って　ある？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　調べろだぜ」  
+
+📖 [Resource dictionaries](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/resource-dictionaries)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　リソースは　スタティックなんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　`GraphicsView`　を使って　グリッドを描画するのが　そもそも間違ってる？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そうなのでは」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　伸縮自在なラインを　固定長で１０００本ぐらい　画面に持たせた方がいいのかだぜ？」  
+
 ＜書きかけ＞
