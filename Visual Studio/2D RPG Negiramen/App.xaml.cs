@@ -1,10 +1,10 @@
-﻿/// <summary>
-///     😁 ２Ｄ ＲＰＧ ネギラーメン
-/// </summary>
-namespace _2D_RPG_Negiramen;
+﻿namespace _2D_RPG_Negiramen;
 
 using _2D_RPG_Negiramen.Models;
 
+/// <summary>
+///     😁 アプリケーション
+/// </summary>
 public partial class App : Application
 {
     // - 静的プロパティー

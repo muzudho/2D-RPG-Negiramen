@@ -1,10 +1,7 @@
-﻿/// <summary>
-///     😁 モデル
-/// </summary>
-namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     Unity の Assets フォルダーを想定したもの
+    ///     😁 Unity の Assets フォルダーを想定したもの
     /// </summary>
     internal class UnityAssetsFolder
     {

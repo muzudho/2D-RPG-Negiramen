@@ -1,12 +1,9 @@
-﻿/// <summary>
-///     😁 ビューモデル
-/// </summary>
-namespace _2D_RPG_Negiramen.ViewModels
+﻿namespace _2D_RPG_Negiramen.ViewModels
 {
     using CommunityToolkit.Mvvm.ComponentModel;
 
     /// <summary>
-    ///     ［タイル・パレット編集ページ］ビューモデル
+    ///     😁 ［タイル・パレット編集ページ］ビューモデル
     /// </summary>
     class TilePaletteEditPageViewModel : ObservableObject
     {
@@ -204,6 +201,74 @@ namespace _2D_RPG_Negiramen.ViewModels
             }
         }
 
+        /// <summary>
+        ///     ウィンドウ上のタイル・カーソル座標ｘ
+        /// </summary>
+        public int TileCursorXOnWindowAsInt
+        {
+            get => _tileCursorPointOnWindow.X.AsInt;
+            set
+            {
+                if (_tileCursorPointOnWindow.X.AsInt != value)
+                {
+                    _tileCursorPointOnWindow = new Models.Point(new Models.X(value), _tileCursorPointOnWindow.Y);
+                    OnPropertyChanged(nameof(TileCursorXOnWindowAsInt));
+
+                    this.TileCursorPointAsMargin = new Thickness(
+                        // 左
+                        this.TileCursorXOnWindowAsInt,
+                        // 上
+                        this.TileCursorYOnWindowAsInt,
+                        // 右
+                        0,
+                        // 下
+                        0);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ウィンドウ上のタイル・カーソル座標ｙ
+        /// </summary>
+        public int TileCursorYOnWindowAsInt
+        {
+            get => _tileCursorPointOnWindow.Y.AsInt;
+            set
+            {
+                if (_tileCursorPointOnWindow.Y.AsInt != value)
+                {
+                    _tileCursorPointOnWindow = new Models.Point(_tileCursorPointOnWindow.X, new Models.Y(value));
+                    OnPropertyChanged(nameof(TileCursorYOnWindowAsInt));
+
+                    this.TileCursorPointAsMargin = new Thickness(
+                        // 左
+                        this.TileCursorXOnWindowAsInt,
+                        // 上
+                        this.TileCursorYOnWindowAsInt,
+                        // 右
+                        0,
+                        // 下
+                        0);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ウィンドウ上のタイル・カーソル座標
+        /// </summary>
+        public Thickness TileCursorPointAsMargin
+        {
+            get => _tileCursorThickness;
+            set
+            {
+                if (_tileCursorThickness != value)
+                {
+                    _tileCursorThickness = value;
+                    OnPropertyChanged(nameof(TileCursorPointAsMargin));
+                }
+            }
+        }
+
         // - その他
 
         /// <summary>
@@ -274,5 +339,15 @@ namespace _2D_RPG_Negiramen.ViewModels
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
         Models.TileSetImageFilePath _tileSetImageFilePath = Models.TileSetImageFilePath.Empty;
+
+        /// <summary>
+        ///     ウィンドウ上のタイル・カーソル座標
+        /// </summary>
+        Models.Point _tileCursorPointOnWindow = Models.Point.Empty;
+
+        /// <summary>
+        ///     ウィンドウ上のタイル・カーソルのマージン
+        /// </summary>
+        Thickness _tileCursorThickness = Thickness.Zero;
     }
 }

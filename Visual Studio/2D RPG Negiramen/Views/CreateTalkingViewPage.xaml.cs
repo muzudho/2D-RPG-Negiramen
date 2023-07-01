@@ -1,8 +1,8 @@
-﻿/// <summary>
-///     😁 ビュー
-/// </summary>
-namespace _2D_RPG_Negiramen.Views;
+﻿namespace _2D_RPG_Negiramen.Views;
 
+/// <summary>
+///     😁 作成会話ビュー・ページ
+/// </summary>
 public partial class CreateTalkingViewPage : ContentPage
 {
     public CreateTalkingViewPage()

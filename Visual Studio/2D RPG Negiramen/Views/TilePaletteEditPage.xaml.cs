@@ -1,8 +1,8 @@
-﻿/// <summary>
-///     😁 ビュー
-/// </summary>
-namespace _2D_RPG_Negiramen.Views;
+﻿namespace _2D_RPG_Negiramen.Views;
 
+/// <summary>
+///     😁 タイル・パレット編集ページ
+/// </summary>
 public partial class TilePaletteEditPage : ContentPage
 {
 	public TilePaletteEditPage()

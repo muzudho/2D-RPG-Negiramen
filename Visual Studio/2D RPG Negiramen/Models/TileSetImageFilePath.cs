@@ -1,10 +1,7 @@
-﻿/// <summary>
-///     😁 モデル
-/// </summary>
-namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     タイル・セット画像ファイル・パス
+    ///     😁 タイル・セット画像ファイル・パス
     /// </summary>
     class TileSetImageFilePath : Models.FilePath
     {

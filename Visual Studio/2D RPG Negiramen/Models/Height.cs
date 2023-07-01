@@ -1,10 +1,7 @@
-﻿/// <summary>
-///     😁 モデル
-/// </summary>
-namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     縦幅
+    ///     😁 縦幅
     /// </summary>
     internal class Height
     {

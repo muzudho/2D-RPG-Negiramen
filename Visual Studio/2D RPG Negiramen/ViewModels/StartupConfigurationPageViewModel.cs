@@ -1,7 +1,4 @@
-﻿/// <summary>
-///     😁 ビューモデル
-/// </summary>
-namespace _2D_RPG_Negiramen.ViewModels
+﻿namespace _2D_RPG_Negiramen.ViewModels
 {
     using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -9,7 +6,7 @@ namespace _2D_RPG_Negiramen.ViewModels
     using System.Windows.Input;
 
     /// <summary>
-    ///     ［初期設定］ページ用のビューモデル
+    ///     😁 ［初期設定］ページ用のビューモデル
     /// </summary>
     class StartupConfigurationPageViewModel : ObservableObject
     {

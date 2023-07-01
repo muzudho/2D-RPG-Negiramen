@@ -1,10 +1,7 @@
-﻿/// <summary>
-///     😁 モデル
-/// </summary>
-namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     座標
+    ///     😁 座標
     /// </summary>
     internal class Point
     {

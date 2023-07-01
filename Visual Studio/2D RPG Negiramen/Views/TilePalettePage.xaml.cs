@@ -1,12 +1,12 @@
-﻿/// <summary>
-///     😁 ビュー
-/// </summary>
-namespace _2D_RPG_Negiramen.Views;
+﻿namespace _2D_RPG_Negiramen.Views;
 
 using _2D_RPG_Negiramen.ViewModels;
 using Microsoft.Maui.Controls;
 using System.Diagnostics;
 
+/// <summary>
+///     😁 タイル・パレット・ページ
+/// </summary>
 public partial class TilePalettePage : ContentPage
 {
     // - その他

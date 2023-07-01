@@ -1,8 +1,8 @@
-﻿/// <summary>
-///     😁 ２Ｄ ＲＰＧ ネギラーメン
-/// </summary>
-namespace _2D_RPG_Negiramen;
+﻿namespace _2D_RPG_Negiramen;
 
+/// <summary>
+///		😁 アプリケーション・シェル
+/// </summary>
 public partial class AppShell : Shell
 {
 	public AppShell()

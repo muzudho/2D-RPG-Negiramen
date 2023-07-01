@@ -1,8 +1,8 @@
-﻿/// <summary>
-///     😁 ビュー
-/// </summary>
-namespace _2D_RPG_Negiramen.Views;
+﻿namespace _2D_RPG_Negiramen.Views;
 
+/// <summary>
+///     😁 編集モンスター・グループ・ページ
+/// </summary>
 public partial class EditMonsterGroupPage : ContentPage
 {
     public EditMonsterGroupPage()

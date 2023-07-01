@@ -1,12 +1,9 @@
-﻿/// <summary>
-///     😁 描画
-/// </summary>
-namespace _2D_RPG_Negiramen.Models.Drawing
+﻿namespace _2D_RPG_Negiramen.Models.Drawing
 {
     using Microsoft.Maui.Graphics;
 
     /// <summary>
-    /// タイル・セット用のグリッド
+    ///     😁 タイル・セット用のグリッド
     /// </summary>
     internal class TileSetGrid : IDrawable
     {

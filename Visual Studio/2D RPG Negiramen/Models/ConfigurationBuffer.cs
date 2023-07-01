@@ -1,10 +1,7 @@
-﻿/// <summary>
-///     😁 モデル
-/// </summary>
-namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     構成ファイルの差分
+    ///     😁 構成ファイルの差分
     /// </summary>
     internal class ConfigurationBuffer
     {

@@ -1,8 +1,8 @@
-﻿/// <summary>
-///     😁 ビュー
-/// </summary>
-namespace _2D_RPG_Negiramen.Views;
+﻿namespace _2D_RPG_Negiramen.Views;
 
+/// <summary>
+///     😁 編集・プレイヤー・キャラクター・ページ
+/// </summary>
 public partial class EditPlayerCharacterPage : ContentPage
 {
     public EditPlayerCharacterPage()

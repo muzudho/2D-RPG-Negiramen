@@ -1,13 +1,10 @@
-﻿/// <summary>
-///     😁 モデル
-/// </summary>
-namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models
 {
     using System.IO;
 
     /// <summary>
     ///     <pre>
-    ///         ネギラーメンのワークスペース・フォルダーの内容を確認します
+    ///         😁 ネギラーメンのワークスペース・フォルダーの内容を確認します
     ///         
     ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
     ///         👉　└─ 📂 Workspace

@@ -1,11 +1,11 @@
-﻿/// <summary>
-///     😁 ２Ｄ ＲＰＧ ネギラーメン
-/// </summary>
-namespace _2D_RPG_Negiramen;
+﻿namespace _2D_RPG_Negiramen;
 
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 
+/// <summary>
+///		😁 マウイ・プログラム
+/// </summary>
 public static class MauiProgram
 {
 	public static MauiApp CreateMauiApp()

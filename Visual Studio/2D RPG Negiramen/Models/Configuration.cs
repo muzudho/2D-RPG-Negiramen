@@ -1,13 +1,10 @@
-﻿/// <summary>
-///     😁 モデル
-/// </summary>
-namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models
 {
     using Tomlyn;
     using Tomlyn.Model;
 
     /// <summary>
-    ///     構成
+    ///     😁 構成
     /// </summary>
     internal class Configuration
     {

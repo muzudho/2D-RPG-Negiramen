@@ -1,12 +1,9 @@
-﻿/// <summary>
-///     😁 ビューモデル
-/// </summary>
-namespace _2D_RPG_Negiramen.ViewModels
+﻿namespace _2D_RPG_Negiramen.ViewModels
 {
     using CommunityToolkit.Mvvm.ComponentModel;
 
     /// <summary>
-    ///     ［タイル・パレット・ページ］ビューモデル
+    ///     😁 ［タイル・パレット・ページ］ビューモデル
     /// </summary>
     internal class TilePalettePageViewModel : ObservableObject
     {

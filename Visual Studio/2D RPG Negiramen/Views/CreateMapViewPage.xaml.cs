@@ -1,8 +1,8 @@
-﻿/// <summary>
-///     😁 ビュー
-/// </summary>
-namespace _2D_RPG_Negiramen.Views;
+﻿namespace _2D_RPG_Negiramen.Views;
 
+/// <summary>
+///     😁 作成マップ・ビュー・ページ
+/// </summary>
 public partial class CreateMapViewPage : ContentPage
 {
     public CreateMapViewPage()
