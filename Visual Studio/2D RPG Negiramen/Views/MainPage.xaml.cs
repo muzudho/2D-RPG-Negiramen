@@ -395,6 +395,7 @@ public partial class MainPage : ContentPage
                         [key: "TileSetImageFilePath"] = tileSetImageFilePath,
                         [key: "ImageSize"] = PNGHelper.GetImageSize(tileSetImageFilePath),
                         [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
+                        [key: "GridTileSize"] = new Models.Size(new Models.Width(32), new Models.Height(32)),
                     });
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             },

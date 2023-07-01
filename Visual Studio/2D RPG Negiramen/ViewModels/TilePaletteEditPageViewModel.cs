@@ -8,6 +8,7 @@
     [QueryProperty(nameof(TileSetImageFilePathAsStr), queryId: "TileSetImageFilePathAsStr")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
+    [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
     class TilePaletteEditPageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
@@ -142,6 +143,38 @@
         }
         #endregion
 
+        #region グリッド・タイルのサイズ
+        /// <summary>
+        ///     グリッド・タイルのサイズ
+        /// </summary>
+        public Models.Size GridTileSize
+        {
+            get => _gridTileSize;
+            set
+            {
+                if (_gridTileSize != value)
+                {
+                    // 差分判定
+                    var dirtyWidth = _gridTileSize.Width != value.Width;
+                    var dirtyHeight = _gridTileSize.Height != value.Height;
+
+                    // 更新
+                    _gridTileSize = value;
+
+                    // 変更通知
+                    if (dirtyWidth)
+                    {
+                        OnPropertyChanged(nameof(GridTileWidthAsInt));
+                    }
+
+                    if (dirtyHeight)
+                    {
+                        OnPropertyChanged(nameof(GridTileHeightAsInt));
+                    }
+                }
+            }
+        }
+
         /// <summary>
         ///     グリッド・タイルの横幅
         /// </summary>
@@ -173,6 +206,7 @@
                 }
             }
         }
+        #endregion
 
         /// <summary>
         ///     タイルの位置ｘ
