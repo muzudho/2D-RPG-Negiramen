@@ -1664,4 +1664,43 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　タグだって　変えられたくないわよ」  
 
+### トリック・コード
+
+![202307_maui_02-0122--trick-code.png](https://crieit.now.sh/upload_images/09a9ac151ad8ea8652426725ba7751e564a05319abfc5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　今回のプログラミングで最初のトリック・コードだぜ。  
+画像の横幅が偶数のときは　横幅を１伸ばし、  
+画像の横幅が奇数のときは　横幅を１縮めて　無限に振動させるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　わらう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　グリッドのサイズを変えるたびに  
+グリッドの右端が　１ｐｘ飛び出たり　元に戻ったりするんだけど」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　トリックがバレないように修正する」  
+
+![202307_maui_02-0147--cancel-code-o2o0.png](https://crieit.now.sh/upload_images/3b15e21819f7be994b31f6094fab8cbc64a058dca8572.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　トリック・コードのせいで　割り食って　おかしくなっている箇所は  
+キャンセル・コードを書いて　おかしなものを　隠すぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　不毛な戦い　わらう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　トリック・コードなんか書くからよ」  
+
+![202307_maui_02-0150--grid-size.png](https://crieit.now.sh/upload_images/9555293afe0eaadb60fb84523555968064a05986a02d7.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　グリッド・サイズを変えれるようになった。今日はここまでだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ＭＶＶＭの実装　時間かかるんだな、作る画面は　最低限の数で済むように　全体を考えないとな」  
+
 ＜書きかけ＞
