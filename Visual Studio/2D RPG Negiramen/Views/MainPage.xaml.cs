@@ -396,7 +396,7 @@ public partial class MainPage : ContentPage
                     parameters: new Dictionary<string, object>
                     {
                         [key: "_tileSetImageFilePath"] = tileSetImageFilePath,
-                        [key: "_imageSize"] = imageSize,
+                        [key: "ImageSize"] = imageSize,
                         // [key: "ImageWidthAsInt"] = imageSize.Width.AsInt,
                         // [key: "ImageHeightAsInt"] = imageSize.Height.AsInt,
                     });

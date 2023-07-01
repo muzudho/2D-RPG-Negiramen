@@ -5,9 +5,28 @@
     /// <summary>
     ///     😁 ［タイル・パレット編集ページ］ビューモデル
     /// </summary>
+    [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
     class TilePaletteEditPageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
+
+        /// <summary>
+        ///     画像のサイズ
+        /// </summary>
+        public Models.Size ImageSize
+        {
+            get => _imageSize;
+            set
+            {
+                if (_imageSize != value)
+                {
+                    _imageSize = value;
+                    OnPropertyChanged(nameof(ImageSize));
+                    OnPropertyChanged(nameof(ImageWidthAsInt));
+                    OnPropertyChanged(nameof(ImageHeightAsInt));
+                }
+            }
+        }
 
         /// <summary>
         ///     画像の横幅
