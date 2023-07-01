@@ -186,25 +186,6 @@
         {
         }
 
-        /// <summary>
-        ///     生成。初期値を指定したいときに
-        /// </summary>
-        /// <param name="pointingPointOnImage">画像上のポインティング座標</param>
-        /// <param name="tappedPointOnImage">画像上のタップ座標</param>
-        /// <param name="pointingPointOnWindow">ウィンドウ上のポインティング座標</param>
-        /// <param name="tileCursorPointOnWindow">ウィンドウ上のタイル・カーソル座標</param>
-        internal TilePalettePageViewModel(
-            Models.Point pointingPointOnImage,
-            Models.Point tappedPointOnImage,
-            Models.Point pointingPointOnWindow,
-            Models.Point tileCursorPointOnWindow)
-        {
-            this._pointingPointOnImage = pointingPointOnImage;
-            this._tappedPointOnImage = tappedPointOnImage;
-            this._pointingPointOnWindow = pointingPointOnWindow;
-            this._tileCursorPointOnWindow = tileCursorPointOnWindow;
-        }
-
         // - プライベート・フィールド
 
         /// <summary>

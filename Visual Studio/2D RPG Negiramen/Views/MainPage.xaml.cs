@@ -385,18 +385,16 @@ public partial class MainPage : ContentPage
         await ReadyGoToNext(
             onOk: async () =>
             {
-                // タイル・セット画像ファイル・パス
-                var tileSetImageFilePath = Models.TileSetImageFilePath.FromStringAndReplaceSeparators(
-                            "C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png");
-
-                var imageSize = PNGHelper.GetImageSize(tileSetImageFilePath);
+                // TODO タイル・セット画像ファイル・パス
+                var tileSetImageFilePath = Models.TileSetImageFilePath.FromStringAndReplaceSeparators("C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png");
 
                 await Shell.Current.GoToAsync(
                     state: shellNavigationState,
                     parameters: new Dictionary<string, object>
                     {
                         [key: "TileSetImageFilePath"] = tileSetImageFilePath,
-                        [key: "ImageSize"] = imageSize,
+                        [key: "ImageSize"] = PNGHelper.GetImageSize(tileSetImageFilePath),
+                        [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
                     });
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             },

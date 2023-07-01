@@ -7,10 +7,12 @@
     /// </summary>
     [QueryProperty(nameof(TileSetImageFilePathAsStr), queryId: "TileSetImageFilePathAsStr")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
+    [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     class TilePaletteEditPageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
 
+        #region 変更通知プロパティ（画像サイズ）
         /// <summary>
         ///     画像のサイズ
         /// </summary>
@@ -73,18 +75,51 @@
                 }
             }
         }
+        #endregion
+
+        #region 変更通知プロパティ（グリッドの左上位置）
+        /// <summary>
+        ///     グリッドの左上位置
+        /// </summary>
+        public Models.Point GridLeftTop
+        {
+            get => _gridLeftTop;
+            set
+            {
+                if (_gridLeftTop != value)
+                {
+                    // 差分判定
+                    var dirtyX = _gridLeftTop.X != value.X;
+                    var dirtyY = _gridLeftTop.Y != value.Y;
+
+                    // 更新
+                    _gridLeftTop = value;
+
+                    // 変更通知
+                    if (dirtyX)
+                    {
+                        OnPropertyChanged(nameof(GridLeftAsInt));
+                    }
+
+                    if (dirtyY)
+                    {
+                        OnPropertyChanged(nameof(GridTopAsInt));
+                    }
+                }
+            }
+        }
 
         /// <summary>
         ///     グリッドの左上位置ｘ
         /// </summary>
         public int GridLeftAsInt
         {
-            get => _gridLeftTopPoint.X.AsInt;
+            get => _gridLeftTop.X.AsInt;
             set
             {
-                if (_gridLeftTopPoint.X.AsInt != value)
+                if (_gridLeftTop.X.AsInt != value)
                 {
-                    _gridLeftTopPoint = new Models.Point(new Models.X(value), _gridLeftTopPoint.Y);
+                    _gridLeftTop = new Models.Point(new Models.X(value), _gridLeftTop.Y);
                     OnPropertyChanged(nameof(GridLeftAsInt));
                 }
             }
@@ -95,16 +130,17 @@
         /// </summary>
         public int GridTopAsInt
         {
-            get => _gridLeftTopPoint.Y.AsInt;
+            get => _gridLeftTop.Y.AsInt;
             set
             {
-                if (_gridLeftTopPoint.Y.AsInt != value)
+                if (_gridLeftTop.Y.AsInt != value)
                 {
-                    _gridLeftTopPoint = new Models.Point(_gridLeftTopPoint.X, new Models.Y(value));
+                    _gridLeftTop = new Models.Point(_gridLeftTop.X, new Models.Y(value));
                     OnPropertyChanged(nameof(GridLeftAsInt));
                 }
             }
         }
+        #endregion
 
         /// <summary>
         ///     グリッド・タイルの横幅
@@ -315,33 +351,6 @@
         {
         }
 
-        /*
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="imageSize">画像サイズ</param>
-        /// <param name="gridLeftTopPoint">グリッドの左上の座標</param>
-        /// <param name="gridTileSize">グリッド・タイル・サイズ</param>
-        /// <param name="tileRect">タイル矩形</param>
-        /// <param name="comment">コメント</param>
-        /// <param name="tileSetImageFilePath">タイル・セット画像ファイル・パス</param>
-        TilePaletteEditPageViewModel(
-            Models.Size imageSize,
-            Models.Point gridLeftTopPoint,
-            Models.Size gridTileSize,
-            Models.Rectangle tileRect,
-            Models.Comment comment,
-            Models.TileSetImageFilePath tileSetImageFilePath)
-        {
-            this._imageSize = imageSize;
-            this._gridLeftTopPoint = gridLeftTopPoint;
-            this._gridTileSize = gridTileSize;
-            this._tileRect = tileRect;
-            this._comment = comment;
-            this._tileSetImageFilePath = tileSetImageFilePath;
-        }
-        */
-
         // - プライベート・フィールド
 
         /// <summary>
@@ -352,7 +361,7 @@
         /// <summary>
         ///     グリッドの左上位置
         /// </summary>
-        Models.Point _gridLeftTopPoint = Models.Point.Empty;
+        Models.Point _gridLeftTop = Models.Point.Empty;
 
         /// <summary>
         ///     グリッド・タイル・サイズ

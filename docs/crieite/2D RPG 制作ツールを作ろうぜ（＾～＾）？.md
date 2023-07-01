@@ -1542,4 +1542,20 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　要らん画面　作ったら　１日は無駄になるな」  
 
+![202307_maui_02-2215--on-property-changed-o2o0.png](https://crieit.now.sh/upload_images/6cac9c0c25043305e80a34e944d74d7b64a027488b915.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　変更通知プロパティの手順の順序を　間違えると　画面に出てこないから　正確にやるぜ」  
+
+![202307_maui_02-2155--query-parameter-o2o0.png](https://crieit.now.sh/upload_images/40127b25dc104c22fe17b261fe47f59264a027778bc0a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　画像サイズに　動きを付けたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　全部に動きを付けてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　つら」  
+
 ＜書きかけ＞
