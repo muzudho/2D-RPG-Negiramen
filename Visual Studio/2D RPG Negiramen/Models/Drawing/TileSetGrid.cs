@@ -18,6 +18,12 @@
             // 線の色
             canvas.StrokeColor = new Color(255, 0, 0, 127);
 
+            // グリッドの線の太さの半分
+            var gridLineHalfThin = 1;
+            // グリッドの線の太さ
+            var gridLineThin = 2 * gridLineHalfThin;
+            canvas.StrokeSize = gridLineThin;
+
             // マージン
             var marginLeft = 0;
             var marginTop = 0;
@@ -27,27 +33,21 @@
             var tileHeight = 32;
 
             // 画像サイズ
-            var imageWidth = 64;
-            var imageHeight = 64;
-
-            // 線の太さの半分
-            var halfThin = 1;
-            // 線の太さ
-            var thin = 2 * halfThin;
-            canvas.StrokeSize = thin;
+            var imageWidth = (int)dirtyRect.Width;
+            var imageHeight = (int)dirtyRect.Height;
 
             // 縦線を引いていこう
-            int y1 = marginTop + halfThin;
-            int y2 = imageHeight + marginTop + halfThin;
-            for (var x = halfThin; x < imageWidth+thin; x += tileWidth)
+            int y1 = marginTop + gridLineHalfThin;
+            int y2 = imageHeight + marginTop + gridLineHalfThin;
+            for (var x = gridLineHalfThin; x < imageWidth+gridLineThin; x += tileWidth)
             {
                 canvas.DrawLine(x, y1, x, y2);
             }
 
             // 横線を引いていこう
-            int x1 = marginLeft + halfThin;
-            int x2 = imageHeight + marginLeft + halfThin;
-            for (var y = halfThin; y < imageHeight + thin; y += tileHeight)
+            int x1 = marginLeft + gridLineHalfThin;
+            int x2 = imageHeight + marginLeft + gridLineHalfThin;
+            for (var y = gridLineHalfThin; y < imageHeight + gridLineThin; y += tileHeight)
             {
                 canvas.DrawLine(x1, y, x2, y);
             }

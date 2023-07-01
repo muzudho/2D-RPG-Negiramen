@@ -1626,4 +1626,27 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　伸縮自在なラインを　固定長で１０００本ぐらい　画面に持たせた方がいいのかだぜ？」  
 
+![202307_maui_01-2324--graphics-view-o2o0.png](https://crieit.now.sh/upload_images/a277514de963191868e489239c9deed164a0374fdd40e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`GraphicsView` の横幅、縦幅は　バインディングできるから、  
+ビューモデルから　縦幅、横幅の変更通知を送ったら　`IDrawing` 実装インスタンスの `Draw` メソッドを呼び出してくれないかな？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　試せだぜ」  
+
+![202307_maui_01-2347--dirtyRect-o2o0.png](https://crieit.now.sh/upload_images/4897274cc16bc53bee7e43a2ce3f52f264a03cb0094b1.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんらかのタイミングで　`Draw` メソッドの `dirtyRect` 引数に矩形が入っているから、  
+あとは　ビュー・モデルから　任意のタイミングで `Draw` をコールできれば　うまくいきそうだが」  
+
+![202307_maui_01-2356--onPageOpen.png](https://crieit.now.sh/upload_images/1e08f5771ddacd6582669038b7c5d50d64a03eaceb4c3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　画面を出した初回は　画像サイズが分かってるんで　グリッドも合わせられるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　グリッド・サイズは途中からも　変えたいのよ」  
+
 ＜書きかけ＞

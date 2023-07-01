@@ -388,12 +388,20 @@ public partial class MainPage : ContentPage
                 // TODO タイル・セット画像ファイル・パス
                 var tileSetImageFilePath = Models.TileSetImageFilePath.FromStringAndReplaceSeparators("C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png");
 
+                // タイル・セット画像の縦横幅
+                var tileSetSize = PNGHelper.GetImageSize(tileSetImageFilePath);
+
+                // グリッドの線の幅
+                var gridLineThin = 2;
+
                 await Shell.Current.GoToAsync(
                     state: shellNavigationState,
                     parameters: new Dictionary<string, object>
                     {
                         [key: "TileSetImageFilePath"] = tileSetImageFilePath,
-                        [key: "ImageSize"] = PNGHelper.GetImageSize(tileSetImageFilePath),
+                        [key: "ImageSize"] = tileSetSize,
+                        // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、内部的グリッド画像のサイズを 2px 広げる
+                        [key: "InternalGridImageSize"] = new Models.Size(new Models.Width(tileSetSize.Width.AsInt + gridLineThin), new Models.Height(tileSetSize.Height.AsInt + gridLineThin)),
                         [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
                         [key: "GridTileSize"] = new Models.Size(new Models.Width(32), new Models.Height(32)),
                     });

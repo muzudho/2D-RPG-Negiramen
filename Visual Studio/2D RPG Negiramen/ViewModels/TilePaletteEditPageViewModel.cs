@@ -7,6 +7,7 @@
     /// </summary>
     [QueryProperty(nameof(TileSetImageFilePathAsStr), queryId: "TileSetImageFilePathAsStr")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
+    [QueryProperty(nameof(InternalGridImageSize), queryId: "InternalGridImageSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
     class TilePaletteEditPageViewModel : ObservableObject
@@ -78,6 +79,83 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（内部的グリッド画像のサイズ）
+        /// <summary>
+        ///     <pre>
+        ///         内部的グリッド画像のサイズ
+        ///         
+        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、内部的グリッド画像のサイズを 2px 広げる
+        ///     </pre>
+        /// </summary>
+        public Models.Size InternalGridImageSize
+        {
+            get => _internalGridImageSize;
+            set
+            {
+                if (_internalGridImageSize != value)
+                {
+                    // 差分判定
+                    var dirtyWidth = _internalGridImageSize.Width != value.Width;
+                    var dirtyHeight = _internalGridImageSize.Height != value.Height;
+
+                    // 更新
+                    _internalGridImageSize = value;
+
+                    // 変更通知
+                    if (dirtyWidth)
+                    {
+                        OnPropertyChanged(nameof(InternalGridImageWidthAsInt));
+                    }
+
+                    if (dirtyHeight)
+                    {
+                        OnPropertyChanged(nameof(InternalGridImageHeightAsInt));
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        ///     <pre>
+        ///         画像の横幅
+        ///         
+        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、内部的グリッド画像のサイズを 2px 広げる
+        ///     </pre>
+        /// </summary>
+        public int InternalGridImageWidthAsInt
+        {
+            get => _internalGridImageSize.Width.AsInt;
+            set
+            {
+                if (_internalGridImageSize.Width.AsInt != value)
+                {
+                    _internalGridImageSize = new Models.Size(new Models.Width(value), _internalGridImageSize.Height);
+                    OnPropertyChanged(nameof(InternalGridImageWidthAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     <pre>
+        ///         画像の縦幅
+        ///         
+        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、内部的グリッド画像のサイズを 2px 広げる
+        ///     </pre>
+        /// </summary>
+        public int InternalGridImageHeightAsInt
+        {
+            get => _internalGridImageSize.Height.AsInt;
+            set
+            {
+                if (_internalGridImageSize.Height.AsInt != value)
+                {
+                    _internalGridImageSize = new Models.Size(_internalGridImageSize.Width, new Models.Height(value));
+                    OnPropertyChanged(nameof(InternalGridImageHeightAsInt));
+                }
+            }
+        }
+        #endregion
+
         #region 変更通知プロパティ（グリッドの左上位置）
         /// <summary>
         ///     グリッドの左上位置
@@ -143,7 +221,7 @@
         }
         #endregion
 
-        #region グリッド・タイルのサイズ
+        #region 変更通知プロパティ（グリッド・タイルのサイズ）
         /// <summary>
         ///     グリッド・タイルのサイズ
         /// </summary>
@@ -395,6 +473,11 @@
         ///     画像サイズ
         /// </summary>
         Models.Size _imageSize = Models.Size.Empty;
+
+        /// <summary>
+        ///     内部的グリッド画像サイズ
+        /// </summary>
+        Models.Size _internalGridImageSize = Models.Size.Empty;
 
         /// <summary>
         ///     グリッドの左上位置
