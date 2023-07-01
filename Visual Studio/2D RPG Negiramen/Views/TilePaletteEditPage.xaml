@@ -244,25 +244,25 @@
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="0"
+                   Text="{Binding TileLeftAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="0"
+                   Text="{Binding TileTopAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="32"
+                   Text="{Binding TileWidthAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="32"
+                   Text="{Binding TileHeightAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5"

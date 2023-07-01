@@ -105,6 +105,80 @@
             }
         }
 
+
+
+
+
+
+
+
+
+
+
+        /// <summary>
+        /// タイルの位置ｘ
+        /// </summary>
+        public int TileLeftAsInt
+        {
+            get => _tileRect.Point.X.AsInt;
+            set
+            {
+                if (_tileRect.Point.X.AsInt != value)
+                {
+                    _tileRect = new Models.Rectangle(new Models.Point(new Models.X(value), _tileRect.Point.Y), _tileRect.Size);
+                    OnPropertyChanged(nameof(TileLeftAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        /// タイルの位置ｙ
+        /// </summary>
+        public int TileTopAsInt
+        {
+            get => _tileRect.Point.Y.AsInt;
+            set
+            {
+                if (_tileRect.Point.Y.AsInt != value)
+                {
+                    _tileRect = new Models.Rectangle(new Models.Point(_tileRect.Point.X, new Models.Y(value)), _tileRect.Size);
+                    OnPropertyChanged(nameof(TileTopAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        /// タイルの横幅
+        /// </summary>
+        public int TileWidthAsInt
+        {
+            get => _tileRect.Size.Width.AsInt;
+            set
+            {
+                if (_tileRect.Size.Width.AsInt != value)
+                {
+                    _tileRect = new Models.Rectangle(_tileRect.Point, new Models.Size(new Models.Width(value), _tileRect.Size.Height));
+                    OnPropertyChanged(nameof(TileWidthAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        /// タイルの縦幅
+        /// </summary>
+        public int TileHeightAsInt
+        {
+            get => _tileRect.Size.Height.AsInt;
+            set
+            {
+                if (_tileRect.Size.Height.AsInt != value)
+                {
+                    _tileRect = new Models.Rectangle(_tileRect.Point, new Models.Size(_tileRect.Size.Width, new Models.Height(value)));
+                    OnPropertyChanged(nameof(TileHeightAsInt));
+                }
+            }
+        }
+
         // - その他
 
         /// <summary>
@@ -125,14 +199,17 @@
         /// <param name="imageSize">画像サイズ</param>
         /// <param name="gridLeftTopPoint">グリッドの左上の座標</param>
         /// <param name="gridTileSize">グリッド・タイル・サイズ</param>
+        /// <param name="tileRect">タイル矩形</param>
         TilePaletteEditPageViewModel(
             Models.Size imageSize,
             Models.Point gridLeftTopPoint,
-            Models.Size gridTileSize)
+            Models.Size gridTileSize,
+            Models.Rectangle tileRect)
         {
             this._imageSize = imageSize;
             this._gridLeftTopPoint = gridLeftTopPoint;
             this._gridTileSize = gridTileSize;
+            this._tileRect = tileRect;
         }
 
         // - プライベート・フィールド
@@ -151,5 +228,10 @@
         /// グリッド・タイル・サイズ
         /// </summary>
         Models.Size _gridTileSize = Models.Size.Empty;
+
+        /// <summary>
+        /// タイル矩形
+        /// </summary>
+        Models.Rectangle _tileRect = Models.Rectangle.Empty;
     }
 }
