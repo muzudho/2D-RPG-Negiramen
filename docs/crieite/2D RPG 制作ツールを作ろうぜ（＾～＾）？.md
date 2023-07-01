@@ -1512,4 +1512,20 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　フィールド名を使って、オブジェクトを渡せるみたいだな」  
 
+## PNG 形式画像ファイルのサイズを取得してくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　PNG 形式画像ファイルのサイズを取得してくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれっ？　やり方が分からん……  
+👇　調べるか……」  
+
+📖 [[C#]PNGの幅，高さのみをファイルから高速に取得する方法について](https://dixq.net/forum/viewtopic.php?t=17600)  
+📖 [【C#】PNG画像サイズの取得方法](https://zenn.dev/alfina2538/articles/998e406272f0fd)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　渡せるものと、渡せないものとがある。  
+調べるか……」  
+
 ＜書きかけ＞

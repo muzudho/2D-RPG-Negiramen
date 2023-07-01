@@ -280,9 +280,9 @@
         /// </summary>
         public TilePaletteEditPageViewModel()
         {
-
         }
 
+        /*
         /// <summary>
         ///     生成
         /// </summary>
@@ -307,6 +307,7 @@
             this._comment = comment;
             this._tileSetImageFilePath = tileSetImageFilePath;
         }
+        */
 
         // - プライベート・フィールド
 

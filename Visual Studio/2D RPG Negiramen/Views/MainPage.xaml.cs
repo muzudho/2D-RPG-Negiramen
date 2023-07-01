@@ -396,9 +396,9 @@ public partial class MainPage : ContentPage
                     parameters: new Dictionary<string, object>
                     {
                         [key: "_tileSetImageFilePath"] = tileSetImageFilePath,
-                        // [key: "_imageSize"] = imageSize,
-                        [key: "ImageWidthAsInt"] = imageSize.Width.AsInt,
-                        [key: "ImageHeightAsInt"] = imageSize.Height.AsInt,
+                        [key: "_imageSize"] = imageSize,
+                        // [key: "ImageWidthAsInt"] = imageSize.Width.AsInt,
+                        // [key: "ImageHeightAsInt"] = imageSize.Height.AsInt,
                     });
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             },
