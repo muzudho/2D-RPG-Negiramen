@@ -392,7 +392,7 @@ public partial class MainPage : ContentPage
                 var tileSetSize = PNGHelper.GetImageSize(tileSetImageFilePath);
 
                 // グリッドの線の幅
-                var gridLineThin = 2;
+                ThicknessOfLine gridLineThickness = new ThicknessOfLine(2 * App.HalfThicknessOfGridLine.AsInt);
 
                 await Shell.Current.GoToAsync(
                     state: shellNavigationState,
@@ -401,7 +401,7 @@ public partial class MainPage : ContentPage
                         [key: "TileSetImageFilePath"] = tileSetImageFilePath,
                         [key: "ImageSize"] = tileSetSize,
                         // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、内部的グリッド画像のサイズを 2px 広げる
-                        [key: "InternalGridImageSize"] = new Models.Size(new Models.Width(tileSetSize.Width.AsInt + gridLineThin), new Models.Height(tileSetSize.Height.AsInt + gridLineThin)),
+                        [key: "InternalGridImageSize"] = new Models.Size(new Models.Width(tileSetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tileSetSize.Height.AsInt + gridLineThickness.AsInt)),
                         [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
                         [key: "GridTileSize"] = new Models.Size(new Models.Width(32), new Models.Height(32)),
                     });

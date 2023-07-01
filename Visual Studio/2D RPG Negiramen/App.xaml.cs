@@ -14,6 +14,16 @@ public partial class App : Application
     /// </summary>
     static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
 
+    /// <summary>
+    /// グリッド線の半分の太さ
+    /// </summary>
+    static internal ThicknessOfLine HalfThicknessOfGridLine { get; } = new Models.ThicknessOfLine(1);
+
+    /// <summary>
+    /// タイル・カーソルの線の半分の太さ
+    /// </summary>
+    static internal ThicknessOfLine HalfThicknessOfTileCursorLine => new Models.ThicknessOfLine(2 * HalfThicknessOfGridLine.AsInt);
+
     // - 静的メソッド
 
     /// <summary>
@@ -47,11 +57,11 @@ public partial class App : Application
     /// 生成
     /// </summary>
     public App()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
 
-		MainPage = new AppShell();
-	}
+        MainPage = new AppShell();
+    }
 
     // - プライベート静的プロパティー
 
