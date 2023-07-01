@@ -1,4 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
+
+using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Maui.Views;
 
 public partial class MainPage : ContentPage
@@ -380,7 +382,13 @@ public partial class MainPage : ContentPage
         await ReadyGoToNext(
             onOk: async () =>
             {
-                await Shell.Current.GoToAsync(shellNavigationState);
+                await Shell.Current.GoToAsync(
+                    state: shellNavigationState,
+                    parameters: new Dictionary<string, object>
+                    {
+                        [key: "_tileSetImageFilePath"] = Models.TileSetImageFilePath.FromStringAndReplaceSeparators(
+                            "C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png"),
+                    });
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             },
             onNotYetConfiguration: async () =>

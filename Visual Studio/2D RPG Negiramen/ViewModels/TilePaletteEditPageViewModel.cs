@@ -270,6 +270,6 @@
         /// <summary>
         /// タイル・セット画像ファイルへのパス
         /// </summary>
-        Models.TileSetImageFilePath _tileSetImageFilePath = Models.TileSetImageFilePath.FromStringAndReplaceSeparators("C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png");
+        Models.TileSetImageFilePath _tileSetImageFilePath = Models.TileSetImageFilePath.Empty;
     }
 }

@@ -1480,4 +1480,36 @@ adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　明日は　このハリボテに　動きを付けていこうぜ？」  
 
+# 📅 2023-07-01 ページに引数を渡すにはどうやるんだぜ？
+
+```plaintext
+http://www.example.com/index.html?name=banana
+                                 ^^^^^^^^^^^^
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Ｗｅｂ系なら　ＵＲＬの後ろに　クエリー文字列を付けることができるが、  
+MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　調べろだぜ」  
+
+📖 [MAUI：画面遷移時のデータの受け渡し](https://shuhelohelo.hatenablog.com/entry/2022/08/12/234214)  
+
+![202307_maui_01-1936--parameters-o2o0.png](https://crieit.now.sh/upload_images/ad3fa1c294a5bbf99de87c28431d07c564a0020162999.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`parameters` で　オブジェクトを渡せそうだな。  
+渡した先での　受け取り方も　調べるかだぜ」  
+
+![202307_maui_01-2017--property-o2o0.png](https://crieit.now.sh/upload_images/76d3e3528b9fb1b4b470c17fc8d1a26564a00ba72a357.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビューモデルに　フィールドがあるとして……」  
+
+![202307_maui_01-2020--parameters-o2o0.png](https://crieit.now.sh/upload_images/e4fcb6088c13e5c71a1a6d4fe2da8cd964a00c5bdd42a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　フィールド名を使って、オブジェクトを渡せるみたいだな」  
+
 ＜書きかけ＞
