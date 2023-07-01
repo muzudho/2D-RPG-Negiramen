@@ -10,19 +10,24 @@ public partial class App : Application
     // - 静的プロパティー
 
     /// <summary>
-    /// 画面遷移先の一時記憶
+    ///     画面遷移先の一時記憶
     /// </summary>
     static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
 
     /// <summary>
-    /// グリッド線の半分の太さ
+    ///     グリッド線の半分の太さ
     /// </summary>
     static internal ThicknessOfLine HalfThicknessOfGridLine { get; } = new Models.ThicknessOfLine(1);
 
     /// <summary>
-    /// タイル・カーソルの線の半分の太さ
+    ///     タイル・カーソルの線の半分の太さ
     /// </summary>
     static internal ThicknessOfLine HalfThicknessOfTileCursorLine => new Models.ThicknessOfLine(2 * HalfThicknessOfGridLine.AsInt);
+
+    /// <summary>
+    ///     現在作業中の画面の中でのグリッド・タイル・サイズ
+    /// </summary>
+    static internal Size WorkingGridTileSize { get; set; } = new Models.Size(new Models.Width(32), new Models.Height(32));
 
     // - 静的メソッド
 

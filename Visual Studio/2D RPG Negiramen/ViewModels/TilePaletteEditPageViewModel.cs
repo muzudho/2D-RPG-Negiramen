@@ -227,17 +227,17 @@
         /// </summary>
         public Models.Size GridTileSize
         {
-            get => _gridTileSize;
+            get => App.WorkingGridTileSize;
             set
             {
-                if (_gridTileSize != value)
+                if (App.WorkingGridTileSize != value)
                 {
                     // 差分判定
-                    var dirtyWidth = _gridTileSize.Width != value.Width;
-                    var dirtyHeight = _gridTileSize.Height != value.Height;
+                    var dirtyWidth = App.WorkingGridTileSize.Width != value.Width;
+                    var dirtyHeight = App.WorkingGridTileSize.Height != value.Height;
 
                     // 更新
-                    _gridTileSize = value;
+                    App.WorkingGridTileSize = value;
 
                     // 変更通知
                     if (dirtyWidth)
@@ -258,13 +258,20 @@
         /// </summary>
         public int GridTileWidthAsInt
         {
-            get => _gridTileSize.Width.AsInt;
+            get => App.WorkingGridTileSize.Width.AsInt;
             set
             {
-                if (_gridTileSize.Width.AsInt != value)
+                if (App.WorkingGridTileSize.Width.AsInt != value)
                 {
-                    _gridTileSize = new Models.Size(new Models.Width(value), _gridTileSize.Height);
+                    App.WorkingGridTileSize = new Models.Size(new Models.Width(value), App.WorkingGridTileSize.Height);
                     OnPropertyChanged(nameof(GridTileWidthAsInt));
+
+                    // HACK: 内部的なグリッド画像の横幅が変わったわけではないが、再描画させたいので変更通知を送る
+                    {
+                        var current = this.InternalGridImageWidthAsInt;
+                        this.InternalGridImageWidthAsInt = current + 1;
+                        // this.InternalGridImageWidthAsInt = current;
+                    }
                 }
             }
         }
@@ -274,13 +281,20 @@
         /// </summary>
         public int GridTileHeightAsInt
         {
-            get => _gridTileSize.Height.AsInt;
+            get => App.WorkingGridTileSize.Height.AsInt;
             set
             {
-                if (_gridTileSize.Height.AsInt != value)
+                if (App.WorkingGridTileSize.Height.AsInt != value)
                 {
-                    _gridTileSize = new Models.Size(_gridTileSize.Width, new Models.Height(value));
+                    App.WorkingGridTileSize = new Models.Size(App.WorkingGridTileSize.Width, new Models.Height(value));
                     OnPropertyChanged(nameof(GridTileHeightAsInt));
+
+                    // HACK: 内部的なグリッド画像の横幅が変わったわけではないが、再描画させたいので変更通知を送る
+                    {
+                        var current = this.InternalGridImageWidthAsInt;
+                        this.InternalGridImageWidthAsInt = current + 1;
+                        this.InternalGridImageWidthAsInt = current;
+                    }
                 }
             }
         }
@@ -483,11 +497,6 @@
         ///     グリッドの左上位置
         /// </summary>
         Models.Point _gridLeftTop = Models.Point.Empty;
-
-        /// <summary>
-        ///     グリッド・タイル・サイズ
-        /// </summary>
-        Models.Size _gridTileSize = Models.Size.Empty;
 
         /// <summary>
         ///     タイル矩形

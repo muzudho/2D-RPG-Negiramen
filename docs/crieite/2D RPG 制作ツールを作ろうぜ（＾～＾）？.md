@@ -1649,4 +1649,19 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　グリッド・サイズは途中からも　変えたいのよ」  
 
+![202307_maui_02-0042--hack-o2o0.png](https://crieit.now.sh/upload_images/4bcd9fbc41ccf91aa430da0d1bac9d0f64a049fee8594.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　グリッドの横幅が変更されたタイミングで  
+グリッドの画像サイズの横幅を 1px 伸ばしたったら、再描画が呼び出されるけど」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　イケてないわねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　再描画が呼び出されるトリガーのうち、もっとも無難なものって何だぜ？　タグの変更トリガーとか無いのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　タグだって　変えられたくないわよ」  
+
 ＜書きかけ＞

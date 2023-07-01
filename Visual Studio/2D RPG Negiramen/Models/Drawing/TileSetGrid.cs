@@ -29,9 +29,8 @@
             var marginLeft = 0;
             var marginTop = 0;
 
-            // タイル・サイズ
-            var tileWidth = 32;
-            var tileHeight = 32;
+            // グリッド・タイル・サイズ
+            Models.Size gridTileSize = App.WorkingGridTileSize;
 
             // 画像サイズ
             var imageWidth = (int)dirtyRect.Width;
@@ -40,7 +39,7 @@
             // 縦線を引いていこう
             int y1 = marginTop + halfThicknessOfGridLine.AsInt;
             int y2 = imageHeight + marginTop + halfThicknessOfGridLine.AsInt;
-            for (var x = halfThicknessOfGridLine.AsInt; x < imageWidth + gridLineThickness.AsInt; x += tileWidth)
+            for (var x = halfThicknessOfGridLine.AsInt; x < imageWidth + gridLineThickness.AsInt; x += gridTileSize.Width.AsInt)
             {
                 canvas.DrawLine(x, y1, x, y2);
             }
@@ -48,7 +47,7 @@
             // 横線を引いていこう
             int x1 = marginLeft + halfThicknessOfGridLine.AsInt;
             int x2 = imageHeight + marginLeft + halfThicknessOfGridLine.AsInt;
-            for (var y = halfThicknessOfGridLine.AsInt; y < imageHeight + gridLineThickness.AsInt; y += tileHeight)
+            for (var y = halfThicknessOfGridLine.AsInt; y < imageHeight + gridLineThickness.AsInt; y += gridTileSize.Height.AsInt)
             {
                 canvas.DrawLine(x1, y, x2, y);
             }
