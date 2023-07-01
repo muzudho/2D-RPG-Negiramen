@@ -1,9 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     座標ｘ
+    ///     縦幅
     /// </summary>
-    internal class X
+    internal class Height
     {
         // - 演算子のオーバーロード
 
@@ -19,7 +19,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(X c1, X c2)
+        public static bool operator ==(Height c1, Height c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -45,7 +45,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(X c1, X c2)
+        public static bool operator !=(Height c1, Height c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -64,10 +64,10 @@
                 return false;
             }
             //この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is X))
+            //if (!(obj is Height))
 
             //Numberで比較する
-            X c = (X)obj;
+            Height c = (Height)obj;
             return (this.source == c.source);
             //または、
             //return (this.Number.Equals(c.Number));
@@ -97,7 +97,7 @@
                 return 1;
             if (this.GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((X)other).source);
+            return this.source.CompareTo(((Height)other).source);
         }
 
         /// <summary>
@@ -107,7 +107,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(X c1, X c2)
+        public static bool operator <(Height c1, Height c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -125,7 +125,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(X c1, X c2)
+        public static bool operator >(Height c1, Height c2)
         {
             //逆にして"<"で比較
             return (c2 < c1);
@@ -138,7 +138,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(X c1, X c2)
+        public static bool operator <=(Height c1, Height c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -156,7 +156,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(X c1, X c2)
+        public static bool operator >=(Height c1, Height c2)
         {
             //逆にして"<="で比較
             return (c2 <= c1);
@@ -168,7 +168,7 @@
         /// <summary>
         /// ゼロ・オブジェクト
         /// </summary>
-        internal static X Empty = new X(0);
+        internal static Height Empty = new Height(0);
 
         // - その他
 
@@ -176,7 +176,7 @@
         /// 生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal X(int source)
+        internal Height(int source)
         {
             this.source = source;
         }

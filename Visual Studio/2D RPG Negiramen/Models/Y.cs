@@ -1,5 +1,8 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
+    /// <summary>
+    ///     座標ｙ
+    /// </summary>
     internal class Y
     {
         // - 演算子のオーバーロード

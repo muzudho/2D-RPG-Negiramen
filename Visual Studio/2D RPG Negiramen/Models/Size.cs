@@ -1,9 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    /// 座標
+    /// 大きさ
     /// </summary>
-    internal class Point
+    internal class Size
     {
         // - 演算子のオーバーロード
 
@@ -19,7 +19,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(Point c1, Point c2)
+        public static bool operator ==(Size c1, Size c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -36,7 +36,7 @@
                 return false;
             }
 
-            return (c1.X == c2.X) && (c1.Y == c2.Y);
+            return (c1.Width == c2.Width) && (c1.Height == c2.Height);
         }
 
         /// <summary>
@@ -45,7 +45,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(Point c1, Point c2)
+        public static bool operator !=(Size c1, Size c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -64,11 +64,11 @@
                 return false;
             }
             //この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Point))
+            //if (!(obj is Size))
 
             //Numberで比較する
-            Point c = (Point)obj;
-            return (this.X == c.X) && (this.Y == c.Y);
+            Size c = (Size)obj;
+            return (this.Width == c.Width) && (this.Height == c.Height);
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -79,7 +79,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (this.X, this.Y).GetHashCode();
+            return (this.Width, this.Height).GetHashCode();
         }
         #endregion
 
@@ -88,31 +88,31 @@
         /// <summary>
         /// ゼロ・オブジェクト
         /// </summary>
-        internal static Point Empty = new Point(Models.X.Empty, Models.Y.Empty);
+        internal static Size Empty = new Size(Models.Width.Empty, Models.Height.Empty);
 
         // - その他
 
         /// <summary>
         /// 生成
         /// </summary>
-        /// <param name="x">座標ｘ</param>
-        /// <param name="y">座標ｙ</param>
-        internal Point(Models.X x, Models.Y y)
+        /// <param name="width">横幅</param>
+        /// <param name="height">縦幅</param>
+        internal Size(Models.Width width, Models.Height height)
         {
-            this.X = x;
-            this.Y = y;
+            this.Width = width;
+            this.Height = height;
         }
 
         // - プロパティー
 
         /// <summary>
-        /// 座標ｘ
+        /// 横幅
         /// </summary>
-        internal Models.X X { get; private set; }
+        internal Models.Width Width { get; private set; }
 
         /// <summary>
-        /// 座標ｙ
+        /// 縦幅
         /// </summary>
-        internal Models.Y Y { get; private set; }
+        internal Models.Height Height { get; private set; }
     }
 }

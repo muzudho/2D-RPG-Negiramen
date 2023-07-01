@@ -2,12 +2,17 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:modelsDrawing="clr-namespace:_2D_RPG_Negiramen.Models.Drawing"
+             xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage">
 
     <ContentPage.Resources>
         <modelsDrawing:TileSetGrid x:Key="MyTileSetGrid" />
         <modelsDrawing:TileCursor x:Key="MyTileCursor" />
     </ContentPage.Resources>
+
+    <ContentPage.BindingContext>
+        <viewModels:TilePaletteEditPageViewModel />
+    </ContentPage.BindingContext>
 
     <!--
         画面内タイトル
@@ -95,14 +100,14 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="64"
+                   Text="{Binding ImageWidthAsInt}"
                    BackgroundColor="SkyBlue"/>
 
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="64"
+                   Text="{Binding ImageHeightAsInt}"
                    BackgroundColor="SkyBlue"/>
 
             <Label Grid.Row="1" Grid.Column="3"
