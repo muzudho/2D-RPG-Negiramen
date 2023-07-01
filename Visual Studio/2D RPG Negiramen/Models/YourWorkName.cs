@@ -1,19 +1,22 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿/// <summary>
+///     😁 モデル
+/// </summary>
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    /// あなたの作品名
+    ///     あなたの作品名
     /// </summary>
     class YourWorkName
     {
         // - 静的プロパティ
 
         /// <summary>
-        /// 空オブジェクト
+        ///     空オブジェクト
         /// </summary>
         internal static YourWorkName Empty { get; } = new YourWorkName();
 
         /// <summary>
-        /// 文字列を与えて初期化
+        ///     文字列を与えて初期化
         /// </summary>
         /// <param name="yourWorkName">あなたの作品名</param>
         /// <returns>実例</returns>
@@ -28,7 +31,7 @@
         }
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         internal YourWorkName()
         {
@@ -36,7 +39,7 @@
         }
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         internal YourWorkName(string asStr)
         {
@@ -44,12 +47,12 @@
         }
 
         /// <summary>
-        /// 文字列形式
+        ///     文字列形式
         /// </summary>
         internal string AsStr { get; }
 
         /// <summary>
-        /// 暗黙的な文字列形式
+        ///     暗黙的な文字列形式
         /// </summary>
         public override string ToString() => AsStr;
     }

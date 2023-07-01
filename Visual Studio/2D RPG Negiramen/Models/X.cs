@@ -1,4 +1,7 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿/// <summary>
+///     😁 モデル
+/// </summary>
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
     ///     座標ｘ
@@ -52,7 +55,7 @@
         }
 
         /// <summary>
-        /// 任意のオブジェクトと、自分自身が等価か？
+        ///     任意のオブジェクトと、自分自身が等価か？
         /// </summary>
         /// <param name="obj">任意のオブジェクト</param>
         /// <returns>そうだ</returns>
@@ -85,8 +88,10 @@
 
         #region 演算子のオーバーロード（大小比較）
         /// <summary>
-        /// 自分自身が、別のオブジェクトより小さいときはマイナスの数、大きいときはプラスの数、
-        /// 同じときは0を返す
+        ///     <pre>
+        ///         自分自身が、別のオブジェクトより小さいときはマイナスの数、大きいときはプラスの数、
+        ///         同じときは0を返す
+        ///     </pre>
         /// </summary>
         /// <param name="other">別のオブジェクト</param>
         /// <returns>差</returns>
@@ -166,14 +171,14 @@
         // - 静的プロパティー
 
         /// <summary>
-        /// ゼロ・オブジェクト
+        ///     ゼロ・オブジェクト
         /// </summary>
         internal static X Empty = new X(0);
 
         // - その他
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
         internal X(int source)
@@ -184,14 +189,14 @@
         // - フィールド
 
         /// <summary>
-        /// 値
+        ///     値
         /// </summary>
         int source;
 
         // - プロパティー
 
         /// <summary>
-        /// 整数型形式で取得
+        ///     整数型形式で取得
         /// </summary>
         internal int AsInt => source;
     }

@@ -1,7 +1,10 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿/// <summary>
+///     😁 モデル
+/// </summary>
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    /// 矩形
+    ///     矩形
     /// </summary>
     internal class Rectangle
     {
@@ -52,7 +55,7 @@
         }
 
         /// <summary>
-        /// 任意のオブジェクトと、自分自身が等価か？
+        ///     任意のオブジェクトと、自分自身が等価か？
         /// </summary>
         /// <param name="obj">任意のオブジェクト</param>
         /// <returns>そうだ</returns>
@@ -86,14 +89,14 @@
         // - 静的プロパティー
 
         /// <summary>
-        /// ゼロ・オブジェクト
+        ///     ゼロ・オブジェクト
         /// </summary>
         internal static Rectangle Empty = new Rectangle(Models.Point.Empty, Models.Size.Empty);
 
         // - その他
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         /// <param name="point">座標</param>
         /// <param name="size">大きさ</param>
@@ -106,12 +109,12 @@
         // - プロパティー
 
         /// <summary>
-        /// 座標
+        ///     座標
         /// </summary>
         internal Models.Point Point { get; private set; }
 
         /// <summary>
-        /// 大きさ
+        ///     大きさ
         /// </summary>
         internal Models.Size Size { get; private set; }
     }

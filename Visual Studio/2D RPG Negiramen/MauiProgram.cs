@@ -1,7 +1,10 @@
-﻿using CommunityToolkit.Maui;
-using Microsoft.Extensions.Logging;
-
+﻿/// <summary>
+///     😁 ２Ｄ ＲＰＧ ネギラーメン
+/// </summary>
 namespace _2D_RPG_Negiramen;
+
+using CommunityToolkit.Maui;
+using Microsoft.Extensions.Logging;
 
 public static class MauiProgram
 {

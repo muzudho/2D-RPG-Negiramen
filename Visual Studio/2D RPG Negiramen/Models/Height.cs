@@ -1,4 +1,7 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿/// <summary>
+///     😁 モデル
+/// </summary>
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
     ///     縦幅
@@ -85,8 +88,10 @@
 
         #region 演算子のオーバーロード（大小比較）
         /// <summary>
-        /// 自分自身が、別のオブジェクトより小さいときはマイナスの数、大きいときはプラスの数、
-        /// 同じときは0を返す
+        ///     <pre>
+        ///         自分自身が、別のオブジェクトより小さいときはマイナスの数、大きいときはプラスの数、
+        ///         同じときは0を返す
+        ///     </pre>
         /// </summary>
         /// <param name="other">別のオブジェクト</param>
         /// <returns>差</returns>
@@ -166,14 +171,14 @@
         // - 静的プロパティー
 
         /// <summary>
-        /// ゼロ・オブジェクト
+        ///     ゼロ・オブジェクト
         /// </summary>
         internal static Height Empty = new Height(0);
 
         // - その他
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
         internal Height(int source)
@@ -184,14 +189,14 @@
         // - フィールド
 
         /// <summary>
-        /// 値
+        ///     値
         /// </summary>
         int source;
 
         // - プロパティー
 
         /// <summary>
-        /// 整数型形式で取得
+        ///     整数型形式で取得
         /// </summary>
         internal int AsInt => source;
     }

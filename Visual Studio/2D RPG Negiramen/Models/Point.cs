@@ -1,7 +1,10 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿/// <summary>
+///     😁 モデル
+/// </summary>
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    /// 座標
+    ///     座標
     /// </summary>
     internal class Point
     {
@@ -52,7 +55,7 @@
         }
 
         /// <summary>
-        /// 任意のオブジェクトと、自分自身が等価か？
+        ///     任意のオブジェクトと、自分自身が等価か？
         /// </summary>
         /// <param name="obj">任意のオブジェクト</param>
         /// <returns>そうだ</returns>
@@ -86,14 +89,14 @@
         // - 静的プロパティー
 
         /// <summary>
-        /// ゼロ・オブジェクト
+        ///     ゼロ・オブジェクト
         /// </summary>
         internal static Point Empty = new Point(Models.X.Empty, Models.Y.Empty);
 
         // - その他
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         /// <param name="x">座標ｘ</param>
         /// <param name="y">座標ｙ</param>
@@ -106,12 +109,12 @@
         // - プロパティー
 
         /// <summary>
-        /// 座標ｘ
+        ///     座標ｘ
         /// </summary>
         internal Models.X X { get; private set; }
 
         /// <summary>
-        /// 座標ｙ
+        ///     座標ｙ
         /// </summary>
         internal Models.Y Y { get; private set; }
     }

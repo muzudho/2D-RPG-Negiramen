@@ -1,16 +1,19 @@
-﻿namespace _2D_RPG_Negiramen.ViewModels
+﻿/// <summary>
+///     😁 ビューモデル
+/// </summary>
+namespace _2D_RPG_Negiramen.ViewModels
 {
     using CommunityToolkit.Mvvm.ComponentModel;
 
     /// <summary>
-    /// ［タイル・パレット・ページ］ビューモデル
+    ///     ［タイル・パレット・ページ］ビューモデル
     /// </summary>
     internal class TilePalettePageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
 
         /// <summary>
-        /// 画像上のポインティング座標ｘ
+        ///     画像上のポインティング座標ｘ
         /// </summary>
         public int PointingXOnImageAsInt
         {
@@ -26,7 +29,7 @@
         }
 
         /// <summary>
-        /// 画像上のポインティング座標ｙ
+        ///     画像上のポインティング座標ｙ
         /// </summary>
         public int PointingYOnImageAsInt
         {
@@ -42,7 +45,7 @@
         }
 
         /// <summary>
-        /// 画像上のタップ座標ｘ
+        ///     画像上のタップ座標ｘ
         /// </summary>
         public int TappedXOnImageAsInt
         {
@@ -58,7 +61,7 @@
         }
 
         /// <summary>
-        /// 画像上のタップ座標ｙ
+        ///     画像上のタップ座標ｙ
         /// </summary>
         public int TappedYOnImageAsInt
         {
@@ -74,7 +77,7 @@
         }
 
         /// <summary>
-        /// ウィンドウ上のポインティング座標ｘ
+        ///     ウィンドウ上のポインティング座標ｘ
         /// </summary>
         public int PointingXOnWindowAsInt
         {
@@ -90,7 +93,7 @@
         }
 
         /// <summary>
-        /// ウィンドウ上のポインティング座標ｙ
+        ///     ウィンドウ上のポインティング座標ｙ
         /// </summary>
         public int PointingYOnWindowAsInt
         {
@@ -106,7 +109,7 @@
         }
 
         /// <summary>
-        /// ウィンドウ上のタイル・カーソル座標ｘ
+        ///     ウィンドウ上のタイル・カーソル座標ｘ
         /// </summary>
         public int TileCursorXOnWindowAsInt
         {
@@ -132,7 +135,7 @@
         }
 
         /// <summary>
-        /// ウィンドウ上のタイル・カーソル座標ｙ
+        ///     ウィンドウ上のタイル・カーソル座標ｙ
         /// </summary>
         public int TileCursorYOnWindowAsInt
         {
@@ -158,7 +161,7 @@
         }
 
         /// <summary>
-        /// ウィンドウ上のタイル・カーソル座標
+        ///     ウィンドウ上のタイル・カーソル座標
         /// </summary>
         public Thickness TileCursorPointAsMargin
         {
@@ -208,27 +211,27 @@
         // - プライベート・フィールド
 
         /// <summary>
-        /// 画像上のポインティング座標
+        ///     画像上のポインティング座標
         /// </summary>
         Models.Point _pointingPointOnImage = Models.Point.Empty;
 
         /// <summary>
-        /// 画像上のタップ座標
+        ///     画像上のタップ座標
         /// </summary>
         Models.Point _tappedPointOnImage = Models.Point.Empty;
 
         /// <summary>
-        /// ウィンドウ上のポインティング座標
+        ///     ウィンドウ上のポインティング座標
         /// </summary>
         Models.Point _pointingPointOnWindow = Models.Point.Empty;
 
         /// <summary>
-        /// ウィンドウ上のタイル・カーソル座標
+        ///     ウィンドウ上のタイル・カーソル座標
         /// </summary>
         Models.Point _tileCursorPointOnWindow = Models.Point.Empty;
 
         /// <summary>
-        /// ウィンドウ上のタイル・カーソルのマージン
+        ///     ウィンドウ上のタイル・カーソルのマージン
         /// </summary>
         Thickness _tileCursorThickness = Thickness.Zero;
     }

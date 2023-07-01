@@ -1,7 +1,10 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿/// <summary>
+///     😁 モデル
+/// </summary>
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    /// 大きさ
+    ///     大きさ
     /// </summary>
     internal class Size
     {
@@ -52,7 +55,7 @@
         }
 
         /// <summary>
-        /// 任意のオブジェクトと、自分自身が等価か？
+        ///     任意のオブジェクトと、自分自身が等価か？
         /// </summary>
         /// <param name="obj">任意のオブジェクト</param>
         /// <returns>そうだ</returns>
@@ -86,14 +89,14 @@
         // - 静的プロパティー
 
         /// <summary>
-        /// ゼロ・オブジェクト
+        ///     ゼロ・オブジェクト
         /// </summary>
         internal static Size Empty = new Size(Models.Width.Empty, Models.Height.Empty);
 
         // - その他
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         /// <param name="width">横幅</param>
         /// <param name="height">縦幅</param>
@@ -106,12 +109,12 @@
         // - プロパティー
 
         /// <summary>
-        /// 横幅
+        ///     横幅
         /// </summary>
         internal Models.Width Width { get; private set; }
 
         /// <summary>
-        /// 縦幅
+        ///     縦幅
         /// </summary>
         internal Models.Height Height { get; private set; }
     }

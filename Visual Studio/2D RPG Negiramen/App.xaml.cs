@@ -1,6 +1,9 @@
-﻿using _2D_RPG_Negiramen.Models;
-
+﻿/// <summary>
+///     😁 ２Ｄ ＲＰＧ ネギラーメン
+/// </summary>
 namespace _2D_RPG_Negiramen;
+
+using _2D_RPG_Negiramen.Models;
 
 public partial class App : Application
 {

@@ -1,4 +1,7 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿/// <summary>
+///     😁 モデル
+/// </summary>
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
     ///     Unity の Assets フォルダーを想定したもの
@@ -6,9 +9,9 @@
     internal class UnityAssetsFolder
     {
         /// <summary>
-        ///     Unity の Assets フォルダーにファイルを送り込みます
-        ///     
         ///     <pre>
+        ///         Unity の Assets フォルダーにファイルを送り込みます
+        ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         👉　└─ 📂 Assets
         ///     </pre>
@@ -38,9 +41,9 @@
         }
 
         /// <summary>
-        ///     ｛あなたのサークル名｝フォルダーにファイルを送り込みます
-        ///     
         ///     <pre>
+        ///         ｛あなたのサークル名｝フォルダーにファイルを送り込みます
+        ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         　　└─ 📂 Assets
         ///         👉　　　└─ 📂 {Your Circle Name}
@@ -61,9 +64,9 @@
         }
 
         /// <summary>
-        ///     ｛あなたの作品名｝フォルダーにファイルを送り込みます
-        ///     
         ///     <pre>
+        ///         ｛あなたの作品名｝フォルダーにファイルを送り込みます
+        ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         　　└─ 📂 Assets
         ///         　　　　└─ 📂 {Your Circle Name}
@@ -85,9 +88,9 @@
         }
 
         /// <summary>
-        ///     `Auto Generated` フォルダーにファイルを送り込みます
-        ///     
         ///     <pre>
+        ///         `Auto Generated` フォルダーにファイルを送り込みます
+        ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         　　└─ 📂 Assets
         ///         　　　　└─ 📂 {Your Circle Name}
@@ -188,9 +191,9 @@
         // - ５階層目
 
         /// <summary>
-        ///     Images フォルダーにファイルを送り込みます
-        ///     
         ///     <pre>
+        ///         Images フォルダーにファイルを送り込みます
+        ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         　　└─ 📂 Assets
         ///         　　　　└─ 📂 {Your Circle Name}
@@ -232,6 +235,10 @@
             //}
         }
 
+        /// <summary>
+        ///     タイルセットをコピー
+        /// </summary>
+        /// <param name="fileName">ファイル名</param>
         static void CopyTileSet(string fileName)
         {
             var configuration = App.GetOrLoadConfiguration();
@@ -255,9 +262,9 @@
         }
 
         /// <summary>
-        ///     Data フォルダーにファイルを送り込みます
-        ///     
         ///     <pre>
+        ///         Data フォルダーにファイルを送り込みます
+        ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         　　└─ 📂 Assets
         ///         　　　　└─ 📂 {Your Circle Name}

@@ -1,19 +1,22 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿/// <summary>
+///     😁 モデル
+/// </summary>
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    /// ネギラーメン・ワークスペース・フォルダーのパス
+    ///     ネギラーメン・ワークスペース・フォルダーのパス
     /// </summary>
     class NegiramenWorkspaceFolderPath
     {
         // - 静的プロパティ
 
         /// <summary>
-        /// 空オブジェクト
+        ///     空オブジェクト
         /// </summary>
         internal static NegiramenWorkspaceFolderPath Empty { get; } = new NegiramenWorkspaceFolderPath();
 
         /// <summary>
-        /// 文字列を与えて初期化
+        ///     文字列を与えて初期化
         /// </summary>
         /// <param name="folderPath">フォルダーへのパス</param>
         /// <returns>実例</returns>
@@ -30,7 +33,7 @@
         }
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         internal NegiramenWorkspaceFolderPath()
         {
@@ -38,7 +41,7 @@
         }
 
         /// <summary>
-        /// 生成
+        ///     生成
         /// </summary>
         internal NegiramenWorkspaceFolderPath(string asStr)
         {
@@ -46,12 +49,12 @@
         }
 
         /// <summary>
-        /// 文字列形式
+        ///     文字列形式
         /// </summary>
         internal string AsStr { get; }
 
         /// <summary>
-        /// 暗黙的な文字列形式
+        ///     暗黙的な文字列形式
         /// </summary>
         public override string ToString() => AsStr;
     }

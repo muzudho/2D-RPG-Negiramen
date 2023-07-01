@@ -1,4 +1,7 @@
-﻿namespace _2D_RPG_Negiramen.Models.Drawing
+﻿/// <summary>
+///     😁 描画
+/// </summary>
+namespace _2D_RPG_Negiramen.Models.Drawing
 {
     using Microsoft.Maui.Graphics;
 

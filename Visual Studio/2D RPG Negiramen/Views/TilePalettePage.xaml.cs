@@ -1,8 +1,11 @@
-﻿using _2D_RPG_Negiramen.ViewModels;
+﻿/// <summary>
+///     😁 ビュー
+/// </summary>
+namespace _2D_RPG_Negiramen.Views;
+
+using _2D_RPG_Negiramen.ViewModels;
 using Microsoft.Maui.Controls;
 using System.Diagnostics;
-
-namespace _2D_RPG_Negiramen.Views;
 
 public partial class TilePalettePage : ContentPage
 {

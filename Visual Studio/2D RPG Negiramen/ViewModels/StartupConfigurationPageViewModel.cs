@@ -1,4 +1,7 @@
-﻿namespace _2D_RPG_Negiramen.ViewModels
+﻿/// <summary>
+///     😁 ビューモデル
+/// </summary>
+namespace _2D_RPG_Negiramen.ViewModels
 {
     using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -6,14 +9,14 @@
     using System.Windows.Input;
 
     /// <summary>
-    /// ［初期設定］ページ用のビューモデル
+    ///     ［初期設定］ページ用のビューモデル
     /// </summary>
     class StartupConfigurationPageViewModel : ObservableObject
     {
         // - プロパティ
 
         /// <summary>
-        /// Unity の Assets フォルダ―へ初期設定をコピーするコマンド
+        ///     Unity の Assets フォルダ―へ初期設定をコピーするコマンド
         /// </summary>
         public ICommand PushStartupToUnityAssetsFolderCommand { get; }
 
@@ -43,7 +46,7 @@
         // - 変更通知プロパティ
 
         /// <summary>
-        /// ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式
+        ///     ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式
         /// </summary>
         public string NegiramenWorkspaceFolderPathAsStr
         {
@@ -59,7 +62,7 @@
         }
 
         /// <summary>
-        /// Unity の Assets フォルダーへのパス。文字列形式
+        ///     Unity の Assets フォルダーへのパス。文字列形式
         /// </summary>
         public string UnityAssetsFolderPathAsStr
         {
@@ -75,7 +78,7 @@
         }
 
         /// <summary>
-        /// あなたのサークル名
+        ///     あなたのサークル名
         /// </summary>
         public string YourCircleNameAsStr
         {
@@ -91,7 +94,7 @@
         }
 
         /// <summary>
-        /// あなたの作品名
+        ///     あなたの作品名
         /// </summary>
         public string YourWorkNameAsStr
         {
@@ -109,9 +112,9 @@
         // - コマンド
 
         /// <summary>
-        /// ［Unity の Assets フォルダ―へ初期設定をコピーする］コマンドを実行
+        ///     ［Unity の Assets フォルダ―へ初期設定をコピーする］コマンドを実行
         /// </summary>
-        /// <returns></returns>
+        /// <returns>なし</returns>
         async Task PushStartupToUnityAssetsFolder()
         {
             await Task.Run(() =>
@@ -168,22 +171,22 @@
         // - プライベート・フィールド
 
         /// <summary>
-        /// ネギラーメンの 📂 `Workspace` フォルダーへのパス
+        ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
         /// </summary>
         private NegiramenWorkspaceFolderPath _negiramenWorkspaceFolderPath = NegiramenWorkspaceFolderPath.Empty;
 
         /// <summary>
-        /// Unity の Assets フォルダーへのパス
+        ///     Unity の Assets フォルダーへのパス
         /// </summary>
         private UnityAssetsFolderPath _unityAssetsFolderPath = UnityAssetsFolderPath.Empty;
 
         /// <summary>
-        /// あなたのサークル名
+        ///     あなたのサークル名
         /// </summary>
         private YourCircleName _yourCircleName = YourCircleName.Empty;
 
         /// <summary>
-        /// あなたの作品名
+        ///     あなたの作品名
         /// </summary>
         private YourWorkName _yourWorkName = YourWorkName.Empty;
     }

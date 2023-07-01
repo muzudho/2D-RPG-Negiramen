@@ -1,16 +1,19 @@
-﻿namespace _2D_RPG_Negiramen.ViewModels
+﻿/// <summary>
+///     😁 ビューモデル
+/// </summary>
+namespace _2D_RPG_Negiramen.ViewModels
 {
     using CommunityToolkit.Mvvm.ComponentModel;
 
     /// <summary>
-    /// ［タイル・パレット編集ページ］ビューモデル
+    ///     ［タイル・パレット編集ページ］ビューモデル
     /// </summary>
     class TilePaletteEditPageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
 
         /// <summary>
-        /// 画像の横幅
+        ///     画像の横幅
         /// </summary>
         public int ImageWidthAsInt
         {
@@ -26,7 +29,7 @@
         }
 
         /// <summary>
-        /// 画像の縦幅
+        ///     画像の縦幅
         /// </summary>
         public int ImageHeightAsInt
         {
@@ -42,7 +45,7 @@
         }
 
         /// <summary>
-        /// グリッドの左上位置ｘ
+        ///     グリッドの左上位置ｘ
         /// </summary>
         public int GridLeftAsInt
         {
@@ -58,7 +61,7 @@
         }
 
         /// <summary>
-        /// グリッドの左上位置ｙ
+        ///     グリッドの左上位置ｙ
         /// </summary>
         public int GridTopAsInt
         {
@@ -74,7 +77,7 @@
         }
 
         /// <summary>
-        /// グリッド・タイルの横幅
+        ///     グリッド・タイルの横幅
         /// </summary>
         public int GridTileWidthAsInt
         {
@@ -90,7 +93,7 @@
         }
 
         /// <summary>
-        /// グリッド・タイルの縦幅
+        ///     グリッド・タイルの縦幅
         /// </summary>
         public int GridTileHeightAsInt
         {
@@ -106,7 +109,7 @@
         }
 
         /// <summary>
-        /// タイルの位置ｘ
+        ///     タイルの位置ｘ
         /// </summary>
         public int TileLeftAsInt
         {
@@ -122,7 +125,7 @@
         }
 
         /// <summary>
-        /// タイルの位置ｙ
+        ///     タイルの位置ｙ
         /// </summary>
         public int TileTopAsInt
         {
@@ -138,7 +141,7 @@
         }
 
         /// <summary>
-        /// タイルの横幅
+        ///     タイルの横幅
         /// </summary>
         public int TileWidthAsInt
         {
@@ -154,7 +157,7 @@
         }
 
         /// <summary>
-        /// タイルの縦幅
+        ///     タイルの縦幅
         /// </summary>
         public int TileHeightAsInt
         {
@@ -170,7 +173,7 @@
         }
 
         /// <summary>
-        /// コメント
+        ///     コメント
         /// </summary>
         public string CommentAsStr
         {
@@ -186,7 +189,7 @@
         }
 
         /// <summary>
-        /// コメント
+        ///     コメント
         /// </summary>
         public string TileSetImageFilePathAsStr
         {
@@ -243,32 +246,32 @@
         // - プライベート・フィールド
 
         /// <summary>
-        /// 画像サイズ
+        ///     画像サイズ
         /// </summary>
         Models.Size _imageSize = Models.Size.Empty;
 
         /// <summary>
-        /// グリッドの左上位置
+        ///     グリッドの左上位置
         /// </summary>
         Models.Point _gridLeftTopPoint = Models.Point.Empty;
 
         /// <summary>
-        /// グリッド・タイル・サイズ
+        ///     グリッド・タイル・サイズ
         /// </summary>
         Models.Size _gridTileSize = Models.Size.Empty;
 
         /// <summary>
-        /// タイル矩形
+        ///     タイル矩形
         /// </summary>
         Models.Rectangle _tileRect = Models.Rectangle.Empty;
 
         /// <summary>
-        /// コメント
+        ///     コメント
         /// </summary>
         Models.Comment _comment = Models.Comment.Empty;
 
         /// <summary>
-        /// タイル・セット画像ファイルへのパス
+        ///     タイル・セット画像ファイルへのパス
         /// </summary>
         Models.TileSetImageFilePath _tileSetImageFilePath = Models.TileSetImageFilePath.Empty;
     }
