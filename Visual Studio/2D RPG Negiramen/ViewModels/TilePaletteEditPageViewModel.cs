@@ -5,6 +5,7 @@
     /// <summary>
     ///     😁 ［タイル・パレット編集ページ］ビューモデル
     /// </summary>
+    [QueryProperty(nameof(TileSetImageFilePathAsStr), queryId: "TileSetImageFilePathAsStr")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
     class TilePaletteEditPageViewModel : ObservableObject
     {

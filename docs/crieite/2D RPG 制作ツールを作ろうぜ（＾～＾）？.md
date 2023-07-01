@@ -1528,4 +1528,18 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 「　👆　渡せるものと、渡せないものとがある。  
 調べるか……」  
 
+![202307_maui_02-2156--query-parameter-on-class-o2o0.png](https://crieit.now.sh/upload_images/a867f2fa49b7c2dfbf3aae83afe15f1c64a022d8e1891.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`QueryParameter` アトリビュート（属性）をクラスに１個１個すべて書くのが確実らしい」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　MVVM 実装してるだけで　１日　終わりそうだ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面は　手戻り無しで　１発で作らないと　時間が　厳しそうねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　要らん画面　作ったら　１日は無駄になるな」  
+
 ＜書きかけ＞
