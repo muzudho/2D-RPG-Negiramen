@@ -21,10 +21,23 @@
             {
                 if (_imageSize != value)
                 {
+                    // 差分判定
+                    var dirtyWidth = _imageSize.Width != value.Width;
+                    var dirtyHeight = _imageSize.Height != value.Height;
+
+                    // 更新
                     _imageSize = value;
-                    OnPropertyChanged(nameof(ImageSize));
-                    OnPropertyChanged(nameof(ImageWidthAsInt));
-                    OnPropertyChanged(nameof(ImageHeightAsInt));
+
+                    // 変更通知
+                    if (dirtyWidth)
+                    {
+                        OnPropertyChanged(nameof(ImageWidthAsInt));
+                    }
+
+                    if (dirtyHeight)
+                    {
+                        OnPropertyChanged(nameof(ImageHeightAsInt));
+                    }
                 }
             }
         }
