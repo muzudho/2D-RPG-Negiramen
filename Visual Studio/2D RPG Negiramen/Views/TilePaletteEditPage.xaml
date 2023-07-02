@@ -173,12 +173,12 @@
                        HorizontalOptions="Start" VerticalOptions="Start"
                        Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png">
 
-                    <!--
                     <Image.GestureRecognizers>
+                        <!--
                         <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved" />
+                    -->
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Image.GestureRecognizers>
-                    -->
 
                 </Image>
 

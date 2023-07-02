@@ -53,14 +53,14 @@ public partial class TilePalettePage : ContentPage
         // Image image = (Image)sender;
 
         // タップした座標
-        int tappedX = (int)e.GetPosition((Element)sender).Value.X;
-        int tappedY = (int)e.GetPosition((Element)sender).Value.Y;
+        var tappedX = (int)e.GetPosition((Element)sender).Value.X;
+        var tappedY = (int)e.GetPosition((Element)sender).Value.Y;
         Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tappedX} y:{tappedY}");
 
         // タイル・サイズ
         int tileSize = 32;
 
-        var tileCursorPoint = TranslateTappedPointToTileCursorPoint(
+        var tileCursorPoint = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
             tappedX,
             tappedY,
             tileSize,
@@ -72,20 +72,5 @@ public partial class TilePalettePage : ContentPage
         context.TappedYOnImageAsInt = tappedY;
         context.TileCursorXOnWindowAsInt = tileCursorPoint.X.AsInt;
         context.TileCursorYOnWindowAsInt = tileCursorPoint.Y.AsInt;
-    }
-
-    /// <summary>
-    /// タップした座標を、タイル・カーソルの座標へ変換します
-    /// </summary>
-    Models.Point TranslateTappedPointToTileCursorPoint(
-        double tappedX,
-        double tappedY,
-        int gridTileWidth,
-        int gridTileHeight)
-    {
-        // タイル・カーソルの座標を算出
-        return new Models.Point(
-            new Models.X((int)tappedX / gridTileWidth * gridTileWidth),
-            new Models.Y((int)tappedY / gridTileHeight * gridTileHeight));
     }
 }

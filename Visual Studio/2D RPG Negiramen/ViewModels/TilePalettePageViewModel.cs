@@ -162,12 +162,12 @@
         /// </summary>
         public Thickness TileCursorPointAsMargin
         {
-            get => _tileCursorThickness;
+            get => _tileCursorPointAsMargin;
             set
             {
-                if (_tileCursorThickness != value)
+                if (_tileCursorPointAsMargin != value)
                 {
-                    _tileCursorThickness = value;
+                    _tileCursorPointAsMargin = value;
                     OnPropertyChanged(nameof(TileCursorPointAsMargin));
                 }
             }
@@ -209,8 +209,8 @@
         Models.Point _tileCursorPointOnWindow = Models.Point.Empty;
 
         /// <summary>
-        ///     ウィンドウ上のタイル・カーソルのマージン
+        ///     ウィンドウ上のタイル・カーソルの位置
         /// </summary>
-        Thickness _tileCursorThickness = Thickness.Zero;
+        Thickness _tileCursorPointAsMargin = Thickness.Zero;
     }
 }
