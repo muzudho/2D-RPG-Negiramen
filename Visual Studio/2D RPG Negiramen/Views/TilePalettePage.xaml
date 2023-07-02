@@ -93,14 +93,14 @@
                     </HorizontalStackLayout>
 
                     <!--
-                        ウィンドウ上のタイル・カーソル座標
+                        タイル・カーソル座標
                         ==================
                     -->
                     <HorizontalStackLayout>
                         <Label Text="(" />
-                        <Label Text="{Binding TileCursorXOnWindowAsInt}" />
+                        <Label Text="{Binding TileCursorXAsInt}" />
                         <Label Text="," />
-                        <Label Text="{Binding TileCursorYOnWindowAsInt}" />
+                        <Label Text="{Binding TileCursorYAsInt}" />
                         <Label Text=") cursor" />
                     </HorizontalStackLayout>
 

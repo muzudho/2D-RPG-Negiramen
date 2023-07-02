@@ -377,9 +377,9 @@
         }
         #endregion
 
-        #region タイルの矩形
+        #region 選択タイルの矩形
         /// <summary>
-        ///     タイルの位置ｘ
+        ///     選択タイルの位置ｘ
         /// </summary>
         public int TileLeftAsInt
         {
@@ -395,7 +395,7 @@
         }
 
         /// <summary>
-        ///     タイルの位置ｙ
+        ///     選択タイルの位置ｙ
         /// </summary>
         public int TileTopAsInt
         {
@@ -411,7 +411,7 @@
         }
 
         /// <summary>
-        ///     タイルの横幅
+        ///     選択タイルの横幅
         /// </summary>
         public int TileWidthAsInt
         {
@@ -427,7 +427,7 @@
         }
 
         /// <summary>
-        ///     タイルの縦幅
+        ///     選択タイルの縦幅
         /// </summary>
         public int TileHeightAsInt
         {
@@ -443,9 +443,9 @@
         }
         #endregion
 
-        #region タイルのコメント
+        #region 選択タイルのコメント
         /// <summary>
-        ///     コメント
+        ///     選択コメント
         /// </summary>
         public string CommentAsStr
         {
@@ -461,7 +461,7 @@
         }
 
         /// <summary>
-        ///     コメント
+        ///     選択コメント
         /// </summary>
         public string TileSetImageFilePathAsStr
         {
@@ -478,59 +478,7 @@
         #endregion
 
         /// <summary>
-        ///     ウィンドウ上のタイル・カーソル座標ｘ
-        /// </summary>
-        public int TileCursorXOnWindowAsInt
-        {
-            get => _tileCursorPointOnWindow.X.AsInt;
-            set
-            {
-                if (_tileCursorPointOnWindow.X.AsInt != value)
-                {
-                    _tileCursorPointOnWindow = new Models.Point(new Models.X(value), _tileCursorPointOnWindow.Y);
-                    OnPropertyChanged(nameof(TileCursorXOnWindowAsInt));
-
-                    this.TileCursorPointAsMargin = new Thickness(
-                        // 左
-                        this.TileCursorXOnWindowAsInt,
-                        // 上
-                        this.TileCursorYOnWindowAsInt,
-                        // 右
-                        0,
-                        // 下
-                        0);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     ウィンドウ上のタイル・カーソル座標ｙ
-        /// </summary>
-        public int TileCursorYOnWindowAsInt
-        {
-            get => _tileCursorPointOnWindow.Y.AsInt;
-            set
-            {
-                if (_tileCursorPointOnWindow.Y.AsInt != value)
-                {
-                    _tileCursorPointOnWindow = new Models.Point(_tileCursorPointOnWindow.X, new Models.Y(value));
-                    OnPropertyChanged(nameof(TileCursorYOnWindowAsInt));
-
-                    this.TileCursorPointAsMargin = new Thickness(
-                        // 左
-                        this.TileCursorXOnWindowAsInt,
-                        // 上
-                        this.TileCursorYOnWindowAsInt,
-                        // 右
-                        0,
-                        // 下
-                        0);
-                }
-            }
-        }
-
-        /// <summary>
-        ///     ウィンドウ上のタイル・カーソル座標
+        ///     タイル・カーソルの位置（マージンとして）
         /// </summary>
         public Thickness TileCursorPointAsMargin
         {
@@ -541,6 +489,60 @@
                 {
                     _tileCursorPointAsMargin = value;
                     OnPropertyChanged(nameof(TileCursorPointAsMargin));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     タイル・カーソルの位置ｘ
+        /// </summary>
+        public int TileCursorXAsInt
+        {
+            get => _tileCursorPoint.X.AsInt;
+            set
+            {
+                if (_tileCursorPoint.X.AsInt != value)
+                {
+                    _tileCursorPoint = new Models.Point(new Models.X(value), _tileCursorPoint.Y);
+
+                    this.TileCursorPointAsMargin = new Thickness(
+                        // 左
+                        this.TileCursorXAsInt,
+                        // 上
+                        this.TileCursorYAsInt,
+                        // 右
+                        0,
+                        // 下
+                        0);
+
+                    OnPropertyChanged(nameof(TileCursorXAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     タイル・カーソルの位置ｙ
+        /// </summary>
+        public int TileCursorYAsInt
+        {
+            get => _tileCursorPoint.Y.AsInt;
+            set
+            {
+                if (_tileCursorPoint.Y.AsInt != value)
+                {
+                    _tileCursorPoint = new Models.Point(_tileCursorPoint.X, new Models.Y(value));
+
+                    this.TileCursorPointAsMargin = new Thickness(
+                        // 左
+                        this.TileCursorXAsInt,
+                        // 上
+                        this.TileCursorYAsInt,
+                        // 右
+                        0,
+                        // 下
+                        0);
+
+                    OnPropertyChanged(nameof(TileCursorYAsInt));
                 }
             }
         }
@@ -586,12 +588,12 @@
         Models.TileSetImageFilePath _tileSetImageFilePath = Models.TileSetImageFilePath.Empty;
 
         /// <summary>
-        ///     ウィンドウ上のタイル・カーソル座標
+        ///     タイル・カーソルの位置
         /// </summary>
-        Models.Point _tileCursorPointOnWindow = Models.Point.Empty;
+        Models.Point _tileCursorPoint = Models.Point.Empty;
 
         /// <summary>
-        ///     ウィンドウ上のタイル・カーソルの位置（マージンとして）
+        ///     タイル・カーソルの位置（マージンとして）
         /// </summary>
         Thickness _tileCursorPointAsMargin = Thickness.Zero;
 

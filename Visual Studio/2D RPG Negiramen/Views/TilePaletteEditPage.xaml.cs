@@ -38,11 +38,14 @@ public partial class TilePaletteEditPage : ContentPage
             tapped: tapped,
             gridTile: App.WorkingGridTileSize);
 
+        //
         // 計算値の反映
+        // ============
+        //
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
         //context.TappedXOnImageAsInt = tappedX;
         //context.TappedYOnImageAsInt = tappedY;
-        context.TileCursorXOnWindowAsInt = tileCursor.X.AsInt;
-        context.TileCursorYOnWindowAsInt = tileCursor.Y.AsInt;
+        context.TileCursorXAsInt = tileCursor.X.AsInt;
+        context.TileCursorYAsInt = tileCursor.Y.AsInt;
     }
 }

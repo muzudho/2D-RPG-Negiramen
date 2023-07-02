@@ -63,11 +63,14 @@ public partial class TilePalettePage : ContentPage
             tapped: tapped,
             gridTile: new Models.Size(new Models.Width(32), new Models.Height(32)));
 
+        //
         // 計算値の反映
+        // ============
+        //
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
         context.TappedXOnImageAsInt = tapped.X.AsInt;
         context.TappedYOnImageAsInt = tapped.Y.AsInt;
-        context.TileCursorXOnWindowAsInt = tileCursor.X.AsInt;
-        context.TileCursorYOnWindowAsInt = tileCursor.Y.AsInt;
+        context.TileCursorXAsInt = tileCursor.X.AsInt;
+        context.TileCursorYAsInt = tileCursor.Y.AsInt;
     }
 }
