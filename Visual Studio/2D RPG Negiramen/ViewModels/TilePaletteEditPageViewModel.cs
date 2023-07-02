@@ -377,106 +377,7 @@
         }
         #endregion
 
-        #region 選択タイルの矩形
-        /// <summary>
-        ///     選択タイルの位置ｘ
-        /// </summary>
-        public int TileLeftAsInt
-        {
-            get => _tileRect.Point.X.AsInt;
-            set
-            {
-                if (_tileRect.Point.X.AsInt != value)
-                {
-                    _tileRect = new Models.Rectangle(new Models.Point(new Models.X(value), _tileRect.Point.Y), _tileRect.Size);
-                    OnPropertyChanged(nameof(TileLeftAsInt));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     選択タイルの位置ｙ
-        /// </summary>
-        public int TileTopAsInt
-        {
-            get => _tileRect.Point.Y.AsInt;
-            set
-            {
-                if (_tileRect.Point.Y.AsInt != value)
-                {
-                    _tileRect = new Models.Rectangle(new Models.Point(_tileRect.Point.X, new Models.Y(value)), _tileRect.Size);
-                    OnPropertyChanged(nameof(TileTopAsInt));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     選択タイルの横幅
-        /// </summary>
-        public int TileWidthAsInt
-        {
-            get => _tileRect.Size.Width.AsInt;
-            set
-            {
-                if (_tileRect.Size.Width.AsInt != value)
-                {
-                    _tileRect = new Models.Rectangle(_tileRect.Point, new Models.Size(new Models.Width(value), _tileRect.Size.Height));
-                    OnPropertyChanged(nameof(TileWidthAsInt));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     選択タイルの縦幅
-        /// </summary>
-        public int TileHeightAsInt
-        {
-            get => _tileRect.Size.Height.AsInt;
-            set
-            {
-                if (_tileRect.Size.Height.AsInt != value)
-                {
-                    _tileRect = new Models.Rectangle(_tileRect.Point, new Models.Size(_tileRect.Size.Width, new Models.Height(value)));
-                    OnPropertyChanged(nameof(TileHeightAsInt));
-                }
-            }
-        }
-        #endregion
-
-        #region 選択タイルのコメント
-        /// <summary>
-        ///     選択コメント
-        /// </summary>
-        public string CommentAsStr
-        {
-            get => _comment.AsStr;
-            set
-            {
-                if (_comment.AsStr != value)
-                {
-                    _comment = new Models.Comment(value);
-                    OnPropertyChanged(nameof(CommentAsStr));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     選択コメント
-        /// </summary>
-        public string TileSetImageFilePathAsStr
-        {
-            get => _tileSetImageFilePath.AsStr;
-            set
-            {
-                if (_tileSetImageFilePath.AsStr != value)
-                {
-                    _tileSetImageFilePath = new Models.TileSetImageFilePath(value);
-                    OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
-                }
-            }
-        }
-        #endregion
-
+        #region 変更通知プロパティ（タイル・カーソルの位置）
         /// <summary>
         ///     タイル・カーソルの位置（マージンとして）
         /// </summary>
@@ -546,6 +447,107 @@
                 }
             }
         }
+        #endregion
+
+        #region 変更通知プロパティ（選択タイルの矩形）
+        /// <summary>
+        ///     選択タイルの位置ｘ
+        /// </summary>
+        public int TileLeftAsInt
+        {
+            get => _tileRect.Point.X.AsInt;
+            set
+            {
+                if (_tileRect.Point.X.AsInt != value)
+                {
+                    _tileRect = new Models.Rectangle(new Models.Point(new Models.X(value), _tileRect.Point.Y), _tileRect.Size);
+                    OnPropertyChanged(nameof(TileLeftAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     選択タイルの位置ｙ
+        /// </summary>
+        public int TileTopAsInt
+        {
+            get => _tileRect.Point.Y.AsInt;
+            set
+            {
+                if (_tileRect.Point.Y.AsInt != value)
+                {
+                    _tileRect = new Models.Rectangle(new Models.Point(_tileRect.Point.X, new Models.Y(value)), _tileRect.Size);
+                    OnPropertyChanged(nameof(TileTopAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     選択タイルの横幅
+        /// </summary>
+        public int TileWidthAsInt
+        {
+            get => _tileRect.Size.Width.AsInt;
+            set
+            {
+                if (_tileRect.Size.Width.AsInt != value)
+                {
+                    _tileRect = new Models.Rectangle(_tileRect.Point, new Models.Size(new Models.Width(value), _tileRect.Size.Height));
+                    OnPropertyChanged(nameof(TileWidthAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     選択タイルの縦幅
+        /// </summary>
+        public int TileHeightAsInt
+        {
+            get => _tileRect.Size.Height.AsInt;
+            set
+            {
+                if (_tileRect.Size.Height.AsInt != value)
+                {
+                    _tileRect = new Models.Rectangle(_tileRect.Point, new Models.Size(_tileRect.Size.Width, new Models.Height(value)));
+                    OnPropertyChanged(nameof(TileHeightAsInt));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（選択タイルのコメント）
+        /// <summary>
+        ///     選択コメント
+        /// </summary>
+        public string CommentAsStr
+        {
+            get => _comment.AsStr;
+            set
+            {
+                if (_comment.AsStr != value)
+                {
+                    _comment = new Models.Comment(value);
+                    OnPropertyChanged(nameof(CommentAsStr));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     選択コメント
+        /// </summary>
+        public string TileSetImageFilePathAsStr
+        {
+            get => _tileSetImageFilePath.AsStr;
+            set
+            {
+                if (_tileSetImageFilePath.AsStr != value)
+                {
+                    _tileSetImageFilePath = new Models.TileSetImageFilePath(value);
+                    OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
+                }
+            }
+        }
+        #endregion
 
         // - その他
 

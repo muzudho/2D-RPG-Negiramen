@@ -229,8 +229,8 @@
               BackgroundColor="SkyBlue">
 
             <!--
-                １段目
-                ======
+                １段目 読み仮名部
+                =================
             -->
             <Label Grid.Row="0" Grid.Column="2"
                    HorizontalTextAlignment="End"
@@ -249,44 +249,52 @@
                    Text="たて"/>
 
             <!--
-                ２段目
-                ======
+                ２段目 入力部
+                =============
             -->
             <Button Grid.Row="1" Grid.Column="0"
                     Text="保存"/>
-
+            
             <Label Grid.Row="1" Grid.Column="1"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="タイル"/>
+                   Text="カーソル"/>
 
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileLeftAsInt}"
+                   Text="{Binding TileCursorXAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileTopAsInt}"
+                   Text="{Binding TileCursorYAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileWidthAsInt}"
+                   Text="{Binding GridTileWidthAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileHeightAsInt}"
+                   Text="{Binding GridTileHeightAsInt}"
                    FontSize="24"/>
 
+            <!--
+                ３段目 読み仮名部
+                =================
+            -->
             <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5"
                    Text="コメント"/>
 
+            <!--
+                ４段目 入力部
+                =============
+            -->
             <Entry Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5"
                    Placeholder="草原"
                    Text="{Binding CommentAsStr}"
