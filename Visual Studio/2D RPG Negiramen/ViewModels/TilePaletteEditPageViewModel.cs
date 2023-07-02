@@ -10,6 +10,7 @@
     [QueryProperty(nameof(InternalGridImageSize), queryId: "InternalGridImageSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
+    [QueryProperty(nameof(TileCursorSize), queryId: "TileCursorSize")]
     class TilePaletteEditPageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
@@ -151,6 +152,68 @@
                 {
                     _internalGridImageSize = new Models.Size(_internalGridImageSize.Width, new Models.Height(value));
                     OnPropertyChanged(nameof(InternalGridImageHeightAsInt));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（タイル・カーソルのサイズ）
+        /// <summary>
+        ///     <pre>
+        ///         タイル・カーソルのサイズ
+        ///         
+        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+        ///     </pre>
+        /// </summary>
+        public Models.Size TileCursorSize
+        {
+            get => _internalGridImageSize;
+            set
+            {
+                if (_internalGridImageSize != value)
+                {
+                    this.TileCursorWidthAsInt = value.Width.AsInt;
+                    this.TileCursorHeightAsInt = value.Height.AsInt;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     <pre>
+        ///         画像の横幅
+        ///         
+        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+        ///     </pre>
+        /// </summary>
+        public int TileCursorWidthAsInt
+        {
+            get => _tileCursorSize.Width.AsInt;
+            set
+            {
+                if (_tileCursorSize.Width.AsInt != value)
+                {
+                    _tileCursorSize = new Models.Size(new Models.Width(value), _tileCursorSize.Height);
+                    OnPropertyChanged(nameof(TileCursorWidthAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     <pre>
+        ///         画像の縦幅
+        ///         
+        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+        ///     </pre>
+        /// </summary>
+        public int TileCursorHeightAsInt
+        {
+            get => _tileCursorSize.Height.AsInt;
+            set
+            {
+                if (_tileCursorSize.Height.AsInt != value)
+                {
+                    _tileCursorSize = new Models.Size(_tileCursorSize.Width, new Models.Height(value));
+                    OnPropertyChanged(nameof(TileCursorHeightAsInt));
                 }
             }
         }
@@ -512,9 +575,18 @@
         Models.Point _tileCursorPointOnWindow = Models.Point.Empty;
 
         /// <summary>
-        ///     ウィンドウ上のタイル・カーソルの位置
+        ///     ウィンドウ上のタイル・カーソルの位置（マージンとして）
         /// </summary>
         Thickness _tileCursorPointAsMargin = Thickness.Zero;
+
+        /// <summary>
+        ///     <pre>
+        ///         タイル・カーソルのサイズ
+        ///     
+        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+        ///     </pre>
+        /// </summary>
+        Models.Size _tileCursorSize = Models.Size.Empty;
 
         // - プライベート・メソッド
 

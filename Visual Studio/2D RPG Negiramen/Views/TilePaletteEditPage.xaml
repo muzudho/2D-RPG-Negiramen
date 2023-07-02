@@ -211,7 +211,7 @@
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="{Binding TileCursorPointAsMargin}"
-                              WidthRequest="40" HeightRequest="40"
+                              WidthRequest="{Binding TileCursorWidthAsInt}" HeightRequest="{Binding TileCursorHeightAsInt}"
                               Drawable="{StaticResource MyTileCursor}"
                               InputTransparent="True">
                 </GraphicsView>

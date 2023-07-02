@@ -404,6 +404,8 @@ public partial class MainPage : ContentPage
                         [key: "InternalGridImageSize"] = new Models.Size(new Models.Width(tileSetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tileSetSize.Height.AsInt + gridLineThickness.AsInt)),
                         [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
                         [key: "GridTileSize"] = new Models.Size(new Models.Width(32), new Models.Height(32)),
+                        // カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+                        [key: "TileCursorSize"] = new Models.Size(new Models.Width(32 + 4 * App.HalfThicknessOfTileCursorLine.AsInt), new Models.Height(32 + 4 * App.HalfThicknessOfTileCursorLine.AsInt)),
                     });
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             },
