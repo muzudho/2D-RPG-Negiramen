@@ -7,10 +7,10 @@
     /// </summary>
     [QueryProperty(nameof(TileSetImageFilePathAsStr), queryId: "TileSetImageFilePathAsStr")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
-    [QueryProperty(nameof(InternalGridImageSize), queryId: "InternalGridImageSize")]
+    [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
-    [QueryProperty(nameof(TileCursorSize), queryId: "TileCursorSize")]
+    [QueryProperty(nameof(TileCursorCanvasSize), queryId: "TileCursorCanvasSize")]
     class TilePaletteEditPageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
@@ -80,37 +80,37 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（内部的グリッド画像のサイズ）
+        #region 変更通知プロパティ（グリッドのキャンバス・サイズ）
         /// <summary>
         ///     <pre>
-        ///         内部的グリッド画像のサイズ
+        ///         グリッドのキャンバス・サイズ
         ///         
-        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、内部的グリッド画像のサイズを 2px 広げる
+        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる
         ///     </pre>
         /// </summary>
-        public Models.Size InternalGridImageSize
+        public Models.Size GridCanvasSize
         {
-            get => _internalGridImageSize;
+            get => _gridCanvasSize;
             set
             {
-                if (_internalGridImageSize != value)
+                if (_gridCanvasSize != value)
                 {
                     // 差分判定
-                    var dirtyWidth = _internalGridImageSize.Width != value.Width;
-                    var dirtyHeight = _internalGridImageSize.Height != value.Height;
+                    var dirtyWidth = _gridCanvasSize.Width != value.Width;
+                    var dirtyHeight = _gridCanvasSize.Height != value.Height;
 
                     // 更新
-                    _internalGridImageSize = value;
+                    _gridCanvasSize = value;
 
                     // 変更通知
                     if (dirtyWidth)
                     {
-                        OnPropertyChanged(nameof(InternalGridImageWidthAsInt));
+                        OnPropertyChanged(nameof(GridCanvasWidthAsInt));
                     }
 
                     if (dirtyHeight)
                     {
-                        OnPropertyChanged(nameof(InternalGridImageHeightAsInt));
+                        OnPropertyChanged(nameof(GridCanvasHeightAsInt));
                     }
                 }
             }
@@ -118,102 +118,108 @@
 
         /// <summary>
         ///     <pre>
-        ///         画像の横幅
+        ///         グリッドのキャンバスの横幅
         ///         
-        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、内部的グリッド画像のサイズを 2px 広げる
+        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドのキャンバス・サイズを 2px 広げる
         ///     </pre>
         /// </summary>
-        public int InternalGridImageWidthAsInt
+        public int GridCanvasWidthAsInt
         {
-            get => _internalGridImageSize.Width.AsInt;
+            get => _gridCanvasSize.Width.AsInt;
             set
             {
-                if (_internalGridImageSize.Width.AsInt != value)
+                if (_gridCanvasSize.Width.AsInt != value)
                 {
-                    _internalGridImageSize = new Models.Size(new Models.Width(value), _internalGridImageSize.Height);
-                    OnPropertyChanged(nameof(InternalGridImageWidthAsInt));
+                    _gridCanvasSize = new Models.Size(new Models.Width(value), _gridCanvasSize.Height);
+                    OnPropertyChanged(nameof(GridCanvasWidthAsInt));
                 }
             }
         }
 
         /// <summary>
         ///     <pre>
-        ///         画像の縦幅
+        ///         グリッドのキャンバスの縦幅
         ///         
-        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、内部的グリッド画像のサイズを 2px 広げる
+        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドのキャンバス・サイズを 2px 広げる
         ///     </pre>
         /// </summary>
-        public int InternalGridImageHeightAsInt
+        public int GridCanvasHeightAsInt
         {
-            get => _internalGridImageSize.Height.AsInt;
+            get => _gridCanvasSize.Height.AsInt;
             set
             {
-                if (_internalGridImageSize.Height.AsInt != value)
+                if (_gridCanvasSize.Height.AsInt != value)
                 {
-                    _internalGridImageSize = new Models.Size(_internalGridImageSize.Width, new Models.Height(value));
-                    OnPropertyChanged(nameof(InternalGridImageHeightAsInt));
+                    _gridCanvasSize = new Models.Size(_gridCanvasSize.Width, new Models.Height(value));
+                    OnPropertyChanged(nameof(GridCanvasHeightAsInt));
                 }
             }
         }
         #endregion
 
-        #region 変更通知プロパティ（タイル・カーソルのサイズ）
+        #region 変更通知プロパティ（タイル・カーソルのキャンバス・サイズ）
         /// <summary>
         ///     <pre>
-        ///         タイル・カーソルのサイズ
+        ///         タイル・カーソルのキャンバス・サイズ
         ///         
-        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+        ///         カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする
         ///     </pre>
         /// </summary>
-        public Models.Size TileCursorSize
+        public Models.Size TileCursorCanvasSize
         {
-            get => _internalGridImageSize;
+            get => _tileCursorCanvasSize;
             set
             {
-                if (_internalGridImageSize != value)
+                if (_tileCursorCanvasSize != value)
                 {
-                    this.TileCursorWidthAsInt = value.Width.AsInt;
-                    this.TileCursorHeightAsInt = value.Height.AsInt;
+                    this.TileCursorCanvasWidthAsInt = value.Width.AsInt;
+                    this.TileCursorCanvasHeightAsInt = value.Height.AsInt;
                 }
             }
         }
 
         /// <summary>
         ///     <pre>
-        ///         画像の横幅
+        ///         タイル・カーソルのキャンバスの横幅
         ///         
         ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
         ///     </pre>
         /// </summary>
-        public int TileCursorWidthAsInt
+        public int TileCursorCanvasWidthAsInt
         {
-            get => _tileCursorSize.Width.AsInt;
+            get => _tileCursorCanvasSize.Width.AsInt;
             set
             {
-                if (_tileCursorSize.Width.AsInt != value)
+                if (_tileCursorCanvasSize.Width.AsInt != value)
                 {
-                    _tileCursorSize = new Models.Size(new Models.Width(value), _tileCursorSize.Height);
-                    OnPropertyChanged(nameof(TileCursorWidthAsInt));
+                    _tileCursorCanvasSize = new Models.Size(new Models.Width(value), _tileCursorCanvasSize.Height);
+                    OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
+
+                    // キャンバスを再描画
+                    RefreshCanvasOfTileCursor();
                 }
             }
         }
 
         /// <summary>
         ///     <pre>
-        ///         画像の縦幅
+        ///         タイル・カーソルのキャンバスの縦幅
         ///         
         ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
         ///     </pre>
         /// </summary>
-        public int TileCursorHeightAsInt
+        public int TileCursorCanvasHeightAsInt
         {
-            get => _tileCursorSize.Height.AsInt;
+            get => _tileCursorCanvasSize.Height.AsInt;
             set
             {
-                if (_tileCursorSize.Height.AsInt != value)
+                if (_tileCursorCanvasSize.Height.AsInt != value)
                 {
-                    _tileCursorSize = new Models.Size(_tileCursorSize.Width, new Models.Height(value));
-                    OnPropertyChanged(nameof(TileCursorHeightAsInt));
+                    _tileCursorCanvasSize = new Models.Size(_tileCursorCanvasSize.Width, new Models.Height(value));
+                    OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
+
+                    // キャンバスを再描画
+                    RefreshCanvasOfTileCursor();
                 }
             }
         }
@@ -264,8 +270,8 @@
                     App.WorkingGridLeftTop = new Models.Point(new Models.X(value), App.WorkingGridLeftTop.Y);
                     OnPropertyChanged(nameof(GridLeftAsInt));
 
-                    // グリッドを再描画
-                    RefreshGraphicsViewOfGrid();
+                    // キャンバスを再描画
+                    RefreshCanvasOfGrid();
                 }
             }
         }
@@ -283,8 +289,8 @@
                     App.WorkingGridLeftTop = new Models.Point(App.WorkingGridLeftTop.X, new Models.Y(value));
                     OnPropertyChanged(nameof(GridLeftAsInt));
 
-                    // グリッドを再描画
-                    RefreshGraphicsViewOfGrid();
+                    // キャンバスを再描画
+                    RefreshCanvasOfGrid();
                 }
             }
         }
@@ -301,23 +307,8 @@
             {
                 if (App.WorkingGridTileSize != value)
                 {
-                    // 差分判定
-                    var dirtyWidth = App.WorkingGridTileSize.Width != value.Width;
-                    var dirtyHeight = App.WorkingGridTileSize.Height != value.Height;
-
-                    // 更新
-                    App.WorkingGridTileSize = value;
-
-                    // 変更通知
-                    if (dirtyWidth)
-                    {
-                        OnPropertyChanged(nameof(GridTileWidthAsInt));
-                    }
-
-                    if (dirtyHeight)
-                    {
-                        OnPropertyChanged(nameof(GridTileHeightAsInt));
-                    }
+                    this.GridTileWidthAsInt = value.Width.AsInt;
+                    this.GridTileHeightAsInt = value.Height.AsInt;
                 }
             }
         }
@@ -335,8 +326,12 @@
                     App.WorkingGridTileSize = new Models.Size(new Models.Width(value), App.WorkingGridTileSize.Height);
                     OnPropertyChanged(nameof(GridTileWidthAsInt));
 
-                    // グリッドを再描画
-                    RefreshGraphicsViewOfGrid();
+                    // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
+                    this.TileCursorCanvasWidthAsInt = App.WorkingGridTileSize.Width.AsInt + 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+
+                    // キャンバスを再描画
+                    RefreshCanvasOfGrid();
+                    RefreshCanvasOfTileCursor();
                 }
             }
         }
@@ -354,8 +349,12 @@
                     App.WorkingGridTileSize = new Models.Size(App.WorkingGridTileSize.Width, new Models.Height(value));
                     OnPropertyChanged(nameof(GridTileHeightAsInt));
 
-                    // グリッドを再描画
-                    RefreshGraphicsViewOfGrid();
+                    // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
+                    this.TileCursorCanvasHeightAsInt = App.WorkingGridTileSize.Height.AsInt + 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+
+                    // キャンバスを再描画
+                    RefreshCanvasOfGrid();
+                    RefreshCanvasOfTileCursor();
                 }
             }
         }
@@ -552,7 +551,7 @@
         /// <summary>
         ///     内部的グリッド画像サイズ
         /// </summary>
-        Models.Size _internalGridImageSize = Models.Size.Empty;
+        Models.Size _gridCanvasSize = Models.Size.Empty;
 
         /// <summary>
         ///     タイル矩形
@@ -586,30 +585,56 @@
         ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
         ///     </pre>
         /// </summary>
-        Models.Size _tileCursorSize = Models.Size.Empty;
+        Models.Size _tileCursorCanvasSize = Models.Size.Empty;
 
         // - プライベート・メソッド
 
         /// <summary>
         ///     <pre>
-        ///         グリッドの再描画
+        ///         グリッドのキャンバスの再描画
         /// 
         ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
         ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
         ///                 振動させることで、再描画を呼び起こすことにする
         ///     </pre>
         /// </summary>
-        void RefreshGraphicsViewOfGrid()
+        void RefreshCanvasOfGrid()
         {
-            if (this.InternalGridImageWidthAsInt % 2 == 1)
+            if (this.GridCanvasWidthAsInt % 2 == 1)
             {
-                this.InternalGridImageWidthAsInt--;
+                this.GridCanvasWidthAsInt--;
             }
             else
             {
-                this.InternalGridImageWidthAsInt++;
+                this.GridCanvasWidthAsInt++;
             }
         }
 
+        /// <summary>
+        ///     <pre>
+        ///         タイル・カーソルのキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        void RefreshCanvasOfTileCursor()
+        {
+            int offset;
+
+            if (this.TileCursorCanvasWidthAsInt % 2 == 1)
+            {
+                offset = -1;
+            }
+            else
+            {
+                offset = 1;
+            }
+
+            // 循環参照を避けるために、直接フィールドを変更
+            this._tileCursorCanvasSize = new Models.Size(new Models.Width(this.TileCursorCanvasWidthAsInt - offset), new Models.Height(this.TileCursorCanvasHeightAsInt));
+            OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
+        }
     }
 }

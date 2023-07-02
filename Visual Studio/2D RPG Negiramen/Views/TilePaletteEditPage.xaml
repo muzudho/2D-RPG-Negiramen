@@ -198,7 +198,7 @@
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="3,3,0,0"
-                              WidthRequest="{Binding InternalGridImageWidthAsInt}" HeightRequest="{Binding InternalGridImageHeightAsInt}"
+                              WidthRequest="{Binding GridCanvasWidthAsInt}" HeightRequest="{Binding GridCanvasHeightAsInt}"
                               Drawable="{StaticResource MyTileSetGrid}"
                               InputTransparent="True">
                 </GraphicsView>
@@ -211,7 +211,7 @@
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="{Binding TileCursorPointAsMargin}"
-                              WidthRequest="{Binding TileCursorWidthAsInt}" HeightRequest="{Binding TileCursorHeightAsInt}"
+                              WidthRequest="{Binding TileCursorCanvasWidthAsInt}" HeightRequest="{Binding TileCursorCanvasHeightAsInt}"
                               Drawable="{StaticResource MyTileCursor}"
                               InputTransparent="True">
                 </GraphicsView>

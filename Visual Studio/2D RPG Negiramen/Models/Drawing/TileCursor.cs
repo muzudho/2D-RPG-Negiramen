@@ -22,14 +22,17 @@
             // 線の色
             canvas.StrokeColor = Colors.Red;
 
+            // タイル・カーソルの線の太さの半分
+            int halfThicknessOfLineAsInt = App.HalfThicknessOfTileCursorLine.AsInt;
+
             // タイル・カーソルの線の太さ
-            Models.ThicknessOfLine thickness = new Models.ThicknessOfLine(2 * App.HalfThicknessOfTileCursorLine.AsInt);
+            Models.ThicknessOfLine thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = thickness.AsInt;
 
             // 線の太さを考えて位置とサイズ指定
             canvas.DrawRectangle(new Rect(
-                App.HalfThicknessOfTileCursorLine.AsInt,
-                App.HalfThicknessOfTileCursorLine.AsInt,
+                halfThicknessOfLineAsInt,
+                halfThicknessOfLineAsInt,
                 32 + thickness.AsInt,
                 32 + thickness.AsInt));
         }
