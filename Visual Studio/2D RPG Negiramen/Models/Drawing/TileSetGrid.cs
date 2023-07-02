@@ -26,34 +26,40 @@
             canvas.StrokeSize = lineThickness.AsInt;
 
             // グリッド全体の左上表示位置
-            var paddingLeft = App.WorkingGridLeftTop.X.AsInt;
-            var paddingTop = App.WorkingGridLeftTop.Y.AsInt;
+            int paddingLeftAsInt = App.WorkingGridLeftTop.X.AsInt;
+            int paddingTopAsInt = App.WorkingGridLeftTop.Y.AsInt;
 
             // グリッド・タイル・サイズ
             Models.Size gridTileSize = App.WorkingGridTileSize;
 
-            // 画像サイズ
-            var imageWidth = (int)dirtyRect.Width;
-            var imageHeight = (int)dirtyRect.Height;
+            // キャンバス・サイズ
+            var canvasWidth = (int)dirtyRect.Width;
+            var canvasHeight = (int)dirtyRect.Height;
 
+            //
             // 縦線を引いていこう
-            int y1 = halfThicknessOfLineAsInt + paddingTop;
-            int y2 = imageHeight + halfThicknessOfLineAsInt + paddingTop;
-            for (var x = halfThicknessOfLineAsInt + paddingLeft; x < imageWidth + lineThickness.AsInt + paddingLeft; x += gridTileSize.Width.AsInt)
+            // ==================
+            //
+            int y1 = halfThicknessOfLineAsInt + paddingTopAsInt;
+            int y2 = canvasHeight + halfThicknessOfLineAsInt + paddingTopAsInt;
+            for (var x = halfThicknessOfLineAsInt + paddingLeftAsInt; x < canvasWidth + lineThickness.AsInt + paddingLeftAsInt; x += gridTileSize.Width.AsInt)
             {
                 canvas.DrawLine(x, y1, x, y2);
             }
 
+            //
             // 横線を引いていこう
-            int x1 = halfThicknessOfLineAsInt + paddingLeft;
+            // ==================
+            //
+            int x1 = halfThicknessOfLineAsInt + paddingLeftAsInt;
 
             // CANCEL CODE: 横幅が偶数なら横幅を +1、奇数なら横幅を -1 するという TRICK CODE が別の箇所にあるので、
             //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
             //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
             //              右辺の線の手前まで線を引くようにする
-            int x2 = imageWidth - halfThicknessOfLineAsInt + paddingLeft;
+            int x2 = canvasWidth - halfThicknessOfLineAsInt + paddingLeftAsInt;
 
-            for (var y = halfThicknessOfLineAsInt + paddingTop; y < imageHeight + lineThickness.AsInt + paddingTop; y += gridTileSize.Height.AsInt)
+            for (var y = halfThicknessOfLineAsInt + paddingTopAsInt; y < canvasHeight + lineThickness.AsInt + paddingTopAsInt; y += gridTileSize.Height.AsInt)
             {
                 canvas.DrawLine(x1, y, x2, y);
             }

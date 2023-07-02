@@ -193,10 +193,12 @@
                 if (_tileCursorCanvasSize.Width.AsInt != value)
                 {
                     _tileCursorCanvasSize = new Models.Size(new Models.Width(value), _tileCursorCanvasSize.Height);
-                    OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
 
                     // キャンバスを再描画
                     RefreshCanvasOfTileCursor();
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
                 }
             }
         }
@@ -216,10 +218,12 @@
                 if (_tileCursorCanvasSize.Height.AsInt != value)
                 {
                     _tileCursorCanvasSize = new Models.Size(_tileCursorCanvasSize.Width, new Models.Height(value));
-                    OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
 
                     // キャンバスを再描画
                     RefreshCanvasOfTileCursor();
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
                 }
             }
         }
@@ -236,6 +240,10 @@
             {
                 if (App.WorkingGridLeftTop != value)
                 {
+                    this.GridLeftAsInt = value.X.AsInt;
+                    this.GridTopAsInt = value.Y.AsInt;
+
+                    /*
                     // 差分判定
                     var dirtyX = App.WorkingGridLeftTop.X != value.X;
                     var dirtyY = App.WorkingGridLeftTop.Y != value.Y;
@@ -253,6 +261,7 @@
                     {
                         OnPropertyChanged(nameof(GridTopAsInt));
                     }
+                    */
                 }
             }
         }
@@ -268,10 +277,12 @@
                 if (App.WorkingGridLeftTop.X.AsInt != value)
                 {
                     App.WorkingGridLeftTop = new Models.Point(new Models.X(value), App.WorkingGridLeftTop.Y);
-                    OnPropertyChanged(nameof(GridLeftAsInt));
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(GridLeftAsInt));
                 }
             }
         }
@@ -287,10 +298,12 @@
                 if (App.WorkingGridLeftTop.Y.AsInt != value)
                 {
                     App.WorkingGridLeftTop = new Models.Point(App.WorkingGridLeftTop.X, new Models.Y(value));
-                    OnPropertyChanged(nameof(GridLeftAsInt));
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(GridLeftAsInt));
                 }
             }
         }
@@ -324,7 +337,6 @@
                 if (App.WorkingGridTileSize.Width.AsInt != value)
                 {
                     App.WorkingGridTileSize = new Models.Size(new Models.Width(value), App.WorkingGridTileSize.Height);
-                    OnPropertyChanged(nameof(GridTileWidthAsInt));
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasWidthAsInt = App.WorkingGridTileSize.Width.AsInt + 4 * App.HalfThicknessOfTileCursorLine.AsInt;
@@ -332,6 +344,9 @@
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
                     RefreshCanvasOfTileCursor();
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(GridTileWidthAsInt));
                 }
             }
         }
@@ -347,7 +362,6 @@
                 if (App.WorkingGridTileSize.Height.AsInt != value)
                 {
                     App.WorkingGridTileSize = new Models.Size(App.WorkingGridTileSize.Width, new Models.Height(value));
-                    OnPropertyChanged(nameof(GridTileHeightAsInt));
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasHeightAsInt = App.WorkingGridTileSize.Height.AsInt + 4 * App.HalfThicknessOfTileCursorLine.AsInt;
@@ -355,6 +369,9 @@
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
                     RefreshCanvasOfTileCursor();
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(GridTileHeightAsInt));
                 }
             }
         }
@@ -623,7 +640,7 @@
         {
             int offset;
 
-            if (this.TileCursorCanvasWidthAsInt % 2 == 1)
+            if (this._tileCursorCanvasSize.Width.AsInt % 2 == 1)
             {
                 offset = -1;
             }
@@ -633,7 +650,7 @@
             }
 
             // 循環参照を避けるために、直接フィールドを変更
-            this._tileCursorCanvasSize = new Models.Size(new Models.Width(this.TileCursorCanvasWidthAsInt - offset), new Models.Height(this.TileCursorCanvasHeightAsInt));
+            this._tileCursorCanvasSize = new Models.Size(new Models.Width(this._tileCursorCanvasSize.Width.AsInt - offset), new Models.Height(this._tileCursorCanvasSize.Height.AsInt));
             OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
         }
     }

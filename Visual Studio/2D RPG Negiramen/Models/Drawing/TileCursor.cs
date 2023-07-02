@@ -29,12 +29,18 @@
             Models.ThicknessOfLine thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = thickness.AsInt;
 
-            // 線の太さを考えて位置とサイズ指定
+            // グリッド・タイル・サイズ
+            Models.Size gridTileSize = App.WorkingGridTileSize;
+
+            // キャンバス・サイズいっぱいにタイル・カーソルを描画
             canvas.DrawRectangle(new Rect(
+                // タイル・カーソルの位置を調整するのは、キャンバス自体の位置を動かすこと
+                // 端が切れないように、線の太さの半分をずらして描画
                 halfThicknessOfLineAsInt,
                 halfThicknessOfLineAsInt,
-                32 + thickness.AsInt,
-                32 + thickness.AsInt));
+                // 境界線上ではなく、境界線に外接するように描くために、線の太さの半分をずらして描画
+                gridTileSize.Width.AsInt + thickness.AsInt,
+                gridTileSize.Height.AsInt + thickness.AsInt));
         }
     }
 }
