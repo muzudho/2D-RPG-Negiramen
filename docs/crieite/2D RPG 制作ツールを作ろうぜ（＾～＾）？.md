@@ -1730,4 +1730,94 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　下側の　タイル　０　０　０　０　のとこに　カーソルの位置を表示しなさいよ」  
 
+![202307_maui_02-2225--cursor-position-o2o0.png](https://crieit.now.sh/upload_images/009adbe69fa4c11c265cdac4caf2da2d64a17b31be7b8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　はい」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父ん。グリッド１ます　の　たて　に　50000　と入れたら強制終了したぜ？」  
+
+![202307_maui_02-2229--size-over-o2o0.png](https://crieit.now.sh/upload_images/31a586467e701018f84813e7c4ca6d4f64a17bf404caa.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　確かに。あのグリッド、ただの縦線じゃなくて　画像だからな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　テキスト・ボックスに　バリデーション（妥当性検証）を入れなさいよ」  
+
+## バリデーションを入れようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　何もかも　やり方が分からん。覚え直しだ。　調べるか……」  
+
+📖 [Microsoft　＞　Validation](https://learn.microsoft.com/en-us/dotnet/architecture/maui/validation)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　説明の通りコードを書いても　`IValidity`　のところで　コンパイル・エラーになるの　分けわからんな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　この記事が　クソ　だということを伝えるボタンが無いぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　文字数のチェックはできるみたいよ？」  
+
+📖 [TextValidationBehavior](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/behaviors/text-validation-behavior)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　もっと　まともな方法を調べるぜ」  
+
+📖 [RequiredStringValidationBehavior](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/maui/behaviors/required-string-validation-behavior)  
+📖 [NumericValidationBehavior](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/maui/behaviors/numeric-validation-behavior)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`NumericValidationBehavior` を調べてみるか」  
+
+![202307_maui_02-2335--validation-o2o0.png](https://crieit.now.sh/upload_images/2a89a597755074ca97fd1a8a3b904c1064a18ba60f168.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　下ごしらえは　XAML　だけで終わるの　簡単だな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　１辺の上限が　16384　じゃなくて、  
+面積の上限が　16384　か？  
+ルート２　したら　128　で小さすぎないか？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`10000` x `10000` にしても動いているぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　なんか限界　攻めたくないな。  
+グラフィック・カードの性能に依存するのかも知らん。  
+とりあえず　上限は　8192　にしよう！」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　2 の 13乗に　意義を感じないわね」  
+
+![202307_maui_02-2338--validation-o2o0.png](https://crieit.now.sh/upload_images/00c8fe1b889a24b1248df026ac7bf56764a18c26e2e0b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　じゃあ　無難な　上限　2048　にして、  
+文句があるやつがでてきたときに　拡張用の設定ファイルを用意しようぜ？」　
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　設定できるんなら　それでいいよな」  
+
+![202307_maui_02-2328--validation-o2o0.png](https://crieit.now.sh/upload_images/01caafe26b01dcebb561b62d129a4b3864a189cb9963c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あれっ？　色が変わるだけで　入力できてしまう？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　入力を拒絶しなきゃ、意味なくない？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ビュー・モデルの方で　2048　以上を入力したら　2048　として扱うような処理がいるかもしれないな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　あっ、 0 を入れても　フリーズしたぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　明日は　バリデーション　を　みっちり　やるぜ」  
+
 ＜書きかけ＞

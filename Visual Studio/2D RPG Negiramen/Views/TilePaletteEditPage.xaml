@@ -3,13 +3,29 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:modelsDrawing="clr-namespace:_2D_RPG_Negiramen.Models.Drawing"
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage">
 
     <ContentPage.Resources>
+        <!--
+            描画
+            ====
+        -->
         <modelsDrawing:TileSetGrid x:Key="MyTileSetGrid" />
         <modelsDrawing:TileCursor x:Key="MyTileCursor" />
+        
+        <!--
+            バリデーション
+            ==============
+        -->
+        <Style x:Key="InvalidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Red" />
+        </Style>
+        <Style x:Key="ValidEntryStyle" TargetType="Entry">
+            <Setter Property="TextColor" Value="Black" />
+        </Style>
     </ContentPage.Resources>
-
+    
     <ContentPage.BindingContext>
         <viewModels:TilePaletteEditPageViewModel />
     </ContentPage.BindingContext>
@@ -136,13 +152,31 @@
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="{Binding GridTileWidthAsInt}"
-                   BackgroundColor="White"/>
+                   BackgroundColor="White">
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                       ValidStyle="{StaticResource ValidEntryStyle}"
+                                                       Flags="ValidateOnValueChanged"
+                                                       MinimumValue="0"
+                                                       MaximumValue="2048"
+                                                       MaximumDecimalPlaces="0" />
+                </Entry.Behaviors>
+            </Entry>
 
             <Entry Grid.Row="1" Grid.Column="8"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="{Binding GridTileHeightAsInt}"
-                   BackgroundColor="White"/>
+                   BackgroundColor="White">
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                       ValidStyle="{StaticResource ValidEntryStyle}"
+                                                       Flags="ValidateOnValueChanged"
+                                                       MinimumValue="0"
+                                                       MaximumValue="2048"
+                                                       MaximumDecimalPlaces="0" />
+                </Entry.Behaviors>
+            </Entry>
 
         </Grid>
 
