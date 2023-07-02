@@ -1703,4 +1703,31 @@ MAUI で画面遷移時に何かデータを渡すには　どうやるんだぜ
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ＭＶＶＭの実装　時間かかるんだな、作る画面は　最低限の数で済むように　全体を考えないとな」  
 
+# 📅 2023-07-02 タイル・パレット編集ページを作っていこうぜ？
+
+![202307_maui_02-1431--grid-point-o2o0.png](https://crieit.now.sh/upload_images/a65ae8d6cdf1e7b37cc75def6121e38664a10c55609ab.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　グリッドの全体も　ずらせるようにしたので、 **位相** にも対応だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　スクロールとかねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　線形代数の変換の王様、アフィン変換にも対応しろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　開発時間足りない。次へ」  
+
+![202307_maui_02-2156--grid.png](https://crieit.now.sh/upload_images/cb165a2a837fc638a8fc6c041429b88364a1744d5f299.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　カーソルが　グリッドに　吸着するようになったぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　これだけで　日曜日が終わろうとしている。時間がかかるな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　下側の　タイル　０　０　０　０　のとこに　カーソルの位置を表示しなさいよ」  
+
 ＜書きかけ＞
