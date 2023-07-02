@@ -55,7 +55,7 @@
             ==========
         -->
         <Grid Grid.Row="0"
-              RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,64,64,64,*"
+              RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
@@ -79,11 +79,11 @@
                    HorizontalTextAlignment="End"
                    Text="うえ"/>
 
-            <Label Grid.Row="0" Grid.Column="6"
+            <Label Grid.Row="0" Grid.Column="7"
                    HorizontalTextAlignment="End"
                    Text="よこ"/>
 
-            <Label Grid.Row="0" Grid.Column="7"
+            <Label Grid.Row="0" Grid.Column="8"
                    HorizontalTextAlignment="End"
                    Text="たて"/>
 
@@ -113,7 +113,7 @@
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="グリッド"/>
+                   Text="グリッド&#10;全体"/>
 
             <Entry Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
@@ -127,13 +127,18 @@
                    Text="{Binding GridTopAsInt}"
                    BackgroundColor="White"/>
 
-            <Entry Grid.Row="1" Grid.Column="6"
+            <Label Grid.Row="1" Grid.Column="6"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="グリッド&#10;１ます"/>
+
+            <Entry Grid.Row="1" Grid.Column="7"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="{Binding GridTileWidthAsInt}"
                    BackgroundColor="White"/>
 
-            <Entry Grid.Row="1" Grid.Column="7"
+            <Entry Grid.Row="1" Grid.Column="8"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="{Binding GridTileHeightAsInt}"

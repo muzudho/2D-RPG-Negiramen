@@ -48,25 +48,44 @@ public partial class TilePalettePage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
+        // Image image = (Image)sender;
+
+        // タップした座標
         int tappedX = (int)e.GetPosition((Element)sender).Value.X;
         int tappedY = (int)e.GetPosition((Element)sender).Value.Y;
         Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tappedX} y:{tappedY}");
 
-        TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
-        Image image = (Image)sender;
+        // タイル・サイズ
+        int tileSize = 32;
 
+        var tileCursorPoint = TranslateTappedPointToTileCursorPoint(
+            tappedX,
+            tappedY,
+            tileSize,
+            tileSize);
+
+        // 計算値の反映
+        TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
         context.TappedXOnImageAsInt = tappedX;
         context.TappedYOnImageAsInt = tappedY;
+        context.TileCursorXOnWindowAsInt = tileCursorPoint.X.AsInt;
+        context.TileCursorYOnWindowAsInt = tileCursorPoint.Y.AsInt;
+    }
 
+    /// <summary>
+    /// タップした座標を、タイル・カーソルの座標へ変換します
+    /// </summary>
+    Models.Point TranslateTappedPointToTileCursorPoint(
+        double tappedX,
+        double tappedY,
+        int gridTileWidth,
+        int gridTileHeight)
+    {
         // タイル・カーソルの座標を算出
-        int tileSize = 32;
-        int cursorX = tappedX / tileSize * tileSize;
-        int cursorY = tappedY / tileSize * tileSize;
-        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] cursor x:{cursorX} y:{cursorY}");
-
-        context.TileCursorXOnWindowAsInt = cursorX;
-        context.TileCursorYOnWindowAsInt = cursorY;
+        return new Models.Point(
+            new Models.X((int)tappedX / gridTileWidth * gridTileWidth),
+            new Models.Y((int)tappedY / gridTileHeight * gridTileHeight));
     }
 }

@@ -156,23 +156,23 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（グリッドの左上位置）
+        #region 変更通知プロパティ（グリッド全体の左上表示位置）
         /// <summary>
-        ///     グリッドの左上位置
+        ///     グリッド全体の左上表示位置
         /// </summary>
         public Models.Point GridLeftTop
         {
-            get => _gridLeftTop;
+            get => App.WorkingGridLeftTop;
             set
             {
-                if (_gridLeftTop != value)
+                if (App.WorkingGridLeftTop != value)
                 {
                     // 差分判定
-                    var dirtyX = _gridLeftTop.X != value.X;
-                    var dirtyY = _gridLeftTop.Y != value.Y;
+                    var dirtyX = App.WorkingGridLeftTop.X != value.X;
+                    var dirtyY = App.WorkingGridLeftTop.Y != value.Y;
 
                     // 更新
-                    _gridLeftTop = value;
+                    App.WorkingGridLeftTop = value;
 
                     // 変更通知
                     if (dirtyX)
@@ -189,33 +189,39 @@
         }
 
         /// <summary>
-        ///     グリッドの左上位置ｘ
+        ///     グリッド全体の左上表示位置ｘ
         /// </summary>
         public int GridLeftAsInt
         {
-            get => _gridLeftTop.X.AsInt;
+            get => App.WorkingGridLeftTop.X.AsInt;
             set
             {
-                if (_gridLeftTop.X.AsInt != value)
+                if (App.WorkingGridLeftTop.X.AsInt != value)
                 {
-                    _gridLeftTop = new Models.Point(new Models.X(value), _gridLeftTop.Y);
+                    App.WorkingGridLeftTop = new Models.Point(new Models.X(value), App.WorkingGridLeftTop.Y);
                     OnPropertyChanged(nameof(GridLeftAsInt));
+
+                    // グリッドを再描画
+                    RefreshGraphicsViewOfGrid();
                 }
             }
         }
 
         /// <summary>
-        ///     グリッドの左上位置ｙ
+        ///     グリッド全体の左上表示位置ｙ
         /// </summary>
         public int GridTopAsInt
         {
-            get => _gridLeftTop.Y.AsInt;
+            get => App.WorkingGridLeftTop.Y.AsInt;
             set
             {
-                if (_gridLeftTop.Y.AsInt != value)
+                if (App.WorkingGridLeftTop.Y.AsInt != value)
                 {
-                    _gridLeftTop = new Models.Point(_gridLeftTop.X, new Models.Y(value));
+                    App.WorkingGridLeftTop = new Models.Point(App.WorkingGridLeftTop.X, new Models.Y(value));
                     OnPropertyChanged(nameof(GridLeftAsInt));
+
+                    // グリッドを再描画
+                    RefreshGraphicsViewOfGrid();
                 }
             }
         }
@@ -250,25 +256,6 @@
                         OnPropertyChanged(nameof(GridTileHeightAsInt));
                     }
                 }
-            }
-        }
-
-        /// <summary>
-        ///     <pre>
-        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-        ///                 振動させることで、再描画を呼び起こすことにする
-        ///     </pre>
-        /// </summary>
-        void RefreshGraphicsViewOfGrid()
-        {
-            if (this.InternalGridImageWidthAsInt % 2 == 1)
-            {
-                this.InternalGridImageWidthAsInt--;
-            }
-            else
-            {
-                this.InternalGridImageWidthAsInt++;
             }
         }
 
@@ -505,11 +492,6 @@
         Models.Size _internalGridImageSize = Models.Size.Empty;
 
         /// <summary>
-        ///     グリッドの左上位置
-        /// </summary>
-        Models.Point _gridLeftTop = Models.Point.Empty;
-
-        /// <summary>
         ///     タイル矩形
         /// </summary>
         Models.Rectangle _tileRect = Models.Rectangle.Empty;
@@ -533,5 +515,29 @@
         ///     ウィンドウ上のタイル・カーソルのマージン
         /// </summary>
         Thickness _tileCursorThickness = Thickness.Zero;
+
+        // - プライベート・メソッド
+
+        /// <summary>
+        ///     <pre>
+        ///         グリッドの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        void RefreshGraphicsViewOfGrid()
+        {
+            if (this.InternalGridImageWidthAsInt % 2 == 1)
+            {
+                this.InternalGridImageWidthAsInt--;
+            }
+            else
+            {
+                this.InternalGridImageWidthAsInt++;
+            }
+        }
+
     }
 }

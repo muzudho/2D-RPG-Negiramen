@@ -27,7 +27,12 @@ public partial class App : Application
     /// <summary>
     ///     現在作業中の画面の中でのグリッド・タイル・サイズ
     /// </summary>
-    static internal Size WorkingGridTileSize { get; set; } = new Models.Size(new Models.Width(32), new Models.Height(32));
+    static internal Models.Size WorkingGridTileSize { get; set; } = new Models.Size(new Models.Width(32), new Models.Height(32));
+
+    /// <summary>
+    ///     グリッド全体の左上表示位置
+    /// </summary>
+    static internal Models.Point WorkingGridLeftTop = Models.Point.Empty;
 
     // - 静的メソッド
 
