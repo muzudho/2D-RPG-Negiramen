@@ -12,16 +12,16 @@
         ///         時間の経過や、回転運動を扱うわけでもないから、整数として扱う
         ///     </pre>
         /// </summary>
+        /// <param name="tapped">タップした座標</param>
+        /// <param name="gridTile">グリッド・タイルのサイズ</param>
         internal static Models.Point TranslateTappedPointToTileCursorPoint(
-            int tappedX,
-            int tappedY,
-            int gridTileWidth,
-            int gridTileHeight)
+            Models.Point tapped,
+            Models.Size gridTile)
         {
             // タイル・カーソルの座標を算出
             return new Models.Point(
-                new Models.X(tappedX / gridTileWidth * gridTileWidth),
-                new Models.Y(tappedY / gridTileHeight * gridTileHeight));
+                new Models.X(tapped.X.AsInt / gridTile.Width.AsInt * gridTile.Width.AsInt),
+                new Models.Y(tapped.Y.AsInt / gridTile.Height.AsInt * gridTile.Height.AsInt));
         }
     }
 }

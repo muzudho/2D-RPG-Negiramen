@@ -28,24 +28,21 @@ public partial class TilePaletteEditPage : ContentPage
         // Image image = (Image)sender;
 
         // タップした座標
-        int tappedX = (int)e.GetPosition((Element)sender).Value.X;
-        int tappedY = (int)e.GetPosition((Element)sender).Value.Y;
-        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tappedX} y:{tappedY}");
+        var tapped = new Models.Point(
+            new Models.X((int)e.GetPosition((Element)sender).Value.X),
+            new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
+        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tapped.X.AsInt} y:{tapped.Y.AsInt}");
 
-        // タイル・サイズ
-        int tileSize = 32;
-
-        var tileCursorPoint = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
-            tappedX,
-            tappedY,
-            tileSize,
-            tileSize);
+        // タイル・カーソルの座標
+        var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
+            tapped: tapped,
+            gridTile: App.WorkingGridTileSize);
 
         // 計算値の反映
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
         //context.TappedXOnImageAsInt = tappedX;
         //context.TappedYOnImageAsInt = tappedY;
-        context.TileCursorXOnWindowAsInt = tileCursorPoint.X.AsInt;
-        context.TileCursorYOnWindowAsInt = tileCursorPoint.Y.AsInt;
+        context.TileCursorXOnWindowAsInt = tileCursor.X.AsInt;
+        context.TileCursorYOnWindowAsInt = tileCursor.Y.AsInt;
     }
 }
