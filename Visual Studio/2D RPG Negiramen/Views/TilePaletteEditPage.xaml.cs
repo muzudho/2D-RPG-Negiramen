@@ -56,11 +56,18 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
     {
+        IsPointingDevicePressed = true;
+
         // ポイントしている位置
-        var point = new Models.Point(
+        PointingDeviceStartPoint = new Models.Point(
             new Models.X((int)e.GetPosition((Element)sender).Value.X),
             new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
-        Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerEntered] entered x:{point.X.AsInt} y:{point.Y.AsInt}");
+        Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerEntered] entered x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
+
+        // タイル・カーソルの位置
+        var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
+            tapped: PointingDeviceStartPoint,
+            gridTile: App.WorkingGridTileSize);
     }
 
     /// <summary>
@@ -70,11 +77,19 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
     {
-        // ポイントしている位置
-        var point = new Models.Point(
-            new Models.X((int)e.GetPosition((Element)sender).Value.X),
-            new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
-        Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] moved x:{point.X.AsInt} y:{point.Y.AsInt}");
+        if (IsPointingDevicePressed)
+        {
+            // ポイントしている位置
+            PointingDeviceCurrentPoint = new Models.Point(
+                new Models.X((int)e.GetPosition((Element)sender).Value.X),
+                new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
+            Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+            // タイル・カーソルの位置
+            var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
+                tapped: PointingDeviceCurrentPoint,
+                gridTile: App.WorkingGridTileSize);
+        }
     }
 
     /// <summary>
@@ -84,10 +99,44 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
     {
+        IsPointingDevicePressed = false;
+
         // ポイントしている位置
-        var point = new Models.Point(
+        PointingDeviceCurrentPoint = new Models.Point(
             new Models.X((int)e.GetPosition((Element)sender).Value.X),
             new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
-        Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] exited x:{point.X.AsInt} y:{point.Y.AsInt}");
+        Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+        // タイル・カーソルの位置
+        var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
+            tapped: PointingDeviceCurrentPoint,
+            gridTile: App.WorkingGridTileSize);
+    }
+
+    // - プライベート・プロパティー
+
+    /// <summary>
+    /// ポインティング・デバイス押下中か？
+    /// </summary>
+    bool IsPointingDevicePressed { get; set; }
+
+    /// <summary>
+    /// ポインティング・デバイス押下開始位置
+    /// </summary>
+    Models.Point PointingDeviceStartPoint { get; set; }
+
+    /// <summary>
+    /// ポインティング・デバイス押下現在位置
+    /// </summary>
+    Models.Point PointingDeviceCurrentPoint { get; set; }
+
+    // - プライベート・メソッド
+
+    /// <summary>
+    /// カーソルの矩形を算出
+    /// </summary>
+    void LetCursorRectangle()
+    {
+
     }
 }

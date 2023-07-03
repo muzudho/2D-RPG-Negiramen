@@ -471,6 +471,65 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（タイル・カーソルのサイズ）
+        /// <summary>
+        ///     タイル・カーソルのサイズ
+        /// </summary>
+        public Models.Size TileCursorSize
+        {
+            get => _tileCursorSize;
+            set
+            {
+                if (_tileCursorSize != value)
+                {
+                    _tileCursorSize = value;
+
+                    // TODO タイル・カーソルのキャンバス・サイズ変更
+
+                    OnPropertyChanged(nameof(TileCursorSize));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     タイル・カーソルの横幅
+        /// </summary>
+        public int TileCursorWidthAsInt
+        {
+            get => _tileCursorSize.Width.AsInt;
+            set
+            {
+                if (_tileCursorSize.Width.AsInt != value)
+                {
+                    _tileCursorSize = new Models.Size(new Models.Width(value), _tileCursorSize.Height);
+
+                    // TODO タイル・カーソルのキャンバス・サイズ変更
+
+                    OnPropertyChanged(nameof(TileCursorWidthAsInt));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     タイル・カーソルの縦幅
+        /// </summary>
+        public int TileCursorHeightAsInt
+        {
+            get => _tileCursorSize.Height.AsInt;
+            set
+            {
+                if (_tileCursorSize.Height.AsInt != value)
+                {
+                    _tileCursorSize = new Models.Size(_tileCursorSize.Width, new Models.Height(value));
+
+                    // TODO タイル・カーソルのキャンバス・サイズ変更
+
+                    OnPropertyChanged(nameof(TileCursorHeightAsInt));
+                }
+            }
+        }
+        #endregion
+
         #region 変更通知プロパティ（選択タイルの矩形）
         /// <summary>
         ///     選択タイルの位置ｘ
@@ -622,8 +681,13 @@
         Thickness _tileCursorPointAsMargin = Thickness.Zero;
 
         /// <summary>
+        ///     タイル・カーソルのサイズ
+        /// </summary>
+        Models.Size _tileCursorSize = Models.Size.Empty;
+
+        /// <summary>
         ///     <pre>
-        ///         タイル・カーソルのサイズ
+        ///         タイル・カーソルのキャンバス・サイズ
         ///     
         ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
         ///     </pre>
