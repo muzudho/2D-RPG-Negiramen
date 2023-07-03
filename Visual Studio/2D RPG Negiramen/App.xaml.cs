@@ -76,15 +76,15 @@ public partial class App : Application
     {
         if (App.Settings == null)
         {
-            // 設定ファイルの読込
+            // 設定ファイルの読込（読取成功にせよ、失敗にせよ）
             if (Settings.LoadTOML(out Settings settings))
             {
                 App.Settings = settings;
             }
             else
             {
-                // 既定値の設定ファイルを作成（ここでは、保存はしない）
-                App.Settings = new Settings();
+                // 読込に失敗したなら、既定値の設定ファイルを取得（ここでは、保存はしない）
+                App.Settings = settings;
             }
         }
 

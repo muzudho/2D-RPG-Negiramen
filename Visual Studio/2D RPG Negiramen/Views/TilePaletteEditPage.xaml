@@ -158,7 +158,7 @@
                                                        ValidStyle="{StaticResource ValidEntryStyle}"
                                                        Flags="ValidateOnValueChanged"
                                                        MinimumValue="0"
-                                                       MaximumValue="2048"
+                                                       MaximumValue="{Binding TileMaxWidthAsInt}"
                                                        MaximumDecimalPlaces="0" />
                 </Entry.Behaviors>
             </Entry>
@@ -173,7 +173,7 @@
                                                        ValidStyle="{StaticResource ValidEntryStyle}"
                                                        Flags="ValidateOnValueChanged"
                                                        MinimumValue="0"
-                                                       MaximumValue="2048"
+                                                       MaximumValue="{Binding TileMaxHeightAsInt}"
                                                        MaximumDecimalPlaces="0" />
                 </Entry.Behaviors>
             </Entry>

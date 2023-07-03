@@ -21,6 +21,17 @@
         /// <returns>TOMLテーブルまたはヌル</returns>
         internal static bool LoadTOML(out Settings settings)
         {
+            //
+            // 既定値
+            // ======
+            //
+            // 全部ヌルなので、既定値を入れていきます
+            SettingsBuffer buffer = new SettingsBuffer()
+            {
+                // 一辺が 2048 ピクセルのキャンバスを想定し、両端に太さが 2px のグリッドの線があって 1px ずつ食み出るから 2px 引いて 2046
+                TileMaxSize = new Models.Size(new Models.Width(2046), new Models.Height(2046)),
+            };
+
             try
             {
                 // フォルダー名は自動的に与えられているので、これを使う
@@ -32,14 +43,6 @@
 
                 // 設定ファイルの読取
                 var settingsText = System.IO.File.ReadAllText(settingsFilePath);
-
-                //
-                // 既定値
-                // ======
-                //
-
-                // 一辺が 2048 ピクセルのキャンバスを想定し、両端に太さが 2px のグリッドの線があって 1px ずつ食み出るから 2px 引いて 2046
-                Models.Size tileMaxSize = new Models.Size(new Models.Width(2046), new Models.Height(2046));
 
                 // TOML
                 TomlTable document = Toml.ToModel(settingsText);
@@ -56,7 +59,7 @@
                             {
                                 if (maxWidthObj is int maxWidthAsInt)
                                 {
-                                    tileMaxSize = new Models.Size(new Models.Width(maxWidthAsInt), tileMaxSize.Height);
+                                    buffer.TileMaxSize = new Models.Size(new Models.Width(maxWidthAsInt), buffer.TileMaxSize.Height);
                                 }
                             }
 
@@ -65,21 +68,24 @@
                             {
                                 if (maxHeightObj is int maxHeightAsInt)
                                 {
-                                    tileMaxSize = new Models.Size(tileMaxSize.Width, new Models.Height(maxHeightAsInt));
+                                    buffer.TileMaxSize = new Models.Size(buffer.TileMaxSize.Width, new Models.Height(maxHeightAsInt));
                                 }
                             }
                         }
                     }
                 }
 
-                settings = new Settings(tileMaxSize);
                 return true;
             }
             catch (Exception ex)
             {
                 // TODO 例外対応、何したらいい（＾～＾）？
-                settings = null;
                 return false;
+            }
+            finally
+            {
+                settings = new Settings(
+                    buffer.TileMaxSize);
             }
         }
 
@@ -125,13 +131,13 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
         /// </summary>
         internal Models.Size TileMaxSize { get; }
 
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal Settings() : this(
-            Models.Size.Empty)
-        {
-        }
+        ///// <summary>
+        /////     生成
+        ///// </summary>
+        //internal Settings() : this(
+        //    Models.Size.Empty)
+        //{
+        //}
 
         /// <summary>
         ///     生成
