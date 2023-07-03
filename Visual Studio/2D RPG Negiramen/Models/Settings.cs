@@ -39,8 +39,7 @@
                 //
 
                 // 一辺が 2048 ピクセルのキャンバスを想定し、両端に太さが 2px のグリッドの線があって 1px ずつ食み出るから 2px 引いて 2046
-                Models.Width tileMaxWidth = new Models.Width(2046);
-                Models.Height tileMaxHeight = new Models.Height(2046);
+                Models.Size tileMaxSize = new Models.Size(new Models.Width(2046), new Models.Height(2046));
 
                 // TOML
                 TomlTable document = Toml.ToModel(settingsText);
@@ -57,7 +56,7 @@
                             {
                                 if (maxWidthObj is int maxWidthAsInt)
                                 {
-                                    tileMaxWidth = new Models.Width(maxWidthAsInt);
+                                    tileMaxSize = new Models.Size(new Models.Width(maxWidthAsInt), tileMaxSize.Height);
                                 }
                             }
 
@@ -66,16 +65,14 @@
                             {
                                 if (maxHeightObj is int maxHeightAsInt)
                                 {
-                                    tileMaxHeight = new Models.Height(maxHeightAsInt);
+                                    tileMaxSize = new Models.Size(tileMaxSize.Width, new Models.Height(maxHeightAsInt));
                                 }
                             }
                         }
                     }
                 }
 
-                settings = new Settings(
-                    tileMaxWidth,
-                    tileMaxHeight);
+                settings = new Settings(tileMaxSize);
                 return true;
             }
             catch (Exception ex)
@@ -105,14 +102,13 @@
             var settingsBuffer = new SettingsBuffer();
 
             // 差分適用
-            settingsBuffer.TileMaxWidth = difference.TileMaxWidth == null ? current.TileMaxWidth : difference.TileMaxWidth;
-            settingsBuffer.TileMaxHeight = difference.TileMaxHeight == null ? current.TileMaxHeight : difference.TileMaxHeight;
+            settingsBuffer.TileMaxSize = difference.TileMaxSize == null ? current.TileMaxSize : difference.TileMaxSize;
 
             var text = $@"[tile]
 
 # 一辺が 2048 ピクセルのキャンバスを想定し、両端に太さが 2px のグリッドの線があって 1px ずつ食み出るから 2px 引いて 2046
-max_width = 2046
-max_height = 2046
+max_width = {settingsBuffer.TileMaxSize.Width.AsInt}
+max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
 ";
 
             // 上書き
@@ -120,41 +116,31 @@ max_height = 2046
 
             // イミュータブル・オブジェクトを生成
             newSettings = new Settings(
-                settingsBuffer.TileMaxWidth,
-                settingsBuffer.TileMaxHeight);
+                settingsBuffer.TileMaxSize);
             return true;
         }
 
         /// <summary>
-        ///     タイルの最大横幅
+        ///     タイルの最大サイズ
         /// </summary>
-        internal Models.Width TileMaxWidth { get; }
-
-        /// <summary>
-        ///     タイルの最大縦幅
-        /// </summary>
-        internal Models.Height TileMaxHeight { get; }
+        internal Models.Size TileMaxSize { get; }
 
         /// <summary>
         ///     生成
         /// </summary>
         internal Settings() : this(
-            Models.Width.Empty,
-            Models.Height.Empty)
+            Models.Size.Empty)
         {
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="tileMaxWidth">タイルの最大横幅</param>
-        /// <param name="tileMaxHeight">タイルの最大縦幅</param>
+        /// <param name="tileMaxSize">タイルの最大サイズ</param>
         internal Settings(
-            Models.Width tileMaxWidth,
-            Models.Height tileMaxHeight)
+            Models.Size tileMaxSize)
         {
-            this.TileMaxWidth = tileMaxWidth;
-            this.TileMaxHeight = tileMaxHeight;
+            this.TileMaxSize = tileMaxSize;
         }
     }
 }

@@ -377,6 +377,36 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（タイルの最大サイズ）
+        /// <summary>
+        ///     <pre>
+        ///         タイルの最大サイズ
+        ///         
+        ///         設定ファイルから与えられる
+        ///     </pre>
+        /// </summary>
+        public Models.Size GridMaxTileSize
+        {
+            get => App.GetOrLoadSettings().TileMaxSize;
+        }
+
+        /// <summary>
+        ///     タイルの最大横幅
+        /// </summary>
+        public int TileMaxWidthAsInt
+        {
+            get => App.GetOrLoadSettings().TileMaxSize.Width.AsInt;
+        }
+
+        /// <summary>
+        ///     タイルの最大縦幅
+        /// </summary>
+        public int TileMaxHeightAsInt
+        {
+            get => App.GetOrLoadSettings().TileMaxSize.Height.AsInt;
+        }
+        #endregion
+
         #region 変更通知プロパティ（タイル・カーソルの位置）
         /// <summary>
         ///     タイル・カーソルの位置（マージンとして）
@@ -608,8 +638,18 @@
         /// </summary>
         Models.Size _tileCursorCanvasSize = Models.Size.Empty;
 
+        /// <summary>
+        ///     <pre>
+        ///         タイルの最大サイズ
+        ///     
+        ///         設定ファイルから与えられる
+        ///     </pre>
+        /// </summary>
+        Models.Size _tileMaxSize = Models.Size.Empty;
+
         // - プライベート・メソッド
 
+        #region プライベート・メソッド（キャンバスの再描画）
         /// <summary>
         ///     <pre>
         ///         グリッドのキャンバスの再描画
@@ -657,5 +697,6 @@
             this._tileCursorCanvasSize = new Models.Size(new Models.Width(this._tileCursorCanvasSize.Width.AsInt - offset), new Models.Height(this._tileCursorCanvasSize.Height.AsInt));
             OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
         }
+        #endregion
     }
 }

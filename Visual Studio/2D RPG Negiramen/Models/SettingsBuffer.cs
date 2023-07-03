@@ -6,13 +6,8 @@
     internal class SettingsBuffer
     {
         /// <summary>
-        ///     タイルの最大横幅
+        ///     タイルの最大サイズ
         /// </summary>
-        internal Models.Width TileMaxWidth { get; set; }
-
-        /// <summary>
-        ///     タイルの最大縦幅
-        /// </summary>
-        internal Models.Height TileMaxHeight { get; set; }
+        internal Models.Size TileMaxSize { get; set; }
     }
 }
