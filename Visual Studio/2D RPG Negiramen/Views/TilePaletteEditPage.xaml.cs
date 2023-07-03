@@ -92,6 +92,7 @@ public partial class TilePaletteEditPage : ContentPage
 
             // タイル・カーソルの矩形
             var cursorRectangle = GetCursorRectangle();
+            Trace.WriteLine($"[TilePaletteEditPage TapGestureRecognizer_Tapped] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
             //
             // 計算値の反映
@@ -118,6 +119,7 @@ public partial class TilePaletteEditPage : ContentPage
 
             // タイル・カーソルの矩形
             var cursorRectangle = GetCursorRectangle();
+            Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
             //
             // 計算値の反映
@@ -153,6 +155,7 @@ public partial class TilePaletteEditPage : ContentPage
 
             // タイル・カーソルの矩形
             var cursorRectangle = GetCursorRectangle();
+            Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
             //
             // 計算値の反映
