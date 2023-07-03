@@ -1874,4 +1874,55 @@ max_height = 2_046
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　疲れたんで　とりあえず　次へ」  
 
+## マウス・ドラッグに対応しろだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父ん。マウス・ドラッグして　タイルを連続選択できないのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　作ってない機能は　存在しないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　作れ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ドラッグ　アンド　ドロップなのかな？  
+プレス　アンド　リリースじゃないかな？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ドラッグ　アンド　ドロップって、  
+ファイルをつかんで　アプリケーションの領域に落とすやつを言うのよ。  
+タイルの連続選択は　プレス・アンド・リリース　じゃないかなあ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　今は　タップした時点で　カーソルの位置が決まっているが、  
+リリースした時点で　カーソルの位置を決めた方がいいのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　もっさりしない？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　操作感は　統一的になると思うが」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タップしたジェスチャーは　捕捉できるが、  
+リリースしたというジェスチャーは　どうやって捕捉するのかな？  
+調べるか」  
+
+📖 [スワイプ ジェスチャを認識する](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/gestures/swipe)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　スワイプは　向きだけかあ」  
+
+📖 [ドラッグ アンド ドロップ ジェスチャを認識する](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/gestures/drag-and-drop)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ドラッグ　アンド　ドロップは　ファイルを落とすやつだしな」  
+
+📖 [ポインター ジェスチャを認識する](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/gestures/pointer)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ポインター・ジェスチャーには　入りと　出があるのか。これを調べてみるか」  
+
+
 ＜書きかけ＞

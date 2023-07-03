@@ -211,6 +211,9 @@
                         <!--
                         <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved" />
                     -->
+                        <PointerGestureRecognizer PointerEntered="PointerGestureRecognizer_PointerEntered"
+                                                  PointerMoved="PointerGestureRecognizer_PointerMoved"
+                                                  PointerExited="PointerGestureRecognizer_PointerExited"/>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Image.GestureRecognizers>
 
