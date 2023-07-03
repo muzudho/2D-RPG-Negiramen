@@ -37,34 +37,6 @@ public partial class TilePaletteEditPage : ContentPage
 
     // - プライベート・メソッド
 
-    /// <summary>
-    /// カーソルの矩形を算出
-    /// </summary>
-    Models.Rectangle GetCursorRectangle()
-    {
-        // タイル・カーソルの始点位置
-        var tileCursorBegin = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
-            tapped: PointingDeviceStartPoint,
-            gridLeftTop: App.WorkingGridLeftTop,
-            gridTile: App.WorkingGridTileSize);
-
-        // タイル・カーソルの終点位置
-        var tileCursorEnd = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
-            tapped: PointingDeviceCurrentPoint,
-            gridLeftTop: App.WorkingGridLeftTop,
-            gridTile: App.WorkingGridTileSize);
-
-        // サイズに変換
-        var width = new Models.Width(tileCursorEnd.X.AsInt - tileCursorBegin.X.AsInt);
-        var height = new Models.Height(tileCursorEnd.Y.AsInt - tileCursorBegin.Y.AsInt);
-
-        return new Models.Rectangle(
-            tileCursorBegin,
-            new Models.Size(
-                width,
-                height));
-    }
-
     // - プライベート・イベント・ハンドラー
 
     /// <summary>
@@ -91,7 +63,7 @@ public partial class TilePaletteEditPage : ContentPage
             Trace.WriteLine($"[TilePaletteEditPage TapGestureRecognizer_Tapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
 
             // タイル・カーソルの矩形
-            var cursorRectangle = GetCursorRectangle();
+            var cursorRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
             Trace.WriteLine($"[TilePaletteEditPage TapGestureRecognizer_Tapped] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
             //
@@ -118,7 +90,7 @@ public partial class TilePaletteEditPage : ContentPage
             Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・カーソルの矩形
-            var cursorRectangle = GetCursorRectangle();
+            var cursorRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
             Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
             //
@@ -154,7 +126,7 @@ public partial class TilePaletteEditPage : ContentPage
             Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・カーソルの矩形
-            var cursorRectangle = GetCursorRectangle();
+            var cursorRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
             Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
             //

@@ -5,6 +5,59 @@
     /// </summary>
     static class CoordinateHelper
     {
+        // - インターナル・メソッド
+
+        /// <summary>
+        /// カーソルの矩形を算出
+        /// </summary>
+        internal static Models.Rectangle GetCursorRectangle(
+            Models.Point startPoint,
+            Models.Point endPoint)
+        {
+            // タイル・カーソルの始点位置
+            var begin = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
+                tapped: startPoint,
+                gridLeftTop: App.WorkingGridLeftTop,
+                gridTile: App.WorkingGridTileSize);
+
+            // タイル・カーソルの終点位置
+            var end = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
+                tapped: endPoint,
+                gridLeftTop: App.WorkingGridLeftTop,
+                gridTile: App.WorkingGridTileSize);
+
+            Models.Rectangle rect;
+
+            // 始点Ｓと終点Ｅの位置関係
+            if (end.X < begin.X && end.Y < begin.Y)
+            {
+                //
+                //  ┌─┬─┐
+                //  │Ｅ│　│
+                //  ├─┼─┤
+                //  │　│Ｓ│
+                //  └─┴─┘
+                //
+                rect = new Models.Rectangle(
+                    end,
+                    new Models.Size(
+                        new Models.Width(begin.X.AsInt - end.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
+                        new Models.Height(begin.Y.AsInt - end.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
+            }
+            else
+            {
+                // その他
+                rect = new Models.Rectangle(
+                    begin,
+                    new Models.Size(
+                        new Models.Width(end.X.AsInt - begin.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
+                        new Models.Height(end.Y.AsInt - begin.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
+            }
+
+
+            return rect;
+        }
+
         /// <summary>
         ///     <pre>
         ///         タップした位置を、タイル・カーソルの位置へ変換する
