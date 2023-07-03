@@ -59,6 +59,21 @@
                         new Models.Width(end.X.AsInt - begin.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
                         new Models.Height(begin.Y.AsInt - end.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
             }
+            else if (end.X <= begin.X && begin.Y <= end.Y)
+            {
+                //
+                //  ┌─┬─┐
+                //  │　│Ｂ│
+                //  ├─┼─┤
+                //  │Ｅ│　│
+                //  └─┴─┘
+                //
+                rect = new Models.Rectangle(
+                    new Models.Point(end.X, begin.Y),
+                    new Models.Size(
+                        new Models.Width(begin.X.AsInt - end.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
+                        new Models.Height(end.Y.AsInt - begin.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
+            }
             else
             {
                 // その他
