@@ -1943,4 +1943,22 @@ max_height = 2_046
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　マウス・ボタン押下と、　マウス・ボタン・リリースを　別々に捕捉する方法を探せだぜ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI には無いようだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　マウス・ダウンと　マウス・アップを検知する　何らかの方法はあるのかしら？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タップで始まり、タップで終わるのでいいだろ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ペン・タブレットで　必要になりそうな機能が　MAUI　に無いなんて  
+理解できないが　お父んは　そのような　理不尽や　意味不明を　越えていくのに長けているのだろう」  
+
+![202307_maui_04-0113--tile-cursor-size.png](https://crieit.now.sh/upload_images/936393250a0080041e5340fb6c99c2a264a2f47228bc1.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　カンペキは無いものだぜ。タイルの連続選択できあがり」  
+
 ＜書きかけ＞

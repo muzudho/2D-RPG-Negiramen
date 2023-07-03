@@ -310,13 +310,13 @@
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding GridTileWidthAsInt}"
+                   Text="{Binding TileCursorWidthAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding GridTileHeightAsInt}"
+                   Text="{Binding TileCursorHeightAsInt}"
                    FontSize="24"/>
 
             <!--
