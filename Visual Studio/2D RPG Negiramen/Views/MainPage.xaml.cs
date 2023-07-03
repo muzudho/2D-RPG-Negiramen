@@ -404,8 +404,6 @@ public partial class MainPage : ContentPage
                         [key: "GridCanvasSize"] = new Models.Size(new Models.Width(tileSetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tileSetSize.Height.AsInt + gridLineThickness.AsInt)),
                         [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
                         [key: "GridTileSize"] = new Models.Size(new Models.Width(32), new Models.Height(32)),
-                        // TODO タイル・カーソル・サイズは自動計算したい
-                        [key: "TileCursorSize"] = new Models.Size(new Models.Width(32), new Models.Height(32)),
                     });
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             },

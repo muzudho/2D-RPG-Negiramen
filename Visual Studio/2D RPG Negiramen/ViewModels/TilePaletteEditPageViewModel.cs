@@ -10,7 +10,6 @@
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
-    [QueryProperty(nameof(TileCursorSize), queryId: "TileCursorSize")]
     class TilePaletteEditPageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
@@ -473,32 +472,16 @@
 
         #region 変更通知プロパティ（タイル・カーソルのサイズ）
         /// <summary>
-        ///     タイル・カーソルのサイズ
-        /// </summary>
-        public Models.Size TileCursorSize
-        {
-            get => _tileCursorSize;
-            set
-            {
-                if (_tileCursorSize != value)
-                {
-                    this.TileCursorWidthAsInt = value.Width.AsInt;
-                    this.TileCursorHeightAsInt = value.Height.AsInt;
-                }
-            }
-        }
-
-        /// <summary>
         ///     タイル・カーソルの横幅
         /// </summary>
         public int TileCursorWidthAsInt
         {
-            get => _tileCursorSize.Width.AsInt;
+            get => App.WorkingTileCursorSize.Width.AsInt;
             set
             {
-                if (_tileCursorSize.Width.AsInt != value)
+                if (App.WorkingTileCursorSize.Width.AsInt != value)
                 {
-                    _tileCursorSize = new Models.Size(new Models.Width(value), _tileCursorSize.Height);
+                    App.WorkingTileCursorSize = new Models.Size(new Models.Width(value), App.WorkingTileCursorSize.Height);
 
                     //
                     // タイル・カーソルのキャンバス・サイズ変更
@@ -519,12 +502,12 @@
         /// </summary>
         public int TileCursorHeightAsInt
         {
-            get => _tileCursorSize.Height.AsInt;
+            get => App.WorkingTileCursorSize.Height.AsInt;
             set
             {
-                if (_tileCursorSize.Height.AsInt != value)
+                if (App.WorkingTileCursorSize.Height.AsInt != value)
                 {
-                    _tileCursorSize = new Models.Size(_tileCursorSize.Width, new Models.Height(value));
+                    App.WorkingTileCursorSize = new Models.Size(App.WorkingTileCursorSize.Width, new Models.Height(value));
 
                     //
                     // タイル・カーソルのキャンバス・サイズ変更
@@ -690,11 +673,6 @@
         ///     タイル・カーソルの位置（マージンとして）
         /// </summary>
         Thickness _tileCursorPointAsMargin = Thickness.Zero;
-
-        /// <summary>
-        ///     タイル・カーソルのサイズ
-        /// </summary>
-        Models.Size _tileCursorSize = Models.Size.Empty;
 
         /// <summary>
         ///     <pre>

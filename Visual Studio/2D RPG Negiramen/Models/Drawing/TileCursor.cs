@@ -29,8 +29,8 @@
             Models.ThicknessOfLine thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = thickness.AsInt;
 
-            // グリッド・タイル・サイズ
-            Models.Size gridTileSize = App.WorkingGridTileSize;
+            // タイル・カーソルのサイズ
+            Models.Size tileCursorSize = App.WorkingTileCursorSize;
 
             // キャンバス・サイズいっぱいにタイル・カーソルを描画
             canvas.DrawRectangle(new Rect(
@@ -39,8 +39,8 @@
                 halfThicknessOfLineAsInt,
                 halfThicknessOfLineAsInt,
                 // 境界線上ではなく、境界線に外接するように描くために、線の太さの半分をずらして描画
-                gridTileSize.Width.AsInt + thickness.AsInt,
-                gridTileSize.Height.AsInt + thickness.AsInt));
+                tileCursorSize.Width.AsInt + thickness.AsInt,
+                tileCursorSize.Height.AsInt + thickness.AsInt));
         }
     }
 }
