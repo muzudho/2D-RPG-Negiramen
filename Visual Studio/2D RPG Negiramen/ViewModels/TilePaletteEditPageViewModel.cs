@@ -10,7 +10,7 @@
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
-    [QueryProperty(nameof(TileCursorCanvasSize), queryId: "TileCursorCanvasSize")]
+    [QueryProperty(nameof(TileCursorSize), queryId: "TileCursorSize")]
     class TilePaletteEditPageViewModel : ObservableObject
     {
         // - 変更通知プロパティ
@@ -482,11 +482,8 @@
             {
                 if (_tileCursorSize != value)
                 {
-                    _tileCursorSize = value;
-
-                    // TODO タイル・カーソルのキャンバス・サイズ変更
-
-                    OnPropertyChanged(nameof(TileCursorSize));
+                    this.TileCursorWidthAsInt = value.Width.AsInt;
+                    this.TileCursorHeightAsInt = value.Height.AsInt;
                 }
             }
         }
@@ -503,7 +500,14 @@
                 {
                     _tileCursorSize = new Models.Size(new Models.Width(value), _tileCursorSize.Height);
 
-                    // TODO タイル・カーソルのキャンバス・サイズ変更
+                    //
+                    // タイル・カーソルのキャンバス・サイズ変更
+                    // ========================================
+                    //
+                    // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
+                    var cursorWidth = value;
+                    var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                    TileCursorCanvasWidthAsInt = cursorWidth + doubleCursorLineThickness;
 
                     OnPropertyChanged(nameof(TileCursorWidthAsInt));
                 }
@@ -522,7 +526,14 @@
                 {
                     _tileCursorSize = new Models.Size(_tileCursorSize.Width, new Models.Height(value));
 
-                    // TODO タイル・カーソルのキャンバス・サイズ変更
+                    //
+                    // タイル・カーソルのキャンバス・サイズ変更
+                    // ========================================
+                    //
+                    // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
+                    var cursorHeight = value;
+                    var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                    TileCursorCanvasHeightAsInt = cursorHeight + doubleCursorLineThickness;
 
                     OnPropertyChanged(nameof(TileCursorHeightAsInt));
                 }
