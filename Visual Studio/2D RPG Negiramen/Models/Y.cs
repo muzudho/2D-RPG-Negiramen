@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 座標ｙ
+    ///     😁 位置ｙ
     /// </summary>
     internal class Y
     {

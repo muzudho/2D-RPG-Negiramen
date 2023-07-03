@@ -52,13 +52,13 @@ public partial class TilePalettePage : ContentPage
     {
         // Image image = (Image)sender;
 
-        // タップした座標
+        // タップした位置
         var tapped = new Models.Point(
             new Models.X((int)e.GetPosition((Element)sender).Value.X),
             new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
         Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tapped.X.AsInt} y:{tapped.Y.AsInt}");
 
-        // タイル・カーソルの座標
+        // タイル・カーソルの位置
         var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
             tapped: tapped,
             gridTile: new Models.Size(new Models.Width(32), new Models.Height(32)));

@@ -10,7 +10,7 @@
         // - 変更通知プロパティ
 
         /// <summary>
-        ///     画像上のポインティング座標ｘ
+        ///     画像上のポインティング位置ｘ
         /// </summary>
         public int PointingXOnImageAsInt
         {
@@ -26,7 +26,7 @@
         }
 
         /// <summary>
-        ///     画像上のポインティング座標ｙ
+        ///     画像上のポインティング位置ｙ
         /// </summary>
         public int PointingYOnImageAsInt
         {
@@ -42,7 +42,7 @@
         }
 
         /// <summary>
-        ///     画像上のタップ座標ｘ
+        ///     画像上のタップ位置ｘ
         /// </summary>
         public int TappedXOnImageAsInt
         {
@@ -58,7 +58,7 @@
         }
 
         /// <summary>
-        ///     画像上のタップ座標ｙ
+        ///     画像上のタップ位置ｙ
         /// </summary>
         public int TappedYOnImageAsInt
         {
@@ -74,7 +74,7 @@
         }
 
         /// <summary>
-        ///     ウィンドウ上のポインティング座標ｘ
+        ///     ウィンドウ上のポインティング位置ｘ
         /// </summary>
         public int PointingXOnWindowAsInt
         {
@@ -90,7 +90,7 @@
         }
 
         /// <summary>
-        ///     ウィンドウ上のポインティング座標ｙ
+        ///     ウィンドウ上のポインティング位置ｙ
         /// </summary>
         public int PointingYOnWindowAsInt
         {
@@ -189,22 +189,22 @@
         // - プライベート・フィールド
 
         /// <summary>
-        ///     画像上のポインティング座標
+        ///     画像上のポインティング位置
         /// </summary>
         Models.Point _pointingPointOnImage = Models.Point.Empty;
 
         /// <summary>
-        ///     画像上のタップ座標
+        ///     画像上のタップ位置
         /// </summary>
         Models.Point _tappedPointOnImage = Models.Point.Empty;
 
         /// <summary>
-        ///     ウィンドウ上のポインティング座標
+        ///     ウィンドウ上のポインティング位置
         /// </summary>
         Models.Point _pointingPointOnWindow = Models.Point.Empty;
 
         /// <summary>
-        ///     タイル・カーソル座標
+        ///     タイル・カーソル位置
         /// </summary>
         Models.Point _tileCursorPoint = Models.Point.Empty;
 

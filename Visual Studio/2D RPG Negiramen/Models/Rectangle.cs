@@ -95,7 +95,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="point">座標</param>
+        /// <param name="point">位置</param>
         /// <param name="size">大きさ</param>
         internal Rectangle(Models.Point point, Models.Size size)
         {
@@ -106,7 +106,7 @@
         // - プロパティー
 
         /// <summary>
-        ///     座標
+        ///     位置
         /// </summary>
         internal Models.Point Point { get; private set; }
 

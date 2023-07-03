@@ -7,18 +7,18 @@
     {
         /// <summary>
         ///     <pre>
-        ///         タップした座標を、タイル・カーソルの座標へ変換する
+        ///         タップした位置を、タイル・カーソルの位置へ変換する
         ///     
         ///         時間の経過や、回転運動を扱うわけでもないから、整数として扱う
         ///     </pre>
         /// </summary>
-        /// <param name="tapped">タップした座標</param>
+        /// <param name="tapped">タップした位置</param>
         /// <param name="gridTile">グリッド・タイルのサイズ</param>
         internal static Models.Point TranslateTappedPointToTileCursorPoint(
             Models.Point tapped,
             Models.Size gridTile)
         {
-            // 下図の 0 が原点、 1 がグリッドの左上座標とする
+            // 下図の 0 が原点、 1 がグリッドの左上位置とする
             //
             //  0 ---- +
             //  |      |
@@ -51,7 +51,7 @@
                 new Models.X(tapped.X.AsInt / gridTile.Width.AsInt * gridTile.Width.AsInt),
                 new Models.Y(tapped.Y.AsInt / gridTile.Height.AsInt * gridTile.Height.AsInt));
 
-            // 下図の 0 が原点、 1 がグリッドの左上座標とする
+            // 下図の 0 が原点、 1 がグリッドの左上位置とする
             //
             //  0 ---- +
             //  |      |
@@ -69,7 +69,7 @@
                 new Models.X(tapped.X.AsInt + App.WorkingGridLeftTop.X.AsInt),
                 new Models.Y(tapped.Y.AsInt + App.WorkingGridLeftTop.Y.AsInt));
 
-            // タイル・カーソルの座標を返却
+            // タイル・カーソルの位置を返却
             return tapped;
         }
     }

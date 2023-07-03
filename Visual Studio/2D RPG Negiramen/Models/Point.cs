@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 座標
+    ///     😁 位置
     /// </summary>
     internal class Point
     {
@@ -95,8 +95,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="x">座標ｘ</param>
-        /// <param name="y">座標ｙ</param>
+        /// <param name="x">位置ｘ</param>
+        /// <param name="y">位置ｙ</param>
         internal Point(Models.X x, Models.Y y)
         {
             this.X = x;
@@ -106,12 +106,12 @@
         // - プロパティー
 
         /// <summary>
-        ///     座標ｘ
+        ///     位置ｘ
         /// </summary>
         internal Models.X X { get; private set; }
 
         /// <summary>
-        ///     座標ｙ
+        ///     位置ｙ
         /// </summary>
         internal Models.Y Y { get; private set; }
     }

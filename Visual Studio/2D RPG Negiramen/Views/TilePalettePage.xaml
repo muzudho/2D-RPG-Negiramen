@@ -57,8 +57,8 @@
 
                 <VerticalStackLayout>
                     <!--
-                        画像上のポインティング座標
-                        ============
+                        画像上のポインティング位置
+                        ==========================
                     -->
                     <HorizontalStackLayout>
                         <Label Text="(" />
@@ -69,7 +69,7 @@
                     </HorizontalStackLayout>
 
                     <!--
-                        画像上のタップ座標
+                        画像上のタップ位置
                         ==================
                     -->
                     <HorizontalStackLayout>
@@ -81,8 +81,8 @@
                     </HorizontalStackLayout>
 
                     <!--
-                        ウィンドウ上のポインティング座標
-                        ==================
+                        ウィンドウ上のポインティング位置
+                        ================================
                     -->
                     <HorizontalStackLayout>
                         <Label Text="(" />
@@ -93,8 +93,8 @@
                     </HorizontalStackLayout>
 
                     <!--
-                        タイル・カーソル座標
-                        ==================
+                        タイル・カーソル位置
+                        ====================
                     -->
                     <HorizontalStackLayout>
                         <Label Text="(" />
