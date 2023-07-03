@@ -1859,6 +1859,19 @@ max_height = 2_046
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　１辺が 2048 ピクセルのタイルを作りたいやつは　設定を変えろ」  
 
+![202307_maui_03-2111--validation-o2o0.png](https://crieit.now.sh/upload_images/563144e6bb6ba23d5fa984f33d10daca64a2bb5ba858a.png)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　バリデーションというのは　ビューの色を変えるぐらいしか機能がないので、  
+ビューモデルでは　単に　リミット・チェックを入れた」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　入力された値は（弾かず）とりあえず受け取る、という思想なのね」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　入力を受け取らないフラグ　無いのかなあ？　もっと探してみろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　疲れたんで　とりあえず　次へ」  
 
 ＜書きかけ＞
