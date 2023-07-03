@@ -16,6 +16,7 @@
         /// <param name="gridTile">グリッド・タイルのサイズ</param>
         internal static Models.Point TranslateTappedPointToTileCursorPoint(
             Models.Point tapped,
+            Models.Point gridLeftTop,
             Models.Size gridTile)
         {
             // 下図の 0 が原点、 1 がグリッドの左上位置とする
@@ -33,8 +34,8 @@
             //
             // ここで、 1 が無い状態にする
             tapped = new Models.Point(
-                new Models.X(tapped.X.AsInt - App.WorkingGridLeftTop.X.AsInt),
-                new Models.Y(tapped.Y.AsInt - App.WorkingGridLeftTop.Y.AsInt));
+                new Models.X(tapped.X.AsInt - gridLeftTop.X.AsInt),
+                new Models.Y(tapped.Y.AsInt - gridLeftTop.Y.AsInt));
 
             // 下図の 0 が原点、 1 が任意の点、 2 が任意の点が含まれるタイルの左上隅だとする
             //

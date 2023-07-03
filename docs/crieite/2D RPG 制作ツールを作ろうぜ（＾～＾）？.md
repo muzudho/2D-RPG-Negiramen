@@ -1924,5 +1924,23 @@ max_height = 2_046
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　ポインター・ジェスチャーには　入りと　出があるのか。これを調べてみるか」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　エンターは　画像と重なったところで、  
+エグジットは　画像の外と重なったところか。  
+マウス・ボタン押下とか、マウス・ボタン・リリースではないんだ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タップは　マウス・ボタン押下と　マウス・ボタン・リリースのペアか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そうだぜ。  
+それも　マウスを移動させずに　マウス・ボタン押下と　マウス・ボタン・リリースを  
+行わなければいけないぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　タップは　従来の　クリック　に対応してるんだ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　マウス・ボタン押下と、　マウス・ボタン・リリースを　別々に捕捉する方法を探せだぜ」  
 
 ＜書きかけ＞

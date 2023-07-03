@@ -209,14 +209,12 @@
 
                     <Image.GestureRecognizers>
                         <!--
-                        <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved" />
-                    -->
-                        <PointerGestureRecognizer PointerEntered="PointerGestureRecognizer_PointerEntered"
-                                                  PointerMoved="PointerGestureRecognizer_PointerMoved"
-                                                  PointerExited="PointerGestureRecognizer_PointerExited"/>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            MAUI には マウス・ダウンと、マウス・アップの捕捉がなく、
+                            ペン・ツールのようなことができない
+                        -->
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved"/>
                     </Image.GestureRecognizers>
-
                 </Image>
 
 

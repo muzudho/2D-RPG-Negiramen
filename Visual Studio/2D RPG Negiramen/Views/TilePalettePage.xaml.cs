@@ -61,6 +61,7 @@ public partial class TilePalettePage : ContentPage
         // タイル・カーソルの位置
         var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
             tapped: tapped,
+            gridLeftTop: App.WorkingGridLeftTop,
             gridTile: new Models.Size(new Models.Width(32), new Models.Height(32)));
 
         //
