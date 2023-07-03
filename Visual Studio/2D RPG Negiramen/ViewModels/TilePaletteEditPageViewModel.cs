@@ -334,7 +334,9 @@
             get => App.WorkingGridTileSize.Width.AsInt;
             set
             {
-                if (App.WorkingGridTileSize.Width.AsInt != value)
+                if (App.WorkingGridTileSize.Width.AsInt != value &&
+                    // バリデーション
+                    0 < value && value <= this.TileMaxWidthAsInt)
                 {
                     App.WorkingGridTileSize = new Models.Size(new Models.Width(value), App.WorkingGridTileSize.Height);
 
@@ -359,7 +361,9 @@
             get => App.WorkingGridTileSize.Height.AsInt;
             set
             {
-                if (App.WorkingGridTileSize.Height.AsInt != value)
+                if (App.WorkingGridTileSize.Height.AsInt != value &&
+                    // バリデーション
+                    0 < value && value <= this.TileMaxHeightAsInt)
                 {
                     App.WorkingGridTileSize = new Models.Size(App.WorkingGridTileSize.Width, new Models.Height(value));
 
@@ -378,18 +382,6 @@
         #endregion
 
         #region 変更通知プロパティ（タイルの最大サイズ）
-        /// <summary>
-        ///     <pre>
-        ///         タイルの最大サイズ
-        ///         
-        ///         設定ファイルから与えられる
-        ///     </pre>
-        /// </summary>
-        public Models.Size GridMaxTileSize
-        {
-            get => App.GetOrLoadSettings().TileMaxSize;
-        }
-
         /// <summary>
         ///     タイルの最大横幅
         /// </summary>
