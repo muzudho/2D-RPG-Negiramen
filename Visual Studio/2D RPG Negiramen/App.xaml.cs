@@ -36,6 +36,7 @@ public partial class App : Application
 
     // - 静的メソッド
 
+    #region 静的メソッド（構成）
     /// <summary>
     /// 構成ファイルの取得、またはファイル読込
     /// </summary>
@@ -49,6 +50,8 @@ public partial class App : Application
             {
                 App.Configuration = configuration;
             }
+
+            // TODO 構成ファイルが無かったら、エラー対応したい
         }
 
         return App.Configuration;
@@ -62,6 +65,41 @@ public partial class App : Application
     {
         App.Configuration = configuration;
     }
+    #endregion
+
+    #region 静的メソッド（設定）
+    /// <summary>
+    /// 設定ファイルの取得、またはファイル読込
+    /// </summary>
+    /// <returns>設定ファイル</returns>
+    static internal Settings GetOrLoadSettings()
+    {
+        if (App.Settings == null)
+        {
+            // 設定ファイルの読込
+            if (Settings.LoadTOML(out Settings settings))
+            {
+                App.Settings = settings;
+            }
+            else
+            {
+                // 既定値の設定ファイルを作成（ここでは、保存はしない）
+                App.Settings = new Settings();
+            }
+        }
+
+        return App.Settings;
+    }
+
+    /// <summary>
+    /// 設定ファイルをセット
+    /// </summary>
+    /// <param name="settings">設定ファイル</param>
+    static internal void SetSettings(Settings settings)
+    {
+        App.Settings = settings;
+    }
+    #endregion
 
     /// <summary>
     /// 生成
@@ -83,4 +121,13 @@ public partial class App : Application
     ///		</list>
     /// </summary>
     static Configuration Configuration { get; set; }
+
+    /// <summary>
+    ///		現在の設定
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    static Settings Settings { get; set; }
 }
