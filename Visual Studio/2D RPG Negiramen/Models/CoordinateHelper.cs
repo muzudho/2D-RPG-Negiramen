@@ -14,13 +14,13 @@
             Models.Point startPoint,
             Models.Point endPoint)
         {
-            // タイル・カーソルの始点位置
+            // タイル・カーソルの始点Ｂ位置
             var begin = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
                 tapped: startPoint,
                 gridLeftTop: App.WorkingGridLeftTop,
                 gridTile: App.WorkingGridTileSize);
 
-            // タイル・カーソルの終点位置
+            // タイル・カーソルの終点Ｅ位置
             var end = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
                 tapped: endPoint,
                 gridLeftTop: App.WorkingGridLeftTop,
@@ -35,13 +35,28 @@
                 //  ┌─┬─┐
                 //  │Ｅ│　│
                 //  ├─┼─┤
-                //  │　│Ｓ│
+                //  │　│Ｂ│
                 //  └─┴─┘
                 //
                 rect = new Models.Rectangle(
                     end,
                     new Models.Size(
                         new Models.Width(begin.X.AsInt - end.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
+                        new Models.Height(begin.Y.AsInt - end.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
+            }
+            else if (begin.X <= end.X && end.Y < begin.Y)
+            {
+                //
+                //  ┌─┬─┐
+                //  │　│Ｅ│
+                //  ├─┼─┤
+                //  │Ｂ│　│
+                //  └─┴─┘
+                //
+                rect = new Models.Rectangle(
+                    new Models.Point(begin.X,end.Y),
+                    new Models.Size(
+                        new Models.Width(end.X.AsInt - begin.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
                         new Models.Height(begin.Y.AsInt - end.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
             }
             else
