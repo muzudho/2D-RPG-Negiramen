@@ -61,6 +61,7 @@
         /// <summary>
         ///     Unity の Assets フォルダーへのパス。文字列形式
         /// </summary>
+        /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
         public string UnityAssetsFolderPathAsStr
         {
             get => _unityAssetsFolderPath.AsStr;

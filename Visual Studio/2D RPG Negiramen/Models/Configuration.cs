@@ -194,6 +194,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
+        /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
         internal Models.FileOperation.UnityAssetsFolderPath UnityAssetsFolderPath { get; }
 
         /// <summary>

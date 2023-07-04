@@ -385,8 +385,23 @@ public partial class MainPage : ContentPage
         await ReadyGoToNext(
             onOk: async () =>
             {
-                // TODO タイル・セット画像ファイル・パス
-                var tileSetImageFilePath = Models.FileOperation.TileSetImageFilePath.FromStringAndReplaceSeparators("C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png");
+                // ユニティのアセット・フォルダーへのパス
+                var unityAssetsFolderPathAsStr = App.GetOrLoadConfiguration().UnityAssetsFolderPath.AsStr;
+
+                // ファイル名の拡張子抜き
+                var fileStem = "map-tile-format-8x19";
+
+                // タイル・セット画像ファイル・パス
+                var tileSetImageFilePath = Models.FileOperation.TileSetImageFilePath.FromStringAndReplaceSeparators(
+                    System.IO.Path.Combine(
+                        unityAssetsFolderPathAsStr,
+                        $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png"));
+
+                // タイル・セットCSVファイル・パス
+                var tileSetCSVFilePath = Models.FileOperation.TileSetCSVFilePath.FromStringAndReplaceSeparators(
+                    System.IO.Path.Combine(
+                        unityAssetsFolderPathAsStr,
+                        $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv"));
 
                 // タイル・セット画像の縦横幅
                 var tileSetSize = Models.FileOperation.PNGHelper.GetImageSize(tileSetImageFilePath);
@@ -399,6 +414,7 @@ public partial class MainPage : ContentPage
                     parameters: new Dictionary<string, object>
                     {
                         [key: "TileSetImageFilePath"] = tileSetImageFilePath,
+                        [key: "TileSetCSVFilePath"] = tileSetCSVFilePath,
                         [key: "ImageSize"] = tileSetSize,
                         // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
                         [key: "GridCanvasSize"] = new Models.Size(new Models.Width(tileSetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tileSetSize.Height.AsInt + gridLineThickness.AsInt)),

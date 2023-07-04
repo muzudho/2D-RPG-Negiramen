@@ -6,6 +6,7 @@
     ///     😁 ［タイル・パレット編集ページ］ビューモデル
     /// </summary>
     [QueryProperty(nameof(TileSetImageFilePathAsStr), queryId: "TileSetImageFilePathAsStr")]
+    [QueryProperty(nameof(TileSetCSVFilePathAsStr), queryId: "TileSetCSVFilePathAsStr")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
@@ -606,9 +607,10 @@
                 }
             }
         }
+        #endregion
 
         /// <summary>
-        ///     選択コメント
+        ///     タイル・セット画像ファイルへのパス
         /// </summary>
         public string TileSetImageFilePathAsStr
         {
@@ -622,7 +624,22 @@
                 }
             }
         }
-        #endregion
+
+        /// <summary>
+        ///     タイル・セットCSVファイルへのパス
+        /// </summary>
+        public string TileSetCSVFilePathAsStr
+        {
+            get => _tileSetCSVFilePath.AsStr;
+            set
+            {
+                if (_tileSetCSVFilePath.AsStr != value)
+                {
+                    _tileSetCSVFilePath = new Models.FileOperation.TileSetCSVFilePath(value);
+                    OnPropertyChanged(nameof(TileSetCSVFilePathAsStr));
+                }
+            }
+        }
 
         // - その他
 
@@ -663,6 +680,11 @@
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
         Models.FileOperation.TileSetImageFilePath _tileSetImageFilePath = Models.FileOperation.TileSetImageFilePath.Empty;
+
+        /// <summary>
+        ///     タイル・セットの設定CSVファイル
+        /// </summary>
+        Models.FileOperation.TileSetCSVFilePath _tileSetCSVFilePath = Models.FileOperation.TileSetCSVFilePath.Empty;
 
         /// <summary>
         ///     タイル・カーソルの位置
