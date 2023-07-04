@@ -98,7 +98,7 @@
             <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
 
                 <Button Grid.Row="0" Grid.Column="0"
-                        Text="初期設定"
+                        Text="構成"
                         SemanticProperties.Hint="Startup configuration"
                         Clicked="StartupConfigurationBtn_Clicked"/>
 
