@@ -89,7 +89,7 @@ namespace _2D_RPG_Negiramen.Models.Files
             foreach (var record in this.RecordList)
             {
                 // TODO ダブルクォーテーションのエスケープ
-                builder.AppendLine($"{record.Id},{record.Rectangle.Point.X},{record.Rectangle.Point.Y},{record.Rectangle.Size.Width},{record.Rectangle.Size.Height},{record.Comment}");
+                builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Point.X.AsInt},{record.Rectangle.Point.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Comment.AsStr}");
             }
 
             // 上書き
