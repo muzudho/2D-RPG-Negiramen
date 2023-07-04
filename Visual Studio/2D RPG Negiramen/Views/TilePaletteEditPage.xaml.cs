@@ -1,4 +1,5 @@
-﻿using _2D_RPG_Negiramen.ViewModels;
+﻿using _2D_RPG_Negiramen.Models.Files;
+using _2D_RPG_Negiramen.ViewModels;
 using System.Diagnostics;
 
 namespace _2D_RPG_Negiramen.Views;
@@ -148,6 +149,27 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void AddsButton_Clicked(object sender, EventArgs e)
     {
+        //
+        // 設定ファイルの編集
+        // ==================
+        //
+        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+
+        context.TileSetSettings.Add(
+            id: new Models.TileId(9999), // TODO とりあえず 9999 で。後で直す
+            rect: new Models.Rectangle(
+                point: new Models.Point(
+                    x: new Models.X(context.TileCursorXAsInt),
+                    y: new Models.Y(context.TileCursorYAsInt)),
+                size: new Models.Size(
+                    width: new Models.Width(context.TileCursorWidthAsInt),
+                    height: new Models.Height(context.TileCursorHeightAsInt))),
+            comment: new Models.Comment(context.CommentAsStr));
+
+        //
+        // 設定ファイルの保存
+        // ==================
+        //
 
     }
 
@@ -159,7 +181,7 @@ public partial class TilePaletteEditPage : ContentPage
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
         //
-        // 設定ファイルの反映
+        // 設定ファイルの読込
         // ==================
         //
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
