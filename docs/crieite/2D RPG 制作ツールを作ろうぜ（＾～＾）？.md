@@ -1961,4 +1961,137 @@ max_height = 2_046
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　カンペキは無いものだぜ。タイルの連続選択できあがり」  
 
+# 📅 2023-07-04 タイルを登録できるようにしろだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイルは　名前で管理するのか？　Ｉｄで管理するのか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　現代は　UUID　が流行ってて　URL　は　わけの分からない数字、文字の羅列になってしまったが、  
+UUID　が真のＩｄなら　URL　無くして　UUID　にすればいいものの、  
+そうならないのは　名前　からイメージできる姿があるからだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　名前は　アスキー文字にすんの？  
+ユニコードにすんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　こんな　ネギラーメンで　ユニコードが使えない環境のことを　本気で考えなくていいだろ。  
+ユニコードでいいんじゃないか？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　文字数は？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　本気で考えなくていいだろ。　６４文字でいいんじゃないか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　１～４バイトのユニコード文字が　６４個であることの意義は？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　無いけど……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ツクラーが　タイルに名前を付けようと思ったときの　文字数の分布は？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　データは無いけど……」  
+
+📖 [Tiledによるタイルマップの作成とオブジェクトデータの取得を行う！：Cocos Creator
+Tiled Cocos Creator](https://mmorley.hatenablog.com/entry/2016/05/21/002430)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　誰も　タイルに名前なんか　付けないのでは？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　アマゾンの商品名の長さは？」  
+
+📖 [KRAFT Macaroni & Cheese Easy Mac Cups (12 x 2.05 oz cups)クラフト　マカロニチーズ イージーカップ　12パック　海外直送](https://www.amazon.co.jp/KRAFT-Macaroni-Cheese-クラフト-マカロニチーズ-イージーカップ-12パック-海外直送/dp/B008YTWOLC/?_encoding=UTF8&pd_rd_w=sNbPN&content-id=amzn1.sym.7351c6be-f8cb-43b9-8343-cd956266c4b6&pf_rd_p=7351c6be-f8cb-43b9-8343-cd956266c4b6&pf_rd_r=7Y3VKX4DXVHNADR66Z30&pd_rd_wg=s0X3b&pd_rd_r=3f9c6031-aaa6-45c9-a059-d96a59408246&ref_=pd_gw_trq_ed_438y8oxo)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　適当にクリックしたが　英語表記、日本語表記をつなげて　重さや個数、海外直送まで入っているぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ざっくり　１００文字にしたら？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そうするか……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　すると　みんな　タイル名に　検索のための情報を　詰め込みだすのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　名前とは別に　タグを付けれるようにするかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　１つのタイルに　タグは何個付けれて、１つのタグの長さは何文字までなの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　これは再帰的な話しで、１つのタグに　たくさんの検索の情報を詰め込みだす……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイル名を付けるの　めんどくさくなって　`タイル１`、 `タイル２`、`タイル３`　みたいな名前を付けるやつが  
+蔓延したらどうする？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　連番付けられるぐらいだったら、　Ｉｄ　は　こっちで採番してやるかだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　１つのタイル・セットに、何枚のタイルがあんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　データは持ってない」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　Ｉｄ　だけ必須にして、それは自動で採番して、  
+１００文字のテキスト・フィールドに　半角カンマ区切りで　タグを自由入力させたらどうだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　４９個のアルファベットを　タグで登録するやつがいて　うざいかもしれない」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　タグも　日本語で入力されたり、英語で入力されたり、表記揺れしたりするんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　カテゴリー・ツリーを予め　こっちで定義して　そのノードを選ばせる方式にして、  
+それ以外に　固有名詞　を自由に入れれる欄を置けばどうか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　Ｉｄ欄と、１００文字のコメント欄の２つにしましょう！  
+検索のための仕組みは　後回しで」  
+
+![202307_maui_04-2122--save-button-o2o0.png](https://crieit.now.sh/upload_images/9f76e94a599e8626ed037a31655a824864a40f7b7b39d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな感じで　いいのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　動かしてみないと分かんないから　それで　作ってみましょう」  
+
+```plaintext
+　　C:\Users\むずでょ\Documents\Unity Projects\Negiramen Practice\
+　　└── 📂 Assets
+　　　　└── 📂 Doujin Circle Negiramen
+　　　　　　└── 📂 Negiramen Quest
+　　　　　　　　└── 📂 Auto Generated
+　　　　　　　　　　└── 📂 Data
+　　　　　　　　　　　　└── 📂 CSV
+　　　　　　　　　　　　　　└── 📂 Tile Set
+👉 　　　　　　　　　　　　　　└── 📄 map-tile-format-8x19.csv
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ファイルは　ここに置いとくぜ？」  
+
+```csv
+Id, Left, Top, Width, Height, Comment
+ 1,   96,  64,    64,     64, 草原
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　保存内容は　こんな感じで　いいかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　とりあえず　それで」  
+
 ＜書きかけ＞
