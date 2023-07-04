@@ -37,8 +37,8 @@
                 // 設定ファイルの読取
                 var configurationText = System.IO.File.ReadAllText(configurationFilePath);
 
-                Models.FileOperation.NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath = new Models.FileOperation.NegiramenWorkspaceFolderPath();
-                Models.FileOperation.UnityAssetsFolderPath unityAssetsFolderPath = new Models.FileOperation.UnityAssetsFolderPath();
+                Models.FileSpace.NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath = new Models.FileSpace.NegiramenWorkspaceFolderPath();
+                Models.FileSpace.UnityAssetsFolderPath unityAssetsFolderPath = new Models.FileSpace.UnityAssetsFolderPath();
                 YourCircleName yourCircleName = new YourCircleName();
                 YourWorkName yourWorkName = new YourWorkName();
 
@@ -57,7 +57,7 @@
                             {
                                 if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
                                 {
-                                    negiramenWorkspaceFolderPath = Models.FileOperation.NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(negiramenWorkspaceFolderPathAsStr);
+                                    negiramenWorkspaceFolderPath = Models.FileSpace.NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(negiramenWorkspaceFolderPathAsStr);
                                 }
                             }
 
@@ -66,7 +66,7 @@
                             {
                                 if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
                                 {
-                                    unityAssetsFolderPath = Models.FileOperation.UnityAssetsFolderPath.FromStringAndReplaceSeparators(unityAssetsFolderPathAsStr);
+                                    unityAssetsFolderPath = Models.FileSpace.UnityAssetsFolderPath.FromStringAndReplaceSeparators(unityAssetsFolderPathAsStr);
                                 }
                             }
                         }
@@ -189,13 +189,13 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <summary>
         ///     ネギラーメン・ワークスペース・フォルダーへのパス
         /// </summary>
-        internal Models.FileOperation.NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; }
+        internal Models.FileSpace.NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; }
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
-        internal Models.FileOperation.UnityAssetsFolderPath UnityAssetsFolderPath { get; }
+        internal Models.FileSpace.UnityAssetsFolderPath UnityAssetsFolderPath { get; }
 
         /// <summary>
         ///     あなたのサークル名
@@ -211,8 +211,8 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     生成
         /// </summary>
         internal Configuration() : this(
-            Models.FileOperation.NegiramenWorkspaceFolderPath.Empty,
-            Models.FileOperation.UnityAssetsFolderPath.Empty,
+            Models.FileSpace.NegiramenWorkspaceFolderPath.Empty,
+            Models.FileSpace.UnityAssetsFolderPath.Empty,
             YourCircleName.Empty,
             YourWorkName.Empty)
         {
@@ -226,8 +226,8 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <param name="yourCircleName">あなたのサークル名</param>
         /// <param name="yourWorkName">あなたの作品名</param>
         internal Configuration(
-            Models.FileOperation.NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath,
-            Models.FileOperation.UnityAssetsFolderPath unityAssetsFolderPath,
+            Models.FileSpace.NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath,
+            Models.FileSpace.UnityAssetsFolderPath unityAssetsFolderPath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)
         {

@@ -18,7 +18,7 @@ namespace _2D_RPG_Negiramen.Models.Files
         /// </summary>
         /// <param name="tileSetSettings">タイル・セット設定</param>
         /// <returns></returns>
-        internal static bool LoadCSV(Models.FileOperation.TileSetCSVFilePath tileSetCSVFilePath, out TileSetSettings tileSetSettings)
+        internal static bool LoadCSV(Models.FileSpace.TileSetCSVFilePath tileSetCSVFilePath, out TileSetSettings tileSetSettings)
         {
             // 既定値の設定（空っぽ）
             tileSetSettings = new TileSetSettings();
@@ -74,7 +74,7 @@ namespace _2D_RPG_Negiramen.Models.Files
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-        internal bool SaveCSV(Models.FileOperation.TileSetCSVFilePath tileSetCSVFilePath)
+        internal bool SaveCSV(Models.FileSpace.TileSetCSVFilePath tileSetCSVFilePath)
         {
 
             // 保存したいファイルへのパス

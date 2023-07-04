@@ -52,7 +52,7 @@
             {
                 if (_negiramenWorkspaceFolderPath.AsStr != value)
                 {
-                    _negiramenWorkspaceFolderPath = Models.FileOperation.NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(value);
+                    _negiramenWorkspaceFolderPath = Models.FileSpace.NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(value);
                     OnPropertyChanged();
                 }
             }
@@ -69,7 +69,7 @@
             {
                 if (_unityAssetsFolderPath.AsStr != value)
                 {
-                    _unityAssetsFolderPath = Models.FileOperation.UnityAssetsFolderPath.FromStringAndReplaceSeparators(value);
+                    _unityAssetsFolderPath = Models.FileSpace.UnityAssetsFolderPath.FromStringAndReplaceSeparators(value);
                     OnPropertyChanged();
                 }
             }
@@ -136,7 +136,7 @@
                     App.SetConfiguration(newConfiguration);
 
                     // ネギラーメンのワークスペース・フォルダーの内容を確認
-                    var isOk = Models.FileOperation.NegiramenWorkspaceFolder.Check();
+                    var isOk = Models.FileSpace.NegiramenWorkspaceFolder.Check();
                     if(!isOk)
                     {
                         // TODO 異常時の処理
@@ -144,7 +144,7 @@
                     }
 
                     // Unity の Assets フォルダ―へ初期設定をコピー
-                    if (!Models.FileOperation.UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
+                    if (!Models.FileSpace.UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
                     {
                         // TODO 異常時の処理
                         return;
@@ -171,12 +171,12 @@
         /// <summary>
         ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
         /// </summary>
-        private Models.FileOperation.NegiramenWorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileOperation.NegiramenWorkspaceFolderPath.Empty;
+        private Models.FileSpace.NegiramenWorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileSpace.NegiramenWorkspaceFolderPath.Empty;
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        private Models.FileOperation.UnityAssetsFolderPath _unityAssetsFolderPath = Models.FileOperation.UnityAssetsFolderPath.Empty;
+        private Models.FileSpace.UnityAssetsFolderPath _unityAssetsFolderPath = Models.FileSpace.UnityAssetsFolderPath.Empty;
 
         /// <summary>
         ///     あなたのサークル名

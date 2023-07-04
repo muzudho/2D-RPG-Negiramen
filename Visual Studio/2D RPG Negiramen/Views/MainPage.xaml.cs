@@ -392,19 +392,19 @@ public partial class MainPage : ContentPage
                 var fileStem = "map-tile-format-8x19";
 
                 // タイル・セット画像ファイル・パス
-                var tileSetImageFilePath = Models.FileOperation.TileSetImageFilePath.FromStringAndReplaceSeparators(
+                var tileSetImageFilePath = Models.FileSpace.TileSetImageFilePath.FromStringAndReplaceSeparators(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png"));
 
                 // タイル・セットCSVファイル・パス
-                var tileSetCSVFilePath = Models.FileOperation.TileSetCSVFilePath.FromStringAndReplaceSeparators(
+                var tileSetCSVFilePath = Models.FileSpace.TileSetCSVFilePath.FromStringAndReplaceSeparators(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv"));
 
                 // タイル・セット画像の縦横幅
-                var tileSetSize = Models.FileOperation.PNGHelper.GetImageSize(tileSetImageFilePath);
+                var tileSetSize = Models.Files.PNGHelper.GetImageSize(tileSetImageFilePath);
 
                 // グリッドの線の幅
                 ThicknessOfLine gridLineThickness = new ThicknessOfLine(2 * App.HalfThicknessOfGridLine.AsInt);

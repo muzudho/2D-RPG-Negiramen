@@ -1,16 +1,16 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileOperation
+﻿namespace _2D_RPG_Negiramen.Models.FileSpace
 {
     /// <summary>
-    ///     😁 タイル・セットCSVファイル・パス
+    ///     😁 タイル・セット画像ファイル・パス
     /// </summary>
-    class TileSetCSVFilePath : Models.FilePath
+    class TileSetImageFilePath : Models.FilePath
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static TileSetCSVFilePath Empty { get; } = new TileSetCSVFilePath();
+        internal static TileSetImageFilePath Empty { get; } = new TileSetImageFilePath();
 
         // - 静的その他
 
@@ -19,7 +19,7 @@
         /// </summary>
         /// <param name="filePath">ファイルへのパス</param>
         /// <returns>実例</returns>
-        internal static TileSetCSVFilePath FromStringAndReplaceSeparators(string filePath)
+        internal static TileSetImageFilePath FromStringAndReplaceSeparators(string filePath)
         {
             if (filePath == null)
             {
@@ -28,7 +28,7 @@
 
             filePath = filePath.Replace("\\", "/");
 
-            return new TileSetCSVFilePath(filePath);
+            return new TileSetImageFilePath(filePath);
         }
 
         // - その他
@@ -36,7 +36,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetCSVFilePath()
+        internal TileSetImageFilePath()
             : base()
         {
         }
@@ -44,7 +44,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetCSVFilePath(string asStr)
+        internal TileSetImageFilePath(string asStr)
             : base(asStr: asStr)
         {
         }

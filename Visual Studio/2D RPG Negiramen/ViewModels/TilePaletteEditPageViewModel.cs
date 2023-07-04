@@ -26,7 +26,7 @@
             {
                 if (_tileSetImageFilePath.AsStr != value)
                 {
-                    _tileSetImageFilePath = new Models.FileOperation.TileSetImageFilePath(value);
+                    _tileSetImageFilePath = new Models.FileSpace.TileSetImageFilePath(value);
                 }
             }
         }
@@ -34,7 +34,7 @@
         /// <summary>
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
-        public Models.FileOperation.TileSetImageFilePath TileSetImageFilePath
+        public Models.FileSpace.TileSetImageFilePath TileSetImageFilePath
         {
             get => _tileSetImageFilePath;
             set
@@ -63,7 +63,7 @@
 
                 if (_tileSetCSVFilePath.AsStr != value)
                 {
-                    _tileSetCSVFilePath = new Models.FileOperation.TileSetCSVFilePath(value);
+                    _tileSetCSVFilePath = new Models.FileSpace.TileSetCSVFilePath(value);
                 }
             }
         }
@@ -71,7 +71,7 @@
         /// <summary>
         ///     タイル・セットCSVファイルへのパス
         /// </summary>
-        public Models.FileOperation.TileSetCSVFilePath TileSetCSVFilePath
+        public Models.FileSpace.TileSetCSVFilePath TileSetCSVFilePath
         {
             get => _tileSetCSVFilePath;
             set
@@ -725,12 +725,12 @@
         /// <summary>
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
-        Models.FileOperation.TileSetImageFilePath _tileSetImageFilePath = Models.FileOperation.TileSetImageFilePath.Empty;
+        Models.FileSpace.TileSetImageFilePath _tileSetImageFilePath = Models.FileSpace.TileSetImageFilePath.Empty;
 
         /// <summary>
         ///     タイル・セットの設定CSVファイル
         /// </summary>
-        Models.FileOperation.TileSetCSVFilePath _tileSetCSVFilePath = Models.FileOperation.TileSetCSVFilePath.Empty;
+        Models.FileSpace.TileSetCSVFilePath _tileSetCSVFilePath = Models.FileSpace.TileSetCSVFilePath.Empty;
 
         /// <summary>
         ///     タイル・カーソルの位置

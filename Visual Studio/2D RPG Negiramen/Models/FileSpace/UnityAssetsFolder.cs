@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileOperation
+﻿namespace _2D_RPG_Negiramen.Models.FileSpace
 {
     /// <summary>
     ///     😁 Unity の Assets フォルダーを想定したもの
@@ -281,12 +281,39 @@
             {
                 Directory.CreateDirectory(csv);
             }
+            PushStartupMemberToDataCSVFolder(csv);
 
             // JSON形式ファイル・フォルダーへのパス
             var json = Path.Combine(dataFolderPath, "JSON");
             if (!Directory.Exists(json))
             {
                 Directory.CreateDirectory(json);
+            }
+        }
+
+        // - ６階層目
+
+        /// <summary>
+        ///     <pre>
+        ///         CSV フォルダーのメンバーを準備します
+        ///     
+        ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
+        ///         　　└─ 📂 Assets
+        ///         　　　　└─ 📂 {Your Circle Name}
+        ///         　　　　　　└─ 📂 {Your Work Name}
+        ///         　　　　　　　　└─ 📂 {Auto Generated}
+        ///         　　　　　　　　　　└─ 📂 Data
+        ///         👉　　　　　　　　　　　└─ 📂 CSV
+        ///     </pre>
+        /// </summary>
+        /// <param name="csvFolderPath">ＣＳＶフォルダ―へのパス</param>
+        static void PushStartupMemberToDataCSVFolder(string csvFolderPath)
+        {
+            // タイルセット
+            var tileSet = Path.Combine(csvFolderPath, "Tile Set");
+            if (!Directory.Exists(tileSet))
+            {
+                Directory.CreateDirectory(tileSet);
             }
         }
     }
