@@ -13,6 +13,64 @@
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
     class TilePaletteEditPageViewModel : ObservableObject
     {
+        // - プロパティ
+
+        #region プロパティ（タイル・セット画像ファイルへのパス）
+        /// <summary>
+        ///     タイル・セット画像ファイルへのパス
+        /// </summary>
+        public string TileSetImageFilePathAsStr
+        {
+            get => _tileSetImageFilePath.AsStr;
+            set
+            {
+                if (_tileSetImageFilePath.AsStr != value)
+                {
+                    _tileSetImageFilePath = new Models.FileOperation.TileSetImageFilePath(value);
+                }
+            }
+        }
+        #endregion
+
+        #region プロパティ（タイル・セットCSVファイルへのパス）
+        /// <summary>
+        ///     タイル・セットCSVファイルへのパス（文字列形式）
+        /// </summary>
+        public string TileSetCSVFilePathAsStr
+        {
+            get => _tileSetCSVFilePath.AsStr;
+            set
+            {
+                if (_tileSetCSVFilePath.AsStr != value)
+                {
+                    _tileSetCSVFilePath = new Models.FileOperation.TileSetCSVFilePath(value);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     タイル・セットCSVファイルへのパス
+        /// </summary>
+        public Models.FileOperation.TileSetCSVFilePath TileSetCSVFilePath
+        {
+            get => _tileSetCSVFilePath;
+            set
+            {
+                if (_tileSetCSVFilePath != value)
+                {
+                    _tileSetCSVFilePath = value;
+                }
+            }
+        }
+        #endregion
+
+        #region プロパティ（タイル・セットの設定）
+        /// <summary>
+        ///     タイル・セットの設定
+        /// </summary>
+        internal Models.Files.TileSetSettings TileSetSettings { get; set; } = new Models.Files.TileSetSettings();
+        #endregion
+
         // - 変更通知プロパティ
 
         #region 変更通知プロパティ（画像サイズ）
@@ -608,38 +666,6 @@
             }
         }
         #endregion
-
-        /// <summary>
-        ///     タイル・セット画像ファイルへのパス
-        /// </summary>
-        public string TileSetImageFilePathAsStr
-        {
-            get => _tileSetImageFilePath.AsStr;
-            set
-            {
-                if (_tileSetImageFilePath.AsStr != value)
-                {
-                    _tileSetImageFilePath = new Models.FileOperation.TileSetImageFilePath(value);
-                    OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     タイル・セットCSVファイルへのパス
-        /// </summary>
-        public string TileSetCSVFilePathAsStr
-        {
-            get => _tileSetCSVFilePath.AsStr;
-            set
-            {
-                if (_tileSetCSVFilePath.AsStr != value)
-                {
-                    _tileSetCSVFilePath = new Models.FileOperation.TileSetCSVFilePath(value);
-                    OnPropertyChanged(nameof(TileSetCSVFilePathAsStr));
-                }
-            }
-        }
 
         // - その他
 

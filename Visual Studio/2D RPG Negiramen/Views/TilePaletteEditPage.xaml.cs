@@ -140,4 +140,32 @@ public partial class TilePaletteEditPage : ContentPage
             context.TileCursorHeightAsInt = cursorRectangle.Size.Height.AsInt;
         }
     }
+
+    /// <summary>
+    ///     ［追加］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender">このイベントを送っているコントロール</param>
+    /// <param name="e">イベント</param>
+    private void AddsButton_Clicked(object sender, EventArgs e)
+    {
+
+    }
+
+    /// <summary>
+    /// ページ読込完了時
+    /// </summary>
+    /// <param name="sender">このイベントを送っているコントロール</param>
+    /// <param name="e">イベント</param>
+    private void ContentPage_Loaded(object sender, EventArgs e)
+    {
+        //
+        // 設定ファイルの反映
+        // ==================
+        //
+        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+        if (Models.Files.TileSetSettings.LoadCSV(context.TileSetCSVFilePath, out Models.Files.TileSetSettings tileSetSettings))
+        {
+            context.TileSetSettings = tileSetSettings;
+        }
+    }
 }

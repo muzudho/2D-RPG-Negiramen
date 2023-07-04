@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     タイル・セット記録
+    ///     タイル１件分の記録
     /// </summary>
     class TileSetRecord
     {
