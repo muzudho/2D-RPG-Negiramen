@@ -2094,4 +2094,33 @@ Id, Left, Top, Width, Height, Comment
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　とりあえず　それで」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　クエリー・パラーメーターで　ビュー・モデルへ　ＣＳＶファイルへのパスを渡したつもりなんだが、  
+コード・ビハインドの　Load　時には　ビュー・モデルに　ＣＳＶファイルへのパスが入ってないな」  
+
+📖 [.Net Maui/XAML QueryParameter is NULL in the viewmodel Constructor but usable in XAML, how do I access it in the viewmodel?](https://stackoverflow.com/questions/72757060/net-maui-xaml-queryparameter-is-null-in-the-viewmodel-constructor-but-usable-in)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　書かれてる通りにやってるんだが……、あっ、スペルミスだ！」    
+
+![202307_maui_05-0125--add-button.png](https://crieit.now.sh/upload_images/5aa08c3a87fc4d24dd10b0410d9112dc64a44826960cf.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　ハリボテ　で、１行追加　できるようにしたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　コメントの文字数のバリデーション、  
+Ｉｄの自動採番、  
+既に追加されているタイルは　コメントを表示、ボタンのラベルも［追加］から［上書］へ変更、  
+削除ボタンの実装、  
+ＣＳＶを固定レイアウトではなく、列名を見るように変更、
+ＣＳＶのダブルクォーテーションのエスケープ、
+少なくとも　これらは　残っているな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　気の遠くなる話しだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　睡眠へ切り替えよ。寝ろ」  
+
 ＜書きかけ＞
