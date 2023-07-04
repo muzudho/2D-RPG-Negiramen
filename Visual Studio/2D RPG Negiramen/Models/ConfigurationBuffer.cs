@@ -8,12 +8,12 @@
         /// <summary>
         ///     ネギラーメンのワークスペース・フォルダーへのパス
         /// </summary>
-        internal NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
+        internal Models.FileOperation.NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        internal UnityAssetsFolderPath UnityAssetsFolderPath { get; set; }
+        internal Models.FileOperation.UnityAssetsFolderPath UnityAssetsFolderPath { get; set; }
 
         /// <summary>
         ///     あなたのサークル名

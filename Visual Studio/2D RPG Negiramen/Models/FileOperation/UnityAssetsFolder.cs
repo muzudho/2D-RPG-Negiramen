@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.FileOperation
 {
     /// <summary>
     ///     😁 Unity の Assets フォルダーを想定したもの

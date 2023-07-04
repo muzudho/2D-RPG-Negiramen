@@ -386,10 +386,10 @@ public partial class MainPage : ContentPage
             onOk: async () =>
             {
                 // TODO タイル・セット画像ファイル・パス
-                var tileSetImageFilePath = Models.TileSetImageFilePath.FromStringAndReplaceSeparators("C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png");
+                var tileSetImageFilePath = Models.FileOperation.TileSetImageFilePath.FromStringAndReplaceSeparators("C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png");
 
                 // タイル・セット画像の縦横幅
-                var tileSetSize = PNGHelper.GetImageSize(tileSetImageFilePath);
+                var tileSetSize = Models.FileOperation.PNGHelper.GetImageSize(tileSetImageFilePath);
 
                 // グリッドの線の幅
                 ThicknessOfLine gridLineThickness = new ThicknessOfLine(2 * App.HalfThicknessOfGridLine.AsInt);

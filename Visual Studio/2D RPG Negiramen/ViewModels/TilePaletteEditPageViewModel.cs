@@ -617,7 +617,7 @@
             {
                 if (_tileSetImageFilePath.AsStr != value)
                 {
-                    _tileSetImageFilePath = new Models.TileSetImageFilePath(value);
+                    _tileSetImageFilePath = new Models.FileOperation.TileSetImageFilePath(value);
                     OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
                 }
             }
@@ -662,7 +662,7 @@
         /// <summary>
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
-        Models.TileSetImageFilePath _tileSetImageFilePath = Models.TileSetImageFilePath.Empty;
+        Models.FileOperation.TileSetImageFilePath _tileSetImageFilePath = Models.FileOperation.TileSetImageFilePath.Empty;
 
         /// <summary>
         ///     タイル・カーソルの位置
