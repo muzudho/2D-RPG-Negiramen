@@ -103,7 +103,7 @@
             // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
 
             // 保存したいファイルへのパス
-            var settingsFilePath = System.IO.Path.Combine(appDataDirAsStr, "settings.toml");
+            var settingsFilePathAsStr = System.IO.Path.Combine(appDataDirAsStr, "settings.toml");
 
             var settingsBuffer = new SettingsBuffer();
 
@@ -118,7 +118,7 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
 ";
 
             // 上書き
-            System.IO.File.WriteAllText(settingsFilePath, text);
+            System.IO.File.WriteAllText(settingsFilePathAsStr, text);
 
             // イミュータブル・オブジェクトを生成
             newSettings = new Settings(

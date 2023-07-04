@@ -170,7 +170,14 @@ public partial class TilePaletteEditPage : ContentPage
         // 設定ファイルの保存
         // ==================
         //
-
+        if (context.TileSetSettings.SaveCSV(context.TileSetCSVFilePath))
+        {
+            // 保存成功
+        }
+        else
+        {
+            // TODO 保存失敗時のエラー対応
+        }
     }
 
     /// <summary>

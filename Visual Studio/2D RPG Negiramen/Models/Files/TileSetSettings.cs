@@ -1,4 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.Models.Files
+﻿using System.Text;
+
+namespace _2D_RPG_Negiramen.Models.Files
 {
     /// <summary>
     ///     タイル・セットの設定データ
@@ -65,6 +67,33 @@
                 }
             }
 
+            return true;
+        }
+
+        /// <summary>
+        ///     保存
+        /// </summary>
+        /// <returns>完了した</returns>
+        internal bool SaveCSV(Models.FileOperation.TileSetCSVFilePath tileSetCSVFilePath)
+        {
+
+            // 保存したいファイルへのパス
+            var settingsFilePathAsStr = tileSetCSVFilePath.AsStr;
+
+            var builder = new StringBuilder();
+            
+            // ヘッダー部
+            builder.AppendLine("Id,Left,Top,Width,Height,Comment");
+
+            // データ部
+            foreach (var record in this.RecordList)
+            {
+                // TODO ダブルクォーテーションのエスケープ
+                builder.AppendLine($"{record.Id},{record.Rectangle.Point.X},{record.Rectangle.Point.Y},{record.Rectangle.Size.Width},{record.Rectangle.Size.Height},{record.Comment}");
+            }
+
+            // 上書き
+            System.IO.File.WriteAllText(settingsFilePathAsStr, builder.ToString());
             return true;
         }
 

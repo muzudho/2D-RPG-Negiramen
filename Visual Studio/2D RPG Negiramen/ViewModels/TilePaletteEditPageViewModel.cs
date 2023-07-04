@@ -5,8 +5,8 @@
     /// <summary>
     ///     😁 ［タイル・パレット編集ページ］ビューモデル
     /// </summary>
-    [QueryProperty(nameof(TileSetImageFilePathAsStr), queryId: "TileSetImageFilePathAsStr")]
-    [QueryProperty(nameof(TileSetCSVFilePathAsStr), queryId: "TileSetCSVFilePathAsStr")]
+    [QueryProperty(nameof(TileSetImageFilePath), queryId: "TileSetImageFilePath")]
+    [QueryProperty(nameof(TileSetCSVFilePath), queryId: "TileSetCSVFilePath")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
@@ -17,7 +17,7 @@
 
         #region プロパティ（タイル・セット画像ファイルへのパス）
         /// <summary>
-        ///     タイル・セット画像ファイルへのパス
+        ///     タイル・セット画像ファイルへのパス（文字列形式）
         /// </summary>
         public string TileSetImageFilePathAsStr
         {
@@ -27,6 +27,21 @@
                 if (_tileSetImageFilePath.AsStr != value)
                 {
                     _tileSetImageFilePath = new Models.FileOperation.TileSetImageFilePath(value);
+                }
+            }
+        }
+
+        /// <summary>
+        ///     タイル・セット画像ファイルへのパス
+        /// </summary>
+        public Models.FileOperation.TileSetImageFilePath TileSetImageFilePath
+        {
+            get => _tileSetImageFilePath;
+            set
+            {
+                if (_tileSetImageFilePath != value)
+                {
+                    _tileSetImageFilePath = value;
                 }
             }
         }
@@ -41,6 +56,11 @@
             get => _tileSetCSVFilePath.AsStr;
             set
             {
+                if (value==null || String.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException($"the {nameof(TileSetCSVFilePathAsStr)} must not be null or whitespace");
+                }
+
                 if (_tileSetCSVFilePath.AsStr != value)
                 {
                     _tileSetCSVFilePath = new Models.FileOperation.TileSetCSVFilePath(value);
