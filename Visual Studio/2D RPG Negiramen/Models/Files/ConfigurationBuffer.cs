@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Files
 {
     /// <summary>
     ///     😁 構成ファイルの差分

@@ -121,7 +121,7 @@
                 var assetsFolderPathAsStr = this.UnityAssetsFolderPathAsStr;
 
                 // 構成ファイルの更新差分
-                var configurationDifference = new ConfigurationBuffer()
+                var configurationDifference = new Models.Files.ConfigurationBuffer()
                 {
                     NegiramenWorkspaceFolderPath = this._negiramenWorkspaceFolderPath,
                     UnityAssetsFolderPath = this._unityAssetsFolderPath,
@@ -130,7 +130,7 @@
                 };
 
                 // 設定ファイルの保存
-                if (Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Configuration newConfiguration))
+                if (Models.Files.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.Files.Configuration newConfiguration))
                 {
                     // グローバル変数を更新
                     App.SetConfiguration(newConfiguration);
