@@ -1,23 +1,23 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
 {
     /// <summary>
-    ///     😁 タイル・セットCSVファイル・ロケーション
+    ///     😁 タイル・セット画像ファイル・パス
     /// </summary>
-    class TileSetSettings : Its
+    class TileSetImageFile : Its
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static TileSetSettings Empty { get; } = new TileSetSettings();
+        internal static TileSetImageFile Empty { get; } = new TileSetImageFile();
 
         // - その他
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetSettings()
+        internal TileSetImageFile()
             : base()
         {
         }
@@ -25,7 +25,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetSettings(FileEntryPath path)
+        internal TileSetImageFile(FileEntryPath path)
             : base(path)
         {
         }

@@ -392,35 +392,21 @@ public partial class MainPage : ContentPage
                 var fileStem = "map-tile-format-8x19";
 
                 // タイル・セット画像ファイル・パス
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-                var tileSetImageFilePath = Models.FileEntriesLocations.TileSetImageFile.FromString(
-後:
-                var tileSetImageFilePath = TileSetImageFile.FromString(
-*/
-                var tileSetImageFilePath = new Models.FileEntries.Locations.TileSetImage(FileEntryPath.FromString(
+                var tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(FileEntryPath.FromString(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png"),
                     replaceSeparators: true));
 
                 // タイル・セットCSVファイル・パス
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-                var tileSetCSVFilePath = Models.FileEntriesLocations.TileSetCSVFile.FromString(
-後:
-                var tileSetCSVFilePath = TileSetCSVFile.FromString(
-*/
-                var tileSetCSVFilePath = new Models.FileEntries.Locations.TileSetSettings(FileEntryPath.FromString(
+                var tileSetSettingsFile = new Models.FileEntries.Locations.TileSetSettingsFile(FileEntryPath.FromString(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv"),
                     replaceSeparators: true));
 
                 // タイル・セット画像の縦横幅
-                var tileSetSize = Models.FileEntries.PNGHelper.GetImageSize(tileSetImageFilePath);
+                var tileSetSize = Models.FileEntries.PNGHelper.GetImageSize(tileSetImageFile);
 
                 // グリッドの線の幅
                 ThicknessOfLine gridLineThickness = new ThicknessOfLine(2 * App.HalfThicknessOfGridLine.AsInt);
@@ -429,8 +415,8 @@ public partial class MainPage : ContentPage
                     state: shellNavigationState,
                     parameters: new Dictionary<string, object>
                     {
-                        [key: "TileSetImageFilePath"] = tileSetImageFilePath,
-                        [key: "TileSetCSVFilePath"] = tileSetCSVFilePath,
+                        [key: "TileSetImageFile"] = tileSetImageFile,
+                        [key: "TileSetSettingsFile"] = tileSetSettingsFile,
                         [key: "ImageSize"] = tileSetSize,
                         // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
                         [key: "GridCanvasSize"] = new Models.Size(new Models.Width(tileSetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tileSetSize.Height.AsInt + gridLineThickness.AsInt)),

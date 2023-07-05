@@ -10,7 +10,7 @@
     ///         👉　└─ 📂 Workspace
     ///     </pre>
     /// </summary>
-    internal class WorkspaceFolder
+    internal class NegiramenWorkspaceDeployment
 
     {
         /// <summary>
@@ -25,9 +25,8 @@
         /// </summary>
         internal static bool CheckForUnityAssets()
         {
-            var workspacePath = App.GetOrLoadConfiguration().NegiramenWorkspaceFolder;
-
-            var workspaceInfo = new DirectoryInfo(workspacePath.Path.AsStr);
+            var workspaceFolder = App.GetOrLoadConfiguration().NegiramenWorkspaceFolder;
+            var workspaceInfo = new DirectoryInfo(workspaceFolder.Path.AsStr);
 
             // 📂 `For Unity Assets` が含まれていれば OK
             DirectoryInfo assetsInfo = null;

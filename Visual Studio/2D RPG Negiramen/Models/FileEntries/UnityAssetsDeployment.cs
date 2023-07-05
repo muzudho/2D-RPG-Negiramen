@@ -3,7 +3,7 @@
     /// <summary>
     ///     😁 Unity の Assets フォルダーを想定したもの
     /// </summary>
-    internal class UnityAssetsFolder
+    internal class UnityAssetsDeployment
     {
         /// <summary>
         ///     <pre>

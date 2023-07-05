@@ -18,14 +18,7 @@
         /// </summary>
         /// <param name="tileSetSettings">タイル・セット設定</param>
         /// <returns></returns>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-        internal static bool LoadCSV(Models.FileEntriesLocations.TileSetCSVFile tileSetCSVFilePath, out TileSetSettings tileSetSettings)
-後:
-        internal static bool LoadCSV(TileSetCSVFile tileSetCSVFilePath, out TileSetSettings tileSetSettings)
-*/
-        internal static bool LoadCSV(Locations.TileSetSettings tileSetCSVFilePath, out TileSetSettings tileSetSettings)
+        internal static bool LoadCSV(Locations.TileSetSettingsFile tileSetSettingsFile, out TileSetSettings tileSetSettings)
         {
             // 既定値の設定（空っぽ）
             tileSetSettings = new TileSetSettings();
@@ -36,7 +29,7 @@
                 // ファイルの有無確認
                 // ==================
                 //
-                if (System.IO.File.Exists(tileSetCSVFilePath.Path.AsStr))
+                if (System.IO.File.Exists(tileSetSettingsFile.Path.AsStr))
                 {
                     // ファイルが有るなら
 
@@ -44,7 +37,7 @@
                     // ファイル読取
                     // ============
                     //
-                    var text = System.IO.File.ReadAllText(tileSetCSVFilePath.Path.AsStr);
+                    var text = System.IO.File.ReadAllText(tileSetSettingsFile.Path.AsStr);
 
                     //
                     // ＣＳＶとして解析
@@ -106,18 +99,11 @@
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-        internal bool SaveCSV(Models.FileEntriesLocations.TileSetCSVFile tileSetCSVFilePath)
-後:
-        internal bool SaveCSV(TileSetCSVFile tileSetCSVFilePath)
-*/
-        internal bool SaveCSV(Locations.TileSetSettings tileSetCSVFilePath)
+        internal bool SaveCSV(Locations.TileSetSettingsFile tileSetSettingsFile)
         {
 
             // 保存したいファイルへのパス
-            var settingsFilePathAsStr = tileSetCSVFilePath.Path.AsStr;
+            var settingsFilePathAsStr = tileSetSettingsFile.Path.AsStr;
 
             var builder = new StringBuilder();
 

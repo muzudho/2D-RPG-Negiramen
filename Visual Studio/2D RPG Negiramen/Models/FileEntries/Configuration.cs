@@ -42,7 +42,7 @@
 
                 Locations.UnityAssetsFolder unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder();
 
-                Locations.Negiramen.UserConfiguration userConfiguration = new Models.FileEntries.Locations.Negiramen.UserConfiguration();
+                Locations.Negiramen.UserConfigurationFile userConfiguration = new Models.FileEntries.Locations.Negiramen.UserConfigurationFile();
                 YourCircleName yourCircleName = new YourCircleName();
                 YourWorkName yourWorkName = new YourWorkName();
 
@@ -75,13 +75,6 @@
                             {
                                 if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
                                 {
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-                                    unityAssetsFolderPath = Models.FileEntriesLocations.UnityAssetsFolderPath.FromString(
-後:
-                                    unityAssetsFolderPath = UnityAssetsFolderPath.FromString(
-*/
                                     unityAssetsFolder = new Locations.UnityAssetsFolder(FileEntryPath.FromString(
                                         unityAssetsFolderPathAsStr,
                                         replaceSeparators: true));
@@ -103,9 +96,15 @@
                             {
                                 if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
                                 {
-                                    userConfiguration = new Locations.Negiramen.UserConfiguration(FileEntryPath.FromString(
+                                    userConfiguration = new Locations.Negiramen.UserConfigurationFile(FileEntryPath.FromString(
                                         userConfigurationFilePathAsStr,
-                                        replaceSeparators: true));
+                                        replaceSeparators: true,
+                                        // 変数展開を備える
+                                        expandVariables: new Dictionary<string, string>()
+                                        {
+                                            { "negiramen_workspace_folder", negiramenWorkspaceFolder.Path.AsStr },
+                                            { "unity_assets_folder", unityAssetsFolder.Path.AsStr},
+                                        }));
                                 }
                             }
                         }
@@ -196,18 +195,18 @@
             var configurationBuffer = new ConfigurationBuffer();
 
             // 差分適用
-            configurationBuffer.NegiramenWorkspaceFolderPath = difference.NegiramenWorkspaceFolderPath == null ? current.NegiramenWorkspaceFolder : difference.NegiramenWorkspaceFolderPath;
-            configurationBuffer.UnityAssetsFolderPath = difference.UnityAssetsFolderPath == null ? current.UnityAssetsFolder : difference.UnityAssetsFolderPath;
+            configurationBuffer.NegiramenWorkspaceFolder = difference.NegiramenWorkspaceFolder == null ? current.NegiramenWorkspaceFolder : difference.NegiramenWorkspaceFolder;
+            configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder == null ? current.UnityAssetsFolder : difference.UnityAssetsFolder;
             configurationBuffer.YourCircleName = difference.YourCircleName == null ? current.YourCircleName : difference.YourCircleName;
             configurationBuffer.YourWorkName = difference.YourWorkName == null ? current.YourWorkName : difference.YourWorkName;
 
             var text = $@"[paths]
 
 # ネギラーメンの 📂 `Workspace` フォルダ―へのパス
-negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolderPath.Path.AsStr}""
+negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolder.Path.AsStr}""
 
 # Unity の Assets フォルダ―へのパス
-unity_assets_folder = ""{configurationBuffer.UnityAssetsFolderPath.Path.AsStr}""
+unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
 
 [paths_2nd]
 
@@ -228,9 +227,9 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 
             // イミュータブル・オブジェクトを生成
             newConfiguration = new Configuration(
-                configurationBuffer.NegiramenWorkspaceFolderPath,
-                configurationBuffer.UnityAssetsFolderPath,
-                configurationBuffer.UserConfigurationFilePath,
+                configurationBuffer.NegiramenWorkspaceFolder,
+                configurationBuffer.UnityAssetsFolder,
+                configurationBuffer.UserConfigurationFile,
                 configurationBuffer.YourCircleName,
                 configurationBuffer.YourWorkName);
             return true;
@@ -254,7 +253,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     ユーザー構成ファイルへのパス
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/configuration_2nd.toml"</example>
-        internal Locations.Negiramen.UserConfiguration UserConfiguration { get; }
+        internal Locations.Negiramen.UserConfigurationFile UserConfiguration { get; }
 
         /// <summary>
         ///     あなたのサークル名
@@ -270,30 +269,9 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     生成
         /// </summary>
         internal Configuration() : this(
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-            Models.FileEntriesLocations.Negiramen.WorkspaceFolderPath.Empty,
-後:
-            WorkspaceFolderPath.Empty,
-*/
             Locations.Negiramen.WorkspaceFolder.Empty,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-            Models.FileEntriesLocations.UnityAssetsFolderPath.Empty,
-後:
-            UnityAssetsFolderPath.Empty,
-*/
             Locations.UnityAssetsFolder.Empty,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-            Models.FileEntriesLocations.Negiramen.UserConfigurationFilePath.Empty,
-後:
-            UserConfigurationFilePath.Empty,
-*/
-            Locations.Negiramen.UserConfiguration.Empty,
+            Locations.Negiramen.UserConfigurationFile.Empty,
             YourCircleName.Empty,
             YourWorkName.Empty)
         {
@@ -308,30 +286,9 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <param name="yourCircleName">あなたのサークル名</param>
         /// <param name="yourWorkName">あなたの作品名</param>
         internal Configuration(
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-            Models.FileEntriesLocations.Negiramen.WorkspaceFolderPath negiramenWorkspaceFolderPath,
-後:
-            WorkspaceFolderPath negiramenWorkspaceFolderPath,
-*/
             Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolderPath,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-            Models.FileEntriesLocations.UnityAssetsFolderPath unityAssetsFolderPath,
-後:
-            UnityAssetsFolderPath unityAssetsFolderPath,
-*/
             Locations.UnityAssetsFolder unityAssetsFolderPath,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-            Models.FileEntriesLocations.Negiramen.UserConfigurationFilePath userConfigurationFilePath,
-後:
-            UserConfigurationFilePath userConfigurationFilePath,
-*/
-            Locations.Negiramen.UserConfiguration userConfigurationFilePath,
+            Locations.Negiramen.UserConfigurationFile userConfigurationFilePath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)
         {

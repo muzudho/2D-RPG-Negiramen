@@ -173,7 +173,7 @@ public partial class TilePaletteEditPage : ContentPage
         // 設定ファイルの保存
         // ==================
         //
-        if (context.TileSetSettings.SaveCSV(context.TileSetCSVFilePath))
+        if (context.TileSetSettings.SaveCSV(context.TileSetSettingsFile))
         {
             // 保存成功
         }
@@ -195,7 +195,7 @@ public partial class TilePaletteEditPage : ContentPage
         // ==================
         //
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-        if (Models.FileEntries.TileSetSettings.LoadCSV(context.TileSetCSVFilePath, out Models.FileEntries.TileSetSettings tileSetSettings))
+        if (Models.FileEntries.TileSetSettings.LoadCSV(context.TileSetSettingsFile, out Models.FileEntries.TileSetSettings tileSetSettings))
         {
             context.TileSetSettings = tileSetSettings;
         }

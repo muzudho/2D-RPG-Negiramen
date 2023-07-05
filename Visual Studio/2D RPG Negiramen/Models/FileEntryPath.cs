@@ -24,7 +24,8 @@
         /// <returns>実例</returns>
         internal static FileEntryPath FromString(
             string fileEntryPath,
-            bool replaceSeparators = false)
+            bool replaceSeparators = false,
+            Dictionary<string, string> expandVariables = null)
         {
             if (fileEntryPath == null)
             {
@@ -34,6 +35,15 @@
             if (replaceSeparators)
             {
                 fileEntryPath = fileEntryPath.Replace("\\", "/");
+            }
+
+            // 変数展開
+            if (expandVariables != null)
+            {
+                foreach(var pair in expandVariables)
+                {
+                    fileEntryPath = fileEntryPath.Replace(pair.Key, pair.Value);
+                }
             }
 
             return new FileEntryPath(fileEntryPath);

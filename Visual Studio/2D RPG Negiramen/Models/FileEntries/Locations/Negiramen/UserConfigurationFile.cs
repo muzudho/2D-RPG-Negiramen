@@ -7,7 +7,7 @@
     ///         <item>配置場所は、構成ファイルで変更可能。既定ではネギラーメン・ワークスペースの直下に置く想定</item>
     ///     </list>
     /// </summary>
-    class UserConfiguration : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
+    class UserConfigurationFile : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
 
     {
         // - 静的プロパティ
@@ -15,14 +15,14 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static UserConfiguration Empty { get; } = new UserConfiguration();
+        internal static UserConfigurationFile Empty { get; } = new UserConfigurationFile();
 
         // - その他
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal UserConfiguration()
+        internal UserConfigurationFile()
             : base()
         {
         }
@@ -30,7 +30,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UserConfiguration(FileEntryPath fileEntryPath)
+        internal UserConfigurationFile(FileEntryPath fileEntryPath)
             : base(fileEntryPath)
         {
         }
