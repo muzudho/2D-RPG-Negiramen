@@ -399,7 +399,7 @@ public partial class MainPage : ContentPage
 後:
                 var tileSetImageFilePath = TileSetImageFile.FromString(
 */
-                var tileSetImageFilePath = Models.FileEntries.FileEntriesLocations.TileSetImageFile.FromString(
+                var tileSetImageFilePath = Models.FileEntries.Locations.TileSetImage.FromString(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png"),
@@ -413,7 +413,7 @@ public partial class MainPage : ContentPage
 後:
                 var tileSetCSVFilePath = TileSetCSVFile.FromString(
 */
-                var tileSetCSVFilePath = Models.FileEntries.FileEntriesLocations.TileSetCSVFile.FromString(
+                var tileSetCSVFilePath = Models.FileEntries.Locations.TileSetSettings.FromString(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv"),

@@ -1,9 +1,10 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations.Negiramen
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Negiramen
 {
     /// <summary>
-    ///     😁 ネギラーメン・ワークスペース・フォルダーのパス
+    ///     😁 ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
     /// </summary>
-    class WorkspaceFolderPath
+    /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/Temporary/Images/working_tile_set_canvas.png"</example>
+    class WorkingTileSetCanvasImage : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
 
     {
         // - 静的プロパティ
@@ -11,7 +12,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static WorkspaceFolderPath Empty { get; } = new WorkspaceFolderPath();
+        internal static WorkingTileSetCanvasImage Empty { get; } = new WorkingTileSetCanvasImage();
 
         /// <summary>
         ///     文字列を与えて初期化
@@ -19,7 +20,7 @@
         /// <param name="folderPath">フォルダーへのパス</param>
         /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static WorkspaceFolderPath FromString(
+        internal static WorkingTileSetCanvasImage FromString(
             string folderPath,
             bool replaceSeparators = false)
         {
@@ -33,33 +34,25 @@
                 folderPath = folderPath.Replace("\\", "/");
             }
 
-            return new WorkspaceFolderPath(folderPath);
+            return new WorkingTileSetCanvasImage(folderPath);
+        }
+
+        // - その他
+
+        /// <summary>
+        ///     生成
+        /// </summary>
+        internal WorkingTileSetCanvasImage()
+            : base()
+        {
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkspaceFolderPath()
+        internal WorkingTileSetCanvasImage(string asStr)
+            : base(asStr)
         {
-            AsStr = string.Empty;
         }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal WorkspaceFolderPath(string asStr)
-        {
-            AsStr = asStr;
-        }
-
-        /// <summary>
-        ///     文字列形式
-        /// </summary>
-        internal string AsStr { get; }
-
-        /// <summary>
-        ///     暗黙的な文字列形式
-        /// </summary>
-        public override string ToString() => AsStr;
     }
 }

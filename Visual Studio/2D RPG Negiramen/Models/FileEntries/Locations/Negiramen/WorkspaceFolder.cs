@@ -1,16 +1,17 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Negiramen
 {
     /// <summary>
-    ///     😁 Unityの Assets フォルダーへのパス
+    ///     😁 ネギラーメン・ワークスペース・フォルダーのパス
     /// </summary>
-    class UnityAssetsFolderPath
+    class WorkspaceFolder : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
+
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static UnityAssetsFolderPath Empty { get; } = new UnityAssetsFolderPath();
+        internal static WorkspaceFolder Empty { get; } = new WorkspaceFolder();
 
         /// <summary>
         ///     文字列を与えて初期化
@@ -18,7 +19,7 @@
         /// <param name="folderPath">フォルダーへのパス</param>
         /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static UnityAssetsFolderPath FromString(
+        internal static WorkspaceFolder FromString(
             string folderPath,
             bool replaceSeparators = false)
         {
@@ -32,33 +33,23 @@
                 folderPath = folderPath.Replace("\\", "/");
             }
 
-            return new UnityAssetsFolderPath(folderPath);
+            return new WorkspaceFolder(folderPath);
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal UnityAssetsFolderPath()
+        internal WorkspaceFolder()
+            : base()
         {
-            AsStr = string.Empty;
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal UnityAssetsFolderPath(string asStr)
+        internal WorkspaceFolder(string asStr)
+            : base(asStr)
         {
-            AsStr = asStr;
         }
-
-        /// <summary>
-        ///     文字列形式
-        /// </summary>
-        internal string AsStr { get; }
-
-        /// <summary>
-        ///     暗黙的な文字列形式
-        /// </summary>
-        public override string ToString() => AsStr;
     }
 }

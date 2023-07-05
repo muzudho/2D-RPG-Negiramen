@@ -3,7 +3,7 @@
     using System.Text;
 
     /// <summary>
-    ///     タイル・セットの設定データ
+    ///     タイル・セットの設定
     ///     
     ///     <list type="bullet">
     ///         <item>とりあえずミュータブル</item>
@@ -25,7 +25,7 @@
 後:
         internal static bool LoadCSV(TileSetCSVFile tileSetCSVFilePath, out TileSetSettings tileSetSettings)
 */
-        internal static bool LoadCSV(FileEntriesLocations.TileSetCSVFile tileSetCSVFilePath, out TileSetSettings tileSetSettings)
+        internal static bool LoadCSV(Locations.TileSetSettings tileSetCSVFilePath, out TileSetSettings tileSetSettings)
         {
             // 既定値の設定（空っぽ）
             tileSetSettings = new TileSetSettings();
@@ -113,7 +113,7 @@
 後:
         internal bool SaveCSV(TileSetCSVFile tileSetCSVFilePath)
 */
-        internal bool SaveCSV(FileEntriesLocations.TileSetCSVFile tileSetCSVFilePath)
+        internal bool SaveCSV(Locations.TileSetSettings tileSetCSVFilePath)
         {
 
             // 保存したいファイルへのパス

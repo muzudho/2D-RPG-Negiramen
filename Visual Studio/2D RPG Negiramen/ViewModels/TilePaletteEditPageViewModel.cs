@@ -26,7 +26,7 @@
             {
                 if (_tileSetImageFilePath.AsStr != value)
                 {
-                    _tileSetImageFilePath = new Models.FileEntries.FileEntriesLocations.TileSetImageFile(value);
+                    _tileSetImageFilePath = new Models.FileEntries.Locations.TileSetImage(value);
                 }
             }
         }
@@ -41,7 +41,7 @@
 後:
         public TileSetImageFile TileSetImageFilePath
 */
-        public Models.FileEntries.FileEntriesLocations.TileSetImageFile TileSetImageFilePath
+        public Models.FileEntries.Locations.TileSetImage TileSetImageFilePath
         {
             get => _tileSetImageFilePath;
             set
@@ -70,7 +70,7 @@
 
                 if (_tileSetCSVFilePath.AsStr != value)
                 {
-                    _tileSetCSVFilePath = new Models.FileEntries.FileEntriesLocations.TileSetCSVFile(value);
+                    _tileSetCSVFilePath = new Models.FileEntries.Locations.TileSetSettings(value);
                 }
             }
         }
@@ -85,7 +85,7 @@
 後:
         public TileSetCSVFile TileSetCSVFilePath
 */
-        public Models.FileEntries.FileEntriesLocations.TileSetCSVFile TileSetCSVFilePath
+        public Models.FileEntries.Locations.TileSetSettings TileSetCSVFilePath
         {
             get => _tileSetCSVFilePath;
             set
@@ -815,7 +815,7 @@
 後:
         TileSetImageFile _tileSetImageFilePath = TileSetImageFile.Empty;
 */
-        Models.FileEntries.FileEntriesLocations.TileSetImageFile _tileSetImageFilePath = Models.FileEntries.FileEntriesLocations.TileSetImageFile.Empty;
+        Models.FileEntries.Locations.TileSetImage _tileSetImageFilePath = Models.FileEntries.Locations.TileSetImage.Empty;
 
         /// <summary>
         ///     タイル・セットの設定CSVファイル
@@ -827,7 +827,7 @@
 後:
         TileSetCSVFile _tileSetCSVFilePath = TileSetCSVFile.Empty;
 */
-        Models.FileEntries.FileEntriesLocations.TileSetCSVFile _tileSetCSVFilePath = Models.FileEntries.FileEntriesLocations.TileSetCSVFile.Empty;
+        Models.FileEntries.Locations.TileSetSettings _tileSetCSVFilePath = Models.FileEntries.Locations.TileSetSettings.Empty;
 
         /// <summary>
         ///     タイル・カーソルの位置

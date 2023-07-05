@@ -1,30 +1,16 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
 {
     /// <summary>
     ///     😁 タイル・セットCSVファイル・ロケーション
     /// </summary>
-
-    /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-    前:
-        class TileSetCSVFilePath : Models.FilePath
-    後:
-        class TileSetCSVFilePath : FilePath
-    */
-
-    /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-    前:
-        class TileSetCSVFile : FileEntriesLocations.Its
-    後:
-        class TileSetCSVFile : Its
-    */
-    class TileSetCSVFile : Its
+    class TileSetSettings : Its
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static TileSetCSVFile Empty { get; } = new TileSetCSVFile();
+        internal static TileSetSettings Empty { get; } = new TileSetSettings();
 
         // - 静的その他
 
@@ -34,7 +20,7 @@
         /// <param name="filePath">ファイルへのパス</param>
         /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static TileSetCSVFile FromString(
+        internal static TileSetSettings FromString(
             string filePath,
             bool replaceSeparators = false)
         {
@@ -48,7 +34,7 @@
                 filePath = filePath.Replace("\\", "/");
             }
 
-            return new TileSetCSVFile(filePath);
+            return new TileSetSettings(filePath);
         }
 
         // - その他
@@ -56,7 +42,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetCSVFile()
+        internal TileSetSettings()
             : base()
         {
         }
@@ -64,7 +50,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetCSVFile(string asStr)
+        internal TileSetSettings(string asStr)
             : base(asStr: asStr)
         {
         }

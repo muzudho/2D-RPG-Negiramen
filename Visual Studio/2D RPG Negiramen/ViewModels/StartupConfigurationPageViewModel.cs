@@ -59,7 +59,7 @@
 後:
                     _negiramenWorkspaceFolderPath = WorkspaceFolderPath.FromString(
 */
-                    _negiramenWorkspaceFolderPath = Models.FileEntries.FileEntriesLocations.Negiramen.WorkspaceFolderPath.FromString(
+                    _negiramenWorkspaceFolderPath = Models.FileEntries.Locations.Negiramen.WorkspaceFolder.FromString(
                         value,
                         replaceSeparators: true);
                     OnPropertyChanged();
@@ -85,7 +85,7 @@
 後:
                     _unityAssetsFolderPath = UnityAssetsFolderPath.FromString(
 */
-                    _unityAssetsFolderPath = Models.FileEntries.FileEntriesLocations.UnityAssetsFolderPath.FromString(
+                    _unityAssetsFolderPath = Models.FileEntries.Locations.UnityAssetsFolder.FromString(
                         value,
                         replaceSeparators: true);
                     OnPropertyChanged();
@@ -210,7 +210,7 @@
 後:
         private WorkspaceFolderPath _negiramenWorkspaceFolderPath = WorkspaceFolderPath.Empty;
 */
-        private Models.FileEntries.FileEntriesLocations.Negiramen.WorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileEntries.FileEntriesLocations.Negiramen.WorkspaceFolderPath.Empty;
+        private Models.FileEntries.Locations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolderPath = Models.FileEntries.Locations.Negiramen.WorkspaceFolder.Empty;
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
@@ -222,7 +222,7 @@
 後:
         private UnityAssetsFolderPath _unityAssetsFolderPath = UnityAssetsFolderPath.Empty;
 */
-        private Models.FileEntries.FileEntriesLocations.UnityAssetsFolderPath _unityAssetsFolderPath = Models.FileEntries.FileEntriesLocations.UnityAssetsFolderPath.Empty;
+        private Models.FileEntries.Locations.UnityAssetsFolder _unityAssetsFolderPath = Models.FileEntries.Locations.UnityAssetsFolder.Empty;
 
         /// <summary>
         ///     あなたのサークル名

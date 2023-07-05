@@ -1,18 +1,16 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations.Negiramen
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
 {
     /// <summary>
-    ///     😁 ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
+    ///     😁 Unityの Assets フォルダーへのパス
     /// </summary>
-    /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/Temporary/Images/working_tile_set_canvas.png"</example>
-    class WorkingTileSetCanvasImageFilePath
-
+    class UnityAssetsFolder
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static WorkingTileSetCanvasImageFilePath Empty { get; } = new WorkingTileSetCanvasImageFilePath();
+        internal static UnityAssetsFolder Empty { get; } = new UnityAssetsFolder();
 
         /// <summary>
         ///     文字列を与えて初期化
@@ -20,7 +18,7 @@
         /// <param name="folderPath">フォルダーへのパス</param>
         /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static WorkingTileSetCanvasImageFilePath FromString(
+        internal static UnityAssetsFolder FromString(
             string folderPath,
             bool replaceSeparators = false)
         {
@@ -34,13 +32,13 @@
                 folderPath = folderPath.Replace("\\", "/");
             }
 
-            return new WorkingTileSetCanvasImageFilePath(folderPath);
+            return new UnityAssetsFolder(folderPath);
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkingTileSetCanvasImageFilePath()
+        internal UnityAssetsFolder()
         {
             AsStr = string.Empty;
         }
@@ -48,7 +46,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkingTileSetCanvasImageFilePath(string asStr)
+        internal UnityAssetsFolder(string asStr)
         {
             AsStr = asStr;
         }

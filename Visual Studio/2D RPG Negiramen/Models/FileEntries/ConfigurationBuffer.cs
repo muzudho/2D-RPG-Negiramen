@@ -15,7 +15,7 @@
 後:
         internal WorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
 */
-        internal FileEntriesLocations.Negiramen.WorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
+        internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolderPath { get; set; }
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
@@ -27,7 +27,7 @@
 後:
         internal UnityAssetsFolderPath UnityAssetsFolderPath { get; set; }
 */
-        internal FileEntriesLocations.UnityAssetsFolderPath UnityAssetsFolderPath { get; set; }
+        internal Locations.UnityAssetsFolder UnityAssetsFolderPath { get; set; }
 
         /// <summary>
         ///     ユーザー構成ファイルへのパス
@@ -39,7 +39,7 @@
 後:
         internal UserConfigurationFilePath UserConfigurationFilePath { get; set; }
 */
-        internal FileEntriesLocations.Negiramen.UserConfigurationFilePath UserConfigurationFilePath { get; set; }
+        internal Locations.Negiramen.UserConfiguration UserConfigurationFilePath { get; set; }
 
         /// <summary>
         ///     あなたのサークル名

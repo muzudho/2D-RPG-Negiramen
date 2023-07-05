@@ -38,11 +38,11 @@
                 var configurationText = System.IO.File.ReadAllText(configurationFilePath);
 
 
-                FileEntriesLocations.Negiramen.WorkspaceFolderPath negiramenWorkspaceFolderPath = new Models.FileEntries.FileEntriesLocations.Negiramen.WorkspaceFolderPath();
+                Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolderPath = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder();
 
-                FileEntriesLocations.UnityAssetsFolderPath unityAssetsFolderPath = new Models.FileEntries.FileEntriesLocations.UnityAssetsFolderPath();
+                Locations.UnityAssetsFolder unityAssetsFolderPath = new Models.FileEntries.Locations.UnityAssetsFolder();
 
-                FileEntriesLocations.Negiramen.UserConfigurationFilePath userConfigurationFilePath = new Models.FileEntries.FileEntriesLocations.Negiramen.UserConfigurationFilePath();
+                Locations.Negiramen.UserConfiguration userConfigurationFilePath = new Models.FileEntries.Locations.Negiramen.UserConfiguration();
                 YourCircleName yourCircleName = new YourCircleName();
                 YourWorkName yourWorkName = new YourWorkName();
 
@@ -64,7 +64,7 @@
                             {
                                 if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
                                 {
-                                    negiramenWorkspaceFolderPath = FileEntriesLocations.Negiramen.WorkspaceFolderPath.FromString(
+                                    negiramenWorkspaceFolderPath = Locations.Negiramen.WorkspaceFolder.FromString(
                                         negiramenWorkspaceFolderPathAsStr,
                                         replaceSeparators: true);
                                 }
@@ -82,7 +82,7 @@
 後:
                                     unityAssetsFolderPath = UnityAssetsFolderPath.FromString(
 */
-                                    unityAssetsFolderPath = FileEntriesLocations.UnityAssetsFolderPath.FromString(
+                                    unityAssetsFolderPath = Locations.UnityAssetsFolder.FromString(
                                         unityAssetsFolderPathAsStr,
                                         replaceSeparators: true);
                                 }
@@ -103,7 +103,7 @@
                             {
                                 if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
                                 {
-                                    userConfigurationFilePath = FileEntriesLocations.Negiramen.UserConfigurationFilePath.FromString(
+                                    userConfigurationFilePath = Locations.Negiramen.UserConfiguration.FromString(
                                         userConfigurationFilePathAsStr,
                                         replaceSeparators: true);
                                 }
@@ -242,7 +242,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     ネギラーメン・ワークスペース・フォルダーへのパス
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace"</example>
-        internal FileEntriesLocations.Negiramen.WorkspaceFolderPath NegiramenWorkspaceFolderPath { get; }
+        internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolderPath { get; }
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
@@ -255,7 +255,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 後:
         internal UnityAssetsFolderPath UnityAssetsFolderPath { get; }
 */
-        internal FileEntriesLocations.UnityAssetsFolderPath UnityAssetsFolderPath { get; }
+        internal Locations.UnityAssetsFolder UnityAssetsFolderPath { get; }
 
         /// <summary>
         ///     ユーザー構成ファイルへのパス
@@ -268,7 +268,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 後:
         internal UserConfigurationFilePath UserConfigurationFilePath { get; }
 */
-        internal FileEntriesLocations.Negiramen.UserConfigurationFilePath UserConfigurationFilePath { get; }
+        internal Locations.Negiramen.UserConfiguration UserConfigurationFilePath { get; }
 
         /// <summary>
         ///     あなたのサークル名
@@ -291,7 +291,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 後:
             WorkspaceFolderPath.Empty,
 */
-            FileEntriesLocations.Negiramen.WorkspaceFolderPath.Empty,
+            Locations.Negiramen.WorkspaceFolder.Empty,
 
 /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
 前:
@@ -299,7 +299,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 後:
             UnityAssetsFolderPath.Empty,
 */
-            FileEntriesLocations.UnityAssetsFolderPath.Empty,
+            Locations.UnityAssetsFolder.Empty,
 
 /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
 前:
@@ -307,7 +307,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 後:
             UserConfigurationFilePath.Empty,
 */
-            FileEntriesLocations.Negiramen.UserConfigurationFilePath.Empty,
+            Locations.Negiramen.UserConfiguration.Empty,
             YourCircleName.Empty,
             YourWorkName.Empty)
         {
@@ -329,7 +329,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 後:
             WorkspaceFolderPath negiramenWorkspaceFolderPath,
 */
-            FileEntriesLocations.Negiramen.WorkspaceFolderPath negiramenWorkspaceFolderPath,
+            Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolderPath,
 
 /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
 前:
@@ -337,7 +337,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 後:
             UnityAssetsFolderPath unityAssetsFolderPath,
 */
-            FileEntriesLocations.UnityAssetsFolderPath unityAssetsFolderPath,
+            Locations.UnityAssetsFolder unityAssetsFolderPath,
 
 /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
 前:
@@ -345,7 +345,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 後:
             UserConfigurationFilePath userConfigurationFilePath,
 */
-            FileEntriesLocations.Negiramen.UserConfigurationFilePath userConfigurationFilePath,
+            Locations.Negiramen.UserConfiguration userConfigurationFilePath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)
         {

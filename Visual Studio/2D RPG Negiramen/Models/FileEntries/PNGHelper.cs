@@ -1,4 +1,4 @@
-﻿using _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations;
+﻿using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 namespace _2D_RPG_Negiramen.Models.FileEntries
 {

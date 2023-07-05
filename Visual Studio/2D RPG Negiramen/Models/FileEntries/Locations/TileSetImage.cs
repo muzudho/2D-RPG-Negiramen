@@ -1,30 +1,16 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
 {
     /// <summary>
     ///     😁 タイル・セット画像ファイル・パス
     /// </summary>
-
-    /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-    前:
-        class TileSetImageFilePath : Models.FilePath
-    後:
-        class TileSetImageFilePath : FilePath
-    */
-
-    /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-    前:
-        class TileSetImageFile : FileEntriesLocations.Its
-    後:
-        class TileSetImageFile : Its
-    */
-    class TileSetImageFile : Its
+    class TileSetImage : Its
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static TileSetImageFile Empty { get; } = new TileSetImageFile();
+        internal static TileSetImage Empty { get; } = new TileSetImage();
 
         // - 静的その他
 
@@ -34,7 +20,7 @@
         /// <param name="filePath">ファイルへのパス</param>
         /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static TileSetImageFile FromString(
+        internal static TileSetImage FromString(
             string filePath,
             bool replaceSeparators = false)
         {
@@ -48,7 +34,7 @@
                 filePath = filePath.Replace("\\", "/");
             }
 
-            return new TileSetImageFile(filePath);
+            return new TileSetImage(filePath);
         }
 
         // - その他
@@ -56,7 +42,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetImageFile()
+        internal TileSetImage()
             : base()
         {
         }
@@ -64,7 +50,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetImageFile(string asStr)
+        internal TileSetImage(string asStr)
             : base(asStr: asStr)
         {
         }
