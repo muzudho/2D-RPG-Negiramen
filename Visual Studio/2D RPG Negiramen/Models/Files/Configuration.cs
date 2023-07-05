@@ -37,7 +37,14 @@
                 // 設定ファイルの読取
                 var configurationText = System.IO.File.ReadAllText(configurationFilePath);
 
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
                 Models.FileSpace.NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath = new Models.FileSpace.NegiramenWorkspaceFolderPath();
+後:
+                NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath = new Models.FileSpace.NegiramenWorkspaceFolderPath();
+*/
+                FileSpace.Negiramen.WorkspaceFolderPath negiramenWorkspaceFolderPath = new Models.FileSpace.Negiramen.WorkspaceFolderPath();
                 Models.FileSpace.UnityAssetsFolderPath unityAssetsFolderPath = new Models.FileSpace.UnityAssetsFolderPath();
                 YourCircleName yourCircleName = new YourCircleName();
                 YourWorkName yourWorkName = new YourWorkName();
@@ -57,7 +64,14 @@
                             {
                                 if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
                                 {
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
                                     negiramenWorkspaceFolderPath = Models.FileSpace.NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(negiramenWorkspaceFolderPathAsStr);
+後:
+                                    negiramenWorkspaceFolderPath = NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(negiramenWorkspaceFolderPathAsStr);
+*/
+                                    negiramenWorkspaceFolderPath = FileSpace.Negiramen.WorkspaceFolderPath.FromStringAndReplaceSeparators(negiramenWorkspaceFolderPathAsStr);
                                 }
                             }
 
@@ -189,7 +203,14 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <summary>
         ///     ネギラーメン・ワークスペース・フォルダーへのパス
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
         internal Models.FileSpace.NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; }
+後:
+        internal NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; }
+*/
+        internal FileSpace.Negiramen.WorkspaceFolderPath NegiramenWorkspaceFolderPath { get; }
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
@@ -211,7 +232,14 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     生成
         /// </summary>
         internal Configuration() : this(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
             Models.FileSpace.NegiramenWorkspaceFolderPath.Empty,
+後:
+            NegiramenWorkspaceFolderPath.Empty,
+*/
+            FileSpace.Negiramen.WorkspaceFolderPath.Empty,
             Models.FileSpace.UnityAssetsFolderPath.Empty,
             YourCircleName.Empty,
             YourWorkName.Empty)
@@ -226,7 +254,14 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <param name="yourCircleName">あなたのサークル名</param>
         /// <param name="yourWorkName">あなたの作品名</param>
         internal Configuration(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
             Models.FileSpace.NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath,
+後:
+            NegiramenWorkspaceFolderPath negiramenWorkspaceFolderPath,
+*/
+            FileSpace.Negiramen.WorkspaceFolderPath negiramenWorkspaceFolderPath,
             Models.FileSpace.UnityAssetsFolderPath unityAssetsFolderPath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)

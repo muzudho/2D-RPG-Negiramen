@@ -52,7 +52,7 @@
             {
                 if (_negiramenWorkspaceFolderPath.AsStr != value)
                 {
-                    _negiramenWorkspaceFolderPath = Models.FileSpace.NegiramenWorkspaceFolderPath.FromStringAndReplaceSeparators(value);
+                    _negiramenWorkspaceFolderPath = Models.FileSpace.Negiramen.WorkspaceFolderPath.FromStringAndReplaceSeparators(value);
                     OnPropertyChanged();
                 }
             }
@@ -136,7 +136,7 @@
                     App.SetConfiguration(newConfiguration);
 
                     // ネギラーメンのワークスペース・フォルダーの内容を確認
-                    var isOk = Models.FileSpace.NegiramenWorkspaceFolder.Check();
+                    var isOk = Models.FileSpace.Negiramen.WorkspaceFolder.CheckForUnityAssets();
                     if(!isOk)
                     {
                         // TODO 異常時の処理
@@ -171,7 +171,14 @@
         /// <summary>
         ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
         /// </summary>
-        private Models.FileSpace.NegiramenWorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileSpace.NegiramenWorkspaceFolderPath.Empty;
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        private Models.FileSpace.WorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileSpace.WorkspaceFolderPath.Empty;
+後:
+        private WorkspaceFolderPath _negiramenWorkspaceFolderPath = WorkspaceFolderPath.Empty;
+*/
+        private Models.FileSpace.Negiramen.WorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileSpace.Negiramen.WorkspaceFolderPath.Empty;
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス

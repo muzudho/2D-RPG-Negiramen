@@ -8,7 +8,14 @@
         /// <summary>
         ///     ネギラーメンのワークスペース・フォルダーへのパス
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
         internal Models.FileSpace.NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
+後:
+        internal NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
+*/
+        internal FileSpace.Negiramen.WorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス

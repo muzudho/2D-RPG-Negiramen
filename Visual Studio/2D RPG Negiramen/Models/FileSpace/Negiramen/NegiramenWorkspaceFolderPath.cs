@@ -1,23 +1,24 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileSpace
+﻿namespace _2D_RPG_Negiramen.Models.FileSpace.Negiramen
 {
     /// <summary>
     ///     😁 ネギラーメン・ワークスペース・フォルダーのパス
     /// </summary>
-    class NegiramenWorkspaceFolderPath
+    class WorkspaceFolderPath
+
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static NegiramenWorkspaceFolderPath Empty { get; } = new NegiramenWorkspaceFolderPath();
+        internal static WorkspaceFolderPath Empty { get; } = new WorkspaceFolderPath();
 
         /// <summary>
         ///     文字列を与えて初期化
         /// </summary>
         /// <param name="folderPath">フォルダーへのパス</param>
         /// <returns>実例</returns>
-        internal static NegiramenWorkspaceFolderPath FromStringAndReplaceSeparators(string folderPath)
+        internal static WorkspaceFolderPath FromStringAndReplaceSeparators(string folderPath)
         {
             if (folderPath == null)
             {
@@ -26,23 +27,23 @@
 
             folderPath = folderPath.Replace("\\", "/");
 
-            return new NegiramenWorkspaceFolderPath(folderPath);
+            return new WorkspaceFolderPath(folderPath);
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal NegiramenWorkspaceFolderPath()
+        internal WorkspaceFolderPath()
         {
-            this.AsStr = string.Empty;
+            AsStr = string.Empty;
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal NegiramenWorkspaceFolderPath(string asStr)
+        internal WorkspaceFolderPath(string asStr)
         {
-            this.AsStr = asStr;
+            AsStr = asStr;
         }
 
         /// <summary>

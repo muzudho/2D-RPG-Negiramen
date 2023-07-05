@@ -2177,5 +2177,44 @@ Id, Left, Top, Width, Height, Comment
 「　じゃあ　実際のタイル画像とは別に、  
 ワーキング（Working；作業中）なタイル画像を　内部的に持っておけばいいかな」  
 
+![202307_maui_05-2139--tile-image-o2o0.png](https://crieit.now.sh/upload_images/03595682c55cb6348880ed11a0f3b15f64a564f6d0425.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`Source` に内部メモリーを指定できるのかだぜ？」
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　外部ファイルで十分なんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　作業中の画像は、  
+ネギラーメンのワーキング・スペース、  
+ユーザーの AppData、  
+ユニティの Assetsフォルダー、  
+どこに置くのがベスト・プラクティスだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ユニティの Assets フォルダーには　資産じゃないものは　置きたくないわねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ユーザーの AppData に　ゴミを置きたくないぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　ネギラーメンのワーキング・スペースかだぜ」
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ネギラーメンを２重起動しなければ　問題ないんじゃない？」  
+
+```plaintext
+　　例：　C:\Users\むずでょ\Documents\GitHub\2D-RPG-Negiramen
+　　└── 📂 Workspace
+　　　　├── 📂 Assets
+　　　　├── 📂 For Unity Assets
+　　　　└── 📂 Temporary
+　　　　　　└── 📂 Images
+👉 　　　　　　└── 📄 working.png
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな感じで　テンポラリー（Temporary；一時的な）フォルダーを切ろうかな？」  
 
 ＜書きかけ＞

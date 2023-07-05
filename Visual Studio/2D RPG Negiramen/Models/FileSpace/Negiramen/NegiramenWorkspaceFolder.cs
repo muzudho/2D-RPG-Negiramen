@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileSpace
+﻿namespace _2D_RPG_Negiramen.Models.FileSpace.Negiramen
 {
     using System.IO;
 
@@ -10,10 +10,12 @@
     ///         👉　└─ 📂 Workspace
     ///     </pre>
     /// </summary>
-    internal class NegiramenWorkspaceFolder
+    internal class WorkspaceFolder
+
     {
         /// <summary>
         ///     <pre>
+        ///         ユニティの Assets フォルダーにファイルをコピーするために、
         ///         ネギラーメンのワークスペース・フォルダーの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
@@ -21,7 +23,7 @@
         ///         　　　　　└─ 📂 For Unity Assets
         ///     </pre>
         /// </summary>
-        internal static bool Check()
+        internal static bool CheckForUnityAssets()
         {
             var workspacePath = App.GetOrLoadConfiguration().NegiramenWorkspaceFolderPath;
 
@@ -30,16 +32,16 @@
             // 📂 `For Unity Assets` が含まれていれば OK
             DirectoryInfo assetsInfo = null;
 
-            foreach(var dirInfo in workspaceInfo.EnumerateDirectories())
+            foreach (var dirInfo in workspaceInfo.EnumerateDirectories())
             {
-                if(dirInfo.Name == "For Unity Assets")
+                if (dirInfo.Name == "For Unity Assets")
                 {
                     assetsInfo = dirInfo;
                     break;
                 }
             }
 
-            if (assetsInfo==null)
+            if (assetsInfo == null)
             {
                 // TODO エラー処理
                 return false;
