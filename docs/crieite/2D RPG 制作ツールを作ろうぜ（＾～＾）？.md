@@ -2294,4 +2294,18 @@ working_tile_set_canvas = "{negiramen_workspace_folder}/Temporary/Images/working
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆 `user_configuration.toml` にしよう！」  
 
+#### 設定ファイルの中で変数展開
+
+![202307_maui_06-0051--path-expand-variables-o2o0.png](https://crieit.now.sh/upload_images/12766bd436d47ab22eb073d2485f456364a5925c7914f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆 設定ファイルの中で変数が使える仕組みを　簡易実装したところで　今日はここまでだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　最初に作っとかないと　あとで困るやつだし、  
+本筋の作業が進んでないけど　いっか～」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　なかなか　前に進まないな……」  
+
 ＜書きかけ＞

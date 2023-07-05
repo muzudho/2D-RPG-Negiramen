@@ -102,8 +102,8 @@
                                         // 変数展開を備える
                                         expandVariables: new Dictionary<string, string>()
                                         {
-                                            { "negiramen_workspace_folder", negiramenWorkspaceFolder.Path.AsStr },
-                                            { "unity_assets_folder", unityAssetsFolder.Path.AsStr},
+                                            { "{negiramen_workspace_folder}", negiramenWorkspaceFolder.Path.AsStr },
+                                            { "{unity_assets_folder}", unityAssetsFolder.Path.AsStr},
                                         }));
                                 }
                             }
