@@ -2211,10 +2211,28 @@ Id, Left, Top, Width, Height, Comment
 　　　　├── 📂 For Unity Assets
 　　　　└── 📂 Temporary
 　　　　　　└── 📂 Images
-👉 　　　　　　└── 📄 working.png
+👉 　　　　　　└── 📄 working_tile_set_canvas.png
 ```
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　こんな感じで　テンポラリー（Temporary；一時的な）フォルダーを切ろうかな？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ファイル・パスは　ハード・コーディングするのか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　外部ファイルで全部　指定できるようにしたいぜ」  
+
+```plaintext
+　　例：　C:\Users\むずでょ\Documents\GitHub\2D-RPG-Negiramen
+　　└── 📂 Workspace
+👉 　　└── 📄 configuration_2nd.toml
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　第２の構成ファイルだから、こんな感じでどうだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　とりあえず　それで」  
 
 ＜書きかけ＞
