@@ -16,15 +16,21 @@
         ///     文字列を与えて初期化
         /// </summary>
         /// <param name="folderPath">フォルダーへのパス</param>
+        /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static UnityAssetsFolderPath FromStringAndReplaceSeparators(string folderPath)
+        internal static UnityAssetsFolderPath FromString(
+            string folderPath,
+            bool replaceSeparators = false)
         {
             if (folderPath == null)
             {
                 throw new ArgumentNullException(nameof(folderPath));
             }
 
-            folderPath = folderPath.Replace("\\", "/");
+            if (replaceSeparators)
+            {
+                folderPath = folderPath.Replace("\\", "/");
+            }
 
             return new UnityAssetsFolderPath(folderPath);
         }

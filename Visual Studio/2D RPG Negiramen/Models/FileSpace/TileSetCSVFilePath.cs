@@ -18,15 +18,21 @@
         ///     文字列を与えて初期化
         /// </summary>
         /// <param name="filePath">ファイルへのパス</param>
+        /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static TileSetCSVFilePath FromStringAndReplaceSeparators(string filePath)
+        internal static TileSetCSVFilePath FromString(
+            string filePath,
+            bool replaceSeparators = false)
         {
             if (filePath == null)
             {
                 throw new ArgumentNullException(nameof(filePath));
             }
 
-            filePath = filePath.Replace("\\", "/");
+            if (replaceSeparators)
+            {
+                filePath = filePath.Replace("\\", "/");
+            }
 
             return new TileSetCSVFilePath(filePath);
         }

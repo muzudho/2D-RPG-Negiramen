@@ -8,19 +8,17 @@
         /// <summary>
         ///     ネギラーメンのワークスペース・フォルダーへのパス
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-        internal Models.FileSpace.NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
-後:
-        internal NegiramenWorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
-*/
-        internal FileSpace.Negiramen.WorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
+        internal Models.FileSpace.Negiramen.WorkspaceFolderPath NegiramenWorkspaceFolderPath { get; set; }
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
         internal Models.FileSpace.UnityAssetsFolderPath UnityAssetsFolderPath { get; set; }
+
+        /// <summary>
+        ///     ユーザー構成ファイルへのパス
+        /// </summary>
+        internal Models.FileSpace.Negiramen.UserConfigurationFilePath UserConfigurationFilePath { get; set; }
 
         /// <summary>
         ///     あなたのサークル名

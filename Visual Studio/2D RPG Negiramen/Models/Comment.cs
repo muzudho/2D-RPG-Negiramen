@@ -17,7 +17,7 @@
         /// </summary>
         /// <param name="comment">コメント</param>
         /// <returns>実例</returns>
-        internal static Comment FromStringAndReplaceSeparators(string comment)
+        internal static Comment FromString(string comment)
         {
             if (comment == null)
             {

@@ -1,10 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileSpace.Negiramen
 {
     /// <summary>
-    ///     😁 ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
+    ///     😁 ユーザー構成ファイルへのパス
+    ///     
+    ///     <list type="bullet">
+    ///         <item>配置場所は、構成ファイルで変更可能。既定ではネギラーメン・ワークスペースの直下に置く想定</item>
+    ///     </list>
     /// </summary>
-    /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/Temporary/Images/working_tile_set_canvas.png"</example>
-    class WorkingTileSetCanvasImageFilePath
+    class UserConfigurationFilePath
 
     {
         // - 静的プロパティ
@@ -12,7 +15,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static WorkingTileSetCanvasImageFilePath Empty { get; } = new WorkingTileSetCanvasImageFilePath();
+        internal static UserConfigurationFilePath Empty { get; } = new UserConfigurationFilePath();
 
         /// <summary>
         ///     文字列を与えて初期化
@@ -20,7 +23,7 @@
         /// <param name="folderPath">フォルダーへのパス</param>
         /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static WorkingTileSetCanvasImageFilePath FromString(
+        internal static UserConfigurationFilePath FromString(
             string folderPath,
             bool replaceSeparators = false)
         {
@@ -34,13 +37,13 @@
                 folderPath = folderPath.Replace("\\", "/");
             }
 
-            return new WorkingTileSetCanvasImageFilePath(folderPath);
+            return new UserConfigurationFilePath(folderPath);
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkingTileSetCanvasImageFilePath()
+        internal UserConfigurationFilePath()
         {
             AsStr = string.Empty;
         }
@@ -48,7 +51,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkingTileSetCanvasImageFilePath(string asStr)
+        internal UserConfigurationFilePath(string asStr)
         {
             AsStr = asStr;
         }
