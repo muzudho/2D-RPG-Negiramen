@@ -700,6 +700,37 @@
         {
         }
 
+        // - インターナル・メソッド
+
+        #region プライベート・メソッド（タイル・カーソルのキャンバスの再描画）
+        /// <summary>
+        ///     <pre>
+        ///         タイル・カーソルのキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        internal void RefreshCanvasOfTileCursor()
+        {
+            int offset;
+
+            if (this._tileCursorCanvasSize.Width.AsInt % 2 == 1)
+            {
+                offset = -1;
+            }
+            else
+            {
+                offset = 1;
+            }
+
+            // 循環参照を避けるために、直接フィールドを変更
+            this._tileCursorCanvasSize = new Models.Size(new Models.Width(this._tileCursorCanvasSize.Width.AsInt - offset), new Models.Height(this._tileCursorCanvasSize.Height.AsInt));
+            OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
+        }
+        #endregion
+
         // - プライベート・フィールド
 
         /// <summary>
@@ -762,7 +793,7 @@
 
         // - プライベート・メソッド
 
-        #region プライベート・メソッド（キャンバスの再描画）
+        #region プライベート・メソッド（グリッドのキャンバスの再描画）
         /// <summary>
         ///     <pre>
         ///         グリッドのキャンバスの再描画
@@ -782,33 +813,6 @@
             {
                 this.GridCanvasWidthAsInt++;
             }
-        }
-
-        /// <summary>
-        ///     <pre>
-        ///         タイル・カーソルのキャンバスの再描画
-        /// 
-        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-        ///                 振動させることで、再描画を呼び起こすことにする
-        ///     </pre>
-        /// </summary>
-        void RefreshCanvasOfTileCursor()
-        {
-            int offset;
-
-            if (this._tileCursorCanvasSize.Width.AsInt % 2 == 1)
-            {
-                offset = -1;
-            }
-            else
-            {
-                offset = 1;
-            }
-
-            // 循環参照を避けるために、直接フィールドを変更
-            this._tileCursorCanvasSize = new Models.Size(new Models.Width(this._tileCursorCanvasSize.Width.AsInt - offset), new Models.Height(this._tileCursorCanvasSize.Height.AsInt));
-            OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
         }
         #endregion
     }

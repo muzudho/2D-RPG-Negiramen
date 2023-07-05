@@ -98,6 +98,9 @@ public partial class TilePaletteEditPage : ContentPage
             context.TileCursorYAsInt = cursorRectangle.Point.Y.AsInt;
             context.TileCursorWidthAsInt = cursorRectangle.Size.Width.AsInt;
             context.TileCursorHeightAsInt = cursorRectangle.Size.Height.AsInt;
+
+            // タイル・カーソルのキャンバスの再描画
+            context.RefreshCanvasOfTileCursor();
         }
     }
 
