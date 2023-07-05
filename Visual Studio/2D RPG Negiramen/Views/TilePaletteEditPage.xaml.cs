@@ -22,11 +22,6 @@ public partial class TilePaletteEditPage : ContentPage
     // - プライベート・プロパティー
 
     /// <summary>
-    /// ポインティング・デバイス押下中か？
-    /// </summary>
-    bool IsPointingDevicePressed { get; set; }
-
-    /// <summary>
     /// ポインティング・デバイス押下開始位置
     /// </summary>
     Models.Point PointingDeviceStartPoint { get; set; }
@@ -48,9 +43,9 @@ public partial class TilePaletteEditPage : ContentPage
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         // 反転
-        IsPointingDevicePressed = !IsPointingDevicePressed;
+        App.SelectingOnPointingDevice = !App.SelectingOnPointingDevice;
 
-        if (IsPointingDevicePressed)
+        if (App.SelectingOnPointingDevice)
         {
             //
             // 疑似マウス・ダウン
@@ -113,7 +108,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
     {
-        if (IsPointingDevicePressed)
+        if (App.SelectingOnPointingDevice)
         {
             //
             // 疑似マウス・ドラッグ

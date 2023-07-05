@@ -42,6 +42,13 @@ namespace _2D_RPG_Negiramen.Models.Files
                 // ================
                 //
 
+                // 先頭行は列名なので取り除く
+                var newLineIndex = text.IndexOf("\r\n");
+                text = text.Substring(newLineIndex + 2);
+
+                // 最後の改行は取り除く（空行は読込めない）
+                text = text.TrimEnd();
+
                 // とりあえず改行で分割
                 var lines = text.Split("\r\n");
 

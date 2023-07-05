@@ -20,7 +20,18 @@
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
             // 線の色
-            canvas.StrokeColor = Colors.Red;
+            if (App.SelectingOnPointingDevice)
+            {
+                // 選択中
+                canvas.StrokeColor = new Color(0, 0, 255, 127);
+            }
+            else
+            {
+                // 確定時
+                // canvas.StrokeColor = Colors.Red;
+                canvas.StrokeColor = Colors.Blue;
+            }
+
 
             // タイル・カーソルの線の太さの半分
             int halfThicknessOfLineAsInt = App.HalfThicknessOfTileCursorLine.AsInt;

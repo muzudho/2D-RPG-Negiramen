@@ -39,6 +39,15 @@ public partial class App : Application
     /// </summary>
     static internal Models.Point WorkingGridLeftTop = Models.Point.Empty;
 
+    /// <summary>
+    ///     ポインティング・デバイス押下中か？
+    /// 
+    ///     <list type="bullet">
+    ///         <item>タイルを選択開始していて、まだ未確定だ</item>
+    ///     </list>
+    /// </summary>
+    static internal bool SelectingOnPointingDevice { get; set; }
+
     // - 静的メソッド
 
     #region 静的メソッド（構成）
