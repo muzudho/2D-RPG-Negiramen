@@ -88,7 +88,17 @@
         /// <summary>
         ///     タイル・セットの設定
         /// </summary>
-        internal Models.Files.TileSetSettings TileSetSettings { get; set; } = new Models.Files.TileSetSettings();
+        internal Models.Files.TileSetSettings TileSetSettings
+        {
+            get => this._tileSetSettings;
+            set
+            {
+                this._tileSetSettings = value;
+
+                // 再描画
+                RefreshTileId();
+            }
+        }
         #endregion
 
         // - 変更通知プロパティ
@@ -687,6 +697,16 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（タイルＩｄ）
+        /// <summary>
+        ///     タイルＩｄ
+        /// </summary>
+        public int TileIdAsInt
+        {
+            get => this.TileSetSettings.UsableId.AsInt;
+        }
+        #endregion
+
         // - その他
 
         /// <summary>
@@ -731,6 +751,14 @@
         }
         #endregion
 
+        /// <summary>
+        ///     タイルＩｄの再描画
+        /// </summary>
+        internal void RefreshTileId()
+        {
+            OnPropertyChanged(nameof(TileIdAsInt));
+        }
+
         // - プライベート・フィールド
 
         /// <summary>
@@ -749,9 +777,19 @@
         Models.Rectangle _tileRect = Models.Rectangle.Empty;
 
         /// <summary>
+        ///     タイルＩｄ
+        /// </summary>
+        Models.TileId _tileId = Models.TileId.Empty;
+
+        /// <summary>
         ///     コメント
         /// </summary>
         Models.Comment _comment = Models.Comment.Empty;
+
+        /// <summary>
+        ///     タイル・セット設定
+        /// </summary>
+        Models.Files.TileSetSettings _tileSetSettings = new Models.Files.TileSetSettings();
 
         /// <summary>
         ///     タイル・セット画像ファイルへのパス

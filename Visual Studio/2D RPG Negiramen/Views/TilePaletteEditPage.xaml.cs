@@ -154,7 +154,7 @@ public partial class TilePaletteEditPage : ContentPage
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
         context.TileSetSettings.Add(
-            id: new Models.TileId(9999), // TODO とりあえず 9999 で。後で直す
+            id: context.TileSetSettings.UsableId,
             rect: new Models.Rectangle(
                 point: new Models.Point(
                     x: new Models.X(context.TileCursorXAsInt),
@@ -162,7 +162,12 @@ public partial class TilePaletteEditPage : ContentPage
                 size: new Models.Size(
                     width: new Models.Width(context.TileCursorWidthAsInt),
                     height: new Models.Height(context.TileCursorHeightAsInt))),
-            comment: new Models.Comment(context.CommentAsStr));
+            comment: new Models.Comment(context.CommentAsStr),
+            onTileIdUpdated: () =>
+            {
+                // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
+                context.RefreshTileId();
+            });
 
         //
         // 設定ファイルの保存

@@ -1,7 +1,7 @@
-﻿using System.Text;
-
-namespace _2D_RPG_Negiramen.Models.Files
+﻿namespace _2D_RPG_Negiramen.Models.Files
 {
+    using System.Text;
+
     /// <summary>
     ///     タイル・セットの設定データ
     ///     
@@ -70,7 +70,11 @@ namespace _2D_RPG_Negiramen.Models.Files
                             size: new Models.Size(
                                 width: new Models.Width(int.Parse(cells[3])),
                                 height: new Models.Height(int.Parse(cells[4])))),
-                        comment: new Models.Comment(cells[5]));
+                        comment: new Models.Comment(cells[5]),
+                        onTileIdUpdated: () =>
+                        {
+                            // 自明なんで省略
+                        });
                 }
             }
 
@@ -88,7 +92,7 @@ namespace _2D_RPG_Negiramen.Models.Files
             var settingsFilePathAsStr = tileSetCSVFilePath.AsStr;
 
             var builder = new StringBuilder();
-            
+
             // ヘッダー部
             builder.AppendLine("Id,Left,Top,Width,Height,Comment");
 
@@ -104,25 +108,38 @@ namespace _2D_RPG_Negiramen.Models.Files
             return true;
         }
 
-        // - インターナル・プロパティ
+        // - インターナル・プロパティー
 
         /// <summary>
         /// 対象のタイル・セットに含まれるすべてのタイルの記録
         /// </summary>
         internal List<TileSetRecord> RecordList { get; private set; } = new List<TileSetRecord>();
 
+        /// <summary>
+        /// 次に採番できるＩｄ。１から始まる
+        /// </summary>
+        internal Models.TileId UsableId { get; private set; } = new Models.TileId(1);
+
         // - インターナル・メソッド
 
         internal void Add(
             Models.TileId id,
             Models.Rectangle rect,
-            Models.Comment comment)
+            Models.Comment comment,
+            Action onTileIdUpdated)
         {
             this.RecordList.Add(
                 new TileSetRecord(
                     id,
                     rect,
                     comment));
+
+            // ［次に採番できるＩｄ］を（できるなら）更新
+            if (this.UpdateUsableId(id))
+            {
+                // 更新した
+                onTileIdUpdated();
+            }
         }
 
         /// <summary>
@@ -143,6 +160,31 @@ namespace _2D_RPG_Negiramen.Models.Files
             }
 
             result = null;
+            return false;
+        }
+
+        // - プライベート・メソッド
+
+        /// <summary>
+        /// ［次に採番できるＩｄ］を（できるなら）更新
+        /// </summary>
+        /// <returns>更新した</returns>
+        /// <exception cref="IndexOutOfRangeException">型の範囲に収まらない</exception>
+        bool UpdateUsableId(Models.TileId id)
+        {
+            // ［次に採番できるＩｄ］更新
+            if (this.UsableId <= id)
+            {
+                // 上限リミット・チェック
+                if (this.UsableId.AsInt == int.MaxValue)
+                {
+                    throw new IndexOutOfRangeException($"{nameof(UsableId)} is max");
+                }
+
+                this.UsableId = new Models.TileId(id.AsInt + 1);
+                return true;
+            }
+
             return false;
         }
     }
