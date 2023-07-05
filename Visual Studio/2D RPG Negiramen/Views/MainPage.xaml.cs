@@ -399,11 +399,11 @@ public partial class MainPage : ContentPage
 後:
                 var tileSetImageFilePath = TileSetImageFile.FromString(
 */
-                var tileSetImageFilePath = Models.FileEntries.Locations.TileSetImage.FromString(
+                var tileSetImageFilePath = new Models.FileEntries.Locations.TileSetImage(FileEntryPath.FromString(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png"),
-                    replaceSeparators: true);
+                    replaceSeparators: true));
 
                 // タイル・セットCSVファイル・パス
 
@@ -413,11 +413,11 @@ public partial class MainPage : ContentPage
 後:
                 var tileSetCSVFilePath = TileSetCSVFile.FromString(
 */
-                var tileSetCSVFilePath = Models.FileEntries.Locations.TileSetSettings.FromString(
+                var tileSetCSVFilePath = new Models.FileEntries.Locations.TileSetSettings(FileEntryPath.FromString(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv"),
-                    replaceSeparators: true);
+                    replaceSeparators: true));
 
                 // タイル・セット画像の縦横幅
                 var tileSetSize = Models.FileEntries.PNGHelper.GetImageSize(tileSetImageFilePath);

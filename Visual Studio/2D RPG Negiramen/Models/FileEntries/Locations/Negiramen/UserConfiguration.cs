@@ -17,29 +17,6 @@
         /// </summary>
         internal static UserConfiguration Empty { get; } = new UserConfiguration();
 
-        /// <summary>
-        ///     文字列を与えて初期化
-        /// </summary>
-        /// <param name="folderPath">フォルダーへのパス</param>
-        /// <param name="replaceSeparators">`\` を `/` へ置換</param>
-        /// <returns>実例</returns>
-        internal static UserConfiguration FromString(
-            string folderPath,
-            bool replaceSeparators = false)
-        {
-            if (folderPath == null)
-            {
-                throw new ArgumentNullException(nameof(folderPath));
-            }
-
-            if (replaceSeparators)
-            {
-                folderPath = folderPath.Replace("\\", "/");
-            }
-
-            return new UserConfiguration(folderPath);
-        }
-
         // - その他
 
         /// <summary>
@@ -53,8 +30,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UserConfiguration(string asStr)
-            : base(asStr)
+        internal UserConfiguration(FileEntryPath fileEntryPath)
+            : base(fileEntryPath)
         {
         }
     }

@@ -5,30 +5,29 @@
     /// </summary>
     abstract class Its
     {
+        // - その他
+
         /// <summary>
-        ///     生成
+        ///     未設定
         /// </summary>
         internal Its()
         {
-            AsStr = string.Empty;
+            FileEntryPath = FileEntryPath.Empty;
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal Its(string asStr)
+        internal Its(FileEntryPath fileEntryPath)
         {
-            AsStr = asStr;
+            FileEntryPath = fileEntryPath;
         }
+
+        // - インターナル・プロパティー
 
         /// <summary>
         ///     文字列形式
         /// </summary>
-        internal string AsStr { get; }
-
-        /// <summary>
-        ///     暗黙的な文字列形式
-        /// </summary>
-        public override string ToString() => AsStr;
+        internal FileEntryPath FileEntryPath { get; }
     }
 }

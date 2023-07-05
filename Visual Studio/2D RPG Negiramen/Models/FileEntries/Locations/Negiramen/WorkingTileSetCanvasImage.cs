@@ -14,29 +14,6 @@
         /// </summary>
         internal static WorkingTileSetCanvasImage Empty { get; } = new WorkingTileSetCanvasImage();
 
-        /// <summary>
-        ///     文字列を与えて初期化
-        /// </summary>
-        /// <param name="folderPath">フォルダーへのパス</param>
-        /// <param name="replaceSeparators">`\` を `/` へ置換</param>
-        /// <returns>実例</returns>
-        internal static WorkingTileSetCanvasImage FromString(
-            string folderPath,
-            bool replaceSeparators = false)
-        {
-            if (folderPath == null)
-            {
-                throw new ArgumentNullException(nameof(folderPath));
-            }
-
-            if (replaceSeparators)
-            {
-                folderPath = folderPath.Replace("\\", "/");
-            }
-
-            return new WorkingTileSetCanvasImage(folderPath);
-        }
-
         // - その他
 
         /// <summary>
@@ -50,8 +27,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkingTileSetCanvasImage(string asStr)
-            : base(asStr)
+        internal WorkingTileSetCanvasImage(FileEntryPath fileEntryPath)
+            : base(fileEntryPath)
         {
         }
     }

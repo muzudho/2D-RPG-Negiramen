@@ -31,7 +31,7 @@
             // 構成ファイル取得
             var configuration = App.GetOrLoadConfiguration();
 
-            NegiramenWorkspaceFolderPathAsStr = configuration.NegiramenWorkspaceFolderPath.AsStr;
+            NegiramenWorkspaceFolderPathAsStr = configuration.NegiramenWorkspaceFolderPath.FileEntryPath.AsStr;
             UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
             YourCircleNameAsStr = configuration.YourCircleName.AsStr;
             YourWorkNameAsStr = configuration.YourWorkName.AsStr;
@@ -47,21 +47,14 @@
         /// </summary>
         public string NegiramenWorkspaceFolderPathAsStr
         {
-            get => _negiramenWorkspaceFolderPath.AsStr;
+            get => _negiramenWorkspaceFolderPath.FileEntryPath.AsStr;
             set
             {
-                if (_negiramenWorkspaceFolderPath.AsStr != value)
+                if (_negiramenWorkspaceFolderPath.FileEntryPath.AsStr != value)
                 {
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-                    _negiramenWorkspaceFolderPath = Models.FileEntriesLocations.Negiramen.WorkspaceFolderPath.FromString(
-後:
-                    _negiramenWorkspaceFolderPath = WorkspaceFolderPath.FromString(
-*/
-                    _negiramenWorkspaceFolderPath = Models.FileEntries.Locations.Negiramen.WorkspaceFolder.FromString(
+                    _negiramenWorkspaceFolderPath = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder(FileEntryPath.FromString(
                         value,
-                        replaceSeparators: true);
+                        replaceSeparators: true));
                     OnPropertyChanged();
                 }
             }

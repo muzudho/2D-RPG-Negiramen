@@ -14,12 +14,12 @@ namespace _2D_RPG_Negiramen.Models.FileEntries
         /// <summary>
         ///     PNG形式画像ファイルのサイズを取得する
         /// </summary>
-        /// <param name="filePath">ファイル・パス</param>
-        internal static Models.Size GetImageSize(Its filePath)
+        /// <param name="fileLocation">ファイルの場所</param>
+        internal static Models.Size GetImageSize(Its fileLocation)
         {
             uint w, h;
 
-            using (FileStream fs = new FileStream(filePath.AsStr, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new FileStream(fileLocation.FileEntryPath.AsStr, FileMode.Open, FileAccess.Read))
             {
                 fs.Seek(16, SeekOrigin.Begin);
                 byte[] buf = new byte[8];

@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels
 {
+    using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
 
     /// <summary>
@@ -21,12 +22,14 @@
         /// </summary>
         public string TileSetImageFilePathAsStr
         {
-            get => _tileSetImageFilePath.AsStr;
+            get => _tileSetImageFilePath.FileEntryPath.AsStr;
             set
             {
-                if (_tileSetImageFilePath.AsStr != value)
+                if (_tileSetImageFilePath.FileEntryPath.AsStr != value)
                 {
-                    _tileSetImageFilePath = new Models.FileEntries.Locations.TileSetImage(value);
+                    _tileSetImageFilePath = new Models.FileEntries.Locations.TileSetImage(FileEntryPath.FromString(
+                        value,
+                        replaceSeparators: true));
                 }
             }
         }
@@ -34,13 +37,6 @@
         /// <summary>
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-        public Models.FileEntriesLocations.TileSetImageFile TileSetImageFilePath
-後:
-        public TileSetImageFile TileSetImageFilePath
-*/
         public Models.FileEntries.Locations.TileSetImage TileSetImageFilePath
         {
             get => _tileSetImageFilePath;
@@ -60,7 +56,7 @@
         /// </summary>
         public string TileSetCSVFilePathAsStr
         {
-            get => _tileSetCSVFilePath.AsStr;
+            get => _tileSetCSVFilePath.FileEntryPath.AsStr;
             set
             {
                 if (value==null || String.IsNullOrWhiteSpace(value))
@@ -68,9 +64,11 @@
                     throw new ArgumentException($"the {nameof(TileSetCSVFilePathAsStr)} must not be null or whitespace");
                 }
 
-                if (_tileSetCSVFilePath.AsStr != value)
+                if (_tileSetCSVFilePath.FileEntryPath.AsStr != value)
                 {
-                    _tileSetCSVFilePath = new Models.FileEntries.Locations.TileSetSettings(value);
+                    _tileSetCSVFilePath = new Models.FileEntries.Locations.TileSetSettings(FileEntryPath.FromString(
+                        value,
+                        replaceSeparators: true));
                 }
             }
         }

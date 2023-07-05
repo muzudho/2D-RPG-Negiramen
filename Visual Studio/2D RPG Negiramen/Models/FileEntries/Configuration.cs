@@ -64,9 +64,9 @@
                             {
                                 if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
                                 {
-                                    negiramenWorkspaceFolderPath = Locations.Negiramen.WorkspaceFolder.FromString(
+                                    negiramenWorkspaceFolderPath = new Locations.Negiramen.WorkspaceFolder(FileEntryPath.FromString(
                                         negiramenWorkspaceFolderPathAsStr,
-                                        replaceSeparators: true);
+                                        replaceSeparators: true));
                                 }
                             }
 
@@ -103,9 +103,9 @@
                             {
                                 if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
                                 {
-                                    userConfigurationFilePath = Locations.Negiramen.UserConfiguration.FromString(
+                                    userConfigurationFilePath = new Locations.Negiramen.UserConfiguration(FileEntryPath.FromString(
                                         userConfigurationFilePathAsStr,
-                                        replaceSeparators: true);
+                                        replaceSeparators: true));
                                 }
                             }
                         }
@@ -204,7 +204,7 @@
             var text = $@"[paths]
 
 # ネギラーメンの 📂 `Workspace` フォルダ―へのパス
-negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolderPath.AsStr}""
+negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolderPath.FileEntryPath.AsStr}""
 
 # Unity の Assets フォルダ―へのパス
 unity_assets_folder = ""{configurationBuffer.UnityAssetsFolderPath.AsStr}""
@@ -375,7 +375,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <returns>そうだ</returns>
         bool ExistsNegiramenWorkspaceFolder()
         {
-            return System.IO.Directory.Exists(this.NegiramenWorkspaceFolderPath.AsStr);
+            return System.IO.Directory.Exists(this.NegiramenWorkspaceFolderPath.FileEntryPath.AsStr);
         }
 
         /// <summary>

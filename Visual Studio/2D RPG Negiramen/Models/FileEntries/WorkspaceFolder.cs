@@ -27,7 +27,7 @@
         {
             var workspacePath = App.GetOrLoadConfiguration().NegiramenWorkspaceFolderPath;
 
-            var workspaceInfo = new DirectoryInfo(workspacePath.AsStr);
+            var workspaceInfo = new DirectoryInfo(workspacePath.FileEntryPath.AsStr);
 
             // 📂 `For Unity Assets` が含まれていれば OK
             DirectoryInfo assetsInfo = null;

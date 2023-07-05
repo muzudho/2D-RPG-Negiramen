@@ -36,7 +36,7 @@
                 // ファイルの有無確認
                 // ==================
                 //
-                if (System.IO.File.Exists(tileSetCSVFilePath.AsStr))
+                if (System.IO.File.Exists(tileSetCSVFilePath.FileEntryPath.AsStr))
                 {
                     // ファイルが有るなら
 
@@ -44,7 +44,7 @@
                     // ファイル読取
                     // ============
                     //
-                    var text = System.IO.File.ReadAllText(tileSetCSVFilePath.AsStr);
+                    var text = System.IO.File.ReadAllText(tileSetCSVFilePath.FileEntryPath.AsStr);
 
                     //
                     // ＣＳＶとして解析
@@ -117,7 +117,7 @@
         {
 
             // 保存したいファイルへのパス
-            var settingsFilePathAsStr = tileSetCSVFilePath.AsStr;
+            var settingsFilePathAsStr = tileSetCSVFilePath.FileEntryPath.AsStr;
 
             var builder = new StringBuilder();
 
