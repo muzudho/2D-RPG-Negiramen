@@ -2217,11 +2217,14 @@ Id, Left, Top, Width, Height, Comment
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　こんな感じで　テンポラリー（Temporary；一時的な）フォルダーを切ろうかな？」  
 
+### 第２の構成ファイル
+
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ファイル・パスは　ハード・コーディングするのか？」  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　外部ファイルで全部　指定できるようにしたいぜ」  
+「　いーや。ソース・コードの中に設定が書かれているのは　メンテナンス　時の選択肢を狭めて良くない。  
+外部ファイルで全部　指定できるようにしたいぜ」  
 
 ```plaintext
 　　例：　C:\Users\むずでょ\Documents\GitHub\2D-RPG-Negiramen
@@ -2234,5 +2237,19 @@ Id, Left, Top, Width, Height, Comment
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　じゃあ　とりあえず　それで」  
+
+```plaintext
+[paths]
+
+# ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
+working_tile_set_canvas = "{negiramen_workspace}/Temporary/Images/working_tile_set_canvas.png"
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ファイルの中身は　こんな感じでどうだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　とりあえず　それで」  
+
 
 ＜書きかけ＞
