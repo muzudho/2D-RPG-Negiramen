@@ -25,8 +25,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetSettings(FileEntryPath fileEntryPath)
-            : base(fileEntryPath)
+        internal TileSetSettings(FileEntryPath path)
+            : base(path)
         {
         }
     }

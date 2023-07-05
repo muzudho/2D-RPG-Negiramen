@@ -386,7 +386,7 @@ public partial class MainPage : ContentPage
             onOk: async () =>
             {
                 // ユニティのアセット・フォルダーへのパス
-                var unityAssetsFolderPathAsStr = App.GetOrLoadConfiguration().UnityAssetsFolderPath.AsStr;
+                var unityAssetsFolderPathAsStr = App.GetOrLoadConfiguration().UnityAssetsFolder.Path.AsStr;
 
                 // ファイル名の拡張子抜き
                 var fileStem = "map-tile-format-8x19";

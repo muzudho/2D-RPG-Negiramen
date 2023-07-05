@@ -31,8 +31,8 @@
             // 構成ファイル取得
             var configuration = App.GetOrLoadConfiguration();
 
-            NegiramenWorkspaceFolderPathAsStr = configuration.NegiramenWorkspaceFolderPath.FileEntryPath.AsStr;
-            UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolderPath.AsStr;
+            NegiramenWorkspaceFolderPathAsStr = configuration.NegiramenWorkspaceFolder.Path.AsStr;
+            UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolder.Path.AsStr;
             YourCircleNameAsStr = configuration.YourCircleName.AsStr;
             YourWorkNameAsStr = configuration.YourWorkName.AsStr;
 
@@ -47,10 +47,10 @@
         /// </summary>
         public string NegiramenWorkspaceFolderPathAsStr
         {
-            get => _negiramenWorkspaceFolderPath.FileEntryPath.AsStr;
+            get => _negiramenWorkspaceFolderPath.Path.AsStr;
             set
             {
-                if (_negiramenWorkspaceFolderPath.FileEntryPath.AsStr != value)
+                if (_negiramenWorkspaceFolderPath.Path.AsStr != value)
                 {
                     _negiramenWorkspaceFolderPath = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder(FileEntryPath.FromString(
                         value,
@@ -66,10 +66,10 @@
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
         public string UnityAssetsFolderPathAsStr
         {
-            get => _unityAssetsFolderPath.AsStr;
+            get => _unityAssetsFolderPath.Path.AsStr;
             set
             {
-                if (_unityAssetsFolderPath.AsStr != value)
+                if (_unityAssetsFolderPath.Path.AsStr != value)
                 {
 
 /* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
@@ -78,9 +78,9 @@
 後:
                     _unityAssetsFolderPath = UnityAssetsFolderPath.FromString(
 */
-                    _unityAssetsFolderPath = Models.FileEntries.Locations.UnityAssetsFolder.FromString(
+                    _unityAssetsFolderPath = new Models.FileEntries.Locations.UnityAssetsFolder(FileEntryPath.FromString(
                         value,
-                        replaceSeparators: true);
+                        replaceSeparators: true));
                     OnPropertyChanged();
                 }
             }

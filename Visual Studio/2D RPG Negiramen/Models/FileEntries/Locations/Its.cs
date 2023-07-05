@@ -12,22 +12,26 @@
         /// </summary>
         internal Its()
         {
-            FileEntryPath = FileEntryPath.Empty;
+            Path = FileEntryPath.Empty;
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal Its(FileEntryPath fileEntryPath)
+        internal Its(FileEntryPath path)
         {
-            FileEntryPath = fileEntryPath;
+            Path = path;
         }
 
         // - インターナル・プロパティー
 
         /// <summary>
-        ///     文字列形式
+        ///     ファイル・エントリー・パス
+        ///     
+        ///     <list type="bullet">
+        ///         <item>ファイル・パスや、フォルダー・パスのこと</item>
+        ///     </list>
         /// </summary>
-        internal FileEntryPath FileEntryPath { get; }
+        internal FileEntryPath Path { get; }
     }
 }

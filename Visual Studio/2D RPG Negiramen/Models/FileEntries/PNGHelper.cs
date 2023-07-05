@@ -19,7 +19,7 @@ namespace _2D_RPG_Negiramen.Models.FileEntries
         {
             uint w, h;
 
-            using (FileStream fs = new FileStream(fileLocation.FileEntryPath.AsStr, FileMode.Open, FileAccess.Read))
+            using (FileStream fs = new FileStream(fileLocation.Path.AsStr, FileMode.Open, FileAccess.Read))
             {
                 fs.Seek(16, SeekOrigin.Begin);
                 byte[] buf = new byte[8];

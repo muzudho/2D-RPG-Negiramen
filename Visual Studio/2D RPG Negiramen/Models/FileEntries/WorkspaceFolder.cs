@@ -25,9 +25,9 @@
         /// </summary>
         internal static bool CheckForUnityAssets()
         {
-            var workspacePath = App.GetOrLoadConfiguration().NegiramenWorkspaceFolderPath;
+            var workspacePath = App.GetOrLoadConfiguration().NegiramenWorkspaceFolder;
 
-            var workspaceInfo = new DirectoryInfo(workspacePath.FileEntryPath.AsStr);
+            var workspaceInfo = new DirectoryInfo(workspacePath.Path.AsStr);
 
             // 📂 `For Unity Assets` が含まれていれば OK
             DirectoryInfo assetsInfo = null;

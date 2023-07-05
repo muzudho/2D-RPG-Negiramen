@@ -38,11 +38,11 @@
                 var configurationText = System.IO.File.ReadAllText(configurationFilePath);
 
 
-                Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolderPath = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder();
+                Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolder = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder();
 
-                Locations.UnityAssetsFolder unityAssetsFolderPath = new Models.FileEntries.Locations.UnityAssetsFolder();
+                Locations.UnityAssetsFolder unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder();
 
-                Locations.Negiramen.UserConfiguration userConfigurationFilePath = new Models.FileEntries.Locations.Negiramen.UserConfiguration();
+                Locations.Negiramen.UserConfiguration userConfiguration = new Models.FileEntries.Locations.Negiramen.UserConfiguration();
                 YourCircleName yourCircleName = new YourCircleName();
                 YourWorkName yourWorkName = new YourWorkName();
 
@@ -64,7 +64,7 @@
                             {
                                 if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
                                 {
-                                    negiramenWorkspaceFolderPath = new Locations.Negiramen.WorkspaceFolder(FileEntryPath.FromString(
+                                    negiramenWorkspaceFolder = new Locations.Negiramen.WorkspaceFolder(FileEntryPath.FromString(
                                         negiramenWorkspaceFolderPathAsStr,
                                         replaceSeparators: true));
                                 }
@@ -82,9 +82,9 @@
 後:
                                     unityAssetsFolderPath = UnityAssetsFolderPath.FromString(
 */
-                                    unityAssetsFolderPath = Locations.UnityAssetsFolder.FromString(
+                                    unityAssetsFolder = new Locations.UnityAssetsFolder(FileEntryPath.FromString(
                                         unityAssetsFolderPathAsStr,
-                                        replaceSeparators: true);
+                                        replaceSeparators: true));
                                 }
                             }
                         }
@@ -103,7 +103,7 @@
                             {
                                 if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
                                 {
-                                    userConfigurationFilePath = new Locations.Negiramen.UserConfiguration(FileEntryPath.FromString(
+                                    userConfiguration = new Locations.Negiramen.UserConfiguration(FileEntryPath.FromString(
                                         userConfigurationFilePathAsStr,
                                         replaceSeparators: true));
                                 }
@@ -141,9 +141,9 @@
                 }
 
                 configuration = new Configuration(
-                    negiramenWorkspaceFolderPath,
-                    unityAssetsFolderPath,
-                    userConfigurationFilePath,
+                    negiramenWorkspaceFolder,
+                    unityAssetsFolder,
+                    userConfiguration,
                     yourCircleName,
                     yourWorkName);
                 return true;
@@ -196,18 +196,18 @@
             var configurationBuffer = new ConfigurationBuffer();
 
             // 差分適用
-            configurationBuffer.NegiramenWorkspaceFolderPath = difference.NegiramenWorkspaceFolderPath == null ? current.NegiramenWorkspaceFolderPath : difference.NegiramenWorkspaceFolderPath;
-            configurationBuffer.UnityAssetsFolderPath = difference.UnityAssetsFolderPath == null ? current.UnityAssetsFolderPath : difference.UnityAssetsFolderPath;
+            configurationBuffer.NegiramenWorkspaceFolderPath = difference.NegiramenWorkspaceFolderPath == null ? current.NegiramenWorkspaceFolder : difference.NegiramenWorkspaceFolderPath;
+            configurationBuffer.UnityAssetsFolderPath = difference.UnityAssetsFolderPath == null ? current.UnityAssetsFolder : difference.UnityAssetsFolderPath;
             configurationBuffer.YourCircleName = difference.YourCircleName == null ? current.YourCircleName : difference.YourCircleName;
             configurationBuffer.YourWorkName = difference.YourWorkName == null ? current.YourWorkName : difference.YourWorkName;
 
             var text = $@"[paths]
 
 # ネギラーメンの 📂 `Workspace` フォルダ―へのパス
-negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolderPath.FileEntryPath.AsStr}""
+negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolderPath.Path.AsStr}""
 
 # Unity の Assets フォルダ―へのパス
-unity_assets_folder = ""{configurationBuffer.UnityAssetsFolderPath.AsStr}""
+unity_assets_folder = ""{configurationBuffer.UnityAssetsFolderPath.Path.AsStr}""
 
 [paths_2nd]
 
@@ -242,33 +242,19 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     ネギラーメン・ワークスペース・フォルダーへのパス
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace"</example>
-        internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolderPath { get; }
+        internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolder { get; }
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-        internal Models.FileEntriesLocations.UnityAssetsFolderPath UnityAssetsFolderPath { get; }
-後:
-        internal UnityAssetsFolderPath UnityAssetsFolderPath { get; }
-*/
-        internal Locations.UnityAssetsFolder UnityAssetsFolderPath { get; }
+        internal Locations.UnityAssetsFolder UnityAssetsFolder { get; }
 
         /// <summary>
         ///     ユーザー構成ファイルへのパス
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/configuration_2nd.toml"</example>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
-前:
-        internal Models.FileEntriesLocations.Negiramen.UserConfigurationFilePath UserConfigurationFilePath { get; }
-後:
-        internal UserConfigurationFilePath UserConfigurationFilePath { get; }
-*/
-        internal Locations.Negiramen.UserConfiguration UserConfigurationFilePath { get; }
+        internal Locations.Negiramen.UserConfiguration UserConfiguration { get; }
 
         /// <summary>
         ///     あなたのサークル名
@@ -349,9 +335,9 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)
         {
-            this.NegiramenWorkspaceFolderPath = negiramenWorkspaceFolderPath;
-            this.UnityAssetsFolderPath = unityAssetsFolderPath;
-            this.UserConfigurationFilePath = userConfigurationFilePath;
+            this.NegiramenWorkspaceFolder = negiramenWorkspaceFolderPath;
+            this.UnityAssetsFolder = unityAssetsFolderPath;
+            this.UserConfiguration = userConfigurationFilePath;
             this.YourCircleName = yourCircleName;
             this.YourWorkName = yourWorkName;
         }
@@ -375,7 +361,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <returns>そうだ</returns>
         bool ExistsNegiramenWorkspaceFolder()
         {
-            return System.IO.Directory.Exists(this.NegiramenWorkspaceFolderPath.FileEntryPath.AsStr);
+            return System.IO.Directory.Exists(this.NegiramenWorkspaceFolder.Path.AsStr);
         }
 
         /// <summary>
@@ -392,7 +378,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         string GetAutoGeneratedFolderPath()
         {
             return System.IO.Path.Combine(
-                this.UnityAssetsFolderPath.AsStr,
+                this.UnityAssetsFolder.Path.AsStr,
                 this.YourCircleName.AsStr,
                 this.YourWorkName.AsStr,
                 AutoGenerated);

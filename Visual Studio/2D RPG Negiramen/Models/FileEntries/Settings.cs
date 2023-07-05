@@ -39,10 +39,10 @@
                 // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
 
                 // 読取たいファイルへのパス
-                var settingsFilePath = System.IO.Path.Combine(appDataDirAsStr, "settings.toml");
+                var settingsFilePathAsStr = System.IO.Path.Combine(appDataDirAsStr, "settings.toml");
 
                 // 設定ファイルの読取
-                var settingsText = System.IO.File.ReadAllText(settingsFilePath);
+                var settingsText = System.IO.File.ReadAllText(settingsFilePathAsStr);
 
                 // TOML
                 TomlTable document = Toml.ToModel(settingsText);

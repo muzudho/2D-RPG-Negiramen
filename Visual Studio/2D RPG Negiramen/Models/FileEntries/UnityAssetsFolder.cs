@@ -241,9 +241,9 @@
         static void CopyTileSet(string fileName)
         {
             var configuration = App.GetOrLoadConfiguration();
-            var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.FileEntryPath.AsStr, "For Unity Assets", "Images", "Tile Set", fileName);
+            var source = Path.Combine(configuration.NegiramenWorkspaceFolder.Path.AsStr, "For Unity Assets", "Images", "Tile Set", fileName);
             var destination = Path.Combine(
-                    configuration.UnityAssetsFolderPath.AsStr,
+                    configuration.UnityAssetsFolder.Path.AsStr,
                     configuration.YourCircleName.AsStr,
                     configuration.YourWorkName.AsStr,
                     "Auto Generated",

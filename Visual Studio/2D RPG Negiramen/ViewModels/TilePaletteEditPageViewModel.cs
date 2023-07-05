@@ -22,10 +22,10 @@
         /// </summary>
         public string TileSetImageFilePathAsStr
         {
-            get => _tileSetImageFilePath.FileEntryPath.AsStr;
+            get => _tileSetImageFilePath.Path.AsStr;
             set
             {
-                if (_tileSetImageFilePath.FileEntryPath.AsStr != value)
+                if (_tileSetImageFilePath.Path.AsStr != value)
                 {
                     _tileSetImageFilePath = new Models.FileEntries.Locations.TileSetImage(FileEntryPath.FromString(
                         value,
@@ -56,7 +56,7 @@
         /// </summary>
         public string TileSetCSVFilePathAsStr
         {
-            get => _tileSetCSVFilePath.FileEntryPath.AsStr;
+            get => _tileSetCSVFilePath.Path.AsStr;
             set
             {
                 if (value==null || String.IsNullOrWhiteSpace(value))
@@ -64,7 +64,7 @@
                     throw new ArgumentException($"the {nameof(TileSetCSVFilePathAsStr)} must not be null or whitespace");
                 }
 
-                if (_tileSetCSVFilePath.FileEntryPath.AsStr != value)
+                if (_tileSetCSVFilePath.Path.AsStr != value)
                 {
                     _tileSetCSVFilePath = new Models.FileEntries.Locations.TileSetSettings(FileEntryPath.FromString(
                         value,
