@@ -52,7 +52,14 @@
             {
                 if (_negiramenWorkspaceFolderPath.AsStr != value)
                 {
-                    _negiramenWorkspaceFolderPath = Models.FileSpace.Negiramen.WorkspaceFolderPath.FromString(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+                    _negiramenWorkspaceFolderPath = Models.FileEntriesLocations.Negiramen.WorkspaceFolderPath.FromString(
+後:
+                    _negiramenWorkspaceFolderPath = WorkspaceFolderPath.FromString(
+*/
+                    _negiramenWorkspaceFolderPath = Models.FileEntries.FileEntriesLocations.Negiramen.WorkspaceFolderPath.FromString(
                         value,
                         replaceSeparators: true);
                     OnPropertyChanged();
@@ -71,7 +78,14 @@
             {
                 if (_unityAssetsFolderPath.AsStr != value)
                 {
-                    _unityAssetsFolderPath = Models.FileSpace.UnityAssetsFolderPath.FromString(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+                    _unityAssetsFolderPath = Models.FileEntriesLocations.UnityAssetsFolderPath.FromString(
+後:
+                    _unityAssetsFolderPath = UnityAssetsFolderPath.FromString(
+*/
+                    _unityAssetsFolderPath = Models.FileEntries.FileEntriesLocations.UnityAssetsFolderPath.FromString(
                         value,
                         replaceSeparators: true);
                     OnPropertyChanged();
@@ -125,7 +139,7 @@
                 var assetsFolderPathAsStr = this.UnityAssetsFolderPathAsStr;
 
                 // 構成ファイルの更新差分
-                var configurationDifference = new Models.Files.ConfigurationBuffer()
+                var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
                 {
                     NegiramenWorkspaceFolderPath = this._negiramenWorkspaceFolderPath,
                     UnityAssetsFolderPath = this._unityAssetsFolderPath,
@@ -134,13 +148,20 @@
                 };
 
                 // 設定ファイルの保存
-                if (Models.Files.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.Files.Configuration newConfiguration))
+                if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
                 {
                     // グローバル変数を更新
                     App.SetConfiguration(newConfiguration);
 
                     // ネギラーメンのワークスペース・フォルダーの内容を確認
-                    var isOk = Models.FileSpace.Negiramen.WorkspaceFolder.CheckForUnityAssets();
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+                    var isOk = Models.FileLocations.Negiramen.WorkspaceFolder.CheckForUnityAssets();
+後:
+                    var isOk = WorkspaceFolder.CheckForUnityAssets();
+*/
+                    var isOk = Models.FileEntries.WorkspaceFolder.CheckForUnityAssets();
                     if (!isOk)
                     {
                         // TODO 異常時の処理
@@ -148,7 +169,14 @@
                     }
 
                     // Unity の Assets フォルダ―へ初期設定をコピー
-                    if (!Models.FileSpace.UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+                    if (!Models.FileLocations.UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
+後:
+                    if (!UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
+*/
+                    if (!Models.FileEntries.UnityAssetsFolder.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
                     {
                         // TODO 異常時の処理
                         return;
@@ -175,12 +203,26 @@
         /// <summary>
         ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
         /// </summary>
-        private Models.FileSpace.Negiramen.WorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileSpace.Negiramen.WorkspaceFolderPath.Empty;
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        private Models.FileEntriesLocations.Negiramen.WorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileEntriesLocations.Negiramen.WorkspaceFolderPath.Empty;
+後:
+        private WorkspaceFolderPath _negiramenWorkspaceFolderPath = WorkspaceFolderPath.Empty;
+*/
+        private Models.FileEntries.FileEntriesLocations.Negiramen.WorkspaceFolderPath _negiramenWorkspaceFolderPath = Models.FileEntries.FileEntriesLocations.Negiramen.WorkspaceFolderPath.Empty;
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        private Models.FileSpace.UnityAssetsFolderPath _unityAssetsFolderPath = Models.FileSpace.UnityAssetsFolderPath.Empty;
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        private Models.FileEntriesLocations.UnityAssetsFolderPath _unityAssetsFolderPath = Models.FileEntriesLocations.UnityAssetsFolderPath.Empty;
+後:
+        private UnityAssetsFolderPath _unityAssetsFolderPath = UnityAssetsFolderPath.Empty;
+*/
+        private Models.FileEntries.FileEntriesLocations.UnityAssetsFolderPath _unityAssetsFolderPath = Models.FileEntries.FileEntriesLocations.UnityAssetsFolderPath.Empty;
 
         /// <summary>
         ///     あなたのサークル名

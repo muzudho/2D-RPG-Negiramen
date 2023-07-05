@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileSpace
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations
 {
     /// <summary>
     ///     😁 Unityの Assets フォルダーへのパス
@@ -40,7 +40,7 @@
         /// </summary>
         internal UnityAssetsFolderPath()
         {
-            this.AsStr = string.Empty;
+            AsStr = string.Empty;
         }
 
         /// <summary>
@@ -48,7 +48,7 @@
         /// </summary>
         internal UnityAssetsFolderPath(string asStr)
         {
-            this.AsStr = asStr;
+            AsStr = asStr;
         }
 
         /// <summary>

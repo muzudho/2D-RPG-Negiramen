@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileSpace.Negiramen
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
     using System.IO;
 

@@ -1,24 +1,24 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations
 {
     /// <summary>
-    ///     😁 ファイル・パス
+    ///     😁 ファイル・ロケーション
     /// </summary>
-    abstract class FilePath
+    abstract class Its
     {
         /// <summary>
         ///     生成
         /// </summary>
-        internal FilePath()
+        internal Its()
         {
-            this.AsStr = string.Empty;
+            AsStr = string.Empty;
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal FilePath(string asStr)
+        internal Its(string asStr)
         {
-            this.AsStr = asStr;
+            AsStr = asStr;
         }
 
         /// <summary>

@@ -1,9 +1,10 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileSpace.Negiramen
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations.Negiramen
 {
     /// <summary>
-    ///     😁 ネギラーメン・ワークスペース・フォルダーのパス
+    ///     😁 ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
     /// </summary>
-    class WorkspaceFolderPath
+    /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/Temporary/Images/working_tile_set_canvas.png"</example>
+    class WorkingTileSetCanvasImageFilePath
 
     {
         // - 静的プロパティ
@@ -11,7 +12,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static WorkspaceFolderPath Empty { get; } = new WorkspaceFolderPath();
+        internal static WorkingTileSetCanvasImageFilePath Empty { get; } = new WorkingTileSetCanvasImageFilePath();
 
         /// <summary>
         ///     文字列を与えて初期化
@@ -19,7 +20,7 @@
         /// <param name="folderPath">フォルダーへのパス</param>
         /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
-        internal static WorkspaceFolderPath FromString(
+        internal static WorkingTileSetCanvasImageFilePath FromString(
             string folderPath,
             bool replaceSeparators = false)
         {
@@ -33,13 +34,13 @@
                 folderPath = folderPath.Replace("\\", "/");
             }
 
-            return new WorkspaceFolderPath(folderPath);
+            return new WorkingTileSetCanvasImageFilePath(folderPath);
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkspaceFolderPath()
+        internal WorkingTileSetCanvasImageFilePath()
         {
             AsStr = string.Empty;
         }
@@ -47,7 +48,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkspaceFolderPath(string asStr)
+        internal WorkingTileSetCanvasImageFilePath(string asStr)
         {
             AsStr = asStr;
         }

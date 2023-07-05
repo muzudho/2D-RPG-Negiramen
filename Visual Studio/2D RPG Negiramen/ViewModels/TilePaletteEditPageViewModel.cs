@@ -26,7 +26,7 @@
             {
                 if (_tileSetImageFilePath.AsStr != value)
                 {
-                    _tileSetImageFilePath = new Models.FileSpace.TileSetImageFilePath(value);
+                    _tileSetImageFilePath = new Models.FileEntries.FileEntriesLocations.TileSetImageFile(value);
                 }
             }
         }
@@ -34,7 +34,14 @@
         /// <summary>
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
-        public Models.FileSpace.TileSetImageFilePath TileSetImageFilePath
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        public Models.FileEntriesLocations.TileSetImageFile TileSetImageFilePath
+後:
+        public TileSetImageFile TileSetImageFilePath
+*/
+        public Models.FileEntries.FileEntriesLocations.TileSetImageFile TileSetImageFilePath
         {
             get => _tileSetImageFilePath;
             set
@@ -63,7 +70,7 @@
 
                 if (_tileSetCSVFilePath.AsStr != value)
                 {
-                    _tileSetCSVFilePath = new Models.FileSpace.TileSetCSVFilePath(value);
+                    _tileSetCSVFilePath = new Models.FileEntries.FileEntriesLocations.TileSetCSVFile(value);
                 }
             }
         }
@@ -71,7 +78,14 @@
         /// <summary>
         ///     タイル・セットCSVファイルへのパス
         /// </summary>
-        public Models.FileSpace.TileSetCSVFilePath TileSetCSVFilePath
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        public Models.FileEntriesLocations.TileSetCSVFile TileSetCSVFilePath
+後:
+        public TileSetCSVFile TileSetCSVFilePath
+*/
+        public Models.FileEntries.FileEntriesLocations.TileSetCSVFile TileSetCSVFilePath
         {
             get => _tileSetCSVFilePath;
             set
@@ -88,7 +102,7 @@
         /// <summary>
         ///     タイル・セットの設定
         /// </summary>
-        internal Models.Files.TileSetSettings TileSetSettings
+        internal Models.FileEntries.TileSetSettings TileSetSettings
         {
             get => this._tileSetSettings;
             set
@@ -789,17 +803,31 @@
         /// <summary>
         ///     タイル・セット設定
         /// </summary>
-        Models.Files.TileSetSettings _tileSetSettings = new Models.Files.TileSetSettings();
+        Models.FileEntries.TileSetSettings _tileSetSettings = new Models.FileEntries.TileSetSettings();
 
         /// <summary>
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
-        Models.FileSpace.TileSetImageFilePath _tileSetImageFilePath = Models.FileSpace.TileSetImageFilePath.Empty;
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        Models.FileEntriesLocations.TileSetImageFile _tileSetImageFilePath = Models.FileEntriesLocations.TileSetImageFile.Empty;
+後:
+        TileSetImageFile _tileSetImageFilePath = TileSetImageFile.Empty;
+*/
+        Models.FileEntries.FileEntriesLocations.TileSetImageFile _tileSetImageFilePath = Models.FileEntries.FileEntriesLocations.TileSetImageFile.Empty;
 
         /// <summary>
         ///     タイル・セットの設定CSVファイル
         /// </summary>
-        Models.FileSpace.TileSetCSVFilePath _tileSetCSVFilePath = Models.FileSpace.TileSetCSVFilePath.Empty;
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        Models.FileEntriesLocations.TileSetCSVFile _tileSetCSVFilePath = Models.FileEntriesLocations.TileSetCSVFile.Empty;
+後:
+        TileSetCSVFile _tileSetCSVFilePath = TileSetCSVFile.Empty;
+*/
+        Models.FileEntries.FileEntriesLocations.TileSetCSVFile _tileSetCSVFilePath = Models.FileEntries.FileEntriesLocations.TileSetCSVFile.Empty;
 
         /// <summary>
         ///     タイル・カーソルの位置

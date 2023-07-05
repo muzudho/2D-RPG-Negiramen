@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models.Files
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
     using Tomlyn;
     using Tomlyn.Model;

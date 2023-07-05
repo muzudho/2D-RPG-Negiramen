@@ -392,21 +392,35 @@ public partial class MainPage : ContentPage
                 var fileStem = "map-tile-format-8x19";
 
                 // タイル・セット画像ファイル・パス
-                var tileSetImageFilePath = Models.FileSpace.TileSetImageFilePath.FromString(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+                var tileSetImageFilePath = Models.FileEntriesLocations.TileSetImageFile.FromString(
+後:
+                var tileSetImageFilePath = TileSetImageFile.FromString(
+*/
+                var tileSetImageFilePath = Models.FileEntries.FileEntriesLocations.TileSetImageFile.FromString(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png"),
                     replaceSeparators: true);
 
                 // タイル・セットCSVファイル・パス
-                var tileSetCSVFilePath = Models.FileSpace.TileSetCSVFilePath.FromString(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+                var tileSetCSVFilePath = Models.FileEntriesLocations.TileSetCSVFile.FromString(
+後:
+                var tileSetCSVFilePath = TileSetCSVFile.FromString(
+*/
+                var tileSetCSVFilePath = Models.FileEntries.FileEntriesLocations.TileSetCSVFile.FromString(
                     System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
                         $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv"),
                     replaceSeparators: true);
 
                 // タイル・セット画像の縦横幅
-                var tileSetSize = Models.Files.PNGHelper.GetImageSize(tileSetImageFilePath);
+                var tileSetSize = Models.FileEntries.PNGHelper.GetImageSize(tileSetImageFilePath);
 
                 // グリッドの線の幅
                 ThicknessOfLine gridLineThickness = new ThicknessOfLine(2 * App.HalfThicknessOfGridLine.AsInt);

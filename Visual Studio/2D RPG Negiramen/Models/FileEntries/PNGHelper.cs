@@ -1,4 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.Models.Files
+﻿using _2D_RPG_Negiramen.Models.FileEntries.FileEntriesLocations;
+
+namespace _2D_RPG_Negiramen.Models.FileEntries
 {
     /// <summary>
     ///     😁 PNG形式画像ファイルのヘルパー
@@ -13,7 +15,7 @@
         ///     PNG形式画像ファイルのサイズを取得する
         /// </summary>
         /// <param name="filePath">ファイル・パス</param>
-        internal static Models.Size GetImageSize(FilePath filePath)
+        internal static Models.Size GetImageSize(Its filePath)
         {
             uint w, h;
 

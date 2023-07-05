@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models.Files
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
     using System.Text;
 
@@ -18,7 +18,14 @@
         /// </summary>
         /// <param name="tileSetSettings">タイル・セット設定</param>
         /// <returns></returns>
-        internal static bool LoadCSV(Models.FileSpace.TileSetCSVFilePath tileSetCSVFilePath, out TileSetSettings tileSetSettings)
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        internal static bool LoadCSV(Models.FileEntriesLocations.TileSetCSVFile tileSetCSVFilePath, out TileSetSettings tileSetSettings)
+後:
+        internal static bool LoadCSV(TileSetCSVFile tileSetCSVFilePath, out TileSetSettings tileSetSettings)
+*/
+        internal static bool LoadCSV(FileEntriesLocations.TileSetCSVFile tileSetCSVFilePath, out TileSetSettings tileSetSettings)
         {
             // 既定値の設定（空っぽ）
             tileSetSettings = new TileSetSettings();
@@ -99,7 +106,14 @@
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-        internal bool SaveCSV(Models.FileSpace.TileSetCSVFilePath tileSetCSVFilePath)
+
+/* プロジェクト '2D RPG Negiramen (net7.0-android)' からのマージされていない変更
+前:
+        internal bool SaveCSV(Models.FileEntriesLocations.TileSetCSVFile tileSetCSVFilePath)
+後:
+        internal bool SaveCSV(TileSetCSVFile tileSetCSVFilePath)
+*/
+        internal bool SaveCSV(FileEntriesLocations.TileSetCSVFile tileSetCSVFilePath)
         {
 
             // 保存したいファイルへのパス

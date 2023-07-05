@@ -55,12 +55,12 @@ public partial class App : Application
     /// 構成ファイルの取得、またはファイル読込
     /// </summary>
     /// <returns>構成ファイル</returns>
-    static internal Models.Files.Configuration GetOrLoadConfiguration()
+    static internal Models.FileEntries.Configuration GetOrLoadConfiguration()
     {
         if (App.Configuration == null)
         {
             // 構成ファイルの読込
-            if (Models.Files.Configuration.LoadTOML(out Models.Files.Configuration configuration))
+            if (Models.FileEntries.Configuration.LoadTOML(out Models.FileEntries.Configuration configuration))
             {
                 App.Configuration = configuration;
             }
@@ -75,7 +75,7 @@ public partial class App : Application
     /// 構成ファイルをセット
     /// </summary>
     /// <param name="configuration">構成ファイル</param>
-    static internal void SetConfiguration(Models.Files.Configuration configuration)
+    static internal void SetConfiguration(Models.FileEntries.Configuration configuration)
     {
         App.Configuration = configuration;
     }
@@ -86,12 +86,12 @@ public partial class App : Application
     /// 設定ファイルの取得、またはファイル読込
     /// </summary>
     /// <returns>設定ファイル</returns>
-    static internal Models.Files.Settings GetOrLoadSettings()
+    static internal Models.FileEntries.Settings GetOrLoadSettings()
     {
         if (App.Settings == null)
         {
             // 設定ファイルの読込（読取成功にせよ、失敗にせよ）
-            if (Models.Files.Settings.LoadTOML(out Models.Files.Settings settings))
+            if (Models.FileEntries.Settings.LoadTOML(out Models.FileEntries.Settings settings))
             {
                 App.Settings = settings;
             }
@@ -109,7 +109,7 @@ public partial class App : Application
     /// 設定ファイルをセット
     /// </summary>
     /// <param name="settings">設定ファイル</param>
-    static internal void SetSettings(Models.Files.Settings settings)
+    static internal void SetSettings(Models.FileEntries.Settings settings)
     {
         App.Settings = settings;
     }
@@ -134,7 +134,7 @@ public partial class App : Application
     ///			<item>ミュータブル</item>
     ///		</list>
     /// </summary>
-    static Models.Files.Configuration Configuration { get; set; }
+    static Models.FileEntries.Configuration Configuration { get; set; }
 
     /// <summary>
     ///		現在の設定
@@ -143,5 +143,5 @@ public partial class App : Application
     ///			<item>ミュータブル</item>
     ///		</list>
     /// </summary>
-    static Models.Files.Settings Settings { get; set; }
+    static Models.FileEntries.Settings Settings { get; set; }
 }

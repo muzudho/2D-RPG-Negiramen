@@ -1,4 +1,4 @@
-﻿using _2D_RPG_Negiramen.Models.Files;
+﻿using _2D_RPG_Negiramen.Models.FileEntries;
 using _2D_RPG_Negiramen.ViewModels;
 using System.Diagnostics;
 
@@ -195,7 +195,7 @@ public partial class TilePaletteEditPage : ContentPage
         // ==================
         //
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-        if (Models.Files.TileSetSettings.LoadCSV(context.TileSetCSVFilePath, out Models.Files.TileSetSettings tileSetSettings))
+        if (Models.FileEntries.TileSetSettings.LoadCSV(context.TileSetCSVFilePath, out Models.FileEntries.TileSetSettings tileSetSettings))
         {
             context.TileSetSettings = tileSetSettings;
         }
