@@ -1,4 +1,4 @@
 [paths]
 
 # ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
-working_tile_set_canvas = "{negiramen_workspace}/Temporary/Images/working_tile_set_canvas.png"
+working_tile_set_canvas = "{negiramen_workspace_folder}/Temporary/Images/working_tile_set_canvas.png"

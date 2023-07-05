@@ -2242,7 +2242,7 @@ Id, Left, Top, Width, Height, Comment
 [paths]
 
 # ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
-working_tile_set_canvas = "{negiramen_workspace}/Temporary/Images/working_tile_set_canvas.png"
+working_tile_set_canvas = "{negiramen_workspace_folder}/Temporary/Images/working_tile_set_canvas.png"
 ```
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
@@ -2251,5 +2251,47 @@ working_tile_set_canvas = "{negiramen_workspace}/Temporary/Images/working_tile_s
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　とりあえず　それで」  
 
+![202307_maui_05-2254--configuration-1st-o2o0.png](https://crieit.now.sh/upload_images/3e01a405230edf72c3cc13dff37778ec64a57683653e8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　厳密に行くなら　構成ファイルに　この１行を書き足しておきたいぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そのファイル・パスは　MAUI から編集できるようにするのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　非表示でいいだろ、こんな細かいの」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ユーザーが　そのファイルに辿りつけなくない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　AppData は　隠しフォルダー　なんで」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　ネギラーメンを開発する　お父ん　や、  
+ネギラーメンを改造する人だけが　知ってればいいんだ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`configuration_2nd.toml` は　隠さなくていいの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　どこに　何が置いてあるかの　目録になるんで」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`configuration_2nd.toml` って名前だったら、じゃあ `configuration_1st.toml` は　どこにあるんだ？  
+って探さない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ぐぬぬぬぬ」  
+
+```plaintext
+　　例：　C:\Users\むずでょ\Documents\GitHub\2D-RPG-Negiramen
+　　└── 📂 Workspace
+👉 　　└── 📄 user_configuration.toml
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆 `user_configuration.toml` にしよう！」  
 
 ＜書きかけ＞
