@@ -347,7 +347,7 @@
             <Label Grid.Row="3" Grid.Column="1"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="9999"/>
+                   Text="{Binding TileIdAsInt}"/>
 
             <Entry Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5"
                    Placeholder="草原"

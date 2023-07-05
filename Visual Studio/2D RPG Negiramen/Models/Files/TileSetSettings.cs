@@ -23,62 +23,76 @@
             // 既定値の設定（空っぽ）
             tileSetSettings = new TileSetSettings();
 
-            //
-            // ファイルの有無確認
-            // ==================
-            //
-            if (System.IO.File.Exists(tileSetCSVFilePath.AsStr))
+            try
             {
-                // ファイルが有るなら
-
                 //
-                // ファイル読取
-                // ============
+                // ファイルの有無確認
+                // ==================
                 //
-                var text = System.IO.File.ReadAllText(tileSetCSVFilePath.AsStr);
-
-                //
-                // ＣＳＶとして解析
-                // ================
-                //
-
-                // 先頭行は列名なので取り除く
-                var newLineIndex = text.IndexOf("\r\n");
-                text = text.Substring(newLineIndex + 2);
-
-                // 最後の改行は取り除く（空行は読込めない）
-                text = text.TrimEnd();
-
-                // とりあえず改行で分割
-                var lines = text.Split("\r\n");
-
-                // 各行について
-                foreach (var line in lines)
+                if (System.IO.File.Exists(tileSetCSVFilePath.AsStr))
                 {
-                    // TODO ダブル・クォーテーション対応
+                    // ファイルが有るなら
 
-                    // とりあえずカンマで分割
-                    var cells = line.Split(",");
+                    //
+                    // ファイル読取
+                    // ============
+                    //
+                    var text = System.IO.File.ReadAllText(tileSetCSVFilePath.AsStr);
 
-                    // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
-                    tileSetSettings.Add(
-                        id: new Models.TileId(int.Parse(cells[0])),
-                        rect: new Models.Rectangle(
-                            point: new Models.Point(
-                                x: new Models.X(int.Parse(cells[1])),
-                                y: new Models.Y(int.Parse(cells[2]))),
-                            size: new Models.Size(
-                                width: new Models.Width(int.Parse(cells[3])),
-                                height: new Models.Height(int.Parse(cells[4])))),
-                        comment: new Models.Comment(cells[5]),
-                        onTileIdUpdated: () =>
+                    //
+                    // ＣＳＶとして解析
+                    // ================
+                    //
+
+                    // 先頭行は列名なので取り除く
+                    var newLineIndex = text.IndexOf("\r\n");
+                    text = text.Substring(newLineIndex + 2);
+
+                    // 最後の改行は取り除く（空行は読込めない）
+                    text = text.TrimEnd();
+
+                    // とりあえず改行で分割
+                    var lines = text.Split("\r\n");
+
+                    // 各行について
+                    foreach (var line in lines)
+                    {
+                        // 空行は読み飛ばす
+                        if (string.IsNullOrWhiteSpace(line))
                         {
-                            // 自明なんで省略
-                        });
-                }
-            }
+                            continue;
+                        }
 
-            return true;
+                        // TODO ダブル・クォーテーション対応
+
+                        // とりあえずカンマで分割
+                        var cells = line.Split(",");
+
+                        // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
+                        tileSetSettings.Add(
+                            id: new Models.TileId(int.Parse(cells[0])),
+                            rect: new Models.Rectangle(
+                                point: new Models.Point(
+                                    x: new Models.X(int.Parse(cells[1])),
+                                    y: new Models.Y(int.Parse(cells[2]))),
+                                size: new Models.Size(
+                                    width: new Models.Width(int.Parse(cells[3])),
+                                    height: new Models.Height(int.Parse(cells[4])))),
+                            comment: new Models.Comment(cells[5]),
+                            onTileIdUpdated: () =>
+                            {
+                                // 自明なんで省略
+                            });
+                    }
+                }
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // TODO エラー対応
+                return false;
+            }
         }
 
         /// <summary>

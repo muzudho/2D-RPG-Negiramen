@@ -2155,4 +2155,27 @@ Id, Left, Top, Width, Height, Comment
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　スキャンするのは　カッコ悪いから　行が追加されたタイミングで　最大のＩｄを常に更新するかだぜ」  
 
+![202307_maui_05-2124--tile-id-o2o0.png](https://crieit.now.sh/upload_images/31bf587a692b3271e22bf9e79572024664a5622359461.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Ｉｄは　増えるようにしたぜ」  
+
+## 登録されているタイルは表示しろ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　登録されているタイルは　表示してくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイルが　１０００個　登録されていたら、  
+画面上には　タイル　１０００個　のスプライトを　表示しないと　いけないのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面を開いたときと、  
+タイルを追加・削除したときに　キャンバスを描きなおせばよくない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　実際のタイル画像とは別に、  
+ワーキング（Working；作業中）なタイル画像を　内部的に持っておけばいいかな」  
+
+
 ＜書きかけ＞
