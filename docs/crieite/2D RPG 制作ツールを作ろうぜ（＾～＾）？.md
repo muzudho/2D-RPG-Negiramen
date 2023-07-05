@@ -2123,4 +2123,36 @@ Id, Left, Top, Width, Height, Comment
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　じゃあ　睡眠へ切り替えよ。寝ろ」  
 
+# 📅 2023-07-05 マウス操作が分かりづらいの何とかしろ 
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI がタップ操作にＵＩを寄せていて、マウスダウン、マウスアップ　が検知できないの　クソなんだが」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　最初の１回目のタップで　あんたが枠を出すから、これでいいんだと思っちゃって  
+そしたら　もう１回　タップしなくちゃいけないって分かって　分かりづらってなるのよ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　選択が未確定の間は　カーソルが　アニメーションしたらどうだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画面が　チカチカ　動くのは　オフィス・ソフトの分野では　非常識だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　半透明な枠なら　どうよ？」  
+
+![202307_maui_05-2005--selecting.png](https://crieit.now.sh/upload_images/91c1887b68a9194dfaa47a7b6dc69dcd64a54f091546b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これぐらい　はっきりと分かるぐらい　半透明にしてみるか」  
+
+## Ｉｄを自動採番しろ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ＣＳＶファイルの中で１番大きなＩｄより　１　だけ大きいのが　新しいＩｄだろ。  
+お父ん。実装しろ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　スキャンするのは　カッコ悪いから　行が追加されたタイミングで　最大のＩｄを常に更新するかだぜ」  
+
 ＜書きかけ＞

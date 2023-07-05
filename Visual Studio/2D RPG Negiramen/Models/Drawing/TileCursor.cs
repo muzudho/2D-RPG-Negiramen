@@ -23,7 +23,7 @@
             if (App.SelectingOnPointingDevice)
             {
                 // 選択中
-                canvas.StrokeColor = new Color(0, 0, 255, 127);
+                canvas.StrokeColor = new Color(0, 0, 255, 95);
             }
             else
             {
