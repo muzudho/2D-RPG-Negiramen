@@ -19,22 +19,25 @@
         /// <summary>
         ///     文字列を与えて初期化
         /// </summary>
-        /// <param name="fileEntryPath">ファイル・エントリー・パス</param>
+        /// <param name="fileEntryPathAsStr">ファイル・エントリー・パス（セパレーター置換前、変数展開前）</param>
         /// <param name="replaceSeparators">`\` を `/` へ置換</param>
         /// <returns>実例</returns>
         internal static FileEntryPath FromString(
-            string fileEntryPath,
+            string fileEntryPathAsStr,
             bool replaceSeparators = false,
             Dictionary<string, string> expandVariables = null)
         {
-            if (fileEntryPath == null)
+            if (fileEntryPathAsStr == null)
             {
-                throw new ArgumentNullException(nameof(fileEntryPath));
+                throw new ArgumentNullException(nameof(fileEntryPathAsStr));
             }
+
+            // セパレーター置換後、変数展開後
+            var editedPathAsStr = fileEntryPathAsStr;
 
             if (replaceSeparators)
             {
-                fileEntryPath = fileEntryPath.Replace("\\", "/");
+                editedPathAsStr = editedPathAsStr.Replace("\\", "/");
             }
 
             // 変数展開
@@ -42,11 +45,11 @@
             {
                 foreach(var pair in expandVariables)
                 {
-                    fileEntryPath = fileEntryPath.Replace(pair.Key, pair.Value);
+                    editedPathAsStr = editedPathAsStr.Replace(pair.Key, pair.Value);
                 }
             }
 
-            return new FileEntryPath(fileEntryPath);
+            return new FileEntryPath(editedPathAsStr);
         }
 
         // - その他

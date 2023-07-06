@@ -253,7 +253,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     ユーザー構成ファイルへのパス
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/configuration_2nd.toml"</example>
-        internal Locations.Negiramen.UserConfigurationFile UserConfiguration { get; }
+        internal Locations.Negiramen.UserConfigurationFile UserConfigurationFile { get; }
 
         /// <summary>
         ///     あなたのサークル名
@@ -264,6 +264,8 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     あなたの作品名
         /// </summary>
         internal YourWorkName YourWorkName { get; }
+
+        // - その他
 
         /// <summary>
         ///     生成
@@ -294,7 +296,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         {
             this.NegiramenWorkspaceFolder = negiramenWorkspaceFolderPath;
             this.UnityAssetsFolder = unityAssetsFolderPath;
-            this.UserConfiguration = userConfigurationFilePath;
+            this.UserConfigurationFile = userConfigurationFilePath;
             this.YourCircleName = yourCircleName;
             this.YourWorkName = yourWorkName;
         }
