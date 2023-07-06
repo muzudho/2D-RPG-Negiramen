@@ -2426,4 +2426,56 @@ using Microsoft.Maui.Graphics.Win2D;
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　プラットフォームの違いを　メソッドが隠蔽してくれたらいいのに……」  
 
+```cs
+        //
+        // タイル・セット・キャンバス画像の読込
+        //
+        var task = Task.Run(() =>
+        {
+            try
+            {
+                // 読込元（ウィンドウズ・ローカルＰＣ）
+                using (Stream inputFileStream = System.IO.File.OpenRead(tileSetImageFilePathAsStr))
+                {
+#if IOS || ANDROID || MACCATALYST
+                    // PlatformImage isn't currently supported on Windows.
+                    TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
+#elif WINDOWS
+                    TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
+#endif
+
+                    //
+                    // 作業中のタイル・セット・キャンバス画像の保存
+                    //
+                    if (image != null)
+                    {
+                        // 書出先（ウィンドウズ・ローカルＰＣ）
+                        using (Stream outputFileStream = System.IO.File.Open(workingTileSetCanvasImagefilePathAsStr, FileMode.OpenOrCreate))
+                        {
+                            image.Save(outputFileStream);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO エラー対応どうする？
+            }
+        });
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　MAUI から　Windowsのフォルダーにアクセスできるけど、  
+マルチ・プラットフォームというメリットが無くなってしまうよな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　Windows　の利便性を失わせるかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ユーザーに `AppData` フォルダー下を　いじらせるのは  
+隠しフォルダーの意義を失うわよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　Windows依存で進めるか～」  
+
 ＜書きかけ＞

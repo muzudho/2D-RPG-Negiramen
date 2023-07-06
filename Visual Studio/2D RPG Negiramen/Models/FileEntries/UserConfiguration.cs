@@ -64,7 +64,9 @@
                                     workingTileSetCanvasImageFile = new Locations.Negiramen.WorkingTileSetCanvasImageFile(
                                         pathSource: FileEntryPathSource.FromString(workingTileSetCanvasFilePathAsStr),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                                    replaceSeparators: true));
+                                                                                    replaceSeparators: true,
+                                                                                    // 変数展開に備える
+                                                                                    expandVariables: App.GetOrLoadConfiguration().Variables));
                                 }
                             }
                         }

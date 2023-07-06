@@ -16,10 +16,10 @@ using Microsoft.Maui.Graphics.Win2D;
 /// </summary>
 public partial class TilePaletteEditPage : ContentPage
 {
-	public TilePaletteEditPage()
-	{
-		InitializeComponent();
-	}
+    public TilePaletteEditPage()
+    {
+        InitializeComponent();
+    }
 
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {
@@ -195,7 +195,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    private void ContentPage_Loaded(object sender, EventArgs e)
+    void ContentPage_Loaded(object sender, EventArgs e)
     {
         //
         // ユーザー設定の読込
@@ -226,40 +226,39 @@ public partial class TilePaletteEditPage : ContentPage
         //
         // タイル・セット・キャンバス画像の読込
         //
-        Task.Run(async () =>
+        var task = Task.Run(() =>
         {
-            // 読込元
-            using (Stream inputFileStream = await FileSystem.Current.OpenAppPackageFileAsync(
-                filename: tileSetImageFilePathAsStr))
+            try
             {
+                // 読込元（ウィンドウズ・ローカルＰＣ）
+                using (Stream inputFileStream = System.IO.File.OpenRead(tileSetImageFilePathAsStr))
+                {
 #if IOS || ANDROID || MACCATALYST
-                // PlatformImage isn't currently supported on Windows.
-                TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
+                    // PlatformImage isn't currently supported on Windows.
+                    TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
 #elif WINDOWS
-                TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
+                    TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
 #endif
 
-                //
-                // 作業中のタイル・セット・キャンバス画像の保存
-                //
-                if (image != null)
-                {
-                    // メモリへ
-                    // TheGraphics.IImage newImage = image.Downsize(150, true);
-                    //using (MemoryStream memStream = new MemoryStream())
-                    //{
-                    //    image.Save(memStream);
-                    //}
-
-                    // 書出先
-                    using (Stream outputFileStream = await FileSystem.Current.OpenAppPackageFileAsync(
-                        filename: workingTileSetCanvasImagefilePathAsStr))
+                    //
+                    // 作業中のタイル・セット・キャンバス画像の保存
+                    //
+                    if (image != null)
                     {
-                        image.Save(outputFileStream);
+                        // 書出先（ウィンドウズ・ローカルＰＣ）
+                        using (Stream outputFileStream = System.IO.File.Open(workingTileSetCanvasImagefilePathAsStr, FileMode.OpenOrCreate))
+                        {
+                            image.Save(outputFileStream);
+                        }
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                // TODO エラー対応どうする？
+            }
         });
-        // 待機しません
+
+        Task.WaitAll(new Task[] { task });
     }
 }

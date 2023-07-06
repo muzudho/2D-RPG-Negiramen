@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using Tomlyn;
     using Tomlyn.Model;
 
@@ -102,7 +103,7 @@
                                         pathSource: FileEntryPathSource.FromString(userConfigurationFilePathAsStr),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true,
-                                                                                    // 変数展開を備える
+                                                                                    // 変数展開のためのもの（その１）
                                                                                     expandVariables: new Dictionary<string, string>()
                                                                                     {
                                                                                         { "{negiramen_workspace_folder}", negiramenWorkspaceFolder.Path.AsStr },
@@ -148,6 +149,14 @@
                     userConfiguration,
                     yourCircleName,
                     yourWorkName);
+
+                // 変数展開のためのもの（その２）
+                configuration.Variables = new Dictionary<string, string>()
+                    {
+                        { "{negiramen_workspace_folder}", configuration.NegiramenWorkspaceFolder.Path.AsStr },
+                        { "{unity_assets_folder}", configuration.UnityAssetsFolder.Path.AsStr},
+                    };
+
                 return true;
             }
             catch (Exception ex)
@@ -304,7 +313,16 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
             this.YourWorkName = yourWorkName;
         }
 
-        // - メソッド
+        // - インターナル・プロパティ
+
+        #region プロパティ（変数）
+        /// <summary>
+        ///     変数展開のためのもの
+        /// </summary>
+        internal Dictionary<string, string> Variables { get; private set; }
+        #endregion
+
+        // - インターナル・メソッド
 
         /// <summary>
         ///     構成ファイルは有効か？
