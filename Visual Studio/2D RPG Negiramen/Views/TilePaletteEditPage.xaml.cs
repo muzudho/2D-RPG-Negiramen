@@ -251,6 +251,9 @@ public partial class TilePaletteEditPage : ContentPage
                             image.Save(outputFileStream);
                         }
                     }
+
+                    // 作業中のタイル・セット・キャンバスの再描画
+                    context.RefreshWorkingTileSetCanvas();
                 }
             }
             catch (Exception ex)

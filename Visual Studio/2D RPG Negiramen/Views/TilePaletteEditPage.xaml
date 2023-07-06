@@ -185,8 +185,8 @@
             <Grid RowDefinitions="*" ColumnDefinitions="*">
 
                 <!--
-                    タイル・セット画像
-                    ==================
+                    作業中のタイル・セット・キャンバス画像
+                    ======================================
             
                 <Image x:Name="tileImage"
                        Grid.Row="0" Grid.Column="0"
@@ -206,13 +206,19 @@
                        WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
                        HorizontalOptions="Start" VerticalOptions="Start"
                        Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/map-tile-format-8x19.png">
-                -->
                 <Image x:Name="tileImage"
                        Grid.Row="0" Grid.Column="0"
                        Margin="4,4,0,0"
                        WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
                        HorizontalOptions="Start" VerticalOptions="Start"
                        Source="{Binding TileSetImageFilePathAsStr}">
+                -->
+                <Image x:Name="tileImage"
+                       Grid.Row="0" Grid.Column="0"
+                       Margin="4,4,0,0"
+                       WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
+                       HorizontalOptions="Start" VerticalOptions="Start"
+                       Source="{Binding WorkingTileSetCanvasImageFilePathAsStr}">
 
                     <Image.GestureRecognizers>
                         <!--

@@ -28,7 +28,7 @@
                 if (_tileSetImageFile != value)
                 {
                     _tileSetImageFile = value;
-                    OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
+                    // OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
                 }
             }
         }
@@ -93,6 +93,17 @@
 
         // - 変更通知プロパティ
 
+        #region 変更通知プロパティ（作業中のタイル・セット・キャンバス画像ファイルへのパス（文字列形式））
+        /// <summary>
+        ///     作業中のタイル・セット・キャンバス画像ファイルへのパス（文字列形式）
+        /// </summary>
+        public string WorkingTileSetCanvasImageFilePathAsStr
+        {
+            get => App.GetOrLoadUserConfiguration().WorkingTileSetCanvasImageFile.Path.AsStr;
+            // OnPropertyChanged(nameof(WorkingTileSetCanvasImageFilePathAsStr));
+        }
+        #endregion
+
         #region 変更通知プロパティ（タイル・セット画像ファイルへのパス（文字列形式））
         /// <summary>
         ///     タイル・セット画像ファイルへのパス（文字列形式）
@@ -108,7 +119,7 @@
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
-                    OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
+                    // OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
                 }
             }
         }
@@ -770,6 +781,14 @@
             OnPropertyChanged(nameof(TileIdAsInt));
         }
 
+
+        /// <summary>
+        ///     作業中のタイル・セット・キャンバスの再描画
+        /// </summary>
+        internal void RefreshWorkingTileSetCanvas()
+        {
+            OnPropertyChanged(nameof(WorkingTileSetCanvasImageFilePathAsStr));
+        }
         // - プライベート・フィールド
 
         /// <summary>
