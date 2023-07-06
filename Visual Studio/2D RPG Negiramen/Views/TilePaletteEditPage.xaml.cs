@@ -1,8 +1,15 @@
-﻿using _2D_RPG_Negiramen.Models.FileEntries;
-using _2D_RPG_Negiramen.ViewModels;
-using System.Diagnostics;
+﻿namespace _2D_RPG_Negiramen.Views;
 
-namespace _2D_RPG_Negiramen.Views;
+using _2D_RPG_Negiramen.Models.FileEntries;
+using _2D_RPG_Negiramen.ViewModels;
+using System.IO;
+using TheGraphics = Microsoft.Maui.Graphics;
+
+#if IOS || ANDROID || MACCATALYST
+using Microsoft.Maui.Graphics.Platform;
+#elif WINDOWS
+using Microsoft.Maui.Graphics.Win2D;
+#endif
 
 /// <summary>
 ///     😁 タイル・パレット編集ページ
@@ -197,11 +204,6 @@ public partial class TilePaletteEditPage : ContentPage
         UserConfiguration userConfiguration = App.GetOrLoadUserConfiguration();
 
         //
-        // TODO 作業用のタイル・セット・キャンバス画像のファイルパスを取得
-        //
-        var workingTileSetCanvasImagefilePathAsStr = userConfiguration.WorkingTileSetCanvasImageFile.Path.AsStr;
-
-        //
         // 設定ファイルの読込
         // ==================
         //
@@ -210,5 +212,54 @@ public partial class TilePaletteEditPage : ContentPage
         {
             context.TileSetSettings = tileSetSettings;
         }
+
+        //
+        // TODO タイル・セット・キャンバス画像ファイルへのパスを取得
+        //
+        var tileSetImageFilePathAsStr = context.TileSetImageFilePathAsStr;
+
+        //
+        // TODO 作業用のタイル・セット・キャンバス画像ファイルへのパスを取得
+        //
+        var workingTileSetCanvasImagefilePathAsStr = userConfiguration.WorkingTileSetCanvasImageFile.Path.AsStr;
+
+        //
+        // タイル・セット・キャンバス画像の読込
+        //
+        Task.Run(async () =>
+        {
+            // 読込元
+            using (Stream inputFileStream = await FileSystem.Current.OpenAppPackageFileAsync(
+                filename: tileSetImageFilePathAsStr))
+            {
+#if IOS || ANDROID || MACCATALYST
+                // PlatformImage isn't currently supported on Windows.
+                TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
+#elif WINDOWS
+                TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
+#endif
+
+                //
+                // 作業中のタイル・セット・キャンバス画像の保存
+                //
+                if (image != null)
+                {
+                    // メモリへ
+                    // TheGraphics.IImage newImage = image.Downsize(150, true);
+                    //using (MemoryStream memStream = new MemoryStream())
+                    //{
+                    //    image.Save(memStream);
+                    //}
+
+                    // 書出先
+                    using (Stream outputFileStream = await FileSystem.Current.OpenAppPackageFileAsync(
+                        filename: workingTileSetCanvasImagefilePathAsStr))
+                    {
+                        image.Save(outputFileStream);
+                    }
+                }
+            }
+        });
+        // 待機しません
     }
 }

@@ -2333,4 +2333,97 @@ working_tile_set_canvas = "{negiramen_workspace_folder}/Temporary/Images/working
 
 （カタ　カタ　カタ　カタ　……）  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　C# なら ImageIO 使えばいいのかだぜ？」  
+
+📖 [画像ファイルを読み込み、Imageオブジェクトを作成する](https://dobon.net/vb/dotnet/graphics/imagefromfile.html)  
+
+```cs
+using System.Drawing.Image;
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　MAUI に `System.Drawing.Image` 無い」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　マルチプラットフォーム化で　使えなくしているパッケージなのでしょう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　現代では　こっち読むのか。インターネット上の大量の記事が　無駄になったかも知れないなあ」  
+
+📖 [Microsoft　＞　Image（コントロール）](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/controls/image)  
+📖 [Microsoft　＞　イメージ（メモリー）](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/graphics/images)  
+
+```cs
+        Assembly assembly = GetType().GetTypeInfo().Assembly;
+        using (Stream stream = assembly.GetManifestResourceStream("GraphicsViewDemos.Resources.Images.dotnet_bot.png"))
+        {
+            image = new W2DImageLoadingService().FromStream(stream);
+        }
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　リソース・フォルダーの中の画像を取得する方法が　書いてるな。  
+今回は逆に　任意のディレクトリーの画像のメモリー・ストリームを取らないといけない」  
+
+📖 [Microsoft　＞　Bundled files](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows#bundled-files)  
+```cs
+public async Task<string> ReadTextFile(string filePath)
+{
+    using Stream fileStream = await FileSystem.Current.OpenAppPackageFileAsync(filePath);
+    using StreamReader reader = new StreamReader(fileStream);
+
+    return await reader.ReadToEndAsync();
+}
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　このテキスト・ファイルの例を、画像に書き換えられないか？」  
+
+```cs
+using Microsoft.Maui.Graphics.Win2D;
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　このネームスペースが存在しないんだが？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　NuGet で取ってくるんじゃないの？」  
+
+![202307_maui_06-2358--graphics.png](https://crieit.now.sh/upload_images/9916482608ea4e71cbc14eb93307dc1564a6d6ab39eac.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これかな？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　それはインストール済みだぜ」  
+
+![202307_maui_07-0001--platform-error.png](https://crieit.now.sh/upload_images/f6940cca873c3ebf1f23c2a217f59f1064a6d7754d086.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　じゃあ　このエラーは何だぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　プリプロセッサ・ディレクティブを使って　Ｗｉｎｄｏｗｓと　Ｍａｃを分ける必要があるんじゃないの？」  
+
+```cs
+#if IOS || ANDROID || MACCATALYST
+using Microsoft.Maui.Graphics.Platform;
+#elif WINDOWS
+using Microsoft.Maui.Graphics.Win2D;
+#endif
+
+// ... 中略 ...
+
+#if IOS || ANDROID || MACCATALYST
+                // PlatformImage isn't currently supported on Windows.
+                TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
+#elif WINDOWS
+                TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
+#endif
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　プラットフォームの違いを　メソッドが隠蔽してくれたらいいのに……」  
+
 ＜書きかけ＞
