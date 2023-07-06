@@ -93,14 +93,13 @@
 
         // - 変更通知プロパティ
 
-        #region 変更通知プロパティ（作業中のタイル・セット・キャンバス画像ファイルへのパス（文字列形式））
+        #region 変更通知プロパティ（作業中のタイル・セット画像ファイルへのパス（文字列形式））
         /// <summary>
-        ///     作業中のタイル・セット・キャンバス画像ファイルへのパス（文字列形式）
+        ///     作業中のタイル・セット画像ファイルへのパス（文字列形式）
         /// </summary>
-        public string WorkingTileSetCanvasImageFilePathAsStr
+        public string WorkingTileSetImageFilePathAsStr
         {
-            get => App.GetOrLoadUserConfiguration().WorkingTileSetCanvasImageFile.Path.AsStr;
-            // OnPropertyChanged(nameof(WorkingTileSetCanvasImageFilePathAsStr));
+            get => App.GetOrLoadUserConfiguration().WorkingTileSetImageFile.Path.AsStr;
         }
         #endregion
 
@@ -783,11 +782,11 @@
 
 
         /// <summary>
-        ///     作業中のタイル・セット・キャンバスの再描画
+        ///     作業中のタイル・セット画像の再描画
         /// </summary>
-        internal void RefreshWorkingTileSetCanvas()
+        internal void RefreshWorkingTileSetImage()
         {
-            OnPropertyChanged(nameof(WorkingTileSetCanvasImageFilePathAsStr));
+            OnPropertyChanged(nameof(WorkingTileSetImageFilePathAsStr));
         }
         // - プライベート・フィールド
 

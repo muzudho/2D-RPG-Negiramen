@@ -35,7 +35,7 @@
                 var userConfigurationText = System.IO.File.ReadAllText(userConfigurationFilePath);
 
 
-                Locations.Negiramen.WorkingTileSetCanvasImageFile workingTileSetCanvasImageFile = new Models.FileEntries.Locations.Negiramen.WorkingTileSetCanvasImageFile();
+                Locations.Negiramen.WorkingTileSetImageFile workingTileSetImageFile = new Models.FileEntries.Locations.Negiramen.WorkingTileSetImageFile();
 
                 Locations.UnityAssetsFolder unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder();
 
@@ -56,13 +56,13 @@
                     {
                         if (pathsObj != null && pathsObj is TomlTable paths)
                         {
-                            // ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
-                            if (paths.TryGetValue("working_tile_set_canvas", out object workingTileSetCanvasFilePathObj))
+                            // ネギラーメン・ワークスペースの作業中のタイル・セット画像ファイルへのパス
+                            if (paths.TryGetValue("working_tile_set", out object workingTileSetFilePathObj))
                             {
-                                if (workingTileSetCanvasFilePathObj is string workingTileSetCanvasFilePathAsStr)
+                                if (workingTileSetFilePathObj is string workingTileSetFilePathAsStr)
                                 {
-                                    workingTileSetCanvasImageFile = new Locations.Negiramen.WorkingTileSetCanvasImageFile(
-                                        pathSource: FileEntryPathSource.FromString(workingTileSetCanvasFilePathAsStr),
+                                    workingTileSetImageFile = new Locations.Negiramen.WorkingTileSetImageFile(
+                                        pathSource: FileEntryPathSource.FromString(workingTileSetFilePathAsStr),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true,
                                                                                     // 変数展開に備える
@@ -74,7 +74,7 @@
                 }
 
                 configuration = new UserConfiguration(
-                    workingTileSetCanvasImageFile);
+                    workingTileSetImageFile);
                 return true;
             }
             catch (Exception ex)
@@ -97,15 +97,15 @@
             var configurationBuffer = new UserConfigurationBuffer();
 
             // 差分適用
-            configurationBuffer.WorkingTileSetCanvasImageFile = difference.WorkingTileSetCanvasImageFile == null ? current.WorkingTileSetCanvasImageFile : difference.WorkingTileSetCanvasImageFile;
+            configurationBuffer.WorkingTileSetImageFile = difference.WorkingTileSetImageFile == null ? current.WorkingTileSetImageFile : difference.WorkingTileSetImageFile;
 
             //
             // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
             //
             var text = $@"[paths]
 
-# ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
-working_tile_set_canvas = ""{configurationBuffer.WorkingTileSetCanvasImageFile.PathSource.AsStr}""
+# ネギラーメン・ワークスペースの作業中のタイル・セット画像ファイルへのパス
+working_tile_set = ""{configurationBuffer.WorkingTileSetImageFile.PathSource.AsStr}""
 ";
 
             // 上書き
@@ -116,17 +116,17 @@ working_tile_set_canvas = ""{configurationBuffer.WorkingTileSetCanvasImageFile.P
 
             // イミュータブル・オブジェクトを生成
             newConfiguration = new UserConfiguration(
-                configurationBuffer.WorkingTileSetCanvasImageFile);
+                configurationBuffer.WorkingTileSetImageFile);
             return true;
         }
 
         // - インターナル・プロパティー
 
         /// <summary>
-        ///     ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
+        ///     ネギラーメン・ワークスペースの作業中のタイル・セット画像ファイルへのパス
         /// </summary>
-        /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace"</example>
-        internal Locations.Negiramen.WorkingTileSetCanvasImageFile WorkingTileSetCanvasImageFile { get; }
+        /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/Temporary/Images/working_tile_set.png"</example>
+        internal Locations.Negiramen.WorkingTileSetImageFile WorkingTileSetImageFile { get; }
 
         // - その他
 
@@ -134,18 +134,18 @@ working_tile_set_canvas = ""{configurationBuffer.WorkingTileSetCanvasImageFile.P
         ///     生成
         /// </summary>
         internal UserConfiguration() : this(
-            Locations.Negiramen.WorkingTileSetCanvasImageFile.Empty)
+            Locations.Negiramen.WorkingTileSetImageFile.Empty)
         {
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="negiramenWorkspaceFolderPath">ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス</param>
+        /// <param name="negiramenWorkspaceFolderPath">ネギラーメン・ワークスペースの作業中のタイル・セット画像ファイルへのパス</param>
         internal UserConfiguration(
-            Locations.Negiramen.WorkingTileSetCanvasImageFile workingTileSetCanvasImageFile)
+            Locations.Negiramen.WorkingTileSetImageFile workingTileSetImageFile)
         {
-            this.WorkingTileSetCanvasImageFile = workingTileSetCanvasImageFile;
+            this.WorkingTileSetImageFile = workingTileSetImageFile;
         }
     }
 }

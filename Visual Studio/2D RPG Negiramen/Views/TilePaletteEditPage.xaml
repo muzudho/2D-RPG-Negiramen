@@ -218,7 +218,7 @@
                        Margin="4,4,0,0"
                        WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
                        HorizontalOptions="Start" VerticalOptions="Start"
-                       Source="{Binding WorkingTileSetCanvasImageFilePathAsStr}">
+                       Source="{Binding WorkingTileSetImageFilePathAsStr}">
 
                     <Image.GestureRecognizers>
                         <!--

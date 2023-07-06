@@ -214,17 +214,17 @@ public partial class TilePaletteEditPage : ContentPage
         }
 
         //
-        // TODO タイル・セット・キャンバス画像ファイルへのパスを取得
+        // タイル・セット画像ファイルへのパスを取得
         //
         var tileSetImageFilePathAsStr = context.TileSetImageFilePathAsStr;
 
         //
-        // TODO 作業用のタイル・セット・キャンバス画像ファイルへのパスを取得
+        // 作業用のタイル・セット画像ファイルへのパスを取得
         //
-        var workingTileSetCanvasImagefilePathAsStr = userConfiguration.WorkingTileSetCanvasImageFile.Path.AsStr;
+        var workingTileSetImagefilePathAsStr = userConfiguration.WorkingTileSetImageFile.Path.AsStr;
 
         //
-        // タイル・セット・キャンバス画像の読込
+        // 作業中のタイル・セット画像の読込、書出
         //
         var task = Task.Run(() =>
         {
@@ -241,19 +241,19 @@ public partial class TilePaletteEditPage : ContentPage
 #endif
 
                     //
-                    // 作業中のタイル・セット・キャンバス画像の保存
+                    // 作業中のタイル・セット画像の保存
                     //
                     if (image != null)
                     {
                         // 書出先（ウィンドウズ・ローカルＰＣ）
-                        using (Stream outputFileStream = System.IO.File.Open(workingTileSetCanvasImagefilePathAsStr, FileMode.OpenOrCreate))
+                        using (Stream outputFileStream = System.IO.File.Open(workingTileSetImagefilePathAsStr, FileMode.OpenOrCreate))
                         {
                             image.Save(outputFileStream);
                         }
                     }
 
-                    // 作業中のタイル・セット・キャンバスの再描画
-                    context.RefreshWorkingTileSetCanvas();
+                    // 作業中のタイル・セット画像の再描画
+                    context.RefreshWorkingTileSetImage();
                 }
             }
             catch (Exception ex)
