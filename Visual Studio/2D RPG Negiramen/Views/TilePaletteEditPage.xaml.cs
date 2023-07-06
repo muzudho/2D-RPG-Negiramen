@@ -9,6 +9,7 @@ using TheGraphics = Microsoft.Maui.Graphics;
 using Microsoft.Maui.Graphics.Platform;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
+using System.Diagnostics;
 #endif
 
 /// <summary>
@@ -204,10 +205,15 @@ public partial class TilePaletteEditPage : ContentPage
         UserConfiguration userConfiguration = App.GetOrLoadUserConfiguration();
 
         //
-        // 設定ファイルの読込
+        // ビューモデルの取得
         // ==================
         //
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+
+        //
+        // タイル設定ファイルの読込
+        // ========================
+        //
         if (Models.FileEntries.TileSetSettings.LoadCSV(context.TileSetSettingsFile, out Models.FileEntries.TileSetSettings tileSetSettings))
         {
             context.TileSetSettings = tileSetSettings;
@@ -239,6 +245,7 @@ public partial class TilePaletteEditPage : ContentPage
 #elif WINDOWS
                     TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
 #endif
+                    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().Name: {image.GetType().Name}");
 
                     //
                     // 作業中のタイル・セット画像の保存

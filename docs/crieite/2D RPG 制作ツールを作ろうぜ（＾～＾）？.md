@@ -2478,4 +2478,67 @@ using Microsoft.Maui.Graphics.Win2D;
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　じゃあ　Windows依存で進めるか～」  
 
+![202307_maui_07-0050--write-image.png](https://crieit.now.sh/upload_images/b3e58c6d2ee6f2c6c7c43d9fcc0fe00c64a6e2d559c5d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　PNG画像の書出しまで　でけたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　今は　タイル・セット画像の方を　MAUI　に表示してるだろ。  
+それを止めて、こっちの　作業中のタイル・セット画像の方を　MAUI　に表示してくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　分かったぜ」  
+
+（カタ　カタ　カタ　カタ　……）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　その差し替えも終わったぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　すでに登録済みのタイルは　半透明の青色で塗りつぶしておくと、  
+残作業が見えやすくなるんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　やってみるぜ」  
+
+```plaintext
+Microsoft.Maui.Graphics.IImage
+
+Microsoft.Maui.Graphics.ICanvas
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あれっ？　描画ができるのは　`IImage`　じゃなくて、　`ICanvas`　の方だぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`IImage`　を　`ICanvas`　に変換する方法がないか、調べろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ググっても出てこないから　デバッグライトするぜ。  
+IImage の実体は　`W2DImage`　らしいんだが、これも探しても出てこない」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　Ｗｉｎｄｏｗｓの２Ｄイメージなんじゃないの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイル・カーソルと同じように　`IDrawable` を実装したクラスを作って、  
+XAML の GraphicView 要素の Drawable 属性で指定したらどうだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、そうか！」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`IDrawable`　を実装したクラスと、ビュー・モデルが連携できないの  
+グローバル変数での連携が大変だぜ、どうにかならないの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　BindableObject というのが　あるそうだぜ」  
+
+📖 [In .NET MAUI, how do I pass variables to a GraphicsView.Drawable in a ContentView](https://stackoverflow.com/questions/75988921/in-net-maui-how-do-i-pass-variables-to-a-graphicsview-drawable-in-a-contentvie)  
+📖 [How to pass variable data into .NET MAUI GraphicsView canvas](https://stackoverflow.com/questions/73997548/how-to-pass-variable-data-into-net-maui-graphicsview-canvas)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　覚えてみるかだぜ」  
+
 ＜書きかけ＞
