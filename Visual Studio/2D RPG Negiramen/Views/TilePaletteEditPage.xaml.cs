@@ -191,18 +191,15 @@ public partial class TilePaletteEditPage : ContentPage
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
         //
-        // 構成ファイルの読込
-        // ==================
-        //
-        var userConfigurationPathAsStr = App.GetOrLoadConfiguration().UserConfigurationFile.Path.AsStr;
-
-        //
-        // ユーザー設定ファイルの読込
+        // ユーザー設定の読込
         // ==========================
         //
-        // -
+        UserConfiguration userConfiguration = App.GetOrLoadUserConfiguration();
+
         //
         // TODO 作業用のタイル・セット・キャンバス画像のファイルパスを取得
+        //
+        var workingTileSetCanvasImagefilePathAsStr = userConfiguration.WorkingTileSetCanvasImageFile.Path.AsStr;
 
         //
         // 設定ファイルの読込

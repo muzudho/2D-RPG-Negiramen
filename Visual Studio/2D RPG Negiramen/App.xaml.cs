@@ -81,6 +81,37 @@ public partial class App : Application
     }
     #endregion
 
+    #region 静的メソッド（ユーザー構成）
+    /// <summary>
+    /// ユーザー構成ファイルの取得、またはファイル読込
+    /// </summary>
+    /// <returns>ユーザー構成ファイル</returns>
+    static internal Models.FileEntries.UserConfiguration GetOrLoadUserConfiguration()
+    {
+        if (App.UserConfiguration == null)
+        {
+            // 構成ファイルの読込
+            if (Models.FileEntries.UserConfiguration.LoadTOML(out Models.FileEntries.UserConfiguration userConfiguration))
+            {
+                App.UserConfiguration = userConfiguration;
+            }
+
+            // TODO 構成ファイルが無かったら、エラー対応したい
+        }
+
+        return App.UserConfiguration;
+    }
+
+    /// <summary>
+    /// ユーザー構成ファイルをセット
+    /// </summary>
+    /// <param name="userConfiguration">構成ファイル</param>
+    static internal void SetUserConfiguration(Models.FileEntries.UserConfiguration userConfiguration)
+    {
+        App.UserConfiguration = userConfiguration;
+    }
+    #endregion
+
     #region 静的メソッド（設定）
     /// <summary>
     /// 設定ファイルの取得、またはファイル読込
@@ -135,6 +166,15 @@ public partial class App : Application
     ///		</list>
     /// </summary>
     static Models.FileEntries.Configuration Configuration { get; set; }
+
+    /// <summary>
+    ///		現在のユーザー構成
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    static Models.FileEntries.UserConfiguration UserConfiguration { get; set; }
 
     /// <summary>
     ///		現在の設定

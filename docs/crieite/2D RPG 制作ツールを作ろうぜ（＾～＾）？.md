@@ -2318,5 +2318,19 @@ working_tile_set_canvas = "{negiramen_workspace_folder}/Temporary/Images/working
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　わかったぜ」  
 
+（カタ　カタ　カタ　カタ　……）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　でけたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　次はその　タイル・セット画像へのファイル・パスを読込んで、  
+そして  
+`C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/Temporary/Images/working_tile_set_canvas.png` へ出力しろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　やってみるぜ」  
+
+（カタ　カタ　カタ　カタ　……）  
 
 ＜書きかけ＞

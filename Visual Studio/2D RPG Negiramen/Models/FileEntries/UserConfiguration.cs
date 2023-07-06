@@ -27,15 +27,12 @@
         {
             try
             {
-                // フォルダー名は自動的に与えられているので、これを使う
-                string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
-                // Example: `C:/Users/むずでょ/AppData/Local/Packages/1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm/LocalState`
-
-                // 読取たいファイルへのパス
-                var configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
+                // ユーザー構成ファイルへのパスは構成ファイルに与えられているので、これを使う
+                var userConfigurationFilePath = App.GetOrLoadConfiguration().UserConfigurationFile.Path.AsStr;
+                // Example: `"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/user_configuration.toml"`
 
                 // 設定ファイルの読取
-                var configurationText = System.IO.File.ReadAllText(configurationFilePath);
+                var userConfigurationText = System.IO.File.ReadAllText(userConfigurationFilePath);
 
 
                 Locations.Negiramen.WorkingTileSetCanvasImageFile workingTileSetCanvasImageFile = new Models.FileEntries.Locations.Negiramen.WorkingTileSetCanvasImageFile();
@@ -47,7 +44,7 @@
                 YourWorkName yourWorkName = new YourWorkName();
 
                 // TOML
-                TomlTable document = Toml.ToModel(configurationText);
+                TomlTable document = Toml.ToModel(userConfigurationText);
 
                 if (document != null)
                 {
@@ -100,11 +97,13 @@
             // 差分適用
             configurationBuffer.WorkingTileSetCanvasImageFile = difference.WorkingTileSetCanvasImageFile == null ? current.WorkingTileSetCanvasImageFile : difference.WorkingTileSetCanvasImageFile;
 
-            // TODO ★ 変数展開後のパスではなく、変数展開前のパス文字列を保存したい
+            //
+            // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
+            //
             var text = $@"[paths]
 
 # ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
-working_tile_set_canvas = ""{configurationBuffer.WorkingTileSetCanvasImageFile.Path.AsStr}""
+working_tile_set_canvas = ""{configurationBuffer.WorkingTileSetCanvasImageFile.PathSource.AsStr}""
 ";
 
             // 上書き
