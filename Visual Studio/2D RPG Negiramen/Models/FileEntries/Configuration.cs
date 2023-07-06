@@ -64,9 +64,12 @@
                             {
                                 if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
                                 {
-                                    negiramenWorkspaceFolder = new Locations.Negiramen.WorkspaceFolder(FileEntryPath.From(
-                                        FileEntryPathSource.FromString(negiramenWorkspaceFolderPathAsStr),
-                                        replaceSeparators: true));
+                                    var pathSource = FileEntryPathSource.FromString(negiramenWorkspaceFolderPathAsStr);
+                                    negiramenWorkspaceFolder = new Locations.Negiramen.WorkspaceFolder(
+                                        path: FileEntryPath.From(
+                                            pathSource,
+                                            replaceSeparators: true),
+                                        pathSource: pathSource);
                                 }
                             }
 
@@ -75,9 +78,12 @@
                             {
                                 if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
                                 {
-                                    unityAssetsFolder = new Locations.UnityAssetsFolder(FileEntryPath.From(
-                                        FileEntryPathSource.FromString(unityAssetsFolderPathAsStr),
-                                        replaceSeparators: true));
+                                    var pathSource = FileEntryPathSource.FromString(unityAssetsFolderPathAsStr);
+                                    unityAssetsFolder = new Locations.UnityAssetsFolder(
+                                        path: FileEntryPath.From(
+                                            pathSource,
+                                            replaceSeparators: true),
+                                        pathSource: pathSource);
                                 }
                             }
                         }
@@ -96,15 +102,18 @@
                             {
                                 if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
                                 {
-                                    userConfiguration = new Locations.Negiramen.UserConfigurationFile(FileEntryPath.From(
-                                        FileEntryPathSource.FromString(userConfigurationFilePathAsStr),
-                                        replaceSeparators: true,
-                                        // 変数展開を備える
-                                        expandVariables: new Dictionary<string, string>()
-                                        {
-                                            { "{negiramen_workspace_folder}", negiramenWorkspaceFolder.Path.AsStr },
-                                            { "{unity_assets_folder}", unityAssetsFolder.Path.AsStr},
-                                        }));
+                                    var pathSource = FileEntryPathSource.FromString(userConfigurationFilePathAsStr);
+                                    userConfiguration = new Locations.Negiramen.UserConfigurationFile(
+                                        path: FileEntryPath.From(
+                                            pathSource,
+                                            replaceSeparators: true,
+                                            // 変数展開を備える
+                                            expandVariables: new Dictionary<string, string>()
+                                            {
+                                                { "{negiramen_workspace_folder}", negiramenWorkspaceFolder.Path.AsStr },
+                                                { "{unity_assets_folder}", unityAssetsFolder.Path.AsStr},
+                                            }),
+                                        pathSource: pathSource);
                                 }
                             }
                         }

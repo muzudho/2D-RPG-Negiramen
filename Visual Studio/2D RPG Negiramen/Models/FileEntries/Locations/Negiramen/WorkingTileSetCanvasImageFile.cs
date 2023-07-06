@@ -27,8 +27,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkingTileSetCanvasImageFile(FileEntryPath fileEntryPath)
-            : base(fileEntryPath)
+        internal WorkingTileSetCanvasImageFile(FileEntryPath path, FileEntryPathSource pathSource)
+            : base(path, pathSource)
         {
         }
     }

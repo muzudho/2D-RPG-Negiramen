@@ -23,8 +23,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UnityAssetsFolder(FileEntryPath path)
-            :base(path)
+        internal UnityAssetsFolder(FileEntryPath path, FileEntryPathSource pathSource)
+            :base(path, pathSource)
         {
         }
     }

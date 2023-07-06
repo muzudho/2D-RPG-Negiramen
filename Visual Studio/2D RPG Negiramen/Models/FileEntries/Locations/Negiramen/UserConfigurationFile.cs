@@ -30,8 +30,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UserConfigurationFile(FileEntryPath fileEntryPath)
-            : base(fileEntryPath)
+        internal UserConfigurationFile(FileEntryPath path, FileEntryPathSource pathSource)
+            : base(path, pathSource)
         {
         }
     }

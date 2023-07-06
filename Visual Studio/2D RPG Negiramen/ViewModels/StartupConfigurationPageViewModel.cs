@@ -52,9 +52,12 @@
             {
                 if (_negiramenWorkspaceFolder.Path.AsStr != value)
                 {
-                    _negiramenWorkspaceFolder = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder(FileEntryPath.From(
-                        FileEntryPathSource.FromString(value),
-                        replaceSeparators: true));
+                    var pathSource = FileEntryPathSource.FromString(value);
+                    _negiramenWorkspaceFolder = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder(
+                        path: FileEntryPath.From(
+                            pathSource,
+                            replaceSeparators: true),
+                        pathSource: pathSource);
                     OnPropertyChanged();
                 }
             }
@@ -71,9 +74,12 @@
             {
                 if (_unityAssetsFolder.Path.AsStr != value)
                 {
-                    _unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder(FileEntryPath.From(
-                        FileEntryPathSource.FromString(value),
-                        replaceSeparators: true));
+                    var pathSource = FileEntryPathSource.FromString(value);
+                    _unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder(
+                        path: FileEntryPath.From(
+                            pathSource,
+                            replaceSeparators: true),
+                        pathSource: pathSource);
                     OnPropertyChanged();
                 }
             }

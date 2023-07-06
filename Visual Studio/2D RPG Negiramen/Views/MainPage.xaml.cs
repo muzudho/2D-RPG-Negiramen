@@ -392,18 +392,24 @@ public partial class MainPage : ContentPage
                 var fileStem = "map-tile-format-8x19";
 
                 // タイル・セット画像ファイル・パス
-                var tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(FileEntryPath.From(
-                    FileEntryPathSource.FromString(System.IO.Path.Combine(
-                        unityAssetsFolderPathAsStr,
-                        $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png")),
-                    replaceSeparators: true));
+                var tileSetImageFilePathSource = FileEntryPathSource.FromString(System.IO.Path.Combine(
+                            unityAssetsFolderPathAsStr,
+                            $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png"));
+                var tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(
+                    path: FileEntryPath.From(
+                        tileSetImageFilePathSource,
+                        replaceSeparators: true),
+                    pathSource: tileSetImageFilePathSource);
 
                 // タイル・セットCSVファイル・パス
-                var tileSetSettingsFile = new Models.FileEntries.Locations.TileSetSettingsFile(FileEntryPath.From(
-                    FileEntryPathSource.FromString(System.IO.Path.Combine(
+                var tileSetSettingsFilePathSource = FileEntryPathSource.FromString(System.IO.Path.Combine(
                         unityAssetsFolderPathAsStr,
-                        $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv")),
-                    replaceSeparators: true));
+                        $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv"));
+                var tileSetSettingsFile = new Models.FileEntries.Locations.TileSetSettingsFile(
+                    path: FileEntryPath.From(
+                        tileSetSettingsFilePathSource,
+                        replaceSeparators: true),
+                    pathSource: tileSetSettingsFilePathSource);
 
                 // タイル・セット画像の縦横幅
                 var tileSetSize = Models.FileEntries.PNGHelper.GetImageSize(tileSetImageFile);

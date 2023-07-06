@@ -18,9 +18,10 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal Its(FileEntryPath path)
+        internal Its(FileEntryPath path, FileEntryPathSource pathSource)
         {
             Path = path;
+            PathSource = pathSource;
         }
 
         // - インターナル・プロパティー
@@ -30,8 +31,19 @@
         ///     
         ///     <list type="bullet">
         ///         <item>ファイル・パスや、フォルダー・パスのこと</item>
+        ///         <item>セパレーター置換後、変数展開後</item>
         ///     </list>
         /// </summary>
         internal FileEntryPath Path { get; }
+
+        /// <summary>
+        ///     ファイル・エントリー・パス・ソース
+        ///     
+        ///     <list type="bullet">
+        ///         <item>設定ファイルに記入されているファイル・パスや、フォルダー・パスのこと</item>
+        ///         <item>セパレーター置換前、変数展開前</item>
+        ///     </list>
+        /// </summary>
+        internal FileEntryPathSource PathSource { get; }
     }
 }

@@ -24,8 +24,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkspaceFolder(FileEntryPath fileEntryPath)
-            : base(fileEntryPath)
+        internal WorkspaceFolder(FileEntryPath path, FileEntryPathSource pathSource)
+            : base(path, pathSource)
         {
         }
     }
