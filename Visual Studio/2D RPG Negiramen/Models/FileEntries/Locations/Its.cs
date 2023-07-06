@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
 {
+    using _2D_RPG_Negiramen.Coding;
+
     /// <summary>
     ///     😁 ファイル・ロケーション
     /// </summary>
@@ -18,10 +20,10 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal Its(FileEntryPath path, FileEntryPathSource pathSource)
+        internal Its(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
         {
-            Path = path;
             PathSource = pathSource;
+            Path = convert(PathSource);
         }
 
         // - インターナル・プロパティー

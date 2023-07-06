@@ -50,12 +50,10 @@
 
                 if (_tileSetSettingsFile.Path.AsStr != value)
                 {
-                    var pathSource = FileEntryPathSource.FromString(value);
                     _tileSetSettingsFile = new Models.FileEntries.Locations.TileSetSettingsFile(
-                        path: FileEntryPath.From(
-                            pathSource,
-                            replaceSeparators: true),
-                        pathSource: pathSource);
+                        pathSource: FileEntryPathSource.FromString(value),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
                 }
             }
         }
@@ -106,12 +104,10 @@
             {
                 if (_tileSetImageFile.Path.AsStr != value)
                 {
-                    var pathSource = FileEntryPathSource.FromString(value);
                     _tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(
-                        path: FileEntryPath.From(
-                            pathSource,
-                            replaceSeparators: true),
-                        pathSource: pathSource);
+                        pathSource: FileEntryPathSource.FromString(value),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
                     OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
                 }
             }

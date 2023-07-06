@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
 {
+    using _2D_RPG_Negiramen.Coding;
+
     /// <summary>
     ///     😁 タイル・セット画像ファイル・パス
     /// </summary>
@@ -25,8 +27,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetImageFile(FileEntryPath path, FileEntryPathSource pathSource)
-            : base(path, pathSource)
+        internal TileSetImageFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+            : base(pathSource, convert)
         {
         }
     }

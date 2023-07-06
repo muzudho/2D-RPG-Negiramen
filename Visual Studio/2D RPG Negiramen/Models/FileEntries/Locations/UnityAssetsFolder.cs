@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
 {
+    using _2D_RPG_Negiramen.Coding;
+
     /// <summary>
     ///     😁 Unityの Assets フォルダーへのパス
     /// </summary>
@@ -23,8 +25,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UnityAssetsFolder(FileEntryPath path, FileEntryPathSource pathSource)
-            :base(path, pathSource)
+        internal UnityAssetsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+            :base(pathSource, convert)
         {
         }
     }

@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Negiramen
 {
+    using _2D_RPG_Negiramen.Coding;
+
     /// <summary>
     ///     😁 ユーザー構成ファイルへのパス
     ///     
@@ -30,8 +32,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UserConfigurationFile(FileEntryPath path, FileEntryPathSource pathSource)
-            : base(path, pathSource)
+        internal UserConfigurationFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+            : base(pathSource, convert)
         {
         }
     }

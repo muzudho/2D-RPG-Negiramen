@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Negiramen
 {
+    using _2D_RPG_Negiramen.Coding;
+
     /// <summary>
     ///     😁 ネギラーメン・ワークスペースの作業中のタイル・セット・キャンバスPNG画像ファイルへのパス
     /// </summary>
@@ -27,8 +29,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal WorkingTileSetCanvasImageFile(FileEntryPath path, FileEntryPathSource pathSource)
-            : base(path, pathSource)
+        internal WorkingTileSetCanvasImageFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+            : base(pathSource, convert)
         {
         }
     }
