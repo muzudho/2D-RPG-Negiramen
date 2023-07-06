@@ -18,23 +18,6 @@
 
         #region プロパティ（タイル・セット画像ファイルへのパス）
         /// <summary>
-        ///     タイル・セット画像ファイルへのパス（文字列形式）
-        /// </summary>
-        public string TileSetImageFilePathAsStr
-        {
-            get => _tileSetImageFile.Path.AsStr;
-            set
-            {
-                if (_tileSetImageFile.Path.AsStr != value)
-                {
-                    _tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(FileEntryPath.FromString(
-                        value,
-                        replaceSeparators: true));
-                }
-            }
-        }
-
-        /// <summary>
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
         public Models.FileEntries.Locations.TileSetImageFile TileSetImageFile
@@ -45,23 +28,24 @@
                 if (_tileSetImageFile != value)
                 {
                     _tileSetImageFile = value;
+                    OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
                 }
             }
         }
         #endregion
 
-        #region プロパティ（タイル・セットCSVファイルへのパス）
+        #region プロパティ（タイル・セット設定ファイルへのパス）
         /// <summary>
-        ///     タイル・セットCSVファイルへのパス（文字列形式）
+        ///     タイル・セット設定ファイルへのパス（文字列形式）
         /// </summary>
-        public string TileSetCSVFilePathAsStr
+        public string TileSetSettingFilePathAsStr
         {
             get => _tileSetSettingsFile.Path.AsStr;
             set
             {
                 if (value==null || String.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException($"the {nameof(TileSetCSVFilePathAsStr)} must not be null or whitespace");
+                    throw new ArgumentException($"the {nameof(TileSetSettingFilePathAsStr)} must not be null or whitespace");
                 }
 
                 if (_tileSetSettingsFile.Path.AsStr != value)
@@ -74,7 +58,7 @@
         }
 
         /// <summary>
-        ///     タイル・セットCSVファイルへのパス
+        ///     タイル・セット設定ファイルへのパス
         /// </summary>
         public Models.FileEntries.Locations.TileSetSettingsFile TileSetSettingsFile
         {
@@ -107,6 +91,26 @@
         #endregion
 
         // - 変更通知プロパティ
+
+        #region 変更通知プロパティ（タイル・セット画像ファイルへのパス（文字列形式））
+        /// <summary>
+        ///     タイル・セット画像ファイルへのパス（文字列形式）
+        /// </summary>
+        public string TileSetImageFilePathAsStr
+        {
+            get => _tileSetImageFile.Path.AsStr;
+            set
+            {
+                if (_tileSetImageFile.Path.AsStr != value)
+                {
+                    _tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(FileEntryPath.FromString(
+                        value,
+                        replaceSeparators: true));
+                    OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
+                }
+            }
+        }
+        #endregion
 
         #region 変更通知プロパティ（画像サイズ）
         /// <summary>

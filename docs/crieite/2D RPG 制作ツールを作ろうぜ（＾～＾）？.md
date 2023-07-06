@@ -2308,4 +2308,15 @@ working_tile_set_canvas = "{negiramen_workspace_folder}/Temporary/Images/working
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　なかなか　前に進まないな……」  
 
+# 📅 2023-07-06 タイル・パレット編集画面へタイル・セット画像ファイルへのパスを渡せだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父ん、タイル・セット画像へのファイル・パスをハードコーディングしてるだろ。  
+まず　これを　クエリー・パラメーターに置き換えて、  
+画面遷移元から　タイル・セット画像へのファイル・パスを受け取る形にしろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　わかったぜ」  
+
+
 ＜書きかけ＞
