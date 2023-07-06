@@ -1,56 +1,36 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 ファイル・エントリー・パス
+    ///     😁 設定ファイルに記述されたままのファイル・パス
     ///     
     ///     <list type="bullet">
-    ///         <item>ファイルや、フォルダーのパスのこと</item>
+    ///         <item>セパレーター置換前</item>
+    ///         <item>変数展開前</item>
     ///     </list>
     /// </summary>
-    internal class FileEntryPath
+    internal class FileEntryPathSource
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     未設定オブジェクト
         /// </summary>
-        internal static FileEntryPath Empty { get; } = new FileEntryPath();
+        internal static FileEntryPathSource Empty { get; } = new FileEntryPathSource();
 
         /// <summary>
         ///     文字列を与えて初期化
         /// </summary>
         /// <param name="fileEntryPathAsStr">ファイル・エントリー・パス（セパレーター置換前、変数展開前）</param>
-        /// <param name="replaceSeparators">`\` を `/` へ置換</param>
-        /// <param name="expandVariables">変数展開用の辞書</param>
         /// <returns>実例</returns>
-        internal static FileEntryPath FromString(
-            string fileEntryPathAsStr,
-            bool replaceSeparators = false,
-            Dictionary<string, string> expandVariables = null)
+        internal static FileEntryPathSource FromString(
+            string fileEntryPathAsStr)
         {
             if (fileEntryPathAsStr == null)
             {
                 throw new ArgumentNullException(nameof(fileEntryPathAsStr));
             }
 
-            // セパレーター置換後、変数展開後
-            var editedPathAsStr = fileEntryPathAsStr;
-
-            if (replaceSeparators)
-            {
-                editedPathAsStr = editedPathAsStr.Replace("\\", "/");
-            }
-
-            // 変数展開
-            if (expandVariables != null)
-            {
-                foreach(var pair in expandVariables)
-                {
-                    editedPathAsStr = editedPathAsStr.Replace(pair.Key, pair.Value);
-                }
-            }
-
-            return new FileEntryPath(editedPathAsStr);
+            return new FileEntryPathSource(fileEntryPathAsStr);
         }
 
         // - その他
@@ -58,7 +38,7 @@
         /// <summary>
         ///     未設定
         /// </summary>
-        internal FileEntryPath()
+        internal FileEntryPathSource()
         {
             AsStr = string.Empty;
         }
@@ -66,7 +46,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal FileEntryPath(string asStr)
+        internal FileEntryPathSource(string asStr)
         {
             AsStr = asStr;
         }
