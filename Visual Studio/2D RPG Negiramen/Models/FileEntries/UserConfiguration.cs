@@ -64,8 +64,8 @@
                             {
                                 if (workingTileSetCanvasFilePathObj is string workingTileSetCanvasFilePathAsStr)
                                 {
-                                    workingTileSetCanvasImageFile = new Locations.Negiramen.WorkingTileSetCanvasImageFile(FileEntryPath.FromString(
-                                        workingTileSetCanvasFilePathAsStr,
+                                    workingTileSetCanvasImageFile = new Locations.Negiramen.WorkingTileSetCanvasImageFile(FileEntryPath.From(
+                                        FileEntryPathSource.FromString(workingTileSetCanvasFilePathAsStr),
                                         replaceSeparators: true));
                                 }
                             }

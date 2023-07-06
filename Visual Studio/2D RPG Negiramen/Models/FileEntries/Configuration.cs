@@ -64,8 +64,8 @@
                             {
                                 if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
                                 {
-                                    negiramenWorkspaceFolder = new Locations.Negiramen.WorkspaceFolder(FileEntryPath.FromString(
-                                        negiramenWorkspaceFolderPathAsStr,
+                                    negiramenWorkspaceFolder = new Locations.Negiramen.WorkspaceFolder(FileEntryPath.From(
+                                        FileEntryPathSource.FromString(negiramenWorkspaceFolderPathAsStr),
                                         replaceSeparators: true));
                                 }
                             }
@@ -75,8 +75,8 @@
                             {
                                 if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
                                 {
-                                    unityAssetsFolder = new Locations.UnityAssetsFolder(FileEntryPath.FromString(
-                                        unityAssetsFolderPathAsStr,
+                                    unityAssetsFolder = new Locations.UnityAssetsFolder(FileEntryPath.From(
+                                        FileEntryPathSource.FromString(unityAssetsFolderPathAsStr),
                                         replaceSeparators: true));
                                 }
                             }
@@ -96,8 +96,8 @@
                             {
                                 if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
                                 {
-                                    userConfiguration = new Locations.Negiramen.UserConfigurationFile(FileEntryPath.FromString(
-                                        userConfigurationFilePathAsStr,
+                                    userConfiguration = new Locations.Negiramen.UserConfigurationFile(FileEntryPath.From(
+                                        FileEntryPathSource.FromString(userConfigurationFilePathAsStr),
                                         replaceSeparators: true,
                                         // 変数展開を備える
                                         expandVariables: new Dictionary<string, string>()

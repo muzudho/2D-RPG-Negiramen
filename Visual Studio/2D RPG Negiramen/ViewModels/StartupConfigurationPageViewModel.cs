@@ -52,8 +52,8 @@
             {
                 if (_negiramenWorkspaceFolder.Path.AsStr != value)
                 {
-                    _negiramenWorkspaceFolder = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder(FileEntryPath.FromString(
-                        value,
+                    _negiramenWorkspaceFolder = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder(FileEntryPath.From(
+                        FileEntryPathSource.FromString(value),
                         replaceSeparators: true));
                     OnPropertyChanged();
                 }
@@ -71,8 +71,8 @@
             {
                 if (_unityAssetsFolder.Path.AsStr != value)
                 {
-                    _unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder(FileEntryPath.FromString(
-                        value,
+                    _unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder(FileEntryPath.From(
+                        FileEntryPathSource.FromString(value),
                         replaceSeparators: true));
                     OnPropertyChanged();
                 }

@@ -43,15 +43,15 @@
             get => _tileSetSettingsFile.Path.AsStr;
             set
             {
-                if (value==null || String.IsNullOrWhiteSpace(value))
+                if (value == null || String.IsNullOrWhiteSpace(value))
                 {
                     throw new ArgumentException($"the {nameof(TileSetSettingFilePathAsStr)} must not be null or whitespace");
                 }
 
                 if (_tileSetSettingsFile.Path.AsStr != value)
                 {
-                    _tileSetSettingsFile = new Models.FileEntries.Locations.TileSetSettingsFile(FileEntryPath.FromString(
-                        value,
+                    _tileSetSettingsFile = new Models.FileEntries.Locations.TileSetSettingsFile(FileEntryPath.From(
+                        FileEntryPathSource.FromString(value),
                         replaceSeparators: true));
                 }
             }
@@ -103,8 +103,8 @@
             {
                 if (_tileSetImageFile.Path.AsStr != value)
                 {
-                    _tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(FileEntryPath.FromString(
-                        value,
+                    _tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(FileEntryPath.From(
+                        FileEntryPathSource.FromString(value),
                         replaceSeparators: true));
                     OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
                 }
