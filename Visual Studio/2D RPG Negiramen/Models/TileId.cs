@@ -1,4 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿using System.Linq;
+
+namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
     ///     😁 タイルＩｄ
@@ -196,5 +198,7 @@
         ///     整数型形式で取得
         /// </summary>
         internal int AsInt => source;
+
+        internal string AsBASE64 => Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(this.AsInt.ToString()));
     }
 }

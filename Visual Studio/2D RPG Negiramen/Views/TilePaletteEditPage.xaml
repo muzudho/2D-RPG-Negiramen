@@ -333,12 +333,14 @@
                 ３段目 読み仮名部
                 =================
             -->
-            <Label Grid.Row="2" Grid.Column="1"
+            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
+                   Padding="0,0,4,0"
                    Text="Ｉｄ"/>
             
-            <Label Grid.Row="2" Grid.Column="2" Grid.ColumnSpan="5"
+            <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
+                   Padding="4,0,0,0"
                    Text="コメント"/>
 
             <!--
@@ -355,13 +357,14 @@
                         IsEnabled="False"
                         Text="削除"/>
             </Grid>
-            
-            <Label Grid.Row="3" Grid.Column="1"
+
+            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileIdAsInt}"/>
+                   Text="{Binding TileIdAsBASE64}"                   
+                   IsReadOnly="True"/>
 
-            <Entry Grid.Row="3" Grid.Column="2" Grid.ColumnSpan="5"
+            <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                    Placeholder="草原"
                    Text="{Binding CommentAsStr}"
                    BackgroundColor="White"/>

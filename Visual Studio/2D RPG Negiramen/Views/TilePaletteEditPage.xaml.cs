@@ -245,7 +245,7 @@ public partial class TilePaletteEditPage : ContentPage
 #elif WINDOWS
                     TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
 #endif
-                    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().Name: {image.GetType().Name}");
+                    // Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().Name: {image.GetType().Name}");
 
                     //
                     // 作業中のタイル・セット画像の保存

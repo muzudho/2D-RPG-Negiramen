@@ -718,13 +718,13 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（タイルＩｄ）
+        #region 変更通知プロパティ（タイルＩｄ。BASE64表現）
         /// <summary>
-        ///     タイルＩｄ
+        ///     タイルＩｄ。BASE64表現
         /// </summary>
-        public int TileIdAsInt
+        public string TileIdAsBASE64
         {
-            get => this.TileSetSettings.UsableId.AsInt;
+            get => this.TileSetSettings.UsableId.AsBASE64;
         }
         #endregion
 
@@ -777,7 +777,7 @@
         /// </summary>
         internal void RefreshTileId()
         {
-            OnPropertyChanged(nameof(TileIdAsInt));
+            OnPropertyChanged(nameof(TileIdAsBASE64));
         }
 
 

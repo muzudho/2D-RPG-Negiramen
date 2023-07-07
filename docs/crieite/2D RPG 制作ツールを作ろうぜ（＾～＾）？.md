@@ -2541,4 +2541,90 @@ XAML の GraphicView 要素の Drawable 属性で指定したらどうだぜ？�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　覚えてみるかだぜ」  
 
+# 📅 2023-07-07 ＩｄをＢＡＳＥ６４にしようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Ｉｄ　を　ＢＡＳＥ６４　にしようぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　メリットは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　人は　整数を見ると　１から順にソートしたくなる。  
+ＢＡＳＥ６４　なら　ソートしようとは思わない。  
+Ｉｄをソートしようとする悲しい人類を救うことができる」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　エビデンスは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　無い。本番環境で実験だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　やってみろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　`Convert` クラスを使ってみるか」  
+
+📖 [Convert.ToBase64String メソッド](https://learn.microsoft.com/ja-jp/dotnet/api/system.convert.tobase64string?view=net-7.0)  
+📖 [Converting string to byte array in C#](https://stackoverflow.com/questions/16072709/converting-string-to-byte-array-in-c-sharp)  
+![202307_maui_07-1848--id-base64-o2o0.png](https://crieit.now.sh/upload_images/7e85ff318ad543c2c7aa06ea053ad4df64a7df978f24b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Ｉｄを　ＢＡＳＥ６４にしたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　わらう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　桁数が気になるわね。  
+`1` は `MQ==` だけど、 `1000` は `MTAwMA==` よ？」  
+
+📖 [データ変換ツール](https://hogehoge.tk/tool/)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　３桁ぐらいの文字なら　４桁ぐらいに変換されて気にならないが、  
+４桁ぐらいの文字は　８桁ぐらいに変換されて　メモリ効率は　２倍になって　悪くなるな。  
+だいたい、　１．３倍ぐらい　メモリ効率は悪くなるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　メモリ効率が１．３倍に悪くなることと引き換えに  
+悲しい人類がＩｄをソートしようとすることを防ごうと言うのね」  
+
+![202307_maui_07-1856--id1000-base64-o2o0.png](https://crieit.now.sh/upload_images/30f25eb86d832d9e1e7888d05f229d2a64a7e186b8bd9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Ｉｄが１０００に達したとき、ＢＡＳＥ６４にすると　改行されてしまうのは　悪しと見るか、  
+コーナーケースに合わせるとキリがないので　これで良しと見るか」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　１０００枚もタイルが含まれる　タイル・セット画像を　利用するやつ、  
+そんなとこ　気にするでもなく　ハードワーカーだろ」   
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　９９９枚もタイルが含まれない　タイル・セット画像を　利用する人にとっては、  
+無駄なスペースが　空いていることの方が　きにするでしょう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、Ｉｄ　をマウスで選択できね。気になるな……。  
+選択可能なテキストで、かつ入力ができない　リード・オンリーな設定できるかな……？」  
+
+![202307_maui_07-1909--readonly-o2o0.png](https://crieit.now.sh/upload_images/14918b0d3da799690f561ed48553d82964a7e4b1cca16.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　でけた。  
+フォント・サイズは　きっかり　スタイルで決まっているようで　任意サイズにはできなかったので  
+`Entry` 要素を広げたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ラベルの　`Ｉｄ` と `コメント` の間に　パディング　入れられないの？」  
+
+![202307_maui_07-1914--padding-o2o0.png](https://crieit.now.sh/upload_images/1d57c69fb2b67362aeac43afcd0260fb64a7e5a403848.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　入れれるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　良くなった。ラベルの文字は　隣のセルと　くっつかないようにしましょう」  
+
 ＜書きかけ＞
