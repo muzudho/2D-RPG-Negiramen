@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Text;
 
 namespace _2D_RPG_Negiramen.Models
 {
@@ -181,9 +182,63 @@ namespace _2D_RPG_Negiramen.Models
         ///         BASE64 を、オーラル・コミュニケーションがしやすいように英単語に変換するもの
         ///     </pre>
         /// </summary>
-        static Dictionary<string, string> PhoneticAlphabet = new Dictionary<string, string>()
+        static Dictionary<char, string> PhoneticAlphabet = new Dictionary<char, string>()
         {
-
+            {'A', "Alice"},
+            {'B', "Boart"},
+            {'C', "Castle"},
+            {'D', "Drink"},
+            {'E', "Elf"},
+            {'F', "Forest"},
+            {'G', "Gold"},
+            {'H', "Hotel"},
+            {'I', "Island"},
+            {'J', "John"},
+            {'K', "King"},
+            {'L', "Level"},
+            {'M', "Madam"},
+            {'N', "News"},
+            {'O', "Ork"},
+            {'P', "Pond"},
+            {'Q', "Queen"},
+            {'R', "Room"},
+            {'S', "Soup"},
+            {'T', "Talk"},
+            {'U', "Uncle"},
+            {'V', "Video"},
+            {'W', "Wolf"},
+            {'X', "Xams"},
+            {'Y', "Yogurt"},
+            {'Z', "Zebra"},
+            {'a', "and"},
+            {'b', "big"},
+            {'c', "clean"},
+            {'d', "damage"},
+            {'e', "evil"},
+            {'f', "fake"},
+            {'g', "get"},
+            {'h', "hit"},
+            {'i', "ice"},
+            {'j', "jump"},
+            {'k', "kick"},
+            {'l', "love"},
+            {'m', "magic"},
+            {'n', "no"},
+            {'o', "oily"},
+            {'p', "poison"},
+            {'q', "quiz"},
+            {'r', "rain"},
+            {'s', "solty"},
+            {'t', "trendy"},
+            {'u', "up"},
+            {'v', "victory"},
+            {'w', "wind"},
+            {'x', "xrated"},
+            {'y', "your"},
+            {'z', "zenith"},
+            {'+', "+"},
+            {'/', "/"},
+            {'=', "="},
         };
 
         // - その他
@@ -211,6 +266,21 @@ namespace _2D_RPG_Negiramen.Models
         /// </summary>
         internal int AsInt => source;
 
-        internal string AsBASE64 => Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(this.AsInt.ToString()));
+        internal string AsTileCode
+        {
+            get
+            {
+                var base64string = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(this.AsInt.ToString()));
+
+                List<string> list = new List<string>();
+
+                foreach (char c in base64string)
+                {
+                    list.Add(PhoneticAlphabet[c]);
+                }
+
+                return String.Join(" ", list);
+            }
+        }
     }
 }

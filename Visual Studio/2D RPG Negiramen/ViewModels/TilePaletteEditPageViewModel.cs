@@ -86,7 +86,7 @@
                 this._tileSetSettings = value;
 
                 // 再描画
-                RefreshTileId();
+                RefreshTileCode();
             }
         }
         #endregion
@@ -722,9 +722,9 @@
         /// <summary>
         ///     タイルＩｄ。BASE64表現
         /// </summary>
-        public string TileIdAsBASE64
+        public string TileIdAsCode
         {
-            get => this.TileSetSettings.UsableId.AsBASE64;
+            get => this.TileSetSettings.UsableId.AsTileCode;
         }
         #endregion
 
@@ -775,9 +775,9 @@
         /// <summary>
         ///     タイルＩｄの再描画
         /// </summary>
-        internal void RefreshTileId()
+        internal void RefreshTileCode()
         {
-            OnPropertyChanged(nameof(TileIdAsBASE64));
+            OnPropertyChanged(nameof(TileIdAsCode));
         }
 
 

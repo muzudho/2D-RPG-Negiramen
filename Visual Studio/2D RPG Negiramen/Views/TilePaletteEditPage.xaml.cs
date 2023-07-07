@@ -174,7 +174,7 @@ public partial class TilePaletteEditPage : ContentPage
             onTileIdUpdated: () =>
             {
                 // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
-                context.RefreshTileId();
+                context.RefreshTileCode();
             });
 
         //

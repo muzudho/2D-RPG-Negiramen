@@ -2772,32 +2772,32 @@ W	Wolf        ウルフ
 X	Xmas        クリスマス
 Y	Yogurt      ヨーグルト
 Z	Zebra       ゼブラ
-a	And         アンド
-b	Big         ビッグ
-c	Clean       クリーン
-d	Damage      ダメージ
-e	Evil        イーブル
-f	Fake        フェイク
-g	Get         ゲット
-h	Hit         ヒット
-i	Ice         アイス
-j	Jump        ジャンプ
-k	Kick        キック
-l	Love        ラブ
-m	Magic       マジック
-n	No          ノー
-o	Oily        オイリー
-p	Poison      ポイズン
-q	Quiz        クイズ
-r	Rain        レイン
-s	Solty       ソルティー
-t	Trendy      トレンディー
-u	Up          アップ
-v	Victory     ビクトリー
-w	Wind        ウィンド
-x	Xrated      エックスレーテド
-y	Your        ユワ
-z	Zenith      ゼニス
+a	and         アンド
+b	big         ビッグ
+c	clean       クリーン
+d	damage      ダメージ
+e	evil        イーブル
+f	fake        フェイク
+g	get         ゲット
+h	hit         ヒット
+i	ice         アイス
+j	jump        ジャンプ
+k	kick        キック
+l	love        ラブ
+m	magic       マジック
+n	no          ノー
+o	oily        オイリー
+p	poison      ポイズン
+q	quiz        クイズ
+r	rain        レイン
+s	solty       ソルティー
+t	trendy      トレンディー
+u	up          アップ
+v	victory     ビクトリー
+w	wind        ウィンド
+x	xrated      エックスレーテド
+y	your        ユワ
+z	zenith      ゼニス
 0	0           （数字）
 1	1           （数字）
 2	2           （数字）
@@ -2819,7 +2819,41 @@ z	Zenith      ゼニス
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　趣向を変えたんだな」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　単語の先頭だけ切り取れば　BASE64　に戻るぜ」  
+
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　動かしてみましょう」  
+
+![202307_maui_08-0017--madam-get-o2o0.png](https://crieit.now.sh/upload_images/03abe093944466b6d15dd0742b6db64864a82cf761532.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`Madam get = =` になるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　BASE64 より　さらに　６倍近く　長くならない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　なりそう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　Ｉｄ　１０００　で試しなさい」  
+
+![202307_maui_08-0025--long-code.png](https://crieit.now.sh/upload_images/4e4f33c04c26f9536fb1972070cd580864a82e94a3031.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　今の３倍ぐらいの長さにすれば　入りそう」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ユーザーは　何だこれは？　と思わないだろうか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　思う」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　あと、 BASE64 は、文字列連結しないのであれば　桁のプレースホルダーの `=` は省いていいそうよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ちょっと考えるぜ」  
 
 ＜書きかけ＞
