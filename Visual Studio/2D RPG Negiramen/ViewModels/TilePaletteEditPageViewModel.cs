@@ -722,9 +722,19 @@
         /// <summary>
         ///     タイルＩｄ。BASE64表現
         /// </summary>
-        public string TileIdAsCode
+        public string TileIdAsBASE64
         {
-            get => this.TileSetSettings.UsableId.AsTileCode;
+            get => this.TileSetSettings.UsableId.AsBASE64;
+        }
+        #endregion
+
+        #region 変更通知プロパティ（タイルＩｄ。フォネティックコード表現）
+        /// <summary>
+        ///     タイルＩｄ。フォネティックコード表現
+        /// </summary>
+        public string TileIdAsPhoneticCode
+        {
+            get => this.TileSetSettings.UsableId.AsPhoneticCode;
         }
         #endregion
 
@@ -777,7 +787,8 @@
         /// </summary>
         internal void RefreshTileCode()
         {
-            OnPropertyChanged(nameof(TileIdAsCode));
+            OnPropertyChanged(nameof(TileIdAsBASE64));
+            OnPropertyChanged(nameof(TileIdAsPhoneticCode));
         }
 
 

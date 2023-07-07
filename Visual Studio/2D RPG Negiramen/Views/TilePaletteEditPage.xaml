@@ -65,7 +65,7 @@
         </HorizontalStackLayout>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="80,*,144">
+    <Grid RowDefinitions="80,*,164">
 
         <!--
             上メニュー
@@ -272,7 +272,7 @@
             ==========
         -->
         <Grid Grid.Row="2"
-              RowDefinitions="16,48,16,48" ColumnDefinitions="128,64,64,64,64,64,*"
+              RowDefinitions="16,48,16,48,20" ColumnDefinitions="128,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
@@ -335,7 +335,6 @@
             -->
             <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
                    Padding="0,0,4,0"
                    Text="タイル・コード"/>
             
@@ -361,7 +360,7 @@
             <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileIdAsCode}"                   
+                   Text="{Binding TileIdAsBASE64}"
                    IsReadOnly="True"/>
 
             <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
@@ -369,6 +368,21 @@
                    Text="{Binding CommentAsStr}"
                    BackgroundColor="White"/>
 
+            <!--
+                ５段目 ヒント部
+                ===============
+            -->
+            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Start"
+                   Padding="0,0,4,0"
+                   Text="コードのおぼえかた"/>
+
+            <Label Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
+                   HorizontalTextAlignment="Start"
+                   VerticalTextAlignment="Start"
+                   Padding="0,0,4,0"
+                   Text="{Binding TileIdAsPhoneticCode}"/>
         </Grid>
     </Grid>
 </ContentPage>

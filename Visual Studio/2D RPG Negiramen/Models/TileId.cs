@@ -236,6 +236,16 @@ namespace _2D_RPG_Negiramen.Models
             {'x', "xrated"},
             {'y', "your"},
             {'z', "zenith"},
+            {'0', "0"},
+            {'1', "1"},
+            {'2', "2"},
+            {'3', "3"},
+            {'4', "4"},
+            {'5', "5"},
+            {'6', "6"},
+            {'7', "7"},
+            {'8', "8"},
+            {'9', "9"},
             {'+', "+"},
             {'/', "/"},
             {'=', "="},
@@ -266,15 +276,27 @@ namespace _2D_RPG_Negiramen.Models
         /// </summary>
         internal int AsInt => source;
 
-        internal string AsTileCode
+        /// <summary>
+        ///     BASE64形式
+        /// </summary>
+        internal string AsBASE64
         {
             get
             {
-                var base64string = Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(this.AsInt.ToString()));
+                return Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(this.AsInt.ToString())).Replace("=", "");
+            }
+        }
 
+        /// <summary>
+        ///     フォネティックコード形式
+        /// </summary>
+        internal string AsPhoneticCode
+        {
+            get
+            {
                 List<string> list = new List<string>();
 
-                foreach (char c in base64string)
+                foreach (char c in AsBASE64)
                 {
                     list.Add(PhoneticAlphabet[c]);
                 }
