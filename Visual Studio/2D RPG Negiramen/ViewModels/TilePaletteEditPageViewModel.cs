@@ -7,7 +7,7 @@
     ///     😁 ［タイル・パレット編集ページ］ビューモデル
     /// </summary>
     [QueryProperty(nameof(TileSetImageFile), queryId: "TileSetImageFile")]
-    [QueryProperty(nameof(TileSetSettingsFile), queryId: "TileSetSettingFile")]
+    [QueryProperty(nameof(TileSetSettingsFile), queryId: "TileSetSettingsFile")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]

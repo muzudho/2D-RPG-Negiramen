@@ -2627,4 +2627,97 @@ XAML の GraphicView 要素の Drawable 属性で指定したらどうだぜ？�
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　良くなった。ラベルの文字は　隣のセルと　くっつかないようにしましょう」  
 
+![202307_maui_07-1920--tileId-o2o0.png](https://crieit.now.sh/upload_images/88e02f2b30f5af3ac8391a9295a3b95164a7e73844aaa.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`Ｉｄ` だけだと　オーラル・コミュニケーションで困るだろうから  
+`タイルＩｄ` と書いといてやろう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　そのＩｄって、　ひだり、うえ、よこ、たて　から一意に決まらないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　例えば　`128,32,96,32`　を　ＢＡＳＥ６４に変換擦ると　`MTI4LDMyLDk2LDMy`　だぜ。  
+これだったら　ベクターを２つ　覚えておいた方がマシかも」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　情報で構成されている　Ｉｄ　なんて、イケてないぜ。それは暗号だぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あくまで　表示に　ＢＡＳＥ６４　を使っているだけで、内部的には　整数なんで」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　このタイルＩｄは、プロジェクトの中で一意なの？  
+それとも　タイル・セット画像ファイルの中で一意なの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　凝り出すと　ＵＵＩＤ　に行きついてしまう。  
+タイル・セット画像ファイルの中での　ローカルなＩｄだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　タイルＩｄには　タイル・セット画像ファイルのＩｄも　表示しないと  
+本当のタイルＩｄにはならないんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイル・セット画像ファイルに　Ｉｄを振ることが難しい。  
+プロジェクトの中での　ローカルなＩｄなら　振れるだろうけど、  
+そのＩｄは　別のプロジェクトへ使い回せない」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　プロジェクトに　ＵＵＩＤ　振ればいいんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ブランチして　開発が平行したら　ノー・コントロール　になってしまう」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　なんで　タイルＩｄ　なんか採番するんだぜ？  
+**ファイル名、ひだり、うえ、よこ、たて**　が本当のＩｄなんじゃないのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あるファイル内の中だけで使える、  
+**ひだり、うえ、よこ、たて**　の情報を　３桁程度の整数に集約するのが　タイルＩｄ　だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　その情報を　ユーザーに提示する理由は？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`タイル１`、 `タイル２` のような **タイル名** を　ユーザーに入力させないこと、  
+`1`、 `2` のような **連番** を　ユーザーに入力させないこと、  
+これらの代替が　**タイルＩｄ**　だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　意義はあるんだ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　しかし　それは　**Ｉｄ**　の働きを持っていないのでは？  
+何かと言えば　**コード**　なのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　内部的には　**Ｉｄ**　なんだが、表示上は　**コード**　だな。  
+じゃあ　オーラル・コミュニケーションを考えて　ラベルを変えるかだぜ」  
+
+![202307_maui_07-1955--tile-code-o2o0.png](https://crieit.now.sh/upload_images/847f17addadf34d8a27bd4f3297b4d9b64a7efb0ec7c0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　確かに　**タイル・コード**　にすると　しっくりしたな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　しかし　そもそも　**ＢＡＳＥ６４**　は、　**オーラル・コミュニケーション**　には向いていないのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　諫言だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　ＢＡＳＥ６４の　６４文字に対して　`Apple` とか、 `Banana` とか  
+プロナウンサブル（Pronounceable；発音可能）な単語を当てたらどう？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　インターナショナル（International；国際的）に通用するフォニックス（Phonics；発音）ってある？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　軍事か通信、航空あたりを調べれば　何か規格があるのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　調べるか～」  
+
 ＜書きかけ＞
