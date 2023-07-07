@@ -2720,4 +2720,106 @@ XAML の GraphicView 要素の Drawable 属性で指定したらどうだぜ？�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　調べるか～」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ナトー　のがあったぜ」  
+
+📖 [NATOフォネティックコード](https://ja.wikipedia.org/wiki/NATOフォネティックコード)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　はっきり　西側に寄り添うの　わらう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　大文字と小文字は　区別しないのか～」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　英語のフォネティックコードが人名なんで、大文字にかこつけて　大文字は英語にしたらいいんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあそれで。作ってみるか～」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　大文字も　小文字も　`X-ray`　になるんだが」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　違う所から　持ってきなさい」  
+
+```plaintext
+BASE64  英単語       読み
+------  ---------   -------
+A	Alice       アリス
+B	Boart       ボート
+C	Castle      キャッスル
+D	Drink       ドリンク
+E	Elf         エルフ
+F	Forest      フォレスト
+G	Gold        ゴールド
+H	Hotel       ホテル
+I	Island      アイランド
+J	John        ジョン
+K	King        キング
+L	Level       レベル
+M	Madam       マダム
+N	News        ニュース
+O	Ork         オーク
+P	Pond        ポンド
+Q	Queen       クイーン
+R	Room        ルーム
+S	Soup        スープ
+T	Talk        トーク
+U	Uncle       アンクル
+V	Video       ビデオ
+W	Wolf        ウルフ
+X	Xmas        クリスマス
+Y	Yogurt      ヨーグルト
+Z	Zebra       ゼブラ
+a	And         アンド
+b	Big         ビッグ
+c	Clean       クリーン
+d	Damage      ダメージ
+e	Evil        イーブル
+f	Fake        フェイク
+g	Get         ゲット
+h	Hit         ヒット
+i	Ice         アイス
+j	Jump        ジャンプ
+k	Kick        キック
+l	Love        ラブ
+m	Magic       マジック
+n	No          ノー
+o	Oily        オイリー
+p	Poison      ポイズン
+q	Quiz        クイズ
+r	Rain        レイン
+s	Solty       ソルティー
+t	Trendy      トレンディー
+u	Up          アップ
+v	Victory     ビクトリー
+w	Wind        ウィンド
+x	Xrated      エックスレーテド
+y	Your        ユワ
+z	Zenith      ゼニス
+0	0           （数字）
+1	1           （数字）
+2	2           （数字）
+3	3           （数字）
+4	4           （数字）
+5	5           （数字）
+6	6           （数字）
+7	7           （数字）
+8	8           （数字）
+9	9           （数字）
++	+           （プラス）
+/	/           （スラッシュ）
+=	=           （イコール）
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ゲームに出てきそうな　短い英単語を　持ってきたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　趣向を変えたんだな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　動かしてみましょう」  
+
 ＜書きかけ＞

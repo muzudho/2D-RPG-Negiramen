@@ -167,12 +167,24 @@ namespace _2D_RPG_Negiramen.Models
         }
         #endregion
 
-        // - 静的プロパティー
+        // - インターナル静的プロパティー
 
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
         internal static TileId Empty = new TileId(0);
+
+        // - プライベート静的プロパティー
+
+        /// <summary>
+        ///     <pre>
+        ///         BASE64 を、オーラル・コミュニケーションがしやすいように英単語に変換するもの
+        ///     </pre>
+        /// </summary>
+        static Dictionary<string, string> PhoneticAlphabet = new Dictionary<string, string>()
+        {
+
+        };
 
         // - その他
 
