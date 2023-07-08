@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing
 {
     using Microsoft.Maui.Graphics;
+    using System.Diagnostics;
 
 
     /// <summary>
@@ -24,12 +25,13 @@
             {
                 // 選択中
                 canvas.StrokeColor = new Color(0, 0, 255, 95);
+                Trace.WriteLine("[TileCursor Draw] 半透明の青いカーソル");
             }
             else
             {
                 // 確定時
-                // canvas.StrokeColor = Colors.Red;
                 canvas.StrokeColor = Colors.Blue;
+                Trace.WriteLine("[TileCursor Draw] 青いカーソル");
             }
 
 

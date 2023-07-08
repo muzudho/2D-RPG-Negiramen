@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
+using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models.FileEntries;
 using _2D_RPG_Negiramen.ViewModels;
 using System.IO;
@@ -9,8 +10,9 @@ using TheGraphics = Microsoft.Maui.Graphics;
 using Microsoft.Maui.Graphics.Platform;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
-using System.Diagnostics;
+using TheDiagnostics = System.Diagnostics;
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.Coding;
 #endif
 
 /// <summary>
@@ -60,6 +62,7 @@ public partial class TilePaletteEditPage : ContentPage
             // 疑似マウス・ダウン
             // ==================
             //
+            TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
 
             // タップした位置
             PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.Point(
@@ -88,6 +91,8 @@ public partial class TilePaletteEditPage : ContentPage
             // ==================
             //
 
+            TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
+
             // ポイントしている位置
             PointingDeviceCurrentPoint = new Models.Point(
                 new Models.X((int)e.GetPosition((Element)sender).Value.X),
@@ -108,9 +113,6 @@ public partial class TilePaletteEditPage : ContentPage
             context.SelectedTileWidthAsInt = cursorRectangle.Size.Width.AsInt;
             context.SelectedTileHeightAsInt = cursorRectangle.Size.Height.AsInt;
 
-            // タイル・カーソルのキャンバスの再描画
-            context.RefreshCanvasOfTileCursor();
-
             //
             // タイルが登録済みか？
             // ====================
@@ -119,6 +121,8 @@ public partial class TilePaletteEditPage : ContentPage
                 rect: cursorRectangle,
                 out Models.TileRecord record))
             {
+                TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ");
+
                 //
                 // データ表示
                 // ==========
@@ -126,11 +130,14 @@ public partial class TilePaletteEditPage : ContentPage
 
                 // TODO 追加ボタンを、上書きボタンへラベル変更
                 // TODO 削除ボタン活性化
-                // TODO タイルＩｄ表示
-                // TODO コメント表示
+
+                // 選択中のタイルを設定
+                context.SelectedTileOption = new Option<Models.TileRecord>(record);
             }
             else
             {
+                TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+
                 //
                 // 空欄にする
                 // ==========
@@ -139,12 +146,17 @@ public partial class TilePaletteEditPage : ContentPage
                 // TODO 追加ボタン活性化
                 // TODO 削除ボタン不活性化
 
-                // TODO タイルＩｄ　空欄
-                // context.TileSetSettings.UsableId = ？
-                // TODO ★ 選択中のタイルという概念が必要か？
-
-                // TODO コメント　空欄
+                // 選択中のタイルを解除
+                context.SelectedTileOption = Option<Models.TileRecord>.None;
             }
+
+            //
+            // 再描画
+            // ======
+            //
+
+            // タイル・カーソルのキャンバスの再描画
+            // context.RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPage TapGestureRecognizer_Tapped]");
         }
     }
 

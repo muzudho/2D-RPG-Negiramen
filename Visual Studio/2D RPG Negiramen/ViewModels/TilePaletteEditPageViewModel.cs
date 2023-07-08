@@ -3,6 +3,7 @@
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
+    using System.Diagnostics;
 
     /// <summary>
     ///     😁 ［タイル・パレット編集ページ］ビューモデル
@@ -101,14 +102,24 @@
             get => this._selectedTileOption;
             set
             {
-                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || SelectedTileOption != value)
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
                 {
-                    // 現在値がヌル、または値が異なるとき、差替え
-                    this._selectedTileOption = value;
-
-                    this.RefreshCanvasOfTileCursor();
-                    this.RefreshTileCode();
+                    if (SelectedTileOption == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
                 }
+                else
+                {
+                    // 現在値がヌル
+                }
+
+                this._selectedTileOption = value;
+
+                this.RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel SelectedTileOption set]");
+                this.RefreshTileCode();
+                // TODO コメントもリフレッシュしたい
             }
         }
         #endregion
@@ -326,7 +337,7 @@
                     _tileCursorCanvasSize = new Models.Size(new Models.Width(value), _tileCursorCanvasSize.Height);
 
                     // キャンバスを再描画
-                    RefreshCanvasOfTileCursor();
+                    RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel TileCursorCanvasWidthAsInt set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
@@ -351,7 +362,7 @@
                     _tileCursorCanvasSize = new Models.Size(_tileCursorCanvasSize.Width, new Models.Height(value));
 
                     // キャンバスを再描画
-                    RefreshCanvasOfTileCursor();
+                    RefreshCanvasOfTileCursor("[TilePaletteEditPageViewModel TileCursorCanvasHeightAsInt set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
@@ -476,7 +487,7 @@
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
-                    RefreshCanvasOfTileCursor();
+                    RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel GridTileWidthAsInt set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(GridTileWidthAsInt));
@@ -503,7 +514,7 @@
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
-                    RefreshCanvasOfTileCursor();
+                    RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel GridTileHeightAsInt set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(GridTileHeightAsInt));
@@ -571,28 +582,44 @@
             }
             set
             {
-                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Point.X.AsInt != value)
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
                 {
-                    // 現在値がヌル、または値が異なるとき、差替え
+                    if (selectedTile.Rectangle.Point.X.AsInt == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Rectangle(
                             point: new Models.Point(new Models.X(value), selectedTile.Rectangle.Point.Y),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment));
-
-                    this.TileCursorPointAsMargin = new Thickness(
-                        // 左
-                        this.SelectedTileLeftAsInt,
-                        // 上
-                        this.SelectedTileTopAsInt,
-                        // 右
-                        0,
-                        // 下
-                        0);
-
-                    OnPropertyChanged(nameof(SelectedTileLeftAsInt));
                 }
+                else
+                {
+                    // 現在値がヌル
+
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: Models.TileId.Empty,
+                        rectangle: new Models.Rectangle(
+                            point: new Models.Point(new Models.X(value), Models.Y.Empty),
+                            size: Models.Size.Empty),
+                        comment: Models.Comment.Empty));
+                }
+
+                this.TileCursorPointAsMargin = new Thickness(
+                    // 左
+                    this.SelectedTileLeftAsInt,
+                    // 上
+                    this.SelectedTileTopAsInt,
+                    // 右
+                    0,
+                    // 下
+                    0);
+
+                OnPropertyChanged(nameof(SelectedTileLeftAsInt));
             }
         }
 
@@ -618,16 +645,34 @@
             }
             set
             {
-                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Point.Y.AsInt != value)
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
                 {
-                    _selectedTileOption = new Option<TileRecord>( new Models.TileRecord(
+                    if (selectedTile.Rectangle.Point.Y.AsInt == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Rectangle(
                             point: new Models.Point(selectedTile.Rectangle.Point.X, new Models.Y(value)),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment));
+                }
+                else
+                {
+                    // 現在値がヌル
 
-                    this.TileCursorPointAsMargin = new Thickness(
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: Models.TileId.Empty,
+                        rectangle: new Models.Rectangle(
+                            point: new Models.Point(Models.X.Empty, new Models.Y(value)),
+                            size: Models.Size.Empty),
+                        comment: Models.Comment.Empty));
+                }
+
+                this.TileCursorPointAsMargin = new Thickness(
                         // 左
                         this.SelectedTileLeftAsInt,
                         // 上
@@ -637,8 +682,7 @@
                         // 下
                         0);
 
-                    OnPropertyChanged(nameof(SelectedTileTopAsInt));
-                }
+                OnPropertyChanged(nameof(SelectedTileTopAsInt));
             }
         }
         #endregion
@@ -663,26 +707,42 @@
             }
             set
             {
-                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Size.Width.AsInt != value)
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
                 {
+                    if (selectedTile.Rectangle.Size.Width.AsInt == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(new Models.Width(value), selectedTile.Rectangle.Size.Height)),
                         comment: selectedTile.Comment));
-
-                    App.SelectedTileSize = new Models.Size(new Models.Width(value), App.SelectedTileSize.Height);
-
-                    //
-                    // タイル・カーソルのキャンバス・サイズ変更
-                    // ========================================
-                    //
-                    // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
-                    var cursorWidth = value;
-                    var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
-                    TileCursorCanvasWidthAsInt = cursorWidth + doubleCursorLineThickness;
-
-                    OnPropertyChanged(nameof(SelectedTileWidthAsInt));
                 }
+                else
+                {
+                    // 現在値がヌル
+
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: Models.TileId.Empty,
+                        rectangle: new Models.Rectangle(Models.Point.Empty, new Models.Size(new Models.Width(value), Models.Height.Empty)),
+                        comment: Models.Comment.Empty));
+                }
+
+
+                App.SelectedTileSize = new Models.Size(new Models.Width(value), App.SelectedTileSize.Height);
+
+                //
+                // タイル・カーソルのキャンバス・サイズ変更
+                // ========================================
+                //
+                // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
+                var cursorWidth = value;
+                var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                TileCursorCanvasWidthAsInt = cursorWidth + doubleCursorLineThickness;
+
+                OnPropertyChanged(nameof(SelectedTileWidthAsInt));
             }
         }
 
@@ -705,26 +765,40 @@
             }
             set
             {
-                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Size.Height.AsInt != value)
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
                 {
+                    if (selectedTile.Rectangle.Size.Height.AsInt == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(selectedTile.Rectangle.Size.Width, new Models.Height(value))),
                         comment: selectedTile.Comment));
-
-                    App.SelectedTileSize = new Models.Size(App.SelectedTileSize.Width, new Models.Height(value));
-
-                    //
-                    // タイル・カーソルのキャンバス・サイズ変更
-                    // ========================================
-                    //
-                    // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
-                    var cursorHeight = value;
-                    var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
-                    TileCursorCanvasHeightAsInt = cursorHeight + doubleCursorLineThickness;
-
-                    OnPropertyChanged(nameof(SelectedTileHeightAsInt));
                 }
+                else
+                {
+                    // 現在値がヌル
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: TileId.Empty,
+                        rectangle: new Models.Rectangle(Models.Point.Empty, new Models.Size(Models.Width.Empty, new Models.Height(value))),
+                        comment: Models.Comment.Empty));
+                }
+
+                App.SelectedTileSize = new Models.Size(App.SelectedTileSize.Width, new Models.Height(value));
+
+                //
+                // タイル・カーソルのキャンバス・サイズ変更
+                // ========================================
+                //
+                // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
+                var cursorHeight = value;
+                var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                TileCursorCanvasHeightAsInt = cursorHeight + doubleCursorLineThickness;
+
+                OnPropertyChanged(nameof(SelectedTileHeightAsInt));
             }
         }
         #endregion
@@ -794,21 +868,23 @@
         ///                 振動させることで、再描画を呼び起こすことにする
         ///     </pre>
         /// </summary>
-        internal void RefreshCanvasOfTileCursor()
+        internal void RefreshCanvasOfTileCursor(string codePlace= "[TilePaletteEditPageViewModel RefreshCanvasOfTileCursor]")
         {
             int offset;
 
             if (this._tileCursorCanvasSize.Width.AsInt % 2 == 1)
             {
+                Trace.WriteLine($"{codePlace} 幅 {this._tileCursorCanvasSize.Width.AsInt} から 1 引く");
                 offset = -1;
             }
             else
             {
+                Trace.WriteLine($"{codePlace} 幅 {this._tileCursorCanvasSize.Width.AsInt} へ 1 足す");
                 offset = 1;
             }
 
             // 循環参照を避けるために、直接フィールドを変更
-            this._tileCursorCanvasSize = new Models.Size(new Models.Width(this._tileCursorCanvasSize.Width.AsInt - offset), new Models.Height(this._tileCursorCanvasSize.Height.AsInt));
+            this._tileCursorCanvasSize = new Models.Size(new Models.Width(this._tileCursorCanvasSize.Width.AsInt + offset), new Models.Height(this._tileCursorCanvasSize.Height.AsInt));
             OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
         }
         #endregion
