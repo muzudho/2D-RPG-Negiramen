@@ -121,7 +121,7 @@ public partial class TilePaletteEditPage : ContentPage
                 rect: cursorRectangle,
                 out Models.TileRecord record))
             {
-                TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ");
+                TheDiagnostics.Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
 
                 //
                 // データ表示
