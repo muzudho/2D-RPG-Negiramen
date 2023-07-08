@@ -102,6 +102,8 @@
             get => this._selectedTileOption;
             set
             {
+                Models.TileRecord newValue;
+
                 if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (SelectedTileOption == value)
@@ -109,16 +111,27 @@
                         // 値に変化がない
                         return;
                     }
+
+                    newValue = selectedTile;
                 }
                 else
                 {
                     // 現在値がヌル
+                    newValue = Models.TileRecord.Empty;
                 }
 
-                this._selectedTileOption = value;
+                // 変更通知を送りたいので、構成要素ごとに設定
+                // TODO SelectedTileId
+                this.SelectedTileLeftAsInt = newValue.Rectangle.Point.X.AsInt;
+                this.SelectedTileTopAsInt = newValue.Rectangle.Point.Y.AsInt;
+                this.SelectedTileWidthAsInt = newValue.Rectangle.Size.Width.AsInt;
+                this.SelectedTileHeightAsInt = newValue.Rectangle.Size.Height.AsInt;
+                // TODO this.SelectedTileComment = 
+                // this._selectedTileOption = value;
 
                 this.RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel SelectedTileOption set]");
                 this.RefreshTileCode();
+                // TODO 矩形もリフレッシュしたい
                 // TODO コメントもリフレッシュしたい
             }
         }
