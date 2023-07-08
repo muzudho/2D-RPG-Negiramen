@@ -308,25 +308,25 @@
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileCursorXAsInt}"
+                   Text="{Binding SelectedTileLeftAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileCursorYAsInt}"
+                   Text="{Binding SelectedTileTopAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileCursorWidthAsInt}"
+                   Text="{Binding SelectedTileWidthAsInt}"
                    FontSize="24"/>
 
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileCursorHeightAsInt}"
+                   Text="{Binding SelectedTileHeightAsInt}"
                    FontSize="24"/>
 
             <!--

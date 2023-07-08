@@ -76,10 +76,10 @@ public partial class TilePaletteEditPage : ContentPage
             // ============
             //
             TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-            context.TileCursorXAsInt = cursorRectangle.Point.X.AsInt;
-            context.TileCursorYAsInt = cursorRectangle.Point.Y.AsInt;
-            context.TileCursorWidthAsInt = cursorRectangle.Size.Width.AsInt;
-            context.TileCursorHeightAsInt = cursorRectangle.Size.Height.AsInt;
+            context.SelectedTileLeftAsInt = cursorRectangle.Point.X.AsInt;
+            context.SelectedTileTopAsInt = cursorRectangle.Point.Y.AsInt;
+            context.SelectedTileWidthAsInt = cursorRectangle.Size.Width.AsInt;
+            context.SelectedTileHeightAsInt = cursorRectangle.Size.Height.AsInt;
         }
         else
         {
@@ -103,10 +103,10 @@ public partial class TilePaletteEditPage : ContentPage
             // ============
             //
             TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-            context.TileCursorXAsInt = cursorRectangle.Point.X.AsInt;
-            context.TileCursorYAsInt = cursorRectangle.Point.Y.AsInt;
-            context.TileCursorWidthAsInt = cursorRectangle.Size.Width.AsInt;
-            context.TileCursorHeightAsInt = cursorRectangle.Size.Height.AsInt;
+            context.SelectedTileLeftAsInt = cursorRectangle.Point.X.AsInt;
+            context.SelectedTileTopAsInt = cursorRectangle.Point.Y.AsInt;
+            context.SelectedTileWidthAsInt = cursorRectangle.Size.Width.AsInt;
+            context.SelectedTileHeightAsInt = cursorRectangle.Size.Height.AsInt;
 
             // タイル・カーソルのキャンバスの再描画
             context.RefreshCanvasOfTileCursor();
@@ -177,10 +177,10 @@ public partial class TilePaletteEditPage : ContentPage
             // ============
             //
             TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-            context.TileCursorXAsInt = cursorRectangle.Point.X.AsInt;
-            context.TileCursorYAsInt = cursorRectangle.Point.Y.AsInt;
-            context.TileCursorWidthAsInt = cursorRectangle.Size.Width.AsInt;
-            context.TileCursorHeightAsInt = cursorRectangle.Size.Height.AsInt;
+            context.SelectedTileLeftAsInt = cursorRectangle.Point.X.AsInt;
+            context.SelectedTileTopAsInt = cursorRectangle.Point.Y.AsInt;
+            context.SelectedTileWidthAsInt = cursorRectangle.Size.Width.AsInt;
+            context.SelectedTileHeightAsInt = cursorRectangle.Size.Height.AsInt;
         }
     }
 
@@ -201,11 +201,11 @@ public partial class TilePaletteEditPage : ContentPage
             id: context.TileSetSettings.UsableId,
             rect: new Models.Rectangle(
                 point: new Models.Point(
-                    x: new Models.X(context.TileCursorXAsInt),
-                    y: new Models.Y(context.TileCursorYAsInt)),
+                    x: new Models.X(context.SelectedTileLeftAsInt),
+                    y: new Models.Y(context.SelectedTileTopAsInt)),
                 size: new Models.Size(
-                    width: new Models.Width(context.TileCursorWidthAsInt),
-                    height: new Models.Height(context.TileCursorHeightAsInt))),
+                    width: new Models.Width(context.SelectedTileWidthAsInt),
+                    height: new Models.Height(context.SelectedTileHeightAsInt))),
             comment: new Models.Comment(context.CommentAsStr),
             onTileIdUpdated: () =>
             {

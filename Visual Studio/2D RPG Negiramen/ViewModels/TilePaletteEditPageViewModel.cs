@@ -546,14 +546,16 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（選択タイルの矩形）
         /// <summary>
         ///     <pre>
         ///         タイル・カーソルの位置ｘ
         ///         選択タイルの位置ｘ
         ///     </pre>
         /// </summary>
-        public int TileCursorXAsInt
+        public int SelectedTileLeftAsInt
         {
             get
             {
@@ -581,15 +583,15 @@
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
-                        this.TileCursorXAsInt,
+                        this.SelectedTileLeftAsInt,
                         // 上
-                        this.TileCursorYAsInt,
+                        this.SelectedTileTopAsInt,
                         // 右
                         0,
                         // 下
                         0);
 
-                    OnPropertyChanged(nameof(TileCursorXAsInt));
+                    OnPropertyChanged(nameof(SelectedTileLeftAsInt));
                 }
             }
         }
@@ -600,7 +602,7 @@
         ///         選択タイルの位置ｙ
         ///     </pre>
         /// </summary>
-        public int TileCursorYAsInt
+        public int SelectedTileTopAsInt
         {
             get
             {
@@ -627,145 +629,25 @@
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
-                        this.TileCursorXAsInt,
+                        this.SelectedTileLeftAsInt,
                         // 上
-                        this.TileCursorYAsInt,
+                        this.SelectedTileTopAsInt,
                         // 右
                         0,
                         // 下
                         0);
 
-                    OnPropertyChanged(nameof(TileCursorYAsInt));
+                    OnPropertyChanged(nameof(SelectedTileTopAsInt));
                 }
             }
         }
         #endregion
 
-        #region 変更通知プロパティ（タイル・カーソルのサイズ）
-        /// <summary>
-        ///     タイル・カーソルの横幅
-        /// </summary>
-        public int TileCursorWidthAsInt
-        {
-            get => App.WorkingTileCursorSize.Width.AsInt;
-            set
-            {
-                if (App.WorkingTileCursorSize.Width.AsInt != value)
-                {
-                    App.WorkingTileCursorSize = new Models.Size(new Models.Width(value), App.WorkingTileCursorSize.Height);
-
-                    //
-                    // タイル・カーソルのキャンバス・サイズ変更
-                    // ========================================
-                    //
-                    // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
-                    var cursorWidth = value;
-                    var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
-                    TileCursorCanvasWidthAsInt = cursorWidth + doubleCursorLineThickness;
-
-                    OnPropertyChanged(nameof(TileCursorWidthAsInt));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     タイル・カーソルの縦幅
-        /// </summary>
-        public int TileCursorHeightAsInt
-        {
-            get => App.WorkingTileCursorSize.Height.AsInt;
-            set
-            {
-                if (App.WorkingTileCursorSize.Height.AsInt != value)
-                {
-                    App.WorkingTileCursorSize = new Models.Size(App.WorkingTileCursorSize.Width, new Models.Height(value));
-
-                    //
-                    // タイル・カーソルのキャンバス・サイズ変更
-                    // ========================================
-                    //
-                    // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
-                    var cursorHeight = value;
-                    var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
-                    TileCursorCanvasHeightAsInt = cursorHeight + doubleCursorLineThickness;
-
-                    OnPropertyChanged(nameof(TileCursorHeightAsInt));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（選択タイルの矩形 TODO ★ 似てる？）
-        /// <summary>
-        ///     選択タイルの位置ｘ
-        /// </summary>
-        public int TileLeftAsInt
-        {
-            get
-            {
-                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
-                {
-                    return selectedTile.Rectangle.Point.X.AsInt;
-                }
-                else
-                {
-                    // 未選択時
-                    return 0;
-                }
-            }
-            set
-            {
-                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Point.X.AsInt != value)
-                {
-                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
-                        rectangle: new Models.Rectangle(
-                            point: new Models.Point(new Models.X(value), selectedTile.Rectangle.Point.Y),
-                            size: selectedTile.Rectangle.Size),
-                        comment: selectedTile.Comment));
-
-                    OnPropertyChanged(nameof(TileLeftAsInt));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     選択タイルの位置ｙ
-        /// </summary>
-        public int TileTopAsInt
-        {
-            get
-            {
-                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
-                {
-                    return selectedTile.Rectangle.Point.Y.AsInt;
-                }
-                else
-                {
-                    // 未選択時
-                    return 0;
-                }
-            }
-            set
-            {
-                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Point.Y.AsInt != value)
-                {
-                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
-                        rectangle: new Models.Rectangle(
-                            point: new Models.Point(selectedTile.Rectangle.Point.X, new Models.Y(value)),
-                            size: selectedTile.Rectangle.Size),
-                        comment: selectedTile.Comment));
-
-                    OnPropertyChanged(nameof(TileTopAsInt));
-                }
-            }
-        }
-
+        #region 変更通知プロパティ（選択タイルのサイズ）
         /// <summary>
         ///     選択タイルの横幅
         /// </summary>
-        public int TileWidthAsInt
+        public int SelectedTileWidthAsInt
         {
             get
             {
@@ -788,7 +670,18 @@
                         rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(new Models.Width(value), selectedTile.Rectangle.Size.Height)),
                         comment: selectedTile.Comment));
 
-                    OnPropertyChanged(nameof(TileTopAsInt));
+                    App.SelectedTileSize = new Models.Size(new Models.Width(value), App.SelectedTileSize.Height);
+
+                    //
+                    // タイル・カーソルのキャンバス・サイズ変更
+                    // ========================================
+                    //
+                    // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
+                    var cursorWidth = value;
+                    var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                    TileCursorCanvasWidthAsInt = cursorWidth + doubleCursorLineThickness;
+
+                    OnPropertyChanged(nameof(SelectedTileWidthAsInt));
                 }
             }
         }
@@ -796,7 +689,7 @@
         /// <summary>
         ///     選択タイルの縦幅
         /// </summary>
-        public int TileHeightAsInt
+        public int SelectedTileHeightAsInt
         {
             get
             {
@@ -812,14 +705,25 @@
             }
             set
             {
-                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Size.Width.AsInt != value)
+                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Size.Height.AsInt != value)
                 {
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(selectedTile.Rectangle.Size.Width, new Models.Height(value))),
                         comment: selectedTile.Comment));
 
-                    OnPropertyChanged(nameof(TileTopAsInt));
+                    App.SelectedTileSize = new Models.Size(App.SelectedTileSize.Width, new Models.Height(value));
+
+                    //
+                    // タイル・カーソルのキャンバス・サイズ変更
+                    // ========================================
+                    //
+                    // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
+                    var cursorHeight = value;
+                    var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                    TileCursorCanvasHeightAsInt = cursorHeight + doubleCursorLineThickness;
+
+                    OnPropertyChanged(nameof(SelectedTileHeightAsInt));
                 }
             }
         }

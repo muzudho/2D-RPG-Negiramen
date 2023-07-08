@@ -106,9 +106,9 @@
         }
 
         /// <summary>
-        ///     タイル・カーソルの位置ｘ
+        ///     選択タイルの位置ｘ
         /// </summary>
-        public int TileCursorXAsInt
+        public int SelectedTileLeftAsInt
         {
             get => _tileCursorPoint.X.AsInt;
             set
@@ -116,13 +116,13 @@
                 if (_tileCursorPoint.X.AsInt != value)
                 {
                     _tileCursorPoint = new Models.Point(new Models.X(value), _tileCursorPoint.Y);
-                    OnPropertyChanged(nameof(TileCursorXAsInt));
+                    OnPropertyChanged(nameof(SelectedTileLeftAsInt));
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
-                        this.TileCursorXAsInt,
+                        this.SelectedTileLeftAsInt,
                         // 上
-                        this.TileCursorYAsInt,
+                        this.SelectedTileTopAsInt,
                         // 右
                         0,
                         // 下
@@ -132,9 +132,9 @@
         }
 
         /// <summary>
-        ///     タイル・カーソルの位置ｙ
+        ///     選択タイルの位置ｙ
         /// </summary>
-        public int TileCursorYAsInt
+        public int SelectedTileTopAsInt
         {
             get => _tileCursorPoint.Y.AsInt;
             set
@@ -142,13 +142,13 @@
                 if (_tileCursorPoint.Y.AsInt != value)
                 {
                     _tileCursorPoint = new Models.Point(_tileCursorPoint.X, new Models.Y(value));
-                    OnPropertyChanged(nameof(TileCursorYAsInt));
+                    OnPropertyChanged(nameof(SelectedTileTopAsInt));
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
-                        this.TileCursorXAsInt,
+                        this.SelectedTileLeftAsInt,
                         // 上
-                        this.TileCursorYAsInt,
+                        this.SelectedTileTopAsInt,
                         // 右
                         0,
                         // 下

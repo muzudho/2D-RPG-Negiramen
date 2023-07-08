@@ -40,8 +40,8 @@
             Models.ThicknessOfLine thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = thickness.AsInt;
 
-            // タイル・カーソルのサイズ
-            Models.Size tileCursorSize = App.WorkingTileCursorSize;
+            // 選択タイルのサイズ
+            Models.Size tileCursorSize = App.SelectedTileSize;
 
             // キャンバス・サイズいっぱいにタイル・カーソルを描画
             canvas.DrawRectangle(new Rect(

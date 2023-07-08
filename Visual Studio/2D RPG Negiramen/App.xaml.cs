@@ -30,9 +30,13 @@ public partial class App : Application
     static internal Models.Size WorkingGridTileSize { get; set; } = new Models.Size(new Models.Width(32), new Models.Height(32));
 
     /// <summary>
-    ///     現在作業中の画面の中でのタイル・カーソル・サイズ
+    ///     <pre>
+    ///         現在作業中の画面の中での選択タイルのサイズ
+    ///         
+    ///         IDrawing インスタンスに値を渡すのに使う
+    ///     </pre>
     /// </summary>
-    static internal Models.Size WorkingTileCursorSize { get; set; } = new Models.Size(new Models.Width(0), new Models.Height(0));
+    static internal Models.Size SelectedTileSize { get; set; } = new Models.Size(new Models.Width(0), new Models.Height(0));
 
     /// <summary>
     ///     グリッド全体の左上表示位置

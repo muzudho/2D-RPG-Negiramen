@@ -71,7 +71,7 @@ public partial class TilePalettePage : ContentPage
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
         context.TappedXOnImageAsInt = tapped.X.AsInt;
         context.TappedYOnImageAsInt = tapped.Y.AsInt;
-        context.TileCursorXAsInt = tileCursor.X.AsInt;
-        context.TileCursorYAsInt = tileCursor.Y.AsInt;
+        context.SelectedTileLeftAsInt = tileCursor.X.AsInt;
+        context.SelectedTileTopAsInt = tileCursor.Y.AsInt;
     }
 }
