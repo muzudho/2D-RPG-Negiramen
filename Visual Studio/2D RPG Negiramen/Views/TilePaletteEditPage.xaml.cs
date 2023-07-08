@@ -99,63 +99,8 @@ public partial class TilePaletteEditPage : ContentPage
                 new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
-            // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
-            var selectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
-            // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
-
-            //
-            // 計算値の反映
-            // ============
-            //
-            TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-
-            //
-            // タイルが登録済みか？
-            // ====================
-            //
-            if (context.TileSetSettings.TryGetByRectangle(
-                rect: selectedTileRectangle,
-                out Models.TileRecord record))
-            {
-                TheDiagnostics.Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
-
-                //
-                // データ表示
-                // ==========
-                //
-
-                // TODO 追加ボタンを、上書きボタンへラベル変更
-                // TODO 削除ボタン活性化
-
-                // 選択中のタイルを設定
-                context.SelectedTileOption = new Option<Models.TileRecord>(record);
-            }
-            else
-            {
-                TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
-
-                //
-                // 空欄にする
-                // ==========
-                //
-
-                // TODO 追加ボタン活性化
-                // TODO 削除ボタン不活性化
-
-                // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                context.SelectedTileOption = new Option<Models.TileRecord>(new Models.TileRecord(
-                    id: Models.TileId.Empty,
-                    rectangle: selectedTileRectangle,
-                    comment: Models.Comment.Empty));
-            }
-
-            //
-            // 再描画
-            // ======
-            //
-
-            // タイル・カーソルのキャンバスの再描画
-            // context.RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPage TapGestureRecognizer_Tapped]");
+            // タイル・フォームの表示更新
+            RefreshTileForm();
         }
     }
 
@@ -179,21 +124,84 @@ public partial class TilePaletteEditPage : ContentPage
                 new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
-            // タイル・カーソルの矩形
-            var cursorRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
-            // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
+            // タイル・フォームの表示更新
+            RefreshTileForm();
 
-            //
-            // 計算値の反映
-            // ============
-            //
-            TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-            context.SelectedTileLeftAsInt = cursorRectangle.Point.X.AsInt;
-            context.SelectedTileTopAsInt = cursorRectangle.Point.Y.AsInt;
-            context.SelectedTileWidthAsInt = cursorRectangle.Size.Width.AsInt;
-            context.SelectedTileHeightAsInt = cursorRectangle.Size.Height.AsInt;
+            //// ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
+            //var selectingTileRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
+            //// Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
+
+            ////
+            //// 計算値の反映
+            //// ============
+            ////
+            //TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+            //context.SelectedTileLeftAsInt = selectingTileRectangle.Point.X.AsInt;
+            //context.SelectedTileTopAsInt = selectingTileRectangle.Point.Y.AsInt;
+            //context.SelectedTileWidthAsInt = selectingTileRectangle.Size.Width.AsInt;
+            //context.SelectedTileHeightAsInt = selectingTileRectangle.Size.Height.AsInt;
         }
     }
+
+    // - プライベート・メソッド
+
+    /// <summary>
+    /// タイル・フォームの表示更新
+    /// </summary>
+    void RefreshTileForm()
+    {
+        // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
+        var selectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
+        // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
+
+        //
+        // 計算値の反映
+        // ============
+        //
+        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+
+        //
+        // タイルが登録済みか？
+        // ====================
+        //
+        if (context.TileSetSettings.TryGetByRectangle(
+            rect: selectedTileRectangle,
+            out Models.TileRecord record))
+        {
+            TheDiagnostics.Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
+
+            //
+            // データ表示
+            // ==========
+            //
+
+            // TODO 追加ボタンを、上書きボタンへラベル変更
+            // TODO 削除ボタン活性化
+
+            // 選択中のタイルを設定
+            context.SelectedTileOption = new Option<Models.TileRecord>(record);
+        }
+        else
+        {
+            TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+
+            //
+            // 空欄にする
+            // ==========
+            //
+
+            // TODO 追加ボタン活性化
+            // TODO 削除ボタン不活性化
+
+            // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
+            context.SelectedTileOption = new Option<Models.TileRecord>(new Models.TileRecord(
+                id: Models.TileId.Empty,
+                rectangle: selectedTileRectangle,
+                comment: Models.Comment.Empty));
+        }
+    }
+
+    // - イベントハンドラ
 
     #region イベントハンドラ（［追加］ボタン・クリック時）
     /// <summary>
