@@ -553,12 +553,17 @@
         /// </summary>
         public int TileCursorXAsInt
         {
-            get => _tileCursorPoint.X.AsInt;
+            get => _selectedTile.Rectangle.Point.X.AsInt;
             set
             {
-                if (_tileCursorPoint.X.AsInt != value)
+                if (_selectedTile.Rectangle.Point.X.AsInt != value)
                 {
-                    _tileCursorPoint = new Models.Point(new Models.X(value), _tileCursorPoint.Y);
+                    _selectedTile = new Models.TileRecord(
+                        id: _selectedTile.Id,
+                        rectangle: new Models.Rectangle(
+                            point: new Models.Point(new Models.X(value), _selectedTile.Rectangle.Point.Y),
+                            size: _selectedTile.Rectangle.Size),
+                        comment: _selectedTile.Comment);
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
@@ -583,12 +588,17 @@
         /// </summary>
         public int TileCursorYAsInt
         {
-            get => _tileCursorPoint.Y.AsInt;
+            get => _selectedTile.Rectangle.Point.Y.AsInt;
             set
             {
-                if (_tileCursorPoint.Y.AsInt != value)
+                if (_selectedTile.Rectangle.Point.Y.AsInt != value)
                 {
-                    _tileCursorPoint = new Models.Point(_tileCursorPoint.X, new Models.Y(value));
+                    _selectedTile = new Models.TileRecord(
+                        id: _selectedTile.Id,
+                        rectangle: new Models.Rectangle(
+                            point: new Models.Point(_selectedTile.Rectangle.Point.X, new Models.Y(value)),
+                            size: _selectedTile.Rectangle.Size),
+                        comment: _selectedTile.Comment);
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
@@ -898,16 +908,9 @@
 
         /// <summary>
         ///     選択タイル
+        ///     タイル・カーソルの矩形を含む
         /// </summary>
-        TileRecord _selectedTile;
-
-        /// <summary>
-        ///     <pre>
-        ///         タイル・カーソルの位置
-        ///         選択タイルの位置
-        ///     </pre>
-        /// </summary>
-        Models.Point _tileCursorPoint = Models.Point.Empty;
+        TileRecord _selectedTile = Models.TileRecord.Empty;
 
         // - プライベート・メソッド
 

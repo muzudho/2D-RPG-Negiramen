@@ -5,7 +5,11 @@
     /// </summary>
     class TileRecord
     {
-        // - パブリック・プロパティ
+        // - インターナル静的プロパティ
+
+        internal static TileRecord Empty = new TileRecord();
+
+        // - インターナル・プロパティ
 
         /// <summary>
         ///     Ｉｄ
@@ -28,6 +32,9 @@
         ///     生成
         /// </summary>
         public TileRecord()
+            : this(Models.TileId.Empty,
+                   Models.Rectangle.Empty,
+                   Models.Comment.Empty)
         {
         }
 

@@ -117,7 +117,7 @@ public partial class TilePaletteEditPage : ContentPage
             //
             if(context.TileSetSettings.TryGetByRectangle(
                 rect: cursorRectangle,
-                out TileRecord record))
+                out Models.TileRecord record))
             {
                 //
                 // データ表示
