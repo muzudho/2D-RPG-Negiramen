@@ -914,11 +914,6 @@
         /// </summary>
         TileRecord _selectedTile = Models.TileRecord.Empty;
 
-        /// <summary>
-        ///     タイルＩｄ
-        /// </summary>
-        Models.TileId _tileId = Models.TileId.Empty;
-
         // - プライベート・メソッド
 
         #region メソッド（グリッドのキャンバスの再描画）
