@@ -99,8 +99,8 @@ public partial class TilePaletteEditPage : ContentPage
                 new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
-            // タイル・カーソルの矩形
-            var cursorRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
+            // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
+            var selectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
             // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
             //
@@ -108,19 +108,13 @@ public partial class TilePaletteEditPage : ContentPage
             // ============
             //
             TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-            // TODO Id
-            context.SelectedTileLeftAsInt = cursorRectangle.Point.X.AsInt;
-            context.SelectedTileTopAsInt = cursorRectangle.Point.Y.AsInt;
-            context.SelectedTileWidthAsInt = cursorRectangle.Size.Width.AsInt;
-            context.SelectedTileHeightAsInt = cursorRectangle.Size.Height.AsInt;
-            // TODO コメント
 
             //
             // タイルが登録済みか？
             // ====================
             //
             if (context.TileSetSettings.TryGetByRectangle(
-                rect: cursorRectangle,
+                rect: selectedTileRectangle,
                 out Models.TileRecord record))
             {
                 TheDiagnostics.Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
@@ -151,7 +145,7 @@ public partial class TilePaletteEditPage : ContentPage
                 // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
                 context.SelectedTileOption = new Option<Models.TileRecord>(new Models.TileRecord(
                     id: Models.TileId.Empty,
-                    rectangle: cursorRectangle,
+                    rectangle: selectedTileRectangle,
                     comment: Models.Comment.Empty));
             }
 

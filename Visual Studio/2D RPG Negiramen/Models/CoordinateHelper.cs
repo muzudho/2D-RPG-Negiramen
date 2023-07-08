@@ -8,7 +8,7 @@
         // - インターナル・メソッド
 
         /// <summary>
-        /// カーソルの矩形を算出
+        ///     ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
         /// </summary>
         internal static Models.Rectangle GetCursorRectangle(
             Models.Point startPoint,
