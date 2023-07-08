@@ -676,12 +676,15 @@
         /// </summary>
         public int TileLeftAsInt
         {
-            get => _tileRect.Point.X.AsInt;
+            get => _selectedTile.Rectangle.Point.X.AsInt;
             set
             {
-                if (_tileRect.Point.X.AsInt != value)
+                if (_selectedTile.Rectangle.Point.X.AsInt != value)
                 {
-                    _tileRect = new Models.Rectangle(new Models.Point(new Models.X(value), _tileRect.Point.Y), _tileRect.Size);
+                    _selectedTile = new TileRecord(
+                        id: _selectedTile.Id,
+                        rectangle: new Models.Rectangle(new Models.Point(new Models.X(value), _selectedTile.Rectangle.Point.Y), _selectedTile.Rectangle.Size),
+                        comment: _selectedTile.Comment);
                     OnPropertyChanged(nameof(TileLeftAsInt));
                 }
             }
@@ -692,12 +695,15 @@
         /// </summary>
         public int TileTopAsInt
         {
-            get => _tileRect.Point.Y.AsInt;
+            get => _selectedTile.Rectangle.Point.Y.AsInt;
             set
             {
-                if (_tileRect.Point.Y.AsInt != value)
+                if (_selectedTile.Rectangle.Point.Y.AsInt != value)
                 {
-                    _tileRect = new Models.Rectangle(new Models.Point(_tileRect.Point.X, new Models.Y(value)), _tileRect.Size);
+                    _selectedTile = new Models.TileRecord(
+                        id: _selectedTile.Id,
+                        rectangle: new Models.Rectangle(new Models.Point(_selectedTile.Rectangle.Point.X, new Models.Y(value)), _selectedTile.Rectangle.Size),
+                        comment: _selectedTile.Comment);
                     OnPropertyChanged(nameof(TileTopAsInt));
                 }
             }
@@ -708,12 +714,15 @@
         /// </summary>
         public int TileWidthAsInt
         {
-            get => _tileRect.Size.Width.AsInt;
+            get => _selectedTile.Rectangle.Size.Width.AsInt;
             set
             {
-                if (_tileRect.Size.Width.AsInt != value)
+                if (_selectedTile.Rectangle.Size.Width.AsInt != value)
                 {
-                    _tileRect = new Models.Rectangle(_tileRect.Point, new Models.Size(new Models.Width(value), _tileRect.Size.Height));
+                    _selectedTile = new Models.TileRecord(
+                        id: _selectedTile.Id,
+                        rectangle: new Models.Rectangle(_selectedTile.Rectangle.Point, new Models.Size(new Models.Width(value), _selectedTile.Rectangle.Size.Height)),
+                        comment: _selectedTile.Comment);
                     OnPropertyChanged(nameof(TileWidthAsInt));
                 }
             }
@@ -724,12 +733,15 @@
         /// </summary>
         public int TileHeightAsInt
         {
-            get => _tileRect.Size.Height.AsInt;
+            get => _selectedTile.Rectangle.Size.Height.AsInt;
             set
             {
-                if (_tileRect.Size.Height.AsInt != value)
+                if (_selectedTile.Rectangle.Size.Height.AsInt != value)
                 {
-                    _tileRect = new Models.Rectangle(_tileRect.Point, new Models.Size(_tileRect.Size.Width, new Models.Height(value)));
+                    _selectedTile = new Models.TileRecord(
+                        id: _selectedTile.Id,
+                        rectangle: new Models.Rectangle(_selectedTile.Rectangle.Point, new Models.Size(_selectedTile.Rectangle.Size.Width, new Models.Height(value))),
+                        comment: _selectedTile.Comment);
                     OnPropertyChanged(nameof(TileHeightAsInt));
                 }
             }
@@ -854,16 +866,6 @@
         Models.Size _gridCanvasSize = Models.Size.Empty;
 
         /// <summary>
-        ///     タイル矩形
-        /// </summary>
-        Models.Rectangle _tileRect = Models.Rectangle.Empty;
-
-        /// <summary>
-        ///     タイルＩｄ
-        /// </summary>
-        Models.TileId _tileId = Models.TileId.Empty;
-
-        /// <summary>
         ///     コメント
         /// </summary>
         Models.Comment _comment = Models.Comment.Empty;
@@ -911,6 +913,11 @@
         ///     タイル・カーソルの矩形を含む
         /// </summary>
         TileRecord _selectedTile = Models.TileRecord.Empty;
+
+        /// <summary>
+        ///     タイルＩｄ
+        /// </summary>
+        Models.TileId _tileId = Models.TileId.Empty;
 
         // - プライベート・メソッド
 
