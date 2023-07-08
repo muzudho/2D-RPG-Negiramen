@@ -108,16 +108,18 @@ public partial class TilePaletteEditPage : ContentPage
             // ============
             //
             TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+            // TODO Id
             context.SelectedTileLeftAsInt = cursorRectangle.Point.X.AsInt;
             context.SelectedTileTopAsInt = cursorRectangle.Point.Y.AsInt;
             context.SelectedTileWidthAsInt = cursorRectangle.Size.Width.AsInt;
             context.SelectedTileHeightAsInt = cursorRectangle.Size.Height.AsInt;
+            // TODO コメント
 
             //
             // タイルが登録済みか？
             // ====================
             //
-            if(context.TileSetSettings.TryGetByRectangle(
+            if (context.TileSetSettings.TryGetByRectangle(
                 rect: cursorRectangle,
                 out Models.TileRecord record))
             {
@@ -146,8 +148,11 @@ public partial class TilePaletteEditPage : ContentPage
                 // TODO 追加ボタン活性化
                 // TODO 削除ボタン不活性化
 
-                // 選択中のタイルを解除
-                context.SelectedTileOption = Option<Models.TileRecord>.None;
+                // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
+                context.SelectedTileOption = new Option<Models.TileRecord>(new Models.TileRecord(
+                    id: Models.TileId.Empty,
+                    rectangle: cursorRectangle,
+                    comment: Models.Comment.Empty));
             }
 
             //
@@ -196,6 +201,7 @@ public partial class TilePaletteEditPage : ContentPage
         }
     }
 
+    #region イベントハンドラ（［追加］ボタン・クリック時）
     /// <summary>
     ///     ［追加］ボタン・クリック時
     /// </summary>
@@ -210,6 +216,7 @@ public partial class TilePaletteEditPage : ContentPage
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
         context.TileSetSettings.Add(
+            // 新しいＩｄを追加
             id: context.TileSetSettings.UsableId,
             rect: new Models.Rectangle(
                 point: new Models.Point(
@@ -218,7 +225,7 @@ public partial class TilePaletteEditPage : ContentPage
                 size: new Models.Size(
                     width: new Models.Width(context.SelectedTileWidthAsInt),
                     height: new Models.Height(context.SelectedTileHeightAsInt))),
-            comment: new Models.Comment(context.CommentAsStr),
+            comment: new Models.Comment(context.SelectedTileCommentAsStr),
             onTileIdUpdated: () =>
             {
                 // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
@@ -238,9 +245,11 @@ public partial class TilePaletteEditPage : ContentPage
             // TODO 保存失敗時のエラー対応
         }
     }
+    #endregion
 
+    #region イベントハンドラ（ページ読込完了時）
     /// <summary>
-    /// ページ読込完了時
+    ///     ページ読込完了時
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
@@ -319,4 +328,5 @@ public partial class TilePaletteEditPage : ContentPage
 
         Task.WaitAll(new Task[] { task });
     }
+    #endregion
 }

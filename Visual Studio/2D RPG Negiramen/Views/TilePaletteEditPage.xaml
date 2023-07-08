@@ -365,7 +365,7 @@
 
             <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                    Placeholder="草原"
-                   Text="{Binding CommentAsStr}"
+                   Text="{Binding SelectedTileCommentAsStr}"
                    BackgroundColor="White"/>
 
             <!--

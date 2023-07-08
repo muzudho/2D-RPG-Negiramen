@@ -88,13 +88,6 @@ namespace _2D_RPG_Negiramen.Coding
         }
         #endregion
 
-        // - インターナル静的プロパティ
-
-        /// <summary>
-        ///     ヌル・オブジェクト
-        /// </summary>
-        internal static Option<T> None = new Option<T>(default(T));
-
         // - その他
 
         /// <summary>

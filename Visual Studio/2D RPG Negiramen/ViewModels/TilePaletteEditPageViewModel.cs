@@ -112,7 +112,11 @@
                         return;
                     }
 
-                    newValue = selectedTile;
+                    // 必ず取れる想定
+                    if (!value.TryGetValue(out newValue))
+                    {
+                        throw new InvalidOperationException("none must not be specified");
+                    }
                 }
                 else
                 {
@@ -126,8 +130,7 @@
                 this.SelectedTileTopAsInt = newValue.Rectangle.Point.Y.AsInt;
                 this.SelectedTileWidthAsInt = newValue.Rectangle.Size.Width.AsInt;
                 this.SelectedTileHeightAsInt = newValue.Rectangle.Size.Height.AsInt;
-                // TODO this.SelectedTileComment = 
-                // this._selectedTileOption = value;
+                this.SelectedTileCommentAsStr = newValue.Comment.AsStr;
 
                 this.RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel SelectedTileOption set]");
                 this.RefreshTileCode();
@@ -332,7 +335,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（タイル・カーソルのキャンバスの横幅）
         /// <summary>
         ///     <pre>
         ///         タイル・カーソルのキャンバスの横幅
@@ -357,7 +362,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（タイル・カーソルのキャンバスの縦幅）
         /// <summary>
         ///     <pre>
         ///         タイル・カーソルのキャンバスの縦幅
@@ -480,7 +487,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（グリッド・タイルの横幅）
         /// <summary>
         ///     グリッド・タイルの横幅
         /// </summary>
@@ -507,7 +516,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（グリッド・タイルの縦幅）
         /// <summary>
         ///     グリッド・タイルの縦幅
         /// </summary>
@@ -572,11 +583,53 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（選択タイルの矩形）
+        #region 変更通知プロパティ（選択タイルＩｄ。BASE64表現）
+        /// <summary>
+        ///     選択タイルＩｄ。BASE64表現
+        /// </summary>
+        public string TileIdAsBASE64
+        {
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Id.AsBASE64;
+                }
+                else
+                {
+                    // 未選択時
+                    return string.Empty;
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（選択タイルＩｄ。フォネティックコード表現）
+        /// <summary>
+        ///     選択タイルＩｄ。フォネティックコード表現
+        /// </summary>
+        public string TileIdAsPhoneticCode
+        {
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Id.AsPhoneticCode;
+                }
+                else
+                {
+                    // 未選択時
+                    return string.Empty;
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（選択タイルの位置ｘ）
         /// <summary>
         ///     <pre>
-        ///         タイル・カーソルの位置ｘ
         ///         選択タイルの位置ｘ
+        ///         タイル・カーソルの位置ｘ
         ///     </pre>
         /// </summary>
         public int SelectedTileLeftAsInt
@@ -635,11 +688,13 @@
                 OnPropertyChanged(nameof(SelectedTileLeftAsInt));
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（選択タイルの位置ｙ）
         /// <summary>
         ///     <pre>
-        ///         タイル・カーソルの位置ｙ
         ///         選択タイルの位置ｙ
+        ///         タイル・カーソルの位置ｙ
         ///     </pre>
         /// </summary>
         public int SelectedTileTopAsInt
@@ -700,7 +755,7 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（選択タイルのサイズ）
+        #region 変更通知プロパティ（選択タイルの横幅）
         /// <summary>
         ///     選択タイルの横幅
         /// </summary>
@@ -758,7 +813,9 @@
                 OnPropertyChanged(nameof(SelectedTileWidthAsInt));
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（選択タイルの縦幅）
         /// <summary>
         ///     選択タイルの縦幅
         /// </summary>
@@ -818,39 +875,48 @@
 
         #region 変更通知プロパティ（選択タイルのコメント）
         /// <summary>
-        ///     選択コメント
+        ///     選択タイルのコメント
         /// </summary>
-        public string CommentAsStr
+        public string SelectedTileCommentAsStr
         {
-            get => _comment.AsStr;
-            set
+            get
             {
-                if (_comment.AsStr != value)
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
                 {
-                    _comment = new Models.Comment(value);
-                    OnPropertyChanged(nameof(CommentAsStr));
+                    return selectedTile.Comment.AsStr;
+                }
+                else
+                {
+                    // 未選択時
+                    return string.Empty;
                 }
             }
-        }
-        #endregion
+            set
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    if (selectedTile.Comment.AsStr == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
 
-        #region 変更通知プロパティ（タイルＩｄ。BASE64表現）
-        /// <summary>
-        ///     タイルＩｄ。BASE64表現
-        /// </summary>
-        public string TileIdAsBASE64
-        {
-            get => this.TileSetSettings.UsableId.AsBASE64;
-        }
-        #endregion
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: selectedTile.Rectangle,
+                        comment: new Models.Comment(value)));
+                }
+                else
+                {
+                    // 現在値がヌル
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: TileId.Empty,
+                        rectangle: Models.Rectangle.Empty,
+                        comment: new Models.Comment(value)));
+                }
 
-        #region 変更通知プロパティ（タイルＩｄ。フォネティックコード表現）
-        /// <summary>
-        ///     タイルＩｄ。フォネティックコード表現
-        /// </summary>
-        public string TileIdAsPhoneticCode
-        {
-            get => this.TileSetSettings.UsableId.AsPhoneticCode;
+                OnPropertyChanged(nameof(SelectedTileCommentAsStr));
+            }
         }
         #endregion
 
@@ -881,7 +947,7 @@
         ///                 振動させることで、再描画を呼び起こすことにする
         ///     </pre>
         /// </summary>
-        internal void RefreshCanvasOfTileCursor(string codePlace= "[TilePaletteEditPageViewModel RefreshCanvasOfTileCursor]")
+        internal void RefreshCanvasOfTileCursor(string codePlace = "[TilePaletteEditPageViewModel RefreshCanvasOfTileCursor]")
         {
             int offset;
 
@@ -934,11 +1000,6 @@
         ///     内部的グリッド画像サイズ
         /// </summary>
         Models.Size _gridCanvasSize = Models.Size.Empty;
-
-        /// <summary>
-        ///     コメント
-        /// </summary>
-        Models.Comment _comment = Models.Comment.Empty;
 
         /// <summary>
         ///     タイル・セット設定

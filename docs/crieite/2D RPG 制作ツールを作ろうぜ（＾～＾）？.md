@@ -2887,4 +2887,22 @@ z	zenith      ゼニス
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　あんまり　書きすぎると　デザインの敗北……」  
 
+# 📅 2023-07-08 タイルを選択したら、照会しろだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイル・パレット上で　範囲選択したら、  
+そのタイルは　すでに登録済みか、まだ登録されていないか、判定しろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　わかったぜ」  
+
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　前のトリック・コードは　奇数回実行すると働くが、偶数回実行すると働かないというバグを踏んだので  
+対応中」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　トリックなんかに頼るからよ」  
+
 ＜書きかけ＞
