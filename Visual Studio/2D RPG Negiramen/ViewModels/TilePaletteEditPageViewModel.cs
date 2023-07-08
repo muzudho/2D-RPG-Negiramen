@@ -125,7 +125,8 @@
                 }
 
                 // 変更通知を送りたいので、構成要素ごとに設定
-                // TODO SelectedTileId
+                this.SelectedTileIdAsBASE64 = newValue.Id.AsBASE64;
+                this.SelectedTileIdAsPhoneticCode = newValue.Id.AsPhoneticCode;
                 this.SelectedTileLeftAsInt = newValue.Rectangle.Point.X.AsInt;
                 this.SelectedTileTopAsInt = newValue.Rectangle.Point.Y.AsInt;
                 this.SelectedTileWidthAsInt = newValue.Rectangle.Size.Width.AsInt;
@@ -587,7 +588,7 @@
         /// <summary>
         ///     選択タイルＩｄ。BASE64表現
         /// </summary>
-        public string TileIdAsBASE64
+        public string SelectedTileIdAsBASE64
         {
             get
             {
@@ -601,6 +602,33 @@
                     return string.Empty;
                 }
             }
+            set
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    if (selectedTile.Id.AsBASE64 == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: selectedTile.Rectangle,
+                        comment: selectedTile.Comment));
+                }
+                else
+                {
+                    // 現在値がヌル
+
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: Models.Rectangle.Empty,
+                        comment: Models.Comment.Empty));
+                }
+
+                OnPropertyChanged(nameof(SelectedTileIdAsBASE64));
+            }
         }
         #endregion
 
@@ -608,7 +636,7 @@
         /// <summary>
         ///     選択タイルＩｄ。フォネティックコード表現
         /// </summary>
-        public string TileIdAsPhoneticCode
+        public string SelectedTileIdAsPhoneticCode
         {
             get
             {
@@ -621,6 +649,33 @@
                     // 未選択時
                     return string.Empty;
                 }
+            }
+            set
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    if (selectedTile.Id.AsPhoneticCode == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: selectedTile.Rectangle,
+                        comment: selectedTile.Comment));
+                }
+                else
+                {
+                    // 現在値がヌル
+
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: Models.Rectangle.Empty,
+                        comment: Models.Comment.Empty));
+                }
+
+                OnPropertyChanged(nameof(SelectedTileIdAsPhoneticCode));
             }
         }
         #endregion
@@ -974,8 +1029,8 @@
         /// </summary>
         internal void RefreshTileCode()
         {
-            OnPropertyChanged(nameof(TileIdAsBASE64));
-            OnPropertyChanged(nameof(TileIdAsPhoneticCode));
+            OnPropertyChanged(nameof(SelectedTileIdAsBASE64));
+            OnPropertyChanged(nameof(SelectedTileIdAsPhoneticCode));
         }
         #endregion
 

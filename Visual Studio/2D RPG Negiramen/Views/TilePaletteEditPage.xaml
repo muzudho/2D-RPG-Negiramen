@@ -360,7 +360,7 @@
             <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding TileIdAsBASE64}"
+                   Text="{Binding SelectedTileIdAsBASE64}"
                    IsReadOnly="True"/>
 
             <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
@@ -382,7 +382,7 @@
                    HorizontalTextAlignment="Start"
                    VerticalTextAlignment="Start"
                    Padding="0,0,4,0"
-                   Text="{Binding TileIdAsPhoneticCode}"/>
+                   Text="{Binding SelectedTileIdAsPhoneticCode}"/>
         </Grid>
     </Grid>
 </ContentPage>
