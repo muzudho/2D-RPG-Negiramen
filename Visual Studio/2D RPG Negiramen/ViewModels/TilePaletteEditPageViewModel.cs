@@ -169,7 +169,7 @@
                     }
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
+                        id: value,
                         rectangle: selectedTile.Rectangle,
                         comment: selectedTile.Comment));
                 }
@@ -178,7 +178,7 @@
                     // 現在値がヌル
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
+                        id: value,
                         rectangle: Models.Rectangle.Empty,
                         comment: Models.Comment.Empty));
                 }
