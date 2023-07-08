@@ -63,10 +63,10 @@
             {
                 return false;
             }
-            //この型が継承できないクラスや構造体であれば、次のようにできる
+            // この型が継承できないクラスや構造体であれば、次のようにできる
             //if (!(obj is Height))
 
-            //Numberで比較する
+            // 要素で比較する
             Height c = (Height)obj;
             return (this.source == c.source);
             //または、

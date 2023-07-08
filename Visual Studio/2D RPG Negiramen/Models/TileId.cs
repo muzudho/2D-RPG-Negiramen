@@ -61,15 +61,15 @@ namespace _2D_RPG_Negiramen.Models
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            //objがnullか、型が違うときは、等価でない
+            // objがnullか、型が違うときは、等価でない
             if (obj == null || this.GetType() != obj.GetType())
             {
                 return false;
             }
-            //この型が継承できないクラスや構造体であれば、次のようにできる
+            // この型が継承できないクラスや構造体であれば、次のようにできる
             //if (!(obj is Id))
 
-            //Numberで比較する
+            // 要素で比較する
             TileId c = (TileId)obj;
             return (this.source == c.source);
             //または、

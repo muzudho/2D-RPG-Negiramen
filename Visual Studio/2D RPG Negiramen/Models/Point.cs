@@ -63,10 +63,10 @@
             {
                 return false;
             }
-            //この型が継承できないクラスや構造体であれば、次のようにできる
+            // この型が継承できないクラスや構造体であれば、次のようにできる
             //if (!(obj is Point))
 
-            //Numberで比較する
+            // 要素で比較する
             Point c = (Point)obj;
             return (this.X == c.X) && (this.Y == c.Y);
             //または、

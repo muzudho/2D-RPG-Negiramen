@@ -58,15 +58,15 @@
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            //objがnullか、型が違うときは、等価でない
+            // objがnullか、型が違うときは、等価でない
             if (obj == null || this.GetType() != obj.GetType())
             {
                 return false;
             }
-            //この型が継承できないクラスや構造体であれば、次のようにできる
+            // この型が継承できないクラスや構造体であれば、次のようにできる
             //if (!(obj is Rectangle))
 
-            //Numberで比較する
+            // 要素で比較する
             Rectangle c = (Rectangle)obj;
             return (this.Point == c.Point) && (this.Size == c.Size);
             //または、

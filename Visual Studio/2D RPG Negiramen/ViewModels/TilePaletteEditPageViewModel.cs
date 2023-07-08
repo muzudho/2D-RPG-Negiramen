@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels
 {
+    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
 
@@ -95,14 +96,15 @@
         /// <summary>
         ///     選択タイル
         /// </summary>
-        public TileRecord SelectedTile
+        public Option<TileRecord> SelectedTileOption
         {
-            get => this._selectedTile;
+            get => this._selectedTileOption;
             set
             {
-                if (this._selectedTile != value)
+                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || SelectedTileOption != value)
                 {
-                    this._selectedTile = value;
+                    // 現在値がヌル、または値が異なるとき、差替え
+                    this._selectedTileOption = value;
 
                     this.RefreshCanvasOfTileCursor();
                     this.RefreshTileCode();
@@ -553,17 +555,29 @@
         /// </summary>
         public int TileCursorXAsInt
         {
-            get => _selectedTile.Rectangle.Point.X.AsInt;
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Rectangle.Point.X.AsInt;
+                }
+                else
+                {
+                    // 未選択時
+                    return 0;
+                }
+            }
             set
             {
-                if (_selectedTile.Rectangle.Point.X.AsInt != value)
+                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Point.X.AsInt != value)
                 {
-                    _selectedTile = new Models.TileRecord(
-                        id: _selectedTile.Id,
+                    // 現在値がヌル、または値が異なるとき、差替え
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
                         rectangle: new Models.Rectangle(
-                            point: new Models.Point(new Models.X(value), _selectedTile.Rectangle.Point.Y),
-                            size: _selectedTile.Rectangle.Size),
-                        comment: _selectedTile.Comment);
+                            point: new Models.Point(new Models.X(value), selectedTile.Rectangle.Point.Y),
+                            size: selectedTile.Rectangle.Size),
+                        comment: selectedTile.Comment));
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
@@ -588,17 +602,28 @@
         /// </summary>
         public int TileCursorYAsInt
         {
-            get => _selectedTile.Rectangle.Point.Y.AsInt;
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Rectangle.Point.Y.AsInt;
+                }
+                else
+                {
+                    // 未選択時
+                    return 0;
+                }
+            }
             set
             {
-                if (_selectedTile.Rectangle.Point.Y.AsInt != value)
+                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Point.Y.AsInt != value)
                 {
-                    _selectedTile = new Models.TileRecord(
-                        id: _selectedTile.Id,
+                    _selectedTileOption = new Option<TileRecord>( new Models.TileRecord(
+                        id: selectedTile.Id,
                         rectangle: new Models.Rectangle(
-                            point: new Models.Point(_selectedTile.Rectangle.Point.X, new Models.Y(value)),
-                            size: _selectedTile.Rectangle.Size),
-                        comment: _selectedTile.Comment);
+                            point: new Models.Point(selectedTile.Rectangle.Point.X, new Models.Y(value)),
+                            size: selectedTile.Rectangle.Size),
+                        comment: selectedTile.Comment));
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
@@ -670,21 +695,35 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（選択タイルの矩形）
+        #region 変更通知プロパティ（選択タイルの矩形 TODO ★ 似てる？）
         /// <summary>
         ///     選択タイルの位置ｘ
         /// </summary>
         public int TileLeftAsInt
         {
-            get => _selectedTile.Rectangle.Point.X.AsInt;
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Rectangle.Point.X.AsInt;
+                }
+                else
+                {
+                    // 未選択時
+                    return 0;
+                }
+            }
             set
             {
-                if (_selectedTile.Rectangle.Point.X.AsInt != value)
+                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Point.X.AsInt != value)
                 {
-                    _selectedTile = new TileRecord(
-                        id: _selectedTile.Id,
-                        rectangle: new Models.Rectangle(new Models.Point(new Models.X(value), _selectedTile.Rectangle.Point.Y), _selectedTile.Rectangle.Size),
-                        comment: _selectedTile.Comment);
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: new Models.Rectangle(
+                            point: new Models.Point(new Models.X(value), selectedTile.Rectangle.Point.Y),
+                            size: selectedTile.Rectangle.Size),
+                        comment: selectedTile.Comment));
+
                     OnPropertyChanged(nameof(TileLeftAsInt));
                 }
             }
@@ -695,15 +734,29 @@
         /// </summary>
         public int TileTopAsInt
         {
-            get => _selectedTile.Rectangle.Point.Y.AsInt;
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Rectangle.Point.Y.AsInt;
+                }
+                else
+                {
+                    // 未選択時
+                    return 0;
+                }
+            }
             set
             {
-                if (_selectedTile.Rectangle.Point.Y.AsInt != value)
+                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Point.Y.AsInt != value)
                 {
-                    _selectedTile = new Models.TileRecord(
-                        id: _selectedTile.Id,
-                        rectangle: new Models.Rectangle(new Models.Point(_selectedTile.Rectangle.Point.X, new Models.Y(value)), _selectedTile.Rectangle.Size),
-                        comment: _selectedTile.Comment);
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: new Models.Rectangle(
+                            point: new Models.Point(selectedTile.Rectangle.Point.X, new Models.Y(value)),
+                            size: selectedTile.Rectangle.Size),
+                        comment: selectedTile.Comment));
+
                     OnPropertyChanged(nameof(TileTopAsInt));
                 }
             }
@@ -714,16 +767,28 @@
         /// </summary>
         public int TileWidthAsInt
         {
-            get => _selectedTile.Rectangle.Size.Width.AsInt;
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Rectangle.Size.Width.AsInt;
+                }
+                else
+                {
+                    // 未選択時
+                    return 0;
+                }
+            }
             set
             {
-                if (_selectedTile.Rectangle.Size.Width.AsInt != value)
+                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Size.Width.AsInt != value)
                 {
-                    _selectedTile = new Models.TileRecord(
-                        id: _selectedTile.Id,
-                        rectangle: new Models.Rectangle(_selectedTile.Rectangle.Point, new Models.Size(new Models.Width(value), _selectedTile.Rectangle.Size.Height)),
-                        comment: _selectedTile.Comment);
-                    OnPropertyChanged(nameof(TileWidthAsInt));
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(new Models.Width(value), selectedTile.Rectangle.Size.Height)),
+                        comment: selectedTile.Comment));
+
+                    OnPropertyChanged(nameof(TileTopAsInt));
                 }
             }
         }
@@ -733,16 +798,28 @@
         /// </summary>
         public int TileHeightAsInt
         {
-            get => _selectedTile.Rectangle.Size.Height.AsInt;
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Rectangle.Size.Height.AsInt;
+                }
+                else
+                {
+                    // 未選択時
+                    return 0;
+                }
+            }
             set
             {
-                if (_selectedTile.Rectangle.Size.Height.AsInt != value)
+                if (!this._selectedTileOption.TryGetValue(out TileRecord selectedTile) || selectedTile.Rectangle.Size.Width.AsInt != value)
                 {
-                    _selectedTile = new Models.TileRecord(
-                        id: _selectedTile.Id,
-                        rectangle: new Models.Rectangle(_selectedTile.Rectangle.Point, new Models.Size(_selectedTile.Rectangle.Size.Width, new Models.Height(value))),
-                        comment: _selectedTile.Comment);
-                    OnPropertyChanged(nameof(TileHeightAsInt));
+                    _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                        id: selectedTile.Id,
+                        rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(selectedTile.Rectangle.Size.Width, new Models.Height(value))),
+                        comment: selectedTile.Comment));
+
+                    OnPropertyChanged(nameof(TileTopAsInt));
                 }
             }
         }
@@ -912,7 +989,7 @@
         ///     選択タイル
         ///     タイル・カーソルの矩形を含む
         /// </summary>
-        TileRecord _selectedTile = Models.TileRecord.Empty;
+        Option<TileRecord> _selectedTileOption = new Option<TileRecord>(Models.TileRecord.Empty);
 
         // - プライベート・メソッド
 
