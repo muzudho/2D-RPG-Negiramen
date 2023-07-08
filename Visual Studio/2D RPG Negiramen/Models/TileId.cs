@@ -1,10 +1,12 @@
-﻿using System.Linq;
-using System.Text;
-
-namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
     ///     😁 タイルＩｄ
+    ///     
+    ///     <list type="bullet">
+    ///         <item>1 から始まる</item>
+    ///         <item>0 を指定すると、空欄扱いとする（0 を扱うことはできない）</item>
+    ///     </list>
     /// </summary>
     internal class TileId
     {
@@ -278,11 +280,20 @@ namespace _2D_RPG_Negiramen.Models
 
         /// <summary>
         ///     BASE64形式
+        ///     
+        ///     <list type="bullet">
+        ///         <item>0 は `MA==` だが、これは空文字として返却する</item>
+        ///     </list>
         /// </summary>
         internal string AsBASE64
         {
             get
             {
+                if (this.AsInt==0)
+                {
+                    return string.Empty;
+                }
+
                 return Convert.ToBase64String(System.Text.Encoding.ASCII.GetBytes(this.AsInt.ToString())).Replace("=", "");
             }
         }

@@ -17,6 +17,10 @@
 
         /// <summary>
         ///     Ｉｄ
+        ///     
+        ///     <list type="bullet">
+        ///         <item>0 は `MA==` だが、これは空文字として表示する</item>
+        ///     </list>
         /// </summary>
         internal Models.TileId Id { get; }
 
