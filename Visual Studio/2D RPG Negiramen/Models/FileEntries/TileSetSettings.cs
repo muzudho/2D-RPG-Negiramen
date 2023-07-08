@@ -127,7 +127,7 @@
         /// <summary>
         /// 対象のタイル・セットに含まれるすべてのタイルの記録
         /// </summary>
-        internal List<TileSetRecord> RecordList { get; private set; } = new List<TileSetRecord>();
+        internal List<TileRecord> RecordList { get; private set; } = new List<TileRecord>();
 
         /// <summary>
         /// 次に採番できるＩｄ。１から始まる
@@ -143,7 +143,7 @@
             Action onTileIdUpdated)
         {
             this.RecordList.Add(
-                new TileSetRecord(
+                new TileRecord(
                     id,
                     rect,
                     comment));
@@ -162,7 +162,7 @@
         /// <param name="rect">矩形</param>
         /// <param name="result">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetByRectangle(Models.Rectangle rect, out TileSetRecord result)
+        internal bool TryGetByRectangle(Models.Rectangle rect, out TileRecord result)
         {
             foreach (var record in this.RecordList)
             {

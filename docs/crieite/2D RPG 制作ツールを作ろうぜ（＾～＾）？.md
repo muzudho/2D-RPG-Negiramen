@@ -2873,4 +2873,18 @@ z	zenith      ゼニス
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ディーエックス」  
 
+![202307_maui_08-0123--name-o2o0.png](https://crieit.now.sh/upload_images/646bb3129ffc004d6eac2fcd80f6df5864a83c5fc813a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　どうしても　名前を書きたいやつは　コメント欄に書け、と親切に　書いておくぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`（任意）` も付けておいた方がよくない？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`任意` の意味が分からん人も　いるそうだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あんまり　書きすぎると　デザインの敗北……」  
+
 ＜書きかけ＞

@@ -10,6 +10,7 @@ using Microsoft.Maui.Graphics.Platform;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
 using System.Diagnostics;
+using _2D_RPG_Negiramen.Models;
 #endif
 
 /// <summary>
@@ -109,6 +110,41 @@ public partial class TilePaletteEditPage : ContentPage
 
             // タイル・カーソルのキャンバスの再描画
             context.RefreshCanvasOfTileCursor();
+
+            //
+            // タイルが登録済みか？
+            // ====================
+            //
+            if(context.TileSetSettings.TryGetByRectangle(
+                rect: cursorRectangle,
+                out TileRecord record))
+            {
+                //
+                // データ表示
+                // ==========
+                //
+
+                // TODO 追加ボタンを、上書きボタンへラベル変更
+                // TODO 削除ボタン活性化
+                // TODO タイルＩｄ表示
+                // TODO コメント表示
+            }
+            else
+            {
+                //
+                // 空欄にする
+                // ==========
+                //
+
+                // TODO 追加ボタン活性化
+                // TODO 削除ボタン不活性化
+
+                // TODO タイルＩｄ　空欄
+                // context.TileSetSettings.UsableId = ？
+                // TODO ★ 選択中のタイルという概念が必要か？
+
+                // TODO コメント　空欄
+            }
         }
     }
 

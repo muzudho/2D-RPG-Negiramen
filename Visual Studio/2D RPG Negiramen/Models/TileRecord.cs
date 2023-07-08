@@ -3,7 +3,7 @@
     /// <summary>
     ///     タイル１件分の記録
     /// </summary>
-    class TileSetRecord
+    class TileRecord
     {
         // - パブリック・プロパティ
 
@@ -27,7 +27,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        public TileSetRecord()
+        public TileRecord()
         {
         }
 
@@ -35,7 +35,7 @@
         ///     生成
         /// </summary>
         /// <param name="rectangle">レクタングル</param>
-        internal TileSetRecord(
+        internal TileRecord(
             Models.TileId id,
             Models.Rectangle rectangle,
             Models.Comment comment)

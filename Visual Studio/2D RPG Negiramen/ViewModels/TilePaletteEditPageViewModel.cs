@@ -91,6 +91,26 @@
         }
         #endregion
 
+        #region プロパティ（選択タイル）
+        /// <summary>
+        ///     選択タイル
+        /// </summary>
+        public TileRecord SelectedTile
+        {
+            get => this._selectedTile;
+            set
+            {
+                if (this._selectedTile != value)
+                {
+                    this._selectedTile = value;
+
+                    this.RefreshCanvasOfTileCursor();
+                    this.RefreshTileCode();
+                }
+            }
+        }
+        #endregion
+
         // - 変更通知プロパティ
 
         #region 変更通知プロパティ（作業中のタイル・セット画像ファイルへのパス（文字列形式））
@@ -526,7 +546,10 @@
         }
 
         /// <summary>
-        ///     タイル・カーソルの位置ｘ
+        ///     <pre>
+        ///         タイル・カーソルの位置ｘ
+        ///         選択タイルの位置ｘ
+        ///     </pre>
         /// </summary>
         public int TileCursorXAsInt
         {
@@ -553,7 +576,10 @@
         }
 
         /// <summary>
-        ///     タイル・カーソルの位置ｙ
+        ///     <pre>
+        ///         タイル・カーソルの位置ｙ
+        ///         選択タイルの位置ｙ
+        ///     </pre>
         /// </summary>
         public int TileCursorYAsInt
         {
@@ -740,6 +766,7 @@
 
         // - その他
 
+        #region その他（生成）
         /// <summary>
         ///     生成
         ///     
@@ -750,10 +777,11 @@
         public TilePaletteEditPageViewModel()
         {
         }
+        #endregion
 
         // - インターナル・メソッド
 
-        #region プライベート・メソッド（タイル・カーソルのキャンバスの再描画）
+        #region メソッド（タイル・カーソルのキャンバスの再描画）
         /// <summary>
         ///     <pre>
         ///         タイル・カーソルのキャンバスの再描画
@@ -782,6 +810,7 @@
         }
         #endregion
 
+        #region メソッド（タイルＩｄの再描画）
         /// <summary>
         ///     タイルＩｄの再描画
         /// </summary>
@@ -790,8 +819,9 @@
             OnPropertyChanged(nameof(TileIdAsBASE64));
             OnPropertyChanged(nameof(TileIdAsPhoneticCode));
         }
+        #endregion
 
-
+        #region メソッド（作業中のタイル・セット画像の再描画）
         /// <summary>
         ///     作業中のタイル・セット画像の再描画
         /// </summary>
@@ -799,6 +829,8 @@
         {
             OnPropertyChanged(nameof(WorkingTileSetImageFilePathAsStr));
         }
+        #endregion
+
         // - プライベート・フィールド
 
         /// <summary>
@@ -842,11 +874,6 @@
         Models.FileEntries.Locations.TileSetSettingsFile _tileSetSettingsFile = Models.FileEntries.Locations.TileSetSettingsFile.Empty;
 
         /// <summary>
-        ///     タイル・カーソルの位置
-        /// </summary>
-        Models.Point _tileCursorPoint = Models.Point.Empty;
-
-        /// <summary>
         ///     タイル・カーソルの位置（マージンとして）
         /// </summary>
         Thickness _tileCursorPointAsMargin = Thickness.Zero;
@@ -869,9 +896,22 @@
         /// </summary>
         Models.Size _tileMaxSize = Models.Size.Empty;
 
+        /// <summary>
+        ///     選択タイル
+        /// </summary>
+        TileRecord _selectedTile;
+
+        /// <summary>
+        ///     <pre>
+        ///         タイル・カーソルの位置
+        ///         選択タイルの位置
+        ///     </pre>
+        /// </summary>
+        Models.Point _tileCursorPoint = Models.Point.Empty;
+
         // - プライベート・メソッド
 
-        #region プライベート・メソッド（グリッドのキャンバスの再描画）
+        #region メソッド（グリッドのキャンバスの再描画）
         /// <summary>
         ///     <pre>
         ///         グリッドのキャンバスの再描画

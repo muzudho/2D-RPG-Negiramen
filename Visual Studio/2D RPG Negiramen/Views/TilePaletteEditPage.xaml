@@ -339,8 +339,8 @@
                    Text="タイル・コード"/>
             
             <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
-                   Padding="4,0,0,0"
-                   Text="コメント"/>
+                   Padding="20,0,0,0"
+                   Text="タイル名、または　コメントを自由入力"/>
 
             <!--
                 ４段目 入力部
