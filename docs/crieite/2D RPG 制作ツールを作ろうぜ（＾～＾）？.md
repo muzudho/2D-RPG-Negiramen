@@ -2905,4 +2905,18 @@ z	zenith      ゼニス
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　トリックなんかに頼るからよ」  
 
+![202307_maui_08-2329--read-file-o2o0.png](https://crieit.now.sh/upload_images/6b3416758efd5439fd9c639d661f61eb64a9730282347.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　登録したタイルの情報を　読み込むようにしたが、  
+全体的に動きが　怪しいので　調整中だぜ」  
+
+![202307_maui_09-0047--tile-form-display-o2o0.png](https://crieit.now.sh/upload_images/bfc6fc71ddf5d3c5f73c64cf79c5b46464a9869dde6aa.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　タイル・コードと　コメントの入出力は　動きが付いたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　もう寝ろ」  
+
 ＜書きかけ＞
