@@ -133,6 +133,7 @@
                 this.SelectedTileCommentAsStr = newValue.Comment.AsStr;
 
                 this.RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel SelectedTileOption set]");
+                OnPropertyChanged(nameof(AddsButtonHint));
                 OnPropertyChanged(nameof(AddsButtonText));
                 this.NotifyTileIdChange();
                 // TODO 矩形もリフレッシュしたい

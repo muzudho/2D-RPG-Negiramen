@@ -281,6 +281,27 @@
               BackgroundColor="SkyBlue">
 
             <!--
+                ０列目 ボタン縦並び
+                ===================
+            -->
+            <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
+                <VerticalStackLayout>
+                    
+                    <!-- 追加／上書ボタン -->
+                    <Button Grid.Row="0" Grid.Column="0"
+                        Text="{Binding AddsButtonText}"
+                        ToolTipProperties.Text="{Binding AddsButtonHint}"
+                        Clicked="AddsButton_Clicked"/>
+
+                    <!-- 削除ボタン -->
+                    <Button Grid.Row="0" Grid.Column="1"
+                        IsEnabled="False"
+                        Text="削除"/>
+
+                </VerticalStackLayout>
+            </Grid>
+            
+            <!--
                 １段目 読み仮名部
                 =================
             -->
@@ -350,20 +371,6 @@
                 ４段目 入力部
                 =============
             -->
-            <Grid Grid.Row="3" Grid.Column="0"
-                  ColumnDefinitions="*,*" RowDefinitions="*">
-
-                <!-- 追加／上書ボタン -->
-                <Button Grid.Row="0" Grid.Column="0"
-                        Text="{Binding AddsButtonText}"
-                        ToolTipProperties.Text="{Binding AddsButtonHint}"
-                        Clicked="AddsButton_Clicked"/>
-
-                <Button Grid.Row="0" Grid.Column="1"
-                        IsEnabled="False"
-                        Text="削除"/>
-            </Grid>
-
             <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
