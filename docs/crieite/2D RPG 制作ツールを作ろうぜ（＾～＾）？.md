@@ -3412,4 +3412,63 @@ Text プロパティへ `{app:Translate LayoutTheScreen}` と書いてみるぜ�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　なぜか　英語しか　対応してくれなかった。　寄付が足りないとか？」  
 
+![202307_maui_10-0108--en-US-o2o0.png](https://crieit.now.sh/upload_images/b1958b50864443902e3e4dc5d5bf0e6b64aadbce7a575.png)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　`AppResources.en-US.resx` ファイルが増えてるぜ」  
+
+![202307_maui_10-0116--culture-o2o0.png](https://crieit.now.sh/upload_images/f36045b73827fa0b0edfdf7907a25c3964aadd8749195.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ＩＳＯ言語コードを変えると」  
+
+![202307_maui_10-0118--us-o2o0.png](https://crieit.now.sh/upload_images/b4106d67b4d00b9fcbef7ac3889dbe5764aade0a9a462.png)  
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　翻訳が完了だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　📂 `Languages` フォルダーの中をサーチして、翻訳できる言語を調べて  
+言語を選べるリスト・ボックスが欲しいわねえ」   
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そのフォルダーに　アクセスする方法が　見当つかないんだが」  
+
+![202307_maui_10-0138--resources-o2o0.png](https://crieit.now.sh/upload_images/ea0a041bef1204b5a682d3d3f001cd8664aae2d0906c9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　実行環境を見にいってしまうので、開発環境のプロジェクト・フォルダーの中とか見れないのでは？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　じゃあ　**ビルド前のイベント**　を書いたらいいんじゃない？」  
+
+![202307_maui_10-0143--event-before-build-o2o0.png](https://crieit.now.sh/upload_images/7c9f2722698852d34f2af74db9a536b064aae3f49e81e.png)  
+
+📖 [Pre build Events in Visual Studio](https://stackoverflow.com/questions/19267745/pre-build-events-in-visual-studio)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そこで　ベッタリ　Windows　依存しそうだしな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　ＩＳＯ言語コードは　ハード・コーディングかな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　国旗って　フリー素材であるの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　同じ問題に突き当たっている人がいるぜ」  
+
+📖 [Is there a way to get a flag image from a C# CultureInfo?](https://stackoverflow.com/questions/27733705/is-there-a-way-to-get-a-flag-image-from-a-c-sharp-cultureinfo)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　WPF で作った人はいるみたいだな」  
+
+📖 [famfamfam-flags-wpf](https://github.com/point-platform/famfamfam-flags-wpf)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　こういう　センシティブな素材は　デジタル庁　が作って欲しいものだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　国旗は後回しにし、ＩＳＯ言語コードのドロップダウン・リストを  
+ハードコーディングする方向で　次回　考えようぜ？」  
+
 ＜書きかけ＞
