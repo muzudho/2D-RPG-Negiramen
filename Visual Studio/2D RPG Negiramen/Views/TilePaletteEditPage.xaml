@@ -349,8 +349,9 @@
             <Grid Grid.Row="3" Grid.Column="0"
                   ColumnDefinitions="*,*" RowDefinitions="*">
             
+                <!-- 追加／上書ボタン -->
                 <Button Grid.Row="0" Grid.Column="0"
-                        Text="追加"
+                        Text="{Binding AddsButtonText}"
                         Clicked="AddsButton_Clicked"/>
                 <Button Grid.Row="0" Grid.Column="1"
                         IsEnabled="False"

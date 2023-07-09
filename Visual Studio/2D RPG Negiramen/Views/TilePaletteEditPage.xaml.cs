@@ -10,7 +10,7 @@ using TheGraphics = Microsoft.Maui.Graphics;
 using Microsoft.Maui.Graphics.Platform;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
-using TheDiagnostics = System.Diagnostics;
+using System.Diagnostics;
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Coding;
 #endif
@@ -62,7 +62,7 @@ public partial class TilePaletteEditPage : ContentPage
             // 疑似マウス・ダウン
             // ==================
             //
-            TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
+            Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
 
             // ポイントしている位置
             PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.Point(
@@ -80,7 +80,7 @@ public partial class TilePaletteEditPage : ContentPage
             // ==================
             //
 
-            TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
+            Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
 
             // ポイントしている位置
             PointingDeviceCurrentPoint = new Models.Point(
@@ -143,7 +143,7 @@ public partial class TilePaletteEditPage : ContentPage
             rect: selectedTileRectangle,
             out Models.TileRecord record))
         {
-            TheDiagnostics.Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
+            Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
 
             //
             // データ表示
@@ -158,7 +158,7 @@ public partial class TilePaletteEditPage : ContentPage
         }
         else
         {
-            TheDiagnostics.Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+            Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
 
             //
             // 空欄にする
@@ -206,7 +206,7 @@ public partial class TilePaletteEditPage : ContentPage
             onTileIdUpdated: () =>
             {
                 // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
-                context.RefreshTileCode();
+                context.NotifyTileIdChange();
             });
 
         //

@@ -88,7 +88,7 @@
                 this._tileSetSettings = value;
 
                 // 再描画
-                RefreshTileCode();
+                NotifyTileIdChange();
             }
         }
         #endregion
@@ -120,7 +120,7 @@
                 }
                 else
                 {
-                    // 現在値がヌル
+                    // タイル・カーソル無し時
                     newValue = Models.TileRecord.Empty;
                 }
 
@@ -133,7 +133,8 @@
                 this.SelectedTileCommentAsStr = newValue.Comment.AsStr;
 
                 this.RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel SelectedTileOption set]");
-                this.RefreshTileCode();
+                OnPropertyChanged(nameof(AddsButtonText));
+                this.NotifyTileIdChange();
                 // TODO 矩形もリフレッシュしたい
                 // TODO コメントもリフレッシュしたい
             }
@@ -154,7 +155,7 @@
                 }
                 else
                 {
-                    // 未選択時
+                    // タイル・カーソル無し時
                     return Models.TileId.Empty;
                 }
             }
@@ -175,16 +176,14 @@
                 }
                 else
                 {
-                    // 現在値がヌル
-
+                    // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
                         rectangle: Models.Rectangle.Empty,
                         comment: Models.Comment.Empty));
                 }
 
-                OnPropertyChanged(nameof(SelectedTileIdAsBASE64));
-                OnPropertyChanged(nameof(SelectedTileIdAsPhoneticCode));
+                NotifyTileIdChange();
             }
         }
         #endregion
@@ -632,6 +631,35 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（追加／上書きボタンのラベル）
+        /// <summary>
+        ///     追加／上書きボタンのラベル
+        /// </summary>
+        public string AddsButtonText
+        {
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    if (selectedTile.Id == Models.TileId.Empty)
+                    {
+                        // 未選択時
+                        return "追加";
+                    }
+                    else
+                    {
+                        return "上書";
+                    }
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                    return "追加";
+                }
+            }
+        }
+        #endregion
+
         #region 変更通知プロパティ（選択タイルＩｄ。BASE64表現）
         /// <summary>
         ///     選択タイルＩｄ。BASE64表現
@@ -648,7 +676,7 @@
                 }
                 else
                 {
-                    // 未選択時
+                    // タイル・カーソル無し時
                     return string.Empty;
                 }
             }
@@ -671,7 +699,7 @@
                 }
                 else
                 {
-                    // 未選択時
+                    // タイル・カーソル無し時
                     return string.Empty;
                 }
             }
@@ -695,7 +723,7 @@
                 }
                 else
                 {
-                    // 未選択時
+                    // タイル・カーソル無し時
                     return 0;
                 }
             }
@@ -718,8 +746,7 @@
                 }
                 else
                 {
-                    // 現在値がヌル
-
+                    // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Rectangle(
@@ -760,7 +787,7 @@
                 }
                 else
                 {
-                    // 未選択時
+                    // タイル・カーソル無し時
                     return 0;
                 }
             }
@@ -783,8 +810,7 @@
                 }
                 else
                 {
-                    // 現在値がヌル
-
+                    // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Rectangle(
@@ -822,7 +848,7 @@
                 }
                 else
                 {
-                    // 未選択時
+                    // タイル・カーソル無し時
                     return 0;
                 }
             }
@@ -843,8 +869,7 @@
                 }
                 else
                 {
-                    // 現在値がヌル
-
+                    // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Rectangle(Models.Point.Empty, new Models.Size(new Models.Width(value), Models.Height.Empty)),
@@ -882,7 +907,7 @@
                 }
                 else
                 {
-                    // 未選択時
+                    // タイル・カーソル無し時
                     return 0;
                 }
             }
@@ -903,7 +928,7 @@
                 }
                 else
                 {
-                    // 現在値がヌル
+                    // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
                         rectangle: new Models.Rectangle(Models.Point.Empty, new Models.Size(Models.Width.Empty, new Models.Height(value))),
@@ -940,7 +965,7 @@
                 }
                 else
                 {
-                    // 未選択時
+                    // タイル・カーソル無し時
                     return string.Empty;
                 }
             }
@@ -961,7 +986,7 @@
                 }
                 else
                 {
-                    // 現在値がヌル
+                    // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
                         rectangle: Models.Rectangle.Empty,
@@ -1025,7 +1050,7 @@
         /// <summary>
         ///     タイルＩｄの再描画
         /// </summary>
-        internal void RefreshTileCode()
+        internal void NotifyTileIdChange()
         {
             OnPropertyChanged(nameof(SelectedTileIdAsBASE64));
             OnPropertyChanged(nameof(SelectedTileIdAsPhoneticCode));
@@ -1094,7 +1119,10 @@
 
         /// <summary>
         ///     選択タイル
-        ///     タイル・カーソルの矩形を含む
+        ///     
+        ///     <list type="bullet">
+        ///         <item>タイル・カーソルが有るときと、無いときを分ける</item>
+        ///     </list>
         /// </summary>
         Option<TileRecord> _selectedTileOption = new Option<TileRecord>(Models.TileRecord.Empty);
 
