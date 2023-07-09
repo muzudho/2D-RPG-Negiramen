@@ -2,7 +2,6 @@
 
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Maui.Views;
-using System.Globalization;
 
 /// <summary>
 ///     😁 メイン・ページ
@@ -21,7 +20,18 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    // - メソッド
+    // - パブリック・プロパティ
+
+    #region プロパティ（ローカライゼーション資源管理インスタンス）
+    /// <summary>
+    ///     ローカライゼーション資源管理インスタンス
+    /// </summary>
+    public LocalizationResourceManager LocalizationResourceManager
+        => LocalizationResourceManager.Instance;
+    #endregion
+
+
+    // - プライベート・メソッド
 
     #region メソッド（環境が構成ファイル通りか判定する）
     /// <summary>

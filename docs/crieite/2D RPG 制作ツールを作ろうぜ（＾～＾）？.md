@@ -3323,4 +3323,37 @@ MAUI の開発者が　開発の現場経験が未熟だろうから　全員ク
 「　👆　アプリケーション起動直後に　文化を日本に設定。  
 わたしが日本語しか確認しないから　日本がデフォルトでいいだろ」  
 
+![202307_maui_09-2357--translate.png](https://crieit.now.sh/upload_images/1038abbbb5fef37dd0faed361eaf1d7064aacb0633447.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`TranslateExtension` も真似て作り、自分に合わせて編集」  
+
+![202307_maui_10-0002--instance-o2o0.png](https://crieit.now.sh/upload_images/4d161dfc3ff12c86cbe206b1aef1440364aacc30b09b8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビューのコード・ビハインド、つまり `ContentPage` の継承クラスには  
+ローカライゼーション資源管理へのアクセッサ―を書いておくぜ」  
+
+![202307_maui_10-0010--layoutTheScreen-o2o0.png](https://crieit.now.sh/upload_images/485d47b1572a4ce3aabdca90508b8f6c64aacdfa276e3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　`AppResources.resx` へ、　１件だけ　文字列リソースを　記入するぜ」  
+
+![202307_maui_10-0014--translate-o2o0.png](https://crieit.now.sh/upload_images/93d99fbf1f7a615d91376bea7b0af02a64aacf128f3b6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`MainPage.xaml` に `xmlns:app="～"` を追加し、  
+Text プロパティへ `{app:Translate LayoutTheScreen}` と書いてみるぜ」  
+
+![202307_maui_10-0017--home-o2o0.png](https://crieit.now.sh/upload_images/a7aafe5aa22df7945b9675615f85fc5464aacfa9a18c9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　実行すると、文字列リソースが　使われているな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　カルチャーを変更するドロップダウン・リストみたいなものが欲しいわねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　試しに　英語と　中国語のリソースも　作ってみてくれだぜ」  
+
 ＜書きかけ＞

@@ -59,5 +59,14 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
                 resourceCulture = value;
             }
         }
+        
+        /// <summary>
+        ///   画面をレイアウトする に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LayoutTheScreen {
+            get {
+                return ResourceManager.GetString("LayoutTheScreen", resourceCulture);
+            }
+        }
     }
 }

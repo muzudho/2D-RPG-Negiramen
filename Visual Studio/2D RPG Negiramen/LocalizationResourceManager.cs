@@ -6,6 +6,8 @@
 
     /// <summary>
     ///     <pre>
+    ///         ローカライゼーション資源管理
+    ///         
     ///         📺 [Localization in .NET MAUI - Adding Multi-Language to Your Apps](https://www.youtube.com/watch?v=cf4sXULR7os)
     ///         📖 [.NET MAUI Localization Sample](https://github.com/jfversluis/MauiLocalizationSample)  
     ///     </pre>
