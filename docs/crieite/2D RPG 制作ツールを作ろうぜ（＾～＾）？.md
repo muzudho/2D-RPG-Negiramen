@@ -3243,12 +3243,38 @@ MAUI の開発者が　開発の現場経験が未熟だろうから　全員ク
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　すっきりさせたぜ」  
 
-## 国際化の切替
+## 多言語化
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　英語版、日本語版と　どうやって切り替えるんだぜ？」  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　調べるか……」  
+
+📖 [.NET MAUI : Write multilingual apps easily](https://www.banditoth.net/2022/08/29/net-maui-write-multilingual-apps-easily/)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Xamarine　の方法がそのまま使えるらしいが、それでいいのか　もっと調べるか……」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　昔の Windows のやり方も　冴えてないしなあ」  
+
+📖 [How to implement .NET MAUI localization](https://stackoverflow.com/questions/71315229/how-to-implement-net-maui-localization)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　この動画の人　センス有るな　調べてみるか」  
+
+📺 [Localization in .NET MAUI - Adding Multi-Language to Your Apps](https://www.youtube.com/watch?v=cf4sXULR7os)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　サンプルまで　用意されてる」  
+
+📖 [.NET MAUI Localization Sample](https://github.com/jfversluis/MauiLocalizationSample)  
+
+![202307_maui_09-2032--sample.png](https://crieit.now.sh/upload_images/6ab6ad3d16d246d261bb97f2cb01f11364aa9c026b5ec.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　サンプルは動くが、どうやって　📂 `Languages` フォルダーを作ったのか  
+手順が分からんな」  
 
 ＜書きかけ＞
