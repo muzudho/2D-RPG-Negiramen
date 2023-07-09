@@ -2919,4 +2919,20 @@ z	zenith      ゼニス
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　もう寝ろ」  
 
+# 📅 （2023-07-09 sun）タイルが登録されているとき、ボタンのラベルを追加から上書へ変更してくれだぜ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　日曜日は　昼まで寝た」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイルが登録されているとき、ボタンのラベルを追加から上書へ変更してくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　分かったぜ」  
+
+![202307_maui_09-1257--adds-button-label--o2o0.png](https://crieit.now.sh/upload_images/f9b1211166b1ca6fe21c8f4eac7a78e464aa30a969476.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　タイルが登録されているときは、ボタンのラベルを `上書` に変えるようにしたぜ」  
+
 ＜書きかけ＞
