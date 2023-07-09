@@ -3277,4 +3277,30 @@ MAUI の開発者が　開発の現場経験が未熟だろうから　全員ク
 「　👆　サンプルは動くが、どうやって　📂 `Languages` フォルダーを作ったのか  
 手順が分からんな」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ResXManager は　多言語化の鉄板ソフトなんで　インストールしておこうぜ」  
+
+📖 [ResXManager](https://marketplace.visualstudio.com/items?itemName=TomEnglert.ResXManager)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　しかし　ResXManager　の画面は　どこから出すんだぜ？」  
+
+![202307_maui_09-2054--resource-o2o0.png](https://crieit.now.sh/upload_images/dc37eb0cf96400abc5fed91a652207e864aaa03178861.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　このリンク　クリックしたら　何か出てくるかな？」  
+
+![202307_maui_09-2056--resx-o2o0.png](https://crieit.now.sh/upload_images/d56ed1c168dc435e5ef9e4f99efe66f664aaa4d115c40.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　昔ながらの場所に作られたが、そこじゃなくて  
+📂 `Resources/Languages` フォルダ―の下に置いてほしいんだぜ」  
+
+![202307_maui_09-2114--sample-o2o0.png](https://crieit.now.sh/upload_images/bd3c309ad8b1540d105780ba5bd8b14664aaa50c4f16b.png)
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　サンプル見ると、単に　ファイルを移動しただけに見えるな……  
+やってみるか」  
+
+
 ＜書きかけ＞
