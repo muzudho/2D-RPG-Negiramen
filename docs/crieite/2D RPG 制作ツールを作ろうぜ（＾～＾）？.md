@@ -2935,4 +2935,252 @@ z	zenith      ゼニス
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　タイルが登録されているときは、ボタンのラベルを `上書` に変えるようにしたぜ」  
 
+## 国際化
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　その `上書` を、 `Overwrite` にしても　ボタンの中に収まるの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　多言語化か……。試してみるぜ」  
+
+![202307_maui_09-1342--overwrite-o2o0.png](https://crieit.now.sh/upload_images/be647d73f41c6f24a9cc34fe4244f00d64aa3ad6abccc.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　収まらないぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　このアプリは　国際化に耐えられないわよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　横幅が長い……。　海外人、どんな　ＵＩ　使ってるんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　日本人が　ビューにたくさん項目を詰めるの　こだわるの、  
+チャイニーズ・キャラクター文化だからなのかな？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　欧米の　アイコン　が、漢字相当なんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ、アイコンか　漢字かを選べるようにしたらいいのか……？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　ガイドラインを読めだぜ」  
+
+📖 [Microsoft　＞　Visual Studio のイメージとアイコン](https://learn.microsoft.com/ja-jp/visualstudio/extensibility/ux-guidelines/images-and-icons-for-visual-studio?view=vs-2022)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　欲しいアイコンが無いし、似たようなアイコンばっかり　いっぱいある」  
+
+![202307_maui_09-1401--edit.png](https://crieit.now.sh/upload_images/d0fd19219268227dbccc2c699a5d841a64aa3f5a846e2.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ペンが無難だと思う」  
+
+![202307_maui_09-1403--resources.png](https://crieit.now.sh/upload_images/0c87e87a8e9fe5a6a344d3e07ea1ee4864aa3fc0893c0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　しかし　MAUI　にも最初から　ちょびっとだけ　リソースが入ってるな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI 用のリソース集も　どっかで配られてんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　フォントでやるのが　いいのか～？」  
+
+📖 [.NET MAUI アプリ アイコンを変更する](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/images/app-icons?tabs=windows)  
+
+📖 [.NET MAUIで、Emoji(絵文字)やIcon(アイコン)を打とう](https://zenn.dev/test_myname/articles/f680e5aaffbb8d)  
+
+📖 [Segoe Fluent Icons font](https://learn.microsoft.com/en-us/windows/apps/design/style/segoe-fluent-icons-font)  
+
+📖 [Google Fonts　＞　Material Symbols And Icons](https://fonts.google.com/icons)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ボタンに　アイコン・フォントを表示させるのは　どうやるんだぜ？　画像の方法はあるが」  
+
+📖 [[.NET MAUI][Button] ボタンにイメージを表示する](https://blog.hiros-dot.net/?p=12073)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　画像も　文字も　アイコン・フォントも　方法を統一してくれたらいいのに……」  
+
+📖 [Font Icons in Shell Tabs not showing](https://github.com/dotnet/maui/issues/4774)  
+
+![202307_maui_09-1424--mojibake-o2o0.png](https://crieit.now.sh/upload_images/ee365f4c139a8179b13afcd9ef4bc96a64aa44b951f24.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あれっ？　文字化けだ。 Windows 11 には `Segoe Fluent Icons` フォントは最初から入ってると　読んだが……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父んのＰＣ、 Windows 10」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　マルチ・デバイスのプログラミングが　ホストＯＳに依存したら　悪いんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　どこから `Segoe Fluent Icons` フォントを入手するんだぜ？」  
+
+📖 [Microsoft　＞　fluentui-system-icons](https://github.com/microsoft/fluentui-system-icons)
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　情報ではなく、フォントが欲しい」  
+
+📖 [Microsoft　＞　Segoe UI font family](https://learn.microsoft.com/en-us/typography/font-list/segoe-ui#licensing-and-redistribution-info)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　ずっと前から　シーゴーは　Windows に入っているみたいだけど」  
+
+📖 [Wikipedia　＞　Segoe](https://ja.wikipedia.org/wiki/Segoe)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　シーゴーは　日本語フォントではない、という話しもあるわね」  
+
+📖 [Segoe UIフォントは日本語フォントなのか](https://www.ipentec.com/document/css-font-segoe-ui)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　日本語の設定のまま　シーゴー　を使えないのかだぜ？」  
+
+![202307_maui_09-1501--image-o2o0.png](https://crieit.now.sh/upload_images/46e2411c0e80be85fcf6f418233e80b564aa4d68b92c6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　フォントのような不確定要素を使うのは諦め、ビジュアル・スタジオ２０２２イメージ・ライブラリーから  
+ザムルを取ってくることにするぜ」  
+
+📖 [Microsoft　＞　リソース ディクショナリのマージ](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/resource-dictionaries#merge-resource-dictionaries)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　リソース・ディクショナリーとして　マージすれば　使えるか？」  
+
+![202307_maui_09-1517--resource-file.png](https://crieit.now.sh/upload_images/32eb65ca9e2c9509ed572b272cacce0a64aa513041bb6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　リソース・ディクショナリーの書き方を忘れたので　調べるぜ」  
+
+![202307_maui_09-1519--resource-dictionary.png](https://crieit.now.sh/upload_images/439bccaba9466537a67f8efbe8f256bf64aa518ebfbe0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あのＸＭＬタグに挟めばいいのか」  
+
+![202307_maui_09-1521--edit-o2o0.png](https://crieit.now.sh/upload_images/1b33ee41f87f16fe63a010e4c60e4cec64aa5212f2291.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビジュアル・スタジオ２０２２イメージ・ライブラリーの　`Edit.xaml`　の `Viewbox` を、貼り付けるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そういう手間が要るんだな」  
+
+![202307_maui_09-1527--xmlns-o2o0.png](https://crieit.now.sh/upload_images/53b6b95553dbd3f0481ee08268d3e19e64aa53a2b06c3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ダメだ　仕様が旧い」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　SVG形式にしたらいいんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　SVG は、画像じゃなくて　アイコン扱いなのか？」  
+
+📖 [I can't set a .svg file as a maui app icon](https://stackoverflow.com/questions/72358537/i-cant-set-a-svg-file-as-a-maui-app-icon)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　📂 `Resources/Images` フォルダーは　何か特別な管理下にあるみたいで　ふつうのフォルダーのようには扱えなさそうだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　MAUI は、ファイル・パスという概念を　無くしたいのでは？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　スマホ・デバイスへの対応のために？」  
+
+![202307_maui_09-1610--maui-bot.png](https://crieit.now.sh/upload_images/d6a8bc9d5467cbd67fabe9bab586536564aa5d8688efc.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　MAUI の最初に出てきた　ロボット、あいつ　SVG画像らしい。  
+あいつは　表示されて、  
+ペンを　ボタンの上に表示できないの、何故だぜ？」  
+
+![202307_maui_09-1620--svg.png](https://crieit.now.sh/upload_images/9c15f2a1fc51aca3138f4eceb897877164aa5feb30ead.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんで　ペン　がでかい？  
+そして　SVG　なのにラスタライズされてる？」    
+
+![202307_maui_09-1622--svg-to_v2o0.png](https://crieit.now.sh/upload_images/543c30d7690c13f0e14e8f61b70dac1864aa607ee0b77.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　さらに　なぜ　`.svg`　ではなく　`.png`　にしないと画像が出てこない？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　自動で　ラスタライズ　されているのでは？」  
+
+![202307_maui_09-1627--directory-o2o0.png](https://crieit.now.sh/upload_images/3d646ddc9efc49ca78b0ecc61d8b0c9964aa618ed6ff5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　フォルダーを切って　その中に入れると、パスでアクセスできなくなるのは　何故だぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　これを読めだぜ」  
+
+📖 [Add images to a .NET MAUI app project](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/images/images)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Android アプリがこうしてるから、 MAUI もこうしてる、というような　腰抜けの話しが　書かれているぜ。  
+クソじゃないか」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　なんで Android アプリに迎合するのかしら？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Microsoft が腰抜けだからだろ」 
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　これを読めだぜ」  
+
+📖 [Images in subfolders not showing up on Windows but do on Android #8628](https://github.com/dotnet/maui/issues/8628)  
+
+```xml
+<ItemGroup>
+    <MauiImage Include="Resources/Images/XXXXXXXX/*" />
+</ItemGroup>
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんか　こういうタグをどこかに書くと　そのフォルダーがプロジェクトに認識されるらしいぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　それは　どこに書くんだぜ？」  
+
+![202307_maui_09-1717--csproj-o2o0.png](https://crieit.now.sh/upload_images/37a79f95bfdabeb1420516c8bf927bb864aa6d6b00282.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイルを開けまくって　消去法をしている途中で　`2D RPG Negiramen.csproj`　に　それっぽいコードを発見したぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　書き足してみましょう！」  
+
+![202307_maui_09-1816--maui-image-o2o0.png](https://crieit.now.sh/upload_images/18d4f31bff5ef09167e6a7b9ed9b71dd64aa7b7982a8b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`\*`　を、　`\**\*`　に変えると、  
+直下フォルダーの任意のファイルではなく、  
+サブフォルダ―も下りて行って任意のファイルを　見てくれるようだぜ」  
+
+![202307_maui_09-1821--rtf-o2o0.png](https://crieit.now.sh/upload_images/4dea0a18be1045f1f2e8696dd290360164aa7c4b34fe4.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　また、 Android に迎合して、ディレクトリー名、ファイル名に　大文字や空白は使えず、  
+小文字英字、ハイフン、数字だけを使うようにするぜ」  
+
+![202307_maui_09-1832--image-o2o0.png](https://crieit.now.sh/upload_images/6de8534c9be7f2eb0b33343f5fb5d28b64aa7f1627aa9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　そして　ディレクトリーは無視されるという　クソ仕様により、  
+ファイル名だけで指定することになるぜ。拡張子は、ファイル名に `.png` と付いていても XAML には `.png` と指定するクソ仕様」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI は、プラットフォームごとに　異なる画像ファイル形式で用意されても、  
+XAML には `.png` と書こうという　MAUI の開発者の頭が残念なことに　なってるのね～」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ラスター画像と　ベクター画像の特性の違いも理解できないぐらい　知能が下がってるのかだぜ？」  
+
 ＜書きかけ＞

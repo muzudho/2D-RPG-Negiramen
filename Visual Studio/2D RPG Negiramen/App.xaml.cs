@@ -7,28 +7,37 @@ using _2D_RPG_Negiramen.Models;
 /// </summary>
 public partial class App : Application
 {
-    // - 静的プロパティー
+    // - 静的プロパティ
 
+    #region プロパティ（画面遷移先の一時記憶）
     /// <summary>
     ///     画面遷移先の一時記憶
     /// </summary>
     static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
+    #endregion
 
+    #region プロパティ（グリッド線の半分の太さ）
     /// <summary>
     ///     グリッド線の半分の太さ
     /// </summary>
     static internal ThicknessOfLine HalfThicknessOfGridLine { get; } = new Models.ThicknessOfLine(1);
+    #endregion
 
+    #region プロパティ（タイル・カーソルの線の半分の太さ）
     /// <summary>
     ///     タイル・カーソルの線の半分の太さ
     /// </summary>
     static internal ThicknessOfLine HalfThicknessOfTileCursorLine => new Models.ThicknessOfLine(2 * HalfThicknessOfGridLine.AsInt);
+    #endregion
 
+    #region プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
     /// <summary>
     ///     現在作業中の画面の中でのグリッド・タイル・サイズ
     /// </summary>
     static internal Models.Size WorkingGridTileSize { get; set; } = new Models.Size(new Models.Width(32), new Models.Height(32));
+    #endregion
 
+    #region プロパティ（現在作業中の画面の中での選択タイルのサイズ）
     /// <summary>
     ///     <pre>
     ///         現在作業中の画面の中での選択タイルのサイズ
@@ -37,12 +46,16 @@ public partial class App : Application
     ///     </pre>
     /// </summary>
     static internal Models.Size SelectedTileSize { get; set; } = new Models.Size(new Models.Width(0), new Models.Height(0));
+    #endregion
 
+    #region プロパティ（グリッド全体の左上表示位置）
     /// <summary>
     ///     グリッド全体の左上表示位置
     /// </summary>
     static internal Models.Point WorkingGridLeftTop = Models.Point.Empty;
+    #endregion
 
+    #region プロパティ（ポインティング・デバイス押下中か？）
     /// <summary>
     ///     ポインティング・デバイス押下中か？
     /// 
@@ -51,10 +64,11 @@ public partial class App : Application
     ///     </list>
     /// </summary>
     static internal bool SelectingOnPointingDevice { get; set; }
+    #endregion
 
     // - 静的メソッド
 
-    #region 静的メソッド（構成）
+    #region メソッド（構成）
     /// <summary>
     /// 構成ファイルの取得、またはファイル読込
     /// </summary>
@@ -85,7 +99,7 @@ public partial class App : Application
     }
     #endregion
 
-    #region 静的メソッド（ユーザー構成）
+    #region メソッド（ユーザー構成）
     /// <summary>
     /// ユーザー構成ファイルの取得、またはファイル読込
     /// </summary>
@@ -116,7 +130,7 @@ public partial class App : Application
     }
     #endregion
 
-    #region 静的メソッド（設定）
+    #region メソッド（設定）
     /// <summary>
     /// 設定ファイルの取得、またはファイル読込
     /// </summary>
@@ -150,8 +164,11 @@ public partial class App : Application
     }
     #endregion
 
+    // - その他
+
+    #region その他（生成）
     /// <summary>
-    /// 生成
+    ///     生成
     /// </summary>
     public App()
     {
@@ -159,9 +176,11 @@ public partial class App : Application
 
         MainPage = new AppShell();
     }
+    #endregion
 
     // - プライベート静的プロパティー
 
+    #region プロパティ（現在の構成）
     /// <summary>
     ///		現在の構成
     /// 
@@ -170,7 +189,9 @@ public partial class App : Application
     ///		</list>
     /// </summary>
     static Models.FileEntries.Configuration Configuration { get; set; }
+    #endregion
 
+    #region プロパティ（現在のユーザー構成）
     /// <summary>
     ///		現在のユーザー構成
     /// 
@@ -179,7 +200,9 @@ public partial class App : Application
     ///		</list>
     /// </summary>
     static Models.FileEntries.UserConfiguration UserConfiguration { get; set; }
+    #endregion
 
+    #region プロパティ（現在の設定）
     /// <summary>
     ///		現在の設定
     /// 
@@ -188,4 +211,5 @@ public partial class App : Application
     ///		</list>
     /// </summary>
     static Models.FileEntries.Settings Settings { get; set; }
+    #endregion
 }

@@ -44,9 +44,13 @@
 		<!-- Images -->
 		<!--
 			<MauiImage Include="Resources\Images\*" />
+			<MauiImage Include="Resources\Images\visual_studio_2022_image_library\images\*" />
 		-->
 		<MauiImage Include="Resources\Images\**\*" />
+		<!--
+		<MauiImage Update="Resources\Images\visual_studio_2022_image_library\images\edit1.svg" />
 		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+		-->
 
 		<!-- Custom Fonts -->
 		<MauiFont Include="Resources\Fonts\*" />
@@ -63,6 +67,10 @@
 	  <MauiImage Remove="Resources\Images\Tile Set\**" />
 	  <MauiXaml Remove="Resources\Images\Tile Set\**" />
 	  <None Remove="Resources\Images\Tile Set\**" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Images\edit1.svg" />
 	</ItemGroup>
 
 	<ItemGroup>

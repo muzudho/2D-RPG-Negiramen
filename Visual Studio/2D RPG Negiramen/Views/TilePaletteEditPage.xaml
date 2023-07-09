@@ -7,6 +7,10 @@
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage"
              Loaded="ContentPage_Loaded">
 
+    <!--
+        リソースの用意
+        ==============
+    -->
     <ContentPage.Resources>
         <!--
             描画
@@ -14,7 +18,7 @@
         -->
         <modelsDrawing:TileSetGrid x:Key="MyTileSetGrid" />
         <modelsDrawing:TileCursor x:Key="MyTileCursor" />
-        
+
         <!--
             バリデーション
             ==============
@@ -26,7 +30,7 @@
             <Setter Property="TextColor" Value="Black" />
         </Style>
     </ContentPage.Resources>
-    
+
     <ContentPage.BindingContext>
         <viewModels:TilePaletteEditPageViewModel />
     </ContentPage.BindingContext>
@@ -41,7 +45,7 @@
             ==============
         -->
         <HorizontalStackLayout>
-           
+
             <Button x:Name="HomeBtn"
                     Text="Home"
                     SemanticProperties.Hint="Back to the home"
@@ -299,7 +303,7 @@
             <!--
                 ２段目 入力部
                 =============
-            -->           
+            -->
             <Label Grid.Row="1" Grid.Column="1"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
@@ -333,11 +337,21 @@
                 ３段目 読み仮名部
                 =================
             -->
+            <Grid Grid.Row="2" Grid.Column="0"
+                  ColumnDefinitions="*,*" RowDefinitions="*">
+
+                <!-- 追加／上書ボタン -->
+                <Label Grid.Row="0" Grid.Column="0"
+                        Text="Overwrite"/>
+                <Label Grid.Row="0" Grid.Column="1"
+                        IsEnabled="False"/>
+            </Grid>
+
             <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    Padding="0,0,4,0"
                    Text="タイル・コード"/>
-            
+
             <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
                    Padding="20,0,0,0"
                    Text="タイル名、または　コメントを自由入力"/>
@@ -348,11 +362,26 @@
             -->
             <Grid Grid.Row="3" Grid.Column="0"
                   ColumnDefinitions="*,*" RowDefinitions="*">
-            
-                <!-- 追加／上書ボタン -->
+
+                <!-- 追加／上書ボタン
+                    <Button Grid.Row="0" Grid.Column="0"
+                            Text="{Binding AddsButtonText}"
+                            Clicked="AddsButton_Clicked"/>
+                        ImageSource="Resource/Images/Visual Studio 2022 Image Library/images/Edit.svg"
+                        <FileImageSource File="Resource/Images/Visual Studio 2022 Image Library/images/Edit.svg"/>
+                    <Button.ImageSource>
+                        <FileImageSource File="Edit.svg"/>
+                    </Button.ImageSource>
+                        ImageSource="edit.png"
+                -->
                 <Button Grid.Row="0" Grid.Column="0"
-                        Text="{Binding AddsButtonText}"
-                        Clicked="AddsButton_Clicked"/>
+                        ImageSource="edit.svg"
+                        FontSize="Small"
+                        Clicked="AddsButton_Clicked">
+                </Button>
+
+
+
                 <Button Grid.Row="0" Grid.Column="1"
                         IsEnabled="False"
                         Text="削除"/>

@@ -55,9 +55,9 @@
             Models.Rectangle rectangle,
             Models.Comment comment)
         {
-            this.Id = id;
-            this.Rectangle = rectangle;
-            this.Comment = comment;
+            this.Id = id ?? throw new ArgumentNullException(nameof(id));
+            this.Rectangle = rectangle ?? throw new ArgumentNullException(nameof(rectangle));
+            this.Comment = comment ?? throw new ArgumentNullException(nameof(comment));
         }
     }
 }
