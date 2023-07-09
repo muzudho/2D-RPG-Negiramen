@@ -337,16 +337,6 @@
                 ３段目 読み仮名部
                 =================
             -->
-            <Grid Grid.Row="2" Grid.Column="0"
-                  ColumnDefinitions="*,*" RowDefinitions="*">
-
-                <!-- 追加／上書ボタン -->
-                <Label Grid.Row="0" Grid.Column="0"
-                        Text="Overwrite"/>
-                <Label Grid.Row="0" Grid.Column="1"
-                        IsEnabled="False"/>
-            </Grid>
-
             <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    Padding="0,0,4,0"
@@ -363,24 +353,11 @@
             <Grid Grid.Row="3" Grid.Column="0"
                   ColumnDefinitions="*,*" RowDefinitions="*">
 
-                <!-- 追加／上書ボタン
-                    <Button Grid.Row="0" Grid.Column="0"
-                            Text="{Binding AddsButtonText}"
-                            Clicked="AddsButton_Clicked"/>
-                        ImageSource="Resource/Images/Visual Studio 2022 Image Library/images/Edit.svg"
-                        <FileImageSource File="Resource/Images/Visual Studio 2022 Image Library/images/Edit.svg"/>
-                    <Button.ImageSource>
-                        <FileImageSource File="Edit.svg"/>
-                    </Button.ImageSource>
-                        ImageSource="edit.png"
-                -->
+                <!-- 追加／上書ボタン -->
                 <Button Grid.Row="0" Grid.Column="0"
-                        ImageSource="edit.svg"
-                        FontSize="Small"
-                        Clicked="AddsButton_Clicked">
-                </Button>
-
-
+                        Text="{Binding AddsButtonText}"
+                        ToolTipProperties.Text="{Binding AddsButtonHint}"
+                        Clicked="AddsButton_Clicked"/>
 
                 <Button Grid.Row="0" Grid.Column="1"
                         IsEnabled="False"

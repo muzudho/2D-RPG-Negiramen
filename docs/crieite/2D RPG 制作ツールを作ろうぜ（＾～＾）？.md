@@ -3183,4 +3183,32 @@ XAML には `.png` と書こうという　MAUI の開発者の頭が残念な�
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ラスター画像と　ベクター画像の特性の違いも理解できないぐらい　知能が下がってるのかだぜ？」  
 
+![202307_maui_09-1843--rename-o2o0.png](https://crieit.now.sh/upload_images/da91855569c9d3b0ed4191c1abd485a964aa81704c31b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ファイル名が被りたくないので　プレフィックス（Prefix；接頭辞）を付けるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　インフラの出来が悪いと　要らんテクニックが使われてしまうな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　フォルダー下に、別の命名システムを持ったフォルダーを　ぶらさげたいこともあるのに、  
+それが考慮されていないのは  
+MAUI の開発者が　開発の現場経験が未熟だろうから　全員クビになっても　不思議ではないわねえ」  
+
+![202307_maui_09-1852--svg-color-o2o0.png](https://crieit.now.sh/upload_images/63107ee03ba2f44132e5e4b319340d0464aa83ab3c341.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　SVG形式画像を PNG形式画像に変換したあｔのものが　ボタンの上に描かれるから、  
+テキスト・カラーを　白　にしても　白くならないぜ！」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　当然だな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI　お前　コンピューター・グラフィックスという　自覚　無いのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI の開発者も　いずれ全員　クビになるでしょう」  
+
 ＜書きかけ＞

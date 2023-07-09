@@ -648,14 +648,42 @@
                     }
                     else
                     {
-                        // return "上書";
-                        return "Overwrite";
+                        return "上書";
                     }
                 }
                 else
                 {
                     // タイル・カーソル無し時
                     return "追加";
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（追加／上書きボタンのツールチップ・ヒント）
+        /// <summary>
+        ///     追加／上書きボタンのツールチップ・ヒント
+        /// </summary>
+        public string AddsButtonHint
+        {
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    if (selectedTile.Id == Models.TileId.Empty)
+                    {
+                        // 未選択時
+                        return "選択タイルを、タイル一覧画面へ追加";
+                    }
+                    else
+                    {
+                        return "選択タイルを、タイル一覧画面へ上書";
+                    }
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                    return "選択タイルを、タイル一覧画面へ追加";
                 }
             }
         }
