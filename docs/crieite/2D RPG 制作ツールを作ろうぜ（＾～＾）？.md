@@ -3302,5 +3302,25 @@ MAUI の開発者が　開発の現場経験が未熟だろうから　全員ク
 「　👆　サンプル見ると、単に　ファイルを移動しただけに見えるな……  
 やってみるか」  
 
+![202307_maui_09-2121.png](https://crieit.now.sh/upload_images/47ea86e372d6b831991dd01e14d2e04564aaa66644aca.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　自動で　ネームスペースも調整してくれるのかな？」  
+
+![202307_maui_09-2123--AppResources.png](https://crieit.now.sh/upload_images/2311669f7b860d49718a2a3b11deb55864aaa6db405db.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ファイル名も `Resources` から `AppResources` に変えたろ」  
+
+![202307_maui_09-2330--Localization.png](https://crieit.now.sh/upload_images/c10c9472698797fab5c6a949a488cd4264aac4966ca49.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`LocalizationResourceManager` クラスを真似して　自分用に設定」  
+
+![202307_maui_09-2346--init-o2o0.png](https://crieit.now.sh/upload_images/cb1d7979ff646d7b4caf1360a6b3af3964aac8ed78817.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　アプリケーション起動直後に　文化を日本に設定。  
+わたしが日本語しか確認しないから　日本がデフォルトでいいだろ」  
 
 ＜書きかけ＞

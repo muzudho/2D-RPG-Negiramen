@@ -1,27 +1,71 @@
-﻿//namespace _2D_RPG_Negiramen
-//{
-//    using MauiLocalizationSample.Resources.Languages;
-//    using System.ComponentModel;
-//    using System.Globalization;
+﻿namespace _2D_RPG_Negiramen
+{
+    using _2D_RPG_Negiramen.Resources.Languages;
+    using System.ComponentModel;
+    using System.Globalization;
 
-//    public class LocalizationResourceManager : INotifyPropertyChanged
-//    {
-//        private LocalizationResourceManager()
-//        {
-//            AppResources.Culture = CultureInfo.CurrentCulture;
-//        }
+    /// <summary>
+    ///     <pre>
+    ///         📺 [Localization in .NET MAUI - Adding Multi-Language to Your Apps](https://www.youtube.com/watch?v=cf4sXULR7os)
+    ///         📖 [.NET MAUI Localization Sample](https://github.com/jfversluis/MauiLocalizationSample)  
+    ///     </pre>
+    /// </summary>
+    public class LocalizationResourceManager : INotifyPropertyChanged
+    {
+        // - パブリック静的プロパティ
 
-//        public static LocalizationResourceManager Instance { get; } = new();
+        #region プロパティ（インスタンス）
+        /// <summary>
+        ///     インスタンス
+        /// </summary>
+        public static LocalizationResourceManager Instance { get; } = new();
+        #endregion
 
-//        public object this[string resourceKey]
-//            => AppResources.ResourceManager.GetObject(resourceKey, AppResources.Culture) ?? Array.Empty<byte>();
+        // - その他
 
-//        public event PropertyChangedEventHandler PropertyChanged;
+        #region その他（生成）
+        /// <summary>
+        ///     生成
+        /// </summary>
+        private LocalizationResourceManager()
+        {
+            AppResources.Culture = CultureInfo.CurrentCulture;
+        }
+        #endregion
 
-//        public void SetCulture(CultureInfo culture)
-//        {
-//            AppResources.Culture = culture;
-//            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
-//        }
-//    }
-//}
+        // - パブリック・プロパティ
+
+        #region プロパティ（インデクサ）
+        /// <summary>
+        ///     インデクサ
+        /// </summary>
+        /// <param name="resourceKey">リソース・キー</param>
+        /// <returns></returns>
+        public object this[string resourceKey]
+            => AppResources.ResourceManager.GetObject(resourceKey, AppResources.Culture) ?? Array.Empty<byte>();
+        #endregion
+
+        // - パブリック・イベント
+
+        #region イベント（プロパティ変更時）
+        /// <summary>
+        ///     プロパティ変更時
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
+        // - パブリック・メソッド
+
+        #region メソッド（文化設定）
+        /// <summary>
+        ///     文化設定
+        /// </summary>
+        /// <param name="culture">文化</param>
+        public void SetCulture(CultureInfo culture)
+        {
+            AppResources.Culture = culture;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
+        }
+        #endregion
+    }
+}

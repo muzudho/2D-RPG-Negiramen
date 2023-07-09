@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen;
 
 using _2D_RPG_Negiramen.Models;
+using System.Globalization;
 
 /// <summary>
 ///     😁 アプリケーション
@@ -172,6 +173,15 @@ public partial class App : Application
     /// </summary>
     public App()
     {
+        // 初期化（多言語対応）
+        {
+            // TODO 切替方法はあとで考える
+            var cultureInfo = new CultureInfo("ja-JP");
+            // new CultureInfo("en-US")
+
+            LocalizationResourceManager.Instance.SetCulture(cultureInfo);
+        }
+
         InitializeComponent();
 
         MainPage = new AppShell();

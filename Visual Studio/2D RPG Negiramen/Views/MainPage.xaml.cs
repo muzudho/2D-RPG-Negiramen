@@ -2,35 +2,28 @@
 
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Maui.Views;
+using System.Globalization;
 
 /// <summary>
 ///     😁 メイン・ページ
 /// </summary>
 public partial class MainPage : ContentPage
 {
-    /*
-	int count = 0;
-    */
+    // - その他
 
+    #region その他（生成）
+    /// <summary>
+    ///     生成
+    /// </summary>
     public MainPage()
     {
         InitializeComponent();
     }
+    #endregion
 
-    /*
-    private void OnCounterClicked(object sender, EventArgs e)
-    {
-        count++;
+    // - メソッド
 
-        if (count == 1)
-            CounterBtn.Text = $"Clicked {count} time";
-        else
-            CounterBtn.Text = $"Clicked {count} times";
-
-        SemanticScreenReader.Announce(CounterBtn.Text);
-    }
-    */
-
+    #region メソッド（環境が構成ファイル通りか判定する）
     /// <summary>
     ///     環境が構成ファイル通りか判定する
     ///     
@@ -60,9 +53,13 @@ public partial class MainPage : ContentPage
             // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
         }
     }
+    #endregion
 
+    #region メソッド（構成ページへ移動）
     /// <summary>
     ///     <pre>
+    ///         構成ページへ移動
+    ///         
     ///         本来の移動先をグローバル変数へ記憶して、構成ページへ移動。
     ///         構成が終わったら、一旦構成ページから戻ったあと、本来の移動先へ遷移
     ///     </pre>
@@ -74,7 +71,9 @@ public partial class MainPage : ContentPage
         await Navigation.PushAsync(new StartupConfigurationPage());
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
+    #endregion
 
+    #region メソッド（［マップを作る］ボタン押下時）
     /// <summary>
     /// ［マップを作る］ボタン押下時
     /// </summary>
@@ -97,7 +96,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［戦闘を作る］ボタン押下時）
     /// <summary>
     /// ［戦闘を作る］ボタン押下時
     /// </summary>
@@ -120,7 +121,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［メニューを作る］ボタン押下時）
     /// <summary>
     /// ［メニューを作る］ボタン押下時
     /// </summary>
@@ -143,7 +146,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［会話画面を作る］ボタン押下時）
     /// <summary>
     /// ［会話画面を作る］ボタン押下時
     /// </summary>
@@ -166,7 +171,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［プレイヤー・キャラクターを編集］ボタン押下時）
     /// <summary>
     /// ［プレイヤー・キャラクターを編集］ボタン押下時
     /// </summary>
@@ -189,7 +196,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［モンスターを編集］ボタン押下時）
     /// <summary>
     /// ［モンスターを編集］ボタン押下時
     /// </summary>
@@ -212,7 +221,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［モンスター・グループを編集］ボタン押下時）
     /// <summary>
     /// ［モンスター・グループを編集］ボタン押下時
     /// </summary>
@@ -235,7 +246,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［アイテムを編集］ボタン押下時）
     /// <summary>
     /// ［アイテムを編集］ボタン押下時
     /// </summary>
@@ -258,7 +271,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［話しを編集］ボタン押下時）
     /// <summary>
     /// ［話しを編集］ボタン押下時
     /// </summary>
@@ -281,7 +296,9 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 
+    #region メソッド（［初期設定］ボタン押下時）
     /// <summary>
     /// ［初期設定］ボタン押下時
     /// </summary>
@@ -295,7 +312,9 @@ public partial class MainPage : ContentPage
         await Navigation.PushAsync(new StartupConfigurationPage());
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
+    #endregion
 
+    #region メソッド（［ウィンドウ表示テスト］ボタン押下時）
     /// <summary>
     /// ［ウィンドウ表示テスト］ボタン押下時
     /// </summary>
@@ -319,7 +338,9 @@ public partial class MainPage : ContentPage
 
         await Navigation.PushAsync(new StartupConfigurationPage());
     }
+    #endregion
 
+    #region メソッド（［ポップアップ練習］ボタン押下時）
     /// <summary>
     /// ［ポップアップ練習］ボタン押下時
     /// </summary>
@@ -331,7 +352,9 @@ public partial class MainPage : ContentPage
 
         this.ShowPopup(popup);
     }
+    #endregion
 
+    #region メソッド（［タイル・パレット表示］ボタン押下時）
     /// <summary>
     /// ［タイル・パレット表示］ボタン押下時
     /// </summary>
@@ -351,7 +374,9 @@ public partial class MainPage : ContentPage
 
         Application.Current.OpenWindow(secondWindow);
     }
+    #endregion
 
+    #region メソッド（［マップ描画ページ表示］ボタン押下時）
     /// <summary>
     /// ［マップ描画ページ表示］ボタン押下時
     /// </summary>
@@ -371,7 +396,9 @@ public partial class MainPage : ContentPage
 
         Application.Current.OpenWindow(secondWindow);
     }
+    #endregion
 
+    #region メソッド（［タイル・パレット編集］ボタン押下時）
     /// <summary>
     /// ［タイル・パレット編集］ボタン押下時
     /// </summary>
@@ -431,5 +458,5 @@ public partial class MainPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+    #endregion
 }
-
