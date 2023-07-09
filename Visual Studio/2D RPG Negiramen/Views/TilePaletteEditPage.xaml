@@ -361,11 +361,11 @@
             <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    Padding="0,0,4,0"
-                   Text="タイル・コード"/>
+                   Text="管理コード"/>
 
             <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
                    Padding="20,0,0,0"
-                   Text="タイル名、または　コメントを自由入力"/>
+                   Text="タイル名"/>
 
             <!--
                 ４段目 入力部

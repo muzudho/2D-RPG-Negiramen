@@ -3199,7 +3199,7 @@ MAUI の開発者が　開発の現場経験が未熟だろうから　全員ク
 ![202307_maui_09-1852--svg-color-o2o0.png](https://crieit.now.sh/upload_images/63107ee03ba2f44132e5e4b319340d0464aa83ab3c341.png)  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　👆　SVG形式画像を PNG形式画像に変換したあｔのものが　ボタンの上に描かれるから、  
+「　👆　SVG形式画像を PNG形式画像に変換した後のものが　ボタンの上に描かれるから、  
 テキスト・カラーを　白　にしても　白くならないぜ！」  
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
@@ -3210,5 +3210,45 @@ MAUI の開発者が　開発の現場経験が未熟だろうから　全員ク
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　MAUI の開発者も　いずれ全員　クビになるでしょう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　代替策を探さな」  
+
+📖 [Specify the color of a SVG image in .NET Maui](https://stackoverflow.com/questions/74334591/specify-the-color-of-a-svg-image-in-net-maui)  
+
+![202307_maui_09-1911--tint-color-o2o0.png](https://crieit.now.sh/upload_images/ad249fe8a956c79695ac497b21ad617764aa880796a6b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`TintColor` も効果なし」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI の出来が悪いんじゃないの？　あんまり　期待できないんだから  
+トリックを使っていくことに　なるんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　ツールチップ・ヒント　の使い方を調べるか」  
+
+![202307_maui_09-1939--long-button-o2o0.png](https://crieit.now.sh/upload_images/d4ab7b314fd471171939eb1482379a9464aa906245a5b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ボタンは　横に広く使うように　妥協。  
+ツールチップ・ヒントも　組み合わせたので、  
+国際化は　少々横長のボタンと　ツールチップ・ヒントで　なんとかしてくれだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`タイル名、または　コメントを自由入力`　というメッセージが　ダサいから　`タイル名`　だけでよくない？」  
+
+![202307_maui_09-1954--label-o2o0.png](https://crieit.now.sh/upload_images/5cccfdff5ba10582cc155d58be52c80064aa921995cea.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　すっきりさせたぜ」  
+
+## 国際化の切替
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　英語版、日本語版と　どうやって切り替えるんだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　調べるか……」  
 
 ＜書きかけ＞
