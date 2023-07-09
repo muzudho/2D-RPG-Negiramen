@@ -3353,7 +3353,63 @@ Text プロパティへ `{app:Translate LayoutTheScreen}` と書いてみるぜ�
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　カルチャーを変更するドロップダウン・リストみたいなものが欲しいわねえ」  
 
+## 外国語を入力してくれだぜ
+
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　試しに　英語と　中国語のリソースも　作ってみてくれだぜ」  
+
+![202307_maui_10-0029--resxmanager-o2o0.png](https://crieit.now.sh/upload_images/1a70975edac8a28c1ec84549d94a37e964aad2d883c3b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`ResXManager` がインストール済みなのは確認できるんだが、  
+どこから実行するんだぜ？」  
+
+![202307_maui_10-0033--tool-resxmanager-o2o0.png](https://crieit.now.sh/upload_images/0961e44c7647157c97090ecb88cdf6f364aad3aa5f105.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あっ、いた！」  
+
+![202307_maui_10-0036--open-resxmanager.png](https://crieit.now.sh/upload_images/9138315a2e52338881fe383a1b99923a64aad40300c31.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ここまでくると　あとは　わかる」  
+
+![202307_maui_10-0040--neutral-language-o2o0.png](https://crieit.now.sh/upload_images/f986007d0f27516e0d809241e6f3aa2d64aad55274deb.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ニュートラル・リソース・ランゲージを　英語から　日本語へ　変えるぜ。  
+理由は　開発者が　わたし１人だから」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　悲しい話しだぜ」  
+
+![202307_maui_10-0045--add-new-language-o2o0.png](https://crieit.now.sh/upload_images/084551d620cbb2512ed3e73e4ee42b0264aad659090b1.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　言語を追加するボタンがあるぜ」  
+
+![202307_maui_10-0049--en-US-o2o0.png](https://crieit.now.sh/upload_images/17f6e29ad248f284a56b57c9ac28e05864aad72ed2885.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　イーエヌ・ユーエス（en-US；英語（米国））は　必須だろ」  
+
+![202307_maui_10-0054--add-languages-o2o0.png](https://crieit.now.sh/upload_images/ad51a2ae899827fe7f0362e07bcf990a64aad87d63534.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　３つも足しておけば十分だろ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　アジアに寄ってんな」  
+
+![202307_maui_10-0059--translation-o2o0.png](https://crieit.now.sh/upload_images/4e0a62f752473d3015723becb6ea783a64aad98e8314f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ばばばっと　翻訳して　空いてるとこ　埋めてくれる機能があるから  
+使おうぜ？」  
+
+![202307_maui_10-0105--translation.png](https://crieit.now.sh/upload_images/7e5cdc05fc459da2cf83445a4df375d964aadb02b6a9e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なぜか　英語しか　対応してくれなかった。　寄付が足りないとか？」  
 
 ＜書きかけ＞
