@@ -3567,7 +3567,20 @@ MAUI で　何でできないの？」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　トップページは　MVVM　にまだ対応してないんで、これから対応させるぜ」  
 
+（カタ　カタ　カタ　カタ）
+
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　あの　１．５日　ぐらい　工数かかったやつ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　でけた。　さっきのイベントハンドラも　コード・ビハインドも要らんかった。  
+MVVM　だけでいけるぜ」  
+
+![202307__maui__11-0117--translate.gif](https://crieit.now.sh/upload_images/abba981488671b08bc5cc6887acd6a7964ac2fc210aca.gif)  
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　マイクロソフトの社員は欠陥じゃなかったんだな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　まだ　首の皮一枚つながったぐらいだな」  
 
 ＜書きかけ＞
