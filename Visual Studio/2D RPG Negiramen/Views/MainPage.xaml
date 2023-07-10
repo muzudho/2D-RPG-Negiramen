@@ -3,8 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:_2D_RPG_Negiramen"
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
-             x:Class="_2D_RPG_Negiramen.Views.MainPage"
-             Loaded="ContentPage_Loaded">
+             x:Class="_2D_RPG_Negiramen.Views.MainPage">
 
     <!-- 束縛しているビューモデル -->
     <ContentPage.BindingContext>
@@ -23,8 +22,7 @@
             -->
             <Picker x:Name="picker"
                     SelectedItem="{Binding CultureInfoAsStr}"
-                    Title="Select a language"
-                    SelectedIndexChanged="picker_SelectedIndexChanged">
+                    Title="Select a language">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>ja-JP</x:String>

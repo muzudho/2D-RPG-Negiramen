@@ -117,7 +117,58 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="EditTheMonster" xml:space="preserve">
+    <value>モンスターを編集</value>
+  </data>
   <data name="LayoutTheScreen" xml:space="preserve">
     <value>画面をレイアウトする</value>
+  </data>
+  <data name="CreateAMapScreen" xml:space="preserve">
+    <value>マップ画面を作る</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>システム</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>構成</value>
+  </data>
+  <data name="WindowDisplayTest" xml:space="preserve">
+    <value>ウィンドウ表示テスト</value>
+  </data>
+  <data name="PopupExercises" xml:space="preserve">
+    <value>ポップアップ練習</value>
+  </data>
+  <data name="TilePaletteDisplay" xml:space="preserve">
+    <value>タイル・パレット表示</value>
+  </data>
+  <data name="MapDrawingPage" xml:space="preserve">
+    <value>マップ描画ページ</value>
+  </data>
+  <data name="TilePaletteEditing" xml:space="preserve">
+    <value>タイル・パレット編集</value>
+  </data>
+  <data name="CreateABattleScreen" xml:space="preserve">
+    <value>戦闘画面を作る</value>
+  </data>
+  <data name="CreateAMenuScreen" xml:space="preserve">
+    <value>メニュー画面を作る</value>
+  </data>
+  <data name="CreateAConversationScreen" xml:space="preserve">
+    <value>会話画面を作る</value>
+  </data>
+  <data name="EditYourData" xml:space="preserve">
+    <value>データを編集する</value>
+  </data>
+  <data name="EditPlayerCharacter" xml:space="preserve">
+    <value>プレイヤー・キャラクターを編集</value>
+  </data>
+  <data name="EditAMonsterGroup" xml:space="preserve">
+    <value>モンスター・グループを編集</value>
+  </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>アイテムを編集</value>
+  </data>
+  <data name="EditTheTalk" xml:space="preserve">
+    <value>話しを編集</value>
   </data>
 </root>

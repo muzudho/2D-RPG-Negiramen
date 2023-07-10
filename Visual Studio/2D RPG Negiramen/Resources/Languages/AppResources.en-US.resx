@@ -118,6 +118,57 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="LayoutTheScreen" xml:space="preserve">
-    <value>Layout the screen!</value>
+    <value>Layout the screen</value>
+  </data>
+  <data name="EditTheMonster" xml:space="preserve">
+    <value>Edit the monster</value>
+  </data>
+  <data name="CreateAMapScreen" xml:space="preserve">
+    <value>Create a map screen</value>
+  </data>
+  <data name="System" xml:space="preserve">
+    <value>System</value>
+  </data>
+  <data name="Configure" xml:space="preserve">
+    <value>Configure</value>
+  </data>
+  <data name="CreateABattleScreen" xml:space="preserve">
+    <value>Create a battle screen</value>
+  </data>
+  <data name="CreateAMenuScreen" xml:space="preserve">
+    <value>Create a menu screen</value>
+  </data>
+  <data name="CreateAConversationScreen" xml:space="preserve">
+    <value>Create a conversation screen</value>
+  </data>
+  <data name="EditYourData" xml:space="preserve">
+    <value>Edit your data</value>
+  </data>
+  <data name="EditPlayerCharacter" xml:space="preserve">
+    <value>Edit Player Character</value>
+  </data>
+  <data name="EditAMonsterGroup" xml:space="preserve">
+    <value>Edit a Monster Group</value>
+  </data>
+  <data name="EditItem" xml:space="preserve">
+    <value>Edit item</value>
+  </data>
+  <data name="EditTheTalk" xml:space="preserve">
+    <value>Edit the talk</value>
+  </data>
+  <data name="WindowDisplayTest" xml:space="preserve">
+    <value>Window display test</value>
+  </data>
+  <data name="PopupExercises" xml:space="preserve">
+    <value>Pop-up exercises</value>
+  </data>
+  <data name="TilePaletteDisplay" xml:space="preserve">
+    <value>Tile Palette Display</value>
+  </data>
+  <data name="MapDrawingPage" xml:space="preserve">
+    <value>Map Drawing Page</value>
+  </data>
+  <data name="TilePaletteEditing" xml:space="preserve">
+    <value>Tile palette editing</value>
   </data>
 </root>

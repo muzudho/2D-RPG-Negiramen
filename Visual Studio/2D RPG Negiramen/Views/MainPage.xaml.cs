@@ -469,25 +469,4 @@ public partial class MainPage : ContentPage
             });
     }
     #endregion
-
-    // - イベントハンドラ
-
-    #region イベントハンドラ（画面表示完了時）
-    /// <summary>
-    ///     画面表示完了時
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void ContentPage_Loaded(object sender, EventArgs e)
-    {
-        picker.SelectedItem = "ja-JP";
-    }
-    #endregion
-
-    private void picker_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        var context = (MainPageViewModel)this.BindingContext;
-
-        // context.CultureInfoAsStr
-    }
 }

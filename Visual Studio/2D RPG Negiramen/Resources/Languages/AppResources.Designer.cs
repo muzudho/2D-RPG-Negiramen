@@ -61,11 +61,164 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   構成 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Configure {
+            get {
+                return ResourceManager.GetString("Configure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   戦闘画面を作る に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CreateABattleScreen {
+            get {
+                return ResourceManager.GetString("CreateABattleScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   会話画面を作る に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CreateAConversationScreen {
+            get {
+                return ResourceManager.GetString("CreateAConversationScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   マップ画面を作る に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CreateAMapScreen {
+            get {
+                return ResourceManager.GetString("CreateAMapScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   メニュー画面を作る に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CreateAMenuScreen {
+            get {
+                return ResourceManager.GetString("CreateAMenuScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   モンスター・グループを編集 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EditAMonsterGroup {
+            get {
+                return ResourceManager.GetString("EditAMonsterGroup", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   アイテムを編集 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EditItem {
+            get {
+                return ResourceManager.GetString("EditItem", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   プレイヤー・キャラクターを編集 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EditPlayerCharacter {
+            get {
+                return ResourceManager.GetString("EditPlayerCharacter", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   モンスターを編集 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EditTheMonster {
+            get {
+                return ResourceManager.GetString("EditTheMonster", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   話しを編集 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EditTheTalk {
+            get {
+                return ResourceManager.GetString("EditTheTalk", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   データを編集する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EditYourData {
+            get {
+                return ResourceManager.GetString("EditYourData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   画面をレイアウトする に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LayoutTheScreen {
             get {
                 return ResourceManager.GetString("LayoutTheScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   マップ描画ページ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string MapDrawingPage {
+            get {
+                return ResourceManager.GetString("MapDrawingPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ポップアップ練習 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string PopupExercises {
+            get {
+                return ResourceManager.GetString("PopupExercises", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   システム に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string System {
+            get {
+                return ResourceManager.GetString("System", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイル・パレット表示 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TilePaletteDisplay {
+            get {
+                return ResourceManager.GetString("TilePaletteDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイル・パレット編集 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TilePaletteEditing {
+            get {
+                return ResourceManager.GetString("TilePaletteEditing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ウィンドウ表示テスト に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string WindowDisplayTest {
+            get {
+                return ResourceManager.GetString("WindowDisplayTest", resourceCulture);
             }
         }
     }
