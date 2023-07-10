@@ -16,13 +16,22 @@
             Padding="30,0"
             VerticalOptions="Center">
 
+            <Image
+                Source="title_header.png"
+                SemanticProperties.Description="title header"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
             <!--
                 言語ピッカー
                 ============
+            
+                「言語を選ぶ」
             -->
             <Picker x:Name="picker"
+                    HorizontalOptions="Center"
                     SelectedItem="{Binding CultureInfoAsStr}"
-                    Title="Select a language">
+                    Title="{app:Translate SelectLanguage}">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>ja-JP</x:String>
@@ -31,13 +40,7 @@
                 </Picker.ItemsSource>
             </Picker>
 
-            <Image
-                Source="title_header.png"
-                SemanticProperties.Description="title header"
-                HeightRequest="200"
-                HorizontalOptions="Center" />
-
-            <!-- 画面をレイアウトする -->
+            <!-- 「画面をレイアウトする」 -->
             <Label
                 Text="{app:Translate LayoutTheScreen}"
                 SemanticProperties.HeadingLevel="Level1"
@@ -46,107 +49,124 @@
 
             <Grid ColumnDefinitions="*,*" RowDefinitions="*,*">
 
+                <!-- 「マップ画面を作る」 -->
                 <Button Grid.Row="0" Grid.Column="0"
                         x:Name="CreateMapViewBtn"
-                        Text="マップ画面を作る"
+                        Text="{app:Translate CreateAMapScreen}"
                         SemanticProperties.Hint="Create the map view"
                         Clicked="CreateMapViewBtn_Clicked"/>
 
+                <!-- 「戦闘画面を作る」 -->
                 <Button Grid.Row="0" Grid.Column="1"
                         x:Name="CreateBattleViewBtn"
-                        Text="戦闘画面を作る"
+                        Text="{app:Translate CreateABattleScreen}"
                         SemanticProperties.Hint="Create the battle view"
                         Clicked="CreateBattleBtn_Clicked"/>
 
+                <!-- 「メニュー画面を作る」 -->
                 <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateMenuViewBtn"
-                        Text="メニュー画面を作る"
+                        Text="{app:Translate CreateAMenuScreen}"
                         SemanticProperties.Hint="Create the menu view"
                         Clicked="CreateMenuViewBtn_Clicked"/>
 
+                <!-- 「会話画面を作る」 -->
                 <Button Grid.Row="1" Grid.Column="1"
                         x:Name="CreateTalkingBtn"
-                        Text="会話画面を作る"
+                        Text="{app:Translate CreateAConversationScreen}"
                         SemanticProperties.Hint="Create the talking view"
                         Clicked="CreateTalkingBtn_Clicked"/>
 
             </Grid>
 
+            <!-- 「データを編集する」 -->
             <Label
-                Text="データを編集する"
+                Text="{app:Translate EditYourData}"
                 SemanticProperties.HeadingLevel="Level1"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*">
 
+                <!-- 「プレイヤー・キャラクターを編集」 -->
                 <Button Grid.Row="0" Grid.Column="0"
                         x:Name="EditPlayerCharacterBtn"
-                        Text="プレイヤー・キャラクターを編集"
+                        Text="{app:Translate EditPlayerCharacter}"
                         SemanticProperties.Hint="Edit the player character"
                         Clicked="EditPlayerCharacterBtn_Clicked"/>
 
+                <!-- 「モンスターを編集」 -->
                 <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateMonsterBtn"
-                        Text="モンスターを編集"
+                        Text="{app:Translate EditTheMonster}"
                         SemanticProperties.Hint="Edit the monster"
                         Clicked="CreateMonsterBtn_Clicked"/>
 
+                <!-- 「モンスター・グループを編集」 -->
                 <Button Grid.Row="1" Grid.Column="1"
                         x:Name="EditMonsterGroupBtn"
-                        Text="モンスター・グループを編集"
+                        Text="{app:Translate EditAMonsterGroup}"
                         SemanticProperties.Hint="Edit the monster group"
                         Clicked="EditMonsterGroupBtn_Clicked"/>
 
+                <!-- 「アイテムを編集」 -->
                 <Button Grid.Row="2" Grid.Column="0"
                         x:Name="CreateItemBtn"
-                        Text="アイテムを編集"
+                        Text="{app:Translate EditItem}"
                         SemanticProperties.Hint="Edit the item"
                         Clicked="EditItemBtn_Clicked"/>
 
+                <!-- 「話しを編集」 -->
                 <Button Grid.Row="2" Grid.Column="1"
                         x:Name="EditorStoryBtn"
-                        Text="話しを編集"
+                        Text="{app:Translate EditTheTalk}"
                         SemanticProperties.Hint="Edit the story"
                         Clicked="EditorStoryBtn_Clicked"/>
 
             </Grid>
 
+            <!-- 「システム」 -->
             <Label
-                Text="システム"
+                Text="{app:Translate System}"
                 SemanticProperties.Hint="System"
                 FontSize="32"
                 HorizontalOptions="Center" />
 
             <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
 
+                <!-- 「構成」 -->
                 <Button Grid.Row="0" Grid.Column="0"
-                        Text="構成"
+                        Text="{app:Translate Configure}"
                         SemanticProperties.Hint="Startup configuration"
                         Clicked="StartupConfigurationBtn_Clicked"/>
 
+                <!-- 「ウィンドウ表示テスト」 -->
                 <Button Grid.Row="0" Grid.Column="1"
-                        Text="ウィンドウ表示テスト"
+                        Text="{app:Translate WindowDisplayTest}"
                         SemanticProperties.Hint="Test show window"
                         Clicked="TestShowWindowButton_Clicked"/>
 
+                <!-- 「ポップアップ練習」 -->
                 <Button Grid.Row="1" Grid.Column="0"
-                        Text="ポップアップ練習"
+                        Text="{app:Translate PopupExercises}"
                         SemanticProperties.Hint="Popup tile pallette"
                         Clicked="PopupPracticeButton_Clicked"/>
 
+                <!-- 「タイル・パレット表示」 -->
                 <Button Grid.Row="1" Grid.Column="1"
-                        Text="タイル・パレット表示"
+                        Text="{app:Translate TilePaletteDisplay}"
                         SemanticProperties.Hint="Show tile pallette"
                         Clicked="ShowTilePalette_Clicked"/>
 
+                <!-- 「マップ描画ページ」 -->
                 <Button Grid.Row="2" Grid.Column="0"
-                        Text="マップ描画ページ"
+                        Text="{app:Translate MapDrawingPage}"
                         SemanticProperties.Hint="Map drawing page"
                         Clicked="MapDrawingButton_Clicked"/>
 
+                <!-- 「タイル・パレット編集」 -->
                 <Button Grid.Row="2" Grid.Column="1"
-                        Text="タイル・パレット編集"
+                        Text="{app:Translate TilePaletteEditing}"
                         SemanticProperties.Hint="Tile palette editor page"
                         Clicked="TilePaletteEditButton_Clicked"/>
             </Grid>

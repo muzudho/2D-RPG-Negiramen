@@ -171,4 +171,7 @@
   <data name="TilePaletteEditing" xml:space="preserve">
     <value>Tile palette editing</value>
   </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>Select Language</value>
+  </data>
 </root>

@@ -171,4 +171,7 @@
   <data name="EditTheTalk" xml:space="preserve">
     <value>話しを編集</value>
   </data>
+  <data name="SelectLanguage" xml:space="preserve">
+    <value>言語を選ぶ</value>
+  </data>
 </root>

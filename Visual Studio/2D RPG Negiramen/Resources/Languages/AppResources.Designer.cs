@@ -187,6 +187,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   言語を選ぶ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string SelectLanguage {
+            get {
+                return ResourceManager.GetString("SelectLanguage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   システム に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string System {
