@@ -2,8 +2,14 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:_2D_RPG_Negiramen"
+             xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              x:Class="_2D_RPG_Negiramen.Views.MainPage"
              Loaded="ContentPage_Loaded">
+
+    <!-- 束縛しているビューモデル -->
+    <ContentPage.BindingContext>
+        <viewModels:MainPageViewModel />
+    </ContentPage.BindingContext>
 
     <ScrollView>
         <VerticalStackLayout
@@ -17,7 +23,8 @@
             -->
             <Picker x:Name="picker"
                     SelectedItem="{Binding CultureInfoAsStr}"
-                    Title="Select a language">
+                    Title="Select a language"
+                    SelectedIndexChanged="picker_SelectedIndexChanged">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>ja-JP</x:String>

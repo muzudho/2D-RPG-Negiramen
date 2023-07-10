@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.ViewModels;
 using CommunityToolkit.Maui.Views;
 
 /// <summary>
@@ -482,4 +483,11 @@ public partial class MainPage : ContentPage
         picker.SelectedItem = "ja-JP";
     }
     #endregion
+
+    private void picker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var context = (MainPageViewModel)this.BindingContext;
+
+        // context.CultureInfoAsStr
+    }
 }
