@@ -30,7 +30,6 @@ public partial class MainPage : ContentPage
         => LocalizationResourceManager.Instance;
     #endregion
 
-
     // - プライベート・メソッド
 
     #region メソッド（環境が構成ファイル通りか判定する）
@@ -467,6 +466,20 @@ public partial class MainPage : ContentPage
                 await GoToConfigurationPage(shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
+    }
+    #endregion
+
+    // - イベントハンドラ
+
+    #region イベントハンドラ（画面表示完了時）
+    /// <summary>
+    ///     画面表示完了時
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ContentPage_Loaded(object sender, EventArgs e)
+    {
+        picker.SelectedItem = "ja-JP";
     }
     #endregion
 }

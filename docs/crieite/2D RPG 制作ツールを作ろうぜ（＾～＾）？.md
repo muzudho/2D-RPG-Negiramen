@@ -3471,4 +3471,103 @@ Text プロパティへ `{app:Translate LayoutTheScreen}` と書いてみるぜ�
 「　国旗は後回しにし、ＩＳＯ言語コードのドロップダウン・リストを  
 ハードコーディングする方向で　次回　考えようぜ？」  
 
+# 📅 （2023-07-10 mon）日本語か、英語かを選べるドロップダウン・リストボックスを置いてくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　日本語か、英語かを選べるドロップダウン・リストボックスを置いてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　まず　MAUI　に　ドロップダウン・リストボックスがあるのかどうかも　分からないしな。  
+調べないとな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　マイクロソフトの記事、映像がなくて　どんな画面が出てくるのか　分からん」  
+
+📖 [Microsoft　＞　Picker](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/picker)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　ユーチューブで探せばいいのよ」  
+
+📺 [How To Create Custom Picker Control (Dropdown Button) In .NET MAUI](https://www.youtube.com/watch?v=fMB6LuEB-4o)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　作ってみるのが早いか」  
+
+📖 [ピッカー](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/controls/picker)  
+
+![202307_maui_10-2234--picker-o2o0.png](https://crieit.now.sh/upload_images/3ce6c9e3b6a968258e49c70d20bd78ff64ac0935d773c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こう書けば」  
+
+![202307_maui_10-2237--picker-appear-o2o0.png](https://crieit.now.sh/upload_images/e230ee2a7af437b4ac713655b9ea9b8d64ac09b301e77.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ドロップダウン・リストボックスが出てきて……」  
+
+![202307_maui_10-2238--picker-select-o2o0.png](https://crieit.now.sh/upload_images/5db4effdd668dd4bc101fe77c18d93e864ac0a08e6db3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　選べるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　それが欲しかったのよ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　初期状態で　`ja-JP`　を選んでおいてくれだぜ」  
+
+![202307_maui_10-2245--picker-initial-o2o0.png](https://crieit.now.sh/upload_images/24ece786c0c6b5177e02a95dba32420c64ac0bc16701a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ピッカーに　最初に選択されている値を表示することは　できないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ、値が最初に選択されていることを　ピッカーでどう表現するんだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　マイクロソフトの社員の知能が欠如していて　それはできないぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　初期値を表示するのって　HTML の Select タグの Option 要素の `Selected` 属性でも指定できるのに、  
+MAUI で　何でできないの？」 
+
+📖 [HTML <option> selected Attribute](https://www.w3schools.com/tags/att_option_selected.asp)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　マイクロソフトの社員が欠陥だからだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　マイクロソフトの社員が欠陥だというところまでは　事実と認めましょう。  
+それは置いておいて　わたしたちは　ピッカーに初期値を表示したいのよ。どうしたらいいのよ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ピッカーを使ってはいけないのでは？」  
+
+![202307_maui_10-2259--loaded-o2o0.png](https://crieit.now.sh/upload_images/63a7aaa26e38a47d1200977b4b665c9864ac0ee9a7879.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`ContentPage` 要素に `Loaded` 属性を追加して……」  
+
+![202307_maui_10-2301--code-behind-o2o0.png](https://crieit.now.sh/upload_images/8722b79118cce5c71900814d6a6c8ce364ac0f5a79d6b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コード・ビハインドで `picker.SelectedItem = "ja-JP";` とでも書いておけば……」  
+
+![202307_maui_10-2303--picker-initial-o2o0.png](https://crieit.now.sh/upload_images/295cfbb038d9e6d0c52ca4cc574493ad64ac0fcee9e01.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ページの表示完了時には　ピッカーで　`ja-JP`　が選択されている、という状態にできるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　XAML だけでは　モックアップも作れないんだな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MVVM に対応できんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　トップページは　MVVM　にまだ対応してないんで、これから対応させるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　あの　１．５日　ぐらい　工数かかったやつ」  
+
 ＜書きかけ＞

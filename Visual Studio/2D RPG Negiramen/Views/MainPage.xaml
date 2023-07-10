@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:_2D_RPG_Negiramen"
-             x:Class="_2D_RPG_Negiramen.Views.MainPage">
+             x:Class="_2D_RPG_Negiramen.Views.MainPage"
+             Loaded="ContentPage_Loaded">
 
     <ScrollView>
         <VerticalStackLayout
@@ -10,19 +11,29 @@
             Padding="30,0"
             VerticalOptions="Center">
 
+            <!--
+                言語ピッカー
+                ============
+            -->
+            <Picker x:Name="picker"
+                    SelectedIndex="0"
+                    SelectedItem="ja-JP"
+                    Title="Select a language">
+                <Picker.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>ja-JP</x:String>
+                        <x:String>en-US</x:String>
+                    </x:Array>
+                </Picker.ItemsSource>
+            </Picker>
+
             <Image
                 Source="title_header.png"
                 SemanticProperties.Description="title header"
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-            <!--
-            <Label
-                Text="画面を作る"
-                SemanticProperties.HeadingLevel="Level1"
-                FontSize="32"
-                HorizontalOptions="Center" />
-            -->
+            <!-- 画面をレイアウトする -->
             <Label
                 Text="{app:Translate LayoutTheScreen}"
                 SemanticProperties.HeadingLevel="Level1"
