@@ -16,8 +16,7 @@
                 ============
             -->
             <Picker x:Name="picker"
-                    SelectedIndex="0"
-                    SelectedItem="ja-JP"
+                    SelectedItem="{Binding CultureInfoAsStr}"
                     Title="Select a language">
                 <Picker.ItemsSource>
                     <x:Array Type="{x:Type x:String}">

@@ -69,5 +69,14 @@
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(null));
         }
         #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（文化情報）
+        /// <summary>
+        ///     文化情報
+        /// </summary>
+        internal CultureInfo CultureInfo => AppResources.Culture;
+        #endregion
     }
 }

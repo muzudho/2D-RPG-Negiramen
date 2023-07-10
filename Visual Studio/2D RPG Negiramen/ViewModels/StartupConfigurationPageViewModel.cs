@@ -19,6 +19,7 @@
 
         // - その他
 
+        #region その他（生成）
         /// <summary>
         ///     生成
         ///     
@@ -39,9 +40,11 @@
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
             PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
         }
+        #endregion
 
         // - 変更通知プロパティ
 
+        #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式）
         /// <summary>
         ///     ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式
         /// </summary>
@@ -60,6 +63,7 @@
                 }
             }
         }
+        #endregion
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス。文字列形式

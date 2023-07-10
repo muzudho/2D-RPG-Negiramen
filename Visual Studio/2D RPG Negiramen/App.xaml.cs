@@ -176,10 +176,7 @@ public partial class App : Application
         // 初期化（多言語対応）
         {
             // TODO 切替方法はあとで考える
-            var cultureInfo = new CultureInfo("ja-JP");
-            // new CultureInfo("en-US")
-
-            LocalizationResourceManager.Instance.SetCulture(cultureInfo);
+            LocalizationResourceManager.Instance.SetCulture(new CultureInfo("ja-JP"));
         }
 
         InitializeComponent();
