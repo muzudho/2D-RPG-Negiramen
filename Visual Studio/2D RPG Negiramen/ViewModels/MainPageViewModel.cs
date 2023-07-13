@@ -34,30 +34,10 @@
         #endregion
 
         #region 変更通知プロパティ（ロケールＩｄのリスト）
-        ObservableCollection<string> languageCollection = new ObservableCollection<string>(new List<string>()
-        {
-            "ja-JP",
-            "en-US",
-        });
-
         /// <summary>
         ///     ロケールＩｄのリスト
         /// </summary>
-        public ObservableCollection<string> LanguageCollection
-        {
-            get
-            {
-                return this.languageCollection;
-            }
-            private set
-            {
-                if (this.languageCollection != value)
-                {
-                    this.languageCollection = value;
-                    OnPropertyChanged(nameof(LanguageCollection));
-                }
-            }
-        }
+        public ObservableCollection<string> LanguageCollection => App.LocaleIdCollection;
         #endregion
     }
 }

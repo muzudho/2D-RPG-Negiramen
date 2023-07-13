@@ -3755,4 +3755,18 @@ en-US,
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　そうじゃないか？」  
 
+![202307__maui__13-2327--localeIdCollection-o2o0.png](https://crieit.now.sh/upload_images/6e331203deb69aaa1cd6a21804f9a78c64b00a0b4fff0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ロケールＩｄのリストなんか　途中で変わらないだろ。  
+セッターのないプロパティとして、グローバル変数のように利用できるように `App` クラスに定義しようぜ？」  
+
+![202307__maui__13-2329--localeIdCollectionProperty-o2o0.png](https://crieit.now.sh/upload_images/34b641d87f8642b6d11b16d3651b28a164b00a98085c8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　変更できない変更通知プロパティなら、グローバル変数を取得してても　不整合は起こらないだろ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　これを　ビューモデルに置きまくるのか」  
+
 ＜書きかけ＞

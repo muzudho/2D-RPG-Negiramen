@@ -2,6 +2,7 @@
 
 using _2D_RPG_Negiramen.Models;
 using CsvHelper;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
 
@@ -11,6 +12,17 @@ using System.Globalization;
 public partial class App : Application
 {
     // - インターナル静的プロパティ
+
+    #region プロパティ（ロケールＩｄのリスト）
+    /// <summary>
+    ///     ロケールＩｄのリスト
+    /// </summary>
+    internal static ObservableCollection<string> LocaleIdCollection { get; } = new ObservableCollection<string>(new List<string>()
+        {
+            "ja-JP",
+            "en-US",
+        });
+    #endregion
 
     #region プロパティ（画面遷移先の一時記憶）
     /// <summary>
@@ -71,22 +83,22 @@ public partial class App : Application
 
     // - インターナル静的メソッド
 
-    /// <summary>
-    ///     バンドルド・ファイルの読込
-    ///     
-    ///     <list type="bullet">
-    ///         <item>📖 [Microsoft　＞　Bundled Files](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows#bundled-files)</item>
-    ///     </list>
-    /// </summary>
-    /// <param name="filePath"></param>
-    /// <returns></returns>
-    internal static async Task<string> ReadTextFile(string filePath)
-    {
-        using Stream fileStream = await FileSystem.Current.OpenAppPackageFileAsync(filePath);
-        using StreamReader reader = new StreamReader(fileStream);
+    ///// <summary>
+    /////     バンドルド・ファイルの読込
+    /////     
+    /////     <list type="bullet">
+    /////         <item>📖 [Microsoft　＞　Bundled Files](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows#bundled-files)</item>
+    /////     </list>
+    ///// </summary>
+    ///// <param name="filePath"></param>
+    ///// <returns></returns>
+    //internal static async Task<string> ReadTextFile(string filePath)
+    //{
+    //    using Stream fileStream = await FileSystem.Current.OpenAppPackageFileAsync(filePath);
+    //    using StreamReader reader = new StreamReader(fileStream);
 
-        return await reader.ReadToEndAsync();
-    }
+    //    return await reader.ReadToEndAsync();
+    //}
 
     // - プライベート静的メソッド
 
