@@ -50,11 +50,10 @@
             -->
             <HorizontalStackLayout Grid.Column="0"
                                    HorizontalOptions="Start">
-                <Button x:Name="HomeBtn"
+                <Button Margin="16,2,2,2"
                         Text="Home"
                         SemanticProperties.Hint="Back to the home"
-                        Clicked="HomeBtn_Clicked"
-                        BorderColor="SkyBlue"/>
+                        Clicked="HomeBtn_Clicked"/>
 
                 <Label Text="＞"
                        TextColor="White"
@@ -83,7 +82,7 @@
     </Shell.TitleView>
 
     <Grid RowDefinitions="80,*,164"
-          BackgroundColor="DarkSlateGray">
+          BackgroundColor="Gainsboro">
 
         <!--
             上メニュー

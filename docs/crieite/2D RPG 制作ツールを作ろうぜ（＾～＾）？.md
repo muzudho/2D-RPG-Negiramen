@@ -3769,4 +3769,17 @@ en-US,
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　これを　ビューモデルに置きまくるのか」  
 
+## 配色変更
+
+![202307__maui__14-0022--color.png](https://crieit.now.sh/upload_images/d94466403f254cd4becc9453b870beb264b0172af2d9e.png)  
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　テキストボックスの白が目立つように　配色を変更し、  
+ロケールＩｄのピッカーを　右上に置いたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　色を使いすぎてんじゃないの？　青だけでも３色もある」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイトルバーの色を　減らしてみるか……」  
+
 ＜書きかけ＞
