@@ -3583,4 +3583,80 @@ MVVM　だけでいけるぜ」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　まだ　首の皮一枚つながったぐらいだな」  
 
+# 📅 （2023-07-10 mon）タイル・パレット編集画面も多言語化しなさいよ
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　タイル・パレット編集画面も多言語化しなさいよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あとから　多言語化しようとして　レイアウトの変更が必要になったりしたら　大変だしな」  
+
+![202307__maui__11-1921--item-source-o2o0.png](https://crieit.now.sh/upload_images/8b148790199ca6c52545071bc98a835c64ad2d9f7dab7.png)  
+
+[ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　この　アイテム・リソースも　ハード・コーディングじゃなくて  
+どこかのファイルにまとめて、一元化したいんだが」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`App.xaml` に　リソース・ディクショナリーを作って、それを読み込んだらどうだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　テンプレートは　リソースにできるが、　データは　リソースにできないんじゃないか？」  
+
+📖 [データ テンプレート](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/datatemplate?view=net-maui-7.0)  
+📖 [リソース ディクショナリ](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/resource-dictionaries?view=net-maui-7.0)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`ItemSource` の使い方が分からん。調べても出てこないぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　この前の多言語化のときの　おっさんの　You Tube　に　なんか　まとまってんじゃないの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　このおっさんは　MAUI を作ったチームの中の人らしいぜ」  
+
+📺 [Gerald Versluis](https://www.youtube.com/@jfversluis)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　その動画を　しばらく視聴する！」  
+
+# 📅 （2023-07-11 tue）寝てた
+
+Zzz  
+
+# 📅 （2023-07-12 wed）動画観るか～
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　動画　観るか～」  
+
+# 📅 （2023-07-13 thu）分かんね
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　英語で　何言ってるか　分かんないんだが」  
+
+📺 [Monkey クラス作成](https://youtu.be/dlnNzjc7a60)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　猿を１匹記録するクラスを作るんだけど、例が JSON なのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　真似して　言語を１つ記録するクラスを作るかだぜ」  
+
+![202307__maui__13-2019--languagesCSV-o2o0.png](https://crieit.now.sh/upload_images/a561ecf75fedbd0f2876ecf5384c7ca064afde255cbcf.png)  
+
+```csv
+Name,
+ja-JP,
+en-US,
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　📂― `Releases/Raw` フォルダーの中に 📄 `languages.csv` ファイルを作ろうぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　その１行に対応する `Language` クラスを 📂 `Models` フォルダーの下に作りましょう」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　なんか無駄臭いクラスだな……」  
+
 ＜書きかけ＞
