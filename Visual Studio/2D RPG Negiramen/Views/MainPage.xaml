@@ -16,7 +16,7 @@
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
-              BackgroundColor="DodgerBlue">
+              BackgroundColor="SkyBlue">
             <!--
                 パンくずリスト
                 ==============
@@ -31,16 +31,16 @@
                        HorizontalOptions="Center"
                        Margin="16,0,0,0"
                        FontSize="Large"
-                       Text="Home"
-                       TextColor="White" />
+                       Text="Home"/>
             </HorizontalStackLayout>
         </Grid>
     </Shell.TitleView>
 
     <ScrollView>
+        <!-- BackgroundColor="Gainsboro"
+        -->
         <VerticalStackLayout Spacing="25"
-                             Padding="30,0"
-                             BackgroundColor="Gainsboro">
+                             Padding="30,0">
 
             <Image
                 Source="title_header.png"
@@ -53,8 +53,7 @@
                     HorizontalOptions="Center"
                     ItemsSource="{Binding LocaleIdCollection}"
                     SelectedItem="{Binding CultureInfoAsStr}"
-                    Title="{app:Translate SelectLanguage}"
-                    BackgroundColor="White"/>
+                    Title="{app:Translate SelectLanguage}"/>
 
             <!-- 「画面をレイアウトする」 -->
             <Label HorizontalOptions="Center"

@@ -3782,4 +3782,26 @@ en-US,
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　タイトルバーの色を　減らしてみるか……」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI のスタイルシート的なものは　どこにあんの？」  
+
+![202307__maui__14-0035--style-o2o0.png](https://crieit.now.sh/upload_images/9fd3d12ba2fdf5731f88263d1f30261f64b01a0b82263.png)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　📂 `Resources/Styles` フォルダーの下にあるぜ」  
+
+![202307__maui__14-0052--style.png](https://crieit.now.sh/upload_images/8b11356442708784b9c0f99187be696364b01dce57f67.png)  
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　色の主張を　抑えたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　テキストボックスの白と黒も　きつい　気がするのよね」  
+
+![202307__maui__14-0121--colors.png](https://crieit.now.sh/upload_images/46bbc26edc2997249f618f78a768795764b024baec7da.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ダーク・モードのことを考えずに　いじってしまった。  
+どこか　壊してしまったかも知れないが　分からない。  
+勘弁しろだぜ」  
+
 ＜書きかけ＞

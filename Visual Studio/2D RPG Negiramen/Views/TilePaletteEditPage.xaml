@@ -43,7 +43,7 @@
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
-              BackgroundColor="DodgerBlue">
+              BackgroundColor="SkyBlue">
             <!--
                 パンくずリスト
                 ==============
@@ -55,10 +55,9 @@
                         SemanticProperties.Hint="Back to the home"
                         Clicked="HomeBtn_Clicked"/>
 
-                <Label Text="＞"
-                       TextColor="White"
-                       SemanticProperties.Hint="Separator"
-                       VerticalTextAlignment="Center"/>
+                <Label VerticalTextAlignment="Center"
+                       Text="＞"
+                       SemanticProperties.Hint="Separator"/>
 
                 <!--
                     ページ・タイトル
@@ -67,8 +66,7 @@
                 <Label Text="タイル・パレット編集"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
-                       FontSize="Large"
-                       TextColor="White" />
+                       FontSize="Large"/>
             </HorizontalStackLayout>
 
             <!-- 「言語を選ぶ」 -->
@@ -76,13 +74,11 @@
                     VerticalOptions="Center"
                     HorizontalOptions="End"
                     ItemsSource="{Binding LocaleIdCollection}"
-                    BackgroundColor="White"
                     SelectedItem="{Binding CultureInfoAsStr}"/>
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="80,*,164"
-          BackgroundColor="Gainsboro">
+    <Grid RowDefinitions="80,*,164">
 
         <!--
             上メニュー
@@ -134,15 +130,13 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding ImageWidthAsInt}"
-                   BackgroundColor="SkyBlue"/>
+                   Text="{Binding ImageWidthAsInt}"/>
 
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding ImageHeightAsInt}"
-                   BackgroundColor="SkyBlue"/>
+                   Text="{Binding ImageHeightAsInt}"/>
 
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
@@ -153,13 +147,13 @@
                    HorizontalTextAlignment="End"
                    Placeholder="0"
                    Text="{Binding GridLeftAsInt}"
-                   BackgroundColor="White"/>
+                   BackgroundColor="FloralWhite"/>
 
             <Entry Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
                    Text="{Binding GridTopAsInt}"
-                   BackgroundColor="White"/>
+                   BackgroundColor="FloralWhite"/>
 
             <Label Grid.Row="1" Grid.Column="6"
                    HorizontalTextAlignment="End"
@@ -170,7 +164,7 @@
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="{Binding GridTileWidthAsInt}"
-                   BackgroundColor="White">
+                   BackgroundColor="FloralWhite">
                 <Entry.Behaviors>
                     <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
                                                        ValidStyle="{StaticResource ValidEntryStyle}"
@@ -185,7 +179,7 @@
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="{Binding GridTileHeightAsInt}"
-                   BackgroundColor="White">
+                   BackgroundColor="FloralWhite">
                 <Entry.Behaviors>
                     <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
                                                        ValidStyle="{StaticResource ValidEntryStyle}"
@@ -393,7 +387,7 @@
             <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                    Placeholder="草原"
                    Text="{Binding SelectedTileCommentAsStr}"
-                   BackgroundColor="White"/>
+                   BackgroundColor="FloralWhite"/>
 
             <!--
                 ５段目 ヒント部
