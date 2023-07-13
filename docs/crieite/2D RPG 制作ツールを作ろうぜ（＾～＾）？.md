@@ -3651,12 +3651,52 @@ en-US,
 ```
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　👆　📂― `Releases/Raw` フォルダーの中に 📄 `languages.csv` ファイルを作ろうぜ？」  
+「　👆　📂 `Releases/Raw` フォルダーの中に 📄 `languages.csv` ファイルを作ろうぜ？」  
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　その１行に対応する `Language` クラスを 📂 `Models` フォルダーの下に作りましょう」  
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　なんか無駄臭いクラスだな……」  
+
+![202307__maui__13-2030--languageBuffer-o2o0.png](https://crieit.now.sh/upload_images/d00de6ef32df8b5e51d865790f2d137064afe095c3419.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　プロパティ１個　置いとけばいいのかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　C# に、 CSV をシリアライズする仕組みなんか　あるのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　人気があるのは　これかしらねえ？」  
+
+📖 [CsvHelper](https://github.com/JoshClose/CsvHelper)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　使い方を覚えるか……」  
+
+![202307__maui__13-2044--CsvHelper.png](https://crieit.now.sh/upload_images/16db599db8b9823d4923d64649e576be64afe3cab6e1e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　NuGET でインストール」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`Resources/Raw` フォルダーの中にあるファイルって　どうやって読取るんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　調べろだぜ」  
+
+📖 [Microsoft　＞　Bundled Files](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows#bundled-files)  
+📖 [Get Resources\Raw Path in .NET Maui](https://stackoverflow.com/questions/73374573/get-resources-raw-path-in-net-maui)  
+
+![202307__maui__13-2118--csvProj-o2o0.png](https://crieit.now.sh/upload_images/c84687b7916658888a22a76db5e3d8b564afed344b9b8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`None` とか `Remove` って何だぜ？　無いことになってんの？」  
+
+![202307__maui__13-2127--buildAction-o2o0.png](https://crieit.now.sh/upload_images/8b8012d9feaf9cde3d8f592f237f10d064afedf3691a5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビルド・アクションを何か変えたらいいのかだぜ？」  
 
 ＜書きかけ＞

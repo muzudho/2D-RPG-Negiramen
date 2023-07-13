@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen;
 
 using _2D_RPG_Negiramen.Models;
+using CsvHelper;
 using System.Globalization;
 
 /// <summary>
@@ -8,7 +9,7 @@ using System.Globalization;
 /// </summary>
 public partial class App : Application
 {
-    // - 静的プロパティ
+    // - インターナル静的プロパティ
 
     #region プロパティ（画面遷移先の一時記憶）
     /// <summary>
@@ -67,7 +68,26 @@ public partial class App : Application
     static internal bool SelectingOnPointingDevice { get; set; }
     #endregion
 
-    // - 静的メソッド
+    // - インターナル静的メソッド
+
+    /// <summary>
+    ///     バンドルド・ファイルの読込
+    ///     
+    ///     <list type="bullet">
+    ///         <item>📖 [Microsoft　＞　Bundled Files](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows#bundled-files)</item>
+    ///     </list>
+    /// </summary>
+    /// <param name="filePath"></param>
+    /// <returns></returns>
+    internal static async Task<string> ReadTextFile(string filePath)
+    {
+        using Stream fileStream = await FileSystem.Current.OpenAppPackageFileAsync(filePath);
+        using StreamReader reader = new StreamReader(fileStream);
+
+        return await reader.ReadToEndAsync();
+    }
+
+    // - プライベート静的メソッド
 
     #region メソッド（構成）
     /// <summary>
@@ -173,6 +193,16 @@ public partial class App : Application
     /// </summary>
     public App()
     {
+        // TODO ★ CSV 読取
+        {
+            // カレント・ディレクトリーは `C:\WINDOWS\system32`
+            using (var reader = new StreamReader("languages.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.CurrentCulture))
+            {
+
+            }
+        }
+
         // 初期化（多言語対応）
         {
             // TODO 切替方法はあとで考える
