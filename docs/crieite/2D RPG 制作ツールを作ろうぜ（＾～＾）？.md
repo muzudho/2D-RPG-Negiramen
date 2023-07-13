@@ -3707,4 +3707,52 @@ en-US,
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　CSVファイルは　どう配置すりゃいいんだぜ？」  
 
+![202307__maui__13-2214--copy-o2o0.png](https://crieit.now.sh/upload_images/ba670541df5d857f2fa5153eafc0b9c764aff8db6710c.png)  
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`出力ディレクトリーにコピー`　を　`新しい場合はコピーする`　に変えたら、何が起こるんだぜ？」  
+
+![202307__maui__13-2223--output.png](https://crieit.now.sh/upload_images/25f3aa6bcf9f707a9e10f6f403faa31564affaee571da.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんで２つあるんだ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　コピーをしなければ `bin` フォルダーの下に `languages.csv` はなく、コピーすると２つある」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　Visual Studio のコンフィグ・ファイルは無いの？  
+インストール時に　作業ディレクトリーを設定できなければ、  
+設定ファイルの置き場所も　定まらなくない？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　アプリケーション・フォルダーに置いてくれないのかだぜ？」  
+
+## ItemSource 分からん
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　いったん、言語のリストは　ハード・コーディングするものとしようぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`ItemSource` って　何を設定できるの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　恐らく、ビューモデルの　変更通知プロパティじゃないか？」  
+
+![202307__maui__13-2253--localeIdList-o2o0.png](https://crieit.now.sh/upload_images/83ca6072cc348d13955168c14d50efc664b0023e067d2.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　変更通知プロパティを　ふつうに作って」  
+
+![202307__maui__13-2317--languagePicker-o2o0.png](https://crieit.now.sh/upload_images/20fc2b1f63dfe07f177e689b2cdbf2c964b007b66e603.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`ItemSource` に　バインドすれば　うまくいくぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　どのページにも　言語ピッカー　を置きたいときは、  
+どのページにも　`LanguageCollection`　変更通知プロパティーを作ることになるの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そうじゃないか？」  
+
 ＜書きかけ＞

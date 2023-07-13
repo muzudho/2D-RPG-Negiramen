@@ -22,30 +22,12 @@
                 HeightRequest="200"
                 HorizontalOptions="Center" />
 
-            <!--
-                言語ピッカー
-                ============
-            
-                「言語を選ぶ」
-            -->
+            <!-- 「言語を選ぶ」 -->
             <Picker x:Name="picker"
                     HorizontalOptions="Center"
                     ItemsSource="{Binding LanguageCollection}"
                     SelectedItem="{Binding CultureInfoAsStr}"
                     Title="{app:Translate SelectLanguage}"/>
-            <!--
-            <Picker x:Name="picker"
-                    HorizontalOptions="Center"
-                    SelectedItem="{Binding CultureInfoAsStr}"
-                    Title="{app:Translate SelectLanguage}">
-                <Picker.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>ja-JP</x:String>
-                        <x:String>en-US</x:String>
-                    </x:Array>
-                </Picker.ItemsSource>
-            </Picker>
-            -->
 
             <!-- 「画面をレイアウトする」 -->
             <Label
