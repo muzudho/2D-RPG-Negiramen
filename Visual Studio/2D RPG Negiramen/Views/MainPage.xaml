@@ -30,6 +30,12 @@
             -->
             <Picker x:Name="picker"
                     HorizontalOptions="Center"
+                    ItemsSource="{Binding LanguageCollection}"
+                    SelectedItem="{Binding CultureInfoAsStr}"
+                    Title="{app:Translate SelectLanguage}"/>
+            <!--
+            <Picker x:Name="picker"
+                    HorizontalOptions="Center"
                     SelectedItem="{Binding CultureInfoAsStr}"
                     Title="{app:Translate SelectLanguage}">
                 <Picker.ItemsSource>
@@ -39,6 +45,7 @@
                     </x:Array>
                 </Picker.ItemsSource>
             </Picker>
+            -->
 
             <!-- 「画面をレイアウトする」 -->
             <Label
