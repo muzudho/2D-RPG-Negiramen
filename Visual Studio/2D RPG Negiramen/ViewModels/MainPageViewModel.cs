@@ -37,7 +37,7 @@
         /// <summary>
         ///     ロケールＩｄのリスト
         /// </summary>
-        public ObservableCollection<string> LanguageCollection => App.LocaleIdCollection;
+        public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
         #endregion
     }
 }
