@@ -3804,4 +3804,13 @@ en-US,
 どこか　壊してしまったかも知れないが　分からない。  
 勘弁しろだぜ」  
 
+![202307__maui__14-0130--top-page-style.png](https://crieit.now.sh/upload_images/54f2a26c4fd4edc31e589d0406cec6e964b026c0ceea7.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　トップページの配色も　白が無くなるように　ゲインズボロ　という色をベースに敷いたが  
+ダークモードにしたら　どうなるのか　知らん」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　もう寝ろ」  
+
 ＜書きかけ＞
