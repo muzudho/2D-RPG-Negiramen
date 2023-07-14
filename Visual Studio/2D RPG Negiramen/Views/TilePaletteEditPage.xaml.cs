@@ -51,11 +51,13 @@ public partial class TilePaletteEditPage : ContentPage
     /// </summary>
     void RefreshTileForm()
     {
+        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+
         // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
         var selectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(
             startPoint: PointingDeviceStartPoint,
             endPoint: PointingDeviceCurrentPoint,
-            gridLeftTop: App.WorkingGridLeftTop,
+            gridLeftTop: context.WorkingGridLeftTop,
             gridTile: App.WorkingGridTileSize);
         // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
@@ -63,7 +65,6 @@ public partial class TilePaletteEditPage : ContentPage
         // 計算値の反映
         // ============
         //
-        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
         //
         // タイルが登録済みか？

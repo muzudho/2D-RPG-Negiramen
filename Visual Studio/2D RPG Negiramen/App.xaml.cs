@@ -63,13 +63,6 @@ public partial class App : Application
     static internal Models.Size SelectedTileSize { get; set; } = new Models.Size(new Models.Width(0), new Models.Height(0));
     #endregion
 
-    #region プロパティ（グリッド全体の左上表示位置）
-    /// <summary>
-    ///     グリッド全体の左上表示位置
-    /// </summary>
-    static internal Models.Point WorkingGridLeftTop = Models.Point.Empty;
-    #endregion
-
     // - インターナル静的メソッド
 
     ///// <summary>

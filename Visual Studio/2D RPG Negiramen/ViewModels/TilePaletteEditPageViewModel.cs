@@ -474,13 +474,15 @@
         #region 変更通知プロパティ（グリッド全体の左上表示位置）
         /// <summary>
         ///     グリッド全体の左上表示位置
+        ///     
+        ///     TODO ★ WorkingGridLeftTop と同じ？どっちか消す？
         /// </summary>
         public Models.Point GridLeftTop
         {
-            get => App.WorkingGridLeftTop;
+            get => this.WorkingGridLeftTop;
             set
             {
-                if (App.WorkingGridLeftTop != value)
+                if (this.WorkingGridLeftTop != value)
                 {
                     this.GridLeftAsInt = value.X.AsInt;
                     this.GridTopAsInt = value.Y.AsInt;
@@ -493,12 +495,12 @@
         /// </summary>
         public int GridLeftAsInt
         {
-            get => App.WorkingGridLeftTop.X.AsInt;
+            get => this.WorkingGridLeftTop.X.AsInt;
             set
             {
-                if (App.WorkingGridLeftTop.X.AsInt != value)
+                if (this.WorkingGridLeftTop.X.AsInt != value)
                 {
-                    App.WorkingGridLeftTop = new Models.Point(new Models.X(value), App.WorkingGridLeftTop.Y);
+                    this.WorkingGridLeftTop = new Models.Point(new Models.X(value), this.WorkingGridLeftTop.Y);
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
@@ -514,12 +516,12 @@
         /// </summary>
         public int GridTopAsInt
         {
-            get => App.WorkingGridLeftTop.Y.AsInt;
+            get => this.WorkingGridLeftTop.Y.AsInt;
             set
             {
-                if (App.WorkingGridLeftTop.Y.AsInt != value)
+                if (this.WorkingGridLeftTop.Y.AsInt != value)
                 {
-                    App.WorkingGridLeftTop = new Models.Point(App.WorkingGridLeftTop.X, new Models.Y(value));
+                    this.WorkingGridLeftTop = new Models.Point(this.WorkingGridLeftTop.X, new Models.Y(value));
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
@@ -1047,10 +1049,23 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド全体の左上表示位置）
+        Models.Point workingGridLeftTop = Models.Point.Empty;
+
         /// <summary>
         ///     グリッド全体の左上表示位置
         /// </summary>
-        public Models.Point WorkingGridLeftTop => App.WorkingGridLeftTop;
+        public Models.Point WorkingGridLeftTop
+        {
+            get => this.workingGridLeftTop;
+            set
+            {
+                if (this.workingGridLeftTop != value)
+                {
+                    this.workingGridLeftTop = value;
+                    OnPropertyChanged(nameof(WorkingGridLeftTop));
+                }
+            }
+        }
         #endregion
 
         #region 変更通知プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
@@ -1089,7 +1104,7 @@
             get => this.selectingOnPointingDevice;
             set
             {
-                if (this.selectingOnPointingDevice!=value)
+                if (this.selectingOnPointingDevice != value)
                 {
                     this.selectingOnPointingDevice = value;
                     OnPropertyChanged(nameof(SelectingOnPointingDevice));

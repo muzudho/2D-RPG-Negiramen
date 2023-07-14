@@ -173,6 +173,26 @@
             }
         }
 
+        #region 変更通知プロパティ（グリッド全体の左上表示位置）
+        Models.Point workingGridLeftTop = Models.Point.Empty;
+
+        /// <summary>
+        ///     グリッド全体の左上表示位置
+        /// </summary>
+        public Models.Point WorkingGridLeftTop
+        {
+            get => this.workingGridLeftTop;
+            set
+            {
+                if (this.workingGridLeftTop != value)
+                {
+                    this.workingGridLeftTop = value;
+                    OnPropertyChanged(nameof(WorkingGridLeftTop));
+                }
+            }
+        }
+        #endregion
+
         // - その他
 
         /// <summary>

@@ -51,6 +51,7 @@ public partial class TilePalettePage : ContentPage
     void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         // Image image = (Image)sender;
+        TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
 
         // タップした位置
         var tapped = new Models.Point(
@@ -61,14 +62,13 @@ public partial class TilePalettePage : ContentPage
         // タイル・カーソルの位置
         var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
             tapped: tapped,
-            gridLeftTop: App.WorkingGridLeftTop,
+            gridLeftTop: context.WorkingGridLeftTop,
             gridTile: new Models.Size(new Models.Width(32), new Models.Height(32)));
 
         //
         // 計算値の反映
         // ============
         //
-        TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
         context.TappedXOnImageAsInt = tapped.X.AsInt;
         context.TappedYOnImageAsInt = tapped.Y.AsInt;
         context.SelectedTileLeftAsInt = tileCursor.X.AsInt;
