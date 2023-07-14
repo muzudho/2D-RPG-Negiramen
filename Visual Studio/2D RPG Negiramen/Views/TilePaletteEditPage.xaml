@@ -238,7 +238,7 @@
                               InputTransparent="True">
                     <GraphicsView.Drawable>
                         <modelsDrawing:TileSetGrid HalfThicknessOfGridLineAsInt="{Binding HalfThicknessOfGridLineAsInt, Mode=OneWay}"
-                                                   WorkingGridLeftTop="{Binding WorkingGridLeftTop, Mode=OneWay}"
+                                                   GridLeftTop="{Binding WorkingGridLeftTop, Mode=OneWay}"
                                                    GridTileSize="{Binding GridTileSize, Mode=OneWay}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>

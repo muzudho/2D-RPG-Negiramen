@@ -472,17 +472,17 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド全体の左上表示位置）
+        Models.Point gridLeftTop = Models.Point.Empty;
+
         /// <summary>
         ///     グリッド全体の左上表示位置
-        ///     
-        ///     TODO ★ WorkingGridLeftTop と同じ？どっちか消す？
         /// </summary>
         public Models.Point GridLeftTop
         {
-            get => this.WorkingGridLeftTop;
+            get => this.gridLeftTop;
             set
             {
-                if (this.WorkingGridLeftTop != value)
+                if (this.gridLeftTop != value)
                 {
                     this.GridLeftAsInt = value.X.AsInt;
                     this.GridTopAsInt = value.Y.AsInt;
@@ -496,18 +496,19 @@
         /// </summary>
         public int GridLeftAsInt
         {
-            get => this.WorkingGridLeftTop.X.AsInt;
+            get => this.gridLeftTop.X.AsInt;
             set
             {
-                if (this.WorkingGridLeftTop.X.AsInt != value)
+                if (this.gridLeftTop.X.AsInt != value)
                 {
-                    this.WorkingGridLeftTop = new Models.Point(new Models.X(value), this.WorkingGridLeftTop.Y);
+                    this.gridLeftTop = new Models.Point(new Models.X(value), this.gridLeftTop.Y);
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(GridLeftAsInt));
+                    OnPropertyChanged(nameof(GridLeftTop));
                 }
             }
         }
@@ -517,18 +518,19 @@
         /// </summary>
         public int GridTopAsInt
         {
-            get => this.WorkingGridLeftTop.Y.AsInt;
+            get => this.gridLeftTop.Y.AsInt;
             set
             {
-                if (this.WorkingGridLeftTop.Y.AsInt != value)
+                if (this.gridLeftTop.Y.AsInt != value)
                 {
-                    this.WorkingGridLeftTop = new Models.Point(this.WorkingGridLeftTop.X, new Models.Y(value));
+                    this.gridLeftTop = new Models.Point(this.gridLeftTop.X, new Models.Y(value));
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(GridLeftAsInt));
+                    OnPropertyChanged(nameof(GridLeftTop));
                 }
             }
         }
@@ -728,26 +730,6 @@
                     this.halfThicknessOfGridLine = value;
                     OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
                     OnPropertyChanged(nameof(HalfThicknessOfGridLine));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（グリッド全体の左上表示位置）
-        Models.Point workingGridLeftTop = Models.Point.Empty;
-
-        /// <summary>
-        ///     グリッド全体の左上表示位置
-        /// </summary>
-        public Models.Point WorkingGridLeftTop
-        {
-            get => this.workingGridLeftTop;
-            set
-            {
-                if (this.workingGridLeftTop != value)
-                {
-                    this.workingGridLeftTop = value;
-                    OnPropertyChanged(nameof(WorkingGridLeftTop));
                 }
             }
         }

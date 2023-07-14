@@ -57,7 +57,7 @@ public partial class TilePaletteEditPage : ContentPage
         var selectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(
             startPoint: PointingDeviceStartPoint,
             endPoint: PointingDeviceCurrentPoint,
-            gridLeftTop: context.WorkingGridLeftTop,
+            gridLeftTop: context.GridLeftTop,
             gridTile: context.GridTileSize);
         // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 

@@ -35,18 +35,18 @@
         /// <summary>
         ///     グリッド全体の左上表示位置
         /// </summary>
-        public Models.Point WorkingGridLeftTop
+        public Models.Point GridLeftTop
         {
-            get => (Models.Point)GetValue(WorkingGridLeftTopProperty);
-            set => SetValue(WorkingGridLeftTopProperty, value);
+            get => (Models.Point)GetValue(GridLeftTopProperty);
+            set => SetValue(GridLeftTopProperty, value);
         }
 
         /// <summary>
         /// グリッドの線の太さの半分
         /// </summary>
-        public static BindableProperty WorkingGridLeftTopProperty = BindableProperty.Create(
+        public static BindableProperty GridLeftTopProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(WorkingGridLeftTop),
+            propertyName: nameof(GridLeftTop),
             // 返却型
             returnType: typeof(Models.Point),
             // これを含んでいるクラス
@@ -100,8 +100,8 @@
             canvas.StrokeSize = lineThickness.AsInt;
 
             // グリッド全体の左上表示位置
-            int paddingLeftAsInt = this.WorkingGridLeftTop.X.AsInt;
-            int paddingTopAsInt = this.WorkingGridLeftTop.Y.AsInt;
+            int paddingLeftAsInt = this.GridLeftTop.X.AsInt;
+            int paddingTopAsInt = this.GridLeftTop.Y.AsInt;
 
             // グリッド・タイル・サイズ
             Models.Size gridTileSize = this.GridTileSize;
