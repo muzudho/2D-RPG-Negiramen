@@ -725,7 +725,7 @@
             get => this.halfThicknessOfGridLine;
             set
             {
-                if (this.halfThicknessOfGridLine!=value)
+                if (this.halfThicknessOfGridLine != value)
                 {
                     this.halfThicknessOfGridLine = value;
                     OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
@@ -745,7 +745,7 @@
         {
             get
             {
-                if (this.halfThicknessOfTileCursorLine==null)
+                if (this.halfThicknessOfTileCursorLine == null)
                 {
                     // 循環参照しないように注意
                     this.halfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
@@ -833,6 +833,60 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（選択タイルの矩形）
+        /// <summary>
+        ///     <pre>
+        ///         選択タイルの矩形
+        ///     </pre>
+        /// </summary>
+        public Models.Rectangle SelectedTileRectangle
+        {
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Rectangle;
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                    return Models.Rectangle.Empty;
+                }
+            }
+            set
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    if (selectedTile.Rectangle == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                }
+
+                this.SelectedTileLeftAsInt = value.Point.X.AsInt;
+                this.SelectedTileTopAsInt = value.Point.Y.AsInt;
+                this.SelectedTileSize = value.Size;
+
+                this.TileCursorPointAsMargin = new Thickness(
+                    // 左
+                    this.SelectedTileLeftAsInt,
+                    // 上
+                    this.SelectedTileTopAsInt,
+                    // 右
+                    0,
+                    // 下
+                    0);
+
+                OnPropertyChanged(nameof(SelectedTileLeftAsInt));
+            }
+        }
+        #endregion
+
         #region 変更通知プロパティ（選択タイルの位置ｘ）
         /// <summary>
         ///     <pre>
@@ -893,6 +947,7 @@
                     0);
 
                 OnPropertyChanged(nameof(SelectedTileLeftAsInt));
+                OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
         #endregion
@@ -957,6 +1012,7 @@
                         0);
 
                 OnPropertyChanged(nameof(SelectedTileTopAsInt));
+                OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
         #endregion
@@ -1061,6 +1117,7 @@
 
                 OnPropertyChanged(nameof(SelectedTileWidthAsInt));
                 OnPropertyChanged(nameof(SelectedTileSize));
+                OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
         #endregion
@@ -1120,6 +1177,7 @@
 
                 OnPropertyChanged(nameof(SelectedTileHeightAsInt));
                 OnPropertyChanged(nameof(SelectedTileSize));
+                OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
         #endregion

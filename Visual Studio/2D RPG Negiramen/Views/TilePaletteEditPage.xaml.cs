@@ -39,7 +39,7 @@ public partial class TilePaletteEditPage : ContentPage
     Models.Point PointingDeviceStartPoint { get; set; }
 
     /// <summary>
-    /// ポインティング・デバイス押下現在位置
+    /// ポインティング・デバイス現在位置
     /// </summary>
     Models.Point PointingDeviceCurrentPoint { get; set; }
 
@@ -54,7 +54,7 @@ public partial class TilePaletteEditPage : ContentPage
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
         // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
-        var selectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(
+        context.SelectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(
             startPoint: PointingDeviceStartPoint,
             endPoint: PointingDeviceCurrentPoint,
             gridLeftTop: context.GridLeftTop,
@@ -71,7 +71,7 @@ public partial class TilePaletteEditPage : ContentPage
         // ====================
         //
         if (context.TileSetSettings.TryGetByRectangle(
-            rect: selectedTileRectangle,
+            rect: context.SelectedTileRectangle,
             out Models.TileRecord record))
         {
             // Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
@@ -102,7 +102,7 @@ public partial class TilePaletteEditPage : ContentPage
             // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
             context.SelectedTileOption = new Option<Models.TileRecord>(new Models.TileRecord(
                 id: Models.TileId.Empty,
-                rectangle: selectedTileRectangle,
+                rectangle: context.SelectedTileRectangle,
                 comment: Models.Comment.Empty));
         }
     }

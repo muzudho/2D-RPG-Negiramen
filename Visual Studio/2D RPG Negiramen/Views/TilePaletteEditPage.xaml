@@ -237,9 +237,9 @@
                               WidthRequest="{Binding GridCanvasWidthAsInt}" HeightRequest="{Binding GridCanvasHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
-                        <modelsDrawing:TileSetGrid HalfThicknessOfGridLineAsInt="{Binding HalfThicknessOfGridLineAsInt, Mode=OneWay}"
-                                                   GridLeftTop="{Binding WorkingGridLeftTop, Mode=OneWay}"
-                                                   GridTileSize="{Binding GridTileSize, Mode=OneWay}"/>
+                        <modelsDrawing:TileSetGrid HalfThicknessOfGridLineAsInt="{Binding HalfThicknessOfGridLineAsInt}"
+                                                   GridLeftTop="{Binding WorkingGridLeftTop}"
+                                                   GridTileSize="{Binding GridTileSize}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 
@@ -253,9 +253,9 @@
                               WidthRequest="{Binding TileCursorCanvasWidthAsInt}" HeightRequest="{Binding TileCursorCanvasHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
-                        <modelsDrawing:TileCursor HalfThicknessOfTileCursorLine="{Binding HalfThicknessOfTileCursorLine, Mode=OneWay}"
-                                                  SelectedTileSize="{Binding SelectedTileSize, Mode=OneWay}"
-                                                  SelectingOnPointingDevice="{Binding SelectingOnPointingDevice, Mode=OneWay}"/>
+                        <modelsDrawing:TileCursor HalfThicknessOfTileCursorLine="{Binding HalfThicknessOfTileCursorLine}"
+                                                  SelectedTileSize="{Binding SelectedTileSize}"
+                                                  SelectingOnPointingDevice="{Binding SelectingOnPointingDevice}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 
