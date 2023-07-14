@@ -38,13 +38,6 @@ public partial class App : Application
     static internal ThicknessOfLine HalfThicknessOfGridLine { get; } = new Models.ThicknessOfLine(1);
     #endregion
 
-    #region プロパティ（タイル・カーソルの線の半分の太さ）
-    /// <summary>
-    ///     タイル・カーソルの線の半分の太さ
-    /// </summary>
-    static internal ThicknessOfLine HalfThicknessOfTileCursorLine => new Models.ThicknessOfLine(2 * HalfThicknessOfGridLine.AsInt);
-    #endregion
-
     #region プロパティ（現在作業中の画面の中での選択タイルのサイズ）
     /// <summary>
     ///     <pre>

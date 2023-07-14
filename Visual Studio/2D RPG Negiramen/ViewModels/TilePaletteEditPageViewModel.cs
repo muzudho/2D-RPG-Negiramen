@@ -599,7 +599,7 @@
                     this.WorkingGridTileSize = new Models.Size(this.WorkingGridTileSize.Width, new Models.Height(value));
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasHeightAsInt = this.WorkingGridTileSize.Height.AsInt + 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                    this.TileCursorCanvasHeightAsInt = this.WorkingGridTileSize.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
@@ -931,7 +931,7 @@
                 //
                 // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
                 var cursorWidth = value;
-                var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                var doubleCursorLineThickness = 4 * this.HalfThicknessOfTileCursorLine.AsInt;
                 TileCursorCanvasWidthAsInt = cursorWidth + doubleCursorLineThickness;
 
                 OnPropertyChanged(nameof(SelectedTileWidthAsInt));
@@ -989,7 +989,7 @@
                 //
                 // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
                 var cursorHeight = value;
-                var doubleCursorLineThickness = 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                var doubleCursorLineThickness = 4 * this.HalfThicknessOfTileCursorLine.AsInt;
                 TileCursorCanvasHeightAsInt = cursorHeight + doubleCursorLineThickness;
 
                 OnPropertyChanged(nameof(SelectedTileHeightAsInt));
@@ -1091,11 +1091,24 @@
         }
         #endregion
 
-        #region プロパティ（タイル・カーソルの線の半分の太さ）
+        #region 変更通知プロパティ（タイル・カーソルの線の半分の太さ）
+        ThicknessOfLine halfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * App.HalfThicknessOfGridLine.AsInt);
+
         /// <summary>
         ///     タイル・カーソルの線の半分の太さ
         /// </summary>
-        public ThicknessOfLine HalfThicknessOfTileCursorLine => App.HalfThicknessOfTileCursorLine;
+        public ThicknessOfLine HalfThicknessOfTileCursorLine
+        {
+            get => this.halfThicknessOfTileCursorLine;
+            set
+            {
+                if (this.halfThicknessOfTileCursorLine != value)
+                {
+                    this.halfThicknessOfTileCursorLine = value;
+                    OnPropertyChanged(nameof(HalfThicknessOfTileCursorLine));
+                }
+            }
+        }
         #endregion
 
         #region プロパティ（現在作業中の画面の中での選択タイルのサイズ）
