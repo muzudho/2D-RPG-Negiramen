@@ -74,7 +74,7 @@ public partial class TilePaletteEditPage : ContentPage
             rect: selectedTileRectangle,
             out Models.TileRecord record))
         {
-            Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
+            // Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
 
             //
             // データ表示
@@ -89,7 +89,7 @@ public partial class TilePaletteEditPage : ContentPage
         }
         else
         {
-            Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+            // Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
 
             //
             // 空欄にする

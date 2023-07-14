@@ -91,18 +91,20 @@
         /// <param name="dirtyRect">矩形</param>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
+            Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.SelectedTileSize: {this.SelectedTileSize.Dump()}");
+
             // 線の色
             if (this.SelectingOnPointingDevice)
             {
                 // 選択中
                 canvas.StrokeColor = new Color(0, 0, 255, 95);
-                Trace.WriteLine("[TileCursor Draw] 半透明の青いカーソル");
+                // Trace.WriteLine("[TileCursor Draw] 半透明の青いカーソル");
             }
             else
             {
                 // 確定時
                 canvas.StrokeColor = Colors.Blue;
-                Trace.WriteLine("[TileCursor Draw] 青いカーソル");
+                // Trace.WriteLine("[TileCursor Draw] 青いカーソル");
             }
 
 

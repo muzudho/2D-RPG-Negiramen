@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing
 {
     using Microsoft.Maui.Graphics;
+    using System.Diagnostics;
 
     /// <summary>
     ///     😁 タイル・セット用のグリッド
@@ -89,6 +90,8 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
+            Trace.WriteLine($"[TileSetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridLeftTop: {this.GridLeftTop.Dump()}, this.GridTileSize: {this.GridTileSize.Dump()}");
+
             // 線の色
             canvas.StrokeColor = new Color(255, 0, 0, 127);
 
