@@ -445,8 +445,8 @@ public partial class MainPage : ContentPage
                 // タイル・セット画像の縦横幅
                 var tileSetSize = Models.FileEntries.PNGHelper.GetImageSize(tileSetImageFile);
 
-                // グリッドの線の幅
-                ThicknessOfLine gridLineThickness = new ThicknessOfLine(2 * App.HalfThicknessOfGridLine.AsInt);
+                // グリッドの線の幅（初期値）
+                ThicknessOfLine gridLineThickness = new ThicknessOfLine(2);
 
                 await Shell.Current.GoToAsync(
                     state: shellNavigationState,

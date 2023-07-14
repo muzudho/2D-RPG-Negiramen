@@ -1048,7 +1048,26 @@
         /// <summary>
         ///     グリッドの線の太さの半分
         /// </summary>
-        public int HalfThicknessOfGridLineAsInt => App.HalfThicknessOfGridLine.AsInt;
+        public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
+
+        ThicknessOfLine halfThicknessOfGridLine = new Models.ThicknessOfLine(1);
+
+        /// <summary>
+        ///     グリッド線の半分の太さ
+        /// </summary>
+        internal ThicknessOfLine HalfThicknessOfGridLine
+        {
+            get => this.halfThicknessOfGridLine;
+            set
+            {
+                if (this.halfThicknessOfGridLine!=value)
+                {
+                    this.halfThicknessOfGridLine = value;
+                    OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
+                    OnPropertyChanged(nameof(HalfThicknessOfGridLine));
+                }
+            }
+        }
         #endregion
 
         #region 変更通知プロパティ（グリッド全体の左上表示位置）
@@ -1092,14 +1111,22 @@
         #endregion
 
         #region 変更通知プロパティ（タイル・カーソルの線の半分の太さ）
-        ThicknessOfLine halfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * App.HalfThicknessOfGridLine.AsInt);
+        ThicknessOfLine halfThicknessOfTileCursorLine;
 
         /// <summary>
         ///     タイル・カーソルの線の半分の太さ
         /// </summary>
         public ThicknessOfLine HalfThicknessOfTileCursorLine
         {
-            get => this.halfThicknessOfTileCursorLine;
+            get
+            {
+                if (this.halfThicknessOfTileCursorLine==null)
+                {
+                    // 循環参照しないように注意
+                    this.halfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
+                }
+                return this.halfThicknessOfTileCursorLine;
+            }
             set
             {
                 if (this.halfThicknessOfTileCursorLine != value)

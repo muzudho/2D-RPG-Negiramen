@@ -31,13 +31,6 @@ public partial class App : Application
     static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
     #endregion
 
-    #region プロパティ（グリッド線の半分の太さ）
-    /// <summary>
-    ///     グリッド線の半分の太さ
-    /// </summary>
-    static internal ThicknessOfLine HalfThicknessOfGridLine { get; } = new Models.ThicknessOfLine(1);
-    #endregion
-
     #region プロパティ（現在作業中の画面の中での選択タイルのサイズ）
     /// <summary>
     ///     <pre>
