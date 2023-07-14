@@ -58,7 +58,7 @@ public partial class TilePaletteEditPage : ContentPage
             startPoint: PointingDeviceStartPoint,
             endPoint: PointingDeviceCurrentPoint,
             gridLeftTop: context.WorkingGridLeftTop,
-            gridTile: context.WorkingGridTileSize);
+            gridTile: context.GridTileSize);
         // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
         //

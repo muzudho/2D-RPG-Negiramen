@@ -535,20 +535,21 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド・タイルのサイズ）
+        Models.Size gridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
+
         /// <summary>
         ///     グリッド・タイルのサイズ
-        ///     TODO ★ WorkingGridTileSize と同じ？どっちか消すか？
         /// </summary>
         public Models.Size GridTileSize
         {
-            get => this.WorkingGridTileSize;
+            get => this.gridTileSize;
             set
             {
-                if (this.WorkingGridTileSize != value)
+                if (this.gridTileSize != value)
                 {
                     this.GridTileWidthAsInt = value.Width.AsInt;
                     this.GridTileHeightAsInt = value.Height.AsInt;
-                    OnPropertyChanged(nameof(WorkingGridTileSize));
+                    OnPropertyChanged(nameof(GridTileSize));
                 }
             }
         }
@@ -560,17 +561,17 @@
         /// </summary>
         public int GridTileWidthAsInt
         {
-            get => this.WorkingGridTileSize.Width.AsInt;
+            get => this.gridTileSize.Width.AsInt;
             set
             {
-                if (this.WorkingGridTileSize.Width.AsInt != value &&
+                if (this.gridTileSize.Width.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.WorkingGridTileSize = new Models.Size(new Models.Width(value), this.WorkingGridTileSize.Height);
+                    this.gridTileSize = new Models.Size(new Models.Width(value), this.gridTileSize.Height);
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasWidthAsInt = this.WorkingGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
+                    this.TileCursorCanvasWidthAsInt = this.gridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
@@ -589,17 +590,17 @@
         /// </summary>
         public int GridTileHeightAsInt
         {
-            get => this.WorkingGridTileSize.Height.AsInt;
+            get => this.gridTileSize.Height.AsInt;
             set
             {
-                if (this.WorkingGridTileSize.Height.AsInt != value &&
+                if (this.gridTileSize.Height.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.WorkingGridTileSize = new Models.Size(this.WorkingGridTileSize.Width, new Models.Height(value));
+                    this.gridTileSize = new Models.Size(this.gridTileSize.Width, new Models.Height(value));
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasHeightAsInt = this.WorkingGridTileSize.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
+                    this.TileCursorCanvasHeightAsInt = this.gridTileSize.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
@@ -747,26 +748,6 @@
                 {
                     this.workingGridLeftTop = value;
                     OnPropertyChanged(nameof(WorkingGridLeftTop));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
-        Models.Size workingGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
-
-        /// <summary>
-        ///     現在作業中の画面の中でのグリッド・タイル・サイズ
-        /// </summary>
-        public Models.Size WorkingGridTileSize
-        {
-            get => this.workingGridTileSize;
-            set
-            {
-                if (this.workingGridTileSize != value)
-                {
-                    this.workingGridTileSize = value;
-                    OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
         }

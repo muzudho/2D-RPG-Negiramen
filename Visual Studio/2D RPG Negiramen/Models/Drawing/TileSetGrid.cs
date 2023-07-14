@@ -55,22 +55,22 @@
             defaultValue: Models.Point.Empty);
         #endregion
 
-        #region 束縛可能プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
+        #region 束縛可能プロパティ（グリッド・タイル・サイズ）
         /// <summary>
-        ///     現在作業中の画面の中でのグリッド・タイル・サイズ
+        ///     グリッド・タイル・サイズ
         /// </summary>
-        public Models.Size WorkingGridTileSize
+        public Models.Size GridTileSize
         {
-            get => (Models.Size)GetValue(WorkingGridTileSizeProperty);
-            set => SetValue(WorkingGridTileSizeProperty, value);
+            get => (Models.Size)GetValue(GridTileSizeProperty);
+            set => SetValue(GridTileSizeProperty, value);
         }
 
         /// <summary>
-        /// グリッドの線の太さの半分
+        ///     グリッド・タイル・サイズ
         /// </summary>
-        public static BindableProperty WorkingGridTileSizeProperty = BindableProperty.Create(
+        public static BindableProperty GridTileSizeProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(WorkingGridTileSize),
+            propertyName: nameof(GridTileSize),
             // 返却型
             returnType: typeof(Models.Size),
             // これを含んでいるクラス
@@ -104,7 +104,7 @@
             int paddingTopAsInt = this.WorkingGridLeftTop.Y.AsInt;
 
             // グリッド・タイル・サイズ
-            Models.Size gridTileSize = this.WorkingGridTileSize;
+            Models.Size gridTileSize = this.GridTileSize;
 
             // キャンバス・サイズ
             var canvasWidth = (int)dirtyRect.Width;

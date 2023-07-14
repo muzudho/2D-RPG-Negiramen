@@ -239,7 +239,7 @@
                     <GraphicsView.Drawable>
                         <modelsDrawing:TileSetGrid HalfThicknessOfGridLineAsInt="{Binding HalfThicknessOfGridLineAsInt, Mode=OneWay}"
                                                    WorkingGridLeftTop="{Binding WorkingGridLeftTop, Mode=OneWay}"
-                                                   WorkingGridTileSize="{Binding WorkingGridTileSize, Mode=OneWay}"/>
+                                                   GridTileSize="{Binding GridTileSize, Mode=OneWay}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 
