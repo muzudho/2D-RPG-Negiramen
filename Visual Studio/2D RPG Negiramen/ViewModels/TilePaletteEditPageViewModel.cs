@@ -881,8 +881,6 @@
                     0,
                     // 下
                     0);
-
-                OnPropertyChanged(nameof(SelectedTileLeftAsInt));
             }
         }
         #endregion
@@ -1045,18 +1043,41 @@
                         // 値に変化がない
                         return;
                     }
+
+                    //_selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    //    id: selectedTile.Id,
+                    //    rectangle: new Models.Rectangle(
+                    //        point: selectedTile.Rectangle.Point,
+                    //        size: value),
+                    //    comment: selectedTile.Comment));
                 }
                 else
                 {
                     // タイル・カーソル無し時
+
+                    //_selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    //    id: Models.TileId.Empty,
+                    //    rectangle: new Models.Rectangle(
+                    //        point: Models.Point.Empty,
+                    //        size: value),
+                    //    comment: Models.Comment.Empty));
                 }
 
                 //
-                // タイル・カーソルのキャンバス・サイズ変更
-                // ========================================
+                // 選択タイルの横幅と縦幅
+                // ======================
                 //
-                this.TileCursorCanvasWidthAsInt = value.Width.AsInt;
-                this.TileCursorCanvasHeightAsInt = value.Height.AsInt;
+                this.SelectedTileWidthAsInt = value.Width.AsInt;
+                this.SelectedTileHeightAsInt = value.Height.AsInt;
+
+                ////
+                //// タイル・カーソルのキャンバス・サイズ変更
+                //// ========================================
+                ////
+                //this.TileCursorCanvasWidthAsInt = value.Width.AsInt;
+                //this.TileCursorCanvasHeightAsInt = value.Height.AsInt;
+
+                OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
         #endregion

@@ -54,13 +54,14 @@ public partial class TilePaletteEditPage : ContentPage
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
         // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
-        context.SelectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(
+        var rect = Models.CoordinateHelper.GetCursorRectangle(
             startPoint: PointingDeviceStartPoint,
             endPoint: PointingDeviceCurrentPoint,
             gridLeftTop: context.GridLeftTop,
             gridTile: context.GridTileSize);
         // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
+        context.SelectedTileRectangle = rect;
         //
         // 計算値の反映
         // ============
@@ -139,7 +140,7 @@ public partial class TilePaletteEditPage : ContentPage
             context.TileSetSettings = tileSetSettings;
 
             // デバッグ出力
-            foreach(var record in context.TileSetSettings.RecordList)
+            foreach (var record in context.TileSetSettings.RecordList)
             {
                 Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
             }
