@@ -37,9 +37,9 @@
             defaultValue: ThicknessOfLine.Empty);
         #endregion
 
-        #region 束縛可能プロパティ（現在作業中の画面の中での選択タイルのサイズ）
+        #region 束縛可能プロパティ（選択タイルのサイズ）
         /// <summary>
-        ///     現在作業中の画面の中での選択タイルのサイズ
+        ///     選択タイルのサイズ
         /// </summary>
         public Models.Size SelectedTileSize
         {
@@ -91,7 +91,21 @@
         /// <param name="dirtyRect">矩形</param>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.SelectedTileSize: {this.SelectedTileSize.Dump()}");
+            if (this.SelectedTileSize.Width.AsInt < 1 || this.SelectedTileSize.Height.AsInt < 1)
+            {
+                // カーソルが無いケース
+                Trace.WriteLine($"[TileCursor Draw] カーソルに大きさが無いから描画しない。  this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}");
+                return;
+            }
+
+            try
+            {
+                Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.SelectedTileSize: {this.SelectedTileSize.Dump()}");
+            }
+            catch
+            {
+                return;
+            }
 
             // 線の色
             if (this.SelectingOnPointingDevice)
