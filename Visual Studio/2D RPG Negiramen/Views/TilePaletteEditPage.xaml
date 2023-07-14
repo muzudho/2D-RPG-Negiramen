@@ -8,21 +8,19 @@
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage"
              Loaded="ContentPage_Loaded">
 
-    <!--
-        リソースの用意
-        ==============
+    <!--    リソースの用意
+            ==============
     -->
     <ContentPage.Resources>
-        <!--
-            描画
-            ====
-        -->
+        <!--    描画
+                ====
+
         <modelsDrawing:TileSetGrid x:Key="MyTileSetGrid" />
+        -->
         <modelsDrawing:TileCursor x:Key="MyTileCursor" />
 
-        <!--
-            バリデーション
-            ==============
+        <!--    バリデーション
+                ==============
         -->
         <Style x:Key="InvalidEntryStyle" TargetType="Entry">
             <Setter Property="TextColor" Value="Red" />
@@ -37,16 +35,14 @@
         <viewModels:TilePaletteEditPageViewModel />
     </ContentPage.BindingContext>
 
-    <!--
-        画面内タイトル
-        ==============
+    <!--    画面内タイトル
+            ==============
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
               BackgroundColor="SkyBlue">
-            <!--
-                パンくずリスト
-                ==============
+            <!--    パンくずリスト
+                    ==============
             -->
             <HorizontalStackLayout Grid.Column="0"
                                    HorizontalOptions="Start">
@@ -59,9 +55,8 @@
                        Text="＞"
                        SemanticProperties.Hint="Separator"/>
 
-                <!--
-                    ページ・タイトル
-                    ================
+                <!--    ページ・タイトル
+                        ================
                 -->
                 <Label Text="タイル・パレット編集"
                        VerticalOptions="Center"
@@ -80,18 +75,16 @@
 
     <Grid RowDefinitions="80,*,164">
 
-        <!--
-            上メニュー
-            ==========
+        <!--    上メニュー
+                ==========
         -->
         <Grid Grid.Row="0"
               RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
-            <!--
-                １段目
-                ======
+            <!--    １段目
+                    ======
             -->
             <Label Grid.Row="0" Grid.Column="1"
                    HorizontalTextAlignment="End"
@@ -117,9 +110,8 @@
                    HorizontalTextAlignment="End"
                    Text="たて"/>
 
-            <!--
-                ２段目
-                ======
+            <!--    ２段目
+                    ======
             -->
             <Label Grid.Row="1" Grid.Column="0"
                    HorizontalTextAlignment="End"
@@ -195,9 +187,8 @@
         <ScrollView Grid.Row="1">
             <Grid RowDefinitions="*" ColumnDefinitions="*">
 
-                <!--
-                    作業中のタイル・セット・キャンバス画像
-                    ======================================
+                <!--    作業中のタイル・セット・キャンバス画像
+                        ======================================
             
                 <Image x:Name="tileImage"
                        Grid.Row="0" Grid.Column="0"
@@ -242,29 +233,23 @@
                 </Image>
 
 
-                <!--
-                    グリッド
-                    ========
+                <!--    グリッド
+                        ========
 
                     * タイル・カーソルの線の太さを 4px として、 Margin の左と上は グリッドの線の太さの半分 1 を引いて 3 から始める
                     * その代わり、画像サイズは縦横 2px 増やす
-                
-                <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
-                              Margin="3,3,0,0"
-                              WidthRequest="66" HeightRequest="66"
-                              Drawable="{StaticResource MyTileSetGrid}"
-                              InputTransparent="True">
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="3,3,0,0"
                               WidthRequest="{Binding GridCanvasWidthAsInt}" HeightRequest="{Binding GridCanvasHeightAsInt}"
-                              Drawable="{StaticResource MyTileSetGrid}"
                               InputTransparent="True">
+                    <GraphicsView.Drawable>
+                        <modelsDrawing:TileSetGrid HalfThicknessOfGridLineAsInt="{Binding HalfThicknessOfGridLineAsInt}" />
+                    </GraphicsView.Drawable>
                 </GraphicsView>
 
-                <!--
-                    タイル状のカーソル
-                    ==================
+                <!--    タイル状のカーソル
+                        ==================
                 
                     * カーソルの線の幅が 4px なので、画像サイズは + 8px にする
                 -->
@@ -278,18 +263,16 @@
             </Grid>
         </ScrollView>
 
-        <!--
-            下メニュー
-            ==========
+        <!--    下メニュー
+                ==========
         -->
         <Grid Grid.Row="2"
               RowDefinitions="16,48,16,48,20" ColumnDefinitions="128,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
-            <!--
-                ０列目 ボタン縦並び
-                ===================
+            <!--    ０列目 ボタン縦並び
+                    ===================
             -->
             <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
                 <VerticalStackLayout>
@@ -308,9 +291,8 @@
                 </VerticalStackLayout>
             </Grid>
             
-            <!--
-                １段目 読み仮名部
-                =================
+            <!--    １段目 読み仮名部
+                    =================
             -->
             <Label Grid.Row="0" Grid.Column="2"
                    HorizontalTextAlignment="End"
@@ -328,9 +310,8 @@
                    HorizontalTextAlignment="End"
                    Text="たて"/>
 
-            <!--
-                ２段目 入力部
-                =============
+            <!--    ２段目 入力部
+                    =============
             -->
             <Label Grid.Row="1" Grid.Column="1"
                    HorizontalTextAlignment="End"
@@ -361,9 +342,8 @@
                    Text="{Binding SelectedTileHeightAsInt}"
                    FontSize="24"/>
 
-            <!--
-                ３段目 読み仮名部
-                =================
+            <!--    ３段目 読み仮名部
+                    =================
             -->
             <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
@@ -374,9 +354,8 @@
                    Padding="20,0,0,0"
                    Text="タイル名"/>
 
-            <!--
-                ４段目 入力部
-                =============
+            <!--    ４段目 入力部
+                    =============
             -->
             <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
@@ -389,9 +368,8 @@
                    Text="{Binding SelectedTileCommentAsStr}"
                    BackgroundColor="FloralWhite"/>
 
-            <!--
-                ５段目 ヒント部
-                ===============
+            <!--    ５段目 ヒント部
+                    ===============
             -->
             <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"

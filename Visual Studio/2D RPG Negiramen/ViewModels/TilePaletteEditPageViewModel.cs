@@ -1059,6 +1059,13 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（グリッドの線の太さの半分）
+        /// <summary>
+        ///     グリッドの線の太さの半分
+        /// </summary>
+        public int HalfThicknessOfGridLineAsInt => App.HalfThicknessOfGridLine.AsInt;
+        #endregion
+
         // - その他
 
         #region その他（生成）

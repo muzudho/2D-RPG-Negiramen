@@ -3884,4 +3884,63 @@ en-US,
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　こういう感じのデータを、エディター上で　どう表示するかだよな」  
 
+## IDrawableインターフェース実装クラスの Draw関数にビューモデルからどうやって値を渡すんだぜ？
+
+![202307__maui__14-2105--idrawable-o2o0.png](https://crieit.now.sh/upload_images/93a741b6886f828f36eb9b8c263e749764b13a8501fed.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　IDrawableインターフェース実装クラスの Draw関数にビューモデルからどうやって値を渡すんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　これを読めだぜ」  
+
+📖 [In .NET MAUI, how do I pass variables to a GraphicsView.Drawable in a ContentView](https://stackoverflow.com/questions/75988921/in-net-maui-how-do-i-pass-variables-to-a-graphicsview-drawable-in-a-contentvie)  
+📖 [How to pass variable data into .NET MAUI GraphicsView canvas](https://stackoverflow.com/questions/73997548/how-to-pass-variable-data-into-net-maui-graphicsview-canvas)  
+
+![202307__maui__14-2123--bindableProperty-o2o0.png](https://crieit.now.sh/upload_images/7f267f31f1eac286d9906f0bfdb7006264b13e830092e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんだか分からないが　束縛可能プロパティ　の書き方のパターンを　なぞろうぜ」  
+
+![202307__maui__14-2128--tile-set-drawing-o2o0.png](https://crieit.now.sh/upload_images/7b19a5d23a23ccbc6fe9c36e3b2a339164b13fb416675.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　さっきの IDrawing 実装クラスは、リソースとして　ContentPage　に読み込まれて……」  
+
+![202307__maui__14-2131--graphics-view-o2o0.png](https://crieit.now.sh/upload_images/9f49fc4bc97e33ccafc593cc5a6363bb64b1403a6ff2c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　GraphicsView 要素で使われているな」  
+
+![202307__maui__14-2141--drawable-o2o0.png](https://crieit.now.sh/upload_images/38faac0a3ac4cb0d934e751d2236147864b142beee6c3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　それを　いったん、こう書きかえるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　これでいいなら　ビュー・モデルの変更通知プロパティを、  
+IDrawable クラスの束縛可能プロパティに　渡すことができそうねえ」  
+
+![202307__maui__14-2147--propertyChanged-o2o0.png](https://crieit.now.sh/upload_images/16af772099139d0b46ff32e68a019b6f64b144138b6c6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビュー・モデルに　変更通知プロパティを書いて……」  
+
+![202307__maui__14-2149--view-binding-o2o0.png](https://crieit.now.sh/upload_images/cf476ad48ca59f95a0d4333b65cd92e364b144836cd1a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビューで　変更通知プロパティを束縛」  
+
+![202307__maui__14-2151--binding-o2o0.png](https://crieit.now.sh/upload_images/04cc2113bd5592a48c5694f5b73c91a864b14516055e5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　IDrawing 実装クラスは　束縛可能プロパティに値が入ってくるんで  
+グローバル変数を１つ　取り除くことに成功だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　IDrawing 実装クラスから　グローバル変数を取り除いていきましょう！」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　つら……」  
+
 ＜書きかけ＞

@@ -5,8 +5,34 @@
     /// <summary>
     ///     😁 タイル・セット用のグリッド
     /// </summary>
-    internal class TileSetGrid : IDrawable
+    internal class TileSetGrid : BindableObject, IDrawable
     {
+        // - パブリック束縛可能プロパティ
+
+        #region 束縛可能プロパティ（グリッドの線の太さの半分）
+        /// <summary>
+        /// グリッドの線の太さの半分
+        /// </summary>
+        public int HalfThicknessOfGridLineAsInt
+        {
+            get => (int)GetValue(HalfThicknessOfGridLineAsIntProperty);
+            set => SetValue(HalfThicknessOfGridLineAsIntProperty, value);
+        }
+
+        /// <summary>
+        /// グリッドの線の太さの半分
+        /// </summary>
+        public static BindableProperty HalfThicknessOfGridLineAsIntProperty = BindableProperty.Create(
+            // プロパティ名
+            propertyName: nameof(HalfThicknessOfGridLineAsInt),
+            // 返却型
+            returnType: typeof(int),
+            // これを含んでいるクラス
+            declaringType: typeof(TileSetGrid));
+        #endregion
+
+        // - パブリック・メソッド
+
         /// <summary>
         ///     描画
         /// </summary>
@@ -19,7 +45,7 @@
             canvas.StrokeColor = new Color(255, 0, 0, 127);
 
             // グリッドの線の太さの半分
-            int halfThicknessOfLineAsInt = App.HalfThicknessOfGridLine.AsInt;
+            int halfThicknessOfLineAsInt = this.HalfThicknessOfGridLineAsInt;
 
             // グリッドの線の太さ
             Models.ThicknessOfLine lineThickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
