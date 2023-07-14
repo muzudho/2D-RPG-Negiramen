@@ -4071,4 +4071,17 @@ IDrawable 実装クラスのプロパティが、ビュー・モデルのプロ�
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　バインディング・コンテキストを公開しているのが　気になるなあ」  
 
+![202307__maui__15-0325--bugFix.png](https://crieit.now.sh/upload_images/a244f851dcf824be2539f74fc67fc17464b1934ec2c45.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　グローバル変数を減らし、 BindableProperty　を使って　GraphicsCanvas の Drawable 属性のクラスの  
+Draw メソッドに　プロパティ値を渡すことに成功したぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ViewModel を public にするのは心理的抵抗がある。  
+公開するのは　interface　にして、プロパティだけ公開しろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　かしこいな」  
+
 ＜書きかけ＞
