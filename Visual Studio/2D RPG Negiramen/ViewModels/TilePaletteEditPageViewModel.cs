@@ -486,6 +486,7 @@
                 {
                     this.GridLeftAsInt = value.X.AsInt;
                     this.GridTopAsInt = value.Y.AsInt;
+                    OnPropertyChanged(nameof(GridLeftTop));
                 }
             }
         }
@@ -536,16 +537,18 @@
         #region 変更通知プロパティ（グリッド・タイルのサイズ）
         /// <summary>
         ///     グリッド・タイルのサイズ
+        ///     TODO ★ WorkingGridTileSize と同じ？どっちか消すか？
         /// </summary>
         public Models.Size GridTileSize
         {
-            get => App.WorkingGridTileSize;
+            get => this.WorkingGridTileSize;
             set
             {
-                if (App.WorkingGridTileSize != value)
+                if (this.WorkingGridTileSize != value)
                 {
                     this.GridTileWidthAsInt = value.Width.AsInt;
                     this.GridTileHeightAsInt = value.Height.AsInt;
+                    OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
         }
@@ -557,17 +560,17 @@
         /// </summary>
         public int GridTileWidthAsInt
         {
-            get => App.WorkingGridTileSize.Width.AsInt;
+            get => this.WorkingGridTileSize.Width.AsInt;
             set
             {
-                if (App.WorkingGridTileSize.Width.AsInt != value &&
+                if (this.WorkingGridTileSize.Width.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    App.WorkingGridTileSize = new Models.Size(new Models.Width(value), App.WorkingGridTileSize.Height);
+                    this.WorkingGridTileSize = new Models.Size(new Models.Width(value), this.WorkingGridTileSize.Height);
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasWidthAsInt = App.WorkingGridTileSize.Width.AsInt + 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                    this.TileCursorCanvasWidthAsInt = this.WorkingGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
@@ -586,17 +589,17 @@
         /// </summary>
         public int GridTileHeightAsInt
         {
-            get => App.WorkingGridTileSize.Height.AsInt;
+            get => this.WorkingGridTileSize.Height.AsInt;
             set
             {
-                if (App.WorkingGridTileSize.Height.AsInt != value &&
+                if (this.WorkingGridTileSize.Height.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    App.WorkingGridTileSize = new Models.Size(App.WorkingGridTileSize.Width, new Models.Height(value));
+                    this.WorkingGridTileSize = new Models.Size(this.WorkingGridTileSize.Width, new Models.Height(value));
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasHeightAsInt = App.WorkingGridTileSize.Height.AsInt + 4 * App.HalfThicknessOfTileCursorLine.AsInt;
+                    this.TileCursorCanvasHeightAsInt = this.WorkingGridTileSize.Height.AsInt + 4 * App.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
@@ -1069,10 +1072,23 @@
         #endregion
 
         #region 変更通知プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
+        Models.Size workingGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
+
         /// <summary>
         ///     現在作業中の画面の中でのグリッド・タイル・サイズ
         /// </summary>
-        public Models.Size WorkingGridTileSize => App.WorkingGridTileSize;
+        public Models.Size WorkingGridTileSize
+        {
+            get => this.workingGridTileSize;
+            set
+            {
+                if (this.workingGridTileSize != value)
+                {
+                    this.workingGridTileSize = value;
+                    OnPropertyChanged(nameof(WorkingGridTileSize));
+                }
+            }
+        }
         #endregion
 
         #region プロパティ（タイル・カーソルの線の半分の太さ）

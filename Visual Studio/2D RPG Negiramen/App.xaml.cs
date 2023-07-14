@@ -45,13 +45,6 @@ public partial class App : Application
     static internal ThicknessOfLine HalfThicknessOfTileCursorLine => new Models.ThicknessOfLine(2 * HalfThicknessOfGridLine.AsInt);
     #endregion
 
-    #region プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
-    /// <summary>
-    ///     現在作業中の画面の中でのグリッド・タイル・サイズ
-    /// </summary>
-    static internal Models.Size WorkingGridTileSize { get; set; } = new Models.Size(new Models.Width(32), new Models.Height(32));
-    #endregion
-
     #region プロパティ（現在作業中の画面の中での選択タイルのサイズ）
     /// <summary>
     ///     <pre>
