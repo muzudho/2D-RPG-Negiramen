@@ -3943,4 +3943,48 @@ IDrawable クラスの束縛可能プロパティに　渡すことができそ�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　つら……」  
 
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ヌル参照例外が出て　動かなくなった　つら……」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　さらに　まずいことに　線の太さが　０　になり、  
+for 文で　横に　０　移動しながら　縦線を引く　無限ループに陥った……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　束縛プロパティの初期化が始まる前に　Draw　メソッドが呼び出されているのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　どっちが頭で　どっちが尻尾問題で、  
+IDrawable 実装クラスのプロパティが、ビュー・モデルのプロパティーを上書きしてくることはないだろうか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`Way`　を指定したらいいんじゃないの？」  
+
+![202307__maui__14-2328--sync-o2o0.png](https://crieit.now.sh/upload_images/64aba69ffa7b03a8e90583f7895ec1dc64b15bbdbb9f6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　そもそも　変更通知が届いてないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　グローバル変数が　いつ変更されたとか、ビューモデルには　分からないからな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　グローバル変数を　使わないようにしたが、束縛プロパティが　渡せていないぜ」  
+
+## 束縛プロパティを練習しようぜ？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　`GraphicsView` の `Drawable` クラスの `Draw` 変数へ、プロパティを渡すだけのサンプル・プログラムを組んでみようぜ？」  
+
+📖 [Git Hub　＞　Muzudho　＞　MAUI-BindableProperty-Practice](https://github.com/muzudho/MAUI-BindableProperty-Practice)  
+
+![202307__maui__15-0157--practice.png](https://crieit.now.sh/upload_images/f3a2a0c4d42b71e8974ac497b0005b2264b17ead0a6bd.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　しばらく　練習するぜ」  
+
+
+
 ＜書きかけ＞
