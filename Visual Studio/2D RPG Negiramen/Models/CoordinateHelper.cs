@@ -12,19 +12,21 @@
         /// </summary>
         internal static Models.Rectangle GetCursorRectangle(
             Models.Point startPoint,
-            Models.Point endPoint)
+            Models.Point endPoint,
+            Models.Point gridLeftTop,
+            Models.Size gridTile)
         {
             // タイル・カーソルの始点Ｂ位置
             var begin = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
                 tapped: startPoint,
-                gridLeftTop: App.WorkingGridLeftTop,
-                gridTile: App.WorkingGridTileSize);
+                gridLeftTop: gridLeftTop,
+                gridTile: gridTile);
 
             // タイル・カーソルの終点Ｅ位置
             var end = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
                 tapped: endPoint,
-                gridLeftTop: App.WorkingGridLeftTop,
-                gridTile: App.WorkingGridTileSize);
+                gridLeftTop: gridLeftTop,
+                gridTile: gridTile);
 
             Models.Rectangle rect;
 
@@ -41,8 +43,8 @@
                 rect = new Models.Rectangle(
                     end,
                     new Models.Size(
-                        new Models.Width(begin.X.AsInt - end.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
-                        new Models.Height(begin.Y.AsInt - end.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
+                        new Models.Width(begin.X.AsInt - end.X.AsInt + gridTile.Width.AsInt),
+                        new Models.Height(begin.Y.AsInt - end.Y.AsInt + gridTile.Height.AsInt)));
             }
             else if (begin.X <= end.X && end.Y < begin.Y)
             {
@@ -56,8 +58,8 @@
                 rect = new Models.Rectangle(
                     new Models.Point(begin.X,end.Y),
                     new Models.Size(
-                        new Models.Width(end.X.AsInt - begin.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
-                        new Models.Height(begin.Y.AsInt - end.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
+                        new Models.Width(end.X.AsInt - begin.X.AsInt + gridTile.Width.AsInt),
+                        new Models.Height(begin.Y.AsInt - end.Y.AsInt + gridTile.Height.AsInt)));
             }
             else if (end.X <= begin.X && begin.Y <= end.Y)
             {
@@ -71,8 +73,8 @@
                 rect = new Models.Rectangle(
                     new Models.Point(end.X, begin.Y),
                     new Models.Size(
-                        new Models.Width(begin.X.AsInt - end.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
-                        new Models.Height(end.Y.AsInt - begin.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
+                        new Models.Width(begin.X.AsInt - end.X.AsInt + gridTile.Width.AsInt),
+                        new Models.Height(end.Y.AsInt - begin.Y.AsInt + gridTile.Height.AsInt)));
             }
             else
             {
@@ -80,8 +82,8 @@
                 rect = new Models.Rectangle(
                     begin,
                     new Models.Size(
-                        new Models.Width(end.X.AsInt - begin.X.AsInt + App.WorkingGridTileSize.Width.AsInt),
-                        new Models.Height(end.Y.AsInt - begin.Y.AsInt + App.WorkingGridTileSize.Height.AsInt)));
+                        new Models.Width(end.X.AsInt - begin.X.AsInt + gridTile.Width.AsInt),
+                        new Models.Height(end.Y.AsInt - begin.Y.AsInt + gridTile.Height.AsInt)));
             }
 
 
@@ -150,8 +152,8 @@
             //
             // ここで、 1 が有る状態にする
             tapped = new Models.Point(
-                new Models.X(tapped.X.AsInt + App.WorkingGridLeftTop.X.AsInt),
-                new Models.Y(tapped.Y.AsInt + App.WorkingGridLeftTop.Y.AsInt));
+                new Models.X(tapped.X.AsInt + gridLeftTop.X.AsInt),
+                new Models.Y(tapped.Y.AsInt + gridLeftTop.Y.AsInt));
 
             // タイル・カーソルの位置を返却
             return tapped;

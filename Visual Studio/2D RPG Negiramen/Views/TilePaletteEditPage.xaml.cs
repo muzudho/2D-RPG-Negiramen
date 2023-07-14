@@ -52,7 +52,11 @@ public partial class TilePaletteEditPage : ContentPage
     void RefreshTileForm()
     {
         // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
-        var selectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(PointingDeviceStartPoint, PointingDeviceCurrentPoint);
+        var selectedTileRectangle = Models.CoordinateHelper.GetCursorRectangle(
+            startPoint: PointingDeviceStartPoint,
+            endPoint: PointingDeviceCurrentPoint,
+            gridLeftTop: App.WorkingGridLeftTop,
+            gridTile: App.WorkingGridTileSize);
         // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
         //

@@ -59,8 +59,8 @@
         /// </summary>
         public Models.Size WorkingGridTileSize
         {
-            get => (Models.Size)GetValue(WorkingGridLeftTopProperty);
-            set => SetValue(WorkingGridLeftTopProperty, value);
+            get => (Models.Size)GetValue(WorkingGridTileSizeProperty);
+            set => SetValue(WorkingGridTileSizeProperty, value);
         }
 
         /// <summary>

@@ -3,7 +3,6 @@
     using Microsoft.Maui.Graphics;
     using System.Diagnostics;
 
-
     /// <summary>
     ///     <pre>
     ///         😁 タイル上のカーソル
@@ -11,8 +10,78 @@
     ///         📖 [.net MAUI: how to draw on canvas](https://stackoverflow.com/questions/71001039/net-maui-how-to-draw-on-canvas)
     ///     </pre>
     /// </summary>
-    internal class TileCursor : IDrawable
+    internal class TileCursor : BindableObject, IDrawable
     {
+        // - パブリック束縛可能プロパティ
+
+        #region 束縛可能プロパティ（タイル・カーソルの線の半分の太さ）
+        /// <summary>
+        ///     タイル・カーソルの線の半分の太さ
+        /// </summary>
+        public ThicknessOfLine HalfThicknessOfTileCursorLine
+        {
+            get => (ThicknessOfLine)GetValue(HalfThicknessOfTileCursorLineProperty);
+            set => SetValue(HalfThicknessOfTileCursorLineProperty, value);
+        }
+
+        /// <summary>
+        ///     タイル・カーソルの線の半分の太さ
+        /// </summary>
+        public static BindableProperty HalfThicknessOfTileCursorLineProperty = BindableProperty.Create(
+            // プロパティ名
+            propertyName: nameof(HalfThicknessOfTileCursorLine),
+            // 返却型
+            returnType: typeof(ThicknessOfLine),
+            // これを含んでいるクラス
+            declaringType: typeof(TileSetGrid));
+        #endregion
+
+        #region 束縛可能プロパティ（現在作業中の画面の中での選択タイルのサイズ）
+        /// <summary>
+        ///     現在作業中の画面の中での選択タイルのサイズ
+        /// </summary>
+        public Models.Size SelectedTileSize
+        {
+            get => (Models.Size)GetValue(HalfThicknessOfTileCursorLineProperty);
+            set => SetValue(HalfThicknessOfTileCursorLineProperty, value);
+        }
+
+        /// <summary>
+        ///     現在作業中の画面の中での選択タイルのサイズ
+        /// </summary>
+        public static BindableProperty SelectedTileSizeProperty = BindableProperty.Create(
+            // プロパティ名
+            propertyName: nameof(SelectedTileSize),
+            // 返却型
+            returnType: typeof(Models.Size),
+            // これを含んでいるクラス
+            declaringType: typeof(TileSetGrid));
+        #endregion
+
+        #region 束縛可能プロパティ（ポインティング・デバイス押下中か？）
+        /// <summary>
+        ///     ポインティング・デバイス押下中か？
+        /// </summary>
+        public bool SelectingOnPointingDevice
+        {
+            get => (bool)GetValue(HalfThicknessOfTileCursorLineProperty);
+            set => SetValue(HalfThicknessOfTileCursorLineProperty, value);
+        }
+
+        /// <summary>
+        ///     ポインティング・デバイス押下中か？
+        /// </summary>
+        public static BindableProperty SelectingOnPointingDeviceProperty = BindableProperty.Create(
+            // プロパティ名
+            propertyName: nameof(SelectingOnPointingDevice),
+            // 返却型
+            returnType: typeof(bool),
+            // これを含んでいるクラス
+            declaringType: typeof(TileSetGrid));
+        #endregion
+
+        // - パブリック・メソッド
+
         /// <summary>
         ///     描画
         /// </summary>
@@ -21,7 +90,7 @@
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
             // 線の色
-            if (App.SelectingOnPointingDevice)
+            if (this.SelectingOnPointingDevice)
             {
                 // 選択中
                 canvas.StrokeColor = new Color(0, 0, 255, 95);
@@ -36,14 +105,14 @@
 
 
             // タイル・カーソルの線の太さの半分
-            int halfThicknessOfLineAsInt = App.HalfThicknessOfTileCursorLine.AsInt;
+            int halfThicknessOfLineAsInt = this.HalfThicknessOfTileCursorLine.AsInt;
 
             // タイル・カーソルの線の太さ
             Models.ThicknessOfLine thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = thickness.AsInt;
 
             // 選択タイルのサイズ
-            Models.Size tileCursorSize = App.SelectedTileSize;
+            Models.Size tileCursorSize = this.SelectedTileSize;
 
             // キャンバス・サイズいっぱいにタイル・カーソルを描画
             canvas.DrawRectangle(new Rect(

@@ -12,11 +12,6 @@
             ==============
     -->
     <ContentPage.Resources>
-        <!--    描画
-                ====
-        -->
-        <modelsDrawing:TileCursor x:Key="MyTileCursor" />
-
         <!--    バリデーション
                 ==============
         -->
@@ -234,8 +229,8 @@
                 <!--    グリッド
                         ========
 
-                    * タイル・カーソルの線の太さを 4px として、 Margin の左と上は グリッドの線の太さの半分 1 を引いて 3 から始める
-                    * その代わり、画像サイズは縦横 2px 増やす
+                        * タイル・カーソルの線の太さを 4px として、 Margin の左と上は グリッドの線の太さの半分 1 を引いて 3 から始める
+                        * その代わり、画像サイズは縦横 2px 増やす
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="3,3,0,0"
@@ -251,13 +246,17 @@
                 <!--    タイル状のカーソル
                         ==================
                 
-                    * カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+                        * カーソルの線の幅が 4px なので、画像サイズは + 8px にする
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="{Binding TileCursorPointAsMargin}"
                               WidthRequest="{Binding TileCursorCanvasWidthAsInt}" HeightRequest="{Binding TileCursorCanvasHeightAsInt}"
-                              Drawable="{StaticResource MyTileCursor}"
                               InputTransparent="True">
+                    <GraphicsView.Drawable>
+                        <modelsDrawing:TileCursor HalfThicknessOfTileCursorLine="{Binding HalfThicknessOfTileCursorLine}"
+                                                  SelectedTileSize="{Binding SelectedTileSize}"
+                                                  SelectingOnPointingDevice="{Binding SelectingOnPointingDevice}"/>
+                    </GraphicsView.Drawable>
                 </GraphicsView>
 
             </Grid>

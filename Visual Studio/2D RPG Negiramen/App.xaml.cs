@@ -57,7 +57,7 @@ public partial class App : Application
     ///     <pre>
     ///         現在作業中の画面の中での選択タイルのサイズ
     ///         
-    ///         IDrawing インスタンスに値を渡すのに使う
+    ///         TODO ★ 削除？ IDrawing インスタンスに値を渡すのに使う
     ///     </pre>
     /// </summary>
     static internal Models.Size SelectedTileSize { get; set; } = new Models.Size(new Models.Width(0), new Models.Height(0));
@@ -73,6 +73,7 @@ public partial class App : Application
     #region プロパティ（ポインティング・デバイス押下中か？）
     /// <summary>
     ///     ポインティング・デバイス押下中か？
+    ///     TODO ★ 削除？
     /// 
     ///     <list type="bullet">
     ///         <item>タイルを選択開始していて、まだ未確定だ</item>

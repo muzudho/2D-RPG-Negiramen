@@ -1080,6 +1080,32 @@
         public Models.Size WorkingGridTileSize => App.WorkingGridTileSize;
         #endregion
 
+        #region プロパティ（タイル・カーソルの線の半分の太さ）
+        /// <summary>
+        ///     タイル・カーソルの線の半分の太さ
+        /// </summary>
+        public ThicknessOfLine HalfThicknessOfTileCursorLine => App.HalfThicknessOfTileCursorLine;
+        #endregion
+
+        #region プロパティ（現在作業中の画面の中での選択タイルのサイズ）
+        /// <summary>
+        ///     現在作業中の画面の中での選択タイルのサイズ
+        /// </summary>
+        public Models.Size SelectedTileSize => App.SelectedTileSize;
+        #endregion
+
+        #region プロパティ（ポインティング・デバイス押下中か？）
+        /// <summary>
+        ///     ポインティング・デバイス押下中か？
+        ///     TODO ★ 削除？
+        /// 
+        ///     <list type="bullet">
+        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
+        ///     </list>
+        /// </summary>
+        public bool SelectingOnPointingDevice => App.SelectingOnPointingDevice;
+        #endregion
+
         // - その他
 
         #region その他（生成）
