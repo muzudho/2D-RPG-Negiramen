@@ -3985,6 +3985,32 @@ IDrawable 実装クラスのプロパティが、ビュー・モデルのプロ�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　しばらく　練習するぜ」  
 
+![202307__maui__15-0209--binding-o2o0.png](https://crieit.now.sh/upload_images/853a1facee910c2489e8cbc52825b12f64b181a85572c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`Binding` したら　動かないぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`Bindable` なプロパティなのに `Binding` したら動かないなんてことが　あるのかしら？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　よく読んでくれだぜ」  
+
+📖 [Bindable properties](https://learn.microsoft.com/en-us/dotnet/maui/fundamentals/bindable-properties)  
+
+![202307__maui__15-0216--onBinding-o2o0.png](https://crieit.now.sh/upload_images/e7ff2c55980650203eec45ba5a69ae0c64b18328bb97d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　確かに　変更前と、変更後の値を取れて　気が利くが、  
+そういうの　自動でやってくれるわけじゃないのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　いや、取れてないぜ。 `Binding` したものは　取れてない」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　もっと調べろだぜ」  
+
+📖 [Binding not working on custom BindableProperty](https://stackoverflow.com/questions/73691579/binding-not-working-on-custom-bindableproperty)  
 
 
 ＜書きかけ＞
