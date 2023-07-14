@@ -3,7 +3,7 @@
     /// <summary>
     ///     😁 大きさ
     /// </summary>
-    internal class Size
+    public class Size
     {
         // - 演算子のオーバーロード
 

@@ -16,7 +16,7 @@
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
-    class TilePaletteEditPageViewModel : ObservableObject
+    class TilePaletteEditPageViewModel : ObservableObject, ITilePaletteEditPageViewModel
     {
         // - プロパティ
 
@@ -773,7 +773,7 @@
         ///         <item>タイルを選択開始していて、まだ未確定だ</item>
         ///     </list>
         /// </summary>
-        internal bool SelectingOnPointingDevice
+        public bool SelectingOnPointingDevice
         {
             get => this.selectingOnPointingDevice;
             set

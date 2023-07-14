@@ -21,17 +21,23 @@ using System.Net;
 /// </summary>
 public partial class TilePaletteEditPage : ContentPage
 {
+    // - その他
+
+    #region その他（生成）
+    /// <summary>
+    ///     生成
+    /// </summary>
     public TilePaletteEditPage()
     {
         InitializeComponent();
     }
+    #endregion
 
-    async void HomeBtn_Clicked(object sender, EventArgs e)
-    {
-        await Shell.Current.GoToAsync("//MainPage");
-    }
+    // - パブリック・プロパティ
 
-    // - プライベート・プロパティー
+    public ITilePaletteEditPageViewModel TilePaletteEditPageVM => this.BindingContext as ITilePaletteEditPageViewModel;
+
+    // - プライベート・プロパティ
 
     /// <summary>
     /// ポインティング・デバイス押下開始位置
@@ -199,6 +205,18 @@ public partial class TilePaletteEditPage : ContentPage
         });
 
         Task.WaitAll(new Task[] { task });
+    }
+    #endregion
+
+    #region イベントハンドラ（［ホーム］ボタン・クリック時）
+    /// <summary>
+    ///     ［ホーム］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    async void HomeBtn_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync("//MainPage");
     }
     #endregion
 

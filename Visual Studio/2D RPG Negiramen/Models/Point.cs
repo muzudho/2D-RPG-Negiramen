@@ -3,7 +3,7 @@
     /// <summary>
     ///     😁 位置
     /// </summary>
-    internal class Point
+    public class Point
     {
         // - 演算子のオーバーロード
 

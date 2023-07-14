@@ -3,7 +3,7 @@
     /// <summary>
     ///     😁 線の太さ
     /// </summary>
-    internal class ThicknessOfLine
+    public class ThicknessOfLine
     {
         // - 演算子のオーバーロード
 

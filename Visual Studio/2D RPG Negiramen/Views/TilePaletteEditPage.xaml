@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage x:Name="thisContentPage"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:_2D_RPG_Negiramen"
              xmlns:modelsDrawing="clr-namespace:_2D_RPG_Negiramen.Models.Drawing"
@@ -237,9 +238,10 @@
                               WidthRequest="{Binding GridCanvasWidthAsInt}" HeightRequest="{Binding GridCanvasHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
-                        <modelsDrawing:TileSetGrid HalfThicknessOfGridLineAsInt="{Binding HalfThicknessOfGridLineAsInt}"
-                                                   GridLeftTop="{Binding WorkingGridLeftTop}"
-                                                   GridTileSize="{Binding GridTileSize}"/>
+                        <modelsDrawing:TileSetGrid BindingContext="{x:Reference thisContentPage}"
+                                                   HalfThicknessOfGridLineAsInt="{Binding TilePaletteEditPageVM.HalfThicknessOfGridLineAsInt}"
+                                                   GridLeftTop="{Binding TilePaletteEditPageVM.GridLeftTop}"
+                                                   GridTileSize="{Binding TilePaletteEditPageVM.GridTileSize}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 
@@ -253,9 +255,10 @@
                               WidthRequest="{Binding TileCursorCanvasWidthAsInt}" HeightRequest="{Binding TileCursorCanvasHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
-                        <modelsDrawing:TileCursor HalfThicknessOfTileCursorLine="{Binding HalfThicknessOfTileCursorLine}"
-                                                  SelectedTileSize="{Binding SelectedTileSize}"
-                                                  SelectingOnPointingDevice="{Binding SelectingOnPointingDevice}"/>
+                        <modelsDrawing:TileCursor BindingContext="{x:Reference thisContentPage}"
+                                                  HalfThicknessOfTileCursorLine="{Binding TilePaletteEditPageVM.HalfThicknessOfTileCursorLine}"
+                                                  SelectedTileSize="{Binding TilePaletteEditPageVM.SelectedTileSize}"
+                                                  SelectingOnPointingDevice="{Binding TilePaletteEditPageVM.SelectingOnPointingDevice}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 
