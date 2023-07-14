@@ -484,26 +484,6 @@
                 {
                     this.GridLeftAsInt = value.X.AsInt;
                     this.GridTopAsInt = value.Y.AsInt;
-
-                    /*
-                    // 差分判定
-                    var dirtyX = App.WorkingGridLeftTop.X != value.X;
-                    var dirtyY = App.WorkingGridLeftTop.Y != value.Y;
-
-                    // 更新
-                    App.WorkingGridLeftTop = value;
-
-                    // 変更通知
-                    if (dirtyX)
-                    {
-                        OnPropertyChanged(nameof(GridLeftAsInt));
-                    }
-
-                    if (dirtyY)
-                    {
-                        OnPropertyChanged(nameof(GridTopAsInt));
-                    }
-                    */
                 }
             }
         }

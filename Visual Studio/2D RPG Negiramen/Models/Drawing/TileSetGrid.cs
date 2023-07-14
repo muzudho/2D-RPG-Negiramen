@@ -50,7 +50,9 @@
             // 返却型
             returnType: typeof(Models.Point),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid));
+            declaringType: typeof(TileSetGrid),
+            // ヌルだと不具合が出る
+            defaultValue: Models.Point.Empty);
         #endregion
 
         #region 束縛可能プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
@@ -72,7 +74,9 @@
             // 返却型
             returnType: typeof(Models.Size),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid));
+            declaringType: typeof(TileSetGrid),
+            // ヌルだと不具合が出る
+            defaultValue: Models.Size.Empty);
         #endregion
 
         // - パブリック・メソッド
@@ -110,28 +114,36 @@
             // 縦線を引いていこう
             // ==================
             //
-            int y1 = halfThicknessOfLineAsInt + paddingTopAsInt;
-            int y2 = canvasHeight + halfThicknessOfLineAsInt + paddingTopAsInt;
-            for (var x = halfThicknessOfLineAsInt + paddingLeftAsInt; x < canvasWidth + lineThickness.AsInt + paddingLeftAsInt; x += gridTileSize.Width.AsInt)
+            // 線に太さが無いと無限ループするので、防止
+            if (0 < gridTileSize.Width.AsInt)
             {
-                canvas.DrawLine(x, y1, x, y2);
+                int y1 = halfThicknessOfLineAsInt + paddingTopAsInt;
+                int y2 = canvasHeight + halfThicknessOfLineAsInt + paddingTopAsInt;
+                for (var x = halfThicknessOfLineAsInt + paddingLeftAsInt; x < canvasWidth + lineThickness.AsInt + paddingLeftAsInt; x += gridTileSize.Width.AsInt)
+                {
+                    canvas.DrawLine(x, y1, x, y2);
+                }
             }
 
             //
             // 横線を引いていこう
             // ==================
             //
-            int x1 = halfThicknessOfLineAsInt + paddingLeftAsInt;
-
-            // CANCEL CODE: 横幅が偶数なら横幅を +1、奇数なら横幅を -1 するという TRICK CODE が別の箇所にあるので、
-            //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
-            //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
-            //              右辺の線の手前まで線を引くようにする
-            int x2 = canvasWidth - halfThicknessOfLineAsInt + paddingLeftAsInt;
-
-            for (var y = halfThicknessOfLineAsInt + paddingTopAsInt; y < canvasHeight + lineThickness.AsInt + paddingTopAsInt; y += gridTileSize.Height.AsInt)
+            // 線に太さが無いと無限ループするので、防止
+            if (0 < gridTileSize.Height.AsInt)
             {
-                canvas.DrawLine(x1, y, x2, y);
+                int x1 = halfThicknessOfLineAsInt + paddingLeftAsInt;
+
+                // CANCEL CODE: 横幅が偶数なら横幅を +1、奇数なら横幅を -1 するという TRICK CODE が別の箇所にあるので、
+                //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
+                //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
+                //              右辺の線の手前まで線を引くようにする
+                int x2 = canvasWidth - halfThicknessOfLineAsInt + paddingLeftAsInt;
+
+                for (var y = halfThicknessOfLineAsInt + paddingTopAsInt; y < canvasHeight + lineThickness.AsInt + paddingTopAsInt; y += gridTileSize.Height.AsInt)
+                {
+                    canvas.DrawLine(x1, y, x2, y);
+                }
             }
         }
     }

@@ -33,7 +33,8 @@
             // 返却型
             returnType: typeof(ThicknessOfLine),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid));
+            declaringType: typeof(TileSetGrid),
+            defaultValue: ThicknessOfLine.Empty);
         #endregion
 
         #region 束縛可能プロパティ（現在作業中の画面の中での選択タイルのサイズ）
@@ -42,8 +43,8 @@
         /// </summary>
         public Models.Size SelectedTileSize
         {
-            get => (Models.Size)GetValue(HalfThicknessOfTileCursorLineProperty);
-            set => SetValue(HalfThicknessOfTileCursorLineProperty, value);
+            get => (Models.Size)GetValue(SelectedTileSizeProperty);
+            set => SetValue(SelectedTileSizeProperty, value);
         }
 
         /// <summary>
@@ -55,7 +56,8 @@
             // 返却型
             returnType: typeof(Models.Size),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid));
+            declaringType: typeof(TileSetGrid),
+            defaultValue: Models.Size.Empty);
         #endregion
 
         #region 束縛可能プロパティ（ポインティング・デバイス押下中か？）
@@ -64,8 +66,8 @@
         /// </summary>
         public bool SelectingOnPointingDevice
         {
-            get => (bool)GetValue(HalfThicknessOfTileCursorLineProperty);
-            set => SetValue(HalfThicknessOfTileCursorLineProperty, value);
+            get => (bool)GetValue(SelectingOnPointingDeviceProperty);
+            set => SetValue(SelectingOnPointingDeviceProperty, value);
         }
 
         /// <summary>
