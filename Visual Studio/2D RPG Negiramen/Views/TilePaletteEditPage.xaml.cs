@@ -59,13 +59,15 @@ public partial class TilePaletteEditPage : ContentPage
             endPoint: PointingDeviceCurrentPoint,
             gridLeftTop: context.GridLeftTop,
             gridTile: context.GridTileSize);
-        // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] cursorRectangle x:{cursorRectangle.Point.X.AsInt} y:{cursorRectangle.Point.Y.AsInt} width:{cursorRectangle.Size.Width.AsInt} height:{cursorRectangle.Size.Height.AsInt}");
 
-        context.SelectedTileRectangle = rect;
+
         //
         // 計算値の反映
         // ============
         //
+        Trace.WriteLine($"[TilePaletteEditPage.xaml.cs RefreshTileForm] rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
+
+        context.SelectedTileRectangle = rect;
 
         //
         // タイルが登録済みか？
@@ -139,11 +141,11 @@ public partial class TilePaletteEditPage : ContentPage
         {
             context.TileSetSettings = tileSetSettings;
 
-            // デバッグ出力
-            foreach (var record in context.TileSetSettings.RecordList)
-            {
-                Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
-            }
+            //// デバッグ出力
+            //foreach (var record in context.TileSetSettings.RecordList)
+            //{
+            //    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
+            //}
         }
 
         //

@@ -1125,7 +1125,7 @@
                 }
 
 
-                this.SelectedTileSize = new Models.Size(new Models.Width(value), this.SelectedTileSize.Height);
+                // this.SelectedTileSize = new Models.Size(new Models.Width(value), this.SelectedTileSize.Height);
 
                 //
                 // タイル・カーソルのキャンバス・サイズ変更
@@ -1185,7 +1185,7 @@
                         comment: Models.Comment.Empty));
                 }
 
-                this.SelectedTileSize = new Models.Size(this.SelectedTileSize.Width, new Models.Height(value));
+                // this.SelectedTileSize = new Models.Size(this.SelectedTileSize.Width, new Models.Height(value));
 
                 //
                 // タイル・カーソルのキャンバス・サイズ変更
