@@ -14,8 +14,6 @@
     <ContentPage.Resources>
         <!--    描画
                 ====
-
-        <modelsDrawing:TileSetGrid x:Key="MyTileSetGrid" />
         -->
         <modelsDrawing:TileCursor x:Key="MyTileCursor" />
 
@@ -244,7 +242,9 @@
                               WidthRequest="{Binding GridCanvasWidthAsInt}" HeightRequest="{Binding GridCanvasHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
-                        <modelsDrawing:TileSetGrid HalfThicknessOfGridLineAsInt="{Binding HalfThicknessOfGridLineAsInt}" />
+                        <modelsDrawing:TileSetGrid HalfThicknessOfGridLineAsInt="{Binding HalfThicknessOfGridLineAsInt}"
+                                                   WorkingGridLeftTop="{Binding WorkingGridLeftTop}"
+                                                   WorkingGridTileSize="{Binding WorkingGridTileSize}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 

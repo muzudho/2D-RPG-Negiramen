@@ -31,6 +31,50 @@
             declaringType: typeof(TileSetGrid));
         #endregion
 
+        #region 束縛可能プロパティ（グリッド全体の左上表示位置）
+        /// <summary>
+        ///     グリッド全体の左上表示位置
+        /// </summary>
+        public Models.Point WorkingGridLeftTop
+        {
+            get => (Models.Point)GetValue(WorkingGridLeftTopProperty);
+            set => SetValue(WorkingGridLeftTopProperty, value);
+        }
+
+        /// <summary>
+        /// グリッドの線の太さの半分
+        /// </summary>
+        public static BindableProperty WorkingGridLeftTopProperty = BindableProperty.Create(
+            // プロパティ名
+            propertyName: nameof(WorkingGridLeftTop),
+            // 返却型
+            returnType: typeof(Models.Point),
+            // これを含んでいるクラス
+            declaringType: typeof(TileSetGrid));
+        #endregion
+
+        #region 束縛可能プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
+        /// <summary>
+        ///     現在作業中の画面の中でのグリッド・タイル・サイズ
+        /// </summary>
+        public Models.Size WorkingGridTileSize
+        {
+            get => (Models.Size)GetValue(WorkingGridLeftTopProperty);
+            set => SetValue(WorkingGridLeftTopProperty, value);
+        }
+
+        /// <summary>
+        /// グリッドの線の太さの半分
+        /// </summary>
+        public static BindableProperty WorkingGridTileSizeProperty = BindableProperty.Create(
+            // プロパティ名
+            propertyName: nameof(WorkingGridTileSize),
+            // 返却型
+            returnType: typeof(Models.Size),
+            // これを含んでいるクラス
+            declaringType: typeof(TileSetGrid));
+        #endregion
+
         // - パブリック・メソッド
 
         /// <summary>
@@ -52,11 +96,11 @@
             canvas.StrokeSize = lineThickness.AsInt;
 
             // グリッド全体の左上表示位置
-            int paddingLeftAsInt = App.WorkingGridLeftTop.X.AsInt;
-            int paddingTopAsInt = App.WorkingGridLeftTop.Y.AsInt;
+            int paddingLeftAsInt = this.WorkingGridLeftTop.X.AsInt;
+            int paddingTopAsInt = this.WorkingGridLeftTop.Y.AsInt;
 
             // グリッド・タイル・サイズ
-            Models.Size gridTileSize = App.WorkingGridTileSize;
+            Models.Size gridTileSize = this.WorkingGridTileSize;
 
             // キャンバス・サイズ
             var canvasWidth = (int)dirtyRect.Width;

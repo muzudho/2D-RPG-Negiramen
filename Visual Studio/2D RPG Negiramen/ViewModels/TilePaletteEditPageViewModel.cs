@@ -1066,6 +1066,20 @@
         public int HalfThicknessOfGridLineAsInt => App.HalfThicknessOfGridLine.AsInt;
         #endregion
 
+        #region 変更通知プロパティ（グリッド全体の左上表示位置）
+        /// <summary>
+        ///     グリッド全体の左上表示位置
+        /// </summary>
+        public Models.Point WorkingGridLeftTop => App.WorkingGridLeftTop;
+        #endregion
+
+        #region 変更通知プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
+        /// <summary>
+        ///     現在作業中の画面の中でのグリッド・タイル・サイズ
+        /// </summary>
+        public Models.Size WorkingGridTileSize => App.WorkingGridTileSize;
+        #endregion
+
         // - その他
 
         #region その他（生成）
