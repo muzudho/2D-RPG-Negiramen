@@ -706,6 +706,124 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（グリッドの線の太さの半分）
+        /// <summary>
+        ///     グリッドの線の太さの半分
+        /// </summary>
+        public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
+
+        ThicknessOfLine halfThicknessOfGridLine = new Models.ThicknessOfLine(1);
+
+        /// <summary>
+        ///     グリッド線の半分の太さ
+        /// </summary>
+        internal ThicknessOfLine HalfThicknessOfGridLine
+        {
+            get => this.halfThicknessOfGridLine;
+            set
+            {
+                if (this.halfThicknessOfGridLine!=value)
+                {
+                    this.halfThicknessOfGridLine = value;
+                    OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
+                    OnPropertyChanged(nameof(HalfThicknessOfGridLine));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（グリッド全体の左上表示位置）
+        Models.Point workingGridLeftTop = Models.Point.Empty;
+
+        /// <summary>
+        ///     グリッド全体の左上表示位置
+        /// </summary>
+        public Models.Point WorkingGridLeftTop
+        {
+            get => this.workingGridLeftTop;
+            set
+            {
+                if (this.workingGridLeftTop != value)
+                {
+                    this.workingGridLeftTop = value;
+                    OnPropertyChanged(nameof(WorkingGridLeftTop));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
+        Models.Size workingGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
+
+        /// <summary>
+        ///     現在作業中の画面の中でのグリッド・タイル・サイズ
+        /// </summary>
+        public Models.Size WorkingGridTileSize
+        {
+            get => this.workingGridTileSize;
+            set
+            {
+                if (this.workingGridTileSize != value)
+                {
+                    this.workingGridTileSize = value;
+                    OnPropertyChanged(nameof(WorkingGridTileSize));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（タイル・カーソルの線の半分の太さ）
+        ThicknessOfLine halfThicknessOfTileCursorLine;
+
+        /// <summary>
+        ///     タイル・カーソルの線の半分の太さ
+        /// </summary>
+        public ThicknessOfLine HalfThicknessOfTileCursorLine
+        {
+            get
+            {
+                if (this.halfThicknessOfTileCursorLine==null)
+                {
+                    // 循環参照しないように注意
+                    this.halfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
+                }
+                return this.halfThicknessOfTileCursorLine;
+            }
+            set
+            {
+                if (this.halfThicknessOfTileCursorLine != value)
+                {
+                    this.halfThicknessOfTileCursorLine = value;
+                    OnPropertyChanged(nameof(HalfThicknessOfTileCursorLine));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
+        bool selectingOnPointingDevice;
+
+        /// <summary>
+        ///     ポインティング・デバイス押下中か？
+        /// 
+        ///     <list type="bullet">
+        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
+        ///     </list>
+        /// </summary>
+        internal bool SelectingOnPointingDevice
+        {
+            get => this.selectingOnPointingDevice;
+            set
+            {
+                if (this.selectingOnPointingDevice != value)
+                {
+                    this.selectingOnPointingDevice = value;
+                    OnPropertyChanged(nameof(SelectingOnPointingDevice));
+                }
+            }
+        }
+        #endregion
+
         #region 変更通知プロパティ（選択タイルＩｄ。BASE64表現）
         /// <summary>
         ///     選択タイルＩｄ。BASE64表現
@@ -880,6 +998,50 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（選択タイルのサイズ）
+
+        /// <summary>
+        ///     選択タイルのサイズ
+        /// </summary>
+        public Models.Size SelectedTileSize
+        {
+            get
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    return selectedTile.Rectangle.Size;
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                    return Models.Size.Empty;
+                }
+            }
+            set
+            {
+                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                {
+                    if (selectedTile.Rectangle.Size == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                }
+
+                //
+                // タイル・カーソルのキャンバス・サイズ変更
+                // ========================================
+                //
+                this.TileCursorCanvasWidthAsInt = value.Width.AsInt;
+                this.TileCursorCanvasHeightAsInt = value.Height.AsInt;
+            }
+        }
+        #endregion
+
         #region 変更通知プロパティ（選択タイルの横幅）
         /// <summary>
         ///     選択タイルの横幅
@@ -923,7 +1085,7 @@
                 }
 
 
-                App.SelectedTileSize = new Models.Size(new Models.Width(value), App.SelectedTileSize.Height);
+                this.SelectedTileSize = new Models.Size(new Models.Width(value), this.SelectedTileSize.Height);
 
                 //
                 // タイル・カーソルのキャンバス・サイズ変更
@@ -935,6 +1097,7 @@
                 TileCursorCanvasWidthAsInt = cursorWidth + doubleCursorLineThickness;
 
                 OnPropertyChanged(nameof(SelectedTileWidthAsInt));
+                OnPropertyChanged(nameof(SelectedTileSize));
             }
         }
         #endregion
@@ -981,7 +1144,7 @@
                         comment: Models.Comment.Empty));
                 }
 
-                App.SelectedTileSize = new Models.Size(App.SelectedTileSize.Width, new Models.Height(value));
+                this.SelectedTileSize = new Models.Size(this.SelectedTileSize.Width, new Models.Height(value));
 
                 //
                 // タイル・カーソルのキャンバス・サイズ変更
@@ -993,6 +1156,7 @@
                 TileCursorCanvasHeightAsInt = cursorHeight + doubleCursorLineThickness;
 
                 OnPropertyChanged(nameof(SelectedTileHeightAsInt));
+                OnPropertyChanged(nameof(SelectedTileSize));
             }
         }
         #endregion
@@ -1040,131 +1204,6 @@
                 }
 
                 OnPropertyChanged(nameof(SelectedTileCommentAsStr));
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（グリッドの線の太さの半分）
-        /// <summary>
-        ///     グリッドの線の太さの半分
-        /// </summary>
-        public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
-
-        ThicknessOfLine halfThicknessOfGridLine = new Models.ThicknessOfLine(1);
-
-        /// <summary>
-        ///     グリッド線の半分の太さ
-        /// </summary>
-        internal ThicknessOfLine HalfThicknessOfGridLine
-        {
-            get => this.halfThicknessOfGridLine;
-            set
-            {
-                if (this.halfThicknessOfGridLine!=value)
-                {
-                    this.halfThicknessOfGridLine = value;
-                    OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
-                    OnPropertyChanged(nameof(HalfThicknessOfGridLine));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（グリッド全体の左上表示位置）
-        Models.Point workingGridLeftTop = Models.Point.Empty;
-
-        /// <summary>
-        ///     グリッド全体の左上表示位置
-        /// </summary>
-        public Models.Point WorkingGridLeftTop
-        {
-            get => this.workingGridLeftTop;
-            set
-            {
-                if (this.workingGridLeftTop != value)
-                {
-                    this.workingGridLeftTop = value;
-                    OnPropertyChanged(nameof(WorkingGridLeftTop));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（現在作業中の画面の中でのグリッド・タイル・サイズ）
-        Models.Size workingGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
-
-        /// <summary>
-        ///     現在作業中の画面の中でのグリッド・タイル・サイズ
-        /// </summary>
-        public Models.Size WorkingGridTileSize
-        {
-            get => this.workingGridTileSize;
-            set
-            {
-                if (this.workingGridTileSize != value)
-                {
-                    this.workingGridTileSize = value;
-                    OnPropertyChanged(nameof(WorkingGridTileSize));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（タイル・カーソルの線の半分の太さ）
-        ThicknessOfLine halfThicknessOfTileCursorLine;
-
-        /// <summary>
-        ///     タイル・カーソルの線の半分の太さ
-        /// </summary>
-        public ThicknessOfLine HalfThicknessOfTileCursorLine
-        {
-            get
-            {
-                if (this.halfThicknessOfTileCursorLine==null)
-                {
-                    // 循環参照しないように注意
-                    this.halfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
-                }
-                return this.halfThicknessOfTileCursorLine;
-            }
-            set
-            {
-                if (this.halfThicknessOfTileCursorLine != value)
-                {
-                    this.halfThicknessOfTileCursorLine = value;
-                    OnPropertyChanged(nameof(HalfThicknessOfTileCursorLine));
-                }
-            }
-        }
-        #endregion
-
-        #region プロパティ（現在作業中の画面の中での選択タイルのサイズ）
-        /// <summary>
-        ///     現在作業中の画面の中での選択タイルのサイズ
-        /// </summary>
-        public Models.Size SelectedTileSize => App.SelectedTileSize;
-        #endregion
-
-        #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
-        bool selectingOnPointingDevice;
-
-        /// <summary>
-        ///     ポインティング・デバイス押下中か？
-        /// 
-        ///     <list type="bullet">
-        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
-        ///     </list>
-        /// </summary>
-        internal bool SelectingOnPointingDevice
-        {
-            get => this.selectingOnPointingDevice;
-            set
-            {
-                if (this.selectingOnPointingDevice != value)
-                {
-                    this.selectingOnPointingDevice = value;
-                    OnPropertyChanged(nameof(SelectingOnPointingDevice));
-                }
             }
         }
         #endregion

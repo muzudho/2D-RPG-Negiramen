@@ -31,17 +31,6 @@ public partial class App : Application
     static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
     #endregion
 
-    #region プロパティ（現在作業中の画面の中での選択タイルのサイズ）
-    /// <summary>
-    ///     <pre>
-    ///         現在作業中の画面の中での選択タイルのサイズ
-    ///         
-    ///         TODO ★ 削除？ IDrawing インスタンスに値を渡すのに使う
-    ///     </pre>
-    /// </summary>
-    static internal Models.Size SelectedTileSize { get; set; } = new Models.Size(new Models.Width(0), new Models.Height(0));
-    #endregion
-
     // - インターナル静的メソッド
 
     ///// <summary>
