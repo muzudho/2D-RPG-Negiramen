@@ -114,5 +114,12 @@
         ///     位置ｙ
         /// </summary>
         internal Models.Y Y { get; private set; }
+
+        // - インターナル・メソッド
+
+        internal string Dump()
+        {
+            return $"X:{this.X.AsInt}, Y:{this.Y.AsInt}";
+        }
     }
 }

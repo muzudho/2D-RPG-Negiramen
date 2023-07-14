@@ -11,8 +11,9 @@
     /// </summary>
     class TileSetSettings
     {
-        // - 静的インターナル・メソッド
+        // - インターナル静的メソッド
 
+        #region メソッド（CSV形式ファイルの読込）
         /// <summary>
         ///     CSV形式ファイルの読込
         /// </summary>
@@ -94,33 +95,7 @@
                 return false;
             }
         }
-
-        /// <summary>
-        ///     保存
-        /// </summary>
-        /// <returns>完了した</returns>
-        internal bool SaveCSV(Locations.TileSetSettingsFile tileSetSettingsFile)
-        {
-
-            // 保存したいファイルへのパス
-            var settingsFilePathAsStr = tileSetSettingsFile.Path.AsStr;
-
-            var builder = new StringBuilder();
-
-            // ヘッダー部
-            builder.AppendLine("Id,Left,Top,Width,Height,Comment");
-
-            // データ部
-            foreach (var record in this.RecordList)
-            {
-                // TODO ダブルクォーテーションのエスケープ
-                builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Point.X.AsInt},{record.Rectangle.Point.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Comment.AsStr}");
-            }
-
-            // 上書き
-            System.IO.File.WriteAllText(settingsFilePathAsStr, builder.ToString());
-            return true;
-        }
+        #endregion
 
         // - インターナル・プロパティー
 
@@ -178,6 +153,35 @@
         }
 
         // - プライベート・メソッド
+
+        #region メソッド（保存）
+        /// <summary>
+        ///     保存
+        /// </summary>
+        /// <returns>完了した</returns>
+        internal bool SaveCSV(Locations.TileSetSettingsFile tileSetSettingsFile)
+        {
+
+            // 保存したいファイルへのパス
+            var settingsFilePathAsStr = tileSetSettingsFile.Path.AsStr;
+
+            var builder = new StringBuilder();
+
+            // ヘッダー部
+            builder.AppendLine("Id,Left,Top,Width,Height,Comment");
+
+            // データ部
+            foreach (var record in this.RecordList)
+            {
+                // TODO ダブルクォーテーションのエスケープ
+                builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Point.X.AsInt},{record.Rectangle.Point.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Comment.AsStr}");
+            }
+
+            // 上書き
+            System.IO.File.WriteAllText(settingsFilePathAsStr, builder.ToString());
+            return true;
+        }
+        #endregion
 
         /// <summary>
         /// ［次に採番できるＩｄ］を（できるなら）更新

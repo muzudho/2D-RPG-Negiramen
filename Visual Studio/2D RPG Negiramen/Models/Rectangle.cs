@@ -114,5 +114,12 @@
         ///     大きさ
         /// </summary>
         internal Models.Size Size { get; private set; }
+
+        // - インターナル・メソッド
+
+        internal string Dump()
+        {
+            return $"Point:{this.Point.Dump()}, Size:{this.Size.Dump()}";
+        }
     }
 }

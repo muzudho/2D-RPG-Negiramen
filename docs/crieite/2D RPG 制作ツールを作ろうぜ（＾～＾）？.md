@@ -3791,6 +3791,7 @@ en-US,
 「　👆　📂 `Resources/Styles` フォルダーの下にあるぜ」  
 
 ![202307__maui__14-0052--style.png](https://crieit.now.sh/upload_images/8b11356442708784b9c0f99187be696364b01dce57f67.png)  
+
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　色の主張を　抑えたぜ」  
 
@@ -3812,5 +3813,75 @@ en-US,
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　もう寝ろ」  
+
+# 📅 （2023-07-14 fri）登録済みタイルがどれか分かるようにしてくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　登録済みタイルがどれか分かるようにしてくれだぜ。　例えば……」  
+
+![202307__maui__14-2002--selected-tiles.png](https://crieit.now.sh/upload_images/7d8071f7624a97c9a7f319d4e71d975164b12bccce94f.png)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　こんなふうに」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイルは　重なって登録されることは　あるのかだぜ？　例えば……」  
+
+![202307__maui__14-2006--selected-tiles.png](https://crieit.now.sh/upload_images/d0973b8bfcf19c8c50ee4a029de5a7cf64b12ce62eec6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　上図　４～９」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　あるある。　タイル・セットは　それ自体が　パレットのような配置をしているのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイル・セットと　パレットは　意義を分けたいな……」  
+
+![202307__maui__14-2014--selected-tile-atoms.png](https://crieit.now.sh/upload_images/350e067513a3901402142ff25e5f1bc864b12e6bc27cb.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ロジカルには　こうなるはず」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　上図の　７　を範囲選択するの　難しくない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ゲリマンダー（Gerrymander）みたいな形や、飛び地が必要かどうかも　洗い出したいぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ひとまず　矩形だけでいいのではないか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　被りは有りで　話しを進めるかだぜ」  
+
+![202307__maui__14-2049--debug-o2o0.png](https://crieit.now.sh/upload_images/b5eeda681cc038fda3b56f258c81a0e964b136cc4348d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なんか　ファイルにいっぱい保存されているぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　同じ矩形を　何個も登録してるわねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ファイルのバリデーターを作るべきだが、とりあえず　手作業で直せだぜ」  
+
+![202307__maui__14-2055--excel.png](https://crieit.now.sh/upload_images/fb388da32df07d9ca50f009b8d9ab3ba64b137d3ddf06.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Excel で　CSVファイルを開いたら　文字化けしてるんだが……」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　BOM付きの UTF-8 じゃないと Shift-JIS と判定されてるわよ」  
+
+![202307__maui__14-2058--excel-bom.png](https://crieit.now.sh/upload_images/d65a7f199b116097a0f23ea6bd6478c264b13868f1849.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　BOM 付きの UTF-8 にしたら　文字化けが直った！」  
+
+![202307__maui__14-2101--excel-id.png](https://crieit.now.sh/upload_images/03b97a043d2a814b27d4d51776daf9de64b1392fc2678.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こういう感じのデータを、エディター上で　どう表示するかだよな」  
 
 ＜書きかけ＞

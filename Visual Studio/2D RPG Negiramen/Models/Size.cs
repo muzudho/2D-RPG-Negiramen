@@ -114,5 +114,12 @@
         ///     縦幅
         /// </summary>
         internal Models.Height Height { get; private set; }
+
+        // - インターナル・メソッド
+
+        internal string Dump()
+        {
+            return $"Width:{this.Width.AsInt}, Height:{this.Height.AsInt}";
+        }
     }
 }

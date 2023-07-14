@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     using _2D_RPG_Negiramen.Coding;
+    using System.Diagnostics;
 
     /// <summary>
     ///     タイル１件分の記録
@@ -58,6 +59,13 @@
             this.Id = id ?? throw new ArgumentNullException(nameof(id));
             this.Rectangle = rectangle ?? throw new ArgumentNullException(nameof(rectangle));
             this.Comment = comment ?? throw new ArgumentNullException(nameof(comment));
+        }
+
+        // - インターナル・メソッド
+
+        internal string Dump()
+        {
+            return $"Id:{this.Id.AsBASE64}, Rect:{this.Rectangle.Dump()}, Comment:{this.Comment.AsStr}";
         }
     }
 }
