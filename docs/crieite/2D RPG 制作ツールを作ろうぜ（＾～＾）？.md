@@ -4012,5 +4012,63 @@ IDrawable 実装クラスのプロパティが、ビュー・モデルのプロ�
 
 📖 [Binding not working on custom BindableProperty](https://stackoverflow.com/questions/73691579/binding-not-working-on-custom-bindableproperty)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`GraphicsView` はビュー・モデルを持ってないから `Simple30` を `Binding` しようとしても持ってないんで、  
+親コンポーネントのビュー・モデルを指せ、ということらしい」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　どうやって」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　もっと調べろだぜ」  
+
+📖 [.NET Maui Binding a contentview to parent ViewModel MVVM](https://stackoverflow.com/questions/75466143/net-maui-binding-a-contentview-to-parent-viewmodel-mvvm)  
+📖 [ContentView](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/contentview?view=net-maui-7.0#define-the-ui)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`ContentPage` 使ってるのに、 `ContentView` の説明されても　利用できないぜ」  
+
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　**よし、分かった！**」  
+
+![202307__maui__15-0255--openBindingContext-o2o0.png](https://crieit.now.sh/upload_images/0d3a889a8f9621ec7aff99e57d533f1164b18c33cef22.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビューの　コード・ビハインドに、  
+バインディング・コンテキストを公開する　パブリック・メソッドを書くぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そんなことをしていいのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ＭＶＶＭが　崩壊したんじゃないの？」  
+
+![202307__maui__15-0258--contentPage-o2o0.png](https://crieit.now.sh/upload_images/b86bc30d935c15388b3b99958119f5af64b18cdc5e318.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビューの　`ContentPage`　要素に、 `x:Name` 属性を付けて、その値を `thisContentPage` とでもしておくぜ」  
+
+![202307__maui__15-0300--bindingContext-o2o0.png](https://crieit.now.sh/upload_images/e5bc40fa4ec82708b5047b6c6264e6ab64b18da19c950.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これで　`MainPageVM`　プロパティが公開されてるんで、そのメンバーにアクセスできるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　この記事の　２回目の　トリック・コードだな」  
+
+![202307__maui__15-0304--viewModel.png](https://crieit.now.sh/upload_images/a71b79b9e16e64f1d94ae16b8a2722e764b18e52d03f4.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ViewModel はこんな感じ」  
+
+![202307__maui__15-0305--drawLine.png](https://crieit.now.sh/upload_images/3e6c2d322833f685fd2f68778842006264b18e98573eb.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　線も引けてるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　バインディング・コンテキストを公開しているのが　気になるなあ」  
 
 ＜書きかけ＞
