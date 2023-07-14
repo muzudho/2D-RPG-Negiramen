@@ -70,18 +70,6 @@ public partial class App : Application
     static internal Models.Point WorkingGridLeftTop = Models.Point.Empty;
     #endregion
 
-    #region プロパティ（ポインティング・デバイス押下中か？）
-    /// <summary>
-    ///     ポインティング・デバイス押下中か？
-    ///     TODO ★ 削除？
-    /// 
-    ///     <list type="bullet">
-    ///         <item>タイルを選択開始していて、まだ未確定だ</item>
-    ///     </list>
-    /// </summary>
-    static internal bool SelectingOnPointingDevice { get; set; }
-    #endregion
-
     // - インターナル静的メソッド
 
     ///// <summary>

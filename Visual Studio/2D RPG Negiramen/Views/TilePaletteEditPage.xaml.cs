@@ -206,10 +206,12 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        // 反転
-        App.SelectingOnPointingDevice = !App.SelectingOnPointingDevice;
+        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
-        if (App.SelectingOnPointingDevice)
+        // 反転
+        context.SelectingOnPointingDevice = !context.SelectingOnPointingDevice;
+
+        if (context.SelectingOnPointingDevice)
         {
             //
             // 疑似マウス・ダウン
@@ -255,7 +257,9 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
     {
-        if (App.SelectingOnPointingDevice)
+        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+
+        if (context.SelectingOnPointingDevice)
         {
             //
             // 疑似マウス・ドラッグ

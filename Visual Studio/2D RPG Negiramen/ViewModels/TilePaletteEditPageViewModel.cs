@@ -1074,16 +1074,28 @@
         public Models.Size SelectedTileSize => App.SelectedTileSize;
         #endregion
 
-        #region プロパティ（ポインティング・デバイス押下中か？）
+        #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
+        bool selectingOnPointingDevice;
+
         /// <summary>
         ///     ポインティング・デバイス押下中か？
-        ///     TODO ★ 削除？
         /// 
         ///     <list type="bullet">
         ///         <item>タイルを選択開始していて、まだ未確定だ</item>
         ///     </list>
         /// </summary>
-        public bool SelectingOnPointingDevice => App.SelectingOnPointingDevice;
+        internal bool SelectingOnPointingDevice
+        {
+            get => this.selectingOnPointingDevice;
+            set
+            {
+                if (this.selectingOnPointingDevice!=value)
+                {
+                    this.selectingOnPointingDevice = value;
+                    OnPropertyChanged(nameof(SelectingOnPointingDevice));
+                }
+            }
+        }
         #endregion
 
         // - その他
