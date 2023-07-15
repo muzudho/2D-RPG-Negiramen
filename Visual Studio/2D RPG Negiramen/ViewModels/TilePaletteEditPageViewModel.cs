@@ -4,7 +4,6 @@
     using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
     using System.Collections.ObjectModel;
-    using System.Diagnostics;
     using System.Globalization;
 
     /// <summary>

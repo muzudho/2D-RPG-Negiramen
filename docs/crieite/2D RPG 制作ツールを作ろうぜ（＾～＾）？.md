@@ -4084,4 +4084,50 @@ Draw メソッドに　プロパティ値を渡すことに成功したぜ」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　かしこいな」  
 
+# 📅 （2023-07-15 sat）タイル・セット上を矩形で塗りつぶしてくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイル・セット上を矩形で塗りつぶしてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　キャンバスで描画するのか、画像オブジェクトでピクセルを直接描画するのがいいのか」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　インプレース（In-place）で　クロップ（Crop）と　コピー（Copy）を１ステップでできないと  
+実行速度が遅くなるんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画像は　`Microsoft.Maui.Graphics.IImage`　というインターフェースに抽象化されていて、  
+とても　高速に画像を描画することを指向しておらず、  
+マルチ・プラットフォームで一番性能の低いマシンで動くように考慮されてる護送船団方式の雰囲気を感じるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　性能　上げたけりゃ　MAUI　なんか使うなだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ぐぬぬぬぬ！」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　この　IImage　インスタンスは　あくまで　画像ファイルを指さしているだけで、  
+描画をするときは　GraphicsCanvas　を使えという思想なのかもしれない」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面の描画前に　画像の前処理を　終わらせておきたいことなんて  
+いっぱいあると思うのに  
+キャンバスを用意してから　画像処理しなくちゃいけないのね」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　画像処理　したけりゃ　MAUI　なんか使うなだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ふむむむむ！」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　画面上に　キャンバスを２層に重ねて表示することにして、  
+元画像を下レイヤーに、作業用レイヤーを上レイヤーに置いて  
+作業用レイヤーに　いろんな加工をしていくことにしようぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　キャンバスの練習を先にしておいた方が　いいんじゃない？」  
+
 ＜書きかけ＞

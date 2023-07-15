@@ -35,19 +35,28 @@ public partial class TilePaletteEditPage : ContentPage
 
     // - パブリック・プロパティ
 
+    #region プロパティ（ビューモデル）
+    /// <summary>
+    ///     ビューモデル
+    /// </summary>
     public ITilePaletteEditPageViewModel TilePaletteEditPageVM => this.BindingContext as ITilePaletteEditPageViewModel;
+    #endregion
 
     // - プライベート・プロパティ
 
+    #region プロパティ（ポインティング・デバイス押下開始位置）
     /// <summary>
-    /// ポインティング・デバイス押下開始位置
+    ///     ポインティング・デバイス押下開始位置
     /// </summary>
     Models.Point PointingDeviceStartPoint { get; set; }
+    #endregion
 
+    #region プロパティ（ポインティング・デバイス現在位置）
     /// <summary>
-    /// ポインティング・デバイス現在位置
+    ///     ポインティング・デバイス現在位置
     /// </summary>
     Models.Point PointingDeviceCurrentPoint { get; set; }
+    #endregion
 
     // - プライベート・メソッド
 
@@ -146,12 +155,6 @@ public partial class TilePaletteEditPage : ContentPage
         if (Models.FileEntries.TileSetSettings.LoadCSV(context.TileSetSettingsFile, out Models.FileEntries.TileSetSettings tileSetSettings))
         {
             context.TileSetSettings = tileSetSettings;
-
-            //// デバッグ出力
-            //foreach (var record in context.TileSetSettings.RecordList)
-            //{
-            //    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
-            //}
         }
 
         //
@@ -165,7 +168,8 @@ public partial class TilePaletteEditPage : ContentPage
         var workingTileSetImagefilePathAsStr = userConfiguration.WorkingTileSetImageFile.Path.AsStr;
 
         //
-        // 作業中のタイル・セット画像の読込、書出
+        // タイル・セット画像の読込、作業中タイル・セット画像の書出
+        // ========================================================
         //
         var task = Task.Run(() =>
         {
@@ -180,7 +184,15 @@ public partial class TilePaletteEditPage : ContentPage
 #elif WINDOWS
                     TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
 #endif
-                    // Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().Name: {image.GetType().Name}");
+                    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: {image.GetType().FullName}");
+                    // [TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: Microsoft.Maui.Graphics.Win2D.W2DImage
+                    // W2DImage にはアクセスできない保護レベル
+
+                    //// 登録タイルのデバッグ出力
+                    //foreach (var record in context.TileSetSettings.RecordList)
+                    //{
+                    //    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
+                    //}
 
                     //
                     // 作業中のタイル・セット画像の保存

@@ -83,7 +83,9 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［マップを作る］ボタン押下時）
+    // - プライベート・イベントハンドラ
+
+    #region イベントハンドラ（［マップを作る］ボタン押下時）
     /// <summary>
     /// ［マップを作る］ボタン押下時
     /// </summary>
@@ -108,7 +110,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［戦闘を作る］ボタン押下時）
+    #region イベントハンドラ（［戦闘を作る］ボタン押下時）
     /// <summary>
     /// ［戦闘を作る］ボタン押下時
     /// </summary>
@@ -133,7 +135,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［メニューを作る］ボタン押下時）
+    #region イベントハンドラ（［メニューを作る］ボタン押下時）
     /// <summary>
     /// ［メニューを作る］ボタン押下時
     /// </summary>
@@ -158,7 +160,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［会話画面を作る］ボタン押下時）
+    #region イベントハンドラ（［会話画面を作る］ボタン押下時）
     /// <summary>
     /// ［会話画面を作る］ボタン押下時
     /// </summary>
@@ -183,7 +185,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［プレイヤー・キャラクターを編集］ボタン押下時）
+    #region イベントハンドラ（［プレイヤー・キャラクターを編集］ボタン押下時）
     /// <summary>
     /// ［プレイヤー・キャラクターを編集］ボタン押下時
     /// </summary>
@@ -208,7 +210,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［モンスターを編集］ボタン押下時）
+    #region イベントハンドラ（［モンスターを編集］ボタン押下時）
     /// <summary>
     /// ［モンスターを編集］ボタン押下時
     /// </summary>
@@ -233,7 +235,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［モンスター・グループを編集］ボタン押下時）
+    #region イベントハンドラ（［モンスター・グループを編集］ボタン押下時）
     /// <summary>
     /// ［モンスター・グループを編集］ボタン押下時
     /// </summary>
@@ -258,7 +260,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［アイテムを編集］ボタン押下時）
+    #region イベントハンドラ（［アイテムを編集］ボタン押下時）
     /// <summary>
     /// ［アイテムを編集］ボタン押下時
     /// </summary>
@@ -283,7 +285,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［話しを編集］ボタン押下時）
+    #region イベントハンドラ（［話しを編集］ボタン押下時）
     /// <summary>
     /// ［話しを編集］ボタン押下時
     /// </summary>
@@ -308,7 +310,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［初期設定］ボタン押下時）
+    #region イベントハンドラ（［初期設定］ボタン押下時）
     /// <summary>
     /// ［初期設定］ボタン押下時
     /// </summary>
@@ -324,7 +326,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［ウィンドウ表示テスト］ボタン押下時）
+    #region イベントハンドラ（［ウィンドウ表示テスト］ボタン押下時）
     /// <summary>
     /// ［ウィンドウ表示テスト］ボタン押下時
     /// </summary>
@@ -350,13 +352,13 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［ポップアップ練習］ボタン押下時）
+    #region イベントハンドラ（［ポップアップ練習］ボタン押下時）
     /// <summary>
     /// ［ポップアップ練習］ボタン押下時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void PopupPracticeButton_Clicked(object sender, EventArgs e)
+    void PopupPracticeButton_Clicked(object sender, EventArgs e)
     {
         var popup = new PopupPractice();
 
@@ -364,13 +366,13 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［タイル・パレット表示］ボタン押下時）
+    #region イベントハンドラ（［タイル・パレット表示］ボタン押下時）
     /// <summary>
     /// ［タイル・パレット表示］ボタン押下時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void ShowTilePalette_Clicked(object sender, EventArgs e)
+    void ShowTilePalette_Clicked(object sender, EventArgs e)
     {
         var secondWindow = new Window
         {
@@ -386,13 +388,13 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［マップ描画ページ表示］ボタン押下時）
+    #region イベントハンドラ（［マップ描画ページ表示］ボタン押下時）
     /// <summary>
     /// ［マップ描画ページ表示］ボタン押下時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void MapDrawingButton_Clicked(object sender, EventArgs e)
+    void MapDrawingButton_Clicked(object sender, EventArgs e)
     {
         var secondWindow = new Window
         {
@@ -408,7 +410,7 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region メソッド（［タイル・パレット編集］ボタン押下時）
+    #region イベントハンドラ（［タイル・パレット編集］ボタン押下時）
     /// <summary>
     /// ［タイル・パレット編集］ボタン押下時
     /// </summary>
