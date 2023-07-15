@@ -88,7 +88,7 @@
         ///     描画
         /// </summary>
         /// <param name="canvas">キャンバス</param>
-        /// <param name="dirtyRect">矩形</param>
+        /// <param name="dirtyRect">位置とサイズ</param>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
             if (this.SelectedTileSize.Width.AsInt < 1 || this.SelectedTileSize.Height.AsInt < 1)

@@ -155,6 +155,12 @@ public partial class TilePaletteEditPage : ContentPage
         if (Models.FileEntries.TileSetSettings.LoadCSV(context.TileSetSettingsFile, out Models.FileEntries.TileSetSettings tileSetSettings))
         {
             context.TileSetSettings = tileSetSettings;
+
+            //// 登録タイルのデバッグ出力
+            //foreach (var record in context.TileSetSettings.RecordList)
+            //{
+            //    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
+            //}
         }
 
         //
@@ -188,12 +194,6 @@ public partial class TilePaletteEditPage : ContentPage
                     // [TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: Microsoft.Maui.Graphics.Win2D.W2DImage
                     // W2DImage にはアクセスできない保護レベル
 
-                    //// 登録タイルのデバッグ出力
-                    //foreach (var record in context.TileSetSettings.RecordList)
-                    //{
-                    //    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
-                    //}
-
                     //
                     // 作業中のタイル・セット画像の保存
                     //
@@ -217,6 +217,12 @@ public partial class TilePaletteEditPage : ContentPage
         });
 
         Task.WaitAll(new Task[] { task });
+
+        //
+        // 再描画
+        // ======
+        //
+        coloredMapGraphicsView.Invalidate();
     }
     #endregion
 

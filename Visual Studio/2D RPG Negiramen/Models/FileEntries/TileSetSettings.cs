@@ -9,7 +9,7 @@
     ///         <item>とりあえずミュータブル</item>
     ///     </list>
     /// </summary>
-    class TileSetSettings
+    public class TileSetSettings
     {
         // - インターナル静的メソッド
 

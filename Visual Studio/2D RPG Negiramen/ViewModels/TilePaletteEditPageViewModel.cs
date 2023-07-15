@@ -77,11 +77,11 @@
         }
         #endregion
 
-        #region プロパティ（タイル・セットの設定）
+        #region プロパティ（タイル・セット設定）
         /// <summary>
-        ///     タイル・セットの設定
+        ///     タイル・セット設定
         /// </summary>
-        internal Models.FileEntries.TileSetSettings TileSetSettings
+        public Models.FileEntries.TileSetSettings TileSetSettings
         {
             get => this._tileSetSettings;
             set

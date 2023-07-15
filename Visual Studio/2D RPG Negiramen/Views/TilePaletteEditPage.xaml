@@ -211,9 +211,9 @@
                 -->
                 <Image x:Name="tileImage"
                        Grid.Row="0" Grid.Column="0"
-                       Margin="4,4,0,0"
-                       WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
                        HorizontalOptions="Start" VerticalOptions="Start"
+                       Margin="4,4,0,0"
+                       WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"                       
                        Source="{Binding WorkingTileSetImageFilePathAsStr}">
 
                     <Image.GestureRecognizers>
@@ -226,6 +226,19 @@
                     </Image.GestureRecognizers>
                 </Image>
 
+                <!--    カラード・マップ
+                        ================
+                -->
+                <GraphicsView x:Name="coloredMapGraphicsView"
+                              HorizontalOptions="Start" VerticalOptions="Start"
+                              Margin="4,4,0,0"
+                              WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
+                              InputTransparent="True">
+                    <GraphicsView.Drawable>
+                        <modelsDrawing:ColoredMap BindingContext="{x:Reference thisContentPage}"
+                                                  TileSetSettings="{Binding TilePaletteEditPageVM.TileSetSettings}"/>
+                    </GraphicsView.Drawable>
+                </GraphicsView>
 
                 <!--    グリッド
                         ========

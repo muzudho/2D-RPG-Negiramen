@@ -4135,5 +4135,58 @@ Draw メソッドに　プロパティ値を渡すことに成功したぜ」
 
 📖 [GitHub　＞　Muzudho　＞　MAUI-IDrawable-Practice](https://github.com/muzudho/MAUI-IDrawable-Practice)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　変更通知プロパティを　バインディング　しただけでは  
+`Draw` は呼び出されないのか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　GraphicsView に `Draw` メソッドの呼び出しを要求するの、どうやればいい？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　読めだぜ」  
+
+📖 [GraphicsView](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/controls/graphicsview)  
+
+![202307__maui__15-1635--graphicsView-o2o0.png](https://crieit.now.sh/upload_images/1d8ed24747e4c1be07f56b09912b1dbe64b24c74b4cc5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　GraphicsView 要素に `x:Name` 属性を使って名前を付けて……」  
+
+![202307__maui__15-1637--Invalidate-o2o0.png](https://crieit.now.sh/upload_images/09c42f57d55a9e8b2f12484a85e5c2b664b24cf13ed93.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コード・ビハインドで　GraphicsView 要素の　`Invalidate( )`　メソッドを呼び出せば　いいわけかだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ビューモデルで　`Invalidate( )`　メソッドは呼び出せないのかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　画面の更新は　ビューモデルの仕事では　無いのでは」  
+
+![202307__maui__15-1651--Drawing.png](https://crieit.now.sh/upload_images/06fa6bf19f71046f426dc1af9a51265e64b25023bd677.png)  
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　よっしゃ　２Ｄ描画にも　慣れてきたぜ」  
+
+## １つのキャンバスで何でも描画するのと、複数のキャンバスに分けるの、どっちが得？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父んは　タイル・カーソルと　グリッドと　タイル・セット画像を　分けて　置いているが、  
+そのようにするのと、１つのキャンバスの上に全部描くのとでは、どっちが得なんだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　何も考えなければ　１つのキャンバスの上に全部描くのが　お得だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　グリッドを分けた理由は？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　グリッドは　ヴィジブル（Visible；可視性）を　オン・オフ　したいときがあるだろ。  
+フラグ１個だけで　できるというメリットを生かしたい」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ライフ・サイクルに似た考え方か」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　カラード・マップ（Colored Map）のキャンバスも　１つ用意したいわねえ」  
 
 ＜書きかけ＞

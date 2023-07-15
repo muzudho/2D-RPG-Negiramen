@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
+    using TheGraphics = Microsoft.Maui.Graphics;
+
     /// <summary>
     ///     😁 矩形
     /// </summary>
@@ -83,15 +85,18 @@
         }
         #endregion
 
-        // - 静的プロパティー
+        // - インターナル静的プロパティ
 
+        #region プロパティ（空オブジェクト）
         /// <summary>
-        ///     ゼロ・オブジェクト
+        ///     空オブジェクト
         /// </summary>
         internal static Rectangle Empty = new Rectangle(Models.Point.Empty, Models.Size.Empty);
+        #endregion
 
         // - その他
 
+        #region その他（生成）
         /// <summary>
         ///     生成
         /// </summary>
@@ -102,24 +107,50 @@
             this.Point = point;
             this.Size = size;
         }
+        #endregion
 
-        // - プロパティー
+        // - インターナル・プロパティー
 
+        #region プロパティ（位置）
         /// <summary>
         ///     位置
         /// </summary>
         internal Models.Point Point { get; private set; }
+        #endregion
 
+        #region プロパティ（大きさ）
         /// <summary>
         ///     大きさ
         /// </summary>
         internal Models.Size Size { get; private set; }
+        #endregion
 
         // - インターナル・メソッド
 
+        #region メソッド（描画で使う形式）
+        /// <summary>
+        ///     描画で使う形式
+        /// </summary>
+        /// <returns></returns>
+        internal TheGraphics.Rect AsGraphis()
+        {
+            return new Rect(
+                x: this.Point.X.AsInt,
+                y: this.Point.Y.AsInt,
+                width: this.Size.Width.AsInt,
+                height: this.Size.Height.AsInt);
+        }
+        #endregion
+
+        #region メソッド（プロパティ出力）
+        /// <summary>
+        ///     プロパティ出力
+        /// </summary>
+        /// <returns></returns>
         internal string Dump()
         {
             return $"Point:{this.Point.Dump()}, Size:{this.Size.Dump()}";
         }
+        #endregion
     }
 }
