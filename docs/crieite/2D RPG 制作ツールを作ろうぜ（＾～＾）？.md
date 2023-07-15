@@ -4189,4 +4189,48 @@ Draw メソッドに　プロパティ値を渡すことに成功したぜ」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　じゃあ　カラード・マップ（Colored Map）のキャンバスも　１つ用意したいわねえ」  
 
+## Draw が呼び出されるのが Loaded より早い
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`GraphicsView` の初期設定をする前に `Draw` が呼び出されているぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　イベントの呼び出し順序の話しは　書いてないなあ」  
+
+📖 [グラフィカル オブジェクトを描画する](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/graphics/draw)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、違うぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　束縛プロパティの　返り値の型の指定を　間違えていた」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　設定ミスは　エラー・メッセージを出してくれないからなあ」  
+
+![202307__maui__15-1826--GrayRectangle.png](https://crieit.now.sh/upload_images/378cf40a3e682c726d0c15e43f40acf164b26651d31bc.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　薄いグレーを被せてみたが、  
+どうやっても　視認性が悪くならないか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　もとの画像の　明度を下げてみたら？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　明度を下げるとか　上げるとか　説明無いぜ？」  
+
+📖 [Microsoft　＞　Image](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/image)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ピクセルに　アクセスする手段　無いの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　スキア・シャープ（Skia Sharp）というものが　あるそうだぜ？」  
+
+📖 [.Net Maui - Create ImageSource from pixel data](https://stackoverflow.com/questions/73925906/net-maui-create-imagesource-from-pixel-data)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　何だぜ　それ　まだまだ勉強か……」  
+
 ＜書きかけ＞
