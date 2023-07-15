@@ -186,6 +186,7 @@ public partial class TilePaletteEditPage : ContentPage
                 {
 #if IOS || ANDROID || MACCATALYST
                     // PlatformImage isn't currently supported on Windows.
+                    
                     TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
 #elif WINDOWS
                     TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
@@ -217,12 +218,6 @@ public partial class TilePaletteEditPage : ContentPage
         });
 
         Task.WaitAll(new Task[] { task });
-
-        //
-        // 再描画
-        // ======
-        //
-        coloredMapGraphicsView.Invalidate();
     }
     #endregion
 

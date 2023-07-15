@@ -23,7 +23,7 @@ internal class ColoredMap : BindableObject, IDrawable
         // プロパティ名
         propertyName: nameof(TileSetSettings),
         // 返却型
-        returnType: typeof(ThicknessOfLine),
+        returnType: typeof(TileSetSettings),
         // これを含んでいるクラス
         declaringType: typeof(ColoredMap));
     #endregion

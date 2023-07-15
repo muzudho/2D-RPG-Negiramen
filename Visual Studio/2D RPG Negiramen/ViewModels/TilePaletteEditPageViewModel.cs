@@ -77,23 +77,6 @@
         }
         #endregion
 
-        #region プロパティ（タイル・セット設定）
-        /// <summary>
-        ///     タイル・セット設定
-        /// </summary>
-        public Models.FileEntries.TileSetSettings TileSetSettings
-        {
-            get => this._tileSetSettings;
-            set
-            {
-                this._tileSetSettings = value;
-
-                // 再描画
-                NotifyTileIdChange();
-            }
-        }
-        #endregion
-
         #region プロパティ（選択タイル）
         /// <summary>
         ///     選択タイル
@@ -191,6 +174,27 @@
         #endregion
 
         // - 変更通知プロパティ
+
+        #region 変更通知プロパティ（タイル・セット設定）
+        /// <summary>
+        ///     タイル・セット設定
+        /// </summary>
+        public Models.FileEntries.TileSetSettings TileSetSettings
+        {
+            get => this._tileSetSettings;
+            set
+            {
+                if (this._tileSetSettings != value)
+                {
+                    this._tileSetSettings = value;
+                    OnPropertyChanged(nameof(TileSetSettings));
+
+                    // TODO これ要るか？ 再描画
+                    NotifyTileIdChange();
+                }
+            }
+        }
+        #endregion
 
         #region 変更通知プロパティ（現在選択中の文化情報。文字列形式）
         /// <summary>
