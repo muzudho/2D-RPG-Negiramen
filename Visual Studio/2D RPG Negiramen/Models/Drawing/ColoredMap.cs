@@ -47,6 +47,8 @@ internal class ColoredMap : BindableObject, IDrawable
 
             canvas.FillColor = new Color(220, 220, 220, 96);
             canvas.FillRectangle(record.Rectangle.AsGraphis());
+
+            
         }
     }
 }

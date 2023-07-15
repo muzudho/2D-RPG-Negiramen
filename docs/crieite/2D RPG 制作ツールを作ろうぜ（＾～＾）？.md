@@ -4233,4 +4233,210 @@ Draw メソッドに　プロパティ値を渡すことに成功したぜ」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　何だぜ　それ　まだまだ勉強か……」  
 
+## SkiaSharp を調べようぜ？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　リポジトリは作っておいたぜ、勉強しろ」  
+
+📖 [GitHub　＞　Muzudho　＞　MAUI-SkiaSharp-Practice](https://github.com/muzudho/MAUI-SkiaSharp-Practice)  
+
+![202307__maui__15-1917--SkiaSharp.png](https://crieit.now.sh/upload_images/cfbfe1b2a3377106f93cfd9a394cb5e264b2726c60505.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　`SkiaSharp`　をインストールするか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　スキア・シャープの使い方の説明が無いぜ」  
+
+📖 [GitHub　＞　SkiaSharp](https://github.com/mono/SkiaSharp)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　サンプル・プログラムを直接読めだぜ」  
+
+📖 [SkiaSharp/samples/Basic/Maui/SkiaSharpSample/MainPage.xaml.cs](https://github.com/mono/SkiaSharp/blob/main/samples/Basic/Maui/SkiaSharpSample/MainPage.xaml.cs)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　GraphicsView じゃないんだ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　画像処理っぽいことしてるが、学習コストが高そうだ」  
+
+📖 [Understanding SkiaSharp and Maui Coordinates](https://stackoverflow.com/questions/75625039/understanding-skiasharp-and-maui-coordinates)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　ここに　ピクセル単位でのアクセスの仕方が書いてあるのでは？」  
+
+📖 [SkiaSharp ビットマップ ピクセル ビットへのアクセス](https://learn.microsoft.com/ja-jp/xamarin/xamarin-forms/user-interface/graphics/skiasharp/bitmaps/pixel-bits)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　**まあ、午前中に独習してきた GraphicsView は使わないというのは　分かったが……**」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　将来的にやろうとしていることを考えると、　`GraphicsView`　では限界がくるんじゃない？」  
+
+![202307__maui__15-1950--SkiaSharpViews.png](https://crieit.now.sh/upload_images/52bd1b578a12dd78106f1563269b2e6b64b27a18e5e87.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`SkiaSharp.Views.Maui.Controls`　をインストールしてみようぜ？」  
+
+![202307__maui__15-1956--namespace-o2o0.png](https://crieit.now.sh/upload_images/8616a34a676b5b9e2bb9ec33eb260a1964b27b85ea517.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　xml の namespace として  
+`xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"`  
+を書き足すぜ」  
+
+![202307__maui__15-2009--skCanvasView--o2o0.png](https://crieit.now.sh/upload_images/64a30596cc47acee4c6ca591d8417dfe64b27ea57027b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これで　`skia:SKCanvasView`　を使えるようになったはずだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　使えなかった。エラーが出た」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　`SkiaSharp.Views.Maui.Core`　はインストールしてんの？」  
+
+📖 [SkiaSharp.Views.Maui.Core](https://www.nuget.org/packages/SkiaSharp.Views.Maui.Core/)  
+
+![202307__maui__15-2050--skiaSharpViews.png](https://crieit.now.sh/upload_images/823ae76b0e1f3af321b78730157686cc64b2883b9111e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　どれをインストールすりゃいいのか　分からんな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　コマンドラインからやってみるか」  
+
+📖 [SkiaSharp.Views.Maui.Core](https://www.nuget.org/packages/SkiaSharp.Views.Maui.Core/)  
+
+```shell
+dotnet add package SkiaSharp.Views.Maui.Core --version 2.88.3
+```
+
+![202307__maui__15-2112--command-o2o0.png](https://crieit.now.sh/upload_images/ba561d117bb3f230187bf5542de6aac664b28dcb8891a.png)  
+
+![202307__maui__15-2115--mojibake.png](https://crieit.now.sh/upload_images/59072cfe07195418bab0da360725326064b28dfbdb72e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なぜ文字化けする？」  
+
+## .NET Core の文字化けに対応しろ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ダメ元で　試してみるか」  
+
+📖 [.NET Coreのコンソールで日本語が文字化けする](https://kagasu.hatenablog.com/entry/2016/12/07/004813)  
+
+```cs
+		// NuGET のパッケージ・マネージャー・コンソールの文字化けに対応を期待したが効果なし
+		Encoding.RegisterProvider(CodePagesEncodingProvider.Instance);
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ダメだった」  
+
+📖 [パッケージマネジャコンソールにおける dotnet コマンド出力の文字化け](https://social.msdn.microsoft.com/Forums/ja-JP/a549136a-21cf-49f2-86b9-f1f08c6beec5/12497124831246512540124721251012493124721251512467125311247712?forum=vsgeneralja)  
+
+```
+dotnet --help
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ヘルプも文字化けしている」  
+
+```
+PM> chcp
+現在のコード ページ: 932
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　マイクロソフトの S-JIS ではダメだ」  
+
+```
+PM> chcp 65001
+Active code page: 65001
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コードページを　65001　に変えたったが　ダメだ」  
+
+## マイクロソフトのスキアを入れてみようぜ？
+
+![202307__maui__15-2137--microsoftMauiGrahicsSkia.png](https://crieit.now.sh/upload_images/66438fe70ba4b27ef88c9a65c64556ac64b293499ec5f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　方法も無いし、　`Microsoft.Maui.Graphics.Skia`　でもインストールしてみようぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　もう　思考が停止してるの　わらう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　インストールしたところで　何も起こらん」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　思考をしなさい！」  
+
+## キャンバスではなく、イメージの方を調べようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　描画回りは　対応が遅れてるのかも知らん」  
+
+📖 [.NET MAUIによるクロスプラットフォーム2D描画(その1)](https://qreat.tech/2042/)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　MAUI は SkiaSharp をベースに使ってるんだろう」
+
+📖 [SkiaCanvas Class](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.graphics.skia.skiacanvas?view=net-maui-7.0)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　キャンバスではなく、イメージの方に　ピクセルにアクセスするメソッドがあるんじゃないの？」  
+
+📖 [SkiaImage Class](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.graphics.skia.skiaimage?view=net-maui-7.0)  
+
+![202307__maui__15-2205--asBytes.png](https://crieit.now.sh/upload_images/5dfa99858b8dfc9ef317c07811c3f95964b299b816a85.png)
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　イメージは　バイトに分解できるのか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　バイトは　イメージに　構成できるのかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　調べろだぜ」  
+
+📖 [ByteArrayToImageSourceConverter](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/maui/converters/byte-array-to-image-source-converter)  
+📖 [MAUI: How to draw image from byte[] on MAUI](https://stackoverflow.com/questions/75482399/maui-how-to-draw-image-from-byte-on-maui)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画像は　バイトに分解できるけど、　バイトは　画像に構成できないのか」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　じゃあ　バイト配列を　直に　PNG画像として出力すればいいんじゃないの？」  
+
+📖 [Create a PNG from an array of bytes](https://stackoverflow.com/questions/32203347/create-a-png-from-an-array-of-bytes)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイルの書出しと　読込みたいな　重い処理やるんだったら　なんのための画像処理か　分からんが……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　MAUI で画像処理しようとするのが　間違いなのでは？」  
+
+## アホな記事ばかり
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　公式の記事を　なぞってるだけじゃないか。アマチュアのコピー記事が」  
+
+📖 [Handling Images With .NET MAUI Graphics](https://www.telerik.com/blogs/handling-images-dotnet-maui-graphics)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　真実に対して　怒るなだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　明度を下げたいとか、特定の色だけを抽出したいとか、そういう知能はないのかだぜ、記事を書くやつは？  
+インターネット上のアマチュア記事は　公式のダウングレードばかり　情報を増やさない。  
+筆を折れだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　スキアシャープのエラーを取るしかなくない？」  
+
 ＜書きかけ＞
