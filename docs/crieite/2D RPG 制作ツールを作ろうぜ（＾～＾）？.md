@@ -4497,4 +4497,38 @@ Active code page: 65001
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　その理由を調べなさいよ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`UnhandledException`　というのは　ライブラリが　例外が起こっているのにキャッチせずに終了したということだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　だから、その理由」  
+
+![202307__maui__15-2315--catastrophic-failure.png](https://crieit.now.sh/upload_images/cf2c740bc410f4ea23a7aacfdb2ab20364b2aa3d7b257.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　カタストロフィック（Catastrophic；大災害的）な　フェイラー（Failure；失敗）だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　なんのことだが　分からんな……」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　同じ不具合に突き当たっている人がいるわよ」  
+
+📖 [[BUG] MAUI: SKCanvasView crash, unable to display SKBitmap directly #2139](https://github.com/mono/SkiaSharp/issues/2139)  
+
+![202307__maui__15-2325--help.png](https://crieit.now.sh/upload_images/d154ab4f79ebdd771797b1edd3e8f85f64b2ac8a70cd3.png)  
+
+![202307__maui__15-2329--builder-o2o0.png](https://crieit.now.sh/upload_images/b25e2a5347965cd4dfeaa7d0c88d5c6464b2ada31d755.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　どこにも説明が無いが　謎のコードを書き……」  
+
+![202307__maui__15-2334--run.png](https://crieit.now.sh/upload_images/ee117e23ce433867136284430c63940864b2ae9b5daba.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　実行するとこまでは　イケた」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ようやく　画像処理のスタートラインに経ったな」  
+
 ＜書きかけ＞
