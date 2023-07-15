@@ -4433,10 +4433,68 @@ Active code page: 65001
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　明度を下げたいとか、特定の色だけを抽出したいとか、そういう知能はないのかだぜ、記事を書くやつは？  
+知能だけではない　意志も無い。  
 インターネット上のアマチュア記事は　公式のダウングレードばかり　情報を増やさない。  
 筆を折れだぜ」  
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　スキアシャープのエラーを取るしかなくない？」  
+
+## 再び SkiaSharp を調べようぜ？
+
+![202307__maui__15-2245--skia.png](https://crieit.now.sh/upload_images/e7670c8fe3ee863ce2710245406f39e264b2a3621ccf8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず、NuGET で　正しい　SkiaSharp　をパッケージ単位でダウンロードして  
+アセンブリを使えるようにするところからだぜ」  
+
+![202307__maui__15-2257--skiaSharp.png](https://crieit.now.sh/upload_images/a0767f95d8cffe4e63a33061becfde4564b2a5d331a71.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　だから　この　`SkiaSharp`　パッケージを入れておくだけで　充分なはずなんだが」  
+
+![202307__maui__15-2259--skiaSharpError.png](https://crieit.now.sh/upload_images/1311b5f2a6c406a0b6e5c14a48f5081464b2a66727c33.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　だから　この　`SkiaSharp`　に　`SkiaSharp.Views`　は入ってないようだぜ」  
+
+![202307__maui__15-2301--skiaSharpViews.png](https://crieit.now.sh/upload_images/02f6b5ca15b207423ac0432eb6e42c0564b2a6f0603a2.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`SkiaSharp.Views`　パッケージもインストールしてみるかだぜ」  
+
+![202307__maui__15-2303--skiaSharpViewsMaui.png](https://crieit.now.sh/upload_images/ce952f97e216d59a341e68d6bdee5b6f64b2a73b86064.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　だから　この　`SkiaSharp.Views`　には　`SkiaSharp.Views.Maui`　は入ってないようだぜ」  
+
+![202307__maui__15-2305--skiaSharpViewsMauiCore.png](https://crieit.now.sh/upload_images/581e5969324ad116c87ae1fe9ee4cc7164b2a7d997d02.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　似たような名前のパッケージが並んでいて困るが  
+とりあえず　`SkiaSharp.Views.Maui.Core`　パッケージを　インストールしてみるかだぜ」  
+
+![202307__maui__15-2307--skiaSharpViewsMauiCoreError.png](https://crieit.now.sh/upload_images/15acd12cb408685a6fa8238ff7cea52d64b2a83adf46d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`SkiaSharp.Views.Maui.Core`　には　`SkiaSharp.Views.Maui.Controls`　は入ってないようだぜ」  
+
+![202307__maui__15-2308--skiaSharpViewsMauiControl.png](https://crieit.now.sh/upload_images/53bafb637d02e4250a530b804d77e64064b2a89213d98.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　じゃあ　`SkiaSharp.Views.Maui.Controls`　パッケージを　インストールしてみるかだぜ」  
+
+![202307__maui__15-2310--build.png](https://crieit.now.sh/upload_images/43704a877fb888a3d46ce23ca147311264b2a8d91aafd.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビルドは通ったぜ」  
+
+![202307__maui__15-2311--run-error.png](https://crieit.now.sh/upload_images/ae02c80014bc0d1c460b02b7476d2a7e64b2a9270a6d3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　実行すると　立ち上がる前にエラー」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　その理由を調べなさいよ」  
 
 ＜書きかけ＞
