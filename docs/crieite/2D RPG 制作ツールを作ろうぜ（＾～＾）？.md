@@ -4531,4 +4531,56 @@ Active code page: 65001
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ようやく　画像処理のスタートラインに経ったな」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　SkiaSharp　のサンプル・プログラムを真似たろ」  
+
+（カタ　カタ　カタ　カタ）  
+
+![202307__maui__15-2349--skiaSharp.png](https://crieit.now.sh/upload_images/825157a513281fa57e45c6684e56ea2964b2b23e1f934.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　文字が出た」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　文字の代わりに　画像を表示してみなさいよ」  
+
+## SkiaSharp で画像を表示しろだぜ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　画像の用意の仕方が分からん」  
+
+📖 [Microsoft　＞　SKImage Class](https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skimage?view=skiasharp-2.88)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　SKBitmap なら、ストリームから作れるんじゃないか？  
+SKImage は、SKBitmap を読込むメソッドを持っているだろ」  
+
+📖 [Microsoft　＞　SKBitmap](https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skbitmap?view=skiasharp-2.88)  
+
+📖 [Microsoft　＞　Decode(Stream)](https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skbitmap.decode?view=skiasharp-2.88#skiasharp-skbitmap-decode%28system-io-stream%29)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そのサンプル・プログラムが欲しい」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　Xamarine の利用者は　SkiaSharp　に詳しいらしいぜ」  
+
+📖 [Bitmap Basics in SkiaSharp](https://learn.microsoft.com/en-us/xamarin/xamarin-forms/user-interface/graphics/skiasharp/basics/bitmaps)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　知らん世界だ。真似するかあ」  
+
+![202307__maui__16-0032--SKBitmap.png](https://crieit.now.sh/upload_images/95459425904efb14b781bb3268184d2564b2bc362fb50.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　おー、描画できたぜ。  
+基本的にラスター画像は　SKBitmap　で記憶しておいて、  
+表示するときは　SKBitmap を SKImage でラッピングすればいいわけだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　あとは　ラスター画像の容量で　画像処理できるな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　もう寝なさい」  
+
 ＜書きかけ＞
