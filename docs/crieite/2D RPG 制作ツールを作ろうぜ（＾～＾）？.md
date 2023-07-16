@@ -4803,4 +4803,40 @@ SkiaSharp という異質なものを　どう配置しよう」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　そして実行。　位置とサイズが合ってないな」  
 
+![202307__maui__16-1611--adjust.png](https://crieit.now.sh/upload_images/d24447be279dbdbf34d00cfee02fbbb964b398645a4fa.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　位置とサイズを調整」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　明度を下げたタイル・セット画像の上に、  
+半透明のグレーの画像を置いているけど、  
+その２枚は　MAUI　によって　どうブレンドされているの？  
+加算合成なのか、乗算合成なのか」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　これを読めだぜ」  
+
+📖 [ブレンド モード](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/graphics/blendmodes)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　半透明のときの説明は無いな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　選択領域か、そうでないかが　明確に見分けられなければ　いけなくない？」  
+
+![202307__maui__16-1638--roundedRectangle.png](https://crieit.now.sh/upload_images/84c4a28d3992d262d960d47e82d4dc3764b39ffecb67e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　角丸の矩形でどうだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　暗い場所が残ってると　残差業が残ってるみたいに感じるじゃない。  
+選択されていないところを　暗くして、  選択されているところは　元の色調にしたら　いいんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　元画像　は　どこかに残しておかないといけないのかだぜ」  
+
+
+
 ＜書きかけ＞
