@@ -270,7 +270,6 @@
                 if (LocalizationResourceManager.Instance.CultureInfo.Name != value)
                 {
                     LocalizationResourceManager.Instance.SetCulture(new CultureInfo(value));
-
                     OnPropertyChanged(nameof(CultureInfoAsStr));
                 }
             }

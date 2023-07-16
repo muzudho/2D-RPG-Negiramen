@@ -32,6 +32,13 @@ public partial class MainPage : ContentPage
         => LocalizationResourceManager.Instance;
     #endregion
 
+    #region プロパティ（ビューモデル）
+    /// <summary>
+    ///     ビューモデル
+    /// </summary>
+    public IMainPageViewModel MainPageVM => (IMainPageViewModel)this.BindingContext;
+    #endregion
+
     // - プライベート・メソッド
 
     #region メソッド（環境が構成ファイル通りか判定する）
@@ -501,4 +508,16 @@ public partial class MainPage : ContentPage
         PolicyOfView.ReactOnMouseLeaved((Button)sender);
     }
     #endregion
+
+    /// <summary>
+    ///     別ページから、このページに訪れたときに呼び出される
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        var context = this.MainPageVM;
+
+        context.ReactOnVisited();
+    }
 }
