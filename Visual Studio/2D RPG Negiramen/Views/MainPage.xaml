@@ -74,28 +74,52 @@
                         x:Name="CreateMapViewBtn"
                         Text="{app:Translate CreateAMapScreen}"
                         SemanticProperties.Hint="Create the map view"
-                        Clicked="CreateMapViewBtn_Clicked"/>
+                        Clicked="CreateMapViewBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「戦闘画面を作る」 -->
                     <Button Grid.Row="0" Grid.Column="1"
                         x:Name="CreateBattleViewBtn"
                         Text="{app:Translate CreateABattleScreen}"
                         SemanticProperties.Hint="Create the battle view"
-                        Clicked="CreateBattleBtn_Clicked"/>
+                        Clicked="CreateBattleBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「メニュー画面を作る」 -->
                     <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateMenuViewBtn"
                         Text="{app:Translate CreateAMenuScreen}"
                         SemanticProperties.Hint="Create the menu view"
-                        Clicked="CreateMenuViewBtn_Clicked"/>
+                        Clicked="CreateMenuViewBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「会話画面を作る」 -->
                     <Button Grid.Row="1" Grid.Column="1"
                         x:Name="CreateTalkingBtn"
                         Text="{app:Translate CreateAConversationScreen}"
                         SemanticProperties.Hint="Create the talking view"
-                        Clicked="CreateTalkingBtn_Clicked"/>
+                        Clicked="CreateTalkingBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                 </Grid>
 
@@ -112,36 +136,65 @@
                         x:Name="EditPlayerCharacterBtn"
                         Text="{app:Translate EditPlayerCharacter}"
                         SemanticProperties.Hint="Edit the player character"
-                        Clicked="EditPlayerCharacterBtn_Clicked"/>
+                        Clicked="EditPlayerCharacterBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「モンスターを編集」 -->
                     <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateMonsterBtn"
                         Text="{app:Translate EditTheMonster}"
                         SemanticProperties.Hint="Edit the monster"
-                        Clicked="CreateMonsterBtn_Clicked"/>
+                        Clicked="CreateMonsterBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「モンスター・グループを編集」 -->
                     <Button Grid.Row="1" Grid.Column="1"
                         x:Name="EditMonsterGroupBtn"
                         Text="{app:Translate EditAMonsterGroup}"
                         SemanticProperties.Hint="Edit the monster group"
-                        Clicked="EditMonsterGroupBtn_Clicked"/>
+                        Clicked="EditMonsterGroupBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「アイテムを編集」 -->
                     <Button Grid.Row="2" Grid.Column="0"
                         x:Name="CreateItemBtn"
                         Text="{app:Translate EditItem}"
                         SemanticProperties.Hint="Edit the item"
-                        Clicked="EditItemBtn_Clicked"/>
+                        Clicked="EditItemBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「話しを編集」 -->
                     <Button Grid.Row="2" Grid.Column="1"
                         x:Name="EditorStoryBtn"
                         Text="{app:Translate EditTheTalk}"
                         SemanticProperties.Hint="Edit the story"
-                        Clicked="EditorStoryBtn_Clicked"/>
+                        Clicked="EditorStoryBtn_Clicked">
 
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
                 </Grid>
 
                 <!-- 「システム」 -->
@@ -156,31 +209,61 @@
                     <Button Grid.Row="0" Grid.Column="0"
                         Text="{app:Translate Configure}"
                         SemanticProperties.Hint="Startup configuration"
-                        Clicked="StartupConfigurationBtn_Clicked"/>
+                        Clicked="StartupConfigurationBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「ウィンドウ表示テスト」 -->
                     <Button Grid.Row="0" Grid.Column="1"
                         Text="{app:Translate WindowDisplayTest}"
                         SemanticProperties.Hint="Test show window"
-                        Clicked="TestShowWindowButton_Clicked"/>
+                        Clicked="TestShowWindowButton_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「ポップアップ練習」 -->
                     <Button Grid.Row="1" Grid.Column="0"
                         Text="{app:Translate PopupExercises}"
                         SemanticProperties.Hint="Popup tile pallette"
-                        Clicked="PopupPracticeButton_Clicked"/>
+                        Clicked="PopupPracticeButton_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「タイル・パレット表示」 -->
                     <Button Grid.Row="1" Grid.Column="1"
                         Text="{app:Translate TilePaletteDisplay}"
                         SemanticProperties.Hint="Show tile pallette"
-                        Clicked="ShowTilePalette_Clicked"/>
+                        Clicked="ShowTilePalette_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「マップ描画ページ」 -->
                     <Button Grid.Row="2" Grid.Column="0"
                         Text="{app:Translate MapDrawingPage}"
                         SemanticProperties.Hint="Map drawing page"
-                        Clicked="MapDrawingButton_Clicked"/>
+                        Clicked="MapDrawingButton_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
 
                     <!-- 「タイル切抜き」 -->
                     <Button Grid.Row="2" Grid.Column="1"
@@ -190,9 +273,8 @@
 
                         <Button.GestureRecognizers>
                             <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
-                                                  PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
                         </Button.GestureRecognizers>
-
                     </Button>
                 </Grid>
 

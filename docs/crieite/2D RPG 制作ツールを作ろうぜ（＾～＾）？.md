@@ -5083,4 +5083,43 @@ var text = (string)LocalizationResourceManager.Instance["Add"];
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　`\n`　でも　`<br>`　でもダメ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　しゃーない　いい感じのところで改行するのは　諦めよう」  
+
+## ウィンドウ・サイズってどうやって設定するんだぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI って　デスクトップ上のウィンドウの位置　という概念も無いよな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　デスクトップ・アプリではないんで」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　記事を読みなさい」  
+
+📖 [.NET MAUI でウインドウサイズを指定する方法(Windowsで実行した場合)](https://developers-trash.com/archives/974)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そんな　Win32　みたいなコード　書くのかだぜ？」  
+
+（カタ　カタ　カタ　カタ）
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　書いた。　うまくいった」  
+
+## 画面遷移から戻ってきたときに呼び出されるイベントハンドラはあるかだぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`Loaded` は最初の１回しか呼び出されないらしい。  
+画面遷移で　戻ってきたときに呼び出されたいときは　どうすんだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　とりあえず　いろんなイベントハンドラ実行したら　`NavigatedTo`　が　それっぽいかな」  
+
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　よし、いけた」  
+
+
 ＜書きかけ＞
