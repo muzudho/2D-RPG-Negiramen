@@ -4916,4 +4916,108 @@ SkiaSharp という異質なものを　どう配置しよう」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　なぜ　XAML　の設定では　アニメーションしなかったのか　謎のままだぜ」  
 
+## ボタンの上をマウスがホバーしたときに、ボタンの色を変えれないの？
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ボタンの上をマウスがホバーしたときに、ボタンの色を変えれないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ご存じの通り　MAUI　は　マウス操作ではなく　タップ操作を前提とした設計なんで　マウス・ホバーなんて無いぜ」  
+
+📖 [Mouse hover detection in .NET MAUI](https://stackoverflow.com/questions/73088203/mouse-hover-detection-in-net-maui)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　デスクトップ・アプリとしての　体験が　悪い……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　ジェスチャーでなんとかならないのかだぜ？」  
+
+📖 [Implement PointerGestureRecognizer #9592](https://github.com/dotnet/maui/pull/9592)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ボタン毎に　ジェスチャー付けるの　クソ　めんどくさいが　やってみるかだぜ」   
+
+### Colors.xaml に定義されている primary という名前の Color インスタンスはどうやって取得できるんだぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Colors.xaml に定義されている primary という名前の Color インスタンスはどうやって取得できるんだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　これを読めだぜ」  
+
+📖 [How to find a resource with key in code behind? [MAUI]](https://stackoverflow.com/questions/72591153/how-to-find-a-resource-with-key-in-code-behind-maui)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　いくつかあるディクショナリーのどこかにあるから　探索しろということかだぜ」  
+
+```cs
+namespace _2D_RPG_Negiramen.Models
+{
+    /// <summary>
+    ///     リソース・ヘルパー
+    /// </summary>
+    internal static class ResourcesHelper
+    {
+        /// <summary>
+        ///     探す
+        ///     
+        ///     <list type="bullet">
+        ///         <item>TODO ★ 実装をもっと書いてほしい</item>
+        ///     </list>
+        /// </summary>
+        /// <param name="key">リソースのキー</param>
+        /// <param name="resource">見つけたもの</param>
+        /// <returns>見つかった</returns>
+        internal static bool TryFind(string key, out object resource)
+        {
+            if (App.Current==null)
+            {
+                resource = 0;
+                return false;
+            }
+
+            // 愚直な探索
+            foreach (var resourceDictionary in App.Current.Resources.MergedDictionaries)
+            {
+                if (resourceDictionary.TryGetValue(key, out resource))
+                {
+                    return true;
+                }
+            }
+
+            resource = 0;
+            return false;
+        }
+    }
+}
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　じゃあ　これでいいだろ」  
+
+![202307__maui__16-2155--MouseHover-o2o0.png](https://crieit.now.sh/upload_images/48246edb736b70577f111a758610b6ec64b3e8e939ae0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　マウスのホバーで色変えるぐらいのことで　ジェスチャーのコード　書くことになるの　うんざりするが  
+仕方ない」  
+
+![202307__maui__16-2200--MouseHoverCode-o2o0.png](https://crieit.now.sh/upload_images/e68d93220b3ebc9e47054f8dc6a9243564b3e9e94a539.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　イベントハンドラは　こんなもんでいいだろ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そういえば　ボタンにマウスカーソルが被さった時の　カーソルの見た目の変更も　やり方が分からないな」  
+
+![202307__maui__16-2210--Coloring-o2o0.png](https://crieit.now.sh/upload_images/e6134cc012763af6400942d952d229ee64b3ec5c3b689.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　マウス・ホバー時の色味を落ち着かせて、　画面の配色のコントラストも落とすように　変更したぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ネギラーメンという名前なのに　青が基調でいいのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　青は　集中力を高める色という俗説もあるし、　まあいいだろ」  
+
 ＜書きかけ＞
