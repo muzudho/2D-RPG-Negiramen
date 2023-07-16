@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     using _2D_RPG_Negiramen.Coding;
-    using System.Diagnostics;
 
     /// <summary>
     ///     タイル１件分の記録
@@ -10,8 +9,14 @@
     {
         // - インターナル静的プロパティ
 
+        /// <summary>
+        ///     空オブジェクト
+        /// </summary>
         internal static TileRecord Empty = new TileRecord();
 
+        /// <summary>
+        ///     空オブジェクト
+        /// </summary>
         internal static Option<TileRecord> EmptyOption = new Option<TileRecord>(TileRecord.Empty);
 
         // - インターナル・プロパティ

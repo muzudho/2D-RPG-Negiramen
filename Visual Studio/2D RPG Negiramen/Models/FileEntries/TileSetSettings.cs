@@ -99,18 +99,30 @@
 
         // - インターナル・プロパティー
 
+        #region プロパティ（対象のタイル・セットに含まれるすべてのタイルの記録）
         /// <summary>
         /// 対象のタイル・セットに含まれるすべてのタイルの記録
         /// </summary>
         internal List<TileRecord> RecordList { get; private set; } = new List<TileRecord>();
+        #endregion
 
+        #region プロパティ（次に採番できるＩｄ。１から始まる）
         /// <summary>
         /// 次に採番できるＩｄ。１から始まる
         /// </summary>
         internal Models.TileId UsableId { get; private set; } = new Models.TileId(1);
+        #endregion
 
         // - インターナル・メソッド
 
+        #region メソッド（タイルの追加）
+        /// <summary>
+        ///     タイルの追加
+        /// </summary>
+        /// <param name="id">タイルＩｄ</param>
+        /// <param name="rect">位置とサイズ</param>
+        /// <param name="comment">コメント</param>
+        /// <param name="onTileIdUpdated">タイルＩｄ更新時</param>
         internal void Add(
             Models.TileId id,
             Models.Rectangle rect,
@@ -130,7 +142,9 @@
                 onTileIdUpdated();
             }
         }
+        #endregion
 
+        #region メソッド（指定の矩形と一致するレコードを返す）
         /// <summary>
         ///     指定の矩形と一致するレコードを返す
         /// </summary>
@@ -151,6 +165,7 @@
             result = null;
             return false;
         }
+        #endregion
 
         // - プライベート・メソッド
 
@@ -168,7 +183,7 @@
             var builder = new StringBuilder();
 
             // ヘッダー部
-            builder.AppendLine("Id,Left,Top,Width,Height,Comment");
+            builder.AppendLine("Id,Left,Top,Width,Height,Comment,Delete");
 
             // データ部
             foreach (var record in this.RecordList)
@@ -183,6 +198,7 @@
         }
         #endregion
 
+        #region メソッド（［次に採番できるＩｄ］を（できるなら）更新）
         /// <summary>
         /// ［次に採番できるＩｄ］を（できるなら）更新
         /// </summary>
@@ -205,5 +221,6 @@
 
             return false;
         }
+        #endregion
     }
 }

@@ -376,12 +376,12 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void AddsButton_Clicked(object sender, EventArgs e)
     {
+        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+
         //
         // 設定ファイルの編集
         // ==================
         //
-        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
-
         context.TileSetSettings.Add(
             // 新しいＩｄを追加
             id: context.TileSetSettings.UsableId,
@@ -422,7 +422,41 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e"></param>
     private void DeletesButton_Clicked(object sender, EventArgs e)
     {
+        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
+        //
+        // 設定ファイルの編集
+        // ==================
+        //
+        context.TileSetSettings.Add(
+            // 現在選択中のＩｄ
+            id: context.SelectedTileId,
+            rect: new Models.Rectangle(
+                point: new Models.Point(
+                    x: new Models.X(context.SelectedTileLeftAsInt),
+                    y: new Models.Y(context.SelectedTileTopAsInt)),
+                size: new Models.Size(
+                    width: new Models.Width(context.SelectedTileWidthAsInt),
+                    height: new Models.Height(context.SelectedTileHeightAsInt))),
+            comment: new Models.Comment(context.SelectedTileCommentAsStr),
+            onTileIdUpdated: () =>
+            {
+                // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
+                context.NotifyTileIdChange();
+            });
+
+        //
+        // 設定ファイルの保存
+        // ==================
+        //
+        if (context.TileSetSettings.SaveCSV(context.TileSetSettingsFile))
+        {
+            // 保存成功
+        }
+        else
+        {
+            // TODO 保存失敗時のエラー対応
+        }
     }
     #endregion
 }
