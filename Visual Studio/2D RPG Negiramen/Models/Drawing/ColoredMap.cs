@@ -1,30 +1,29 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing;
 
 using _2D_RPG_Negiramen.Models.FileEntries;
-using System.Numerics;
 
 internal class ColoredMap : BindableObject, IDrawable
 {
     // - パブリック束縛可能プロパティ
 
-    #region 束縛可能プロパティ（タイル・セット設定）
+    #region 束縛可能プロパティ（タイルセット設定）
     /// <summary>
-    ///     タイル・セット設定
+    ///     タイルセット設定
     /// </summary>
-    public TileSetSettings TileSetSettings
+    public TilesetSettings TilesetSettings
     {
-        get => (TileSetSettings)GetValue(TileSetSettingsProperty);
-        set => SetValue(TileSetSettingsProperty, value);
+        get => (TilesetSettings)GetValue(TilesetSettingsProperty);
+        set => SetValue(TilesetSettingsProperty, value);
     }
 
     /// <summary>
-    ///     タイル・セット設定
+    ///     タイルセット設定
     /// </summary>
-    public static BindableProperty TileSetSettingsProperty = BindableProperty.Create(
+    public static BindableProperty TilesetSettingsProperty = BindableProperty.Create(
         // プロパティ名
-        propertyName: nameof(TileSetSettings),
+        propertyName: nameof(TilesetSettings),
         // 返却型
-        returnType: typeof(TileSetSettings),
+        returnType: typeof(TilesetSettings),
         // これを含んでいるクラス
         declaringType: typeof(ColoredMap));
     #endregion
@@ -36,13 +35,13 @@ internal class ColoredMap : BindableObject, IDrawable
     /// <param name="dirtyRect">位置とサイズ</param>
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {
-        if (this.TileSetSettings == null)
+        if (this.TilesetSettings == null)
         {
             return;
         }
 
         // 各登録タイル
-        foreach (var record in this.TileSetSettings.RecordList)
+        foreach (var record in this.TilesetSettings.RecordList)
         {
             // Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
 

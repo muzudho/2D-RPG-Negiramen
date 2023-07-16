@@ -1,9 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing
 {
     /// <summary>
-    ///     😁 作業中のタイル・セット画像
+    ///     😁 作業中のタイルセット画像
     /// </summary>
-    internal class WorkingTileSetImage : IDrawable
+    internal class WorkingTilesetImage : IDrawable
     {
         /// <summary>
         ///     描画

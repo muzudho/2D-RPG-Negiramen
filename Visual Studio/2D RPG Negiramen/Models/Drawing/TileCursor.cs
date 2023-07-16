@@ -33,7 +33,7 @@
             // 返却型
             returnType: typeof(ThicknessOfLine),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid),
+            declaringType: typeof(TilesetGrid),
             defaultValue: ThicknessOfLine.Empty);
         #endregion
 
@@ -56,7 +56,7 @@
             // 返却型
             returnType: typeof(Models.Size),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid),
+            declaringType: typeof(TilesetGrid),
             defaultValue: Models.Size.Empty);
         #endregion
 
@@ -79,7 +79,7 @@
             // 返却型
             returnType: typeof(bool),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid));
+            declaringType: typeof(TilesetGrid));
         #endregion
 
         // - パブリック・メソッド

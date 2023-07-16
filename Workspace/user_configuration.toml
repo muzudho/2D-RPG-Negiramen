@@ -1,4 +1,4 @@
 [paths]
 
-# ネギラーメン・ワークスペースの作業中のタイル・セット画像ファイルへのパス
-working_tile_set = "{negiramen_workspace_folder}/Temporary/Images/working_tile_set.png"
+# ネギラーメン・ワークスペースの作業中のタイルセット画像ファイルへのパス
+working_tileset = "{negiramen_workspace_folder}/Temporary/Images/working_tileset.png"

@@ -4,9 +4,9 @@
     using System.Diagnostics;
 
     /// <summary>
-    ///     😁 タイル・セット用のグリッド
+    ///     😁 タイルセット用のグリッド
     /// </summary>
-    internal class TileSetGrid : BindableObject, IDrawable
+    internal class TilesetGrid : BindableObject, IDrawable
     {
         // - パブリック束縛可能プロパティ
 
@@ -29,7 +29,7 @@
             // 返却型
             returnType: typeof(int),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid));
+            declaringType: typeof(TilesetGrid));
         #endregion
 
         #region 束縛可能プロパティ（グリッド全体の左上表示位置）
@@ -51,7 +51,7 @@
             // 返却型
             returnType: typeof(Models.Point),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid),
+            declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
             defaultValue: Models.Point.Empty);
         #endregion
@@ -75,7 +75,7 @@
             // 返却型
             returnType: typeof(Models.Size),
             // これを含んでいるクラス
-            declaringType: typeof(TileSetGrid),
+            declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
             defaultValue: Models.Size.Empty);
         #endregion
@@ -90,7 +90,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TileSetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridLeftTop: {this.GridLeftTop.Dump()}, this.GridTileSize: {this.GridTileSize.Dump()}");
+            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridLeftTop: {this.GridLeftTop.Dump()}, this.GridTileSize: {this.GridTileSize.Dump()}");
 
             // 線の色
             canvas.StrokeColor = new Color(255, 0, 0, 127);

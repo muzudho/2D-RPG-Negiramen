@@ -90,7 +90,7 @@ public partial class TilePaletteEditPage : ContentPage
         // タイルが登録済みか？
         // ====================
         //
-        if (context.TileSetSettings.TryGetByRectangle(
+        if (context.TilesetSettings.TryGetByRectangle(
             rect: context.SelectedTileRectangle,
             out Models.TileRecord record))
         {
@@ -155,37 +155,37 @@ public partial class TilePaletteEditPage : ContentPage
         // タイル設定ファイルの読込
         // ========================
         //
-        if (Models.FileEntries.TileSetSettings.LoadCSV(context.TileSetSettingsFile, out Models.FileEntries.TileSetSettings tileSetSettings))
+        if (Models.FileEntries.TilesetSettings.LoadCSV(context.TilesetSettingsFile, out Models.FileEntries.TilesetSettings tileSetSettings))
         {
-            context.TileSetSettings = tileSetSettings;
+            context.TilesetSettings = tileSetSettings;
 
             //// 登録タイルのデバッグ出力
-            //foreach (var record in context.TileSetSettings.RecordList)
+            //foreach (var record in context.TilesetSettings.RecordList)
             //{
             //    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
             //}
         }
 
         //
-        // タイル・セット画像ファイルへのパスを取得
+        // タイルセット画像ファイルへのパスを取得
         //
-        var tileSetImageFilePathAsStr = context.TileSetImageFilePathAsStr;
+        var tilesetImageFilePathAsStr = context.TilesetImageFilePathAsStr;
 
         //
-        // 作業用のタイル・セット画像ファイルへのパスを取得
+        // 作業用のタイルセット画像ファイルへのパスを取得
         //
-        var workingTileSetImagefilePathAsStr = userConfiguration.WorkingTileSetImageFile.Path.AsStr;
+        var workingTilesetImagefilePathAsStr = userConfiguration.WorkingTilesetImageFile.Path.AsStr;
 
         //
-        // タイル・セット画像の読込、作業中タイル・セット画像の書出
-        // ========================================================
+        // タイルセット画像の読込、作業中タイルセット画像の書出
+        // ====================================================
         //
         var task = Task.Run(async () =>
         {
             try
             {
-                // タイル・セット読込（読込元：　ウィンドウズ・ローカルＰＣ）
-                using (Stream inputFileStream = System.IO.File.OpenRead(tileSetImageFilePathAsStr))
+                // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
+                using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
                 {
 #if IOS || ANDROID || MACCATALYST
                     // PlatformImage isn't currently supported on Windows.
@@ -199,19 +199,19 @@ public partial class TilePaletteEditPage : ContentPage
                     // W2DImage にはアクセスできない保護レベル
 
                     //
-                    // 作業中のタイル・セット画像の保存
+                    // 作業中のタイルセット画像の保存
                     //
                     if (image != null)
                     {
                         // 書出先（ウィンドウズ・ローカルＰＣ）
-                        using (Stream outputFileStream = System.IO.File.Open(workingTileSetImagefilePathAsStr, FileMode.OpenOrCreate))
+                        using (Stream outputFileStream = System.IO.File.Open(workingTilesetImagefilePathAsStr, FileMode.OpenOrCreate))
                         {
                             image.Save(outputFileStream);
                         }
                     }
 
-                    // 作業中のタイル・セット画像の再描画
-                    context.RefreshWorkingTileSetImage();
+                    // 作業中のタイルセット画像の再描画
+                    context.RefreshWorkingTilesetImage();
                 }
             }
             catch (Exception ex)
@@ -222,8 +222,8 @@ public partial class TilePaletteEditPage : ContentPage
             // ↓ SkiaSharp の流儀
             try
             {
-                // タイル・セット読込（読込元：　ウィンドウズ・ローカルＰＣ）
-                using (Stream inputFileStream = System.IO.File.OpenRead(tileSetImageFilePathAsStr))
+                // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
+                using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
                 {
                     // ↓ １つのストリームが使えるのは、１回切り
                     using (MemoryStream memStream = new MemoryStream())
@@ -231,13 +231,13 @@ public partial class TilePaletteEditPage : ContentPage
                         await inputFileStream.CopyToAsync(memStream);
                         memStream.Seek(0, SeekOrigin.Begin);
 
-                        context.TileSetSourceBitmap = SkiaSharp.SKBitmap.Decode(memStream);
+                        context.TilesetSourceBitmap = SkiaSharp.SKBitmap.Decode(memStream);
 
                         // 複製
-                        context.TileSetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(context.TileSetSourceBitmap));
+                        context.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(context.TilesetSourceBitmap));
 
                         // 画像処理（明度を下げる）
-                        FeatSkia.ReduceBrightness.DoItInPlace(context.TileSetWorkingBitmap);
+                        FeatSkia.ReduceBrightness.DoItInPlace(context.TilesetWorkingBitmap);
                     };
 
                     // 再描画
@@ -359,13 +359,13 @@ public partial class TilePaletteEditPage : ContentPage
         var bindingContext = this.TilePaletteEditPageVM;
 
         // 画像描画
-        if (bindingContext.TileSetWorkingBitmap != null)
+        if (bindingContext.TilesetWorkingBitmap != null)
         {
             // the the canvas and properties
             var canvas = e.Surface.Canvas;
 
             canvas.DrawImage(
-                image: SkiaSharp.SKImage.FromBitmap(bindingContext.TileSetWorkingBitmap),
+                image: SkiaSharp.SKImage.FromBitmap(bindingContext.TilesetWorkingBitmap),
                 p: new SkiaSharp.SKPoint());
         }
     }
@@ -397,9 +397,9 @@ public partial class TilePaletteEditPage : ContentPage
         // 設定ファイルの編集
         // ==================
         //
-        context.TileSetSettings.Add(
+        context.TilesetSettings.Add(
             // 新しいＩｄを追加
-            id: context.TileSetSettings.UsableId,
+            id: context.TilesetSettings.UsableId,
             rect: new Models.Rectangle(
                 point: new Models.Point(
                     x: new Models.X(context.SelectedTileLeftAsInt),
@@ -419,7 +419,7 @@ public partial class TilePaletteEditPage : ContentPage
         // 設定ファイルの保存
         // ==================
         //
-        if (context.TileSetSettings.SaveCSV(context.TileSetSettingsFile))
+        if (context.TilesetSettings.SaveCSV(context.TilesetSettingsFile))
         {
             // 保存成功
         }
@@ -456,7 +456,7 @@ public partial class TilePaletteEditPage : ContentPage
         // 設定ファイルの編集
         // ==================
         //
-        context.TileSetSettings.DeleteLogical(
+        context.TilesetSettings.DeleteLogical(
             // 現在選択中のＩｄ
             id: context.SelectedTileId);
 
@@ -464,7 +464,7 @@ public partial class TilePaletteEditPage : ContentPage
         // 設定ファイルの保存
         // ==================
         //
-        if (context.TileSetSettings.SaveCSV(context.TileSetSettingsFile))
+        if (context.TilesetSettings.SaveCSV(context.TilesetSettingsFile))
         {
             // 保存成功
         }

@@ -98,19 +98,19 @@
         ///         　　└─ 📂 Workspace
         ///         　　　　└─ 📂 For Unity Assets
         ///         👉 　　　　└─ 📂 Images
-        ///         　　　　　　　　└─ 📂 Tile Set
+        ///         　　　　　　　　└─ 📂 Tileset
         ///     </pre>
         /// </summary>
         /// <param name="imagesInfo"></param>
         /// <returns></returns>
         static bool CheckImagesFolder(DirectoryInfo imagesInfo)
         {
-            // 📂 `Tile Set` が含まれていれば OK
+            // 📂 `Tileset` が含まれていれば OK
             DirectoryInfo tileSetInfo = null;
 
             foreach (var dirInfo in imagesInfo.EnumerateDirectories())
             {
-                if (dirInfo.Name == "Tile Set")
+                if (dirInfo.Name == "Tileset")
                 {
                     tileSetInfo = dirInfo;
                     break;
@@ -123,32 +123,32 @@
                 return false;
             }
 
-            // 📂 `Tile Set` フォルダーのチェック
-            bool isOk = CheckTileSetFolder(tileSetInfo);
+            // 📂 `Tileset` フォルダーのチェック
+            bool isOk = CheckTilesetFolder(tileSetInfo);
 
             return isOk;
         }
 
         /// <summary>
         ///     <pre>
-        ///         Tile Set フォルダーの内容を確認します
+        ///         Tileset フォルダーの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         　　└─ 📂 Workspace
         ///         　　　　└─ 📂 For Unity Assets
         ///         　　　　　　└─ 📂 Images
-        ///         👉 　　　　　　└─ 📂 Tile Set
+        ///         👉 　　　　　　└─ 📂 Tileset
         ///         　　　　　　　　　　└─ 📄 adventure_field.png
         ///     </pre>
         /// </summary>
-        /// <param name="tileSetInfo"></param>
+        /// <param name="tilesetInfo"></param>
         /// <returns></returns>
-        static bool CheckTileSetFolder(DirectoryInfo tileSetInfo)
+        static bool CheckTilesetFolder(DirectoryInfo tilesetInfo)
         {
             // 📄 `adventure_field.png` が含まれていれば OK
             FileInfo adventureFieldPngFileInfo = null;
 
-            foreach (var fileInfo in tileSetInfo.EnumerateFiles())
+            foreach (var fileInfo in tilesetInfo.EnumerateFiles())
             {
                 if (fileInfo.Name == "adventure_field.png")
                 {

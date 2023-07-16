@@ -3,23 +3,23 @@
     using _2D_RPG_Negiramen.Coding;
 
     /// <summary>
-    ///     😁 タイル・セットCSVファイル・ロケーション
+    ///     😁 タイルセットCSVファイル・ロケーション
     /// </summary>
-    class TileSetSettingsFile : Its
+    class TilesetSettingsFile : Its
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static TileSetSettingsFile Empty { get; } = new TileSetSettingsFile();
+        internal static TilesetSettingsFile Empty { get; } = new TilesetSettingsFile();
 
         // - その他
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetSettingsFile()
+        internal TilesetSettingsFile()
             : base()
         {
         }
@@ -27,7 +27,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetSettingsFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal TilesetSettingsFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }

@@ -3,13 +3,13 @@
     using System.Text;
 
     /// <summary>
-    ///     タイル・セットの設定
+    ///     タイルセットの設定
     ///     
     ///     <list type="bullet">
     ///         <item>とりあえずミュータブル</item>
     ///     </list>
     /// </summary>
-    public class TileSetSettings
+    public class TilesetSettings
     {
         // - インターナル静的メソッド
 
@@ -17,12 +17,12 @@
         /// <summary>
         ///     CSV形式ファイルの読込
         /// </summary>
-        /// <param name="tileSetSettings">タイル・セット設定</param>
+        /// <param name="tilesetSettings">タイルセット設定</param>
         /// <returns></returns>
-        internal static bool LoadCSV(Locations.TileSetSettingsFile tileSetSettingsFile, out TileSetSettings tileSetSettings)
+        internal static bool LoadCSV(Locations.TilesetSettingsFile tilesetSettingsFile, out TilesetSettings tilesetSettings)
         {
             // 既定値の設定（空っぽ）
-            tileSetSettings = new TileSetSettings();
+            tilesetSettings = new TilesetSettings();
 
             try
             {
@@ -30,7 +30,7 @@
                 // ファイルの有無確認
                 // ==================
                 //
-                if (System.IO.File.Exists(tileSetSettingsFile.Path.AsStr))
+                if (System.IO.File.Exists(tilesetSettingsFile.Path.AsStr))
                 {
                     // ファイルが有るなら
 
@@ -38,7 +38,7 @@
                     // ファイル読取
                     // ============
                     //
-                    var text = System.IO.File.ReadAllText(tileSetSettingsFile.Path.AsStr);
+                    var text = System.IO.File.ReadAllText(tilesetSettingsFile.Path.AsStr);
 
                     //
                     // ＣＳＶとして解析
@@ -87,7 +87,7 @@
                         }
 
                         // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
-                        tileSetSettings.Add(
+                        tilesetSettings.Add(
                             id: new Models.TileId(tileId),
                             rect: new Models.Rectangle(
                                 point: new Models.Point(
@@ -117,9 +117,9 @@
 
         // - インターナル・プロパティー
 
-        #region プロパティ（対象のタイル・セットに含まれるすべてのタイルの記録）
+        #region プロパティ（対象のタイルセットに含まれるすべてのタイルの記録）
         /// <summary>
-        /// 対象のタイル・セットに含まれるすべてのタイルの記録
+        /// 対象のタイルセットに含まれるすべてのタイルの記録
         /// </summary>
         internal List<TileRecord> RecordList { get; private set; } = new List<TileRecord>();
         #endregion
@@ -221,7 +221,7 @@
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-        internal bool SaveCSV(Locations.TileSetSettingsFile tileSetSettingsFile)
+        internal bool SaveCSV(Locations.TilesetSettingsFile tileSetSettingsFile)
         {
 
             // 保存したいファイルへのパス

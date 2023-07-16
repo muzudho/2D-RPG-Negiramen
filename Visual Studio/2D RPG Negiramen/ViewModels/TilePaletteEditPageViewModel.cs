@@ -10,8 +10,8 @@
     /// <summary>
     ///     😁 ［タイル・パレット編集ページ］ビューモデル
     /// </summary>
-    [QueryProperty(nameof(TileSetImageFile), queryId: "TileSetImageFile")]
-    [QueryProperty(nameof(TileSetSettingsFile), queryId: "TileSetSettingsFile")]
+    [QueryProperty(nameof(TilesetImageFile), queryId: "TilesetImageFile")]
+    [QueryProperty(nameof(TilesetSettingsFile), queryId: "TilesetSettingsFile")]
     [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
@@ -20,41 +20,40 @@
     {
         // - プロパティ
 
-        #region プロパティ（タイル・セット画像ファイルへのパス）
+        #region プロパティ（タイルセット画像ファイルへのパス）
         /// <summary>
-        ///     タイル・セット画像ファイルへのパス
+        ///     タイルセット画像ファイルへのパス
         /// </summary>
-        public Models.FileEntries.Locations.TileSetImageFile TileSetImageFile
+        public Models.FileEntries.Locations.TilesetImageFile TilesetImageFile
         {
-            get => _tileSetImageFile;
+            get => _tilesetImageFile;
             set
             {
-                if (_tileSetImageFile != value)
+                if (_tilesetImageFile != value)
                 {
-                    _tileSetImageFile = value;
-                    // OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
+                    _tilesetImageFile = value;
                 }
             }
         }
         #endregion
 
-        #region プロパティ（タイル・セット設定ファイルへのパス）
+        #region プロパティ（タイルセット設定ファイルへのパス）
         /// <summary>
-        ///     タイル・セット設定ファイルへのパス（文字列形式）
+        ///     タイルセット設定ファイルへのパス（文字列形式）
         /// </summary>
-        public string TileSetSettingFilePathAsStr
+        public string TilesetSettingFilePathAsStr
         {
-            get => _tileSetSettingsFile.Path.AsStr;
+            get => _tilesetSettingsFile.Path.AsStr;
             set
             {
                 if (value == null || String.IsNullOrWhiteSpace(value))
                 {
-                    throw new ArgumentException($"the {nameof(TileSetSettingFilePathAsStr)} must not be null or whitespace");
+                    throw new ArgumentException($"the {nameof(TilesetSettingFilePathAsStr)} must not be null or whitespace");
                 }
 
-                if (_tileSetSettingsFile.Path.AsStr != value)
+                if (_tilesetSettingsFile.Path.AsStr != value)
                 {
-                    _tileSetSettingsFile = new Models.FileEntries.Locations.TileSetSettingsFile(
+                    _tilesetSettingsFile = new Models.FileEntries.Locations.TilesetSettingsFile(
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
@@ -63,16 +62,16 @@
         }
 
         /// <summary>
-        ///     タイル・セット設定ファイルへのパス
+        ///     タイルセット設定ファイルへのパス
         /// </summary>
-        public Models.FileEntries.Locations.TileSetSettingsFile TileSetSettingsFile
+        public Models.FileEntries.Locations.TilesetSettingsFile TilesetSettingsFile
         {
-            get => _tileSetSettingsFile;
+            get => _tilesetSettingsFile;
             set
             {
-                if (_tileSetSettingsFile != value)
+                if (_tilesetSettingsFile != value)
                 {
-                    _tileSetSettingsFile = value;
+                    _tilesetSettingsFile = value;
                 }
             }
         }
@@ -207,31 +206,31 @@
         /// <summary>
         ///     タイルセットの元画像。ビットマップ形式
         /// </summary>
-        public SKBitmap TileSetSourceBitmap { get; set; }
+        public SKBitmap TilesetSourceBitmap { get; set; }
         #endregion
 
         #region プロパティ（タイルセットの作業画像。ビットマップ形式）
         /// <summary>
         ///     タイルセットの作業画像。ビットマップ形式
         /// </summary>
-        public SKBitmap TileSetWorkingBitmap { get; set; }
+        public SKBitmap TilesetWorkingBitmap { get; set; }
         #endregion
 
         // - 変更通知プロパティ
 
-        #region 変更通知プロパティ（タイル・セット設定）
+        #region 変更通知プロパティ（タイルセット設定）
         /// <summary>
-        ///     タイル・セット設定
+        ///     タイルセット設定
         /// </summary>
-        public Models.FileEntries.TileSetSettings TileSetSettings
+        public Models.FileEntries.TilesetSettings TilesetSettings
         {
-            get => this._tileSetSettings;
+            get => this._tilesetSettings;
             set
             {
-                if (this._tileSetSettings != value)
+                if (this._tilesetSettings != value)
                 {
-                    this._tileSetSettings = value;
-                    OnPropertyChanged(nameof(TileSetSettings));
+                    this._tilesetSettings = value;
+                    OnPropertyChanged(nameof(TilesetSettings));
 
                     // TODO これ要るか？ 再描画
                     NotifyTileIdChange();
@@ -269,32 +268,32 @@
         public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
         #endregion
 
-        #region 変更通知プロパティ（作業中のタイル・セット画像ファイルへのパス（文字列形式））
+        #region 変更通知プロパティ（作業中のタイルセット画像ファイルへのパス（文字列形式））
         /// <summary>
-        ///     作業中のタイル・セット画像ファイルへのパス（文字列形式）
+        ///     作業中のタイルセット画像ファイルへのパス（文字列形式）
         /// </summary>
-        public string WorkingTileSetImageFilePathAsStr
+        public string WorkingTilesetImageFilePathAsStr
         {
-            get => App.GetOrLoadUserConfiguration().WorkingTileSetImageFile.Path.AsStr;
+            get => App.GetOrLoadUserConfiguration().WorkingTilesetImageFile.Path.AsStr;
         }
         #endregion
 
-        #region 変更通知プロパティ（タイル・セット画像ファイルへのパス（文字列形式））
+        #region 変更通知プロパティ（タイルセット画像ファイルへのパス（文字列形式））
         /// <summary>
-        ///     タイル・セット画像ファイルへのパス（文字列形式）
+        ///     タイルセット画像ファイルへのパス（文字列形式）
         /// </summary>
-        public string TileSetImageFilePathAsStr
+        public string TilesetImageFilePathAsStr
         {
-            get => _tileSetImageFile.Path.AsStr;
+            get => _tilesetImageFile.Path.AsStr;
             set
             {
-                if (_tileSetImageFile.Path.AsStr != value)
+                if (_tilesetImageFile.Path.AsStr != value)
                 {
-                    _tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(
+                    _tilesetImageFile = new Models.FileEntries.Locations.TilesetImageFile(
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
-                    // OnPropertyChanged(nameof(TileSetImageFilePathAsStr));
+                    OnPropertyChanged(nameof(TilesetImageFilePathAsStr));
                 }
             }
         }
@@ -1406,13 +1405,13 @@
         }
         #endregion
 
-        #region メソッド（作業中のタイル・セット画像の再描画）
+        #region メソッド（作業中のタイルセット画像の再描画）
         /// <summary>
-        ///     作業中のタイル・セット画像の再描画
+        ///     作業中のタイルセット画像の再描画
         /// </summary>
-        internal void RefreshWorkingTileSetImage()
+        internal void RefreshWorkingTilesetImage()
         {
-            OnPropertyChanged(nameof(WorkingTileSetImageFilePathAsStr));
+            OnPropertyChanged(nameof(WorkingTilesetImageFilePathAsStr));
         }
         #endregion
 
@@ -1432,25 +1431,25 @@
         Models.Size _gridCanvasSize = Models.Size.Empty;
         #endregion
 
-        #region フィールド（タイル・セット設定）
+        #region フィールド（タイルセット設定）
         /// <summary>
-        ///     タイル・セット設定
+        ///     タイルセット設定
         /// </summary>
-        Models.FileEntries.TileSetSettings _tileSetSettings = new Models.FileEntries.TileSetSettings();
+        Models.FileEntries.TilesetSettings _tilesetSettings = new Models.FileEntries.TilesetSettings();
         #endregion
 
-        #region フィールド（タイル・セット画像ファイルへのパス）
+        #region フィールド（タイルセット画像ファイルへのパス）
         /// <summary>
-        ///     タイル・セット画像ファイルへのパス
+        ///     タイルセット画像ファイルへのパス
         /// </summary>
-        Models.FileEntries.Locations.TileSetImageFile _tileSetImageFile = Models.FileEntries.Locations.TileSetImageFile.Empty;
+        Models.FileEntries.Locations.TilesetImageFile _tilesetImageFile = Models.FileEntries.Locations.TilesetImageFile.Empty;
         #endregion
 
-        #region フィールド（タイル・セットの設定CSVファイル）
+        #region フィールド（タイルセットの設定CSVファイル）
         /// <summary>
-        ///     タイル・セットの設定CSVファイル
+        ///     タイルセットの設定CSVファイル
         /// </summary>
-        Models.FileEntries.Locations.TileSetSettingsFile _tileSetSettingsFile = Models.FileEntries.Locations.TileSetSettingsFile.Empty;
+        Models.FileEntries.Locations.TilesetSettingsFile _tilesetSettingsFile = Models.FileEntries.Locations.TilesetSettingsFile.Empty;
         #endregion
 
         #region フィールド（タイル・カーソルの位置（マージンとして））

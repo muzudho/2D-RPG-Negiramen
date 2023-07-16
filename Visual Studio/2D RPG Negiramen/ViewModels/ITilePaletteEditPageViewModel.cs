@@ -6,25 +6,25 @@ using SkiaSharp;
 
 public interface ITilePaletteEditPageViewModel
 {
-    #region プロパティ（タイル・セット設定）
+    #region プロパティ（タイルセット設定）
     /// <summary>
-    ///     タイル・セット設定
+    ///     タイルセット設定
     /// </summary>
-    TileSetSettings TileSetSettings { get; }
+    TilesetSettings TilesetSettings { get; }
     #endregion
 
     #region プロパティ（タイルセットの元画像。ビットマップ形式）
     /// <summary>
     ///     タイルセットの元画像。ビットマップ形式
     /// </summary>
-    SKBitmap TileSetSourceBitmap { get; }
+    SKBitmap TilesetSourceBitmap { get; }
     #endregion
 
     #region プロパティ（タイルセットの作業画像。ビットマップ形式）
     /// <summary>
     ///     タイルセットの作業画像。ビットマップ形式
     /// </summary>
-    SKBitmap TileSetWorkingBitmap { get; }
+    SKBitmap TilesetWorkingBitmap { get; }
     #endregion
 
     #region プロパティ（グリッドの線の太さの半分）

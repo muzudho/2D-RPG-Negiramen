@@ -436,22 +436,22 @@ public partial class MainPage : ContentPage
                 // ファイル名の拡張子抜き
                 var fileStem = "map-tile-format-8x19";
 
-                // タイル・セット画像ファイル・パス
-                var tileSetImageFile = new Models.FileEntries.Locations.TileSetImageFile(
+                // タイルセット画像ファイル・パス
+                var tilesetImageFile = new Models.FileEntries.Locations.TilesetImageFile(
                     pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(unityAssetsFolderPathAsStr,
-                                                                                      $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tile Set/{fileStem}.png")),
+                                                                                      $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tileset/{fileStem}.png")),
                     convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                 replaceSeparators: true));
 
-                // タイル・セットCSVファイル・パス
-                var tileSetSettingsFile = new Models.FileEntries.Locations.TileSetSettingsFile(
+                // タイルセットCSVファイル・パス
+                var tilesetSettingsFile = new Models.FileEntries.Locations.TilesetSettingsFile(
                     pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(unityAssetsFolderPathAsStr,
-                                                                                      $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tile Set/{fileStem}.csv")),
+                                                                                      $"Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Data/CSV/Tileset/{fileStem}.csv")),
                     convert: (pathSource)=>FileEntryPath.From(pathSource,
                                                               replaceSeparators: true));
 
-                // タイル・セット画像の縦横幅
-                var tileSetSize = Models.FileEntries.PNGHelper.GetImageSize(tileSetImageFile);
+                // タイルセット画像の縦横幅
+                var tilesetSize = Models.FileEntries.PNGHelper.GetImageSize(tilesetImageFile);
 
                 // グリッドの線の幅（初期値）
                 ThicknessOfLine gridLineThickness = new ThicknessOfLine(2);
@@ -460,11 +460,11 @@ public partial class MainPage : ContentPage
                     state: shellNavigationState,
                     parameters: new Dictionary<string, object>
                     {
-                        [key: "TileSetImageFile"] = tileSetImageFile,
-                        [key: "TileSetSettingsFile"] = tileSetSettingsFile,
-                        [key: "ImageSize"] = tileSetSize,
+                        [key: "TilesetImageFile"] = tilesetImageFile,
+                        [key: "TilesetSettingsFile"] = tilesetSettingsFile,
+                        [key: "ImageSize"] = tilesetSize,
                         // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
-                        [key: "GridCanvasSize"] = new Models.Size(new Models.Width(tileSetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tileSetSize.Height.AsInt + gridLineThickness.AsInt)),
+                        [key: "GridCanvasSize"] = new Models.Size(new Models.Width(tilesetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tilesetSize.Height.AsInt + gridLineThickness.AsInt)),
                         [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
                         [key: "GridTileSize"] = new Models.Size(new Models.Width(32), new Models.Height(32)),
                     });

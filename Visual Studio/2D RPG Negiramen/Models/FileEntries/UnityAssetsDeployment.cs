@@ -204,30 +204,30 @@
         /// <param name="imagesFolderPath">画像フォルダ―へのパス</param>
         static void PushStartupMemberToImagesFolder(string imagesFolderPath)
         {
-            // 📂 `Tile Set` フォルダー
-            var tileSetFolderPath = Path.Combine(imagesFolderPath, "Tile Set");
+            // 📂 `Tileset` フォルダー
+            var tileSetFolderPath = Path.Combine(imagesFolderPath, "Tileset");
             if (!Directory.Exists(tileSetFolderPath))
             {
                 Directory.CreateDirectory(tileSetFolderPath);
             }
 
-            CopyTileSet("adventure_field.png");
-            CopyTileSet("map-tile-format-8x19.png");
+            CopyTileset("adventure_field.png");
+            CopyTileset("map-tile-format-8x19.png");
 
             //var configuration = App.GetOrLoadConfiguration();
-            //var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tile Set", "adventure_field.png");
+            //var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tileset", "adventure_field.png");
             //var destination = Path.Combine(
             //        configuration.UnityAssetsFolderPath.AsStr,
             //        configuration.YourCircleName.AsStr,
             //        configuration.YourWorkName.AsStr,
             //        "Auto Generated",
             //        "Images",
-            //        "Tile Set",
+            //        "Tileset",
             //        "adventure_field.png");
 
             //if (!File.Exists(destination))
             //{
-            //    // 📄 `Tile Set` ファイルを複写
+            //    // 📄 `Tileset` ファイルを複写
             //    File.Copy(
             //        sourceFileName: source,
             //        destFileName: destination);
@@ -238,22 +238,22 @@
         ///     タイルセットをコピー
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        static void CopyTileSet(string fileName)
+        static void CopyTileset(string fileName)
         {
             var configuration = App.GetOrLoadConfiguration();
-            var source = Path.Combine(configuration.NegiramenWorkspaceFolder.Path.AsStr, "For Unity Assets", "Images", "Tile Set", fileName);
+            var source = Path.Combine(configuration.NegiramenWorkspaceFolder.Path.AsStr, "For Unity Assets", "Images", "Tileset", fileName);
             var destination = Path.Combine(
                     configuration.UnityAssetsFolder.Path.AsStr,
                     configuration.YourCircleName.AsStr,
                     configuration.YourWorkName.AsStr,
                     "Auto Generated",
                     "Images",
-                    "Tile Set",
+                    "Tileset",
                     fileName);
 
             if (!File.Exists(destination))
             {
-                // 📄 `Tile Set` ファイルを複写
+                // 📄 `Tileset` ファイルを複写
                 File.Copy(
                     sourceFileName: source,
                     destFileName: destination);
@@ -310,7 +310,7 @@
         static void PushStartupMemberToDataCSVFolder(string csvFolderPath)
         {
             // タイルセット
-            var tileSet = Path.Combine(csvFolderPath, "Tile Set");
+            var tileSet = Path.Combine(csvFolderPath, "Tileset");
             if (!Directory.Exists(tileSet))
             {
                 Directory.CreateDirectory(tileSet);

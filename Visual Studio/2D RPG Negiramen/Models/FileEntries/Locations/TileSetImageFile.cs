@@ -3,23 +3,23 @@
     using _2D_RPG_Negiramen.Coding;
 
     /// <summary>
-    ///     😁 タイル・セット画像ファイル・パス
+    ///     😁 タイルセット画像ファイル・パス
     /// </summary>
-    class TileSetImageFile : Its
+    class TilesetImageFile : Its
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static TileSetImageFile Empty { get; } = new TileSetImageFile();
+        internal static TilesetImageFile Empty { get; } = new TilesetImageFile();
 
         // - その他
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetImageFile()
+        internal TilesetImageFile()
             : base()
         {
         }
@@ -27,7 +27,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal TileSetImageFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal TilesetImageFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }
