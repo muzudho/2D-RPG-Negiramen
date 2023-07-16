@@ -5026,4 +5026,61 @@ namespace _2D_RPG_Negiramen.Models
 「　👆　マウスカーソルが　ボタンに被さると　ボタンが少し　明るく見えるとか　１個１個　設定しないといけない  
 これは大変だ」  
 
+## "Tile Set" ではなくて "Tileset" なのでは
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`Tileset` は　１単語として　よく使われているようだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　リネームするか～」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`タイル・パレット編集画面`　という名前は　実態に合ってんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイル切り抜き画面だよな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　英語にすると　`Tile Crop Page`　ぐらいかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　意味が伝わるだろうか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　まだ　タイル・パレット本体も無いし、  
+タイル・パレット編集　と言われても　分かんなくない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　とりあえず　文字数が減るのは嬉しいから　リネームするか」  
+
+```plaintext
+TilePaletteEditPage ----> TileCropPage
+```
+
+## 文字列リソースにはどうやってアクセスすんの？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれっ？　C# スクリプトから　文字列リソースを取得するには　どうやったらいいんだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`LocalizationResourceManager` を直で呼び出したらどう？」
+
+```csharp
+var text = (string)LocalizationResourceManager.Instance["Add"];
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな感じで　いけたぜ」  
+
+![202307__maui__17-0023--NewLine-o2o0.png](https://crieit.now.sh/upload_images/36f6b963b32815cbc3c0246adb8648b964b40bd4bdf3d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ローカライズしたら　`&#10;`　という改行コードが　そのまま表示されてしまった！」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　インジェクション対策だろう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`\n`　でも　`<br>`　でもダメ」  
+
 ＜書きかけ＞

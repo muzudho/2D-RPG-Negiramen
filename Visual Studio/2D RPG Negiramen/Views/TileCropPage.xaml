@@ -77,18 +77,18 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="80,*,164">
+    <Grid RowDefinitions="84,*,172">
 
         <!--    上メニュー
                 ==========
         -->
         <Grid Grid.Row="0"
-              RowDefinitions="16,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,*"
+              RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
-            <!--    １段目
-                    ======
+            <!--    ◆１段目　ラベル列
+                    ==================
             -->
             <!-- 「よこ」 -->
             <Label Grid.Row="0" Grid.Column="1"
@@ -302,12 +302,12 @@
                 ==========
         -->
         <Grid Grid.Row="2"
-              RowDefinitions="16,48,16,48,20" ColumnDefinitions="128,64,64,64,64,64,*"
+              RowDefinitions="20,48,20,48,20" ColumnDefinitions="128,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
-            <!--    ０列目 ボタン縦並び
-                    ===================
+            <!--    ◆ボタン縦並び
+                    ==============
             -->
             <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
                 <VerticalStackLayout>
@@ -337,8 +337,8 @@
                 </VerticalStackLayout>
             </Grid>
 
-            <!--    １段目 読み仮名部
-                    =================
+            <!--    ◆０段目 読み仮名部
+                    ===================
             -->
             <!-- 「ひだり」 -->
             <Label Grid.Row="0" Grid.Column="2"
@@ -360,8 +360,8 @@
                    HorizontalTextAlignment="End"
                    Text="{app:Translate Height}"/>
 
-            <!--    ２段目 入力部
-                    =============
+            <!--    ◆２段目 入力部
+                    ===============
             -->
             <!-- カーソル -->
             <Label Grid.Row="1" Grid.Column="1"
@@ -397,8 +397,8 @@
                    Text="{Binding SelectedTileHeightAsInt}"
                    FontSize="24"/>
 
-            <!--    ３段目 読み仮名部
-                    =================
+            <!--    ◆３段目 読み仮名部
+                    ===================
             -->
             <!-- 「管理コード」 -->
             <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"

@@ -197,7 +197,7 @@
     <value>画像</value>
   </data>
   <data name="EntireGrid" xml:space="preserve">
-    <value>グリッド&amp;#10;全体</value>
+    <value>グリッド&lt;br&gt;全体</value>
     <comment>グリッド\n全体</comment>
   </data>
   <data name="GridOne" xml:space="preserve">
