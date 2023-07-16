@@ -230,10 +230,13 @@ public partial class TilePaletteEditPage : ContentPage
                         await inputFileStream.CopyToAsync(memStream);
                         memStream.Seek(0, SeekOrigin.Begin);
 
-                        context.SKBitmap = SKBitmap.Decode(memStream);
+                        context.TileSetSourceBitmap = SKBitmap.Decode(memStream);
+
+                        // 複製
+                        context.TileSetWorkingBitmap = SKBitmap.FromImage(SKImage.FromBitmap(context.TileSetSourceBitmap));
 
                         // 画像処理（明度を下げる）
-                        ReduceBrightness.DoItInPlace(context.SKBitmap);
+                        ReduceBrightness.DoItInPlace(context.TileSetWorkingBitmap);
                     };
 
                     // 再描画
@@ -399,13 +402,13 @@ public partial class TilePaletteEditPage : ContentPage
         var bindingContext = this.TilePaletteEditPageVM;
 
         // 画像描画
-        if (bindingContext.SKBitmap != null)
+        if (bindingContext.TileSetWorkingBitmap != null)
         {
             // the the canvas and properties
             var canvas = e.Surface.Canvas;
 
             canvas.DrawImage(
-                image: SKImage.FromBitmap(bindingContext.SKBitmap),
+                image: SKImage.FromBitmap(bindingContext.TileSetWorkingBitmap),
                 p: new SKPoint());
         }
     }

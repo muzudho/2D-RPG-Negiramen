@@ -13,11 +13,18 @@ public interface ITilePaletteEditPageViewModel
     TileSetSettings TileSetSettings { get; }
     #endregion
 
-    #region プロパティ（画像。ビットマップ形式）
+    #region プロパティ（タイルセットの元画像。ビットマップ形式）
     /// <summary>
-    ///     画像。ビットマップ形式
+    ///     タイルセットの元画像。ビットマップ形式
     /// </summary>
-    SKBitmap SKBitmap { get; }
+    SKBitmap TileSetSourceBitmap { get; }
+    #endregion
+
+    #region プロパティ（タイルセットの作業画像。ビットマップ形式）
+    /// <summary>
+    ///     タイルセットの作業画像。ビットマップ形式
+    /// </summary>
+    SKBitmap TileSetWorkingBitmap { get; }
     #endregion
 
     #region プロパティ（グリッドの線の太さの半分）

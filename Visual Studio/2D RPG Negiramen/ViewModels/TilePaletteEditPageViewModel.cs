@@ -174,11 +174,18 @@
         }
         #endregion
 
-        #region プロパティ（画像。ビットマップ形式）
+        #region プロパティ（タイルセットの元画像。ビットマップ形式）
         /// <summary>
-        ///     画像。ビットマップ形式
+        ///     タイルセットの元画像。ビットマップ形式
         /// </summary>
-        public SKBitmap SKBitmap { get; set; }
+        public SKBitmap TileSetSourceBitmap { get; set; }
+        #endregion
+
+        #region プロパティ（タイルセットの作業画像。ビットマップ形式）
+        /// <summary>
+        ///     タイルセットの作業画像。ビットマップ形式
+        /// </summary>
+        public SKBitmap TileSetWorkingBitmap { get; set; }
         #endregion
 
         // - 変更通知プロパティ
