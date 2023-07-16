@@ -41,10 +41,19 @@
             -->
             <HorizontalStackLayout Grid.Column="0"
                                    HorizontalOptions="Start">
+                
+                <!--    ［ホーム］ボタン
+                        ================
+                -->
                 <Button Margin="16,2,2,2"
-                        Text="Home"
+                        Text="ホーム"
                         SemanticProperties.Hint="Back to the home"
-                        Clicked="HomeBtn_Clicked"/>
+                        Clicked="HomeBtn_Clicked">
+                    <Button.GestureRecognizers>
+                        <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                  PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                    </Button.GestureRecognizers>
+                </Button>
 
                 <Label VerticalTextAlignment="Center"
                        Text="＞"

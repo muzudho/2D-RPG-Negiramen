@@ -3,21 +3,21 @@
 using _2D_RPG_Negiramen.Models;
 
 /// <summary>
-///     ユーザー・インターフェースの方策
+///     ビューの方策
 /// </summary>
 internal static class PolicyOfView
 {
     /// <summary>
-    ///     アニメーションする
+    ///     ボタン押下時のボタンの反応
     /// </summary>
-    internal static async Task DoAnimation(Button button)
+    internal static async Task ReactOnPushed(Button button)
     {
         await button.FadeTo(
             opacity: 0.5,
-            length: 150); // milliseconds
+            length: 125); // milliseconds
         await button.FadeTo(
             opacity: 1.0,
-            length: 150); // milliseconds
+            length: 125); // milliseconds
     }
 
     /// <summary>
