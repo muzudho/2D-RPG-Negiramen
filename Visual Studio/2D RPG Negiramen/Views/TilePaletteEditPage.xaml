@@ -315,15 +315,16 @@
                 <VerticalStackLayout>
 
                     <!-- 追加／上書ボタン -->
-                    <Button Grid.Row="0" Grid.Column="0"
-                        Text="{Binding AddsButtonText}"
-                        ToolTipProperties.Text="{Binding AddsButtonHint}"
-                        Clicked="AddsButton_Clicked"/>
+                    <Button IsEnabled="{Binding AddsButtonIsEnabled}"
+                            Text="{Binding AddsButtonText}"
+                            ToolTipProperties.Text="{Binding AddsButtonHint}"
+                            Clicked="AddsButton_Clicked"/>
 
                     <!-- 削除ボタン -->
-                    <Button Grid.Row="0" Grid.Column="1"
-                        IsEnabled="False"
-                        Text="削除"/>
+                    <Button Margin="0,40,0,0"
+                            IsEnabled="{Binding DeletesButtonIsEnabled}"
+                            Text="削除"
+                            Clicked="DeletesButton_Clicked"/>
 
                 </VerticalStackLayout>
             </Grid>

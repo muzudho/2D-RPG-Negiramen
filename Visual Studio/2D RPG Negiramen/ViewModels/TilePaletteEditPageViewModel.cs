@@ -169,6 +169,33 @@
                         comment: Models.Comment.Empty));
                 }
 
+                if (this._selectedTileOption.TryGetValue(out var record))
+                {
+                    if (record.Id == TileId.Empty)
+                    {
+                        // 未選択時
+                        this.AddsButtonText = "追加";
+
+                        this.AddsButtonIsEnabled = true;
+                        this.DeletesButtonIsEnabled = false;
+                    }
+                    else
+                    {
+                        this.AddsButtonText = "上書";
+
+                        this.AddsButtonIsEnabled = true;
+                        this.DeletesButtonIsEnabled = true;
+                    }
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                    this.AddsButtonText = "追加";
+
+                    this.AddsButtonIsEnabled = false;
+                    this.DeletesButtonIsEnabled = false;
+                }
+
                 NotifyTileIdChange();
             }
         }
@@ -670,6 +697,8 @@
         #endregion
 
         #region 変更通知プロパティ（追加／上書きボタンのラベル）
+        string addsButtonText = "追加";
+
         /// <summary>
         ///     追加／上書きボタンのラベル
         /// </summary>
@@ -677,22 +706,14 @@
         {
             get
             {
-                if (this._selectedTileOption.TryGetValue(out TileRecord selectedTile))
+                return this.addsButtonText;
+            }
+            set
+            {
+                if (this.addsButtonText != value)
                 {
-                    if (selectedTile.Id == Models.TileId.Empty)
-                    {
-                        // 未選択時
-                        return "追加";
-                    }
-                    else
-                    {
-                        return "上書";
-                    }
-                }
-                else
-                {
-                    // タイル・カーソル無し時
-                    return "追加";
+                    this.addsButtonText = value;
+                    OnPropertyChanged(nameof(AddsButtonText));
                 }
             }
         }
@@ -722,6 +743,52 @@
                 {
                     // タイル・カーソル無し時
                     return "選択タイルを、タイル一覧画面へ追加";
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（追加／上書ボタンの活性性）
+        bool addsButtonIsEnabled;
+
+        /// <summary>
+        ///     追加／上書ボタンの活性性
+        /// </summary>
+        public bool AddsButtonIsEnabled
+        {
+            get
+            {
+                return this.addsButtonIsEnabled;
+            }
+            set
+            {
+                if (this.addsButtonIsEnabled != value)
+                {
+                    this.addsButtonIsEnabled = value;
+                    OnPropertyChanged(nameof(AddsButtonIsEnabled));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（削除ボタンの活性性）
+        bool deletesButtonIsEnabled;
+
+        /// <summary>
+        ///     削除ボタンの活性性
+        /// </summary>
+        public bool DeletesButtonIsEnabled
+        {
+            get
+            {
+                return this.deletesButtonIsEnabled;
+            }
+            set
+            {
+                if (this.deletesButtonIsEnabled != value)
+                {
+                    this.deletesButtonIsEnabled = value;
+                    OnPropertyChanged(nameof(DeletesButtonIsEnabled));
                 }
             }
         }
@@ -1339,36 +1406,49 @@
 
         // - プライベート・フィールド
 
+        #region フィールド（画像サイズ）
         /// <summary>
         ///     画像サイズ
         /// </summary>
         Models.Size _imageSize = Models.Size.Empty;
+        #endregion
 
+        #region フィールド（内部的グリッド画像サイズ）
         /// <summary>
         ///     内部的グリッド画像サイズ
         /// </summary>
         Models.Size _gridCanvasSize = Models.Size.Empty;
+        #endregion
 
+        #region フィールド（タイル・セット設定）
         /// <summary>
         ///     タイル・セット設定
         /// </summary>
         Models.FileEntries.TileSetSettings _tileSetSettings = new Models.FileEntries.TileSetSettings();
+        #endregion
 
+        #region フィールド（タイル・セット画像ファイルへのパス）
         /// <summary>
         ///     タイル・セット画像ファイルへのパス
         /// </summary>
         Models.FileEntries.Locations.TileSetImageFile _tileSetImageFile = Models.FileEntries.Locations.TileSetImageFile.Empty;
+        #endregion
 
+        #region フィールド（タイル・セットの設定CSVファイル）
         /// <summary>
         ///     タイル・セットの設定CSVファイル
         /// </summary>
         Models.FileEntries.Locations.TileSetSettingsFile _tileSetSettingsFile = Models.FileEntries.Locations.TileSetSettingsFile.Empty;
+        #endregion
 
+        #region フィールド（タイル・カーソルの位置（マージンとして））
         /// <summary>
         ///     タイル・カーソルの位置（マージンとして）
         /// </summary>
         Thickness _tileCursorPointAsMargin = Thickness.Zero;
+        #endregion
 
+        #region フィールド（タイル・カーソルのキャンバス・サイズ）
         /// <summary>
         ///     <pre>
         ///         タイル・カーソルのキャンバス・サイズ
@@ -1377,7 +1457,9 @@
         ///     </pre>
         /// </summary>
         Models.Size _tileCursorCanvasSize = Models.Size.Empty;
+        #endregion
 
+        #region フィールド（タイルの最大サイズ）
         /// <summary>
         ///     <pre>
         ///         タイルの最大サイズ
@@ -1386,7 +1468,9 @@
         ///     </pre>
         /// </summary>
         Models.Size _tileMaxSize = Models.Size.Empty;
+        #endregion
 
+        #region フィールド（選択タイル）
         /// <summary>
         ///     選択タイル
         ///     
@@ -1395,6 +1479,7 @@
         ///     </list>
         /// </summary>
         Option<TileRecord> _selectedTileOption = new Option<TileRecord>(Models.TileRecord.Empty);
+        #endregion
 
         // - プライベート・メソッド
 

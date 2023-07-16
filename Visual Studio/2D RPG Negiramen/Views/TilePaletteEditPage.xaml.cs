@@ -345,6 +345,29 @@ public partial class TilePaletteEditPage : ContentPage
     }
     #endregion
 
+    #region イベントハンドラ（表面の描画時）
+    /// <summary>
+    ///     表面の描画時
+    /// </summary>
+    /// <param name="sender">このイベントを送っているコントロール</param>
+    /// <param name="e">イベント</param>
+    private void skiaView1_PaintSurface(object sender, SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e)
+    {
+        var bindingContext = this.TilePaletteEditPageVM;
+
+        // 画像描画
+        if (bindingContext.TileSetWorkingBitmap != null)
+        {
+            // the the canvas and properties
+            var canvas = e.Surface.Canvas;
+
+            canvas.DrawImage(
+                image: SKImage.FromBitmap(bindingContext.TileSetWorkingBitmap),
+                p: new SKPoint());
+        }
+    }
+    #endregion
+
     #region イベントハンドラ（［追加］ボタン・クリック時）
     /// <summary>
     ///     ［追加］ボタン・クリック時
@@ -391,26 +414,15 @@ public partial class TilePaletteEditPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（表面の描画時）
+    #region イベントハンドラ（［削除］ボタン・クリック時）
     /// <summary>
-    ///     表面の描画時
+    ///     ［削除］ボタン・クリック時
     /// </summary>
-    /// <param name="sender">このイベントを送っているコントロール</param>
-    /// <param name="e">イベント</param>
-    private void skiaView1_PaintSurface(object sender, SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e)
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void DeletesButton_Clicked(object sender, EventArgs e)
     {
-        var bindingContext = this.TilePaletteEditPageVM;
 
-        // 画像描画
-        if (bindingContext.TileSetWorkingBitmap != null)
-        {
-            // the the canvas and properties
-            var canvas = e.Surface.Canvas;
-
-            canvas.DrawImage(
-                image: SKImage.FromBitmap(bindingContext.TileSetWorkingBitmap),
-                p: new SKPoint());
-        }
     }
     #endregion
 }
