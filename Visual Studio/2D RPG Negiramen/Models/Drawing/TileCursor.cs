@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing
 {
     using Microsoft.Maui.Graphics;
-    using System.Diagnostics;
 
     /// <summary>
     ///     <pre>
@@ -34,7 +33,7 @@
             returnType: typeof(ThicknessOfLine),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
-            defaultValue: ThicknessOfLine.Empty);
+            defaultValue: ThicknessOfLine.Min);
         #endregion
 
         #region 束縛可能プロパティ（選択タイルのサイズ）

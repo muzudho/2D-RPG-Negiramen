@@ -73,7 +73,8 @@
                     VerticalOptions="Center"
                     HorizontalOptions="End"
                     ItemsSource="{Binding LocaleIdCollection}"
-                    SelectedItem="{Binding CultureInfoAsStr}"/>
+                    SelectedItem="{Binding CultureInfoAsStr}"
+                    SelectedIndexChanged="LocalePicker_SelectedIndexChanged"/>
         </Grid>
     </Shell.TitleView>
 

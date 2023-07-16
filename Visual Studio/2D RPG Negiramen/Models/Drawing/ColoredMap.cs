@@ -68,12 +68,6 @@ internal class ColoredMap : BindableObject, IDrawable
                     green: values[1],
                     blue: values[2]);
             }
-            // canvas.StrokeColor = Colors.Green;
-            // canvas.StrokeColor = new Color(red:220, green:220, blue:255, alpha:192);
-            //canvas.StrokeColor = new Color(
-            //    red: Random.Shared.Next(220,255),
-            //    green: Random.Shared.Next(220, 255),
-            //    blue: Random.Shared.Next(220, 255));
 
             canvas.StrokeSize = 2 * halfFrameThickness;
             canvas.DrawRoundedRectangle(

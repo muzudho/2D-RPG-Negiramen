@@ -498,4 +498,15 @@ public partial class TileCropPage : ContentPage
         PolicyOfView.ReactOnMouseLeaved((Button)sender);
     }
     #endregion
+
+    /// <summary>
+    ///     ロケール変更時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        var context = this.TileCropPageVM;
+        context.RefreshByLocaleChanged();
+    }
 }

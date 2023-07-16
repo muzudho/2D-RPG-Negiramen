@@ -31,7 +31,9 @@
         /// </summary>
         public TileCropPageViewModel()
         {
-            this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+            // this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+            // 循環参照しないように注意
+            this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
         }
         #endregion
 
@@ -187,23 +189,19 @@
                         logicalDelete: Models.LogicalDelete.False));
                 }
 
+                this.RefreshByLocaleChanged();
+
                 if (this._selectedTileOption.TryGetValue(out var record))
                 {
                     if (record.Id == TileId.Empty)
                     {
                         // 未選択時
-                        // ［追加」
-                        this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-                        
-
                         this.AddsButtonIsEnabled = true;
                         this.DeletesButtonIsEnabled = false;
                     }
                     else
                     {
                         // 「上書」
-                        this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
-
                         this.AddsButtonIsEnabled = true;
                         this.DeletesButtonIsEnabled = true;
                     }
@@ -211,9 +209,6 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    // 「追加」
-                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-
                     this.AddsButtonIsEnabled = false;
                     this.DeletesButtonIsEnabled = false;
                 }
@@ -843,7 +838,7 @@
         #endregion
 
         #region 変更通知プロパティ（タイル・カーソルの線の半分の太さ）
-        ThicknessOfLine halfThicknessOfTileCursorLine = ThicknessOfLine.Empty;
+        ThicknessOfLine halfThicknessOfTileCursorLine;
 
         /// <summary>
         ///     タイル・カーソルの線の半分の太さ
@@ -852,11 +847,6 @@
         {
             get
             {
-                if (this.halfThicknessOfTileCursorLine == null)
-                {
-                    // 循環参照しないように注意
-                    this.halfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
-                }
                 return this.halfThicknessOfTileCursorLine;
             }
             set
@@ -1363,6 +1353,41 @@
                 }
 
                 OnPropertyChanged(nameof(SelectedTileCommentAsStr));
+            }
+        }
+        #endregion
+
+        // - パブリック・メソッド
+
+        #region メソッド（ロケール変更による再描画）
+        /// <summary>
+        ///     ロケール変更による再描画
+        ///     
+        ///     <list type="bullet">
+        ///         <item>動的にテキストを変えている部分に対応するため</item>
+        ///     </list>
+        /// </summary>
+        public void RefreshByLocaleChanged()
+        {
+            if (this._selectedTileOption.TryGetValue(out var record))
+            {
+                if (record.Id == TileId.Empty)
+                {
+                    // 未選択時
+                    // ［追加」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                }
+                else
+                {
+                    // 「上書」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
+                }
+            }
+            else
+            {
+                // タイル・カーソル無し時
+                // 「追加」
+                this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
             }
         }
         #endregion
