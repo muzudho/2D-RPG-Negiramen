@@ -478,20 +478,36 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
+    #region イベントハンドラ（ボタンにマウスカーソル進入時）
+    /// <summary>
+    ///     ボタンにマウスカーソル進入時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
     private void Button_PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
     {
         var button = (Button)sender;
 
-        button.BackgroundColor = Colors.SkyBlue;
+        // ボタンの色変更
+        button.BackgroundColor = Colors.DodgerBlue;
     }
+    #endregion
 
+    #region イベントハンドラ（ボタンからマウスカーソル退出時）
+    /// <summary>
+    ///     ボタンからマウスカーソル退出時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
     private void Button_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
     {
         var button = (Button)sender;
 
+        // ボタンの色変更
         if(ResourcesHelper.TryFind("Primary", out var color))
         {
             button.BackgroundColor = (Color)color;
         }
     }
+    #endregion
 }

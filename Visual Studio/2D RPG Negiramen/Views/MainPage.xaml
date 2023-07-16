@@ -188,21 +188,6 @@
                                                   PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
                     </Button.GestureRecognizers>
                     
-                    <!--
-                        動かない
-                        Opacity="1"
-                    <Button.Behaviors>
-                        <toolkit:AnimationBehavior EventName="Clicked">
-                            <toolkit:AnimationBehavior.AnimationType>
-
-                                <toolkit:FadeAnimation Opacity="0"
-                                                       Length="30000"/>
-                                
-                            </toolkit:AnimationBehavior.AnimationType>
-                        </toolkit:AnimationBehavior>
-                    </Button.Behaviors>
-                    -->
-
                 </Button>
             </Grid>
 
