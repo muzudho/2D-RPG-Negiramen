@@ -9,6 +9,6 @@ public interface IMainPageViewModel
     /// <summary>
     ///     画面遷移でこの画面に戻ってきた時
     /// </summary>
-    public void ReactOnVisited();
+    void ReactOnVisited();
     #endregion
 }

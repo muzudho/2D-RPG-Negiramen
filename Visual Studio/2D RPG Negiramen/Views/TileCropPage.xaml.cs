@@ -254,6 +254,20 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
+    #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
+    /// <summary>
+    ///     別ページから、このページに訪れたときに呼び出される
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void thisContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        var context = this.TileCropPageVM;
+
+        context.ReactOnVisited();
+    }
+    #endregion
+
     #region イベントハンドラ（［ホーム］ボタン・クリック時）
     /// <summary>
     ///     ［ホーム］ボタン・クリック時
@@ -499,6 +513,7 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
+    #region イベントハンドラ（ロケール変更時）
     /// <summary>
     ///     ロケール変更時
     /// </summary>
@@ -509,4 +524,5 @@ public partial class TileCropPage : ContentPage
         var context = this.TileCropPageVM;
         context.RefreshByLocaleChanged();
     }
+    #endregion
 }

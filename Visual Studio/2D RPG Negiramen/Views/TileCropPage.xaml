@@ -8,7 +8,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.TileCropPage"
              x:Name="thisContentPage"
-             Loaded="ContentPage_Loaded">
+             Loaded="ContentPage_Loaded"
+             NavigatedTo="thisContentPage_NavigatedTo">
 
     <!--    リソースの用意
             ==============

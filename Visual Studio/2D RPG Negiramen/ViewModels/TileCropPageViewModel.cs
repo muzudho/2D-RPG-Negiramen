@@ -37,7 +37,7 @@
         }
         #endregion
 
-        // - プロパティ
+        // - パブリック・プロパティ
 
         #region プロパティ（タイルセット画像ファイルへのパス）
         /// <summary>
@@ -232,7 +232,7 @@
         public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
         #endregion
 
-        // - 変更通知プロパティ
+        // - パブリック変更通知プロパティ
 
         #region 変更通知プロパティ（タイルセット設定）
         /// <summary>
@@ -1357,6 +1357,17 @@
         #endregion
 
         // - パブリック・メソッド
+
+        #region メソッド（画面遷移でこの画面に戻ってきた時）
+        /// <summary>
+        ///     画面遷移でこの画面に戻ってきた時
+        /// </summary>
+        public void ReactOnVisited()
+        {
+            // ロケールが変わってるかもしれないので反映
+            OnPropertyChanged(nameof(CultureInfoAsStr));
+        }
+        #endregion
 
         #region メソッド（ロケール変更による再描画）
         /// <summary>

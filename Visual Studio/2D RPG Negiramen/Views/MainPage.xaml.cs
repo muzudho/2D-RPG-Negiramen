@@ -93,6 +93,20 @@ public partial class MainPage : ContentPage
 
     // - プライベート・イベントハンドラ
 
+    #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
+    /// <summary>
+    ///     別ページから、このページに訪れたときに呼び出される
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        var context = this.MainPageVM;
+
+        context.ReactOnVisited();
+    }
+    #endregion
+
     #region イベントハンドラ（［マップを作る］ボタン押下時）
     /// <summary>
     /// ［マップを作る］ボタン押下時
@@ -508,16 +522,4 @@ public partial class MainPage : ContentPage
         PolicyOfView.ReactOnMouseLeaved((Button)sender);
     }
     #endregion
-
-    /// <summary>
-    ///     別ページから、このページに訪れたときに呼び出される
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
-    {
-        var context = this.MainPageVM;
-
-        context.ReactOnVisited();
-    }
 }

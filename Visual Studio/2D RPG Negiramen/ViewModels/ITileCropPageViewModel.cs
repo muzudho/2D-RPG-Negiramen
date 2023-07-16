@@ -78,6 +78,13 @@ public interface ITileCropPageViewModel
 
     // - メソッド
 
+    #region メソッド（画面遷移でこの画面に戻ってきた時）
+    /// <summary>
+    ///     画面遷移でこの画面に戻ってきた時
+    /// </summary>
+    void ReactOnVisited();
+    #endregion
+
     #region メソッド（ロケール変更による再描画）
     /// <summary>
     ///     ロケール変更による再描画
