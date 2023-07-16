@@ -422,15 +422,7 @@ public partial class MainPage : ContentPage
         // Trace.WriteLine($"[MainPage.xaml.cs TilePaletteEditButton_Clicked] sender.GetType().FullName: {sender.GetType().FullName}");
         // [MainPage.xaml.cs TilePaletteEditButton_Clicked] sender.GetType().FullName: Microsoft.Maui.Controls.Button
 
-        //*
-        var button = (Button)sender;
-        await button.FadeTo(
-            opacity: 0.5,
-            length: 150); // milliseconds
-        await button.FadeTo(
-            opacity: 1.0,
-            length: 150); // milliseconds
-        // */
+        await ButtonAnimationHelper.DoIt((Button)sender);
 
         var shellNavigationState = new ShellNavigationState("//TilePaletteEditPage");
 
