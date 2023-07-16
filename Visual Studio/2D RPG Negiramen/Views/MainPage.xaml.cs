@@ -422,7 +422,7 @@ public partial class MainPage : ContentPage
         // Trace.WriteLine($"[MainPage.xaml.cs TilePaletteEditButton_Clicked] sender.GetType().FullName: {sender.GetType().FullName}");
         // [MainPage.xaml.cs TilePaletteEditButton_Clicked] sender.GetType().FullName: Microsoft.Maui.Controls.Button
 
-        await ButtonAnimationHelper.DoIt((Button)sender);
+        await PolicyOfView.DoAnimation((Button)sender);
 
         var shellNavigationState = new ShellNavigationState("//TilePaletteEditPage");
 
@@ -486,10 +486,7 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     private void Button_PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
     {
-        var button = (Button)sender;
-
-        // ボタンの色変更
-        button.BackgroundColor = Colors.DodgerBlue;
+        PolicyOfView.ReactOnMouseEntered((Button)sender);
     }
     #endregion
 
@@ -501,13 +498,7 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     private void Button_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
     {
-        var button = (Button)sender;
-
-        // ボタンの色変更
-        if(ResourcesHelper.TryFind("Primary", out var color))
-        {
-            button.BackgroundColor = (Color)color;
-        }
+        PolicyOfView.ReactOnMouseLeaved((Button)sender);
     }
     #endregion
 }

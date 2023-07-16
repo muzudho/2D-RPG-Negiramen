@@ -262,7 +262,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e"></param>
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {
-        await ButtonAnimationHelper.DoIt((Button)sender);
+        await PolicyOfView.DoAnimation((Button)sender);
 
         await Shell.Current.GoToAsync("//MainPage");
     }
