@@ -29,11 +29,12 @@
                     ページ・タイトル
                     ================
                 -->
+                <!-- 「ホーム」 -->
                 <Label VerticalOptions="Center"
                        HorizontalOptions="Center"
                        Margin="16,0,0,0"
                        FontSize="Large"
-                       Text="Home"/>
+                       Text="{app:Translate Home}"/>
             </HorizontalStackLayout>
         </Grid>
     </Shell.TitleView>
