@@ -210,33 +210,43 @@
                        HorizontalOptions="Start" VerticalOptions="Start"
                        Source="{Binding TileSetImageFilePathAsStr}">
                 -->
-                <Image x:Name="tileImage"
+                <!--
+                    MAUI には マウス・ダウンと、マウス・アップの捕捉がなく、
+                    ペン・ツールのようなことができない
+                -->
+                <Image IsVisible="False"
+                       x:Name="tileImage"
                        Grid.Row="0" Grid.Column="0"
                        HorizontalOptions="Start" VerticalOptions="Start"
                        Margin="4,4,0,0"
                        WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"                       
                        Source="{Binding WorkingTileSetImageFilePathAsStr}">
-
                     <Image.GestureRecognizers>
-                        <!--
-                            MAUI には マウス・ダウンと、マウス・アップの捕捉がなく、
-                            ペン・ツールのようなことができない
-                        -->
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                         <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved"/>
                     </Image.GestureRecognizers>
                 </Image>
+                <!--
+                -->
 
                 <!--    タイル・セット画像
                         ==================
                 
                         * スキア・シャープのキャンバスを使う
                 -->
-                <skia:SKCanvasView x:Name="skiaView1"
-                               HorizontalOptions="Center"
-                               WidthRequest="300" HeightRequest="300"
-                               IgnorePixelScaling="True"
-                               PaintSurface="skiaView1_PaintSurface"/>
+                <skia:SKCanvasView IsVisible="True"
+                                   x:Name="skiaView1"
+                                   Grid.Row="0" Grid.Column="0"
+                                   HorizontalOptions="Start" VerticalOptions="Start"
+                                   Margin="4,4,0,0"
+                                   WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"                       
+                                   IgnorePixelScaling="True"
+                                   PaintSurface="skiaView1_PaintSurface">
+                    <skia:SKCanvasView.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
+                        <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved"/>
+                    </skia:SKCanvasView.GestureRecognizers>
+                </skia:SKCanvasView>
 
                 <!--    カラード・マップ
                         ================
@@ -303,7 +313,7 @@
             -->
             <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
                 <VerticalStackLayout>
-                    
+
                     <!-- 追加／上書ボタン -->
                     <Button Grid.Row="0" Grid.Column="0"
                         Text="{Binding AddsButtonText}"
@@ -317,7 +327,7 @@
 
                 </VerticalStackLayout>
             </Grid>
-            
+
             <!--    １段目 読み仮名部
                     =================
             -->
