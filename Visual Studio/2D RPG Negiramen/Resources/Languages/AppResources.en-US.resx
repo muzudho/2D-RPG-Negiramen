@@ -168,8 +168,8 @@
   <data name="MapDrawingPage" xml:space="preserve">
     <value>Map Drawing Page</value>
   </data>
-  <data name="TilePaletteEditing" xml:space="preserve">
-    <value>Tile palette editing</value>
+  <data name="TileCrop" xml:space="preserve">
+    <value>Tile crop</value>
   </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>

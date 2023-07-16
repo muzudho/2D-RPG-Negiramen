@@ -19,9 +19,9 @@ using _2D_RPG_Negiramen.FeatSkia;
 #endif
 
 /// <summary>
-///     😁 タイル・パレット編集ページ
+///     😁 タイル切抜き編集ページ
 /// </summary>
-public partial class TilePaletteEditPage : ContentPage
+public partial class TileCropPage : ContentPage
 {
     // - その他
 
@@ -29,7 +29,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// <summary>
     ///     生成
     /// </summary>
-    public TilePaletteEditPage()
+    public TileCropPage()
     {
         InitializeComponent();
     }
@@ -41,7 +41,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// <summary>
     ///     ビューモデル
     /// </summary>
-    public ITilePaletteEditPageViewModel TilePaletteEditPageVM => this.BindingContext as ITilePaletteEditPageViewModel;
+    public ITileCropPageViewModel TileCropPageVM => (ITileCropPageViewModel)this.BindingContext;
     #endregion
 
     // - プライベート・プロパティ
@@ -68,7 +68,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// </summary>
     void RefreshTileForm()
     {
-        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
         var rect = Models.CoordinateHelper.GetCursorRectangle(
@@ -82,7 +82,7 @@ public partial class TilePaletteEditPage : ContentPage
         // 計算値の反映
         // ============
         //
-        // Trace.WriteLine($"[TilePaletteEditPage.xaml.cs RefreshTileForm] context.SelectingOnPointingDevice: {context.SelectingOnPointingDevice}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
+        // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.SelectingOnPointingDevice: {context.SelectingOnPointingDevice}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
 
         context.SelectedTileRectangle = rect;
 
@@ -94,7 +94,7 @@ public partial class TilePaletteEditPage : ContentPage
             rect: context.SelectedTileRectangle,
             out Models.TileRecord record))
         {
-            // Trace.WriteLine($"[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
+            // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
 
             //
             // データ表示
@@ -109,7 +109,7 @@ public partial class TilePaletteEditPage : ContentPage
         }
         else
         {
-            // Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+            // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
 
             //
             // 空欄にする
@@ -149,7 +149,7 @@ public partial class TilePaletteEditPage : ContentPage
         // ビューモデルの取得
         // ==================
         //
-        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         //
         // タイル設定ファイルの読込
@@ -162,7 +162,7 @@ public partial class TilePaletteEditPage : ContentPage
             //// 登録タイルのデバッグ出力
             //foreach (var record in context.TilesetSettings.RecordList)
             //{
-            //    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
+            //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
             //}
         }
 
@@ -194,8 +194,8 @@ public partial class TilePaletteEditPage : ContentPage
 #elif WINDOWS
                     TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
 #endif
-                    Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: {image.GetType().FullName}");
-                    // [TilePaletteEditPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: Microsoft.Maui.Graphics.Win2D.W2DImage
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: {image.GetType().FullName}");
+                    // [TileCropPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: Microsoft.Maui.Graphics.Win2D.W2DImage
                     // W2DImage にはアクセスできない保護レベル
 
                     //
@@ -276,7 +276,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
-        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 反転
         context.SelectingOnPointingDevice = !context.SelectingOnPointingDevice;
@@ -287,13 +287,13 @@ public partial class TilePaletteEditPage : ContentPage
             // 疑似マウス・ダウン
             // ==================
             //
-            Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
+            Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
 
             // ポイントしている位置
             PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.Point(
                 new Models.X((int)e.GetPosition((Element)sender).Value.X),
                 new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
-            // Trace.WriteLine($"[TilePaletteEditPage TapGestureRecognizer_Tapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
+            // Trace.WriteLine($"[TileCropPage TapGestureRecognizer_Tapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
             RefreshTileForm();
@@ -305,13 +305,13 @@ public partial class TilePaletteEditPage : ContentPage
             // ==================
             //
 
-            Trace.WriteLine("[TilePaletteEditPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
+            Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
 
             // ポイントしている位置
             PointingDeviceCurrentPoint = new Models.Point(
                 new Models.X((int)e.GetPosition((Element)sender).Value.X),
                 new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
-            // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+            // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
             RefreshTileForm();
@@ -327,7 +327,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
     {
-        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         if (context.SelectingOnPointingDevice)
         {
@@ -340,7 +340,7 @@ public partial class TilePaletteEditPage : ContentPage
             PointingDeviceCurrentPoint = new Models.Point(
                 new Models.X((int)e.GetPosition((Element)sender).Value.X),
                 new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
-            // Trace.WriteLine($"[TilePaletteEditPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+            // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
             RefreshTileForm();
@@ -356,7 +356,7 @@ public partial class TilePaletteEditPage : ContentPage
     /// <param name="e">イベント</param>
     private void skiaView1_PaintSurface(object sender, SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e)
     {
-        var bindingContext = this.TilePaletteEditPageVM;
+        var bindingContext = this.TileCropPageVM;
 
         // 画像描画
         if (bindingContext.TilesetWorkingBitmap != null)
@@ -381,7 +381,7 @@ public partial class TilePaletteEditPage : ContentPage
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         Models.LogicalDelete logicalDelete;
         if (context.SelectedTileOption.TryGetValue(out var record))
@@ -440,7 +440,7 @@ public partial class TilePaletteEditPage : ContentPage
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         Models.LogicalDelete logicalDelete;
         if (context.SelectedTileOption.TryGetValue(out var record))

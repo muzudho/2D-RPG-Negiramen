@@ -411,20 +411,20 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（［タイル・パレット編集］ボタン押下時）
+    #region イベントハンドラ（［タイル切抜き］ボタン押下時）
     /// <summary>
-    /// ［タイル・パレット編集］ボタン押下時
+    /// ［タイル切抜き］ボタン押下時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    async void TilePaletteEditButton_Clicked(object sender, EventArgs e)
+    async void TileCropButton_Clicked(object sender, EventArgs e)
     {
-        // Trace.WriteLine($"[MainPage.xaml.cs TilePaletteEditButton_Clicked] sender.GetType().FullName: {sender.GetType().FullName}");
-        // [MainPage.xaml.cs TilePaletteEditButton_Clicked] sender.GetType().FullName: Microsoft.Maui.Controls.Button
+        // Trace.WriteLine($"[MainPage.xaml.cs TileCropButton_Clicked] sender.GetType().FullName: {sender.GetType().FullName}");
+        // [MainPage.xaml.cs TileCropButton_Clicked] sender.GetType().FullName: Microsoft.Maui.Controls.Button
 
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        var shellNavigationState = new ShellNavigationState("//TilePaletteEditPage");
+        var shellNavigationState = new ShellNavigationState("//TileCropPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
         await ReadyGoToNext(

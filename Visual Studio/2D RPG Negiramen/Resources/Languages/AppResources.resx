@@ -144,8 +144,8 @@
   <data name="MapDrawingPage" xml:space="preserve">
     <value>マップ描画ページ</value>
   </data>
-  <data name="TilePaletteEditing" xml:space="preserve">
-    <value>タイル・パレット編集</value>
+  <data name="TileCrop" xml:space="preserve">
+    <value>タイル切抜き</value>
   </data>
   <data name="CreateABattleScreen" xml:space="preserve">
     <value>戦闘画面を作る</value>

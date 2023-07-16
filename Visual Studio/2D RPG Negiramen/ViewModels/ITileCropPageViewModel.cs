@@ -4,7 +4,10 @@ using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.FileEntries;
 using SkiaSharp;
 
-public interface ITilePaletteEditPageViewModel
+/// <summary>
+///     タイル切抜きページ・ビューモデル
+/// </summary>
+public interface ITileCropPageViewModel
 {
     #region プロパティ（タイルセット設定）
     /// <summary>

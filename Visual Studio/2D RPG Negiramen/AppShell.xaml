@@ -84,7 +84,7 @@
 
     <ShellContent
         Title="Tile palette edit"
-        ContentTemplate="{DataTemplate views:TilePaletteEditPage}"
-        Route="TilePaletteEditPage" />
+        ContentTemplate="{DataTemplate views:TileCropPage}"
+        Route="TileCropPage" />
 
 </Shell>

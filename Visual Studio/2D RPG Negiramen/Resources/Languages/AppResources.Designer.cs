@@ -205,20 +205,20 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   タイル切抜き に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TileCrop {
+            get {
+                return ResourceManager.GetString("TileCrop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   タイル・パレット表示 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string TilePaletteDisplay {
             get {
                 return ResourceManager.GetString("TilePaletteDisplay", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   タイル・パレット編集 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string TilePaletteEditing {
-            get {
-                return ResourceManager.GetString("TilePaletteEditing", resourceCulture);
             }
         }
         

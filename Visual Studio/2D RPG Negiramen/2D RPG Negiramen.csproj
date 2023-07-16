@@ -114,8 +114,8 @@
 	  <Compile Update="Views\CreateMapViewPage.xaml.cs">
 	    <DependentUpon>CreateMapViewPage.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Views\TilePaletteEditPage.xaml.cs">
-	    <DependentUpon>TilePaletteEditPage.xaml</DependentUpon>
+	  <Compile Update="Views\TileCropPage.xaml.cs">
+	    <DependentUpon>TileCropPage.xaml</DependentUpon>
 	  </Compile>
 	  <Compile Update="Views\TilePalettePage.xaml.cs">
 	    <DependentUpon>TilePalettePage.xaml</DependentUpon>
@@ -172,7 +172,7 @@
 	  <MauiXaml Update="Views\CreateMapViewPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\TilePaletteEditPage.xaml">
+	  <MauiXaml Update="Views\TileCropPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\TilePalettePage.xaml">

@@ -181,11 +181,11 @@
                         SemanticProperties.Hint="Map drawing page"
                         Clicked="MapDrawingButton_Clicked"/>
 
-                    <!-- 「タイル・パレット編集」 -->
+                    <!-- 「タイル切抜き」 -->
                     <Button Grid.Row="2" Grid.Column="1"
-                        Text="{app:Translate TilePaletteEditing}"
-                        SemanticProperties.Hint="Tile palette editor page"
-                        Clicked="TilePaletteEditButton_Clicked">
+                        Text="{app:Translate TileCrop}"
+                        SemanticProperties.Hint="Tile crop page"
+                        Clicked="TileCropButton_Clicked">
 
                         <Button.GestureRecognizers>
                             <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"

@@ -43,7 +43,7 @@ internal class ColoredMap : BindableObject, IDrawable
         // 各登録タイル
         foreach (var record in this.TilesetSettings.RecordList)
         {
-            // Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
+            // Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
 
             if (record.LogicalDelete == Models.LogicalDelete.True)
             {

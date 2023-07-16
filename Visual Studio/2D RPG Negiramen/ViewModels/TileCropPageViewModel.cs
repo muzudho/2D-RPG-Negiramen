@@ -8,7 +8,7 @@
     using System.Globalization;
 
     /// <summary>
-    ///     😁 ［タイル・パレット編集ページ］ビューモデル
+    ///     😁 ［タイル切抜きページ］ビューモデル
     /// </summary>
     [QueryProperty(nameof(TilesetImageFile), queryId: "TilesetImageFile")]
     [QueryProperty(nameof(TilesetSettingsFile), queryId: "TilesetSettingsFile")]
@@ -16,7 +16,7 @@
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
-    class TilePaletteEditPageViewModel : ObservableObject, ITilePaletteEditPageViewModel
+    class TileCropPageViewModel : ObservableObject, ITileCropPageViewModel
     {
         // - プロパティ
 
@@ -116,7 +116,7 @@
                 this.SelectedTileHeightAsInt = newValue.Rectangle.Size.Height.AsInt;
                 this.SelectedTileCommentAsStr = newValue.Comment.AsStr;
 
-                this.RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel SelectedTileOption set]");
+                this.RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SelectedTileOption set]");
                 OnPropertyChanged(nameof(AddsButtonHint));
                 OnPropertyChanged(nameof(AddsButtonText));
                 this.NotifyTileIdChange();
@@ -481,7 +481,7 @@
                     _tileCursorCanvasSize = new Models.Size(new Models.Width(value), _tileCursorCanvasSize.Height);
 
                     // キャンバスを再描画
-                    RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel TileCursorCanvasWidthAsInt set]");
+                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel TileCursorCanvasWidthAsInt set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
@@ -508,7 +508,7 @@
                     _tileCursorCanvasSize = new Models.Size(_tileCursorCanvasSize.Width, new Models.Height(value));
 
                     // キャンバスを再描画
-                    RefreshCanvasOfTileCursor("[TilePaletteEditPageViewModel TileCursorCanvasHeightAsInt set]");
+                    RefreshCanvasOfTileCursor("[TileCropPageViewModel TileCursorCanvasHeightAsInt set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
@@ -623,7 +623,7 @@
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
-                    RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel GridTileWidthAsInt set]");
+                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel GridTileWidthAsInt set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(GridTileWidthAsInt));
@@ -652,7 +652,7 @@
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
-                    RefreshCanvasOfTileCursor(codePlace: "[TilePaletteEditPageViewModel GridTileHeightAsInt set]");
+                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel GridTileHeightAsInt set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(GridTileHeightAsInt));
@@ -1356,7 +1356,7 @@
         ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
         ///     </list>
         /// </summary>
-        public TilePaletteEditPageViewModel()
+        public TileCropPageViewModel()
         {
         }
         #endregion
@@ -1373,7 +1373,7 @@
         ///                 振動させることで、再描画を呼び起こすことにする
         ///     </pre>
         /// </summary>
-        internal void RefreshCanvasOfTileCursor(string codePlace = "[TilePaletteEditPageViewModel RefreshCanvasOfTileCursor]")
+        internal void RefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
         {
             int offset;
 
