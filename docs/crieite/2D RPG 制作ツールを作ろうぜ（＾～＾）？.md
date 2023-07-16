@@ -5121,5 +5121,12 @@ var text = (string)LocalizationResourceManager.Instance["Add"];
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　よし、いけた」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ブログの編集画面が　なんか重くなってきたので　次の記事へ飛ぶかだぜ」  
 
-＜書きかけ＞
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　よっしゃ」  
+
+# 次の記事
+
+📖 次の記事：　[2D RPG 制作ツールを作ろうぜ（＾～＾）？ ＜その2＞](https://crieit.net/posts/2D-RPG-2)  
