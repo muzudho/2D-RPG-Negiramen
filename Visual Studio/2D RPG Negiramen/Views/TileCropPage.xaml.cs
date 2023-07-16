@@ -359,7 +359,7 @@ public partial class TileCropPage : ContentPage
         var bindingContext = this.TileCropPageVM;
 
         // 画像描画
-        if (bindingContext.TilesetWorkingBitmap != null)
+        if (!bindingContext.TilesetWorkingBitmap.IsNull)
         {
             // the the canvas and properties
             var canvas = e.Surface.Canvas;

@@ -18,6 +18,23 @@
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
     class TileCropPageViewModel : ObservableObject, ITileCropPageViewModel
     {
+
+        // - その他
+
+        #region その他（生成）
+        /// <summary>
+        ///     生成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
+        ///     </list>
+        /// </summary>
+        public TileCropPageViewModel()
+        {
+            this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+        }
+        #endregion
+
         // - プロパティ
 
         #region プロパティ（タイルセット画像ファイルへのパス）
@@ -210,14 +227,14 @@
         /// <summary>
         ///     タイルセットの元画像。ビットマップ形式
         /// </summary>
-        public SKBitmap TilesetSourceBitmap { get; set; }
+        public SKBitmap TilesetSourceBitmap { get; set; } = new SKBitmap();
         #endregion
 
         #region プロパティ（タイルセットの作業画像。ビットマップ形式）
         /// <summary>
         ///     タイルセットの作業画像。ビットマップ形式
         /// </summary>
-        public SKBitmap TilesetWorkingBitmap { get; set; }
+        public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
         #endregion
 
         // - 変更通知プロパティ
@@ -702,7 +719,7 @@
         #endregion
 
         #region 変更通知プロパティ（追加／上書きボタンのラベル）
-        string addsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+        string addsButtonText = string.Empty;
 
         /// <summary>
         ///     追加／上書きボタンのラベル
@@ -826,7 +843,7 @@
         #endregion
 
         #region 変更通知プロパティ（タイル・カーソルの線の半分の太さ）
-        ThicknessOfLine halfThicknessOfTileCursorLine;
+        ThicknessOfLine halfThicknessOfTileCursorLine = ThicknessOfLine.Empty;
 
         /// <summary>
         ///     タイル・カーソルの線の半分の太さ
@@ -1347,21 +1364,6 @@
 
                 OnPropertyChanged(nameof(SelectedTileCommentAsStr));
             }
-        }
-        #endregion
-
-        // - その他
-
-        #region その他（生成）
-        /// <summary>
-        ///     生成
-        ///     
-        ///     <list type="bullet">
-        ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
-        ///     </list>
-        /// </summary>
-        public TileCropPageViewModel()
-        {
         }
         #endregion
 

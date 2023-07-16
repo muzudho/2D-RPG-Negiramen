@@ -197,12 +197,12 @@
     <value>画像</value>
   </data>
   <data name="EntireGrid" xml:space="preserve">
-    <value>グリッド&lt;br&gt;全体</value>
-    <comment>グリッド\n全体</comment>
+    <value>グリッド全体</value>
+    
   </data>
   <data name="GridOne" xml:space="preserve">
-    <value>グリッド&amp;#10;１ます</value>
-    <comment>グリッド\n１ます</comment>
+    <value>グリッド１ます</value>
+    
   </data>
   <data name="Delete" xml:space="preserve">
     <value>削除</value>

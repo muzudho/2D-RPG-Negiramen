@@ -196,7 +196,7 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   グリッド&lt;br&gt;全体 に類似しているローカライズされた文字列を検索します。
+        ///   グリッド全体 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string EntireGrid {
             get {
@@ -205,7 +205,7 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   グリッド&amp;#10;１ます に類似しているローカライズされた文字列を検索します。
+        ///   グリッド１ます に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string GridOne {
             get {

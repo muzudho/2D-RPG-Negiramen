@@ -193,10 +193,10 @@
     <value>Image</value>
   </data>
   <data name="EntireGrid" xml:space="preserve">
-    <value>Entire&amp;#10;grid</value>
+    <value>Entire grid</value>
   </data>
   <data name="GridOne" xml:space="preserve">
-    <value>Grid&amp;#10;one</value>
+    <value>Grid one</value>
   </data>
   <data name="Delete" xml:space="preserve">
     <value>Delete</value>
