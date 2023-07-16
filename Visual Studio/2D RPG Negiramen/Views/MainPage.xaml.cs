@@ -477,4 +477,21 @@ public partial class MainPage : ContentPage
             });
     }
     #endregion
+
+    private void Button_PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
+    {
+        var button = (Button)sender;
+
+        button.BackgroundColor = Colors.SkyBlue;
+    }
+
+    private void Button_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
+    {
+        var button = (Button)sender;
+
+        if(ResourcesHelper.TryFind("Primary", out var color))
+        {
+            button.BackgroundColor = (Color)color;
+        }
+    }
 }

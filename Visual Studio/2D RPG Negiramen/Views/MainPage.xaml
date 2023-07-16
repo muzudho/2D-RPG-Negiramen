@@ -182,6 +182,11 @@
                         Text="{app:Translate TilePaletteEditing}"
                         SemanticProperties.Hint="Tile palette editor page"
                         Clicked="TilePaletteEditButton_Clicked">
+
+                    <Button.GestureRecognizers>
+                        <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                  PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                    </Button.GestureRecognizers>
                     
                     <!--
                         動かない
