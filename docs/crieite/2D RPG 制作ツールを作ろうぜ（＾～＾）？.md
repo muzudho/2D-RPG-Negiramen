@@ -5020,4 +5020,10 @@ namespace _2D_RPG_Negiramen.Models
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　青は　集中力を高める色という俗説もあるし、　まあいいだろ」  
 
+![202307__maui__16-2231--UI.png](https://crieit.now.sh/upload_images/baa22cc23ea9ed5dd9270f151df4f71764b3f176b5b4e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　マウスカーソルが　ボタンに被さると　ボタンが少し　明るく見えるとか　１個１個　設定しないといけない  
+これは大変だ」  
+
 ＜書きかけ＞

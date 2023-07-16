@@ -377,8 +377,10 @@ public partial class TilePaletteEditPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    private void AddsButton_Clicked(object sender, EventArgs e)
+    async void AddsButton_Clicked(object sender, EventArgs e)
     {
+        await PolicyOfView.ReactOnPushed((Button)sender);
+
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
         Models.LogicalDelete logicalDelete;
@@ -434,8 +436,10 @@ public partial class TilePaletteEditPage : ContentPage
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void DeletesButton_Clicked(object sender, EventArgs e)
+    async void DeletesButton_Clicked(object sender, EventArgs e)
     {
+        await PolicyOfView.ReactOnPushed((Button)sender);
+
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
         Models.LogicalDelete logicalDelete;
