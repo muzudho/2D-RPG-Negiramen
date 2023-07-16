@@ -61,11 +61,29 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   追加 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Add {
+            get {
+                return ResourceManager.GetString("Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   構成 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Configure {
             get {
                 return ResourceManager.GetString("Configure", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   管理コード に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ControlCode {
+            get {
+                return ResourceManager.GetString("ControlCode", resourceCulture);
             }
         }
         
@@ -102,6 +120,24 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string CreateAMenuScreen {
             get {
                 return ResourceManager.GetString("CreateAMenuScreen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   カーソル に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Cursor {
+            get {
+                return ResourceManager.GetString("Cursor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   削除 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Delete {
+            get {
+                return ResourceManager.GetString("Delete", resourceCulture);
             }
         }
         
@@ -160,6 +196,60 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   グリッド&amp;#10;全体 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EntireGrid {
+            get {
+                return ResourceManager.GetString("EntireGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   グリッド&amp;#10;１ます に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string GridOne {
+            get {
+                return ResourceManager.GetString("GridOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   たて に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Height {
+            get {
+                return ResourceManager.GetString("Height", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ホーム に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Home {
+            get {
+                return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   コードのおぼえかた に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string HowToRememberControlCode {
+            get {
+                return ResourceManager.GetString("HowToRememberControlCode", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   画像 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Image {
+            get {
+                return ResourceManager.GetString("Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   画面をレイアウトする に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LayoutTheScreen {
@@ -169,11 +259,29 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   ひだり に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Left {
+            get {
+                return ResourceManager.GetString("Left", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   マップ描画ページ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MapDrawingPage {
             get {
                 return ResourceManager.GetString("MapDrawingPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   上書 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Overwrite {
+            get {
+                return ResourceManager.GetString("Overwrite", resourceCulture);
             }
         }
         
@@ -214,11 +322,38 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   タイル名 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TileName {
+            get {
+                return ResourceManager.GetString("TileName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   タイル・パレット表示 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string TilePaletteDisplay {
             get {
                 return ResourceManager.GetString("TilePaletteDisplay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   うえ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Top {
+            get {
+                return ResourceManager.GetString("Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   よこ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Width {
+            get {
+                return ResourceManager.GetString("Width", resourceCulture);
             }
         }
         

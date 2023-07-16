@@ -175,14 +175,17 @@
                     if (record.Id == TileId.Empty)
                     {
                         // 未選択時
-                        this.AddsButtonText = "追加";
+                        // ［追加」
+                        this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                        
 
                         this.AddsButtonIsEnabled = true;
                         this.DeletesButtonIsEnabled = false;
                     }
                     else
                     {
-                        this.AddsButtonText = "上書";
+                        // 「上書」
+                        this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
 
                         this.AddsButtonIsEnabled = true;
                         this.DeletesButtonIsEnabled = true;
@@ -191,7 +194,8 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    this.AddsButtonText = "追加";
+                    // 「追加」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
 
                     this.AddsButtonIsEnabled = false;
                     this.DeletesButtonIsEnabled = false;
@@ -698,7 +702,7 @@
         #endregion
 
         #region 変更通知プロパティ（追加／上書きボタンのラベル）
-        string addsButtonText = "追加";
+        string addsButtonText = (string)LocalizationResourceManager.Instance["Add"];
 
         /// <summary>
         ///     追加／上書きボタンのラベル

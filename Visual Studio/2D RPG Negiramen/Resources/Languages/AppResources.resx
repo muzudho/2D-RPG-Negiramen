@@ -174,4 +174,55 @@
   <data name="SelectLanguage" xml:space="preserve">
     <value>言語を選ぶ</value>
   </data>
+  <data name="Home" xml:space="preserve">
+    <value>ホーム</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>よこ</value>
+    <comment>横幅</comment>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>たて</value>
+    <comment>縦幅</comment>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>ひだり</value>
+    <comment>座標X</comment>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>うえ</value>
+    <comment>座標Y</comment>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>画像</value>
+  </data>
+  <data name="EntireGrid" xml:space="preserve">
+    <value>グリッド&amp;#10;全体</value>
+    <comment>グリッド\n全体</comment>
+  </data>
+  <data name="GridOne" xml:space="preserve">
+    <value>グリッド&amp;#10;１ます</value>
+    <comment>グリッド\n１ます</comment>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>削除</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>追加</value>
+  </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>上書</value>
+  </data>
+  <data name="Cursor" xml:space="preserve">
+    <value>カーソル</value>
+  </data>
+  <data name="ControlCode" xml:space="preserve">
+    <value>管理コード</value>
+  </data>
+  <data name="TileName" xml:space="preserve">
+    <value>タイル名</value>
+  </data>
+  <data name="HowToRememberControlCode" xml:space="preserve">
+    <value>コードのおぼえかた</value>
+  </data>
 </root>

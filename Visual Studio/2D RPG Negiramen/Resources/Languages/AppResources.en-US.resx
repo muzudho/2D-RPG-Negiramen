@@ -168,10 +168,55 @@
   <data name="MapDrawingPage" xml:space="preserve">
     <value>Map Drawing Page</value>
   </data>
-  <data name="TileCrop" xml:space="preserve">
-    <value>Tile crop</value>
-  </data>
   <data name="SelectLanguage" xml:space="preserve">
     <value>Select Language</value>
+  </data>
+  <data name="TileCrop" xml:space="preserve">
+    <value>Tile cropping</value>
+  </data>
+  <data name="Home" xml:space="preserve">
+    <value>Home</value>
+  </data>
+  <data name="Width" xml:space="preserve">
+    <value>Width</value>
+  </data>
+  <data name="Height" xml:space="preserve">
+    <value>Height</value>
+  </data>
+  <data name="Left" xml:space="preserve">
+    <value>Left</value>
+  </data>
+  <data name="Top" xml:space="preserve">
+    <value>Top</value>
+  </data>
+  <data name="Image" xml:space="preserve">
+    <value>Image</value>
+  </data>
+  <data name="EntireGrid" xml:space="preserve">
+    <value>Entire&amp;#10;grid</value>
+  </data>
+  <data name="GridOne" xml:space="preserve">
+    <value>Grid&amp;#10;one</value>
+  </data>
+  <data name="Delete" xml:space="preserve">
+    <value>Delete</value>
+  </data>
+  <data name="Add" xml:space="preserve">
+    <value>Addition</value>
+  </data>
+  <data name="Overwrite" xml:space="preserve">
+    <value>Overwrite</value>
+  </data>
+  <data name="Cursor" xml:space="preserve">
+    <value>Cursor</value>
+  </data>
+  <data name="ControlCode" xml:space="preserve">
+    <value>Control Code</value>
+  </data>
+  <data name="TileName" xml:space="preserve">
+    <value>Tile name</value>
+  </data>
+  <data name="HowToRememberControlCode" xml:space="preserve">
+    <value>Sing code</value>
   </data>
 </root>

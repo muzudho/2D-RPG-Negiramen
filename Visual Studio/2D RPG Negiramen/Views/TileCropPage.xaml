@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage x:Name="thisContentPage"
-             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:app="clr-namespace:_2D_RPG_Negiramen"
              xmlns:modelsDrawing="clr-namespace:_2D_RPG_Negiramen.Models.Drawing"
              xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
-             xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.TileCropPage"
+             x:Name="thisContentPage"
              Loaded="ContentPage_Loaded">
 
     <!--    リソースの用意
@@ -46,7 +46,7 @@
                         ================
                 -->
                 <Button Margin="16,2,2,2"
-                        Text="ホーム"
+                        Text="{app:Translate Home}"
                         SemanticProperties.Hint="Back to the home"
                         Clicked="HomeBtn_Clicked">
                     <Button.GestureRecognizers>
@@ -62,7 +62,7 @@
                 <!--    ページ・タイトル
                         ================
                 -->
-                <Label Text="タイル・パレット編集"
+                <Label Text="{app:Translate TileCrop}"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
                        FontSize="Large"/>
@@ -90,72 +90,86 @@
             <!--    １段目
                     ======
             -->
+            <!-- 「よこ」 -->
             <Label Grid.Row="0" Grid.Column="1"
                    HorizontalTextAlignment="End"
-                   Text="よこ"/>
+                   Text="{app:Translate Width}"/>
 
+            <!-- 「たて」 -->
             <Label Grid.Row="0" Grid.Column="2"
                    HorizontalTextAlignment="End"
-                   Text="たて"/>
+                   Text="{app:Translate Height}"/>
 
+            <!-- 「ひだり」 -->
             <Label Grid.Row="0" Grid.Column="4"
                    HorizontalTextAlignment="End"
-                   Text="ひだり"/>
+                   Text="{app:Translate Left}"/>
 
+            <!-- 「うえ」 -->
             <Label Grid.Row="0" Grid.Column="5"
                    HorizontalTextAlignment="End"
-                   Text="うえ"/>
+                   Text="{app:Translate Top}"/>
 
+            <!-- 「よこ」 -->
             <Label Grid.Row="0" Grid.Column="7"
                    HorizontalTextAlignment="End"
-                   Text="よこ"/>
+                   Text="{app:Translate Width}"/>
 
+            <!-- 「たて」 -->
             <Label Grid.Row="0" Grid.Column="8"
                    HorizontalTextAlignment="End"
-                   Text="たて"/>
+                   Text="{app:Translate Height}"/>
 
             <!--    ２段目
                     ======
             -->
+            <!-- 「画像」 -->
             <Label Grid.Row="1" Grid.Column="0"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="画像"/>
+                   Text="{app:Translate Image}"/>
 
+            <!-- 画像の横幅 -->
             <Label Grid.Row="1" Grid.Column="1"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
                    Text="{Binding ImageWidthAsInt}"/>
 
+            <!-- 画像の縦幅 -->
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
                    Text="{Binding ImageHeightAsInt}"/>
 
+            <!-- 「グリッド\n全体」 -->
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="グリッド&#10;全体"/>
+                   Text="{app:Translate EntireGrid}"/>
 
+            <!-- グリッド左 -->
             <Entry Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
                    Text="{Binding GridLeftAsInt}"
                    BackgroundColor="FloralWhite"/>
 
+            <!-- グリッド上 -->
             <Entry Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
                    Text="{Binding GridTopAsInt}"
                    BackgroundColor="FloralWhite"/>
 
+            <!-- 「グリッド\n１ます」 -->
             <Label Grid.Row="1" Grid.Column="6"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="グリッド&#10;１ます"/>
+                   Text="{app:Translate GridOne}"/>
 
+            <!-- グリッド・タイル横幅 -->
             <Entry Grid.Row="1" Grid.Column="7"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
@@ -171,6 +185,7 @@
                 </Entry.Behaviors>
             </Entry>
 
+            <!-- グリッド・タイル縦幅 -->
             <Entry Grid.Row="1" Grid.Column="8"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
@@ -193,35 +208,9 @@
 
                 <!--    作業中のタイルセット・キャンバス画像
                         ====================================
-            
-                <Image x:Name="tileImage"
-                       Grid.Row="0" Grid.Column="0"
-                       Margin="4,4,0,0"
-                       WidthRequest="64" HeightRequest="64"
-                       HorizontalOptions="Start" VerticalOptions="Start"
-                       Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tileset/adventure_field.png">
-                <Image x:Name="tileImage"
-                       Grid.Row="0" Grid.Column="0"
-                       Margin="4,4,0,0"
-                       WidthRequest="256" HeightRequest="608"
-                       HorizontalOptions="Start" VerticalOptions="Start"
-                       Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tileset/map-tile-format-8x19.png">
-                <Image x:Name="tileImage"
-                       Grid.Row="0" Grid.Column="0"
-                       Margin="4,4,0,0"
-                       WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
-                       HorizontalOptions="Start" VerticalOptions="Start"
-                       Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tileset/map-tile-format-8x19.png">
-                <Image x:Name="tileImage"
-                       Grid.Row="0" Grid.Column="0"
-                       Margin="4,4,0,0"
-                       WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
-                       HorizontalOptions="Start" VerticalOptions="Start"
-                       Source="{Binding TilesetImageFilePathAsStr}">
-                -->
-                <!--
-                    MAUI には マウス・ダウンと、マウス・アップの捕捉がなく、
-                    ペン・ツールのようなことができない
+
+                        MAUI には マウス・ダウンと、マウス・アップの捕捉がなく、
+                        ペン・ツールのようなことができない
                 -->
                 <Image IsVisible="False"
                        x:Name="tileImage"
@@ -334,10 +323,10 @@
                         </Button.GestureRecognizers>
                     </Button>
 
-                    <!-- 削除ボタン -->
+                    <!-- ［削除］ボタン -->
                     <Button Margin="0,40,0,0"
                             IsEnabled="{Binding DeletesButtonIsEnabled}"
-                            Text="削除"
+                            Text="{app:Translate Delete}"
                             Clicked="DeletesButton_Clicked">
                         <Button.GestureRecognizers>
                             <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
@@ -351,48 +340,57 @@
             <!--    １段目 読み仮名部
                     =================
             -->
+            <!-- 「ひだり」 -->
             <Label Grid.Row="0" Grid.Column="2"
                    HorizontalTextAlignment="End"
-                   Text="ひだり"/>
+                   Text="{app:Translate Left}"/>
 
+            <!-- 「うえ」 -->
             <Label Grid.Row="0" Grid.Column="3"
                    HorizontalTextAlignment="End"
-                   Text="うえ"/>
+                   Text="{app:Translate Top}"/>
 
+            <!-- 「よこ」 -->
             <Label Grid.Row="0" Grid.Column="4"
                    HorizontalTextAlignment="End"
-                   Text="よこ"/>
+                   Text="{app:Translate Width}"/>
 
+            <!-- 「たて」 -->
             <Label Grid.Row="0" Grid.Column="5"
                    HorizontalTextAlignment="End"
-                   Text="たて"/>
+                   Text="{app:Translate Height}"/>
 
             <!--    ２段目 入力部
                     =============
             -->
+            <!-- カーソル -->
             <Label Grid.Row="1" Grid.Column="1"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="カーソル"/>
+                   Text="{app:Translate Cursor}"/>
 
+            <!-- 選択タイルＸ -->
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    Text="{Binding SelectedTileLeftAsInt}"
                    FontSize="24"/>
 
+            <!-- 選択タイルＹ -->
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    Text="{Binding SelectedTileTopAsInt}"
                    FontSize="24"/>
 
+            <!-- 選択タイル横幅 -->
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    Text="{Binding SelectedTileWidthAsInt}"
                    FontSize="24"/>
 
+            <!-- 選択タイル縦幅 -->
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
@@ -402,24 +400,28 @@
             <!--    ３段目 読み仮名部
                     =================
             -->
+            <!-- 「管理コード」 -->
             <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    Padding="0,0,4,0"
-                   Text="管理コード"/>
+                   Text="{app:Translate ControlCode}"/>
 
+            <!-- 「タイル名」 -->
             <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
                    Padding="20,0,0,0"
-                   Text="タイル名"/>
+                   Text="{app:Translate TileName}"/>
 
             <!--    ４段目 入力部
                     =============
             -->
+            <!-- 管理コード BASE64形式 -->
             <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    Text="{Binding SelectedTileIdAsBASE64, Mode=OneWay}"
                    IsReadOnly="True"/>
 
+            <!-- タイル名 -->
             <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                    Placeholder="草原"
                    Text="{Binding SelectedTileCommentAsStr}"
@@ -428,12 +430,14 @@
             <!--    ５段目 ヒント部
                     ===============
             -->
+            <!-- 「コードのおぼえかた」 -->
             <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Start"
                    Padding="0,0,4,0"
-                   Text="コードのおぼえかた"/>
+                   Text="{app:Translate HowToRememberControlCode}"/> 
 
+            <!-- コードのおぼえかた -->
             <Label Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
                    HorizontalTextAlignment="Start"
                    VerticalTextAlignment="Start"
