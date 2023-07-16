@@ -15,6 +15,7 @@ using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Coding;
 using System.Net;
 using SkiaSharp;
+using _2D_RPG_Negiramen.FeatSkia;
 #endif
 
 /// <summary>
@@ -178,7 +179,7 @@ public partial class TilePaletteEditPage : ContentPage
         // タイル・セット画像の読込、作業中タイル・セット画像の書出
         // ========================================================
         //
-        var task = Task.Run(() =>
+        var task = Task.Run(async () =>
         {
             try
             {
@@ -210,6 +211,33 @@ public partial class TilePaletteEditPage : ContentPage
 
                     // 作業中のタイル・セット画像の再描画
                     context.RefreshWorkingTileSetImage();
+                }
+            }
+            catch (Exception ex)
+            {
+                // TODO エラー対応どうする？
+            }
+
+            // ↓ SkiaSharp の流儀
+            try
+            {
+                // タイル・セット読込（読込元：　ウィンドウズ・ローカルＰＣ）
+                using (Stream inputFileStream = System.IO.File.OpenRead(tileSetImageFilePathAsStr))
+                {
+                    // ↓ １つのストリームが使えるのは、１回切り
+                    using (MemoryStream memStream = new MemoryStream())
+                    {
+                        await inputFileStream.CopyToAsync(memStream);
+                        memStream.Seek(0, SeekOrigin.Begin);
+
+                        context.SKBitmap = SKBitmap.Decode(memStream);
+
+                        // 画像処理（明度を下げる）
+                        ReduceBrightness.DoItInPlace(context.SKBitmap);
+                    };
+
+                    // 再描画
+                    skiaView1.InvalidateSurface();
                 }
             }
             catch (Exception ex)

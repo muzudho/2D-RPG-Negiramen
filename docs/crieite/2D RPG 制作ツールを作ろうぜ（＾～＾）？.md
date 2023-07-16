@@ -4793,4 +4793,14 @@ SkiaSharp という異質なものを　どう配置しよう」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　コード・ビハインドに　画像処理をベタ書きするのが、 MVVM の思想では　イケてないんだろうな」  
 
+![202307__maui__16-1606--Loaded-o2o0.png](https://crieit.now.sh/upload_images/cec0eee886b2eb5e996cc45c4d3b7bd164b39701f0ab9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ページの読込完了時に、画像読込と、明度を下げるのを　済ませてしまおう」  
+
+![202307__maui__16-1607--run.png](https://crieit.now.sh/upload_images/008629511836cb528e89bf240ca0dc9764b3975c89eb5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　そして実行。　位置とサイズが合ってないな」  
+
 ＜書きかけ＞
