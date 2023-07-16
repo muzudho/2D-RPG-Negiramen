@@ -51,14 +51,17 @@ internal class ColoredMap : BindableObject, IDrawable
 
             // ランダム色作成
             {
-                int minValue = 90;
-                int maxValue = 230;
+                int minValue = 160;
+                int maxValue = 255;
                 int[] values = new int[3] { minValue, maxValue, Random.Shared.Next(minValue, maxValue) };
 
                 // シャッフル
-                Math.FisherYatesShuffle(values);
+                MathEx.FisherYatesShuffle(values);
 
-                canvas.StrokeColor = new Color(red: values[0], green: values[1], blue: values[2]);
+                canvas.StrokeColor = new Color(
+                    red: values[0],
+                    green: values[1],
+                    blue: values[2]);
             }
             // canvas.StrokeColor = Colors.Green;
             // canvas.StrokeColor = new Color(red:220, green:220, blue:255, alpha:192);

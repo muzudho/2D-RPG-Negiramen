@@ -248,20 +248,6 @@
                     </skia:SKCanvasView.GestureRecognizers>
                 </skia:SKCanvasView>
 
-                <!--    カラード・マップ
-                        ================
-                -->
-                <GraphicsView x:Name="coloredMapGraphicsView"
-                              HorizontalOptions="Start" VerticalOptions="Start"
-                              Margin="4,4,0,0"
-                              WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
-                              InputTransparent="True">
-                    <GraphicsView.Drawable>
-                        <modelsDrawing:ColoredMap BindingContext="{x:Reference thisContentPage}"
-                                                  TileSetSettings="{Binding TilePaletteEditPageVM.TileSetSettings}"/>
-                    </GraphicsView.Drawable>
-                </GraphicsView>
-
                 <!--    グリッド
                         ========
 
@@ -277,6 +263,20 @@
                                                    HalfThicknessOfGridLineAsInt="{Binding TilePaletteEditPageVM.HalfThicknessOfGridLineAsInt}"
                                                    GridLeftTop="{Binding TilePaletteEditPageVM.GridLeftTop}"
                                                    GridTileSize="{Binding TilePaletteEditPageVM.GridTileSize}"/>
+                    </GraphicsView.Drawable>
+                </GraphicsView>
+
+                <!--    カラード・マップ
+                        ================
+                -->
+                <GraphicsView x:Name="coloredMapGraphicsView"
+                              HorizontalOptions="Start" VerticalOptions="Start"
+                              Margin="4,4,0,0"
+                              WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
+                              InputTransparent="True">
+                    <GraphicsView.Drawable>
+                        <modelsDrawing:ColoredMap BindingContext="{x:Reference thisContentPage}"
+                                                  TileSetSettings="{Binding TilePaletteEditPageVM.TileSetSettings}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 

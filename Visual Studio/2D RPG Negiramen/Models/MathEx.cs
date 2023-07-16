@@ -3,7 +3,7 @@
     /// <summary>
     ///     数学的なもの
     /// </summary>
-    internal static class Math
+    internal static class MathEx
     {
         /// <summary>
         ///     配列をシャッフルする
