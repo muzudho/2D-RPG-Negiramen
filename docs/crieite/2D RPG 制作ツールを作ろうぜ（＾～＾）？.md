@@ -4583,4 +4583,143 @@ SKImage は、SKBitmap を読込むメソッドを持っているだろ」
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　もう寝なさい」  
 
+# 📅 （2023-07-16 sun）画像の明度を下げてくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　画像の明度を下げてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　愚直に　１ピクセルずつ　変更するコードなら　すぐ書けそうだが、  
+並列処理に有利な　コードの書き方が　分からんな……」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　これを読みなさい」  
+
+📖 [SkiaSharp ビットマップ ピクセル ビットへのアクセス](https://learn.microsoft.com/ja-jp/xamarin/xamarin-forms/user-interface/graphics/skiasharp/bitmaps/pixel-bits)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　マイクロソフトの記事の　コード・サンプルのリンク　クリックしても  
+コード・サンプルが置いてないの　何でなんだろな？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　実行速度の検証は　iOS、 Android、 UWP で行われていて、 Windows が含まれていないのは何でだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　Windows 上で Windows 向けのプログラム書いたら有利なの明らかだからよ。  
+UWP というのが Windows なのよ」
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　unsafe 使って uint のポインター型を使うのが　そら早そうだが、  
+unsafe を使いだしたら C# というより C言語だしな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画像処理の高速化というのは　アンセーフなものでは？」  
+
+```csharp
+SKBitmap FillBitmapUintPtrColor(out string description, out int milliseconds)
+{
+    description = "GetPixels SKColor";
+    SKBitmap bitmap = new SKBitmap(256, 256);
+
+    stopwatch.Restart();
+
+    IntPtr pixelsAddr = bitmap.GetPixels();
+
+    unsafe
+    {
+        for (int rep = 0; rep < REPS; rep++)
+        {
+            uint* ptr = (uint*)pixelsAddr.ToPointer();
+
+            for (int row = 0; row < 256; row++)
+                for (int col = 0; col < 256; col++)
+                {
+                    *ptr++ = (uint)new SKColor((byte)col, 0, (byte)row);
+                }
+        }
+    }
+
+    milliseconds = (int)stopwatch.ElapsedMilliseconds;
+    return bitmap;
+}
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　先頭から末尾まで　色を置き換えながら　シーケンスしてるだけだ　やってることは簡単だ  
+真似るか」  
+
+![202307__maui__16-1245--unsafe.png](https://crieit.now.sh/upload_images/b2bfd5ffb7fd97810014a33433ed243b64b367f3ca06c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　じゃあ今後、ネギラーメンでは　アンセーフなものも　使っていくことにするぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　int 型のメモリ・レイアウトは　red, green, blue, alpha　で確定かだぜ？  
+環境により異なるかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ビッグ・エンディアン、リトル・エンディアンが関わってくるかどうか　知らないぜ？」  
+
+```
+ここでのコードでは、バイトが赤、緑、青、アルファの順序であり、色の SKColorType.Rgba8888 種類と一致していることを前提としています。 これは iOS と Android の既定の色の種類ですが、ユニバーサル Windows プラットフォームでは使用されないことを思い出してください。
+```
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　環境によって異なるそうよ」  
+
+```cs
+namespace MauiApp1;
+
+using SkiaSharp;
+
+/// <summary>
+///     明度を下げる
+/// </summary>
+internal static class ReduceBrightness
+{
+    // - インターナル静的メソッド
+
+    /// <summary>
+    ///     そうする
+    /// </summary>
+    internal static SKBitmap DoItInPlace(SKBitmap bitmapInPlace)
+    {
+        IntPtr pixelsAddr = bitmapInPlace.GetPixels();
+        int width = bitmapInPlace.Width;
+        int height = bitmapInPlace.Height;
+
+        unsafe
+        {
+            uint* ptr = (uint*)pixelsAddr.ToPointer();
+
+            for (int row = 0; row < height; row++)
+                for (int col = 0; col < width; col++)
+                {
+                    // ビッグ・エンディアンか、リトル・エンディアンかの違いを吸収してくれることを期待して
+                    SKColor color = new SKColor(*ptr);
+
+                    // RGB値が減れば、暗くなるだろ
+                    *ptr++ = (uint)new SKColor(
+                        red: (byte)(color.Red * 0.7),
+                        green: (byte)(color.Green * 0.7),
+                        blue: (byte)(color.Blue * 0.7));
+                }
+        }
+
+        return bitmapInPlace;
+    }
+}
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　なるほど、  
+ビッグ・エンディアンか、リトル・エンディアンか、環境の違いを吸収しようとすると  
+ちょっと　遅くなるのか、まあいいか」  
+
+![202307__maui__16-1310--reduceBrightness-o2o0.png](https://crieit.now.sh/upload_images/4d5ac9e4e75cb2982ae3f1e45398e43364b36e24d547c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　明度を下げることはできたが、再描画のたびに　どんどん暗くなって　真っ黒になる。  
+コードを書く位置を　ミスった」  
+
 ＜書きかけ＞
