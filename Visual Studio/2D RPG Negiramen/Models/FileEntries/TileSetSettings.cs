@@ -69,17 +69,35 @@
                         // とりあえずカンマで分割
                         var cells = line.Split(",");
 
+                        int tileId = int.Parse(cells[0]);
+                        int x = int.Parse(cells[1]);
+                        int y = int.Parse(cells[2]);
+                        int width = int.Parse(cells[3]);
+                        int height = int.Parse(cells[4]);
+                        string comment = cells[5];
+
+                        Models.LogicalDelete logicalDelete;
+                        if (7 <= cells.Length)
+                        {
+                            logicalDelete = new Models.LogicalDelete(int.Parse(cells[6]));
+                        }
+                        else
+                        {
+                            logicalDelete = Models.LogicalDelete.False;
+                        }
+
                         // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
                         tileSetSettings.Add(
-                            id: new Models.TileId(int.Parse(cells[0])),
+                            id: new Models.TileId(tileId),
                             rect: new Models.Rectangle(
                                 point: new Models.Point(
-                                    x: new Models.X(int.Parse(cells[1])),
-                                    y: new Models.Y(int.Parse(cells[2]))),
+                                    x: new Models.X(x),
+                                    y: new Models.Y(y)),
                                 size: new Models.Size(
-                                    width: new Models.Width(int.Parse(cells[3])),
-                                    height: new Models.Height(int.Parse(cells[4])))),
-                            comment: new Models.Comment(cells[5]),
+                                    width: new Models.Width(width),
+                                    height: new Models.Height(height))),
+                            comment: new Models.Comment(comment),
+                            logicalDelete: logicalDelete,
                             onTileIdUpdated: () =>
                             {
                                 // 自明なんで省略
@@ -122,24 +140,53 @@
         /// <param name="id">タイルＩｄ</param>
         /// <param name="rect">位置とサイズ</param>
         /// <param name="comment">コメント</param>
+        /// <param name="logicalDelete">論理削除</param>
         /// <param name="onTileIdUpdated">タイルＩｄ更新時</param>
         internal void Add(
             Models.TileId id,
             Models.Rectangle rect,
             Models.Comment comment,
+            Models.LogicalDelete logicalDelete,
             Action onTileIdUpdated)
         {
             this.RecordList.Add(
                 new TileRecord(
                     id,
                     rect,
-                    comment));
+                    comment,
+                    logicalDelete));
 
             // ［次に採番できるＩｄ］を（できるなら）更新
             if (this.UpdateUsableId(id))
             {
                 // 更新した
                 onTileIdUpdated();
+            }
+        }
+        #endregion
+
+        #region メソッド（タイルの論理削除）
+        /// <summary>
+        ///     タイルの論理削除
+        /// </summary>
+        /// <param name="id">タイルＩｄ</param>
+        internal void DeleteLogical(
+            Models.TileId id)
+        {
+            // 愚直な検索
+            for (int i=0; i<this.RecordList.Count; i++)
+            {
+                var record = this.RecordList[i];
+
+                if (record.Id == id)
+                {
+                    // 差替え
+                    this.RecordList[i] = new TileRecord(
+                        id: record.Id,
+                        rectangle: record.Rectangle,
+                        comment: record.Comment,
+                        logicalDelete: Models.LogicalDelete.True);
+                }
             }
         }
         #endregion

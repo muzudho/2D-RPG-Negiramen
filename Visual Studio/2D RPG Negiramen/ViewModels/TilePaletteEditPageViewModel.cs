@@ -158,7 +158,8 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
                         rectangle: selectedTile.Rectangle,
-                        comment: selectedTile.Comment));
+                        comment: selectedTile.Comment,
+                        logicalDelete: selectedTile.LogicalDelete));
                 }
                 else
                 {
@@ -166,7 +167,8 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
                         rectangle: Models.Rectangle.Empty,
-                        comment: Models.Comment.Empty));
+                        comment: Models.Comment.Empty,
+                        logicalDelete: Models.LogicalDelete.False));
                 }
 
                 if (this._selectedTileOption.TryGetValue(out var record))
@@ -1006,7 +1008,8 @@
                         rectangle: new Models.Rectangle(
                             point: new Models.Point(new Models.X(value), selectedTile.Rectangle.Point.Y),
                             size: selectedTile.Rectangle.Size),
-                        comment: selectedTile.Comment));
+                        comment: selectedTile.Comment,
+                        logicalDelete: selectedTile.LogicalDelete));
                 }
                 else
                 {
@@ -1016,7 +1019,8 @@
                         rectangle: new Models.Rectangle(
                             point: new Models.Point(new Models.X(value), Models.Y.Empty),
                             size: Models.Size.Empty),
-                        comment: Models.Comment.Empty));
+                        comment: Models.Comment.Empty,
+                        logicalDelete: Models.LogicalDelete.False));
                 }
 
                 this.TileCursorPointAsMargin = new Thickness(
@@ -1071,7 +1075,8 @@
                         rectangle: new Models.Rectangle(
                             point: new Models.Point(selectedTile.Rectangle.Point.X, new Models.Y(value)),
                             size: selectedTile.Rectangle.Size),
-                        comment: selectedTile.Comment));
+                        comment: selectedTile.Comment,
+                        logicalDelete: selectedTile.LogicalDelete));
                 }
                 else
                 {
@@ -1081,7 +1086,8 @@
                         rectangle: new Models.Rectangle(
                             point: new Models.Point(Models.X.Empty, new Models.Y(value)),
                             size: Models.Size.Empty),
-                        comment: Models.Comment.Empty));
+                        comment: Models.Comment.Empty,
+                        logicalDelete: Models.LogicalDelete.False));
                 }
 
                 this.TileCursorPointAsMargin = new Thickness(
@@ -1198,7 +1204,8 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(new Models.Width(value), selectedTile.Rectangle.Size.Height)),
-                        comment: selectedTile.Comment));
+                        comment: selectedTile.Comment,
+                        logicalDelete: selectedTile.LogicalDelete));
                 }
                 else
                 {
@@ -1206,7 +1213,8 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Rectangle(Models.Point.Empty, new Models.Size(new Models.Width(value), Models.Height.Empty)),
-                        comment: Models.Comment.Empty));
+                        comment: Models.Comment.Empty,
+                        logicalDelete: Models.LogicalDelete.False));
                 }
 
 
@@ -1259,7 +1267,8 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(selectedTile.Rectangle.Size.Width, new Models.Height(value))),
-                        comment: selectedTile.Comment));
+                        comment: selectedTile.Comment,
+                        logicalDelete: selectedTile.LogicalDelete));
                 }
                 else
                 {
@@ -1267,7 +1276,8 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
                         rectangle: new Models.Rectangle(Models.Point.Empty, new Models.Size(Models.Width.Empty, new Models.Height(value))),
-                        comment: Models.Comment.Empty));
+                        comment: Models.Comment.Empty,
+                        logicalDelete: Models.LogicalDelete.False));
                 }
 
                 // this.SelectedTileSize = new Models.Size(this.SelectedTileSize.Width, new Models.Height(value));
@@ -1319,7 +1329,8 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: selectedTile.Rectangle,
-                        comment: new Models.Comment(value)));
+                        comment: new Models.Comment(value),
+                        logicalDelete: selectedTile.LogicalDelete));
                 }
                 else
                 {
@@ -1327,7 +1338,8 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
                         rectangle: Models.Rectangle.Empty,
-                        comment: new Models.Comment(value)));
+                        comment: new Models.Comment(value),
+                        logicalDelete: Models.LogicalDelete.False));
                 }
 
                 OnPropertyChanged(nameof(SelectedTileCommentAsStr));

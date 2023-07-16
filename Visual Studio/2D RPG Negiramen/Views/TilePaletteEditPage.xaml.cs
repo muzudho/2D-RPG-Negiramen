@@ -82,7 +82,7 @@ public partial class TilePaletteEditPage : ContentPage
         // 計算値の反映
         // ============
         //
-        Trace.WriteLine($"[TilePaletteEditPage.xaml.cs RefreshTileForm] context.SelectingOnPointingDevice: {context.SelectingOnPointingDevice}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
+        // Trace.WriteLine($"[TilePaletteEditPage.xaml.cs RefreshTileForm] context.SelectingOnPointingDevice: {context.SelectingOnPointingDevice}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
 
         context.SelectedTileRectangle = rect;
 
@@ -123,7 +123,8 @@ public partial class TilePaletteEditPage : ContentPage
             context.SelectedTileOption = new Option<Models.TileRecord>(new Models.TileRecord(
                 id: Models.TileId.Empty,
                 rectangle: context.SelectedTileRectangle,
-                comment: Models.Comment.Empty));
+                comment: Models.Comment.Empty,
+                logicalDelete: Models.LogicalDelete.False));
         }
     }
     #endregion
@@ -230,13 +231,13 @@ public partial class TilePaletteEditPage : ContentPage
                         await inputFileStream.CopyToAsync(memStream);
                         memStream.Seek(0, SeekOrigin.Begin);
 
-                        context.TileSetSourceBitmap = SKBitmap.Decode(memStream);
+                        context.TileSetSourceBitmap = SkiaSharp.SKBitmap.Decode(memStream);
 
                         // 複製
-                        context.TileSetWorkingBitmap = SKBitmap.FromImage(SKImage.FromBitmap(context.TileSetSourceBitmap));
+                        context.TileSetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(context.TileSetSourceBitmap));
 
                         // 画像処理（明度を下げる）
-                        ReduceBrightness.DoItInPlace(context.TileSetWorkingBitmap);
+                        FeatSkia.ReduceBrightness.DoItInPlace(context.TileSetWorkingBitmap);
                     };
 
                     // 再描画
@@ -362,8 +363,8 @@ public partial class TilePaletteEditPage : ContentPage
             var canvas = e.Surface.Canvas;
 
             canvas.DrawImage(
-                image: SKImage.FromBitmap(bindingContext.TileSetWorkingBitmap),
-                p: new SKPoint());
+                image: SkiaSharp.SKImage.FromBitmap(bindingContext.TileSetWorkingBitmap),
+                p: new SkiaSharp.SKPoint());
         }
     }
     #endregion
@@ -377,6 +378,16 @@ public partial class TilePaletteEditPage : ContentPage
     private void AddsButton_Clicked(object sender, EventArgs e)
     {
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
+
+        Models.LogicalDelete logicalDelete;
+        if (context.SelectedTileOption.TryGetValue(out var record))
+        {
+            logicalDelete = record.LogicalDelete;
+        }
+        else
+        {
+            logicalDelete = Models.LogicalDelete.False;
+        }
 
         //
         // 設定ファイルの編集
@@ -393,6 +404,7 @@ public partial class TilePaletteEditPage : ContentPage
                     width: new Models.Width(context.SelectedTileWidthAsInt),
                     height: new Models.Height(context.SelectedTileHeightAsInt))),
             comment: new Models.Comment(context.SelectedTileCommentAsStr),
+            logicalDelete: logicalDelete,
             onTileIdUpdated: () =>
             {
                 // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
@@ -424,26 +436,23 @@ public partial class TilePaletteEditPage : ContentPage
     {
         TilePaletteEditPageViewModel context = (TilePaletteEditPageViewModel)this.BindingContext;
 
+        Models.LogicalDelete logicalDelete;
+        if (context.SelectedTileOption.TryGetValue(out var record))
+        {
+            logicalDelete = record.LogicalDelete;
+        }
+        else
+        {
+            logicalDelete = Models.LogicalDelete.False;
+        }
+
         //
         // 設定ファイルの編集
         // ==================
         //
-        context.TileSetSettings.Add(
+        context.TileSetSettings.DeleteLogical(
             // 現在選択中のＩｄ
-            id: context.SelectedTileId,
-            rect: new Models.Rectangle(
-                point: new Models.Point(
-                    x: new Models.X(context.SelectedTileLeftAsInt),
-                    y: new Models.Y(context.SelectedTileTopAsInt)),
-                size: new Models.Size(
-                    width: new Models.Width(context.SelectedTileWidthAsInt),
-                    height: new Models.Height(context.SelectedTileHeightAsInt))),
-            comment: new Models.Comment(context.SelectedTileCommentAsStr),
-            onTileIdUpdated: () =>
-            {
-                // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
-                context.NotifyTileIdChange();
-            });
+            id: context.SelectedTileId);
 
         //
         // 設定ファイルの保存
