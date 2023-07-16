@@ -4722,4 +4722,75 @@ internal static class ReduceBrightness
 「　👆　明度を下げることはできたが、再描画のたびに　どんどん暗くなって　真っ黒になる。  
 コードを書く位置を　ミスった」  
 
+## タイル・パレット編集画面のタイル・セット画像の明度も下げてくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイル・パレット編集画面のタイル・セット画像の明度も下げてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`GraphicsView`　と、　`SKCanvasView`　の結局どちらも　用途に応じて使い分けることになるの  
+学習コストと、脳への負荷が高いな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　フォルダーの整理も大変だ。  
+MAUI のフレームワークに従うものと、  
+SkiaSharp という異質なものを　どう配置しよう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`FeatSkia`　みたいなフォルダーを作って  
+そこに放り込めば？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ミュージシャンみたいだな。  
+そもそも `Skia` って何だ？　調べるか」  
+
+📖 [Wikipedia　＞　Skia](https://ja.wikipedia.org/wiki/Skia)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　元は　会社名らしい」  
+
+![202307__maui__16-1414--SkiaSharpViewsMauiControls-o2o0.png](https://crieit.now.sh/upload_images/588f5bbe19415c439b9d2ff7867eaace64b37cdf0a637.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`SkiaSharp.Views.Maui.Controls` パッケージをインストールすれば、必要なものは　自動的にインストールしてくれるようだぜ」  
+
+![202307__maui__16-1418--MauiProgram-o2o0.png](https://crieit.now.sh/upload_images/22126a5750d259933eb010f52a03e8d564b37dbbdc171.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`MauiProgram.cs` に `builder.UseMauiApp<App>().UseSkiaSharp();` って書く必要があるの、  
+探さないと見つからない　分からんと思う」  
+
+![202307__maui__16-1444--FeatSkia-o2o0.png](https://crieit.now.sh/upload_images/c820804a26a0c613a34e4b7b079fb36664b383e986e0e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　画像処理は　とりあえずお試しに　`FeatSkia` フォルダーを作って　そこへ入れよう」  
+
+![202307__maui__16-1448--namespace-o2o0.png](https://crieit.now.sh/upload_images/8a18d04b2e10acf54755c8ebc333a6ba64b384c2e3410.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビューに　ネームスペース  
+`xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"`  
+を追加して」  
+
+![202307__maui__16-1451--SKCanvasView-o2o0.png](https://crieit.now.sh/upload_images/be1885552b2ff6b37495474ff71c5c7764b3857313095.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`SKCanvasView` 要素を配置」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　今回、`Touch` イベントは要らないんじゃない？」  
+
+![202307__maui__16-1459--SKBitmap-o2o0.png](https://crieit.now.sh/upload_images/bdf7c758076244f5c4fce4a920e80ea264b387626f71f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ビューモデルには、 `SKBitmap`　を格納できるようにしておくぜ」  
+
+![202307__maui__16-1542--PaintSurface-o2o0.png](https://crieit.now.sh/upload_images/46add945c1cbf086b96024868c0d991764b391a44f3fc.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　描画処理は、ただビットマップを描画するだけにするぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　コード・ビハインドに　画像処理をベタ書きするのが、 MVVM の思想では　イケてないんだろうな」  
+
 ＜書きかけ＞

@@ -14,6 +14,7 @@ using System.Diagnostics;
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Coding;
 using System.Net;
+using SkiaSharp;
 #endif
 
 /// <summary>
@@ -355,6 +356,29 @@ public partial class TilePaletteEditPage : ContentPage
         else
         {
             // TODO 保存失敗時のエラー対応
+        }
+    }
+    #endregion
+
+    #region イベントハンドラ（表面の描画時）
+    /// <summary>
+    ///     表面の描画時
+    /// </summary>
+    /// <param name="sender">このイベントを送っているコントロール</param>
+    /// <param name="e">イベント</param>
+    private void skiaView1_PaintSurface(object sender, SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e)
+    {
+        var bindingContext = this.TilePaletteEditPageVM;
+
+        // 画像描画
+        if (bindingContext.SKBitmap != null)
+        {
+            // the the canvas and properties
+            var canvas = e.Surface.Canvas;
+
+            canvas.DrawImage(
+                image: SKImage.FromBitmap(bindingContext.SKBitmap),
+                p: new SKPoint());
         }
     }
     #endregion

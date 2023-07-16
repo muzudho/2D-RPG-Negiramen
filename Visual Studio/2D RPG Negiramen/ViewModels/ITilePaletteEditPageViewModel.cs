@@ -2,6 +2,7 @@
 
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.FileEntries;
+using SkiaSharp;
 
 public interface ITilePaletteEditPageViewModel
 {
@@ -10,6 +11,13 @@ public interface ITilePaletteEditPageViewModel
     ///     タイル・セット設定
     /// </summary>
     TileSetSettings TileSetSettings { get; }
+    #endregion
+
+    #region プロパティ（画像。ビットマップ形式）
+    /// <summary>
+    ///     画像。ビットマップ形式
+    /// </summary>
+    SKBitmap SKBitmap { get; }
     #endregion
 
     #region プロパティ（グリッドの線の太さの半分）

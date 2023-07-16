@@ -3,6 +3,7 @@
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
+    using SkiaSharp;
     using System.Collections.ObjectModel;
     using System.Globalization;
 
@@ -171,6 +172,13 @@
                 NotifyTileIdChange();
             }
         }
+        #endregion
+
+        #region プロパティ（画像。ビットマップ形式）
+        /// <summary>
+        ///     画像。ビットマップ形式
+        /// </summary>
+        public SKBitmap SKBitmap { get; set; }
         #endregion
 
         // - 変更通知プロパティ

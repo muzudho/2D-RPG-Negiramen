@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:app="clr-namespace:_2D_RPG_Negiramen"
              xmlns:modelsDrawing="clr-namespace:_2D_RPG_Negiramen.Models.Drawing"
+             xmlns:skia="clr-namespace:SkiaSharp.Views.Maui.Controls;assembly=SkiaSharp.Views.Maui.Controls"
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="_2D_RPG_Negiramen.Views.TilePaletteEditPage"
@@ -225,6 +226,17 @@
                         <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved"/>
                     </Image.GestureRecognizers>
                 </Image>
+
+                <!--    タイル・セット画像
+                        ==================
+                
+                        * スキア・シャープのキャンバスを使う
+                -->
+                <skia:SKCanvasView x:Name="skiaView1"
+                               HorizontalOptions="Center"
+                               WidthRequest="300" HeightRequest="300"
+                               IgnorePixelScaling="True"
+                               PaintSurface="skiaView1_PaintSurface"/>
 
                 <!--    カラード・マップ
                         ================
