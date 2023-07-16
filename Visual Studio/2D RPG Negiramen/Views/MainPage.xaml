@@ -45,8 +45,9 @@
 
             <VerticalStackLayout Grid.Row="0">
 
+                <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
                 <Label HorizontalOptions="Center"
-                       Text="２Ｄ　ＲＰＧ　ネギラーメン"
+                       Text="{app:Translate _2dRpgNegiramen}"
                        FontSize="48"/>
 
                 <Image HorizontalOptions="Center"

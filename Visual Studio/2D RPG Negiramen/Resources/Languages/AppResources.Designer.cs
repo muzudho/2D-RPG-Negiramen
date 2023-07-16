@@ -61,6 +61,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   ２D　ＲＰＧ　ネギラーメン に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string _2dRpgNegiramen {
+            get {
+                return ResourceManager.GetString("_2dRpgNegiramen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   追加 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Add {

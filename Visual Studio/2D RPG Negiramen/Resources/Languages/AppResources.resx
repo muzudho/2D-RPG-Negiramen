@@ -225,4 +225,8 @@
   <data name="HowToRememberControlCode" xml:space="preserve">
     <value>コードのおぼえかた</value>
   </data>
+  <data name="_2dRpgNegiramen" xml:space="preserve">
+    <value>２D　ＲＰＧ　ネギラーメン</value>
+    <comment>このアプリケーション名</comment>
+  </data>
 </root>
