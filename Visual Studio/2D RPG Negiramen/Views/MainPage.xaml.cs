@@ -3,6 +3,7 @@
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.ViewModels;
 using CommunityToolkit.Maui.Views;
+using System.Diagnostics;
 
 /// <summary>
 ///     😁 メイン・ページ
@@ -418,6 +419,19 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void TilePaletteEditButton_Clicked(object sender, EventArgs e)
     {
+        // Trace.WriteLine($"[MainPage.xaml.cs TilePaletteEditButton_Clicked] sender.GetType().FullName: {sender.GetType().FullName}");
+        // [MainPage.xaml.cs TilePaletteEditButton_Clicked] sender.GetType().FullName: Microsoft.Maui.Controls.Button
+
+        //*
+        var button = (Button)sender;
+        await button.FadeTo(
+            opacity: 0.5,
+            length: 150); // milliseconds
+        await button.FadeTo(
+            opacity: 1.0,
+            length: 150); // milliseconds
+        // */
+
         var shellNavigationState = new ShellNavigationState("//TilePaletteEditPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する

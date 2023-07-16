@@ -4907,4 +4907,13 @@ SkiaSharp という異質なものを　どう配置しよう」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　ダメだ　ボタンは　アニメーションしないぜ」  
 
+![202307__maui__16-2047--FadeTo-o2o0.png](https://crieit.now.sh/upload_images/29d17c6910120efaa8f9db74a83c160d64b3d90b6ef4a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　XAML をどう書いても　ボタンはアニメーションせず　クソだったので  
+コード・ビハインドに　コードを書くことにしたら　アニメーションしたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　なぜ　XAML　の設定では　アニメーションしなかったのか　謎のままだぜ」  
+
 ＜書きかけ＞
