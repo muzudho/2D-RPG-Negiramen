@@ -4837,6 +4837,74 @@ SkiaSharp という異質なものを　どう配置しよう」
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　じゃあ　元画像　は　どこかに残しておかないといけないのかだぜ」  
 
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　カラード・マップ（Colored Map）　は色分けだろ。  
+色で分けろよ」  
 
+![202307__maui__16-1727--tone.png](https://crieit.now.sh/upload_images/52582545baf6e25f1ebb4fe1d53d0fb864b3aa082cd68.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　青が　暗くなってしまうなあ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　青値は　多めになるよう　補正を掛けたら？」  
+
+## 登録タイルの削除ボタンを作れだぜ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　登録タイルが　こんな　ぐちゃぐちゃ　しているのが悪いんだ。　削除できるようにしよう」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　追加ボタンと　削除ボタンが　こんなに近くにあるのは　悪いデザインでは？」  
+
+![202307__maui__16-1924--deleteButton-o2o0.png](https://crieit.now.sh/upload_images/a335351828700f41cc8c6586decfa26164b3c5ac17423.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これぐらい　離したらいいかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　削除ボタンだけ　左に持っていったら？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　削除したいときに　不便なのでは……」  
+
+## ボタンに押した感じを付けれないの？
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI のボタンって　反応しないから　押した感じがしないけど  
+ボタンを押したという演出を　付けれないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そんなものは　ボタンには最初から付いているものと　思っていたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　記事を読めだぜ」  
+
+📖 [【.NET MAUI】Buttonにアニメーションを付けて表示をカスタマイズする](https://marunaka-blog.com/net-maui-button-animation/7708/#index_id6)  
+
+📖 [Microsoft　＞　AnimationBehavior](https://learn.microsoft.com/ja-jp/dotnet/communitytoolkit/maui/behaviors/animation-behavior)  
+
+![202307__maui__16-1935--toolkit-o2o0.png](https://crieit.now.sh/upload_images/09a57761a4d350ab4e46d4041cde23ac64b3c81b3cb6d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　名前空間を書いて」  
+
+![202307__maui__16-1939--animation-o2o0.png](https://crieit.now.sh/upload_images/fa69d6d8a163f28e8f6244ee20756d3164b3c9050104e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ボタンに　ビヘイビアを書いたが、アニメーションする様子は無いぜ」  
+
+![202307__maui__16-1941--use-o2o0.png](https://crieit.now.sh/upload_images/8dccdf9c1a532264541c056a4f35584164b3c990283a6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　この書き方で　いけてないのかだぜ？」  
+
+![202307__maui__16-1945--builder-o2o0.png](https://crieit.now.sh/upload_images/00035a4e30f4525c1f28fdd2464f114164b3ca9fa97a1.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　チェーンにした方がいいのか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ダメだ　ボタンは　アニメーションしないぜ」  
 
 ＜書きかけ＞

@@ -14,32 +14,21 @@ public static class MauiProgram
         var builder = MauiApp.CreateBuilder();
         builder
             .UseMauiApp<App>()
+
+            // 手動で追加（MVVM や、ボタンのアニメーションのために）
+            // 📖 [.NET MAUI Community Toolkit Popup PopupHandler is incompatible](https://stackoverflow.com/questions/72506202/net-maui-community-toolkit-popup-popuphandler-is-incompatible)
+            .UseMauiCommunityToolkit()
+
+            // 手動で追加（画像処理のために）
+            // 📖 [[BUG] MAUI: SKCanvasView crash, unable to display SKBitmap directly #2139](https://github.com/mono/SkiaSharp/issues/2139)
+            .UseSkiaSharp()
+
+            // フォント設定
             .ConfigureFonts(fonts =>
             {
                 fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
             });
-
-        //
-        // MVVM をやり始めるときに、こう書く
-        // =================================
-        //
-        // 手動で追加。こんなん分からんて
-        //
-        // 📖 [.NET MAUI Community Toolkit Popup PopupHandler is incompatible](https://stackoverflow.com/questions/72506202/net-maui-community-toolkit-popup-popuphandler-is-incompatible)
-        //
-        builder.UseMauiApp<App>().UseMauiCommunityToolkit();
-
-
-        //
-        // SkiaSharp を直で使いたいときは、こう書く
-        // ========================================
-        //
-        // 手動で追加。こんなん分からんて
-        //
-        // 📖 [[BUG] MAUI: SKCanvasView crash, unable to display SKBitmap directly #2139](https://github.com/mono/SkiaSharp/issues/2139)
-        //
-        builder.UseMauiApp<App>().UseSkiaSharp();
 
 #if DEBUG
         builder.Logging.AddDebug();

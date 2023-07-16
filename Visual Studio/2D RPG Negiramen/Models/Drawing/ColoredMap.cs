@@ -46,6 +46,12 @@ internal class ColoredMap : BindableObject, IDrawable
         {
             // Trace.WriteLine($"[TilePaletteEditPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
 
+            if (record.LogicalDelete == Models.LogicalDelete.True)
+            {
+                // 論理削除されてるから無視
+                continue;
+            }
+
             // 枠の線の太さの半分
             int halfFrameThickness = 2;
 
