@@ -59,7 +59,15 @@
                     HorizontalOptions="Center"
                     ItemsSource="{Binding LocaleIdCollection}"
                     SelectedItem="{Binding CultureInfoAsStr}"
-                    Title="{app:Translate SelectLanguage}"/>
+                    Title="{app:Translate SelectLanguage}">
+                    <!-- ピッカーには当たり判定がない？　マウスホバーしても進入したことを検知する方法が無さそう -->
+                    <!--
+                    <Picker.GestureRecognizers>
+                        <PointerGestureRecognizer PointerEntered="Picker_PointerGestureRecognizer_PointerEntered"
+                                                  PointerExited="Picker_PointerGestureRecognizer_PointerExited"/>
+                    </Picker.GestureRecognizers>
+                    -->
+                </Picker>
 
                 <!-- 「画面をレイアウトする」 -->
                 <Label HorizontalOptions="Center"

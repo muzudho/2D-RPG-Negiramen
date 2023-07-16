@@ -522,4 +522,30 @@ public partial class MainPage : ContentPage
         PolicyOfView.ReactOnMouseLeaved((Button)sender);
     }
     #endregion
+
+    /*
+    #region イベントハンドラ（ピッカーにマウスカーソル進入時）
+    /// <summary>
+    ///     ピッカーにマウスカーソル進入時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void Picker_PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
+    {
+        PolicyOfView.ReactOnMouseEntered((Picker)sender);
+    }
+    #endregion
+
+    #region イベントハンドラ（ピッカーからマウスカーソル退出時）
+    /// <summary>
+    ///     ピッカーからマウスカーソル退出時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void Picker_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
+    {
+        PolicyOfView.ReactOnMouseLeaved((Picker)sender);
+    }
+    #endregion
+    */
 }

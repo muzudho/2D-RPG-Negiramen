@@ -44,4 +44,32 @@ internal static class PolicyOfView
             button.BackgroundColor = (Color)color;
         }
     }
+
+    /*
+    /// <summary>
+    ///     マウスカーソルのホバーによるピッカーの反応
+    /// </summary>
+    /// <param name="button"></param>
+    internal static void ReactOnMouseEntered(Picker picker)
+    {
+        // 色変更
+        // TODO スタイル指定は外部ファイルで行いたい
+        picker.TextColor = Colors.DodgerBlue;
+        picker.BackgroundColor = Colors.DodgerBlue;
+    }
+
+    /// <summary>
+    ///     ボタンの上からマウスカーソルが外れることによるピッカーの反応
+    /// </summary>
+    /// <param name="button"></param>
+    internal static void ReactOnMouseLeaved(Picker picker)
+    {
+        // ボタンの色変更
+        // TODO スタイルの名前のハードコーディングは止めたい
+        if (ResourcesHelper.TryFind("Primary", out var color))
+        {
+            picker.BackgroundColor = (Color)color;
+        }
+    }
+    */
 }
