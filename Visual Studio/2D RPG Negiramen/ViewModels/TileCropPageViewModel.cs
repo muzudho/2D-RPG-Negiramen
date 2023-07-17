@@ -254,6 +254,10 @@
 
         /// <summary>
         ///     ズーム
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///     </list>
         /// </summary>
         public Models.Zoom Zoom
         {
@@ -735,6 +739,10 @@
         #region 変更通知プロパティ（ズーム。整数形式）
         /// <summary>
         ///     ズーム。整数形式
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///     </list>
         /// </summary>
         public double ZoomAsDouble
         {
@@ -746,9 +754,14 @@
                     if (this.ZoomMinAsDouble <= value && value <= this.ZoomMaxAsDouble)
                     {
                         this.zoom = new Models.Zoom(value);
-                        OnPropertyChanged(nameof(ZoomAsDouble));
 
+                        // 画像を再作成
+                        this.RemakeWorkingImage(
+                            width: (int)(this.SourceImageWidthAsInt * value),
+                            height: (int)(this.SourceImageHeightAsInt * value));
                         this.RefreshWorkingImageSize();
+
+                        OnPropertyChanged(nameof(ZoomAsDouble));
                     }
                 }
             }
@@ -1413,7 +1426,6 @@
             // タイルセット画像の縦横幅
             this.SourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
 
-
             // グリッド・キャンバス
             {
                 // グリッドの左上位置（初期値）
@@ -1656,5 +1668,29 @@
             OnPropertyChanged(nameof(WorkingImageHeightAsInt));
         }
         #endregion
+
+        /// <summary>
+        ///     作業用画像を作り直す
+        /// </summary>
+        void RemakeWorkingImage(int width, int height)
+        {
+            // 元画像をベースに、作業画像を複製
+            this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
+
+            //// 作業画像の生成
+            //this.TilesetWorkingBitmap = new SKBitmap(
+            //    width: this.WorkingImageWidthAsInt,
+            //    height: this.WorkingImageHeightAsInt);
+
+            //// 元画像を、作業画像へコピー
+            //this.TilesetSourceBitmap.CopyTo(
+            //    destination: this.TilesetWorkingBitmap);
+
+            this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(
+                size: new SKSizeI(
+                    width: width,
+                    height: height),
+                quality: SKFilterQuality.Medium);
+        }
     }
 }

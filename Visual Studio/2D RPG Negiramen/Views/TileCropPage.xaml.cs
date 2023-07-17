@@ -241,7 +241,7 @@ public partial class TileCropPage : ContentPage
                     };
 
                     // 再描画
-                    skiaView1.InvalidateSurface();
+                    skiaTilesetCanvas.InvalidateSurface();
                 }
             }
             catch (Exception ex)
@@ -523,6 +523,21 @@ public partial class TileCropPage : ContentPage
     {
         var context = this.TileCropPageVM;
         context.RefreshByLocaleChanged();
+    }
+    #endregion
+
+    #region イベントハンドラ（ズーム変更時）
+    /// <summary>
+    ///     ズーム変更時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void ZoomEntry_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (skiaTilesetCanvas != null)
+        {
+            skiaTilesetCanvas.InvalidateSurface();
+        }
     }
     #endregion
 }

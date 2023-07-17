@@ -251,7 +251,8 @@
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="{Binding ZoomAsDouble}"
-                   BackgroundColor="FloralWhite">
+                   BackgroundColor="FloralWhite"
+                   TextChanged="ZoomEntry_TextChanged">
                 <Entry.Behaviors>
                     <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
                                                        ValidStyle="{StaticResource ValidEntryStyle}"
@@ -297,7 +298,7 @@
                             * だからマージンは 4px 取っておく
                 -->
                 <skia:SKCanvasView IsVisible="True"
-                                   x:Name="skiaView1"
+                                   x:Name="skiaTilesetCanvas"
                                    Grid.Row="0" Grid.Column="0"
                                    HorizontalOptions="Start" VerticalOptions="Start"
                                    Margin="4,4,0,0"
