@@ -337,7 +337,8 @@
                             * だから マージンはタイルセットより 1px 小さく、 3px
                         * グリッドは画像と実装しているので、あまり大きな画像にしたくない。例えば最大 1024 x 1024 とか制限したい
                 -->
-                <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
+                <GraphicsView x:Name="gridView1"
+                              HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="3,3,0,0"
                               WidthRequest="{Binding GridCanvasWidthAsInt}" HeightRequest="{Binding GridCanvasHeightAsInt}"
                               InputTransparent="True">

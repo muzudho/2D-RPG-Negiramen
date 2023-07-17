@@ -820,8 +820,11 @@
                         OnPropertyChanged(nameof(ZoomAsDouble));
                         OnPropertyChanged(nameof(WorkingGridPhaseLeftAsInt));
                         OnPropertyChanged(nameof(WorkingGridPhaseTopAsInt));
+                        OnPropertyChanged(nameof(WorkingGridPhase));
+
                         OnPropertyChanged(nameof(WorkingGridTileWidthAsInt));
                         OnPropertyChanged(nameof(WorkingGridTileHeightAsInt));
+                        OnPropertyChanged(nameof(WorkingGridTileSize));
                     }
                 }
             }
