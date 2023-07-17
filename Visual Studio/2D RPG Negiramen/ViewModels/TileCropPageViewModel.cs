@@ -214,11 +214,11 @@
         }
         #endregion
 
-        #region プロパティ（タイルセットの元画像。ビットマップ形式）
+        #region プロパティ（タイルセットの元画像）
         SKBitmap tilesetSourceBitmap = new SKBitmap();
 
         /// <summary>
-        ///     タイルセットの元画像。ビットマップ形式
+        ///     タイルセットの元画像
         /// </summary>
         public SKBitmap TilesetSourceBitmap
         {
@@ -240,7 +240,8 @@
                 OnPropertyChanged(nameof(SourceImageWidthAsInt));
                 OnPropertyChanged(nameof(SourceImageHeightAsInt));
 
-                this.RefreshWorkingImageSize();
+                // 作業画像の作成
+                this.RemakeWorkingImage();
             }
         }
         #endregion
@@ -825,12 +826,8 @@
                     {
                         this.zoom = new Models.Zoom(value);
 
-                        // 画像を再作成
-                        this.RemakeWorkingImage(
-                            width: (int)(this.SourceImageWidthAsInt * value),
-                            height: (int)(this.SourceImageHeightAsInt * value));
-
-                        this.RefreshWorkingImageSize();
+                        // 作業画像を再作成
+                        this.RemakeWorkingImage();
 
                         OnPropertyChanged(nameof(ZoomAsDouble));
                         OnPropertyChanged(nameof(WorkingGridPhaseLeftAsInt));
@@ -1725,33 +1722,28 @@
         }
         #endregion
 
-        #region メソッド（作業画像サイズの再計算）
-        /// <summary>
-        ///     作業画像サイズの再計算
-        /// </summary>
-        void RefreshWorkingImageSize()
-        {
-            this.workingImageSize = new Models.Size(
-                width: new Models.Width((int)(this.SourceImageSize.Width.AsInt * this.ZoomAsDouble)),
-                height: new Models.Height((int)(this.SourceImageSize.Height.AsInt * this.ZoomAsDouble)));
-            OnPropertyChanged(nameof(WorkingImageWidthAsInt));
-            OnPropertyChanged(nameof(WorkingImageHeightAsInt));
-        }
-        #endregion
-
         /// <summary>
         ///     作業用画像の再作成
         /// </summary>
-        void RemakeWorkingImage(int width, int height)
+        void RemakeWorkingImage()
         {
             // 元画像をベースに、作業画像を複製
             this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
 
+            // 作業画像のサイズ計算
+            this.workingImageSize = new Models.Size(
+                width: new Models.Width((int)(this.SourceImageSize.Width.AsInt * this.ZoomAsDouble)),
+                height: new Models.Height((int)(this.SourceImageSize.Height.AsInt * this.ZoomAsDouble)));
+
+            // 作業画像のリサイズ
             this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(
                 size: new SKSizeI(
-                    width: width,
-                    height: height),
+                    width: this.workingImageSize.Width.AsInt,
+                    height: this.workingImageSize.Height.AsInt),
                 quality: SKFilterQuality.Medium);
+
+            OnPropertyChanged(nameof(WorkingImageWidthAsInt));
+            OnPropertyChanged(nameof(WorkingImageHeightAsInt));
         }
 
         /// <summary>
