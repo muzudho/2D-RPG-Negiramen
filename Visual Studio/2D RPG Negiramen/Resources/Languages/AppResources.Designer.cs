@@ -374,5 +374,14 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
                 return ResourceManager.GetString("WindowDisplayTest", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   ズーム に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Zoom {
+            get {
+                return ResourceManager.GetString("Zoom", resourceCulture);
+            }
+        }
     }
 }

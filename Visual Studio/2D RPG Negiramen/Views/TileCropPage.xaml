@@ -85,7 +85,7 @@
                 ==========
         -->
         <Grid Grid.Row="0"
-              RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,*"
+              RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
@@ -199,6 +199,28 @@
                                                        Flags="ValidateOnValueChanged"
                                                        MinimumValue="1"
                                                        MaximumValue="{Binding TileMaxHeightAsInt}"
+                                                       MaximumDecimalPlaces="0" />
+                </Entry.Behaviors>
+            </Entry>
+
+            <!-- 「ズーム」 -->
+            <Label Grid.Row="1" Grid.Column="9"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="{app:Translate Zoom}"/>
+
+            <!-- ズーム -->
+            <Entry Grid.Row="1" Grid.Column="10"
+                   HorizontalTextAlignment="End"
+                   Placeholder="32"
+                   Text="{Binding ZoomAsInt}"
+                   BackgroundColor="FloralWhite">
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                       ValidStyle="{StaticResource ValidEntryStyle}"
+                                                       Flags="ValidateOnValueChanged"
+                                                       MinimumValue="1"
+                                                       MaximumValue="4"
                                                        MaximumDecimalPlaces="0" />
                 </Entry.Behaviors>
             </Entry>

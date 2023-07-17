@@ -232,6 +232,26 @@
         public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
         #endregion
 
+        #region プロパティ（ズーム）
+        Models.Zoom zoom = Models.Zoom.IdentityElement;
+
+        /// <summary>
+        ///     ズーム
+        /// </summary>
+        public Models.Zoom Zoom
+        {
+            get => this.zoom;
+            set
+            {
+                if (this.zoom != value)
+                {
+                    this.zoom = value;
+                    OnPropertyChanged(nameof(ZoomAsInt));
+                }
+            }
+        }
+        #endregion
+
         // - パブリック変更通知プロパティ
 
         #region 変更通知プロパティ（タイルセット設定）
@@ -707,6 +727,24 @@
                 {
                     _tileCursorPointAsMargin = value;
                     OnPropertyChanged(nameof(TileCursorPointAsMargin));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（ズーム。整数形式）
+        /// <summary>
+        ///     ズーム。整数形式
+        /// </summary>
+        public int ZoomAsInt
+        {
+            get => this.zoom.AsInt;
+            set
+            {
+                if (this.zoom.AsInt != value)
+                {
+                    this.zoom = new Models.Zoom(value);
+                    OnPropertyChanged(nameof(ZoomAsInt));
                 }
             }
         }

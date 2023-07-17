@@ -222,4 +222,7 @@
   <data name="_2dRpgNegiramen" xml:space="preserve">
     <value>2D RPG Green onion ramen</value>
   </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>Zoom</value>
+  </data>
 </root>

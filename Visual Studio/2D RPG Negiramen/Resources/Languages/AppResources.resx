@@ -229,4 +229,7 @@
     <value>２D　ＲＰＧ　ネギラーメン</value>
     <comment>このアプリケーション名</comment>
   </data>
+  <data name="Zoom" xml:space="preserve">
+    <value>ズーム</value>
+  </data>
 </root>
