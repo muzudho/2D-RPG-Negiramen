@@ -136,14 +136,14 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding SourceImageWidthAsInt, Mode=OneWay}"/>
+                   Text="{Binding TilesetSourceImageWidthAsInt, Mode=OneWay}"/>
 
             <!-- 元画像の縦幅。読取専用 -->
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding SourceImageHeightAsInt, Mode=OneWay}"/>
+                   Text="{Binding TilesetSourceImageHeightAsInt, Mode=OneWay}"/>
 
             <!-- 「グリッド位相」 -->
             <Label Grid.Row="1" Grid.Column="3"
@@ -239,14 +239,14 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingImageWidthAsInt}"/>
+                   Text="{Binding TilesetWorkingImageWidthAsInt}"/>
 
             <!-- 元画像の縦幅。読取専用 -->
             <Label Grid.Row="3" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingImageHeightAsInt}"/>
+                   Text="{Binding TilesetWorkingImageHeightAsInt}"/>
 
             <!-- ズーム後：グリッド位相左 -->
             <Label Grid.Row="3" Grid.Column="4"
@@ -316,7 +316,7 @@
                                    Grid.Row="0" Grid.Column="0"
                                    HorizontalOptions="Start" VerticalOptions="Start"
                                    Margin="4,4,0,0"
-                                   WidthRequest="{Binding WorkingImageWidthAsInt}" HeightRequest="{Binding WorkingImageHeightAsInt}"                       
+                                   WidthRequest="{Binding TilesetWorkingImageWidthAsInt}" HeightRequest="{Binding TilesetWorkingImageHeightAsInt}"                       
                                    IgnorePixelScaling="True"
                                    PaintSurface="skiaView1_PaintSurface">
                     <skia:SKCanvasView.GestureRecognizers>
@@ -356,7 +356,7 @@
                 <GraphicsView x:Name="coloredMapGraphicsView"
                               HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="4,4,0,0"
-                              WidthRequest="{Binding WorkingImageWidthAsInt}" HeightRequest="{Binding WorkingImageHeightAsInt}"
+                              WidthRequest="{Binding TilesetWorkingImageWidthAsInt}" HeightRequest="{Binding TilesetWorkingImageHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
                         <modelsDrawing:ColoredMap BindingContext="{x:Reference thisContentPage}"

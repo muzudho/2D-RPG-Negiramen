@@ -35,24 +35,7 @@
 
         // - パブリック・プロパティ
 
-        #region プロパティ（タイルセット画像ファイルへのパス）
-        /// <summary>
-        ///     タイルセット画像ファイルへのパス
-        /// </summary>
-        public Models.FileEntries.Locations.TilesetImageFile TilesetImageFile
-        {
-            get => _tilesetImageFile;
-            set
-            {
-                if (_tilesetImageFile != value)
-                {
-                    _tilesetImageFile = value;
-                }
-            }
-        }
-        #endregion
-
-        #region プロパティ（タイルセット設定ファイルへのパス）
+        #region プロパティ（タイルセット設定）
         /// <summary>
         ///     タイルセット設定ファイルへのパス（文字列形式）
         /// </summary>
@@ -89,6 +72,156 @@
                     _tilesetSettingsFile = value;
                 }
             }
+        }
+
+        /// <summary>
+        ///     タイルセット設定
+        /// </summary>
+        public Models.FileEntries.TilesetSettings TilesetSettings
+        {
+            get => this._tilesetSettings;
+            set
+            {
+                if (this._tilesetSettings != value)
+                {
+                    this._tilesetSettings = value;
+                    OnPropertyChanged(nameof(TilesetSettings));
+
+                    // TODO これ要るか？ 再描画
+                    NotifyTileIdChange();
+                }
+            }
+        }
+        #endregion
+
+        #region プロパティ（タイルセット元画像）
+        /// <summary>
+        ///     タイルセット元画像ファイルへのパス
+        /// </summary>
+        public Models.FileEntries.Locations.TilesetImageFile TilesetImageFile
+        {
+            get => tilesetImageFile;
+            set
+            {
+                if (tilesetImageFile != value)
+                {
+                    tilesetImageFile = value;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     タイルセット画像ファイルへのパス（文字列形式）
+        /// </summary>
+        public string TilesetImageFilePathAsStr
+        {
+            get => tilesetImageFile.Path.AsStr;
+            set
+            {
+                if (tilesetImageFile.Path.AsStr != value)
+                {
+                    tilesetImageFile = new Models.FileEntries.Locations.TilesetImageFile(
+                        pathSource: FileEntryPathSource.FromString(value),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
+                }
+            }
+        }
+
+        // タイルセット元画像
+        SKBitmap tilesetSourceBitmap = new SKBitmap();
+
+        /// <summary>
+        ///     タイルセット元画像
+        /// </summary>
+        public SKBitmap TilesetSourceBitmap
+        {
+            get => this.tilesetSourceBitmap;
+        }
+
+        /// <summary>
+        ///     タイルセット元画像の設定
+        /// </summary>
+        /// <param name="bitmap"></param>
+        public void SetTilesetSourceBitmap(SKBitmap bitmap)
+        {
+            if (this.tilesetSourceBitmap != bitmap)
+            {
+                this.tilesetSourceBitmap = bitmap;
+
+                // タイルセット画像のサイズ設定（画像の再作成）
+                this.tilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+                OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
+                OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
+
+                // 作業画像の作成
+                this.RemakeWorkingImage();
+            }
+        }
+
+        /// <summary>
+        ///     タイルセット元画像のサイズ
+        /// </summary>
+        public Models.Size TilesetSourceImageSize => tilesetSourceImageSize;
+        #endregion
+
+        #region プロパティ（タイルセット作業画像関連）
+        /// <summary>
+        ///     タイルセット作業画像ファイルへのパス（文字列形式）
+        /// </summary>
+        public string TilesetWorkingImageFilePathAsStr
+        {
+            get => App.GetOrLoadUserConfiguration().WorkingTilesetImageFile.Path.AsStr;
+        }
+
+        /// <summary>
+        ///     タイルセット作業画像。ビットマップ形式
+        /// </summary>
+        public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
+        #endregion
+
+        #region プロパティ（ズーム）
+        Models.Zoom zoom = Models.Zoom.IdentityElement;
+
+        /// <summary>
+        ///     ズーム
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///     </list>
+        /// </summary>
+        public Models.Zoom Zoom
+        {
+            get => this.zoom;
+            set
+            {
+                if (this.zoom != value)
+                {
+                    this.ZoomAsDouble = value.AsDouble;
+                }
+            }
+        }
+
+        // ズーム最大
+        Models.Zoom zoomMax = new Models.Zoom(4);
+
+        /// <summary>
+        ///     ズーム最大
+        /// </summary>
+        public double ZoomMaxAsDouble
+        {
+            get => this.zoomMax.AsDouble;
+        }
+
+        // ズーム最小
+        Models.Zoom zoomMin = new Models.Zoom(0.5);
+
+        /// <summary>
+        ///     ズーム最小
+        /// </summary>
+        public double ZoomMinAsDouble
+        {
+            get => this.zoomMin.AsDouble;
         }
         #endregion
 
@@ -139,9 +272,7 @@
                 // TODO コメントもリフレッシュしたい
             }
         }
-        #endregion
 
-        #region プロパティ（選択タイルＩｄ）
         /// <summary>
         ///     選択タイルＩｄ
         /// </summary>
@@ -214,123 +345,9 @@
         }
         #endregion
 
-        #region プロパティ（タイルセットの元画像）
-        SKBitmap tilesetSourceBitmap = new SKBitmap();
-
-        /// <summary>
-        ///     タイルセットの元画像
-        /// </summary>
-        public SKBitmap TilesetSourceBitmap
-        {
-            get => this.tilesetSourceBitmap;
-        }
-
-        /// <summary>
-        ///     タイルセット元画像の設定
-        /// </summary>
-        /// <param name="bitmap"></param>
-        public void SetTilesetSourceBitmap(SKBitmap bitmap)
-        {
-            if (this.tilesetSourceBitmap != bitmap)
-            {
-                this.tilesetSourceBitmap = bitmap;
-
-                // タイルセット画像のサイズ設定（画像の再作成）
-                this.sourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
-                OnPropertyChanged(nameof(SourceImageWidthAsInt));
-                OnPropertyChanged(nameof(SourceImageHeightAsInt));
-
-                // 作業画像の作成
-                this.RemakeWorkingImage();
-            }
-        }
-        #endregion
-
-        #region プロパティ（タイルセットの作業画像。ビットマップ形式）
-        /// <summary>
-        ///     タイルセットの作業画像。ビットマップ形式
-        /// </summary>
-        public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
-        #endregion
-
-        #region プロパティ（元画像のサイズ）
-        /// <summary>
-        ///     元画像のサイズ
-        /// </summary>
-        public Models.Size SourceImageSize => sourceImageSize;
-        #endregion
-
-        #region プロパティ（ズーム）
-        Models.Zoom zoom = Models.Zoom.IdentityElement;
-
-        /// <summary>
-        ///     ズーム
-        ///     
-        ///     <list type="bullet">
-        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
-        ///     </list>
-        /// </summary>
-        public Models.Zoom Zoom
-        {
-            get => this.zoom;
-            set
-            {
-                if (this.zoom != value)
-                {
-                    this.ZoomAsDouble = value.AsDouble;
-                }
-            }
-        }
-        #endregion
-
-        #region プロパティ（ズーム最大）
-        Models.Zoom zoomMax = new Models.Zoom(4);
-
-        /// <summary>
-        ///     ズーム最大
-        /// </summary>
-        public double ZoomMaxAsDouble
-        {
-            get => this.zoomMax.AsDouble;
-        }
-        #endregion
-
-        #region プロパティ（ズーム最小）
-        Models.Zoom zoomMin = new Models.Zoom(0.5);
-
-        /// <summary>
-        ///     ズーム最小
-        /// </summary>
-        public double ZoomMinAsDouble
-        {
-            get => this.zoomMin.AsDouble;
-        }
-        #endregion
-
         // - パブリック変更通知プロパティ
 
-        #region 変更通知プロパティ（タイルセット設定）
-        /// <summary>
-        ///     タイルセット設定
-        /// </summary>
-        public Models.FileEntries.TilesetSettings TilesetSettings
-        {
-            get => this._tilesetSettings;
-            set
-            {
-                if (this._tilesetSettings != value)
-                {
-                    this._tilesetSettings = value;
-                    OnPropertyChanged(nameof(TilesetSettings));
-
-                    // TODO これ要るか？ 再描画
-                    NotifyTileIdChange();
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（現在選択中の文化情報。文字列形式）
+        #region 変更通知プロパティ（ロケール関連）
         /// <summary>
         ///     現在選択中の文化情報。文字列形式
         /// </summary>
@@ -349,87 +366,50 @@
                 }
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（ロケールＩｄのリスト）
         /// <summary>
         ///     ロケールＩｄのリスト
         /// </summary>
         public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
         #endregion
 
-        #region 変更通知プロパティ（作業中のタイルセット画像ファイルへのパス（文字列形式））
+        #region 変更通知プロパティ（タイルセット元画像関連）
         /// <summary>
-        ///     作業中のタイルセット画像ファイルへのパス（文字列形式）
+        ///     タイルセット元画像の横幅。読取専用
         /// </summary>
-        public string WorkingTilesetImageFilePathAsStr
+        public int TilesetSourceImageWidthAsInt
         {
-            get => App.GetOrLoadUserConfiguration().WorkingTilesetImageFile.Path.AsStr;
+            get => tilesetSourceImageSize.Width.AsInt;
+        }
+
+        /// <summary>
+        ///     タイルセット元画像の縦幅。読取専用
+        /// </summary>
+        public int TilesetSourceImageHeightAsInt
+        {
+            get => tilesetSourceImageSize.Height.AsInt;
         }
         #endregion
 
-        #region 変更通知プロパティ（タイルセット画像ファイルへのパス（文字列形式））
+        #region 変更通知プロパティ（タイルセット作業画像関連）
         /// <summary>
-        ///     タイルセット画像ファイルへのパス（文字列形式）
+        ///     タイルセット作業画像の横幅。読取専用
         /// </summary>
-        public string TilesetImageFilePathAsStr
-        {
-            get => _tilesetImageFile.Path.AsStr;
-            set
-            {
-                if (_tilesetImageFile.Path.AsStr != value)
-                {
-                    _tilesetImageFile = new Models.FileEntries.Locations.TilesetImageFile(
-                        pathSource: FileEntryPathSource.FromString(value),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
-                    OnPropertyChanged(nameof(TilesetImageFilePathAsStr));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（元画像の横幅。読取専用）
-        /// <summary>
-        ///     元画像の横幅。読取専用
-        /// </summary>
-        public int SourceImageWidthAsInt
-        {
-            get => sourceImageSize.Width.AsInt;
-        }
-        #endregion
-
-        #region 変更通知プロパティ（元画像の縦幅。読取専用）
-        /// <summary>
-        ///     元画像の縦幅。読取専用
-        /// </summary>
-        public int SourceImageHeightAsInt
-        {
-            get => sourceImageSize.Height.AsInt;
-        }
-        #endregion
-
-        #region 変更通知プロパティ（作業画像の横幅。読取専用）
-        /// <summary>
-        ///     作業画像の横幅。読取専用
-        /// </summary>
-        public int WorkingImageWidthAsInt
+        public int TilesetWorkingImageWidthAsInt
         {
             get => workingImageSize.Width.AsInt;
         }
-        #endregion
 
-        #region 変更通知プロパティ（作業画像の縦幅。読取専用）
         /// <summary>
-        ///     作業画像の縦幅。読取専用
+        ///     タイルセット作業画像の縦幅。読取専用
         /// </summary>
-        public int WorkingImageHeightAsInt
+        public int TilesetWorkingImageHeightAsInt
         {
             get => workingImageSize.Height.AsInt;
         }
         #endregion
 
-        #region 変更通知プロパティ（グリッドのキャンバス・サイズ）
+        #region 変更通知プロパティ（グリッドのキャンバス・サイズ関連）
         /// <summary>
         ///     <pre>
         ///         グリッドのキャンバス・サイズ
@@ -491,77 +471,27 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（タイル・カーソルのキャンバス・サイズ）
+        #region 変更通知プロパティ（グリッドの線の太さの半分）
         /// <summary>
-        ///     <pre>
-        ///         タイル・カーソルのキャンバス・サイズ
-        ///         
-        ///         カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする
-        ///     </pre>
+        ///     グリッドの線の太さの半分
         /// </summary>
-        public Models.Size TileCursorCanvasSize
+        public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
+
+        ThicknessOfLine halfThicknessOfGridLine = new Models.ThicknessOfLine(1);
+
+        /// <summary>
+        ///     グリッド線の半分の太さ
+        /// </summary>
+        internal ThicknessOfLine HalfThicknessOfGridLine
         {
-            get => _tileCursorCanvasSize;
+            get => this.halfThicknessOfGridLine;
             set
             {
-                if (_tileCursorCanvasSize != value)
+                if (this.halfThicknessOfGridLine != value)
                 {
-                    this.TileCursorCanvasWidthAsInt = value.Width.AsInt;
-                    this.TileCursorCanvasHeightAsInt = value.Height.AsInt;
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（タイル・カーソルのキャンバスの横幅）
-        /// <summary>
-        ///     <pre>
-        ///         タイル・カーソルのキャンバスの横幅
-        ///         
-        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
-        ///     </pre>
-        /// </summary>
-        public int TileCursorCanvasWidthAsInt
-        {
-            get => _tileCursorCanvasSize.Width.AsInt;
-            set
-            {
-                if (_tileCursorCanvasSize.Width.AsInt != value)
-                {
-                    _tileCursorCanvasSize = new Models.Size(new Models.Width(value), _tileCursorCanvasSize.Height);
-
-                    // キャンバスを再描画
-                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel TileCursorCanvasWidthAsInt set]");
-
-                    // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（タイル・カーソルのキャンバスの縦幅）
-        /// <summary>
-        ///     <pre>
-        ///         タイル・カーソルのキャンバスの縦幅
-        ///         
-        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
-        ///     </pre>
-        /// </summary>
-        public int TileCursorCanvasHeightAsInt
-        {
-            get => _tileCursorCanvasSize.Height.AsInt;
-            set
-            {
-                if (_tileCursorCanvasSize.Height.AsInt != value)
-                {
-                    _tileCursorCanvasSize = new Models.Size(_tileCursorCanvasSize.Width, new Models.Height(value));
-
-                    // キャンバスを再描画
-                    RefreshCanvasOfTileCursor("[TileCropPageViewModel TileCursorCanvasHeightAsInt set]");
-
-                    // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
+                    this.halfThicknessOfGridLine = value;
+                    OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
+                    OnPropertyChanged(nameof(HalfThicknessOfGridLine));
                 }
             }
         }
@@ -663,7 +593,7 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（グリッド・タイルのサイズ）
+        #region 変更通知プロパティ（グリッド・タイルのサイズ関連）
         Models.Size sourceGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
 
         /// <summary>
@@ -769,11 +699,9 @@
         {
             get => (int)(this.sourceGridTileSize.Height.AsInt * this.ZoomAsDouble);
         }
-        #endregion
 
-        #region 変更通知プロパティ（タイルの最大サイズ）
         /// <summary>
-        ///     タイルの最大横幅
+        ///     グリッド・タイルの最大横幅
         /// </summary>
         public int TileMaxWidthAsInt
         {
@@ -781,11 +709,87 @@
         }
 
         /// <summary>
-        ///     タイルの最大縦幅
+        ///     グリッド・タイルの最大縦幅
         /// </summary>
         public int TileMaxHeightAsInt
         {
             get => App.GetOrLoadSettings().TileMaxSize.Height.AsInt;
+        }
+        #endregion
+
+        #region 変更通知プロパティ（タイル・カーソルのキャンバス・サイズ）
+        /// <summary>
+        ///     <pre>
+        ///         タイル・カーソルのキャンバス・サイズ
+        ///         
+        ///         カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする
+        ///     </pre>
+        /// </summary>
+        public Models.Size TileCursorCanvasSize
+        {
+            get => _tileCursorCanvasSize;
+            set
+            {
+                if (_tileCursorCanvasSize != value)
+                {
+                    this.TileCursorCanvasWidthAsInt = value.Width.AsInt;
+                    this.TileCursorCanvasHeightAsInt = value.Height.AsInt;
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（タイル・カーソルのキャンバスの横幅）
+        /// <summary>
+        ///     <pre>
+        ///         タイル・カーソルのキャンバスの横幅
+        ///         
+        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+        ///     </pre>
+        /// </summary>
+        public int TileCursorCanvasWidthAsInt
+        {
+            get => _tileCursorCanvasSize.Width.AsInt;
+            set
+            {
+                if (_tileCursorCanvasSize.Width.AsInt != value)
+                {
+                    _tileCursorCanvasSize = new Models.Size(new Models.Width(value), _tileCursorCanvasSize.Height);
+
+                    // キャンバスを再描画
+                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel TileCursorCanvasWidthAsInt set]");
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（タイル・カーソルのキャンバスの縦幅）
+        /// <summary>
+        ///     <pre>
+        ///         タイル・カーソルのキャンバスの縦幅
+        ///         
+        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+        ///     </pre>
+        /// </summary>
+        public int TileCursorCanvasHeightAsInt
+        {
+            get => _tileCursorCanvasSize.Height.AsInt;
+            set
+            {
+                if (_tileCursorCanvasSize.Height.AsInt != value)
+                {
+                    _tileCursorCanvasSize = new Models.Size(_tileCursorCanvasSize.Width, new Models.Height(value));
+
+                    // キャンバスを再描画
+                    RefreshCanvasOfTileCursor("[TileCropPageViewModel TileCursorCanvasHeightAsInt set]");
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
+                }
+            }
         }
         #endregion
 
@@ -936,32 +940,6 @@
                 {
                     this.deletesButtonIsEnabled = value;
                     OnPropertyChanged(nameof(DeletesButtonIsEnabled));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（グリッドの線の太さの半分）
-        /// <summary>
-        ///     グリッドの線の太さの半分
-        /// </summary>
-        public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
-
-        ThicknessOfLine halfThicknessOfGridLine = new Models.ThicknessOfLine(1);
-
-        /// <summary>
-        ///     グリッド線の半分の太さ
-        /// </summary>
-        internal ThicknessOfLine HalfThicknessOfGridLine
-        {
-            get => this.halfThicknessOfGridLine;
-            set
-            {
-                if (this.halfThicknessOfGridLine != value)
-                {
-                    this.halfThicknessOfGridLine = value;
-                    OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
-                    OnPropertyChanged(nameof(HalfThicknessOfGridLine));
                 }
             }
         }
@@ -1589,13 +1567,13 @@
         }
         #endregion
 
-        #region メソッド（作業中のタイルセット画像の再描画）
+        #region メソッド（作業中タイルセット画像の再描画）
         /// <summary>
-        ///     作業中のタイルセット画像の再描画
+        ///     作業中タイルセット画像の再描画
         /// </summary>
         internal void RefreshWorkingTilesetImage()
         {
-            OnPropertyChanged(nameof(WorkingTilesetImageFilePathAsStr));
+            OnPropertyChanged(nameof(TilesetWorkingImageFilePathAsStr));
         }
         #endregion
 
@@ -1605,7 +1583,7 @@
         /// <summary>
         ///     元画像サイズ
         /// </summary>
-        Models.Size sourceImageSize = Models.Size.Empty;
+        Models.Size tilesetSourceImageSize = Models.Size.Empty;
         #endregion
 
         #region フィールド（作業画像サイズ）
@@ -1622,7 +1600,12 @@
         Models.Size _gridCanvasSize = Models.Size.Empty;
         #endregion
 
-        #region フィールド（タイルセット設定）
+        #region フィールド（タイルセット設定関連）
+        /// <summary>
+        ///     タイルセット設定のCSVファイル
+        /// </summary>
+        Models.FileEntries.Locations.TilesetSettingsFile _tilesetSettingsFile = Models.FileEntries.Locations.TilesetSettingsFile.Empty;
+
         /// <summary>
         ///     タイルセット設定
         /// </summary>
@@ -1633,14 +1616,7 @@
         /// <summary>
         ///     タイルセット画像ファイルへのパス
         /// </summary>
-        Models.FileEntries.Locations.TilesetImageFile _tilesetImageFile = Models.FileEntries.Locations.TilesetImageFile.Empty;
-        #endregion
-
-        #region フィールド（タイルセットの設定CSVファイル）
-        /// <summary>
-        ///     タイルセットの設定CSVファイル
-        /// </summary>
-        Models.FileEntries.Locations.TilesetSettingsFile _tilesetSettingsFile = Models.FileEntries.Locations.TilesetSettingsFile.Empty;
+        Models.FileEntries.Locations.TilesetImageFile tilesetImageFile = Models.FileEntries.Locations.TilesetImageFile.Empty;
         #endregion
 
         #region フィールド（タイル・カーソルの位置（マージンとして））
@@ -1732,8 +1708,8 @@
 
             // 作業画像のサイズ計算
             this.workingImageSize = new Models.Size(
-                width: new Models.Width((int)(this.SourceImageSize.Width.AsInt * this.ZoomAsDouble)),
-                height: new Models.Height((int)(this.SourceImageSize.Height.AsInt * this.ZoomAsDouble)));
+                width: new Models.Width((int)(this.TilesetSourceImageSize.Width.AsInt * this.ZoomAsDouble)),
+                height: new Models.Height((int)(this.TilesetSourceImageSize.Height.AsInt * this.ZoomAsDouble)));
 
             // 作業画像のリサイズ
             this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(
@@ -1742,8 +1718,8 @@
                     height: this.workingImageSize.Height.AsInt),
                 quality: SKFilterQuality.Medium);
 
-            OnPropertyChanged(nameof(WorkingImageWidthAsInt));
-            OnPropertyChanged(nameof(WorkingImageHeightAsInt));
+            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
+            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
         }
 
         /// <summary>
@@ -1753,8 +1729,8 @@
         {
             // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
             this.GridCanvasSize = new Models.Size(
-                width: new Models.Width(this.SourceImageSize.Width.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Height(this.SourceImageSize.Height.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)));
+                width: new Models.Width(this.TilesetSourceImageSize.Width.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Height(this.TilesetSourceImageSize.Height.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
     }
 }
