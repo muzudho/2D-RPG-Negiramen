@@ -175,7 +175,7 @@
             <Entry Grid.Row="1" Grid.Column="7"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
-                   Text="{Binding GridTileWidthAsInt}"
+                   Text="{Binding SourceGridTileWidthAsInt}"
                    BackgroundColor="FloralWhite">
                 <Entry.Behaviors>
                     <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
@@ -191,7 +191,7 @@
             <Entry Grid.Row="1" Grid.Column="8"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
-                   Text="{Binding GridTileHeightAsInt}"
+                   Text="{Binding SourceGridTileHeightAsInt}"
                    BackgroundColor="FloralWhite">
                 <Entry.Behaviors>
                     <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
@@ -253,28 +253,28 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding SourceGridPhaseLeftAsInt}"/>
+                   Text="{Binding WorkingGridPhaseLeftAsInt}"/>
 
             <!-- ズーム後：グリッド位相上 -->
             <Label Grid.Row="3" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding SourceGridPhaseTopAsInt}"/>
+                   Text="{Binding WorkingGridPhaseTopAsInt}"/>
 
             <!-- ズーム後：タイル横幅 -->
             <Label Grid.Row="3" Grid.Column="7"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding GridTileWidthAsInt}"/>
+                   Text="{Binding WorkingGridTileWidthAsInt}"/>
 
             <!-- ズーム後：タイル縦幅 -->
             <Label Grid.Row="3" Grid.Column="8"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding GridTileHeightAsInt}"/>
+                   Text="{Binding WorkingGridTileHeightAsInt}"/>
 
             <!-- ズーム -->
             <Entry Grid.Row="3" Grid.Column="10"
@@ -345,7 +345,7 @@
                         <modelsDrawing:TilesetGrid BindingContext="{x:Reference thisContentPage}"
                                                    HalfThicknessOfGridLineAsInt="{Binding TileCropPageVM.HalfThicknessOfGridLineAsInt}"
                                                    SourceGridPhase="{Binding TileCropPageVM.SourceGridPhase}"
-                                                   GridTileSize="{Binding TileCropPageVM.GridTileSize}"/>
+                                                   SourceGridTileSize="{Binding TileCropPageVM.SourceGridTileSize}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 

@@ -56,22 +56,22 @@
             defaultValue: Models.Point.Empty);
         #endregion
 
-        #region 束縛可能プロパティ（グリッド・タイル・サイズ）
+        #region 束縛可能プロパティ（グリッド・タイル・サイズ。元画像ベース）
         /// <summary>
-        ///     グリッド・タイル・サイズ
+        ///     グリッド・タイル・サイズ。元画像ベース
         /// </summary>
-        public Models.Size GridTileSize
+        public Models.Size SourceGridTileSize
         {
-            get => (Models.Size)GetValue(GridTileSizeProperty);
-            set => SetValue(GridTileSizeProperty, value);
+            get => (Models.Size)GetValue(SourceGridTileSizeProperty);
+            set => SetValue(SourceGridTileSizeProperty, value);
         }
 
         /// <summary>
-        ///     グリッド・タイル・サイズ
+        ///     グリッド・タイル・サイズ。元画像ベース
         /// </summary>
-        public static BindableProperty GridTileSizeProperty = BindableProperty.Create(
+        public static BindableProperty SourceGridTileSizeProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(GridTileSize),
+            propertyName: nameof(SourceGridTileSize),
             // 返却型
             returnType: typeof(Models.Size),
             // これを含んでいるクラス
@@ -90,7 +90,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.SourceGridPhase.Dump()}, this.GridTileSize: {this.GridTileSize.Dump()}");
+            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.SourceGridPhase.Dump()}, this.SourceGridTileSize: {this.SourceGridTileSize.Dump()}");
 
             // 線の色
             canvas.StrokeColor = new Color(255, 0, 0, 127);
@@ -107,7 +107,7 @@
             int gridPhaseTopAsInt = this.SourceGridPhase.Y.AsInt;
 
             // グリッド・タイル・サイズ
-            Models.Size gridTileSize = this.GridTileSize;
+            Models.Size gridTileSize = this.SourceGridTileSize;
 
             // キャンバス・サイズ
             var canvasWidth = (int)dirtyRect.Width;

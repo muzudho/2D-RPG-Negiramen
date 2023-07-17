@@ -48,7 +48,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     グリッド・タイルのサイズ
     /// </summary>
-    Models.Size GridTileSize { get; }
+    Models.Size SourceGridTileSize { get; }
     #endregion
 
     #region プロパティ（タイル・カーソルの線の半分の太さ）
