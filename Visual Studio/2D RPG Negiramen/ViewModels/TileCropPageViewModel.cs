@@ -231,7 +231,17 @@
         /// <param name="bitmap"></param>
         public void SetTilesetSourceBitmap(SKBitmap bitmap)
         {
-            this.tilesetSourceBitmap = bitmap;
+            if (this.tilesetSourceBitmap != bitmap)
+            {
+                this.tilesetSourceBitmap = bitmap;
+
+                // タイルセット画像のサイズ設定（画像の再作成）
+                this.sourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+                OnPropertyChanged(nameof(SourceImageWidthAsInt));
+                OnPropertyChanged(nameof(SourceImageHeightAsInt));
+
+                this.RefreshWorkingImageSize();
+            }
         }
         #endregion
 
@@ -246,26 +256,7 @@
         /// <summary>
         ///     元画像のサイズ
         /// </summary>
-        public Models.Size SourceImageSize
-        {
-            get => sourceImageSize;
-        }
-
-        /// <summary>
-        ///     元画像サイズの設定
-        /// </summary>
-        /// <param name="value">サイズ</param>
-        void SetSourceImageSize(Models.Size value)
-        {
-            if (this.sourceImageSize != value)
-            {
-                this.sourceImageSize = value;
-                OnPropertyChanged(nameof(SourceImageWidthAsInt));
-                OnPropertyChanged(nameof(SourceImageHeightAsInt));
-
-                this.RefreshWorkingImageSize();
-            }
-        }
+        public Models.Size SourceImageSize => sourceImageSize;
         #endregion
 
         #region プロパティ（ズーム）
@@ -1509,9 +1500,6 @@
         {
             // ロケールが変わってるかもしれないので反映
             OnPropertyChanged(nameof(CultureInfoAsStr));
-
-            // タイルセット画像のサイズ設定（画像の再作成）
-            this.SetSourceImageSize(Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile));
 
             // グリッド・キャンバス
             {
