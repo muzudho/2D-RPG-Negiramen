@@ -344,8 +344,8 @@
                     <GraphicsView.Drawable>
                         <modelsDrawing:TilesetGrid BindingContext="{x:Reference thisContentPage}"
                                                    HalfThicknessOfGridLineAsInt="{Binding TileCropPageVM.HalfThicknessOfGridLineAsInt}"
-                                                   SourceGridPhase="{Binding TileCropPageVM.SourceGridPhase}"
-                                                   SourceGridTileSize="{Binding TileCropPageVM.SourceGridTileSize}"/>
+                                                   GridPhase="{Binding TileCropPageVM.WorkingGridPhase}"
+                                                   GridTileSize="{Binding TileCropPageVM.WorkingGridTileSize}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 

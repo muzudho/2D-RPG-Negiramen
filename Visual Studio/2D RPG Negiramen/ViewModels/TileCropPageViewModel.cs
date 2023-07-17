@@ -596,6 +596,7 @@
                     OnPropertyChanged(nameof(SourceGridPhase));
 
                     OnPropertyChanged(nameof(WorkingGridPhaseLeftAsInt));
+                    OnPropertyChanged(nameof(WorkingGridPhase));
                 }
             }
         }
@@ -620,8 +621,19 @@
                     OnPropertyChanged(nameof(SourceGridPhase));
 
                     OnPropertyChanged(nameof(WorkingGridPhaseTopAsInt));
+                    OnPropertyChanged(nameof(WorkingGridPhase));
                 }
             }
+        }
+
+        /// <summary>
+        ///     グリッド位相の左上表示位置。ズーム後
+        /// </summary>
+        public Models.Point WorkingGridPhase
+        {
+            get => new Models.Point(
+                x: new Models.X(this.WorkingGridPhaseLeftAsInt),
+                y: new Models.Y(this.WorkingGridPhaseTopAsInt));
         }
 
         /// <summary>
@@ -715,6 +727,16 @@
                     OnPropertyChanged(nameof(WorkingGridTileHeightAsInt));
                 }
             }
+        }
+
+        /// <summary>
+        ///     グリッド・タイルのサイズ。ズーム後
+        /// </summary>
+        public Models.Size WorkingGridTileSize
+        {
+            get => new Models.Size(
+                width: new Models.Width(this.WorkingGridTileWidthAsInt),
+                height: new Models.Height(this.WorkingGridTileHeightAsInt));
         }
 
         /// <summary>

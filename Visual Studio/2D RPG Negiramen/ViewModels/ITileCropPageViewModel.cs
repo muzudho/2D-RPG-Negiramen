@@ -42,6 +42,11 @@ public interface ITileCropPageViewModel
     ///     グリッド位相の左上表示位置
     /// </summary>
     Models.Point SourceGridPhase { get; }
+
+    /// <summary>
+    ///     グリッド位相の左上表示位置
+    /// </summary>
+    Models.Point WorkingGridPhase { get; }
     #endregion
 
     #region プロパティ（グリッド・タイルのサイズ）
@@ -49,6 +54,13 @@ public interface ITileCropPageViewModel
     ///     グリッド・タイルのサイズ
     /// </summary>
     Models.Size SourceGridTileSize { get; }
+    #endregion
+
+    #region プロパティ（グリッド・タイルのサイズ）
+    /// <summary>
+    ///     グリッド・タイルのサイズ
+    /// </summary>
+    Models.Size WorkingGridTileSize { get; }
     #endregion
 
     #region プロパティ（タイル・カーソルの線の半分の太さ）

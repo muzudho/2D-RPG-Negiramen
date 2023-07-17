@@ -32,22 +32,22 @@
             declaringType: typeof(TilesetGrid));
         #endregion
 
-        #region 束縛可能プロパティ（グリッド位相の左上表示位置。元画像ベース）
+        #region 束縛可能プロパティ（グリッド位相の左上表示位置）
         /// <summary>
-        ///     グリッド位相の左上表示位置。元画像ベース
+        ///     グリッド位相の左上表示位置
         /// </summary>
-        public Models.Point SourceGridPhase
+        public Models.Point GridPhase
         {
-            get => (Models.Point)GetValue(SourceGridPhaseProperty);
-            set => SetValue(SourceGridPhaseProperty, value);
+            get => (Models.Point)GetValue(GridPhaseProperty);
+            set => SetValue(GridPhaseProperty, value);
         }
 
         /// <summary>
-        /// グリッド位相の左上表示位置。元画像ベース
+        /// グリッド位相の左上表示位置
         /// </summary>
-        public static BindableProperty SourceGridPhaseProperty = BindableProperty.Create(
+        public static BindableProperty GridPhaseProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(SourceGridPhase),
+            propertyName: nameof(GridPhase),
             // 返却型
             returnType: typeof(Models.Point),
             // これを含んでいるクラス
@@ -56,22 +56,22 @@
             defaultValue: Models.Point.Empty);
         #endregion
 
-        #region 束縛可能プロパティ（グリッド・タイル・サイズ。元画像ベース）
+        #region 束縛可能プロパティ（グリッド・タイル・サイズ）
         /// <summary>
-        ///     グリッド・タイル・サイズ。元画像ベース
+        ///     グリッド・タイル・サイズ
         /// </summary>
-        public Models.Size SourceGridTileSize
+        public Models.Size GridTileSize
         {
-            get => (Models.Size)GetValue(SourceGridTileSizeProperty);
-            set => SetValue(SourceGridTileSizeProperty, value);
+            get => (Models.Size)GetValue(GridTileSizeProperty);
+            set => SetValue(GridTileSizeProperty, value);
         }
 
         /// <summary>
-        ///     グリッド・タイル・サイズ。元画像ベース
+        ///     グリッド・タイル・サイズ
         /// </summary>
-        public static BindableProperty SourceGridTileSizeProperty = BindableProperty.Create(
+        public static BindableProperty GridTileSizeProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(SourceGridTileSize),
+            propertyName: nameof(GridTileSize),
             // 返却型
             returnType: typeof(Models.Size),
             // これを含んでいるクラス
@@ -90,7 +90,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.SourceGridPhase.Dump()}, this.SourceGridTileSize: {this.SourceGridTileSize.Dump()}");
+            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.GridPhase.Dump()}, this.SourceGridTileSize: {this.GridTileSize.Dump()}");
 
             // 線の色
             canvas.StrokeColor = new Color(255, 0, 0, 127);
@@ -103,11 +103,11 @@
             canvas.StrokeSize = lineThickness.AsInt;
 
             // グリッド位相の左上表示位置
-            int gridPhaseLeftAsInt = this.SourceGridPhase.X.AsInt;
-            int gridPhaseTopAsInt = this.SourceGridPhase.Y.AsInt;
+            int gridPhaseLeftAsInt = this.GridPhase.X.AsInt;
+            int gridPhaseTopAsInt = this.GridPhase.Y.AsInt;
 
             // グリッド・タイル・サイズ
-            Models.Size gridTileSize = this.SourceGridTileSize;
+            Models.Size gridTileSize = this.GridTileSize;
 
             // キャンバス・サイズ
             var canvasWidth = (int)dirtyRect.Width;
