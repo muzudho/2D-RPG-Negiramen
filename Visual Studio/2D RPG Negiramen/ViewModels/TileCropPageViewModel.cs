@@ -434,23 +434,8 @@
             {
                 if (_gridCanvasSize != value)
                 {
-                    // 差分判定
-                    var dirtyWidth = _gridCanvasSize.Width != value.Width;
-                    var dirtyHeight = _gridCanvasSize.Height != value.Height;
-
-                    // 更新
-                    _gridCanvasSize = value;
-
-                    // 変更通知
-                    if (dirtyWidth)
-                    {
-                        OnPropertyChanged(nameof(GridCanvasWidthAsInt));
-                    }
-
-                    if (dirtyHeight)
-                    {
-                        OnPropertyChanged(nameof(GridCanvasHeightAsInt));
-                    }
+                    this.GridCanvasWidthAsInt = _gridCanvasSize.Width.AsInt;
+                    this.GridCanvasHeightAsInt = _gridCanvasSize.Height.AsInt;
                 }
             }
         }
