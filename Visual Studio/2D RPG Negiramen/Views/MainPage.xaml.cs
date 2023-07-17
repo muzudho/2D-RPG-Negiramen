@@ -471,20 +471,12 @@ public partial class MainPage : ContentPage
                     convert: (pathSource)=>FileEntryPath.From(pathSource,
                                                               replaceSeparators: true));
 
-                // タイルセット画像の縦横幅
-                var tilesetSize = Models.FileEntries.PNGHelper.GetImageSize(tilesetImageFile);
-
-                // グリッドの線の幅（初期値）
-                ThicknessOfLine gridLineThickness = new ThicknessOfLine(2);
-
                 await Shell.Current.GoToAsync(
                     state: shellNavigationState,
                     parameters: new Dictionary<string, object>
                     {
                         [key: "TilesetImageFile"] = tilesetImageFile,
                         [key: "TilesetSettingsFile"] = tilesetSettingsFile,
-                        // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
-                        [key: "GridCanvasSize"] = new Models.Size(new Models.Width(tilesetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tilesetSize.Height.AsInt + gridLineThickness.AsInt)),
                         [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
                         [key: "GridTileSize"] = new Models.Size(new Models.Width(32), new Models.Height(32)),
                     });

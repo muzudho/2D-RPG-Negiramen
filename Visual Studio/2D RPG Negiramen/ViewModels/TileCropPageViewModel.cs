@@ -2,7 +2,6 @@
 {
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -13,7 +12,6 @@
     /// </summary>
     [QueryProperty(nameof(TilesetImageFile), queryId: "TilesetImageFile")]
     [QueryProperty(nameof(TilesetSettingsFile), queryId: "TilesetSettingsFile")]
-    [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
     class TileCropPageViewModel : ObservableObject, ITileCropPageViewModel
@@ -434,8 +432,8 @@
             {
                 if (_gridCanvasSize != value)
                 {
-                    this.GridCanvasWidthAsInt = _gridCanvasSize.Width.AsInt;
-                    this.GridCanvasHeightAsInt = _gridCanvasSize.Height.AsInt;
+                    this.GridCanvasWidthAsInt = value.Width.AsInt;
+                    this.GridCanvasHeightAsInt = value.Height.AsInt;
                 }
             }
         }
@@ -1415,6 +1413,18 @@
 
             // タイルセット画像の縦横幅
             this.SourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+
+
+            // グリッド・キャンバス
+            {
+                // グリッドの線の幅（初期値）
+                ThicknessOfLine gridLineThickness = new ThicknessOfLine(2);
+
+                // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
+                this.GridCanvasSize = new Models.Size(
+                    width: new Models.Width(this.SourceImageSize.Width.AsInt + gridLineThickness.AsInt),
+                    height: new Models.Height(this.SourceImageSize.Height.AsInt + gridLineThickness.AsInt));
+            }
         }
         #endregion
 
@@ -1617,7 +1627,7 @@
             var copySourceMap = new SKBitmap();
             this.TilesetSourceBitmap.CopyTo(copySourceMap);
 
-            // 出力先画像（ズーム）
+            // TODO 出力先画像（ズーム）
         }
         #endregion
     }
