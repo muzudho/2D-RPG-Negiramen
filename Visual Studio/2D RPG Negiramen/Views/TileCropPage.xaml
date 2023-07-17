@@ -131,19 +131,19 @@
                    VerticalTextAlignment="Center"
                    Text="{app:Translate Image}"/>
 
-            <!-- 画像の横幅 -->
+            <!-- 元画像の横幅。読取専用 -->
             <Label Grid.Row="1" Grid.Column="1"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding ImageWidthAsInt}"/>
+                   Text="{Binding SourceImageWidthAsInt, Mode=OneWay}"/>
 
-            <!-- 画像の縦幅 -->
+            <!-- 元画像の縦幅。読取専用 -->
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding ImageHeightAsInt}"/>
+                   Text="{Binding SourceImageHeightAsInt, Mode=OneWay}"/>
 
             <!-- 「グリッド\n全体」 -->
             <Label Grid.Row="1" Grid.Column="3"
@@ -236,19 +236,19 @@
                         MAUI には マウス・ダウンと、マウス・アップの捕捉がなく、
                         ペン・ツールのようなことができない
                 -->
+                <!--
                 <Image IsVisible="False"
                        x:Name="tileImage"
                        Grid.Row="0" Grid.Column="0"
                        HorizontalOptions="Start" VerticalOptions="Start"
                        Margin="4,4,0,0"
-                       WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"                       
+                       WidthRequest="{Binding WorkingImageWidthAsInt}" HeightRequest="{Binding WorkingImageHeightAsInt}"                       
                        Source="{Binding WorkingTilesetImageFilePathAsStr}">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
                         <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved"/>
                     </Image.GestureRecognizers>
                 </Image>
-                <!--
                 -->
 
                 <!--    タイルセット画像
@@ -261,7 +261,7 @@
                                    Grid.Row="0" Grid.Column="0"
                                    HorizontalOptions="Start" VerticalOptions="Start"
                                    Margin="4,4,0,0"
-                                   WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"                       
+                                   WidthRequest="{Binding WorkingImageWidthAsInt}" HeightRequest="{Binding WorkingImageHeightAsInt}"                       
                                    IgnorePixelScaling="True"
                                    PaintSurface="skiaView1_PaintSurface">
                     <skia:SKCanvasView.GestureRecognizers>
@@ -294,7 +294,7 @@
                 <GraphicsView x:Name="coloredMapGraphicsView"
                               HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="4,4,0,0"
-                              WidthRequest="{Binding ImageWidthAsInt}" HeightRequest="{Binding ImageHeightAsInt}"
+                              WidthRequest="{Binding WorkingImageWidthAsInt}" HeightRequest="{Binding WorkingImageHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
                         <modelsDrawing:ColoredMap BindingContext="{x:Reference thisContentPage}"

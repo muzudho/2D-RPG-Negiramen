@@ -231,6 +231,7 @@ public partial class TileCropPage : ContentPage
                         await inputFileStream.CopyToAsync(memStream);
                         memStream.Seek(0, SeekOrigin.Begin);
 
+                        // 元画像
                         context.TilesetSourceBitmap = SkiaSharp.SKBitmap.Decode(memStream);
 
                         // 複製

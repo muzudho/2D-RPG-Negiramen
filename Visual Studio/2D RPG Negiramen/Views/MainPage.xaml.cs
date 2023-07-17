@@ -483,7 +483,6 @@ public partial class MainPage : ContentPage
                     {
                         [key: "TilesetImageFile"] = tilesetImageFile,
                         [key: "TilesetSettingsFile"] = tilesetSettingsFile,
-                        [key: "ImageSize"] = tilesetSize,
                         // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
                         [key: "GridCanvasSize"] = new Models.Size(new Models.Width(tilesetSize.Width.AsInt + gridLineThickness.AsInt), new Models.Height(tilesetSize.Height.AsInt + gridLineThickness.AsInt)),
                         [key: "GridLeftTop"] = new Models.Point(new Models.X(0), new Models.Y(0)),
@@ -522,30 +521,4 @@ public partial class MainPage : ContentPage
         PolicyOfView.ReactOnMouseLeaved((Button)sender);
     }
     #endregion
-
-    /*
-    #region イベントハンドラ（ピッカーにマウスカーソル進入時）
-    /// <summary>
-    ///     ピッカーにマウスカーソル進入時
-    /// </summary>
-    /// <param name="sender">このイベントを呼び出したコントロール</param>
-    /// <param name="e">この発生イベントの制御変数</param>
-    private void Picker_PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
-    {
-        PolicyOfView.ReactOnMouseEntered((Picker)sender);
-    }
-    #endregion
-
-    #region イベントハンドラ（ピッカーからマウスカーソル退出時）
-    /// <summary>
-    ///     ピッカーからマウスカーソル退出時
-    /// </summary>
-    /// <param name="sender">このイベントを呼び出したコントロール</param>
-    /// <param name="e">この発生イベントの制御変数</param>
-    private void Picker_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
-    {
-        PolicyOfView.ReactOnMouseLeaved((Picker)sender);
-    }
-    #endregion
-    */
 }

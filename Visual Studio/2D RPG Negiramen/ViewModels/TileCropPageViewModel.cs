@@ -2,6 +2,7 @@
 {
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -12,7 +13,6 @@
     /// </summary>
     [QueryProperty(nameof(TilesetImageFile), queryId: "TilesetImageFile")]
     [QueryProperty(nameof(TilesetSettingsFile), queryId: "TilesetSettingsFile")]
-    [QueryProperty(nameof(ImageSize), queryId: "ImageSize")]
     [QueryProperty(nameof(GridCanvasSize), queryId: "GridCanvasSize")]
     [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
     [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
@@ -232,6 +232,28 @@
         public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
         #endregion
 
+        #region プロパティ（元画像のサイズ）
+        /// <summary>
+        ///     元画像のサイズ
+        /// </summary>
+        public Models.Size SourceImageSize
+        {
+            get => sourceImageSize;
+            set
+            {
+                if (this.sourceImageSize != value)
+                {
+                    this.sourceImageSize = value;
+                    OnPropertyChanged(nameof(SourceImageWidthAsInt));
+                    OnPropertyChanged(nameof(SourceImageHeightAsInt));
+
+                    OnPropertyChanged(nameof(WorkingImageWidthAsInt));
+                    OnPropertyChanged(nameof(WorkingImageHeightAsInt));
+                }
+            }
+        }
+        #endregion
+
         #region プロパティ（ズーム）
         Models.Zoom zoom = Models.Zoom.IdentityElement;
 
@@ -357,68 +379,43 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（画像サイズ）
+        #region 変更通知プロパティ（元画像の横幅。読取専用）
         /// <summary>
-        ///     画像のサイズ
+        ///     元画像の横幅。読取専用
         /// </summary>
-        public Models.Size ImageSize
+        public int SourceImageWidthAsInt
         {
-            get => _imageSize;
-            set
-            {
-                if (_imageSize != value)
-                {
-                    // 差分判定
-                    var dirtyWidth = _imageSize.Width != value.Width;
-                    var dirtyHeight = _imageSize.Height != value.Height;
-
-                    // 更新
-                    _imageSize = value;
-
-                    // 変更通知
-                    if (dirtyWidth)
-                    {
-                        OnPropertyChanged(nameof(ImageWidthAsInt));
-                    }
-
-                    if (dirtyHeight)
-                    {
-                        OnPropertyChanged(nameof(ImageHeightAsInt));
-                    }
-                }
-            }
+            get => sourceImageSize.Width.AsInt;
         }
+        #endregion
 
+        #region 変更通知プロパティ（元画像の縦幅。読取専用）
         /// <summary>
-        ///     画像の横幅
+        ///     元画像の縦幅。読取専用
         /// </summary>
-        public int ImageWidthAsInt
+        public int SourceImageHeightAsInt
         {
-            get => _imageSize.Width.AsInt;
-            set
-            {
-                if (_imageSize.Width.AsInt != value)
-                {
-                    _imageSize = new Models.Size(new Models.Width(value), _imageSize.Height);
-                    OnPropertyChanged(nameof(ImageWidthAsInt));
-                }
-            }
+            get => sourceImageSize.Height.AsInt;
         }
+        #endregion
 
+        #region 変更通知プロパティ（作業画像の横幅。読取専用）
         /// <summary>
-        ///     画像の縦幅
+        ///     作業画像の横幅。読取専用
         /// </summary>
-        public int ImageHeightAsInt
+        public int WorkingImageWidthAsInt
         {
-            get => _imageSize.Height.AsInt;
-            set
-            {
-                if (_imageSize.Height.AsInt != value)
-                {
-                    _imageSize = new Models.Size(_imageSize.Width, new Models.Height(value));
-                    OnPropertyChanged(nameof(ImageHeightAsInt));
-                }
-            }
+            get => sourceImageSize.Width.AsInt; // TODO ★ 作業画像の横幅。読取専用
+        }
+        #endregion
+
+        #region 変更通知プロパティ（作業画像の縦幅。読取専用）
+        /// <summary>
+        ///     作業画像の縦幅。読取専用
+        /// </summary>
+        public int WorkingImageHeightAsInt
+        {
+            get => sourceImageSize.Height.AsInt;   // TODO ★ 作業画像の縦幅。読取専用
         }
         #endregion
 
@@ -1430,6 +1427,9 @@
         {
             // ロケールが変わってるかもしれないので反映
             OnPropertyChanged(nameof(CultureInfoAsStr));
+
+            // タイルセット画像の縦横幅
+            this.SourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
         }
         #endregion
 
@@ -1522,11 +1522,11 @@
 
         // - プライベート・フィールド
 
-        #region フィールド（画像サイズ）
+        #region フィールド（元画像サイズ）
         /// <summary>
-        ///     画像サイズ
+        ///     元画像サイズ
         /// </summary>
-        Models.Size _imageSize = Models.Size.Empty;
+        Models.Size sourceImageSize = Models.Size.Empty;
         #endregion
 
         #region フィールド（内部的グリッド画像サイズ）
@@ -1619,6 +1619,20 @@
             {
                 this.GridCanvasWidthAsInt++;
             }
+        }
+        #endregion
+
+        #region メソッド（ズーム）
+        void DoZoom()
+        {
+            // 拡大率
+            double zoomNum = this.ZoomAsDouble;
+
+            // 元画像の複製
+            var copySourceMap = new SKBitmap();
+            this.TilesetSourceBitmap.CopyTo(copySourceMap);
+
+            // 出力先画像（ズーム）
         }
         #endregion
     }
