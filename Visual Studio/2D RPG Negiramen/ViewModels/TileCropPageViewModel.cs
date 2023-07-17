@@ -243,8 +243,7 @@
                     OnPropertyChanged(nameof(SourceImageWidthAsInt));
                     OnPropertyChanged(nameof(SourceImageHeightAsInt));
 
-                    OnPropertyChanged(nameof(WorkingImageWidthAsInt));
-                    OnPropertyChanged(nameof(WorkingImageHeightAsInt));
+                    this.RefreshWorkingImageSize();
                 }
             }
         }
@@ -401,7 +400,7 @@
         /// </summary>
         public int WorkingImageWidthAsInt
         {
-            get => sourceImageSize.Width.AsInt; // TODO ★ 作業画像の横幅。読取専用
+            get => workingImageSize.Width.AsInt;
         }
         #endregion
 
@@ -411,7 +410,7 @@
         /// </summary>
         public int WorkingImageHeightAsInt
         {
-            get => sourceImageSize.Height.AsInt;   // TODO ★ 作業画像の縦幅。読取専用
+            get => workingImageSize.Height.AsInt;
         }
         #endregion
 
@@ -748,6 +747,8 @@
                     {
                         this.zoom = new Models.Zoom(value);
                         OnPropertyChanged(nameof(ZoomAsDouble));
+
+                        this.RefreshWorkingImageSize();
                     }
                 }
             }
@@ -1528,6 +1529,13 @@
         Models.Size sourceImageSize = Models.Size.Empty;
         #endregion
 
+        #region フィールド（作業画像サイズ）
+        /// <summary>
+        ///     作業画像サイズ
+        /// </summary>
+        Models.Size workingImageSize = Models.Size.Empty;
+        #endregion
+
         #region フィールド（内部的グリッド画像サイズ）
         /// <summary>
         ///     内部的グリッド画像サイズ
@@ -1632,6 +1640,20 @@
             this.TilesetSourceBitmap.CopyTo(copySourceMap);
 
             // TODO 出力先画像（ズーム）
+        }
+        #endregion
+
+        #region メソッド（作業画像サイズの再計算）
+        /// <summary>
+        ///     作業画像サイズの再計算
+        /// </summary>
+        void RefreshWorkingImageSize()
+        {
+            this.workingImageSize = new Models.Size(
+                width: new Models.Width((int)(this.SourceImageSize.Width.AsInt * this.ZoomAsDouble)),
+                height: new Models.Height((int)(this.SourceImageSize.Height.AsInt * this.ZoomAsDouble)));
+            OnPropertyChanged(nameof(WorkingImageWidthAsInt));
+            OnPropertyChanged(nameof(WorkingImageHeightAsInt));
         }
         #endregion
     }
