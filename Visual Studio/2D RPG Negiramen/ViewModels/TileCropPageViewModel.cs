@@ -571,7 +571,6 @@
                 {
                     this.SourceGridPhaseLeftAsInt = value.X.AsInt;
                     this.SourceGridPhaseTopAsInt = value.Y.AsInt;
-                    OnPropertyChanged(nameof(SourceGridPhase));
                 }
             }
         }
@@ -668,7 +667,6 @@
                 {
                     this.SourceGridTileWidthAsInt = value.Width.AsInt;
                     this.SourceGridTileHeightAsInt = value.Height.AsInt;
-                    OnPropertyChanged(nameof(SourceGridTileSize));
                 }
             }
         }
@@ -696,7 +694,10 @@
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridTileWidthAsInt));
+                    OnPropertyChanged(nameof(SourceGridTileSize));
+
                     OnPropertyChanged(nameof(WorkingGridTileWidthAsInt));
+                    OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
         }
@@ -724,13 +725,16 @@
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridTileHeightAsInt));
+                    OnPropertyChanged(nameof(SourceGridTileSize));
+
                     OnPropertyChanged(nameof(WorkingGridTileHeightAsInt));
+                    OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
         }
 
         /// <summary>
-        ///     グリッド・タイルのサイズ。ズーム後
+        ///     グリッド・タイルのサイズ。ズーム後（読取専用）
         /// </summary>
         public Models.Size WorkingGridTileSize
         {
@@ -740,7 +744,7 @@
         }
 
         /// <summary>
-        ///     グリッド・タイルの横幅。ズーム後
+        ///     グリッド・タイルの横幅。ズーム後（読取専用）
         /// </summary>
         public int WorkingGridTileWidthAsInt
         {
@@ -748,7 +752,7 @@
         }
 
         /// <summary>
-        ///     グリッド・タイルの縦幅。ズーム後
+        ///     グリッド・タイルの縦幅。ズーム後（読取専用）
         /// </summary>
         public int WorkingGridTileHeightAsInt
         {
@@ -1497,13 +1501,8 @@
                 // グリッドのタイルサイズ（初期値）
                 this.SourceGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
 
-                // グリッドの線の幅（初期値）
-                ThicknessOfLine gridLineThickness = new ThicknessOfLine(2);
-
-                // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
-                this.GridCanvasSize = new Models.Size(
-                    width: new Models.Width(this.SourceImageSize.Width.AsInt + gridLineThickness.AsInt),
-                    height: new Models.Height(this.SourceImageSize.Height.AsInt + gridLineThickness.AsInt));
+                // グリッド・キャンバスの再作成
+                this.RemakeGridCanvas();
             }
         }
         #endregion
@@ -1733,7 +1732,7 @@
         #endregion
 
         /// <summary>
-        ///     作業用画像を作り直す
+        ///     作業用画像の再作成
         /// </summary>
         void RemakeWorkingImage(int width, int height)
         {
@@ -1754,6 +1753,17 @@
                     width: width,
                     height: height),
                 quality: SKFilterQuality.Medium);
+        }
+
+        /// <summary>
+        ///     グリッド・キャンバスの再作成
+        /// </summary>
+        void RemakeGridCanvas()
+        {
+            // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
+            this.GridCanvasSize = new Models.Size(
+                width: new Models.Width(this.SourceImageSize.Width.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Height(this.SourceImageSize.Height.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
     }
 }
