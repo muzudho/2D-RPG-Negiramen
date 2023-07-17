@@ -213,15 +213,15 @@
             <Entry Grid.Row="1" Grid.Column="10"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
-                   Text="{Binding ZoomAsInt}"
+                   Text="{Binding ZoomAsDouble}"
                    BackgroundColor="FloralWhite">
                 <Entry.Behaviors>
                     <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
                                                        ValidStyle="{StaticResource ValidEntryStyle}"
                                                        Flags="ValidateOnValueChanged"
-                                                       MinimumValue="1"
-                                                       MaximumValue="4"
-                                                       MaximumDecimalPlaces="0" />
+                                                       MinimumValue="{Binding ZoomMinAsDouble}"
+                                                       MaximumValue="{Binding ZoomMaxAsDouble}"
+                                                       MaximumDecimalPlaces="1" />
                 </Entry.Behaviors>
             </Entry>
 

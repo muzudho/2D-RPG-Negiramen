@@ -245,10 +245,33 @@
             {
                 if (this.zoom != value)
                 {
-                    this.zoom = value;
-                    OnPropertyChanged(nameof(ZoomAsInt));
+                    this.ZoomAsDouble = value.AsDouble;
                 }
             }
+        }
+        #endregion
+
+        #region プロパティ（ズーム最大）
+        Models.Zoom zoomMax = new Models.Zoom(4);
+
+        /// <summary>
+        ///     ズーム最大
+        /// </summary>
+        public double ZoomMaxAsDouble
+        {
+            get => this.zoomMax.AsDouble;
+        }
+        #endregion
+
+        #region プロパティ（ズーム最小）
+        Models.Zoom zoomMin = new Models.Zoom(0.5);
+
+        /// <summary>
+        ///     ズーム最小
+        /// </summary>
+        public double ZoomMinAsDouble
+        {
+            get => this.zoomMin.AsDouble;
         }
         #endregion
 
@@ -736,15 +759,18 @@
         /// <summary>
         ///     ズーム。整数形式
         /// </summary>
-        public int ZoomAsInt
+        public double ZoomAsDouble
         {
-            get => this.zoom.AsInt;
+            get => this.zoom.AsDouble;
             set
             {
-                if (this.zoom.AsInt != value)
+                if (this.zoom.AsDouble != value)
                 {
-                    this.zoom = new Models.Zoom(value);
-                    OnPropertyChanged(nameof(ZoomAsInt));
+                    if (this.ZoomMinAsDouble <= value && value <= this.ZoomMaxAsDouble)
+                    {
+                        this.zoom = new Models.Zoom(value);
+                        OnPropertyChanged(nameof(ZoomAsDouble));
+                    }
                 }
             }
         }

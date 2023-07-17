@@ -79,7 +79,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return this.source;
+            return (this.source).GetHashCode();
         }
         #endregion
 
@@ -171,7 +171,7 @@
         /// <summary>
         ///     単位元オブジェクト
         /// </summary>
-        internal static Zoom IdentityElement = new Zoom(1);
+        internal static Zoom IdentityElement = new Zoom(1.0);
         #endregion
 
         // - その他
@@ -181,7 +181,7 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal Zoom(int source)
+        internal Zoom(double source)
         {
             this.source = source;
         }
@@ -193,7 +193,7 @@
         /// <summary>
         ///     値。整数型形式
         /// </summary>
-        internal int AsInt => source;
+        internal double AsDouble => source;
         #endregion
 
         // - プライベート・フィールド
@@ -202,7 +202,7 @@
         /// <summary>
         ///     値
         /// </summary>
-        int source;
+        double source;
         #endregion
     }
 }
