@@ -231,7 +231,7 @@ public partial class TileCropPage : ContentPage
                         memStream.Seek(0, SeekOrigin.Begin);
 
                         // 元画像
-                        context.TilesetSourceBitmap = SkiaSharp.SKBitmap.Decode(memStream);
+                        context.SetTilesetSourceBitmap(SkiaSharp.SKBitmap.Decode(memStream));
 
                         // 複製
                         context.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(context.TilesetSourceBitmap));

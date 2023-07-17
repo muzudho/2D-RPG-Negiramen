@@ -215,10 +215,24 @@
         #endregion
 
         #region プロパティ（タイルセットの元画像。ビットマップ形式）
+        SKBitmap tilesetSourceBitmap = new SKBitmap();
+
         /// <summary>
         ///     タイルセットの元画像。ビットマップ形式
         /// </summary>
-        public SKBitmap TilesetSourceBitmap { get; set; } = new SKBitmap();
+        public SKBitmap TilesetSourceBitmap
+        {
+            get => this.tilesetSourceBitmap;
+        }
+
+        /// <summary>
+        ///     タイルセット元画像の設定
+        /// </summary>
+        /// <param name="bitmap"></param>
+        public void SetTilesetSourceBitmap(SKBitmap bitmap)
+        {
+            this.tilesetSourceBitmap = bitmap;
+        }
         #endregion
 
         #region プロパティ（タイルセットの作業画像。ビットマップ形式）
@@ -235,16 +249,21 @@
         public Models.Size SourceImageSize
         {
             get => sourceImageSize;
-            set
-            {
-                if (this.sourceImageSize != value)
-                {
-                    this.sourceImageSize = value;
-                    OnPropertyChanged(nameof(SourceImageWidthAsInt));
-                    OnPropertyChanged(nameof(SourceImageHeightAsInt));
+        }
 
-                    this.RefreshWorkingImageSize();
-                }
+        /// <summary>
+        ///     元画像サイズの設定
+        /// </summary>
+        /// <param name="value">サイズ</param>
+        void SetSourceImageSize(Models.Size value)
+        {
+            if (this.sourceImageSize != value)
+            {
+                this.sourceImageSize = value;
+                OnPropertyChanged(nameof(SourceImageWidthAsInt));
+                OnPropertyChanged(nameof(SourceImageHeightAsInt));
+
+                this.RefreshWorkingImageSize();
             }
         }
         #endregion
@@ -819,6 +838,7 @@
                         this.RemakeWorkingImage(
                             width: (int)(this.SourceImageWidthAsInt * value),
                             height: (int)(this.SourceImageHeightAsInt * value));
+
                         this.RefreshWorkingImageSize();
 
                         OnPropertyChanged(nameof(ZoomAsDouble));
@@ -1490,8 +1510,8 @@
             // ロケールが変わってるかもしれないので反映
             OnPropertyChanged(nameof(CultureInfoAsStr));
 
-            // タイルセット画像の縦横幅
-            this.SourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+            // タイルセット画像のサイズ設定（画像の再作成）
+            this.SetSourceImageSize(Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile));
 
             // グリッド・キャンバス
             {
@@ -1738,15 +1758,6 @@
         {
             // 元画像をベースに、作業画像を複製
             this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
-
-            //// 作業画像の生成
-            //this.TilesetWorkingBitmap = new SKBitmap(
-            //    width: this.WorkingImageWidthAsInt,
-            //    height: this.WorkingImageHeightAsInt);
-
-            //// 元画像を、作業画像へコピー
-            //this.TilesetSourceBitmap.CopyTo(
-            //    destination: this.TilesetWorkingBitmap);
 
             this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(
                 size: new SKSizeI(
