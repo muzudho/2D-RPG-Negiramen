@@ -37,11 +37,11 @@ public interface ITileCropPageViewModel
     int HalfThicknessOfGridLineAsInt { get; }
     #endregion
 
-    #region プロパティ（グリッド全体の左上表示位置）
+    #region プロパティ（グリッド位相の左上表示位置）
     /// <summary>
-    ///     グリッド全体の左上表示位置
+    ///     グリッド位相の左上表示位置
     /// </summary>
-    Models.Point GridLeftTop { get; }
+    Models.Point GridPhase { get; }
     #endregion
 
     #region プロパティ（グリッド・タイルのサイズ）

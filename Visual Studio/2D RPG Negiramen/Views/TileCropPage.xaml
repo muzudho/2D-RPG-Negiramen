@@ -155,14 +155,14 @@
             <Entry Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
-                   Text="{Binding GridLeftAsInt}"
+                   Text="{Binding GridPhaseLeftAsInt}"
                    BackgroundColor="FloralWhite"/>
 
             <!-- グリッド位相上 -->
             <Entry Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
-                   Text="{Binding GridTopAsInt}"
+                   Text="{Binding GridPhaseTopAsInt}"
                    BackgroundColor="FloralWhite"/>
 
             <!-- 「グリッド\n１ます」 -->
@@ -293,7 +293,7 @@
                     <GraphicsView.Drawable>
                         <modelsDrawing:TilesetGrid BindingContext="{x:Reference thisContentPage}"
                                                    HalfThicknessOfGridLineAsInt="{Binding TileCropPageVM.HalfThicknessOfGridLineAsInt}"
-                                                   GridLeftTop="{Binding TileCropPageVM.GridLeftTop}"
+                                                   GridPhase="{Binding TileCropPageVM.GridPhase}"
                                                    GridTileSize="{Binding TileCropPageVM.GridTileSize}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>

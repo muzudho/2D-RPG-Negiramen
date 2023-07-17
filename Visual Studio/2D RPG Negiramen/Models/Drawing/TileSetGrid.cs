@@ -32,22 +32,22 @@
             declaringType: typeof(TilesetGrid));
         #endregion
 
-        #region 束縛可能プロパティ（グリッド全体の左上表示位置）
+        #region 束縛可能プロパティ（グリッド位相の左上表示位置）
         /// <summary>
-        ///     グリッド全体の左上表示位置
+        ///     グリッド位相の左上表示位置
         /// </summary>
-        public Models.Point GridLeftTop
+        public Models.Point GridPhase
         {
-            get => (Models.Point)GetValue(GridLeftTopProperty);
-            set => SetValue(GridLeftTopProperty, value);
+            get => (Models.Point)GetValue(GridPhaseProperty);
+            set => SetValue(GridPhaseProperty, value);
         }
 
         /// <summary>
-        /// グリッドの線の太さの半分
+        /// グリッド位相の左上表示位置
         /// </summary>
-        public static BindableProperty GridLeftTopProperty = BindableProperty.Create(
+        public static BindableProperty GridPhaseProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(GridLeftTop),
+            propertyName: nameof(GridPhase),
             // 返却型
             returnType: typeof(Models.Point),
             // これを含んでいるクラス
@@ -90,7 +90,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridLeftTop: {this.GridLeftTop.Dump()}, this.GridTileSize: {this.GridTileSize.Dump()}");
+            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridPhase: {this.GridPhase.Dump()}, this.GridTileSize: {this.GridTileSize.Dump()}");
 
             // 線の色
             canvas.StrokeColor = new Color(255, 0, 0, 127);
@@ -102,9 +102,9 @@
             Models.ThicknessOfLine lineThickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = lineThickness.AsInt;
 
-            // グリッド全体の左上表示位置
-            int paddingLeftAsInt = this.GridLeftTop.X.AsInt;
-            int paddingTopAsInt = this.GridLeftTop.Y.AsInt;
+            // グリッド位相の左上表示位置
+            int gridPhaseLeftAsInt = this.GridPhase.X.AsInt;
+            int gridPhaseTopAsInt = this.GridPhase.Y.AsInt;
 
             // グリッド・タイル・サイズ
             Models.Size gridTileSize = this.GridTileSize;
@@ -120,9 +120,9 @@
             // 線に太さが無いと無限ループするので、防止
             if (0 < gridTileSize.Width.AsInt)
             {
-                int y1 = halfThicknessOfLineAsInt + paddingTopAsInt;
-                int y2 = canvasHeight + halfThicknessOfLineAsInt + paddingTopAsInt;
-                for (var x = halfThicknessOfLineAsInt + paddingLeftAsInt; x < canvasWidth + lineThickness.AsInt + paddingLeftAsInt; x += gridTileSize.Width.AsInt)
+                int y1 = halfThicknessOfLineAsInt + gridPhaseTopAsInt;
+                int y2 = canvasHeight + halfThicknessOfLineAsInt + gridPhaseTopAsInt;
+                for (var x = halfThicknessOfLineAsInt + gridPhaseLeftAsInt; x < canvasWidth + lineThickness.AsInt + gridPhaseLeftAsInt; x += gridTileSize.Width.AsInt)
                 {
                     canvas.DrawLine(x, y1, x, y2);
                 }
@@ -135,15 +135,15 @@
             // 線に太さが無いと無限ループするので、防止
             if (0 < gridTileSize.Height.AsInt)
             {
-                int x1 = halfThicknessOfLineAsInt + paddingLeftAsInt;
+                int x1 = halfThicknessOfLineAsInt + gridPhaseLeftAsInt;
 
                 // CANCEL CODE: 横幅が偶数なら横幅を +1、奇数なら横幅を -1 するという TRICK CODE が別の箇所にあるので、
                 //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
                 //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
                 //              右辺の線の手前まで線を引くようにする
-                int x2 = canvasWidth - halfThicknessOfLineAsInt + paddingLeftAsInt;
+                int x2 = canvasWidth - halfThicknessOfLineAsInt + gridPhaseLeftAsInt;
 
-                for (var y = halfThicknessOfLineAsInt + paddingTopAsInt; y < canvasHeight + lineThickness.AsInt + paddingTopAsInt; y += gridTileSize.Height.AsInt)
+                for (var y = halfThicknessOfLineAsInt + gridPhaseTopAsInt; y < canvasHeight + lineThickness.AsInt + gridPhaseTopAsInt; y += gridTileSize.Height.AsInt)
                 {
                     canvas.DrawLine(x1, y, x2, y);
                 }

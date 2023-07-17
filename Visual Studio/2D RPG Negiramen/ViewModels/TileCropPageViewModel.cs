@@ -553,66 +553,66 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（グリッド全体の左上表示位置）
-        Models.Point gridLeftTop = Models.Point.Empty;
+        #region 変更通知プロパティ（グリッド位相の左上表示位置）
+        Models.Point gridPhase = Models.Point.Empty;
 
         /// <summary>
-        ///     グリッド全体の左上表示位置
+        ///     グリッド位相の左上表示位置
         /// </summary>
-        public Models.Point GridLeftTop
+        public Models.Point GridPhase
         {
-            get => this.gridLeftTop;
+            get => this.gridPhase;
             set
             {
-                if (this.gridLeftTop != value)
+                if (this.gridPhase != value)
                 {
-                    this.GridLeftAsInt = value.X.AsInt;
-                    this.GridTopAsInt = value.Y.AsInt;
-                    OnPropertyChanged(nameof(GridLeftTop));
+                    this.GridPhaseLeftAsInt = value.X.AsInt;
+                    this.GridPhaseTopAsInt = value.Y.AsInt;
+                    OnPropertyChanged(nameof(GridPhase));
                 }
             }
         }
 
         /// <summary>
-        ///     グリッド全体の左上表示位置ｘ
+        ///     グリッド位相の左上表示位置ｘ
         /// </summary>
-        public int GridLeftAsInt
+        public int GridPhaseLeftAsInt
         {
-            get => this.gridLeftTop.X.AsInt;
+            get => this.gridPhase.X.AsInt;
             set
             {
-                if (this.gridLeftTop.X.AsInt != value)
+                if (this.gridPhase.X.AsInt != value)
                 {
-                    this.gridLeftTop = new Models.Point(new Models.X(value), this.gridLeftTop.Y);
+                    this.gridPhase = new Models.Point(new Models.X(value), this.gridPhase.Y);
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
 
                     // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(GridLeftAsInt));
-                    OnPropertyChanged(nameof(GridLeftTop));
+                    OnPropertyChanged(nameof(GridPhaseLeftAsInt));
+                    OnPropertyChanged(nameof(GridPhase));
                 }
             }
         }
 
         /// <summary>
-        ///     グリッド全体の左上表示位置ｙ
+        ///     グリッド位相の左上表示位置ｙ
         /// </summary>
-        public int GridTopAsInt
+        public int GridPhaseTopAsInt
         {
-            get => this.gridLeftTop.Y.AsInt;
+            get => this.gridPhase.Y.AsInt;
             set
             {
-                if (this.gridLeftTop.Y.AsInt != value)
+                if (this.gridPhase.Y.AsInt != value)
                 {
-                    this.gridLeftTop = new Models.Point(this.gridLeftTop.X, new Models.Y(value));
+                    this.gridPhase = new Models.Point(this.gridPhase.X, new Models.Y(value));
 
                     // キャンバスを再描画
                     RefreshCanvasOfGrid();
 
                     // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(GridLeftAsInt));
-                    OnPropertyChanged(nameof(GridLeftTop));
+                    OnPropertyChanged(nameof(GridPhaseTopAsInt));
+                    OnPropertyChanged(nameof(GridPhase));
                 }
             }
         }
@@ -1416,7 +1416,7 @@
             // グリッド・キャンバス
             {
                 // グリッドの左上位置（初期値）
-                this.GridLeftTop = new Models.Point(new Models.X(0), new Models.Y(0));
+                this.GridPhase = new Models.Point(new Models.X(0), new Models.Y(0));
 
                 // グリッドのタイルサイズ（初期値）
                 this.GridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
