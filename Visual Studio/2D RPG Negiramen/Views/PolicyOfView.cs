@@ -12,12 +12,22 @@ internal static class PolicyOfView
     /// </summary>
     internal static async Task ReactOnPushed(Button button)
     {
+        // 透明化と縮小は同時にやってほしいが、並列にしても　うまくいかなかった
         await button.FadeTo(
             opacity: 0.5,
-            length: 125); // milliseconds
+            length: 100); // milliseconds
+
+        await button.ScaleTo(
+            scale: 0.9,
+            length: 100);
+
+        await button.ScaleTo(
+            scale: 1.0,
+            length: 100);
+
         await button.FadeTo(
             opacity: 1.0,
-            length: 125); // milliseconds
+            length: 100);
     }
 
     /// <summary>
