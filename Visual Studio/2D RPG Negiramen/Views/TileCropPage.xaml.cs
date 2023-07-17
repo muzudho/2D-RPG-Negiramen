@@ -12,7 +12,6 @@ using Microsoft.Maui.Graphics.Platform;
 using Microsoft.Maui.Graphics.Win2D;
 using System.Diagnostics;
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Coding;
 using System.Net;
 using SkiaSharp;
 using _2D_RPG_Negiramen.FeatSkia;

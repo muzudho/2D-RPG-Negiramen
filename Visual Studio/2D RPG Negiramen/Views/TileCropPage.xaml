@@ -79,13 +79,13 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="84,*,172">
+    <Grid RowDefinitions="156,*,172">
 
         <!--    上メニュー
                 ==========
         -->
         <Grid Grid.Row="0"
-              RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,64,64,*"
+              RowDefinitions="20,48,20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
@@ -122,8 +122,8 @@
                    HorizontalTextAlignment="End"
                    Text="{app:Translate Height}"/>
 
-            <!--    ２段目
-                    ======
+            <!--    ◆２段目 入出力行
+                    =================
             -->
             <!-- 「画像」 -->
             <Label Grid.Row="1" Grid.Column="0"
@@ -203,14 +203,28 @@
                 </Entry.Behaviors>
             </Entry>
 
+
+            <!--    ◆３段目　ラベル列
+                    ==================
+            -->
+
             <!-- 「ズーム」 -->
-            <Label Grid.Row="1" Grid.Column="9"
+            <Label Grid.Row="3" Grid.Column="9"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    Text="{app:Translate Zoom}"/>
 
+            <!--    ◆４段目 入出力行
+                    =================
+            -->
+            <!-- 「作業中」 -->
+            <Label Grid.Row="3" Grid.Column="0"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="{app:Translate Working}"/>
+
             <!-- ズーム -->
-            <Entry Grid.Row="1" Grid.Column="10"
+            <Entry Grid.Row="3" Grid.Column="10"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
                    Text="{Binding ZoomAsDouble}"
@@ -224,7 +238,6 @@
                                                        MaximumDecimalPlaces="1" />
                 </Entry.Behaviors>
             </Entry>
-
         </Grid>
 
         <ScrollView Grid.Row="1">

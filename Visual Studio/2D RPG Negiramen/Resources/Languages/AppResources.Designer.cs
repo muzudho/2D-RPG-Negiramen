@@ -376,6 +376,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   作業中 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Working {
+            get {
+                return ResourceManager.GetString("Working", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   ズーム に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Zoom {

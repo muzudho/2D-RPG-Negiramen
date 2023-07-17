@@ -232,4 +232,7 @@
   <data name="Zoom" xml:space="preserve">
     <value>ズーム</value>
   </data>
+  <data name="Working" xml:space="preserve">
+    <value>作業中</value>
+  </data>
 </root>
