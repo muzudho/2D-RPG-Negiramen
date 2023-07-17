@@ -145,20 +145,20 @@
                    FontSize="24"
                    Text="{Binding SourceImageHeightAsInt, Mode=OneWay}"/>
 
-            <!-- 「グリッド\n全体」 -->
+            <!-- 「グリッド位相」 -->
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{app:Translate EntireGrid}"/>
+                   Text="{app:Translate GridPhase}"/>
 
-            <!-- グリッド左 -->
+            <!-- グリッド位相左 -->
             <Entry Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
                    Text="{Binding GridLeftAsInt}"
                    BackgroundColor="FloralWhite"/>
 
-            <!-- グリッド上 -->
+            <!-- グリッド位相上 -->
             <Entry Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
@@ -255,6 +255,10 @@
                         ================
                 
                         * スキア・シャープのキャンバスを使う
+                        * タイルカーソル
+                            * タイルカーソルの線の太さは 4px （半分は 2px）
+                            * タイルカーソルは、グリッドに外接するように引かれる。だから 4px はみでる
+                            * だからマージンは 4px 取っておく
                 -->
                 <skia:SKCanvasView IsVisible="True"
                                    x:Name="skiaView1"
@@ -273,8 +277,14 @@
                 <!--    グリッド
                         ========
 
-                        * タイル・カーソルの線の太さを 4px として、 Margin の左と上は グリッドの線の太さの半分 1 を引いて 3 から始める
-                        * その代わり、画像サイズは縦横 2px 増やす
+                        * タイルセット
+                            * 左と上のマージンは 4px
+                        * グリッド
+                            * グリッドの線の太さ 2px （半分は 1px）
+                            * タイルの境界線上に引かれる
+                            * だから 1px はみ出ている
+                            * だから マージンはタイルセットより 1px 小さく、 3px
+                        * グリッドは画像と実装しているので、あまり大きな画像にしたくない。例えば最大 1024 x 1024 とか制限したい
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="3,3,0,0"

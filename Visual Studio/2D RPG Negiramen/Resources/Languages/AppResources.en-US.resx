@@ -192,8 +192,8 @@
   <data name="Image" xml:space="preserve">
     <value>Image</value>
   </data>
-  <data name="EntireGrid" xml:space="preserve">
-    <value>Entire grid</value>
+  <data name="GridPhase" xml:space="preserve">
+    <value>Grid phase</value>
   </data>
   <data name="GridOne" xml:space="preserve">
     <value>Grid one</value>

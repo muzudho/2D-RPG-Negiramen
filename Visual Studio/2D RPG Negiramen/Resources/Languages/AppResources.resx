@@ -196,8 +196,8 @@
   <data name="Image" xml:space="preserve">
     <value>画像</value>
   </data>
-  <data name="EntireGrid" xml:space="preserve">
-    <value>グリッド全体</value>
+  <data name="GridPhase" xml:space="preserve">
+    <value>グリッド位相</value>
     
   </data>
   <data name="GridOne" xml:space="preserve">

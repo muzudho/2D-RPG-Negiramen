@@ -205,20 +205,20 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   グリッド全体 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string EntireGrid {
-            get {
-                return ResourceManager.GetString("EntireGrid", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   グリッド１ます に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string GridOne {
             get {
                 return ResourceManager.GetString("GridOne", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   グリッド位相 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string GridPhase {
+            get {
+                return ResourceManager.GetString("GridPhase", resourceCulture);
             }
         }
         
