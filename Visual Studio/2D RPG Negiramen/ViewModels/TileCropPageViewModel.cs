@@ -12,8 +12,6 @@
     /// </summary>
     [QueryProperty(nameof(TilesetImageFile), queryId: "TilesetImageFile")]
     [QueryProperty(nameof(TilesetSettingsFile), queryId: "TilesetSettingsFile")]
-    [QueryProperty(nameof(GridLeftTop), queryId: "GridLeftTop")]
-    [QueryProperty(nameof(GridTileSize), queryId: "GridTileSize")]
     class TileCropPageViewModel : ObservableObject, ITileCropPageViewModel
     {
 
@@ -1417,6 +1415,12 @@
 
             // グリッド・キャンバス
             {
+                // グリッドの左上位置（初期値）
+                this.GridLeftTop = new Models.Point(new Models.X(0), new Models.Y(0));
+
+                // グリッドのタイルサイズ（初期値）
+                this.GridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
+
                 // グリッドの線の幅（初期値）
                 ThicknessOfLine gridLineThickness = new ThicknessOfLine(2);
 
