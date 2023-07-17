@@ -32,22 +32,22 @@
             declaringType: typeof(TilesetGrid));
         #endregion
 
-        #region 束縛可能プロパティ（グリッド位相の左上表示位置）
+        #region 束縛可能プロパティ（グリッド位相の左上表示位置。元画像ベース）
         /// <summary>
-        ///     グリッド位相の左上表示位置
+        ///     グリッド位相の左上表示位置。元画像ベース
         /// </summary>
-        public Models.Point GridPhase
+        public Models.Point SourceGridPhase
         {
-            get => (Models.Point)GetValue(GridPhaseProperty);
-            set => SetValue(GridPhaseProperty, value);
+            get => (Models.Point)GetValue(SourceGridPhaseProperty);
+            set => SetValue(SourceGridPhaseProperty, value);
         }
 
         /// <summary>
-        /// グリッド位相の左上表示位置
+        /// グリッド位相の左上表示位置。元画像ベース
         /// </summary>
-        public static BindableProperty GridPhaseProperty = BindableProperty.Create(
+        public static BindableProperty SourceGridPhaseProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(GridPhase),
+            propertyName: nameof(SourceGridPhase),
             // 返却型
             returnType: typeof(Models.Point),
             // これを含んでいるクラス
@@ -90,7 +90,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridPhase: {this.GridPhase.Dump()}, this.GridTileSize: {this.GridTileSize.Dump()}");
+            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.SourceGridPhase.Dump()}, this.GridTileSize: {this.GridTileSize.Dump()}");
 
             // 線の色
             canvas.StrokeColor = new Color(255, 0, 0, 127);
@@ -103,8 +103,8 @@
             canvas.StrokeSize = lineThickness.AsInt;
 
             // グリッド位相の左上表示位置
-            int gridPhaseLeftAsInt = this.GridPhase.X.AsInt;
-            int gridPhaseTopAsInt = this.GridPhase.Y.AsInt;
+            int gridPhaseLeftAsInt = this.SourceGridPhase.X.AsInt;
+            int gridPhaseTopAsInt = this.SourceGridPhase.Y.AsInt;
 
             // グリッド・タイル・サイズ
             Models.Size gridTileSize = this.GridTileSize;

@@ -41,7 +41,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
-    Models.Point GridPhase { get; }
+    Models.Point SourceGridPhase { get; }
     #endregion
 
     #region プロパティ（グリッド・タイルのサイズ）

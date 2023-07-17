@@ -73,7 +73,7 @@ public partial class TileCropPage : ContentPage
         var rect = Models.CoordinateHelper.GetCursorRectangle(
             startPoint: PointingDeviceStartPoint,
             endPoint: PointingDeviceCurrentPoint,
-            gridLeftTop: context.GridPhase,
+            gridLeftTop: context.SourceGridPhase,
             gridTile: context.GridTileSize);
 
 

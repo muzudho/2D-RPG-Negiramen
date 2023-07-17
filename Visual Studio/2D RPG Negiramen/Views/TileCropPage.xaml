@@ -155,14 +155,14 @@
             <Entry Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
-                   Text="{Binding GridPhaseLeftAsInt}"
+                   Text="{Binding SourceGridPhaseLeftAsInt}"
                    BackgroundColor="FloralWhite"/>
 
             <!-- グリッド位相上 -->
             <Entry Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    Placeholder="0"
-                   Text="{Binding GridPhaseTopAsInt}"
+                   Text="{Binding SourceGridPhaseTopAsInt}"
                    BackgroundColor="FloralWhite"/>
 
             <!-- 「グリッド\n１ます」 -->
@@ -207,15 +207,17 @@
             <!--    ◆３段目　ラベル列
                     ==================
             -->
-            <!-- 「よこ」 -->
+            <!-- 「よこ」
             <Label Grid.Row="2" Grid.Column="1"
                    HorizontalTextAlignment="End"
                    Text="{app:Translate Width}"/>
+            -->
 
-            <!-- 「たて」 -->
+            <!-- 「たて」
             <Label Grid.Row="2" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    Text="{app:Translate Height}"/>
+            -->
 
             <!-- 「ズーム」 -->
             <Label Grid.Row="3" Grid.Column="9"
@@ -237,14 +239,42 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingImageWidthAsInt, Mode=OneWay}"/>
+                   Text="{Binding WorkingImageWidthAsInt}"/>
 
             <!-- 元画像の縦幅。読取専用 -->
             <Label Grid.Row="3" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingImageHeightAsInt, Mode=OneWay}"/>
+                   Text="{Binding WorkingImageHeightAsInt}"/>
+
+            <!-- ズーム後：グリッド位相左 -->
+            <Label Grid.Row="3" Grid.Column="4"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   FontSize="24"
+                   Text="{Binding SourceGridPhaseLeftAsInt}"/>
+
+            <!-- ズーム後：グリッド位相上 -->
+            <Label Grid.Row="3" Grid.Column="5"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   FontSize="24"
+                   Text="{Binding SourceGridPhaseTopAsInt}"/>
+
+            <!-- ズーム後：タイル横幅 -->
+            <Label Grid.Row="3" Grid.Column="7"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   FontSize="24"
+                   Text="{Binding GridTileWidthAsInt}"/>
+
+            <!-- ズーム後：タイル縦幅 -->
+            <Label Grid.Row="3" Grid.Column="8"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   FontSize="24"
+                   Text="{Binding GridTileHeightAsInt}"/>
 
             <!-- ズーム -->
             <Entry Grid.Row="3" Grid.Column="10"
@@ -267,25 +297,9 @@
         <ScrollView Grid.Row="1">
             <Grid RowDefinitions="*" ColumnDefinitions="*">
 
-                <!--    作業中のタイルセット・キャンバス画像
-                        ====================================
-
+                <!--
                         MAUI には マウス・ダウンと、マウス・アップの捕捉がなく、
                         ペン・ツールのようなことができない
-                -->
-                <!--
-                <Image IsVisible="False"
-                       x:Name="tileImage"
-                       Grid.Row="0" Grid.Column="0"
-                       HorizontalOptions="Start" VerticalOptions="Start"
-                       Margin="4,4,0,0"
-                       WidthRequest="{Binding WorkingImageWidthAsInt}" HeightRequest="{Binding WorkingImageHeightAsInt}"                       
-                       Source="{Binding WorkingTilesetImageFilePathAsStr}">
-                    <Image.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                        <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved"/>
-                    </Image.GestureRecognizers>
-                </Image>
                 -->
 
                 <!--    タイルセット画像
@@ -330,7 +344,7 @@
                     <GraphicsView.Drawable>
                         <modelsDrawing:TilesetGrid BindingContext="{x:Reference thisContentPage}"
                                                    HalfThicknessOfGridLineAsInt="{Binding TileCropPageVM.HalfThicknessOfGridLineAsInt}"
-                                                   GridPhase="{Binding TileCropPageVM.GridPhase}"
+                                                   SourceGridPhase="{Binding TileCropPageVM.SourceGridPhase}"
                                                    GridTileSize="{Binding TileCropPageVM.GridTileSize}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
