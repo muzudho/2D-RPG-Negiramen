@@ -253,14 +253,14 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingGridPhaseLeftAsInt}"/>
+                   Text="{Binding WorkingGridPhaseLeftAsDouble}"/>
 
             <!-- ズーム後：グリッド位相上 -->
             <Label Grid.Row="3" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingGridPhaseTopAsInt}"/>
+                   Text="{Binding WorkingGridPhaseTopAsDouble}"/>
 
             <!-- ズーム後：タイル横幅 -->
             <Label Grid.Row="3" Grid.Column="7"

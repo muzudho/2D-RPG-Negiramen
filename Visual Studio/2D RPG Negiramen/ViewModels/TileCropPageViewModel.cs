@@ -553,6 +553,7 @@
                 if (this.sourceGridPhase.X.AsInt != value)
                 {
                     this.sourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.sourceGridPhase.Y);
+                    this.WorkingGridPhaseLeftAsDouble = this.ZoomAsDouble * this.sourceGridPhase.X.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -561,7 +562,7 @@
                     OnPropertyChanged(nameof(SourceGridPhaseLeftAsInt));
                     OnPropertyChanged(nameof(SourceGridPhase));
 
-                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsInt));
+                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsDouble));
                     OnPropertyChanged(nameof(WorkingGridPhase));
                 }
             }
@@ -578,6 +579,7 @@
                 if (this.sourceGridPhase.Y.AsInt != value)
                 {
                     this.sourceGridPhase = new Models.Geometric.PointInt(this.sourceGridPhase.X, new Models.Geometric.YInt(value));
+                    this.WorkingGridPhaseTopAsDouble = this.ZoomAsDouble * this.sourceGridPhase.Y.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -586,7 +588,7 @@
                     OnPropertyChanged(nameof(SourceGridPhaseTopAsInt));
                     OnPropertyChanged(nameof(SourceGridPhase));
 
-                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsInt));
+                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsDouble));
                     OnPropertyChanged(nameof(WorkingGridPhase));
                 }
             }
@@ -595,34 +597,57 @@
         /// <summary>
         ///     グリッド位相の左上表示位置。ズーム後
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.PointInt WorkingGridPhase
-後:
-        public PointInt WorkingGridPhase
-*/
-        public Models.Geometric.PointInt WorkingGridPhase
+        public Models.Geometric.PointDouble WorkingGridPhase
         {
-            get => new Models.Geometric.PointInt(
-                x: new Models.Geometric.XInt(this.WorkingGridPhaseLeftAsInt),
-                y: new Models.Geometric.YInt(this.WorkingGridPhaseTopAsInt));
+            get => this.workingGridPhase;
+            set
+            {
+                if (this.workingGridPhase != value)
+                {
+                    this.WorkingGridPhaseLeftAsDouble = value.X.AsDouble;
+                    this.WorkingGridPhaseTopAsDouble = value.Y.AsDouble;
+                }
+            }
         }
 
         /// <summary>
         ///     グリッド位相の左上表示位置ｘ。ズーム後（読取専用）
         /// </summary>
-        public int WorkingGridPhaseLeftAsInt
+        public double WorkingGridPhaseLeftAsDouble
         {
-            get => (int)(this.sourceGridPhase.X.AsInt * this.ZoomAsDouble);
+            get => this.workingGridPhase.X.AsDouble;
+            set
+            {
+                if (this.workingGridPhase.X.AsDouble != value)
+                {
+                    this.workingGridPhase = new Models.Geometric.PointDouble(
+                        x: new Models.Geometric.XDouble(value),
+                        y: this.workingGridPhase.Y);
+
+                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridPhase));
+                }
+            }
         }
 
         /// <summary>
         ///     グリッド位相の左上表示位置ｙ。ズーム後（読取専用）
         /// </summary>
-        public int WorkingGridPhaseTopAsInt
+        public double WorkingGridPhaseTopAsDouble
         {
-            get => (int)(this.sourceGridPhase.Y.AsInt * this.ZoomAsDouble);
+            get => this.workingGridPhase.Y.AsDouble;
+            set
+            {
+                if (this.workingGridPhase.Y.AsDouble != value)
+                {
+                    this.workingGridPhase = new Models.Geometric.PointDouble(
+                        x: this.workingGridPhase.X,
+                        y: new Models.Geometric.YDouble(value));
+
+                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridPhase));
+                }
+            }
         }
         #endregion
 
@@ -906,8 +931,8 @@
                         this.RemakeGridCanvasImage();
 
                         OnPropertyChanged(nameof(ZoomAsDouble));
-                        OnPropertyChanged(nameof(WorkingGridPhaseLeftAsInt));
-                        OnPropertyChanged(nameof(WorkingGridPhaseTopAsInt));
+                        OnPropertyChanged(nameof(WorkingGridPhaseLeftAsDouble));
+                        OnPropertyChanged(nameof(WorkingGridPhaseTopAsDouble));
                         OnPropertyChanged(nameof(WorkingGridPhase));
 
                         OnPropertyChanged(nameof(WorkingGridTileWidthAsDouble));
@@ -1799,7 +1824,12 @@
         Models.Geometric.SizeInt sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
         /// <summary>
-        ///     グリッド・タイルのサイズ。ズーム後（読取専用）
+        ///     グリッド位相の左上表示位置。ズーム後
+        /// </summary>
+        Models.Geometric.PointDouble workingGridPhase = Models.Geometric.PointDouble.Empty;
+
+        /// <summary>
+        ///     グリッド・タイルのサイズ。ズーム後
         /// </summary>
         Models.Geometric.SizeDouble workingGridTileSize = new Models.Geometric.SizeDouble(new Models.Geometric.WidthDouble(32), new Models.Geometric.HeightDouble(32));
         #endregion
