@@ -320,7 +320,7 @@ public partial class TileCropPage : ContentPage
 
             // タイル・フォームの表示更新
             RefreshTileForm();
-            context.RefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TapGestureRecognizer_Tapped 疑似マウスダウン]");
+            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TapGestureRecognizer_Tapped 疑似マウスダウン]");
         }
         else
         {
@@ -339,7 +339,7 @@ public partial class TileCropPage : ContentPage
 
             // タイル・フォームの表示更新
             RefreshTileForm();
-            context.RefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TapGestureRecognizer_Tapped 疑似マウスアップ]");
+            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TapGestureRecognizer_Tapped 疑似マウスアップ]");
         }
     }
     #endregion
@@ -369,7 +369,7 @@ public partial class TileCropPage : ContentPage
 
             // タイル・フォームの表示更新
             RefreshTileForm();
-            context.RefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
         }
     }
     #endregion

@@ -687,7 +687,7 @@
                     RefreshWorkingGridTileHeight();
 
                     // カーソルの線の幅を含まない
-                    this.WorkingRectCursorHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
+                    this.WorkingCroppedCursorHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -1339,7 +1339,7 @@
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
-                WorkingRectCursorHeightAsFloat = this.ZoomAsFloat * value;
+                WorkingCroppedCursorHeightAsFloat = this.ZoomAsFloat * value;
 
                 OnPropertyChanged(nameof(SourceCroppedCursorHeightAsInt));
                 OnPropertyChanged(nameof(SourceCroppedCursorSize));
@@ -1366,6 +1366,74 @@
         }
 
         /// <summary>
+        ///     矩形カーソル。ズーム済みの位置
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///     </list>
+        /// </summary>
+        public Models.Geometric.PointFloat WorkingCroppedCursorPoint
+        {
+            get => this.workingCroppedCursorPoint;
+            set
+            {
+                if (this.workingCroppedCursorPoint != value)
+                {
+                    this.WorkingCroppedCursorLeftAsFloat = value.X.AsFloat;
+                    this.WorkingCroppedCursorTopAsFloat = value.Y.AsFloat;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの位置ｘ
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///     </list>
+        /// </summary>
+        public float WorkingCroppedCursorLeftAsFloat
+        {
+            get => this.workingCroppedCursorPoint.X.AsFloat;
+            set
+            {
+                if (this.workingCroppedCursorPoint.X.AsFloat != value)
+                {
+                    this.workingCroppedCursorPoint = new Models.Geometric.PointFloat(
+                        x: new Models.Geometric.XFloat(value),
+                        y: this.workingCroppedCursorPoint.Y);
+
+                    OnPropertyChanged(nameof(WorkingCroppedCursorLeftAsFloat));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorPoint));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの位置ｙ
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///     </list>
+        /// </summary>
+        public float WorkingCroppedCursorTopAsFloat
+        {
+            get => this.workingCroppedCursorPoint.Y.AsFloat;
+            set
+            {
+                if (this.workingCroppedCursorPoint.Y.AsFloat != value)
+                {
+                    this.workingCroppedCursorPoint = new Models.Geometric.PointFloat(
+                        x: this.workingCroppedCursorPoint.X,
+                        y: new Models.Geometric.YFloat(value));
+
+                    OnPropertyChanged(nameof(WorkingCroppedCursorTopAsFloat));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorPoint));
+                }
+            }
+        }
+
+        /// <summary>
         ///     矩形カーソル。ズーム済みのサイズ
         ///         
         ///     <list type="bullet">
@@ -1380,7 +1448,7 @@
                 if (this.workingCroppedCursorSize != value)
                 {
                     this.WorkingCroppedCursorWidthAsFloat = value.Width.AsFloat;
-                    this.WorkingRectCursorHeightAsFloat = value.Height.AsFloat;
+                    this.WorkingCroppedCursorHeightAsFloat = value.Height.AsFloat;
                 }
             }
         }
@@ -1402,7 +1470,7 @@
                     this.workingCroppedCursorSize = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(value), workingCroppedCursorSize.Height);
 
                     // キャンバスを再描画
-                    // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel WorkingRectCursorWidthAsFloat set]");
+                    // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel WorkingCroppedCursorWidthAsFloat set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(WorkingCroppedCursorWidthAsFloat));
@@ -1417,7 +1485,7 @@
         ///         <item>カーソルの線の幅を含まない</item>
         ///     </list>
         /// </summary>
-        public float WorkingRectCursorHeightAsFloat
+        public float WorkingCroppedCursorHeightAsFloat
         {
             get => this.workingCroppedCursorSize.Height.AsFloat;
             set
@@ -1427,10 +1495,10 @@
                     this.workingCroppedCursorSize = new Models.Geometric.SizeFloat(this.workingCroppedCursorSize.Width, new Models.Geometric.HeightFloat(value));
 
                     // キャンバスを再描画
-                    // RefreshCanvasOfTileCursor("[TileCropPageViewModel WorkingRectCursorHeightAsFloat set]");
+                    // RefreshCanvasOfTileCursor("[TileCropPageViewModel WorkingCroppedCursorHeightAsFloat set]");
 
                     // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(WorkingRectCursorHeightAsFloat));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorHeightAsFloat));
                 }
             }
         }
@@ -1562,7 +1630,7 @@
         ///                 振動させることで、再描画を呼び起こすことにする
         ///     </pre>
         /// </summary>
-        internal void RefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
+        internal void TrickRefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
         {
             int offset;
 
@@ -1577,8 +1645,8 @@
                 offset = 1;
             }
 
-            // 循環参照を避けるために、直接フィールドを変更
-            this.workingCroppedCursorSize = new Models.Geometric.SizeFloat(
+            // TODO 循環参照を避けるために、直接フィールドを変更
+            this.WorkingCroppedCursorSize = new Models.Geometric.SizeFloat(
                 width: new Models.Geometric.WidthFloat(this.workingCroppedCursorSize.Width.AsFloat + offset),
                 height: new Models.Geometric.HeightFloat(this.workingCroppedCursorSize.Height.AsFloat));
 
@@ -1697,6 +1765,15 @@
         ///     </list>
         /// </summary>
         Thickness workingCroppedCursorPointAsMargin = Thickness.Zero;
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの位置
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///     </list>
+        /// </summary>
+        Models.Geometric.PointFloat workingCroppedCursorPoint = Models.Geometric.PointFloat.Empty;
 
         /// <summary>
         ///     矩形カーソル。ズーム済みのサイズ

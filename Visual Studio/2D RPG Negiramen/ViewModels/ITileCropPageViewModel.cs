@@ -78,6 +78,16 @@ public interface ITileCropPageViewModel
     public Thickness WorkingCroppedCursorPointAsMargin { get; }
 
     /// <summary>
+    ///     矩形カーソル。ズーム済みの位置ｘ（マージンとして）
+    /// </summary>
+    public float WorkingCroppedCursorLeftAsFloat { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの位置ｙ（マージンとして）
+    /// </summary>
+    public float WorkingCroppedCursorTopAsFloat { get; }
+
+    /// <summary>
     ///     切抜きカーソル。ズーム済みのサイズ
     ///     
     ///     <list type="bullet">
@@ -85,6 +95,16 @@ public interface ITileCropPageViewModel
     ///     </list>
     /// </summary>
     Models.Geometric.SizeFloat WorkingCroppedCursorSize { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの横幅
+    /// </summary>
+    public float WorkingCroppedCursorWidthAsFloat { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの縦幅
+    /// </summary>
+    public float WorkingCroppedCursorHeightAsFloat { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）

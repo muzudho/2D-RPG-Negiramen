@@ -370,7 +370,7 @@
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="{Binding WorkingCroppedCursorPointAsMargin}"
-                              WidthRequest="{Binding WorkingRectCursorWidthAsFloat}" HeightRequest="{Binding WorkingRectCursorHeightAsFloat}"
+                              WidthRequest="{Binding WorkingCroppedCursorWidthAsFloat}" HeightRequest="{Binding WorkingCroppedCursorHeightAsFloat}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
                         <modelsDrawing:CroppedCursor BindingContext="{x:Reference thisContentPage}"
