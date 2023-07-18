@@ -14,7 +14,6 @@
     [QueryProperty(nameof(TilesetSettingsFile), queryId: "TilesetSettingsFile")]
     class TileCropPageViewModel : ObservableObject, ITileCropPageViewModel
     {
-
         // - その他
 
         #region その他（生成）
@@ -409,26 +408,27 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（グリッドのキャンバス・サイズ関連）
+        #region 変更通知プロパティ（グリッド・キャンバス　関連）
         /// <summary>
-        ///     <pre>
-        ///         グリッドのキャンバス・サイズ
+        ///     グリッド・キャンバスの画像サイズ
         ///         
-        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる
-        ///     </pre>
+        ///     <list type="bullet">
+        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる</item>
+        ///     </list>
         /// </summary>
-        public Models.Size GridCanvasSize
+        public Models.Size GridCanvasImageSize
         {
-            get => _gridCanvasSize;
+            get => this.gridCanvasImageSize;
             set
             {
-                if (_gridCanvasSize != value)
+                if (this.gridCanvasImageSize != value)
                 {
-                    this.GridCanvasWidthAsInt = value.Width.AsInt;
-                    this.GridCanvasHeightAsInt = value.Height.AsInt;
+                    this.GridCanvasImageWidthAsInt = value.Width.AsInt;
+                    this.GridCanvasImageHeightAsInt = value.Height.AsInt;
                 }
             }
         }
+
 
         /// <summary>
         ///     <pre>
@@ -437,15 +437,16 @@
         ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドのキャンバス・サイズを 2px 広げる
         ///     </pre>
         /// </summary>
-        public int GridCanvasWidthAsInt
+        public int GridCanvasImageWidthAsInt
         {
-            get => _gridCanvasSize.Width.AsInt;
+            get => this.GridCanvasImageSize.Width.AsInt;
             set
             {
-                if (_gridCanvasSize.Width.AsInt != value)
+                if (this.gridCanvasImageSize.Width.AsInt != value)
                 {
-                    _gridCanvasSize = new Models.Size(new Models.Width(value), _gridCanvasSize.Height);
-                    OnPropertyChanged(nameof(GridCanvasWidthAsInt));
+                    this.gridCanvasImageSize = new Models.Size(new Models.Width(value), this.gridCanvasImageSize.Height);
+                    OnPropertyChanged(nameof(GridCanvasImageWidthAsInt));
+                    OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
             }
         }
@@ -457,15 +458,16 @@
         ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドのキャンバス・サイズを 2px 広げる
         ///     </pre>
         /// </summary>
-        public int GridCanvasHeightAsInt
+        public int GridCanvasImageHeightAsInt
         {
-            get => _gridCanvasSize.Height.AsInt;
+            get => this.GridCanvasImageSize.Height.AsInt;
             set
             {
-                if (_gridCanvasSize.Height.AsInt != value)
+                if (this.gridCanvasImageSize.Height.AsInt != value)
                 {
-                    _gridCanvasSize = new Models.Size(_gridCanvasSize.Width, new Models.Height(value));
-                    OnPropertyChanged(nameof(GridCanvasHeightAsInt));
+                    this.gridCanvasImageSize = new Models.Size(this.gridCanvasImageSize.Width, new Models.Height(value));
+                    OnPropertyChanged(nameof(GridCanvasImageHeightAsInt));
+                    OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
             }
         }
@@ -529,7 +531,7 @@
                     this.sourceGridPhase = new Models.Point(new Models.X(value), this.sourceGridPhase.Y);
 
                     // キャンバスを再描画
-                    RefreshCanvasOfGrid();
+                    InvalidateCanvasOfGrid();
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridPhaseLeftAsInt));
@@ -554,7 +556,7 @@
                     this.sourceGridPhase = new Models.Point(this.sourceGridPhase.X, new Models.Y(value));
 
                     // キャンバスを再描画
-                    RefreshCanvasOfGrid();
+                    InvalidateCanvasOfGrid();
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridPhaseTopAsInt));
@@ -630,7 +632,7 @@
                     this.TileCursorCanvasWidthAsInt = this.sourceGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
-                    RefreshCanvasOfGrid();
+                    InvalidateCanvasOfGrid();
                     RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileWidthAsInt set]");
 
                     // キャンバスを再描画後に変更通知
@@ -661,7 +663,7 @@
                     this.TileCursorCanvasHeightAsInt = this.sourceGridTileSize.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
-                    RefreshCanvasOfGrid();
+                    InvalidateCanvasOfGrid();
                     RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileHeightAsInt set]");
 
                     // キャンバスを再描画後に変更通知
@@ -1612,9 +1614,9 @@
 
         #region フィールド（グリッド　関連）
         /// <summary>
-        ///     グリッド画像サイズ
+        ///     グリッド・キャンバス画像サイズ
         /// </summary>
-        Models.Size _gridCanvasSize = Models.Size.Empty;
+        Models.Size gridCanvasImageSize = Models.Size.Empty;
         #endregion
 
         #region フィールド（選択タイル　関連）
@@ -1644,7 +1646,7 @@
 
         // - プライベート・メソッド
 
-        #region メソッド（グリッドのキャンバスの再描画）
+        #region メソッド（グリッド・キャンバス　関連）
         /// <summary>
         ///     <pre>
         ///         グリッドのキャンバスの再描画
@@ -1654,16 +1656,30 @@
         ///                 振動させることで、再描画を呼び起こすことにする
         ///     </pre>
         /// </summary>
-        void RefreshCanvasOfGrid()
+        void InvalidateCanvasOfGrid()
         {
-            if (this.GridCanvasWidthAsInt % 2 == 1)
+            if (this.GridCanvasImageWidthAsInt % 2 == 1)
             {
-                this.GridCanvasWidthAsInt--;
+                this.GridCanvasImageWidthAsInt--;
             }
             else
             {
-                this.GridCanvasWidthAsInt++;
+                this.GridCanvasImageWidthAsInt++;
             }
+        }
+
+        /// <summary>
+        ///     グリッド・キャンバスの再作成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
+        ///     </list>
+        /// </summary>
+        void RemakeGridCanvas()
+        {
+            this.GridCanvasImageSize = new Models.Size(
+                width: new Models.Width(this.TilesetSourceImageSize.Width.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Height(this.TilesetSourceImageSize.Height.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
         #endregion
 
@@ -1701,19 +1717,11 @@
                     height: this.workingImageSize.Height.AsInt),
                 quality: SKFilterQuality.Medium);
 
+            // グリッド・キャンバス画像の再描画要求
+            // this.InvalidateCanvasOfGrid();
+
             OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
             OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
-        }
-
-        /// <summary>
-        ///     グリッド・キャンバスの再作成
-        /// </summary>
-        void RemakeGridCanvas()
-        {
-            // グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる
-            this.GridCanvasSize = new Models.Size(
-                width: new Models.Width(this.TilesetSourceImageSize.Width.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Height(this.TilesetSourceImageSize.Height.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
     }
 }

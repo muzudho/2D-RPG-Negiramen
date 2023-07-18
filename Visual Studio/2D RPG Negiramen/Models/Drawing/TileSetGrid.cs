@@ -10,9 +10,31 @@
     {
         // - パブリック束縛可能プロパティ
 
+        #region 束縛可能プロパティ（グリッド・キャンバス画像のサイズ）
+        /// <summary>
+        ///     グリッド・キャンバス画像のサイズ
+        /// </summary>
+        public Models.Size GridCanvasImageSize
+        {
+            get => (Models.Size)GetValue(GridCanvasImageSizeProperty);
+            set => SetValue(GridCanvasImageSizeProperty, value);
+        }
+
+        /// <summary>
+        ///     グリッド・キャンバス画像のサイズ
+        /// </summary>
+        public static BindableProperty GridCanvasImageSizeProperty = BindableProperty.Create(
+            // プロパティ名
+            propertyName: nameof(GridCanvasImageSize),
+            // 返却型
+            returnType: typeof(Models.Size),
+            // これを含んでいるクラス
+            declaringType: typeof(TilesetGrid));
+        #endregion
+
         #region 束縛可能プロパティ（グリッドの線の太さの半分）
         /// <summary>
-        /// グリッドの線の太さの半分
+        ///     グリッドの線の太さの半分
         /// </summary>
         public int HalfThicknessOfGridLineAsInt
         {
@@ -21,7 +43,7 @@
         }
 
         /// <summary>
-        /// グリッドの線の太さの半分
+        ///     グリッドの線の太さの半分
         /// </summary>
         public static BindableProperty HalfThicknessOfGridLineAsIntProperty = BindableProperty.Create(
             // プロパティ名
@@ -43,7 +65,7 @@
         }
 
         /// <summary>
-        /// グリッド位相の左上表示位置
+        ///     グリッド位相の左上表示位置
         /// </summary>
         public static BindableProperty GridPhaseProperty = BindableProperty.Create(
             // プロパティ名
@@ -110,8 +132,8 @@
             Models.Size gridTileSize = this.GridTileSize;
 
             // キャンバス・サイズ
-            var canvasWidth = (int)dirtyRect.Width;
-            var canvasHeight = (int)dirtyRect.Height;
+            var canvasWidth = this.GridCanvasImageSize.Width.AsInt;
+            var canvasHeight = this.GridCanvasImageSize.Height.AsInt;
 
             //
             // 縦線を引いていこう

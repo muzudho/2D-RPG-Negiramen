@@ -340,10 +340,11 @@
                 <GraphicsView x:Name="gridView1"
                               HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="3,3,0,0"
-                              WidthRequest="{Binding GridCanvasWidthAsInt}" HeightRequest="{Binding GridCanvasHeightAsInt}"
+                              WidthRequest="{Binding GridCanvasImageWidthAsInt}" HeightRequest="{Binding GridCanvasImageHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
                         <modelsDrawing:TilesetGrid BindingContext="{x:Reference thisContentPage}"
+                                                   GridCanvasImageSize="{Binding TileCropPageVM.GridCanvasImageSize}"
                                                    HalfThicknessOfGridLineAsInt="{Binding TileCropPageVM.HalfThicknessOfGridLineAsInt}"
                                                    GridPhase="{Binding TileCropPageVM.WorkingGridPhase}"
                                                    GridTileSize="{Binding TileCropPageVM.WorkingGridTileSize}"/>
