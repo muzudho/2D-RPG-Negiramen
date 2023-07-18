@@ -97,14 +97,24 @@ public interface ITileCropPageViewModel
     Models.Geometric.SizeFloat WorkingCroppedCursorSize { get; }
 
     /// <summary>
-    ///     矩形カーソル。ズーム済みの横幅
+    ///     矩形カーソル。ズーム済みの横幅。線の太さを含まない
     /// </summary>
     public float WorkingCroppedCursorWidthAsFloat { get; }
 
     /// <summary>
-    ///     矩形カーソル。ズーム済みの縦幅
+    ///     矩形カーソル。ズーム済みの縦幅。線の太さを含まない
     /// </summary>
     public float WorkingCroppedCursorHeightAsFloat { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの横幅。線の太さを含む
+    /// </summary>
+    public float WorkingCroppedCursorCanvasWidthAsFloat { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの縦幅。線の太さを含む
+    /// </summary>
+    public float WorkingCroppedCursorCanvasHeightAsFloat { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）
