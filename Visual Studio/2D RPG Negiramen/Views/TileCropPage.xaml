@@ -253,42 +253,42 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingGridPhaseLeftAsDouble}"/>
+                   Text="{Binding WorkingGridPhaseLeftAsFloat}"/>
 
             <!-- ズーム後：グリッド位相上 -->
             <Label Grid.Row="3" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingGridPhaseTopAsDouble}"/>
+                   Text="{Binding WorkingGridPhaseTopAsFloat}"/>
 
             <!-- ズーム後：タイル横幅 -->
             <Label Grid.Row="3" Grid.Column="7"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingGridTileWidthAsDouble}"/>
+                   Text="{Binding WorkingGridTileWidthAsFloat}"/>
 
             <!-- ズーム後：タイル縦幅 -->
             <Label Grid.Row="3" Grid.Column="8"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingGridTileHeightAsDouble}"/>
+                   Text="{Binding WorkingGridTileHeightAsFloat}"/>
 
             <!-- ズーム -->
             <Entry Grid.Row="3" Grid.Column="10"
                    HorizontalTextAlignment="End"
                    Placeholder="32"
-                   Text="{Binding ZoomAsDouble}"
+                   Text="{Binding ZoomAsFloat}"
                    BackgroundColor="FloralWhite"
                    TextChanged="ZoomEntry_TextChanged">
                 <Entry.Behaviors>
                     <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
                                                        ValidStyle="{StaticResource ValidEntryStyle}"
                                                        Flags="ValidateOnValueChanged"
-                                                       MinimumValue="{Binding ZoomMinAsDouble}"
-                                                       MaximumValue="{Binding ZoomMaxAsDouble}"
+                                                       MinimumValue="{Binding ZoomMinAsFloat}"
+                                                       MaximumValue="{Binding ZoomMaxAsFloat}"
                                                        MaximumDecimalPlaces="1" />
                 </Entry.Behaviors>
             </Entry>

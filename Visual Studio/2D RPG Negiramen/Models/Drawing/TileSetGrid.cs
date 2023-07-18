@@ -154,10 +154,10 @@
             // ==================
             //
             {
-                double y1 = halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
-                double y2 = canvasHeight + halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
+                float y1 = halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
+                float y2 = canvasHeight + halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
 
-                int prevX = 0;
+                int prevX;
                 int x = 0;
                 for (var i = 0; x < canvasWidth + halfThicknessOfLineAsInt; i++)
                 {
@@ -170,7 +170,7 @@
                         break;
                     }
 
-                    canvas.DrawLine(x, (float)y1, x, (float)y2);    // TODO float型
+                    canvas.DrawLine(x, y1, x, y2);
                 }
             }
 
@@ -179,15 +179,15 @@
             // ==================
             //
             {
-                double x1 = halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
+                float x1 = halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
 
                 // CANCEL CODE: 横幅が偶数なら横幅を +1、奇数なら横幅を -1 するという TRICK CODE が別の箇所にあるので、
                 //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
                 //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
                 //              右辺の線の手前まで線を引くようにする
-                double x2 = canvasWidth - halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
+                float x2 = canvasWidth - halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
 
-                int prevY = 0;
+                int prevY;
                 int y = 0;
                 for (var i = 0; y < canvasHeight + halfThicknessOfLineAsInt; i++)
                 {
@@ -200,7 +200,7 @@
                         break;
                     }
 
-                    canvas.DrawLine((float)x1, y, (float)x2, y); // TODO float型
+                    canvas.DrawLine(x1, y, x2, y);
                 }
             }
         }

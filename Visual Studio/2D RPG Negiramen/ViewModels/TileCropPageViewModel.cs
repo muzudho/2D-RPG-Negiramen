@@ -190,8 +190,6 @@
         #endregion
 
         #region プロパティ（ズーム）
-        Models.Zoom zoom = Models.Zoom.IdentityElement;
-
         /// <summary>
         ///     ズーム
         ///     
@@ -199,39 +197,34 @@
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
         ///     </list>
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.Zoom Zoom
+後:
+        public Zoom Zoom
+*/
+        public Models.Geometric.Zoom Zoom
         {
             get => this.zoom;
             set
             {
                 if (this.zoom != value)
                 {
-                    this.ZoomAsDouble = value.AsDouble;
+                    this.ZoomAsFloat = value.AsFloat;
                 }
             }
         }
 
-        // ズーム最大
-        Models.Zoom zoomMax = new Models.Zoom(4);
-
         /// <summary>
         ///     ズーム最大
         /// </summary>
-        public double ZoomMaxAsDouble
-        {
-            get => this.zoomMax.AsDouble;
-        }
-
-        // ズーム最小
-        Models.Zoom zoomMin = new Models.Zoom(0.5);
+        public float ZoomMaxAsFloat => this.zoomMax.AsFloat;
 
         /// <summary>
         ///     ズーム最小
         /// </summary>
-        public double ZoomMinAsDouble
-        {
-            get => this.zoomMin.AsDouble;
-        }
+        public float ZoomMinAsFloat => this.zoomMin.AsFloat;
         #endregion
 
         #region プロパティ（選択タイル）
@@ -553,7 +546,7 @@
                 if (this.sourceGridPhase.X.AsInt != value)
                 {
                     this.sourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.sourceGridPhase.Y);
-                    this.WorkingGridPhaseLeftAsFloat = (float)(this.ZoomAsDouble * this.sourceGridPhase.X.AsInt); // TODO float 型
+                    this.WorkingGridPhaseLeftAsFloat = this.ZoomAsFloat * this.sourceGridPhase.X.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -579,7 +572,7 @@
                 if (this.sourceGridPhase.Y.AsInt != value)
                 {
                     this.sourceGridPhase = new Models.Geometric.PointInt(this.sourceGridPhase.X, new Models.Geometric.YInt(value));
-                    this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsDouble * this.sourceGridPhase.Y.AsInt);
+                    this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsFloat * this.sourceGridPhase.Y.AsInt);
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -681,7 +674,7 @@
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
                     this.sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridTileSize.Height);
-                    this.WorkingGridTileWidthAsFloat = (float)(this.ZoomAsDouble * this.sourceGridTileSize.Width.AsInt); // TODO float 型
+                    this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridTileSize.Width.AsInt;
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasWidthAsInt = this.sourceGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
@@ -913,16 +906,16 @@
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
         ///     </list>
         /// </summary>
-        public double ZoomAsDouble
+        public float ZoomAsFloat
         {
-            get => this.zoom.AsDouble;
+            get => this.zoom.AsFloat;
             set
             {
-                if (this.zoom.AsDouble != value)
+                if (this.zoom.AsFloat != value)
                 {
-                    if (this.ZoomMinAsDouble <= value && value <= this.ZoomMaxAsDouble)
+                    if (this.ZoomMinAsFloat <= value && value <= this.ZoomMaxAsFloat)
                     {
-                        this.zoom = new Models.Zoom(value);
+                        this.zoom = new Models.Geometric.Zoom(value);
 
                         // 作業画像を再作成
                         this.RemakeWorkingImage();
@@ -930,7 +923,7 @@
                         // グリッド・キャンバス画像の再作成
                         this.RemakeGridCanvasImage();
 
-                        OnPropertyChanged(nameof(ZoomAsDouble));
+                        OnPropertyChanged(nameof(ZoomAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhase));
@@ -1866,6 +1859,23 @@
         Option<TileRecord> _selectedTileOption = new Option<TileRecord>(Models.TileRecord.Empty);
         #endregion
 
+        #region フィールド（ズーム　関連）
+        /// <summary>
+        ///     ズーム最大
+        /// </summary>
+        Models.Geometric.Zoom zoomMax = new Models.Geometric.Zoom(4.0f);
+
+        /// <summary>
+        ///     ズーム最小
+        /// </summary>
+        Models.Geometric.Zoom zoomMin = new Models.Geometric.Zoom(0.5f);
+
+        /// <summary>
+        ///     ズーム
+        /// </summary>
+        Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+        #endregion
+
         // - プライベート・メソッド
 
         #region メソッド（グリッド・キャンバス　関連）
@@ -1900,8 +1910,8 @@
         void RemakeGridCanvasImage()
         {
             this.GridCanvasImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
         #endregion
 
@@ -1909,7 +1919,7 @@
         void DoZoom()
         {
             // 拡大率
-            double zoomNum = this.ZoomAsDouble;
+            double zoomNum = this.ZoomAsFloat;
 
             // 元画像の複製
             var copySourceMap = new SKBitmap();
@@ -1929,8 +1939,8 @@
 
             // 作業画像のサイズ計算
             this.workingImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt)));
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(

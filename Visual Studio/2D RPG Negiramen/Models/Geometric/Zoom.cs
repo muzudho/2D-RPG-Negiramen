@@ -1,7 +1,12 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
     ///     😁 ズーム
+    ///     
+    ///     <list type="bullet">
+    ///         <item>float 型</item>
+    ///         <item>用途：　図形描画。 SkiaSharp のメソッドが float 型で受け付けるから</item>
+    ///     </list>
     /// </summary>
     internal class Zoom
     {
@@ -24,14 +29,14 @@
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
             // (c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             // どちらかがnullか
             // (c1 == null)とすると、無限ループ
-            if (((object)c1 == null) || ((object)c2 == null))
+            if ((object)c1 == null || (object)c2 == null)
             {
                 return false;
             }
@@ -59,7 +64,7 @@
         public override bool Equals(object obj)
         {
             // objがnullか、型が違うときは、等価でない
-            if (obj == null || this.GetType() != obj.GetType())
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
@@ -68,7 +73,7 @@
 
             // 要素で比較する
             Zoom c = (Zoom)obj;
-            return (this.source == c.source);
+            return source == c.source;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -79,7 +84,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (this.source).GetHashCode();
+            return source.GetHashCode();
         }
         #endregion
 
@@ -95,11 +100,11 @@
         /// <exception cref="ArgumentException">自分自身と、別のオブジェクトが別の型だった</exception>
         public int CompareTo(object other)
         {
-            if ((object)other == null)
+            if (other == null)
                 return 1;
-            if (this.GetType() != other.GetType())
+            if (GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((Zoom)other).source);
+            return source.CompareTo(((Zoom)other).source);
         }
 
         /// <summary>
@@ -117,7 +122,7 @@
                 throw new ArgumentNullException();
             }
             //CompareToメソッドを呼び出す
-            return (c1.CompareTo(c2) < 0);
+            return c1.CompareTo(c2) < 0;
         }
 
         /// <summary>
@@ -130,7 +135,7 @@
         public static bool operator >(Zoom c1, Zoom c2)
         {
             //逆にして"<"で比較
-            return (c2 < c1);
+            return c2 < c1;
         }
 
         /// <summary>
@@ -148,7 +153,7 @@
                 throw new ArgumentNullException();
             }
             //CompareToメソッドを呼び出す
-            return (c1.CompareTo(c2) <= 0);
+            return c1.CompareTo(c2) <= 0;
         }
 
         /// <summary>
@@ -161,7 +166,7 @@
         public static bool operator >=(Zoom c1, Zoom c2)
         {
             //逆にして"<="で比較
-            return (c2 <= c1);
+            return c2 <= c1;
         }
         #endregion
 
@@ -171,7 +176,7 @@
         /// <summary>
         ///     単位元オブジェクト
         /// </summary>
-        internal static Zoom IdentityElement = new Zoom(1.0);
+        internal static Zoom IdentityElement = new Zoom(1.0f);
         #endregion
 
         // - その他
@@ -181,7 +186,7 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal Zoom(double source)
+        internal Zoom(float source)
         {
             this.source = source;
         }
@@ -193,7 +198,7 @@
         /// <summary>
         ///     値。整数型形式
         /// </summary>
-        internal double AsDouble => source;
+        internal float AsFloat => source;
         #endregion
 
         // - プライベート・フィールド
@@ -202,7 +207,7 @@
         /// <summary>
         ///     値
         /// </summary>
-        double source;
+        float source;
         #endregion
     }
 }
