@@ -1047,15 +1047,8 @@
                 this.SourceCroppedCursorSize = value.Size;
 
                 // 切抜きカーソル。ズーム済み
-                this.WorkingCroppedCursorPointAsMargin = new Thickness(
-                    // 左
-                    this.SourceCroppedCursorLeftAsInt,
-                    // 上
-                    this.SourceCroppedCursorTopAsInt,
-                    // 右
-                    0,
-                    // 下
-                    0);
+                this.WorkingCroppedCursorLeftAsFloat = this.ZoomAsFloat * this.SourceCroppedCursorLeftAsInt;
+                this.WorkingCroppedCursorTopAsFloat = this.ZoomAsFloat * this.SourceCroppedCursorTopAsInt;
                 this.WorkingCroppedCursorSize = new Models.Geometric.SizeFloat(
                     width: new Models.Geometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt),
                     height: new Models.Geometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt));
@@ -1113,15 +1106,8 @@
                 }
 
                 // 切抜きカーソル。ズーム済み
-                this.WorkingCroppedCursorPointAsMargin = new Thickness(
-                    // 左
-                    this.SourceCroppedCursorLeftAsInt,
-                    // 上
-                    this.SourceCroppedCursorTopAsInt,
-                    // 右
-                    0,
-                    // 下
-                    0);
+                this.WorkingCroppedCursorLeftAsFloat = this.ZoomAsFloat * this.SourceCroppedCursorLeftAsInt;
+                this.WorkingCroppedCursorTopAsFloat = this.ZoomAsFloat * this.SourceCroppedCursorTopAsInt;
                 // TODO サイズは変化無しか？
 
                 OnPropertyChanged(nameof(SourceCroppedCursorLeftAsInt));
@@ -1180,15 +1166,8 @@
                 }
 
                 // 切抜きカーソル。ズーム済み
-                this.WorkingCroppedCursorPointAsMargin = new Thickness(
-                        // 左
-                        this.SourceCroppedCursorLeftAsInt,
-                        // 上
-                        this.SourceCroppedCursorTopAsInt,
-                        // 右
-                        0,
-                        // 下
-                        0);
+                this.WorkingCroppedCursorLeftAsFloat = this.ZoomAsFloat * this.SourceCroppedCursorLeftAsInt;
+                this.WorkingCroppedCursorTopAsFloat = this.ZoomAsFloat * this.SourceCroppedCursorTopAsInt;
                 // TODO サイズは変化無しか？
 
                 OnPropertyChanged(nameof(SourceCroppedCursorTopAsInt));
@@ -1354,15 +1333,10 @@
         /// </summary>
         public Thickness WorkingCroppedCursorPointAsMargin
         {
-            get => this.workingCroppedCursorPointAsMargin;
-            set
-            {
-                if (this.workingCroppedCursorPointAsMargin != value)
-                {
-                    this.workingCroppedCursorPointAsMargin = value;
-                    OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
-                }
-            }
+            get => new Thickness(left: this.WorkingCroppedCursorLeftAsFloat,
+                                 top: this.WorkingCroppedCursorTopAsFloat,
+                                 right: 0,
+                                 bottom: 0);
         }
 
         /// <summary>
@@ -1757,15 +1731,6 @@
         #endregion
 
         #region フィールド（矩形カーソル。ズーム済み　関連）
-        /// <summary>
-        ///     矩形カーソル。ズーム済みの位置（マージンとして）
-        ///     
-        ///     <list type="bullet">
-        ///         <item>マージンを含んだカーソルの左上位置</item>
-        ///     </list>
-        /// </summary>
-        Thickness workingCroppedCursorPointAsMargin = Thickness.Zero;
-
         /// <summary>
         ///     矩形カーソル。ズーム済みの位置
         ///         
