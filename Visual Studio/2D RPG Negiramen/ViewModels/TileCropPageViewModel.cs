@@ -1108,9 +1108,9 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（選択タイル　関連）
+        #region 変更通知プロパティ（矩形カーソル。元画像ベース　関連）
         /// <summary>
-        ///     選択タイルの矩形（元画像ベース）
+        ///     矩形カーソル。元画像ベースの矩形
         /// </summary>
         public Models.Geometric.RectangleInt SelectedTileRect
         {
@@ -1158,7 +1158,7 @@
         }
 
         /// <summary>
-        ///     選択タイルの位置ｘ（元画像ベース）
+        ///     矩形カーソル。元画像ベースの位置ｘ
         /// </summary>
         public int SourceSelectedTileLeftAsInt
         {
@@ -1237,7 +1237,7 @@
         }
 
         /// <summary>
-        ///     選択タイルの位置ｙ（元画像ベース）
+        ///     矩形カーソル。元画像ベースの位置ｙ
         /// </summary>
         public int SourceSelectedTileTopAsInt
         {
@@ -1312,7 +1312,7 @@
         }
 
         /// <summary>
-        ///     選択タイルのサイズ（元画像ベース）
+        ///     矩形カーソル。元画像ベースのサイズ
         /// </summary>
         public Models.Geometric.SizeInt SourceSelectedTileSize
         {
@@ -1355,7 +1355,7 @@
         }
 
         /// <summary>
-        ///     選択タイルの横幅（元画像ベース）
+        ///     矩形カーソル。元画像ベースの横幅
         /// </summary>
         public int SourceSelectedTileWidthAsInt
         {
@@ -1416,7 +1416,7 @@
         }
 
         /// <summary>
-        ///     選択タイルの縦幅（元画像ベース）
+        ///     矩形カーソル。元画像ベースの縦幅
         /// </summary>
         public int SourceSelectedTileHeightAsInt
         {
@@ -1475,9 +1475,134 @@
                 OnPropertyChanged(nameof(SelectedTileRect));
             }
         }
+        #endregion
+
+        #region プロパティ（矩形カーソル。ズーム済み　関連）
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの位置とサイズ
+        /// </summary>
+        public Models.Geometric.RectangleFloat WorkingSelectedTileRect
+        {
+            get
+            {
+                return this.workingSelectedTileRect;
+            }
+            set
+            {
+                if (this.workingSelectedTileRect != value)
+                {
+                    this.WorkingSelectedTileLeftAsFloat = value.Point.X.AsFloat;
+                    this.WorkingSelectedTileTopAsFloat = value.Point.Y.AsFloat;
+                    this.WorkingSelectedTileWidthAsFloat = value.Size.Width.AsFloat;
+                    this.WorkingSelectedTileHeightAsFloat = value.Size.Height.AsFloat;
+                }
+            }
+        }
 
         /// <summary>
-        ///     選択タイルのコメント
+        ///     矩形カーソル。ズーム済みの位置ｘ
+        /// </summary>
+        public float WorkingSelectedTileLeftAsFloat
+        {
+            get
+            {
+                return this.workingSelectedTileRect.Point.X.AsFloat;
+            }
+            set
+            {
+                if (this.workingSelectedTileRect.Point.X.AsFloat != value)
+                {
+                    this.workingSelectedTileRect = new RectangleFloat(
+                        point: new PointFloat(
+                            x: new XFloat(value),
+                            y: this.workingSelectedTileRect.Point.Y),
+                        size: this.workingSelectedTileRect.Size);
+
+                    OnPropertyChanged(nameof(WorkingSelectedTileLeftAsFloat));
+                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの位置ｙ
+        /// </summary>
+        public float WorkingSelectedTileTopAsFloat
+        {
+            get
+            {
+                return this.workingSelectedTileRect.Point.Y.AsFloat;
+            }
+            set
+            {
+                if (this.workingSelectedTileRect.Point.Y.AsFloat != value)
+                {
+                    this.workingSelectedTileRect = new RectangleFloat(
+                        point: new PointFloat(
+                            x: this.workingSelectedTileRect.Point.X,
+                            y: new YFloat(value)),
+                        size: this.workingSelectedTileRect.Size);
+
+                    OnPropertyChanged(nameof(WorkingSelectedTileTopAsFloat));
+                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの横幅
+        /// </summary>
+        public float WorkingSelectedTileWidthAsFloat
+        {
+            get
+            {
+                return this.workingSelectedTileRect.Size.Width.AsFloat;
+            }
+            set
+            {
+                if (this.workingSelectedTileRect.Size.Width.AsFloat != value)
+                {
+                    this.workingSelectedTileRect = new RectangleFloat(
+                        point: this.workingSelectedTileRect.Point,
+                        size: new SizeFloat(
+                            width: new WidthFloat(value),
+                            height: this.workingSelectedTileRect.Size.Height));
+
+                    OnPropertyChanged(nameof(WorkingSelectedTileWidthAsFloat));
+                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの縦幅
+        /// </summary>
+        public float WorkingSelectedTileHeightAsFloat
+        {
+            get
+            {
+                return this.workingSelectedTileRect.Size.Height.AsFloat;
+            }
+            set
+            {
+                if (this.workingSelectedTileRect.Size.Height.AsFloat != value)
+                {
+                    this.workingSelectedTileRect = new RectangleFloat(
+                        point: this.workingSelectedTileRect.Point,
+                        size: new SizeFloat(
+                            width: this.workingSelectedTileRect.Size.Width,
+                            height: new HeightFloat(value)));
+
+                    OnPropertyChanged(nameof(WorkingSelectedTileHeightAsFloat));
+                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
+                }
+            }
+        }
+        #endregion
+
+        #region プロパティ（登録タイル　関連）
+        /// <summary>
+        ///     矩形カーソル。元画像ベースのコメント
         /// </summary>
         public string SelectedTileCommentAsStr
         {
@@ -1527,129 +1652,6 @@
                 }
 
                 OnPropertyChanged(nameof(SelectedTileCommentAsStr));
-            }
-        }
-        #endregion
-
-        #region 作業選択タイル
-        /// <summary>
-        ///     作業選択タイルの位置とサイズ
-        /// </summary>
-        public Models.Geometric.RectangleFloat WorkingSelectedTileRect
-        {
-            get
-            {
-                return this.workingSelectedTileRect;
-            }
-            set
-            {
-                if (this.workingSelectedTileRect != value)
-                {
-                    this.WorkingSelectedTileLeftAsFloat = value.Point.X.AsFloat;
-                    this.WorkingSelectedTileTopAsFloat = value.Point.Y.AsFloat;
-                    this.WorkingSelectedTileWidthAsFloat = value.Size.Width.AsFloat;
-                    this.WorkingSelectedTileHeightAsFloat = value.Size.Height.AsFloat;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     作業選択タイルの位置ｘ
-        /// </summary>
-        public float WorkingSelectedTileLeftAsFloat
-        {
-            get
-            {
-                return this.workingSelectedTileRect.Point.X.AsFloat;
-            }
-            set
-            {
-                if (this.workingSelectedTileRect.Point.X.AsFloat != value)
-                {
-                    this.workingSelectedTileRect = new RectangleFloat(
-                        point: new PointFloat(
-                            x: new XFloat(value),
-                            y: this.workingSelectedTileRect.Point.Y),
-                        size: this.workingSelectedTileRect.Size);
-
-                    OnPropertyChanged(nameof(WorkingSelectedTileLeftAsFloat));
-                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     作業選択タイルの位置ｙ
-        /// </summary>
-        public float WorkingSelectedTileTopAsFloat
-        {
-            get
-            {
-                return this.workingSelectedTileRect.Point.Y.AsFloat;
-            }
-            set
-            {
-                if (this.workingSelectedTileRect.Point.Y.AsFloat != value)
-                {
-                    this.workingSelectedTileRect = new RectangleFloat(
-                        point: new PointFloat(
-                            x: this.workingSelectedTileRect.Point.X,
-                            y: new YFloat(value)),
-                        size: this.workingSelectedTileRect.Size);
-
-                    OnPropertyChanged(nameof(WorkingSelectedTileTopAsFloat));
-                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     作業選択タイルの横幅
-        /// </summary>
-        public float WorkingSelectedTileWidthAsFloat
-        {
-            get
-            {
-                return this.workingSelectedTileRect.Size.Width.AsFloat;
-            }
-            set
-            {
-                if (this.workingSelectedTileRect.Size.Width.AsFloat != value)
-                {
-                    this.workingSelectedTileRect = new RectangleFloat(
-                        point: this.workingSelectedTileRect.Point,
-                        size: new SizeFloat(
-                            width: new WidthFloat(value),
-                            height: this.workingSelectedTileRect.Size.Height));
-
-                    OnPropertyChanged(nameof(WorkingSelectedTileWidthAsFloat));
-                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     作業選択タイルの縦幅
-        /// </summary>
-        public float WorkingSelectedTileHeightAsFloat
-        {
-            get
-            {
-                return this.workingSelectedTileRect.Size.Height.AsFloat;
-            }
-            set
-            {
-                if (this.workingSelectedTileRect.Size.Height.AsFloat != value)
-                {
-                    this.workingSelectedTileRect = new RectangleFloat(
-                        point: this.workingSelectedTileRect.Point,
-                        size: new SizeFloat(
-                            width: this.workingSelectedTileRect.Size.Width,
-                            height: new HeightFloat(value)));
-
-                    OnPropertyChanged(nameof(WorkingSelectedTileHeightAsFloat));
-                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
-                }
             }
         }
         #endregion
