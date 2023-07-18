@@ -347,7 +347,7 @@
                                                    GridCanvasImageSize="{Binding TileCropPageVM.GridCanvasImageSize}"
                                                    HalfThicknessOfGridLineAsInt="{Binding TileCropPageVM.HalfThicknessOfGridLineAsInt}"
                                                    GridPhase="{Binding TileCropPageVM.WorkingGridPhase}"
-                                                   GridTileSize="{Binding TileCropPageVM.WorkingGridTileSize}"/>
+                                                   GridUnit="{Binding TileCropPageVM.WorkingGridUnit}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 

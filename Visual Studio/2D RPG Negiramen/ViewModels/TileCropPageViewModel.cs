@@ -635,12 +635,12 @@
         /// <summary>
         ///     グリッド・タイルのサイズ。元画像ベース
         /// </summary>
-        public Models.Geometric.SizeInt SourceGridTileSize
+        public Models.Geometric.SizeInt SourceGridUnit
         {
-            get => this.sourceGridTileSize;
+            get => this.sourceGridUnit;
             set
             {
-                if (this.sourceGridTileSize != value)
+                if (this.sourceGridUnit != value)
                 {
                     this.SourceGridTileWidthAsInt = value.Width.AsInt;
                     this.SourceGridTileHeightAsInt = value.Height.AsInt;
@@ -653,20 +653,20 @@
         /// </summary>
         public int SourceGridTileWidthAsInt
         {
-            get => this.sourceGridTileSize.Width.AsInt;
+            get => this.sourceGridUnit.Width.AsInt;
             set
             {
-                if (this.sourceGridTileSize.Width.AsInt != value &&
+                if (this.sourceGridUnit.Width.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridTileSize.Height);
+                    this.sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridUnit.Height);
 
                     // 作業グリッド・タイル横幅の再計算
                     RefreshWorkingGridTileWidth();
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasWidthAsInt = this.sourceGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
+                    this.TileCursorCanvasWidthAsInt = this.sourceGridUnit.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -674,7 +674,7 @@
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridTileWidthAsInt));
-                    OnPropertyChanged(nameof(SourceGridTileSize));
+                    OnPropertyChanged(nameof(SourceGridUnit));
                 }
             }
         }
@@ -684,20 +684,20 @@
         /// </summary>
         public int SourceGridTileHeightAsInt
         {
-            get => this.sourceGridTileSize.Height.AsInt;
+            get => this.sourceGridUnit.Height.AsInt;
             set
             {
-                if (this.sourceGridTileSize.Height.AsInt != value &&
+                if (this.sourceGridUnit.Height.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.sourceGridTileSize = new Models.Geometric.SizeInt(this.sourceGridTileSize.Width, new Models.Geometric.HeightInt(value));
+                    this.sourceGridUnit = new Models.Geometric.SizeInt(this.sourceGridUnit.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
                     RefreshWorkingGridTileHeight();
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasHeightAsInt = this.sourceGridTileSize.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
+                    this.TileCursorCanvasHeightAsInt = this.sourceGridUnit.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -705,7 +705,7 @@
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridTileHeightAsInt));
-                    OnPropertyChanged(nameof(SourceGridTileSize));
+                    OnPropertyChanged(nameof(SourceGridUnit));
                 }
             }
         }
@@ -713,12 +713,12 @@
         /// <summary>
         ///     グリッド・タイルのサイズ。ズーム後（読取専用）
         /// </summary>
-        public Models.Geometric.SizeFloat WorkingGridTileSize
+        public Models.Geometric.SizeFloat WorkingGridUnit
         {
-            get => this.workingGridTileSize;
+            get => this.workingGridUnit;
             set
             {
-                if (this.workingGridTileSize != value)
+                if (this.workingGridUnit != value)
                 {
                     this.WorkingGridTileWidthAsFloat = value.Width.AsFloat;
                     this.WorkingGridTileHeightAsFloat = value.Height.AsFloat;
@@ -731,17 +731,17 @@
         /// </summary>
         public float WorkingGridTileWidthAsFloat
         {
-            get => this.workingGridTileSize.Width.AsFloat;
+            get => this.workingGridUnit.Width.AsFloat;
             set
             {
-                if (this.workingGridTileSize.Width.AsFloat != value)
+                if (this.workingGridUnit.Width.AsFloat != value)
                 {
-                    this.workingGridTileSize = new Models.Geometric.SizeFloat(
+                    this.workingGridUnit = new Models.Geometric.SizeFloat(
                         width: new Models.Geometric.WidthFloat(value),
-                        height: this.WorkingGridTileSize.Height);
+                        height: this.WorkingGridUnit.Height);
 
                     OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridTileSize));
+                    OnPropertyChanged(nameof(WorkingGridUnit));
                 }
             }
         }
@@ -751,17 +751,17 @@
         /// </summary>
         public float WorkingGridTileHeightAsFloat
         {
-            get => this.workingGridTileSize.Height.AsFloat;
+            get => this.workingGridUnit.Height.AsFloat;
             set
             {
-                if (this.workingGridTileSize.Height.AsFloat != value)
+                if (this.workingGridUnit.Height.AsFloat != value)
                 {
-                    this.workingGridTileSize = new Models.Geometric.SizeFloat(
-                        width: this.WorkingGridTileSize.Width,
+                    this.workingGridUnit = new Models.Geometric.SizeFloat(
+                        width: this.WorkingGridUnit.Width,
                         height: new Models.Geometric.HeightFloat(value));
 
                     OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridTileSize));
+                    OnPropertyChanged(nameof(WorkingGridUnit));
                 }
             }
         }
@@ -910,7 +910,7 @@
 
                         OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
                         OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-                        OnPropertyChanged(nameof(WorkingGridTileSize));
+                        OnPropertyChanged(nameof(WorkingGridUnit));
                     }
                 }
             }
@@ -1671,7 +1671,7 @@
                 this.SourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(0), new Models.Geometric.YInt(0));
 
                 // グリッドのタイルサイズ（初期値）
-                this.SourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
+                this.SourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
                 this.RemakeGridCanvasImage();
@@ -1820,9 +1820,9 @@
         Models.Geometric.SizeInt gridCanvasImageSize = Models.Geometric.SizeInt.Empty;
 
         /// <summary>
-        ///     グリッド・タイルのサイズ。元画像ベース
+        ///     グリッド単位。元画像ベース
         /// </summary>
-        Models.Geometric.SizeInt sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
+        Models.Geometric.SizeInt sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
         /// <summary>
         ///     グリッド位相の左上表示位置。ズーム後
@@ -1830,9 +1830,9 @@
         Models.Geometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Empty;
 
         /// <summary>
-        ///     グリッド・タイルのサイズ。ズーム後
+        ///     グリッド単位。ズーム後
         /// </summary>
-        Models.Geometric.SizeFloat workingGridTileSize = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32), new Models.Geometric.HeightFloat(32));
+        Models.Geometric.SizeFloat workingGridUnit = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32), new Models.Geometric.HeightFloat(32));
         #endregion
 
         #region フィールド（選択タイル　関連）
@@ -1970,10 +1970,10 @@
         /// </summary>
         void RefreshWorkingGridTileWidth()
         {
-            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridTileSize.Width.AsInt;
+            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
 
             OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-            OnPropertyChanged(nameof(WorkingGridTileSize));
+            OnPropertyChanged(nameof(WorkingGridUnit));
         }
 
         /// <summary>
@@ -1981,10 +1981,10 @@
         /// </summary>
         void RefreshWorkingGridTileHeight()
         {
-            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.sourceGridTileSize.Height.AsInt;
+            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
 
             OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-            OnPropertyChanged(nameof(WorkingGridTileSize));
+            OnPropertyChanged(nameof(WorkingGridUnit));
         }
     }
 }

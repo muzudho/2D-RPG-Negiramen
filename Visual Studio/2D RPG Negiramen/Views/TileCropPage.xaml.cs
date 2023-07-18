@@ -90,7 +90,7 @@ public partial class TileCropPage : ContentPage
             startPoint: PointingDeviceStartPoint,
             endPoint: PointingDeviceCurrentPoint,
             gridLeftTop: context.SourceGridPhase,
-            gridTile: context.SourceGridTileSize);
+            gridTile: context.SourceGridUnit);
 
 
         //

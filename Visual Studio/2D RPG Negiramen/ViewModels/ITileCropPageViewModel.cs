@@ -47,14 +47,14 @@ public interface ITileCropPageViewModel
     Models.Geometric.PointFloat WorkingGridPhase { get; }
 
     /// <summary>
-    ///     グリッド・タイルのサイズ。元画像ベース
+    ///     グリッド単位。元画像ベース
     /// </summary>
-    Models.Geometric.SizeInt SourceGridTileSize { get; }
+    Models.Geometric.SizeInt SourceGridUnit { get; }
 
     /// <summary>
-    ///     グリッド・タイルのサイズ。ズーム後
+    ///     グリッド単位。ズーム後
     /// </summary>
-    Models.Geometric.SizeFloat WorkingGridTileSize { get; }
+    Models.Geometric.SizeFloat WorkingGridUnit { get; }
     #endregion
 
     #region プロパティ（選択タイル　関連）

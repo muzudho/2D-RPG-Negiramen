@@ -99,22 +99,22 @@
             defaultValue: Geometric.PointFloat.Empty);
         #endregion
 
-        #region 束縛可能プロパティ（グリッド・タイル　関連）
+        #region 束縛可能プロパティ（グリッド単位）
         /// <summary>
-        ///     グリッド・タイル・サイズ
+        ///     グリッド単位
         /// </summary>
-        public Geometric.SizeFloat GridTileSize
+        public Geometric.SizeFloat GridUnit
         {
-            get => (Geometric.SizeFloat)GetValue(GridTileSizeProperty);
-            set => SetValue(GridTileSizeProperty, value);
+            get => (Geometric.SizeFloat)GetValue(GridUnitProperty);
+            set => SetValue(GridUnitProperty, value);
         }
 
         /// <summary>
-        ///     グリッド・タイル・サイズ
+        ///     グリッド単位
         /// </summary>
-        public static BindableProperty GridTileSizeProperty = BindableProperty.Create(
+        public static BindableProperty GridUnitProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(GridTileSize),
+            propertyName: nameof(GridUnit),
             // 返却型
             returnType: typeof(Geometric.SizeFloat),
             // これを含んでいるクラス
@@ -133,7 +133,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.GridPhase.Dump()}, this.SourceGridTileSize: {this.GridTileSize.Dump()} dirtyRect: ({dirtyRect.Width:.2}, {dirtyRect.Height:.2})");
+            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.GridPhase.Dump()}, this.GridUnit: {this.GridUnit.Dump()} dirtyRect: ({dirtyRect.Width:.2}, {dirtyRect.Height:.2})");
 
             // 線の色
             canvas.StrokeColor = new Color(255, 0, 0, 127);
@@ -158,7 +158,7 @@
                 for (var i = 0; x < this.GridCanvasImageSize.Width.AsInt + halfThicknessOfLineAsInt; i++)
                 {
                     prevX = x;
-                    x = i * this.GridTileSize.Width.AsFloat + this.GridPhase.X.AsFloat + halfThicknessOfLineAsInt;
+                    x = i * this.GridUnit.Width.AsFloat + this.GridPhase.X.AsFloat + halfThicknessOfLineAsInt;
 
                     if (x <= prevX)
                     {
@@ -188,7 +188,7 @@
                 for (var i = 0; y < this.GridCanvasImageSize.Height.AsInt + halfThicknessOfLineAsInt; i++)
                 {
                     prevY = y;
-                    y = i * this.GridTileSize.Height.AsFloat + this.GridPhase.Y.AsFloat + halfThicknessOfLineAsInt;
+                    y = i * this.GridUnit.Height.AsFloat + this.GridPhase.Y.AsFloat + halfThicknessOfLineAsInt;
 
                     if (y <= prevY)
                     {
