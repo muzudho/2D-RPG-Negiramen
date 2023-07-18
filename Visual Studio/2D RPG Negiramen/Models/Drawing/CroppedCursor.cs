@@ -9,7 +9,7 @@
     ///         📖 [.net MAUI: how to draw on canvas](https://stackoverflow.com/questions/71001039/net-maui-how-to-draw-on-canvas)
     ///     </pre>
     /// </summary>
-    internal class TileCursor : BindableObject, IDrawable
+    internal class CroppedCursor : BindableObject, IDrawable
     {
         // - パブリック束縛可能プロパティ
 

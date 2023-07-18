@@ -11,7 +11,7 @@
              Title="タイル・パレット">
 
     <ContentPage.Resources>
-        <modelsDrawing:TileCursor x:Key="MyTileCursor" />
+        <modelsDrawing:CroppedCursor x:Key="MyTileCursor" />
     </ContentPage.Resources>
     
     <ContentPage.BindingContext>

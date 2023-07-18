@@ -365,20 +365,18 @@
                     </GraphicsView.Drawable>
                 </GraphicsView>
 
-                <!--    矩形カーソル
-                        ============
-                
-                        * カーソルの線の幅が 4px なので、画像サイズは + 8px にする
+                <!--    切抜きカーソル
+                        ==============
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="{Binding WorkingCroppedCursorPointAsMargin}"
                               WidthRequest="{Binding WorkingRectCursorWidthAsFloat}" HeightRequest="{Binding WorkingRectCursorHeightAsFloat}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
-                        <modelsDrawing:TileCursor BindingContext="{x:Reference thisContentPage}"
-                                                  HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"
-                                                  CroppedCursorSize="{Binding TileCropPageVM.WorkingCroppedCursorSize}"
-                                                  SelectingOnPointingDevice="{Binding TileCropPageVM.SelectingOnPointingDevice}"/>
+                        <modelsDrawing:CroppedCursor BindingContext="{x:Reference thisContentPage}"
+                                                     HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"
+                                                     CroppedCursorSize="{Binding TileCropPageVM.WorkingCroppedCursorSize}"
+                                                     SelectingOnPointingDevice="{Binding TileCropPageVM.SelectingOnPointingDevice}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 
