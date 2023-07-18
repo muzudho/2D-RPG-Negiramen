@@ -153,8 +153,11 @@
                 OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
                 OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
-                // 作業画像の作成
+                // 作業画像の再作成
                 this.RemakeWorkingImage();
+
+                // グリッド・キャンバス画像の再作成
+                this.RemakeGridCanvasImage();
             }
         }
 
@@ -813,7 +816,7 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（ズーム。整数形式）
+        #region 変更通知プロパティ（ズーム）
         /// <summary>
         ///     ズーム。整数形式
         ///     
@@ -834,6 +837,9 @@
 
                         // 作業画像を再作成
                         this.RemakeWorkingImage();
+
+                        // グリッド・キャンバス画像の再作成
+                        this.RemakeGridCanvasImage();
 
                         OnPropertyChanged(nameof(ZoomAsDouble));
                         OnPropertyChanged(nameof(WorkingGridPhaseLeftAsInt));
@@ -1486,8 +1492,8 @@
                 // グリッドのタイルサイズ（初期値）
                 this.SourceGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
 
-                // グリッド・キャンバスの再作成
-                this.RemakeGridCanvas();
+                // グリッド・キャンバス画像の再作成
+                this.RemakeGridCanvasImage();
             }
         }
         #endregion
@@ -1669,17 +1675,17 @@
         }
 
         /// <summary>
-        ///     グリッド・キャンバスの再作成
+        ///     グリッド・キャンバス画像の再作成
         ///     
         ///     <list type="bullet">
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
-        void RemakeGridCanvas()
+        void RemakeGridCanvasImage()
         {
             this.GridCanvasImageSize = new Models.Size(
-                width: new Models.Width(this.TilesetSourceImageSize.Width.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Height(this.TilesetSourceImageSize.Height.AsInt + (2 * this.HalfThicknessOfGridLineAsInt)));
+                width: new Models.Width((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Height((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
         #endregion
 
@@ -1707,8 +1713,8 @@
 
             // 作業画像のサイズ計算
             this.workingImageSize = new Models.Size(
-                width: new Models.Width((int)(this.TilesetSourceImageSize.Width.AsInt * this.ZoomAsDouble)),
-                height: new Models.Height((int)(this.TilesetSourceImageSize.Height.AsInt * this.ZoomAsDouble)));
+                width: new Models.Width((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Height((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(
@@ -1716,9 +1722,6 @@
                     width: this.workingImageSize.Width.AsInt,
                     height: this.workingImageSize.Height.AsInt),
                 quality: SKFilterQuality.Medium);
-
-            // グリッド・キャンバス画像の再描画要求
-            // this.InvalidateCanvasOfGrid();
 
             OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
             OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));

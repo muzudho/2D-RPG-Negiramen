@@ -139,13 +139,23 @@
             // 縦線を引いていこう
             // ==================
             //
-            // 線に太さが無いと無限ループするので、防止
-            if (0 < gridTileSize.Width.AsInt)
             {
                 int y1 = halfThicknessOfLineAsInt + gridPhaseTopAsInt;
                 int y2 = canvasHeight + halfThicknessOfLineAsInt + gridPhaseTopAsInt;
-                for (var x = halfThicknessOfLineAsInt + gridPhaseLeftAsInt; x < canvasWidth + lineThickness.AsInt + gridPhaseLeftAsInt; x += gridTileSize.Width.AsInt)
+
+                int prevX = 0;
+                int x = 0;
+                for (var i = 0; x < canvasWidth + halfThicknessOfLineAsInt; i++)
                 {
+                    prevX = x;
+                    x = i * gridTileSize.Width.AsInt + gridPhaseLeftAsInt + halfThicknessOfLineAsInt;
+
+                    if (x <= prevX)
+                    {
+                        // 単調増加していないのなら停止
+                        break;
+                    }
+
                     canvas.DrawLine(x, y1, x, y2);
                 }
             }
@@ -154,8 +164,6 @@
             // 横線を引いていこう
             // ==================
             //
-            // 線に太さが無いと無限ループするので、防止
-            if (0 < gridTileSize.Height.AsInt)
             {
                 int x1 = halfThicknessOfLineAsInt + gridPhaseLeftAsInt;
 
@@ -165,8 +173,19 @@
                 //              右辺の線の手前まで線を引くようにする
                 int x2 = canvasWidth - halfThicknessOfLineAsInt + gridPhaseLeftAsInt;
 
-                for (var y = halfThicknessOfLineAsInt + gridPhaseTopAsInt; y < canvasHeight + lineThickness.AsInt + gridPhaseTopAsInt; y += gridTileSize.Height.AsInt)
+                int prevY = 0;
+                int y = 0;
+                for (var i = 0; y < canvasHeight + halfThicknessOfLineAsInt; i++)
                 {
+                    prevY = y;
+                    y = i * gridTileSize.Height.AsInt + gridPhaseTopAsInt + halfThicknessOfLineAsInt;
+
+                    if (y <= prevY)
+                    {
+                        // 単調増加していないのなら停止
+                        break;
+                    }
+
                     canvas.DrawLine(x1, y, x2, y);
                 }
             }

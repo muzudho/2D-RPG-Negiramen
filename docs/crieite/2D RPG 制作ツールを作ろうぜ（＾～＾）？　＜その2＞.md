@@ -137,4 +137,11 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　なんらかのプロパティが変わってないと　再描画しないようだぜ」  
 
+![202307__maui__18-1457--GridError.png](https://crieit.now.sh/upload_images/07ec27f8a0471b56e05c8c1517c54af564b629e70377e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ズームに実数を入れると、ずれてしまうな。  
+計算式の端数の丸め方が　揃っていないのだろう」  
+
+
 ＜書きかけ＞
