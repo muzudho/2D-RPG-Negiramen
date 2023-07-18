@@ -155,7 +155,7 @@
                 OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
                 // 作業画像の再作成
-                this.RemakeWorkingImage();
+                this.RemakeWorkingTilesetImage();
 
                 // グリッド・キャンバス画像の再作成
                 this.RemakeGridCanvasImage();
@@ -307,13 +307,6 @@
                     // タイル・カーソル無し時
                     sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
-
-                        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-                        前:
-                                                rectangle: Models.RectangleInt.Empty,
-                        後:
-                                                rectangle: RectangleInt.Empty,
-                        */
                         rectangle: Models.Geometric.RectangleInt.Empty,
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
@@ -899,7 +892,7 @@
                         this.zoom = new Models.Geometric.Zoom(value);
 
                         // 作業画像を再作成
-                        this.RemakeWorkingImage();
+                        this.RemakeWorkingTilesetImage();
 
                         // 作業グリッド・タイル横幅の再計算
                         RefreshWorkingGridTileWidth();
@@ -1895,6 +1888,32 @@
 
         // - プライベート・メソッド
 
+        #region メソッド（作業タイルセット画像の再作成）
+        /// <summary>
+        ///     作業タイルセット画像の再作成
+        /// </summary>
+        void RemakeWorkingTilesetImage()
+        {
+            // 元画像をベースに、作業画像を複製
+            this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
+
+            // 作業画像のサイズ計算
+            this.workingImageSize = new Models.Geometric.SizeInt(
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt)));
+
+            // 作業画像のリサイズ
+            this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(
+                size: new SKSizeI(
+                    width: this.workingImageSize.Width.AsInt,
+                    height: this.workingImageSize.Height.AsInt),
+                quality: SKFilterQuality.Medium);
+
+            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
+            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
+        }
+        #endregion
+
         #region メソッド（グリッド・キャンバス　関連）
         /// <summary>
         ///     <pre>
@@ -1945,30 +1964,6 @@
             // TODO 出力先画像（ズーム）
         }
         #endregion
-
-        /// <summary>
-        ///     作業用画像の再作成
-        /// </summary>
-        void RemakeWorkingImage()
-        {
-            // 元画像をベースに、作業画像を複製
-            this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
-
-            // 作業画像のサイズ計算
-            this.workingImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt)));
-
-            // 作業画像のリサイズ
-            this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(
-                size: new SKSizeI(
-                    width: this.workingImageSize.Width.AsInt,
-                    height: this.workingImageSize.Height.AsInt),
-                quality: SKFilterQuality.Medium);
-
-            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
-            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
-        }
 
         /// <summary>
         ///     作業グリッド・タイル横幅の再計算
