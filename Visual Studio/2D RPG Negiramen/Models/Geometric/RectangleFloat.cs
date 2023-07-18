@@ -8,7 +8,7 @@
     ///         <item>用途：　図形描画。 SkiaSharp のメソッドが float 型で受け付けるから</item>
     ///     </list>
     /// </summary>
-    internal class RectangleFloat
+    public class RectangleFloat
     {
         // - 演算子のオーバーロード
 

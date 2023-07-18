@@ -377,7 +377,7 @@
                     <GraphicsView.Drawable>
                         <modelsDrawing:TileCursor BindingContext="{x:Reference thisContentPage}"
                                                   HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"
-                                                  SelectedTileSize="{Binding TileCropPageVM.SelectedTileSize}"
+                                                  SelectedTileSize="{Binding TileCropPageVM.SourceSelectedTileSize}"
                                                   SelectingOnPointingDevice="{Binding TileCropPageVM.SelectingOnPointingDevice}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
@@ -456,32 +456,32 @@
                    VerticalTextAlignment="Center"
                    Text="{app:Translate Cursor}"/>
 
-            <!-- 選択タイルＸ -->
+            <!-- 元画像：　選択タイルＸ -->
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SelectedTileLeftAsInt}"
+                   Text="{Binding SourceSelectedTileLeftAsInt}"
                    FontSize="24"/>
 
-            <!-- 選択タイルＹ -->
+            <!-- 元画像：　選択タイルＹ -->
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SelectedTileTopAsInt}"
+                   Text="{Binding SourceSelectedTileTopAsInt}"
                    FontSize="24"/>
 
-            <!-- 選択タイル横幅 -->
+            <!-- 元画像：　選択タイル横幅 -->
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SelectedTileWidthAsInt}"
+                   Text="{Binding SourceSelectedTileWidthAsInt}"
                    FontSize="24"/>
 
             <!-- 選択タイル縦幅 -->
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SelectedTileHeightAsInt}"
+                   Text="{Binding SourceSelectedTileHeightAsInt}"
                    FontSize="24"/>
 
             <!--    ◆３段目 読み仮名部

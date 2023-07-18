@@ -71,7 +71,7 @@ public partial class TilePalettePage : ContentPage
         //
         context.TappedXOnImageAsInt = tapped.X.AsInt;
         context.TappedYOnImageAsInt = tapped.Y.AsInt;
-        context.SelectedTileLeftAsInt = tileCursor.X.AsInt;
-        context.SelectedTileTopAsInt = tileCursor.Y.AsInt;
+        context.SourceSelectedTileLeftAsInt = tileCursor.X.AsInt;
+        context.SourceSelectedTileTopAsInt = tileCursor.Y.AsInt;
     }
 }

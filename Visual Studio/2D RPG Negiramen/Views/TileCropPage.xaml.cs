@@ -99,14 +99,14 @@ public partial class TileCropPage : ContentPage
         //
         // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.SelectingOnPointingDevice: {context.SelectingOnPointingDevice}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
 
-        context.SelectedTileRectangle = rect;
+        context.SelectedTileRect = rect;
 
         //
         // タイルが登録済みか？
         // ====================
         //
         if (context.TilesetSettings.TryGetByRectangle(
-            rect: context.SelectedTileRectangle,
+            rect: context.SelectedTileRect,
             out Models.TileRecord record))
         {
             // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
@@ -137,7 +137,7 @@ public partial class TileCropPage : ContentPage
             // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
             context.SelectedTileOption = new Option<Models.TileRecord>(new Models.TileRecord(
                 id: Models.TileId.Empty,
-                rectangle: context.SelectedTileRectangle,
+                rectangle: context.SelectedTileRect,
                 comment: Models.Comment.Empty,
                 logicalDelete: Models.LogicalDelete.False));
         }
@@ -432,11 +432,11 @@ public partial class TileCropPage : ContentPage
             id: context.TilesetSettings.UsableId,
             rect: new Models.Geometric.RectangleInt(
                 point: new Models.Geometric.PointInt(
-                    x: new Models.Geometric.XInt(context.SelectedTileLeftAsInt),
-                    y: new Models.Geometric.YInt(context.SelectedTileTopAsInt)),
+                    x: new Models.Geometric.XInt(context.SourceSelectedTileLeftAsInt),
+                    y: new Models.Geometric.YInt(context.SourceSelectedTileTopAsInt)),
                 size: new Models.Geometric.SizeInt(
-                    width: new Models.Geometric.WidthInt(context.SelectedTileWidthAsInt),
-                    height: new Models.Geometric.HeightInt(context.SelectedTileHeightAsInt))),
+                    width: new Models.Geometric.WidthInt(context.SourceSelectedTileWidthAsInt),
+                    height: new Models.Geometric.HeightInt(context.SourceSelectedTileHeightAsInt))),
             comment: new Models.Comment(context.SelectedTileCommentAsStr),
             logicalDelete: logicalDelete,
             onTileIdUpdated: () =>

@@ -38,52 +38,24 @@
 
         #region 束縛可能プロパティ（選択タイルのサイズ）
         /// <summary>
-        ///     選択タイルのサイズ
+        ///     選択タイルのサイズ。ズーム済み
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.SizeInt SelectedTileSize
-後:
-        public SizeInt SelectedTileSize
-*/
-        public Geometric.SizeInt SelectedTileSize
+        public Geometric.SizeInt SelectedTileSize   // TODO float
         {
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            get => (Models.SizeInt)GetValue(SelectedTileSizeProperty);
-後:
-            get => (SizeInt)GetValue(SelectedTileSizeProperty);
-*/
             get => (Geometric.SizeInt)GetValue(SelectedTileSizeProperty);
             set => SetValue(SelectedTileSizeProperty, value);
         }
 
         /// <summary>
-        ///     現在作業中の画面の中での選択タイルのサイズ
+        ///     選択タイルのサイズ。ズーム済み
         /// </summary>
         public static BindableProperty SelectedTileSizeProperty = BindableProperty.Create(
             // プロパティ名
             propertyName: nameof(SelectedTileSize),
             // 返却型
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            returnType: typeof(Models.SizeInt),
-後:
-            returnType: typeof(SizeInt),
-*/
-            returnType: typeof(Geometric.SizeInt),
+            returnType: typeof(Geometric.SizeInt),  // TODO float
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            defaultValue: Models.SizeInt.Empty);
-後:
-            defaultValue: SizeInt.Empty);
-*/
             defaultValue: Geometric.SizeInt.Empty);
         #endregion
 
@@ -127,7 +99,7 @@
 
             //try
             //{
-            //    Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.SelectedTileSize: {this.SelectedTileSize.Dump()}");
+            //    Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.SourceSelectedTileSize: {this.SelectedTileSize.Dump()}");
             //}
             //catch
             //{
@@ -157,13 +129,6 @@
             canvas.StrokeSize = thickness.AsInt;
 
             // 選択タイルのサイズ
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            Models.SizeInt tileCursorSize = this.SelectedTileSize;
-後:
-            SizeInt tileCursorSize = this.SelectedTileSize;
-*/
             Geometric.SizeInt tileCursorSize = this.SelectedTileSize;
 
             // キャンバス・サイズいっぱいにタイル・カーソルを描画

@@ -108,7 +108,7 @@
         /// <summary>
         ///     選択タイルの位置ｘ
         /// </summary>
-        public int SelectedTileLeftAsInt
+        public int SourceSelectedTileLeftAsInt
         {
             get => _tileCursorPoint.X.AsInt;
             set
@@ -116,13 +116,13 @@
                 if (_tileCursorPoint.X.AsInt != value)
                 {
                     _tileCursorPoint = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), _tileCursorPoint.Y);
-                    OnPropertyChanged(nameof(SelectedTileLeftAsInt));
+                    OnPropertyChanged(nameof(SourceSelectedTileLeftAsInt));
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
-                        this.SelectedTileLeftAsInt,
+                        this.SourceSelectedTileLeftAsInt,
                         // 上
-                        this.SelectedTileTopAsInt,
+                        this.SourceSelectedTileTopAsInt,
                         // 右
                         0,
                         // 下
@@ -134,7 +134,7 @@
         /// <summary>
         ///     選択タイルの位置ｙ
         /// </summary>
-        public int SelectedTileTopAsInt
+        public int SourceSelectedTileTopAsInt
         {
             get => _tileCursorPoint.Y.AsInt;
             set
@@ -142,13 +142,13 @@
                 if (_tileCursorPoint.Y.AsInt != value)
                 {
                     _tileCursorPoint = new Models.Geometric.PointInt(_tileCursorPoint.X, new Models.Geometric.YInt(value));
-                    OnPropertyChanged(nameof(SelectedTileTopAsInt));
+                    OnPropertyChanged(nameof(SourceSelectedTileTopAsInt));
 
                     this.TileCursorPointAsMargin = new Thickness(
                         // 左
-                        this.SelectedTileLeftAsInt,
+                        this.SourceSelectedTileLeftAsInt,
                         // 上
-                        this.SelectedTileTopAsInt,
+                        this.SourceSelectedTileTopAsInt,
                         // 右
                         0,
                         // 下

@@ -64,9 +64,14 @@ public interface ITileCropPageViewModel
     ThicknessOfLine HalfThicknessOfTileCursorLine { get; }
 
     /// <summary>
-    ///     選択タイルのサイズ
+    ///     選択タイルのサイズ。元画像ベース
     /// </summary>
-    Models.Geometric.SizeInt SelectedTileSize { get; }
+    Models.Geometric.SizeInt SourceSelectedTileSize { get; }
+
+    /// <summary>
+    ///     選択タイルのサイズ。ズーム済み
+    /// </summary>
+    Models.Geometric.RectangleFloat WorkingSelectedTileRect { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）
