@@ -371,13 +371,13 @@
                         * カーソルの線の幅が 4px なので、画像サイズは + 8px にする
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
-                              Margin="{Binding WorkingRectCursorPointAsMargin}"
-                              WidthRequest="{Binding WorkingRectCursorCanvasWidthAsFloat}" HeightRequest="{Binding WorkingRectCursorCanvasHeightAsFloat}"
+                              Margin="{Binding WorkingCroppedCursorPointAsMargin}"
+                              WidthRequest="{Binding WorkingRectCursorWidthAsFloat}" HeightRequest="{Binding WorkingRectCursorHeightAsFloat}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
                         <modelsDrawing:TileCursor BindingContext="{x:Reference thisContentPage}"
                                                   HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"
-                                                  WorkingSelectedTileRect="{Binding TileCropPageVM.WorkingSelectedTileRect}"
+                                                  CroppedCursorSize="{Binding TileCropPageVM.WorkingCroppedCursorSize}"
                                                   SelectingOnPointingDevice="{Binding TileCropPageVM.SelectingOnPointingDevice}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>

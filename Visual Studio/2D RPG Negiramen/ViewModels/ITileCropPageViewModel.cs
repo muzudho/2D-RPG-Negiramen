@@ -57,21 +57,34 @@ public interface ITileCropPageViewModel
     Models.Geometric.SizeFloat WorkingGridUnit { get; }
     #endregion
 
-    #region プロパティ（選択タイル　関連）
+    #region プロパティ（切抜きカーソル。共通　関連）
     /// <summary>
-    ///     タイル・カーソルの線の半分の太さ
+    ///     切抜きカーソルの線の半分の太さ
     /// </summary>
     ThicknessOfLine HalfThicknessOfTileCursorLine { get; }
+    #endregion
+
+    #region プロパティ（切抜きカーソル。元画像ベース　関連）
+    /// <summary>
+    ///     切抜きカーソルのサイズ。元画像ベース
+    /// </summary>
+    Models.Geometric.SizeInt SourceCroppedCursorSize { get; }
+    #endregion
+
+    #region プロパティ（切抜きカーソル。ズーム済み　関連）
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの位置（マージンとして）
+    /// </summary>
+    public Thickness WorkingCroppedCursorPointAsMargin { get; }
 
     /// <summary>
-    ///     選択タイルのサイズ。元画像ベース
+    ///     切抜きカーソル。ズーム済みのサイズ
+    ///     
+    ///     <list type="bullet">
+    ///         <item>線の太さを含まない</item>
+    ///     </list>
     /// </summary>
-    Models.Geometric.SizeInt SourceSelectedTileSize { get; }
-
-    /// <summary>
-    ///     選択タイルのサイズ。ズーム済み
-    /// </summary>
-    Models.Geometric.RectangleFloat WorkingSelectedTileRect { get; }
+    Models.Geometric.SizeFloat WorkingCroppedCursorSize { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）

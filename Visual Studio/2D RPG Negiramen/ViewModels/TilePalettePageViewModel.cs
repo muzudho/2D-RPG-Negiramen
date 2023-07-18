@@ -118,7 +118,7 @@
                     _tileCursorPoint = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), _tileCursorPoint.Y);
                     OnPropertyChanged(nameof(SourceSelectedTileLeftAsInt));
 
-                    this.WorkingRectCursorPointAsMargin = new Thickness(
+                    this.workingCroppedCursorPointAsMargin = new Thickness(
                         // 左
                         this.SourceSelectedTileLeftAsInt,
                         // 上
@@ -144,7 +144,7 @@
                     _tileCursorPoint = new Models.Geometric.PointInt(_tileCursorPoint.X, new Models.Geometric.YInt(value));
                     OnPropertyChanged(nameof(SourceSelectedTileTopAsInt));
 
-                    this.WorkingRectCursorPointAsMargin = new Thickness(
+                    this.workingCroppedCursorPointAsMargin = new Thickness(
                         // 左
                         this.SourceSelectedTileLeftAsInt,
                         // 上
@@ -160,15 +160,15 @@
         /// <summary>
         ///     矩形カーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        public Thickness WorkingRectCursorPointAsMargin
+        public Thickness WorkingCroppedCursorPointAsMargin
         {
-            get => workingRectCursorPointAsMargin;
+            get => this.workingCroppedCursorPointAsMargin;
             private set
             {
-                if (workingRectCursorPointAsMargin != value)
+                if (this.workingCroppedCursorPointAsMargin != value)
                 {
-                    workingRectCursorPointAsMargin = value;
-                    OnPropertyChanged(nameof(WorkingRectCursorPointAsMargin));
+                    this.workingCroppedCursorPointAsMargin = value;
+                    OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
                 }
             }
         }
@@ -238,13 +238,13 @@
         Models.Geometric.PointInt _pointingPointOnWindow = Models.Geometric.PointInt.Empty;
 
         /// <summary>
-        ///     タイル・カーソル位置
+        ///     切抜きカーソル。元画像ベース
         /// </summary>
         Models.Geometric.PointInt _tileCursorPoint = Models.Geometric.PointInt.Empty;
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置（マージンとして）
+        ///     切抜きカーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        Thickness workingRectCursorPointAsMargin = Thickness.Zero;
+        Thickness workingCroppedCursorPointAsMargin = Thickness.Zero;
     }
 }

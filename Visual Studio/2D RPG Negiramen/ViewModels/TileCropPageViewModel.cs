@@ -221,18 +221,18 @@
         public float ZoomMinAsFloat => this.zoomMin.AsFloat;
         #endregion
 
-        #region プロパティ（選択タイル）
+        #region プロパティ（切抜きカーソル。元画像ベース）
         /// <summary>
-        ///     選択タイル
+        ///     切抜きカーソル。元画像ベース
         /// </summary>
         public Option<TileRecord> SelectedTileOption
         {
-            get => this.sourceSelectedTileOption;
+            get => this.sourceCroppedCursorOption;
             set
             {
                 Models.TileRecord newValue;
 
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (SelectedTileOption == value)
                     {
@@ -254,7 +254,7 @@
 
                 // 変更通知を送りたいので、構成要素ごとに設定
                 this.SelectedTileId = newValue.Id;
-                this.SourceSelectedTileLeftAsInt = newValue.Rectangle.Point.X.AsInt;
+                this.SourceCroppedCursorLeftAsInt = newValue.Rectangle.Point.X.AsInt;
                 this.SourceSelectedTileTopAsInt = newValue.Rectangle.Point.Y.AsInt;
                 this.SourceSelectedTileWidthAsInt = newValue.Rectangle.Size.Width.AsInt;
                 this.SourceSelectedTileHeightAsInt = newValue.Rectangle.Size.Height.AsInt;
@@ -268,7 +268,9 @@
                 // TODO コメントもリフレッシュしたい
             }
         }
+        #endregion
 
+        #region プロパティ（登録タイル　関連）
         /// <summary>
         ///     選択タイルＩｄ
         /// </summary>
@@ -276,7 +278,7 @@
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Id;
                 }
@@ -288,7 +290,7 @@
             }
             set
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Id == value)
                     {
@@ -296,7 +298,7 @@
                         return;
                     }
 
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
                         rectangle: selectedTile.Rectangle,
                         comment: selectedTile.Comment,
@@ -305,7 +307,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
                         rectangle: Models.Geometric.RectangleInt.Empty,
                         comment: Models.Comment.Empty,
@@ -314,7 +316,7 @@
 
                 this.RefreshByLocaleChanged();
 
-                if (this.sourceSelectedTileOption.TryGetValue(out var record))
+                if (this.sourceCroppedCursorOption.TryGetValue(out var record))
                 {
                     if (record.Id == TileId.Empty)
                     {
@@ -405,7 +407,7 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（グリッド・キャンバス　関連）
+        #region 変更通知プロパティ（グリッド　関連）
         /// <summary>
         ///     グリッド・キャンバスの画像サイズ
         ///         
@@ -413,13 +415,6 @@
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                public Models.SizeInt GridCanvasImageSize
-        後:
-                public SizeInt GridCanvasImageSize
-        */
         public Models.Geometric.SizeInt GridCanvasImageSize
         {
             get => this.gridCanvasImageSize;
@@ -432,7 +427,6 @@
                 }
             }
         }
-
 
         /// <summary>
         ///     <pre>
@@ -475,9 +469,7 @@
                 }
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（グリッドの線の太さの半分）
         /// <summary>
         ///     グリッドの線の太さの半分
         /// </summary>
@@ -501,9 +493,10 @@
                 }
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（グリッド位相の左上表示位置）
+        /// <summary>
+        ///     グリッド位相の左上表示位置。元画像ベース
+        /// </summary>
         Models.Geometric.PointInt sourceGridPhase = Models.Geometric.PointInt.Empty;
 
         /// <summary>
@@ -629,9 +622,7 @@
                 }
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（グリッド・タイルのサイズ　関連）
         /// <summary>
         ///     グリッド・タイルのサイズ。元画像ベース
         /// </summary>
@@ -665,8 +656,8 @@
                     // 作業グリッド・タイル横幅の再計算
                     RefreshWorkingGridTileWidth();
 
-                    // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.WorkingRectCursorCanvasWidthAsFloat = this.sourceGridUnit.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
+                    // カーソルの線の幅を含まない
+                    this.WorkingRectCursorWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -696,8 +687,8 @@
                     // 作業グリッド・タイル横幅の再計算
                     RefreshWorkingGridTileHeight();
 
-                    // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.WorkingRectCursorCanvasHeightAsFloat = this.sourceGridUnit.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
+                    // カーソルの線の幅を含まない
+                    this.WorkingRectCursorHeightAsFloat = this.sourceGridUnit.Height.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -783,95 +774,6 @@
         }
         #endregion
 
-
-        #region 変更通知プロパティ（矩形カーソル。ズーム済み　関連）
-        /// <summary>
-        ///     矩形カーソル。ズーム済みの位置（マージンとして）
-        /// </summary>
-        public Thickness WorkingRectCursorPointAsMargin
-        {
-            get => workingRectCursorPointAsMargin;
-            set
-            {
-                if (workingRectCursorPointAsMargin != value)
-                {
-                    workingRectCursorPointAsMargin = value;
-                    OnPropertyChanged(nameof(WorkingRectCursorPointAsMargin));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     矩形カーソル。ズーム済みのキャンバス・サイズ
-        ///         
-        ///     <list type="bullet">
-        ///         <item>カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする</item>
-        ///     </list>
-        /// </summary>
-        public Models.Geometric.SizeFloat WorkingRectCursorCanvasSize
-        {
-            get => workingRectCursorCanvasSize;
-            set
-            {
-                if (workingRectCursorCanvasSize != value)
-                {
-                    this.WorkingRectCursorCanvasWidthAsFloat = value.Width.AsFloat;
-                    this.WorkingRectCursorCanvasHeightAsFloat = value.Height.AsFloat;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     矩形カーソル。ズーム済みのキャンバスの横幅
-        ///         
-        ///     <list type="bullet">
-        ///         <item>カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする</item>
-        ///     </list>
-        /// </summary>
-        public float WorkingRectCursorCanvasWidthAsFloat
-        {
-            get => this.workingRectCursorCanvasSize.Width.AsFloat;
-            set
-            {
-                if (this.workingRectCursorCanvasSize.Width.AsFloat != value)
-                {
-                    this.workingRectCursorCanvasSize = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(value), workingRectCursorCanvasSize.Height);
-
-                    // キャンバスを再描画
-                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel WorkingRectCursorCanvasWidthAsFloat set]");
-
-                    // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(WorkingRectCursorCanvasWidthAsFloat));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     矩形カーソル。ズーム済みのキャンバスの縦幅
-        ///         
-        ///     <list type="bullet">
-        ///         <item>カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする</item>
-        ///     </list>
-        /// </summary>
-        public float WorkingRectCursorCanvasHeightAsFloat
-        {
-            get => this.workingRectCursorCanvasSize.Height.AsFloat;
-            set
-            {
-                if (this.workingRectCursorCanvasSize.Height.AsFloat != value)
-                {
-                    this.workingRectCursorCanvasSize = new Models.Geometric.SizeFloat(this.workingRectCursorCanvasSize.Width, new Models.Geometric.HeightFloat(value));
-
-                    // キャンバスを再描画
-                    RefreshCanvasOfTileCursor("[TileCropPageViewModel WorkingRectCursorCanvasHeightAsFloat set]");
-
-                    // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(WorkingRectCursorCanvasHeightAsFloat));
-                }
-            }
-        }
-        #endregion
-
         #region 変更通知プロパティ（ズーム）
         /// <summary>
         ///     ズーム。整数形式
@@ -948,7 +850,7 @@
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Id == Models.TileId.Empty)
                     {
@@ -1072,7 +974,7 @@
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Id.AsBASE64;
                 }
@@ -1095,7 +997,7 @@
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Id.AsPhoneticCode;
                 }
@@ -1108,15 +1010,15 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（矩形カーソル。元画像ベース　関連）
+        #region 変更通知プロパティ（切抜きカーソル。元画像ベース　関連）
         /// <summary>
-        ///     矩形カーソル。元画像ベースの矩形
+        ///     切抜きカーソル。元画像ベースの矩形
         /// </summary>
-        public Models.Geometric.RectangleInt SelectedTileRect
+        public Models.Geometric.RectangleInt SourceCroppedCursorRect
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle;
                 }
@@ -1128,7 +1030,7 @@
             }
             set
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle == value)
                     {
@@ -1141,13 +1043,13 @@
                     // タイル・カーソル無し時
                 }
 
-                this.SourceSelectedTileLeftAsInt = value.Point.X.AsInt;
+                this.SourceCroppedCursorLeftAsInt = value.Point.X.AsInt;
                 this.SourceSelectedTileTopAsInt = value.Point.Y.AsInt;
-                this.SourceSelectedTileSize = value.Size;
+                this.SourceCroppedCursorSize = value.Size;
 
-                this.WorkingRectCursorPointAsMargin = new Thickness(
+                this.WorkingCroppedCursorPointAsMargin = new Thickness(
                     // 左
-                    this.SourceSelectedTileLeftAsInt,
+                    this.SourceCroppedCursorLeftAsInt,
                     // 上
                     this.SourceSelectedTileTopAsInt,
                     // 右
@@ -1160,11 +1062,11 @@
         /// <summary>
         ///     矩形カーソル。元画像ベースの位置ｘ
         /// </summary>
-        public int SourceSelectedTileLeftAsInt
+        public int SourceCroppedCursorLeftAsInt
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Point.X.AsInt;
                 }
@@ -1176,7 +1078,7 @@
             }
             set
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Point.X.AsInt == value)
                     {
@@ -1185,45 +1087,32 @@
                     }
 
                     // 元画像ベース
-                    this.sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    this.sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTile.Rectangle.Point.Y),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
-
-                    // ズーム済み
-                    this.WorkingSelectedTileRect = new RectangleFloat(
-                        point: new PointFloat(
-                            x: new XFloat(this.ZoomAsFloat * value),
-                            y: this.workingSelectedTileRect.Point.Y),
-                        size: this.workingSelectedTileRect.Size);
                 }
                 else
                 {
                     // タイル・カーソル無し時
 
                     // 元画像ベース
-                    this.sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    this.sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
                             size: Models.Geometric.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
-
-                    // ズーム済み
-                    this.WorkingSelectedTileRect = new RectangleFloat(
-                        point: new PointFloat(
-                            x: new XFloat(this.ZoomAsFloat * value),
-                            y: YFloat.Empty),
-                        size: SizeFloat.Empty);
                 }
 
-                this.WorkingRectCursorPointAsMargin = new Thickness(
+                // 矩形カーソル。ズーム済みの位置
+                this.WorkingCroppedCursorPointAsMargin = new Thickness(
                     // 左
-                    this.SourceSelectedTileLeftAsInt,
+                    this.SourceCroppedCursorLeftAsInt,
                     // 上
                     this.SourceSelectedTileTopAsInt,
                     // 右
@@ -1231,8 +1120,8 @@
                     // 下
                     0);
 
-                OnPropertyChanged(nameof(SourceSelectedTileLeftAsInt));
-                OnPropertyChanged(nameof(SelectedTileRect));
+                OnPropertyChanged(nameof(SourceCroppedCursorLeftAsInt));
+                OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
 
@@ -1243,7 +1132,7 @@
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Point.Y.AsInt;
                 }
@@ -1255,7 +1144,7 @@
             }
             set
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Point.Y.AsInt == value)
                     {
@@ -1264,41 +1153,32 @@
                     }
 
                     // 元画像ベース
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(selectedTile.Rectangle.Point.X, new Models.Geometric.YInt(value)),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
-
-                    // ズーム済み
-                    this.WorkingSelectedTileRect = new RectangleFloat(
-                        point: new PointFloat(x: XFloat.Empty, y: new YFloat(this.ZoomAsFloat * value)),
-                        size: SizeFloat.Empty);
                 }
                 else
                 {
                     // タイル・カーソル無し時
 
                     // 元画像ベース
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
                             size: Models.Geometric.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
-
-                    // ズーム済み
-                    this.WorkingSelectedTileRect = new RectangleFloat(
-                        point: new PointFloat(x: XFloat.Empty, y: new YFloat(this.ZoomAsFloat * value)),
-                        size: SizeFloat.Empty);
                 }
 
-                this.WorkingRectCursorPointAsMargin = new Thickness(
+                // 矩形カーソル。ズーム済みの位置
+                this.WorkingCroppedCursorPointAsMargin = new Thickness(
                         // 左
-                        this.SourceSelectedTileLeftAsInt,
+                        this.SourceCroppedCursorLeftAsInt,
                         // 上
                         this.SourceSelectedTileTopAsInt,
                         // 右
@@ -1307,18 +1187,22 @@
                         0);
 
                 OnPropertyChanged(nameof(SourceSelectedTileTopAsInt));
-                OnPropertyChanged(nameof(SelectedTileRect));
+                OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
 
         /// <summary>
         ///     矩形カーソル。元画像ベースのサイズ
+        ///     
+        ///     <list type="bullet">
+        ///         <item>線の太さを含まない</item>
+        ///     </list>
         /// </summary>
-        public Models.Geometric.SizeInt SourceSelectedTileSize
+        public Models.Geometric.SizeInt SourceCroppedCursorSize
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Size;
                 }
@@ -1330,7 +1214,7 @@
             }
             set
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Size == value)
                     {
@@ -1350,7 +1234,7 @@
                 this.SourceSelectedTileWidthAsInt = value.Width.AsInt;
                 this.SourceSelectedTileHeightAsInt = value.Height.AsInt;
 
-                OnPropertyChanged(nameof(SelectedTileRect));
+                OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
 
@@ -1361,7 +1245,7 @@
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Size.Width.AsInt;
                 }
@@ -1373,7 +1257,7 @@
             }
             set
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Size.Width.AsInt == value)
                     {
@@ -1381,7 +1265,7 @@
                         return;
                     }
 
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(selectedTile.Rectangle.Point, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), selectedTile.Rectangle.Size.Height)),
                         comment: selectedTile.Comment,
@@ -1390,28 +1274,19 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
 
-                // ズーム済み
-                this.WorkingSelectedTileWidthAsFloat = this.ZoomAsFloat * value;
-
-                //
-                // タイル・カーソルのキャンバス・サイズ変更
-                // ========================================
-                //
-                // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
-                var cursorWidth = value;
-                var doubleCursorLineThickness = 4 * this.HalfThicknessOfTileCursorLine.AsInt;
-                WorkingRectCursorCanvasWidthAsFloat = cursorWidth + doubleCursorLineThickness;
+                // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
+                WorkingRectCursorWidthAsFloat = this.ZoomAsFloat * value;
 
                 OnPropertyChanged(nameof(SourceSelectedTileWidthAsInt));
-                OnPropertyChanged(nameof(SourceSelectedTileSize));
-                OnPropertyChanged(nameof(SelectedTileRect));
+                OnPropertyChanged(nameof(SourceCroppedCursorSize));
+                OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
 
@@ -1422,7 +1297,7 @@
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Size.Height.AsInt;
                 }
@@ -1434,7 +1309,7 @@
             }
             set
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Size.Height.AsInt == value)
                     {
@@ -1442,7 +1317,7 @@
                         return;
                     }
 
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(selectedTile.Rectangle.Point, new Models.Geometric.SizeInt(selectedTile.Rectangle.Size.Width, new Models.Geometric.HeightInt(value))),
                         comment: selectedTile.Comment,
@@ -1451,150 +1326,106 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
 
-                // ズーム済み
-                this.WorkingSelectedTileHeightAsFloat = this.ZoomAsFloat * value;
-
-                //
-                // タイル・カーソルのキャンバス・サイズ変更
-                // ========================================
-                //
-                // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
-                var cursorHeight = value;
-                var doubleCursorLineThickness = 4 * this.HalfThicknessOfTileCursorLine.AsInt;
-                WorkingRectCursorCanvasHeightAsFloat = cursorHeight + doubleCursorLineThickness;
+                // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
+                WorkingRectCursorHeightAsFloat = this.ZoomAsFloat * value;
 
                 OnPropertyChanged(nameof(SourceSelectedTileHeightAsInt));
-                OnPropertyChanged(nameof(SourceSelectedTileSize));
-                OnPropertyChanged(nameof(SelectedTileRect));
+                OnPropertyChanged(nameof(SourceCroppedCursorSize));
+                OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
         #endregion
 
-        #region プロパティ（矩形カーソル。ズーム済み　関連）
+        #region 変更通知プロパティ（矩形カーソル。ズーム済み　関連）
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置とサイズ
+        ///     矩形カーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        public Models.Geometric.RectangleFloat WorkingSelectedTileRect
+        public Thickness WorkingCroppedCursorPointAsMargin
         {
-            get
-            {
-                return this.workingSelectedTileRect;
-            }
+            get => this.workingCroppedCursorPointAsMargin;
             set
             {
-                if (this.workingSelectedTileRect != value)
+                if (this.workingCroppedCursorPointAsMargin != value)
                 {
-                    this.WorkingSelectedTileLeftAsFloat = value.Point.X.AsFloat;
-                    this.WorkingSelectedTileTopAsFloat = value.Point.Y.AsFloat;
-                    this.WorkingSelectedTileWidthAsFloat = value.Size.Width.AsFloat;
-                    this.WorkingSelectedTileHeightAsFloat = value.Size.Height.AsFloat;
+                    this.workingCroppedCursorPointAsMargin = value;
+                    OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
                 }
             }
         }
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置ｘ
+        ///     矩形カーソル。ズーム済みのサイズ
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///     </list>
         /// </summary>
-        public float WorkingSelectedTileLeftAsFloat
+        public Models.Geometric.SizeFloat WorkingCroppedCursorSize
         {
-            get
-            {
-                return this.workingSelectedTileRect.Point.X.AsFloat;
-            }
+            get => workingRectCursorSize;
             set
             {
-                if (this.workingSelectedTileRect.Point.X.AsFloat != value)
+                if (workingRectCursorSize != value)
                 {
-                    this.workingSelectedTileRect = new RectangleFloat(
-                        point: new PointFloat(
-                            x: new XFloat(value),
-                            y: this.workingSelectedTileRect.Point.Y),
-                        size: this.workingSelectedTileRect.Size);
-
-                    OnPropertyChanged(nameof(WorkingSelectedTileLeftAsFloat));
-                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     矩形カーソル。ズーム済みの位置ｙ
-        /// </summary>
-        public float WorkingSelectedTileTopAsFloat
-        {
-            get
-            {
-                return this.workingSelectedTileRect.Point.Y.AsFloat;
-            }
-            set
-            {
-                if (this.workingSelectedTileRect.Point.Y.AsFloat != value)
-                {
-                    this.workingSelectedTileRect = new RectangleFloat(
-                        point: new PointFloat(
-                            x: this.workingSelectedTileRect.Point.X,
-                            y: new YFloat(value)),
-                        size: this.workingSelectedTileRect.Size);
-
-                    OnPropertyChanged(nameof(WorkingSelectedTileTopAsFloat));
-                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
+                    this.WorkingRectCursorWidthAsFloat = value.Width.AsFloat;
+                    this.WorkingRectCursorHeightAsFloat = value.Height.AsFloat;
                 }
             }
         }
 
         /// <summary>
         ///     矩形カーソル。ズーム済みの横幅
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///     </list>
         /// </summary>
-        public float WorkingSelectedTileWidthAsFloat
+        public float WorkingRectCursorWidthAsFloat
         {
-            get
-            {
-                return this.workingSelectedTileRect.Size.Width.AsFloat;
-            }
+            get => this.workingRectCursorSize.Width.AsFloat;
             set
             {
-                if (this.workingSelectedTileRect.Size.Width.AsFloat != value)
+                if (this.workingRectCursorSize.Width.AsFloat != value)
                 {
-                    this.workingSelectedTileRect = new RectangleFloat(
-                        point: this.workingSelectedTileRect.Point,
-                        size: new SizeFloat(
-                            width: new WidthFloat(value),
-                            height: this.workingSelectedTileRect.Size.Height));
+                    this.workingRectCursorSize = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(value), workingRectCursorSize.Height);
 
-                    OnPropertyChanged(nameof(WorkingSelectedTileWidthAsFloat));
-                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
+                    // キャンバスを再描画
+                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel WorkingRectCursorWidthAsFloat set]");
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(WorkingRectCursorWidthAsFloat));
                 }
             }
         }
 
         /// <summary>
         ///     矩形カーソル。ズーム済みの縦幅
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///     </list>
         /// </summary>
-        public float WorkingSelectedTileHeightAsFloat
+        public float WorkingRectCursorHeightAsFloat
         {
-            get
-            {
-                return this.workingSelectedTileRect.Size.Height.AsFloat;
-            }
+            get => this.workingRectCursorSize.Height.AsFloat;
             set
             {
-                if (this.workingSelectedTileRect.Size.Height.AsFloat != value)
+                if (this.workingRectCursorSize.Height.AsFloat != value)
                 {
-                    this.workingSelectedTileRect = new RectangleFloat(
-                        point: this.workingSelectedTileRect.Point,
-                        size: new SizeFloat(
-                            width: this.workingSelectedTileRect.Size.Width,
-                            height: new HeightFloat(value)));
+                    this.workingRectCursorSize = new Models.Geometric.SizeFloat(this.workingRectCursorSize.Width, new Models.Geometric.HeightFloat(value));
 
-                    OnPropertyChanged(nameof(WorkingSelectedTileHeightAsFloat));
-                    OnPropertyChanged(nameof(WorkingSelectedTileRect));
+                    // キャンバスを再描画
+                    RefreshCanvasOfTileCursor("[TileCropPageViewModel WorkingRectCursorHeightAsFloat set]");
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(WorkingRectCursorHeightAsFloat));
                 }
             }
         }
@@ -1608,7 +1439,7 @@
         {
             get
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Comment.AsStr;
                 }
@@ -1620,7 +1451,7 @@
             }
             set
             {
-                if (this.sourceSelectedTileOption.TryGetValue(out TileRecord selectedTile))
+                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Comment.AsStr == value)
                     {
@@ -1628,7 +1459,7 @@
                         return;
                     }
 
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: selectedTile.Rectangle,
                         comment: new Models.Comment(value),
@@ -1637,7 +1468,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
 
                         /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
@@ -1691,7 +1522,7 @@
         /// </summary>
         public void RefreshByLocaleChanged()
         {
-            if (this.sourceSelectedTileOption.TryGetValue(out var record))
+            if (this.sourceCroppedCursorOption.TryGetValue(out var record))
             {
                 if (record.Id == TileId.Empty)
                 {
@@ -1730,7 +1561,7 @@
         {
             int offset;
 
-            if (((int)this.workingRectCursorCanvasSize.Width.AsFloat) % 2 == 1) // FIXME 浮動小数点型の剰余は無理がある
+            if (((int)this.workingRectCursorSize.Width.AsFloat) % 2 == 1) // FIXME 浮動小数点型の剰余は無理がある
             {
                 // Trace.WriteLine($"{codePlace} 幅 {this._tileCursorCanvasSize.Width.AsInt} から 1 引く");
                 offset = -1;
@@ -1742,11 +1573,11 @@
             }
 
             // 循環参照を避けるために、直接フィールドを変更
-            this.workingRectCursorCanvasSize = new Models.Geometric.SizeFloat(
-                width: new Models.Geometric.WidthFloat(this.workingRectCursorCanvasSize.Width.AsFloat + offset),
-                height: new Models.Geometric.HeightFloat(this.workingRectCursorCanvasSize.Height.AsFloat));
+            this.workingRectCursorSize = new Models.Geometric.SizeFloat(
+                width: new Models.Geometric.WidthFloat(this.workingRectCursorSize.Width.AsFloat + offset),
+                height: new Models.Geometric.HeightFloat(this.workingRectCursorSize.Height.AsFloat));
 
-            OnPropertyChanged(nameof(WorkingRectCursorCanvasWidthAsFloat));
+            OnPropertyChanged(nameof(WorkingRectCursorWidthAsFloat));
         }
         #endregion
 
@@ -1848,7 +1679,7 @@
         ///         <item>タイル・カーソルが有るときと、無いときを分ける</item>
         ///     </list>
         /// </summary>
-        Option<TileRecord> sourceSelectedTileOption = new Option<TileRecord>(Models.TileRecord.Empty);
+        Option<TileRecord> sourceCroppedCursorOption = new Option<TileRecord>(Models.TileRecord.Empty);
         #endregion
 
         #region フィールド（矩形カーソル。ズーム済み　関連）
@@ -1859,27 +1690,16 @@
         ///         <item>マージンを含んだカーソルの左上位置</item>
         ///     </list>
         /// </summary>
-        Thickness workingRectCursorPointAsMargin = Thickness.Zero;
+        Thickness workingCroppedCursorPointAsMargin = Thickness.Zero;
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みのキャンバス・サイズ
+        ///     矩形カーソル。ズーム済みのサイズ
         ///         
         ///     <list type="bullet">
-        ///         <item>カーソルの線の幅が 4px</item>
-        ///         <item>カーソルは、グリッドに外接する</item>
-        ///         <item>なので、画像サイズは縦横共に 8px 大きめにする</item>
+        ///         <item>カーソルの線の幅は含まない</item>
         ///     </list>
         /// </summary>
-        Models.Geometric.SizeFloat workingRectCursorCanvasSize = Models.Geometric.SizeFloat.Empty;
-
-        /// <summary>
-        ///     選択タイルの位置とサイズ。ズーム済み
-        ///     
-        ///     <list type="bullet">
-        ///         <item>タイル・カーソルが無いときは、サイズを０にする</item>
-        ///     </list>
-        /// </summary>
-        RectangleFloat workingSelectedTileRect = RectangleFloat.Empty;
+        Models.Geometric.SizeFloat workingRectCursorSize = Models.Geometric.SizeFloat.Empty;
         #endregion
 
         #region フィールド（ズーム　関連）

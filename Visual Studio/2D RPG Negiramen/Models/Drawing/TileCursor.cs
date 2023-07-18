@@ -13,9 +13,9 @@
     {
         // - パブリック束縛可能プロパティ
 
-        #region 束縛可能プロパティ（タイル・カーソルの線の半分の太さ）
+        #region 束縛可能プロパティ（切抜きカーソルの線の半分の太さ）
         /// <summary>
-        ///     タイル・カーソルの線の半分の太さ
+        ///     切抜きカーソルの線の半分の太さ
         /// </summary>
         public ThicknessOfLine HalfThicknessOfTileCursorLine
         {
@@ -24,7 +24,7 @@
         }
 
         /// <summary>
-        ///     タイル・カーソルの線の半分の太さ
+        ///     <see cref="HalfThicknessOfTileCursorLine"/> に対応
         /// </summary>
         public static BindableProperty HalfThicknessOfTileCursorLineProperty = BindableProperty.Create(
             // プロパティ名
@@ -36,27 +36,31 @@
             defaultValue: ThicknessOfLine.Min);
         #endregion
 
-        #region 束縛可能プロパティ（作業選択タイル　関連）
+        #region 束縛可能プロパティ（切抜きカーソル。ズーム済み　関連）
         /// <summary>
-        ///     作業選択タイルの位置とサイズ。ズーム済み
+        ///     切抜きカーソル。ズーム済みのサイズ
+        ///     
+        ///     <list type="bullet">
+        ///         <item>切抜きカーソルの線の太さを含まない</item>
+        ///     </list>
         /// </summary>
-        public Geometric.RectangleFloat WorkingSelectedTileRect
+        public Geometric.SizeFloat CroppedCursorSize
         {
-            get => (Geometric.RectangleFloat)GetValue(WorkingSelectedTileRectProperty);
-            set => SetValue(WorkingSelectedTileRectProperty, value);
+            get => (Geometric.SizeFloat)GetValue(CroppedCursorSizeProperty);
+            set => SetValue(CroppedCursorSizeProperty, value);
         }
 
         /// <summary>
-        ///     作業選択タイルの位置とサイズ。ズーム済み
+        ///     <see cref="CroppedCursorSize"/> に対応
         /// </summary>
-        public static BindableProperty WorkingSelectedTileRectProperty = BindableProperty.Create(
+        public static BindableProperty CroppedCursorSizeProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(WorkingSelectedTileRect),
+            propertyName: nameof(CroppedCursorSize),
             // 返却型
-            returnType: typeof(Geometric.RectangleFloat),
+            returnType: typeof(Geometric.SizeFloat),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
-            defaultValue: Geometric.RectangleFloat.Empty);
+            defaultValue: Geometric.SizeFloat.Empty);
         #endregion
 
         #region 束縛可能プロパティ（ポインティング・デバイス押下中か？）
@@ -90,7 +94,7 @@
         /// <param name="dirtyRect">位置とサイズ</param>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            if (this.WorkingSelectedTileRect.Size.Width.AsFloat < 1 || this.WorkingSelectedTileRect.Size.Height.AsFloat < 1)
+            if (this.CroppedCursorSize.Width.AsFloat < 1 || this.CroppedCursorSize.Height.AsFloat < 1)
             {
                 // カーソルが無いケース
                 // Trace.WriteLine($"[TileCursor Draw] カーソルに大きさが無いから描画しない。  this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}");
@@ -99,7 +103,7 @@
 
             //try
             //{
-            //    Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.SourceSelectedTileSize: {this.WorkingSelectedTileSize.Dump()}");
+            //    Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.WorkingSelectedTileSize: {this.WorkingSelectedTileSize.Dump()}");
             //}
             //catch
             //{
@@ -135,8 +139,8 @@
                 halfThicknessOfLineAsInt,
                 halfThicknessOfLineAsInt,
                 // 境界線上ではなく、境界線に外接するように描くために、線の太さの半分をずらして描画
-                this.WorkingSelectedTileRect.Size.Width.AsFloat + thickness.AsInt,
-                this.WorkingSelectedTileRect.Size.Height.AsFloat + thickness.AsInt));
+                this.CroppedCursorSize.Width.AsFloat + thickness.AsInt,
+                this.CroppedCursorSize.Height.AsFloat + thickness.AsInt));
         }
     }
 }
