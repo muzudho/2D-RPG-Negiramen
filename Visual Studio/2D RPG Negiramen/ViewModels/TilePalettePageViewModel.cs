@@ -118,7 +118,7 @@
                     _tileCursorPoint = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), _tileCursorPoint.Y);
                     OnPropertyChanged(nameof(SourceSelectedTileLeftAsInt));
 
-                    this.TileCursorPointAsMargin = new Thickness(
+                    this.WorkingRectCursorPointAsMargin = new Thickness(
                         // 左
                         this.SourceSelectedTileLeftAsInt,
                         // 上
@@ -144,7 +144,7 @@
                     _tileCursorPoint = new Models.Geometric.PointInt(_tileCursorPoint.X, new Models.Geometric.YInt(value));
                     OnPropertyChanged(nameof(SourceSelectedTileTopAsInt));
 
-                    this.TileCursorPointAsMargin = new Thickness(
+                    this.WorkingRectCursorPointAsMargin = new Thickness(
                         // 左
                         this.SourceSelectedTileLeftAsInt,
                         // 上
@@ -158,17 +158,17 @@
         }
 
         /// <summary>
-        ///     タイル・カーソルの位置（マージンとして）
+        ///     矩形カーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        public Thickness TileCursorPointAsMargin
+        public Thickness WorkingRectCursorPointAsMargin
         {
-            get => _tileCursorPointAsMargin;
+            get => workingRectCursorPointAsMargin;
             private set
             {
-                if (_tileCursorPointAsMargin != value)
+                if (workingRectCursorPointAsMargin != value)
                 {
-                    _tileCursorPointAsMargin = value;
-                    OnPropertyChanged(nameof(TileCursorPointAsMargin));
+                    workingRectCursorPointAsMargin = value;
+                    OnPropertyChanged(nameof(WorkingRectCursorPointAsMargin));
                 }
             }
         }
@@ -225,54 +225,26 @@
         /// <summary>
         ///     画像上のポインティング位置
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        Models.PointInt _pointingPointOnImage = Models.PointInt.Empty;
-後:
-        PointInt _pointingPointOnImage = PointInt.Empty;
-*/
         Models.Geometric.PointInt _pointingPointOnImage = Models.Geometric.PointInt.Empty;
 
         /// <summary>
         ///     画像上のタップ位置
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        Models.PointInt _tappedPointOnImage = Models.PointInt.Empty;
-後:
-        PointInt _tappedPointOnImage = PointInt.Empty;
-*/
         Models.Geometric.PointInt _tappedPointOnImage = Models.Geometric.PointInt.Empty;
 
         /// <summary>
         ///     ウィンドウ上のポインティング位置
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        Models.PointInt _pointingPointOnWindow = Models.PointInt.Empty;
-後:
-        PointInt _pointingPointOnWindow = PointInt.Empty;
-*/
         Models.Geometric.PointInt _pointingPointOnWindow = Models.Geometric.PointInt.Empty;
 
         /// <summary>
         ///     タイル・カーソル位置
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        Models.PointInt _tileCursorPoint = Models.PointInt.Empty;
-後:
-        PointInt _tileCursorPoint = PointInt.Empty;
-*/
         Models.Geometric.PointInt _tileCursorPoint = Models.Geometric.PointInt.Empty;
 
         /// <summary>
-        ///     タイル・カーソルの位置（マージンとして）
+        ///     矩形カーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        Thickness _tileCursorPointAsMargin = Thickness.Zero;
+        Thickness workingRectCursorPointAsMargin = Thickness.Zero;
     }
 }

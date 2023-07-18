@@ -38,13 +38,12 @@
                     
                 </Image>
 
-                <!--
-                    タイル状のカーソル
-                    ==================
+                <!--    矩形カーソル
+                        ============
                 -->
                 <GraphicsView x:Name="Canvas"
                               HorizontalOptions="Start" VerticalOptions="Start"
-                              Margin="{Binding TileCursorPointAsMargin}"
+                              Margin="{Binding WorkingRectCursorPointAsMargin}"
                               WidthRequest="40" HeightRequest="40"
                               Drawable="{StaticResource MyTileCursor}"
                               InputTransparent="True">

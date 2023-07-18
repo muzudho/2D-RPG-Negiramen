@@ -784,29 +784,29 @@
         #endregion
 
 
-        #region 変更通知プロパティ（選択タイル　関連）
+        #region 変更通知プロパティ（矩形カーソル。ズーム済み　関連）
         /// <summary>
-        ///     タイル・カーソルの位置（マージンとして）
+        ///     矩形カーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        public Thickness TileCursorPointAsMargin
+        public Thickness WorkingRectCursorPointAsMargin
         {
-            get => _tileCursorPointAsMargin;
+            get => workingRectCursorPointAsMargin;
             set
             {
-                if (_tileCursorPointAsMargin != value)
+                if (workingRectCursorPointAsMargin != value)
                 {
-                    _tileCursorPointAsMargin = value;
-                    OnPropertyChanged(nameof(TileCursorPointAsMargin));
+                    workingRectCursorPointAsMargin = value;
+                    OnPropertyChanged(nameof(WorkingRectCursorPointAsMargin));
                 }
             }
         }
 
         /// <summary>
-        ///     <pre>
-        ///         タイル・カーソルのキャンバス・サイズ
+        ///     矩形カーソル。ズーム済みのキャンバス・サイズ
         ///         
-        ///         カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする
-        ///     </pre>
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする</item>
+        ///     </list>
         /// </summary>
         public Models.Geometric.SizeInt TileCursorCanvasSize
         {
@@ -1145,7 +1145,7 @@
                 this.SourceSelectedTileTopAsInt = value.Point.Y.AsInt;
                 this.SourceSelectedTileSize = value.Size;
 
-                this.TileCursorPointAsMargin = new Thickness(
+                this.WorkingRectCursorPointAsMargin = new Thickness(
                     // 左
                     this.SourceSelectedTileLeftAsInt,
                     // 上
@@ -1221,7 +1221,7 @@
                         size: SizeFloat.Empty);
                 }
 
-                this.TileCursorPointAsMargin = new Thickness(
+                this.WorkingRectCursorPointAsMargin = new Thickness(
                     // 左
                     this.SourceSelectedTileLeftAsInt,
                     // 上
@@ -1296,7 +1296,7 @@
                         size: SizeFloat.Empty);
                 }
 
-                this.TileCursorPointAsMargin = new Thickness(
+                this.WorkingRectCursorPointAsMargin = new Thickness(
                         // 左
                         this.SourceSelectedTileLeftAsInt,
                         // 上
@@ -1835,21 +1835,30 @@
         Models.Geometric.SizeFloat workingGridUnit = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32), new Models.Geometric.HeightFloat(32));
         #endregion
 
-        #region フィールド（選択タイル　関連）
+        #region フィールド（選択矩形。元画像ベース　関連）
+        #endregion
+
+        #region フィールド（選択矩形。ズーム済み　関連）
         /// <summary>
-        ///     選択タイルカーソルの位置（マージンとして）
+        ///     選択矩形の位置。ズーム済み（マージンとして）
+        ///     
+        ///     <list type="bullet">
+        ///         <item>マージンを含んだカーソルの左上位置</item>
+        ///     </list>
         /// </summary>
-        Thickness _tileCursorPointAsMargin = Thickness.Zero;
+        Thickness workingRectCursorPointAsMargin = Thickness.Zero;
 
         /// <summary>
-        ///     <pre>
-        ///         選択タイルカーソルのキャンバス・サイズ
-        ///     
-        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
-        ///     </pre>
+        ///     選択矩形のキャンバス・サイズ。ズーム済み
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅が 4px なので、画像サイズは + 8px にする</item>
+        ///     </list>
         /// </summary>
         Models.Geometric.SizeInt _tileCursorCanvasSize = Models.Geometric.SizeInt.Empty;
+        #endregion
 
+        #region フィールド（選択タイル　関連）
         /// <summary>
         ///     選択タイル。元画像ベース
         ///     

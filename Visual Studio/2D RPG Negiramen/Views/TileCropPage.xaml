@@ -365,13 +365,13 @@
                     </GraphicsView.Drawable>
                 </GraphicsView>
 
-                <!--    タイル状のカーソル
-                        ==================
+                <!--    矩形カーソル
+                        ============
                 
                         * カーソルの線の幅が 4px なので、画像サイズは + 8px にする
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
-                              Margin="{Binding TileCursorPointAsMargin}"
+                              Margin="{Binding WorkingRectCursorPointAsMargin}"
                               WidthRequest="{Binding TileCursorCanvasWidthAsInt}" HeightRequest="{Binding TileCursorCanvasHeightAsInt}"
                               InputTransparent="True">
                     <GraphicsView.Drawable>
