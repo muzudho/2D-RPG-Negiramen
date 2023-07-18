@@ -255,9 +255,9 @@
                 // 変更通知を送りたいので、構成要素ごとに設定
                 this.SelectedTileId = newValue.Id;
                 this.SourceCroppedCursorLeftAsInt = newValue.Rectangle.Point.X.AsInt;
-                this.SourceSelectedTileTopAsInt = newValue.Rectangle.Point.Y.AsInt;
-                this.SourceSelectedTileWidthAsInt = newValue.Rectangle.Size.Width.AsInt;
-                this.SourceSelectedTileHeightAsInt = newValue.Rectangle.Size.Height.AsInt;
+                this.SourceCroppedCursorTopAsInt = newValue.Rectangle.Point.Y.AsInt;
+                this.SourceCroppedCursorWidthAsInt = newValue.Rectangle.Size.Width.AsInt;
+                this.SourceCroppedCursorHeightAsInt = newValue.Rectangle.Size.Height.AsInt;
                 this.SelectedTileCommentAsStr = newValue.Comment.AsStr;
 
                 this.RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SelectedTileOption set]");
@@ -1044,14 +1044,14 @@
                 }
 
                 this.SourceCroppedCursorLeftAsInt = value.Point.X.AsInt;
-                this.SourceSelectedTileTopAsInt = value.Point.Y.AsInt;
+                this.SourceCroppedCursorTopAsInt = value.Point.Y.AsInt;
                 this.SourceCroppedCursorSize = value.Size;
 
                 this.WorkingCroppedCursorPointAsMargin = new Thickness(
                     // 左
                     this.SourceCroppedCursorLeftAsInt,
                     // 上
-                    this.SourceSelectedTileTopAsInt,
+                    this.SourceCroppedCursorTopAsInt,
                     // 右
                     0,
                     // 下
@@ -1114,7 +1114,7 @@
                     // 左
                     this.SourceCroppedCursorLeftAsInt,
                     // 上
-                    this.SourceSelectedTileTopAsInt,
+                    this.SourceCroppedCursorTopAsInt,
                     // 右
                     0,
                     // 下
@@ -1126,9 +1126,9 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。元画像ベースの位置ｙ
+        ///     切抜きカーソル。元画像ベースの位置ｙ
         /// </summary>
-        public int SourceSelectedTileTopAsInt
+        public int SourceCroppedCursorTopAsInt
         {
             get
             {
@@ -1180,13 +1180,13 @@
                         // 左
                         this.SourceCroppedCursorLeftAsInt,
                         // 上
-                        this.SourceSelectedTileTopAsInt,
+                        this.SourceCroppedCursorTopAsInt,
                         // 右
                         0,
                         // 下
                         0);
 
-                OnPropertyChanged(nameof(SourceSelectedTileTopAsInt));
+                OnPropertyChanged(nameof(SourceCroppedCursorTopAsInt));
                 OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
@@ -1231,17 +1231,17 @@
                 // 選択タイルの横幅と縦幅
                 // ======================
                 //
-                this.SourceSelectedTileWidthAsInt = value.Width.AsInt;
-                this.SourceSelectedTileHeightAsInt = value.Height.AsInt;
+                this.SourceCroppedCursorWidthAsInt = value.Width.AsInt;
+                this.SourceCroppedCursorHeightAsInt = value.Height.AsInt;
 
                 OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
 
         /// <summary>
-        ///     矩形カーソル。元画像ベースの横幅
+        ///     切抜きカーソル。元画像ベースの横幅
         /// </summary>
-        public int SourceSelectedTileWidthAsInt
+        public int SourceCroppedCursorWidthAsInt
         {
             get
             {
@@ -1284,16 +1284,16 @@
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
                 WorkingRectCursorWidthAsFloat = this.ZoomAsFloat * value;
 
-                OnPropertyChanged(nameof(SourceSelectedTileWidthAsInt));
+                OnPropertyChanged(nameof(SourceCroppedCursorWidthAsInt));
                 OnPropertyChanged(nameof(SourceCroppedCursorSize));
                 OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
 
         /// <summary>
-        ///     矩形カーソル。元画像ベースの縦幅
+        ///     切抜きカーソル。元画像ベースの縦幅
         /// </summary>
-        public int SourceSelectedTileHeightAsInt
+        public int SourceCroppedCursorHeightAsInt
         {
             get
             {
@@ -1336,7 +1336,7 @@
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
                 WorkingRectCursorHeightAsFloat = this.ZoomAsFloat * value;
 
-                OnPropertyChanged(nameof(SourceSelectedTileHeightAsInt));
+                OnPropertyChanged(nameof(SourceCroppedCursorHeightAsInt));
                 OnPropertyChanged(nameof(SourceCroppedCursorSize));
                 OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }

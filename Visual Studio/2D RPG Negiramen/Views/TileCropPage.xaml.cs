@@ -433,10 +433,10 @@ public partial class TileCropPage : ContentPage
             rect: new Models.Geometric.RectangleInt(
                 point: new Models.Geometric.PointInt(
                     x: new Models.Geometric.XInt(context.SourceCroppedCursorLeftAsInt),
-                    y: new Models.Geometric.YInt(context.SourceSelectedTileTopAsInt)),
+                    y: new Models.Geometric.YInt(context.SourceCroppedCursorTopAsInt)),
                 size: new Models.Geometric.SizeInt(
-                    width: new Models.Geometric.WidthInt(context.SourceSelectedTileWidthAsInt),
-                    height: new Models.Geometric.HeightInt(context.SourceSelectedTileHeightAsInt))),
+                    width: new Models.Geometric.WidthInt(context.SourceCroppedCursorWidthAsInt),
+                    height: new Models.Geometric.HeightInt(context.SourceCroppedCursorHeightAsInt))),
             comment: new Models.Comment(context.SelectedTileCommentAsStr),
             logicalDelete: logicalDelete,
             onTileIdUpdated: () =>

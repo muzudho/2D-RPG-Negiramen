@@ -106,23 +106,23 @@
         }
 
         /// <summary>
-        ///     選択タイルの位置ｘ
+        ///     切抜きカーソル。元画像ベースの位置ｘ
         /// </summary>
-        public int SourceSelectedTileLeftAsInt
+        public int SourceCroppedCursorLeftAsInt
         {
-            get => _tileCursorPoint.X.AsInt;
+            get => sourceCroppedCursorPoint.X.AsInt;
             set
             {
-                if (_tileCursorPoint.X.AsInt != value)
+                if (sourceCroppedCursorPoint.X.AsInt != value)
                 {
-                    _tileCursorPoint = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), _tileCursorPoint.Y);
-                    OnPropertyChanged(nameof(SourceSelectedTileLeftAsInt));
+                    sourceCroppedCursorPoint = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), sourceCroppedCursorPoint.Y);
+                    OnPropertyChanged(nameof(SourceCroppedCursorLeftAsInt));
 
                     this.workingCroppedCursorPointAsMargin = new Thickness(
                         // 左
-                        this.SourceSelectedTileLeftAsInt,
+                        this.SourceCroppedCursorLeftAsInt,
                         // 上
-                        this.SourceSelectedTileTopAsInt,
+                        this.SourceCroppedCursorTopAsInt,
                         // 右
                         0,
                         // 下
@@ -132,23 +132,23 @@
         }
 
         /// <summary>
-        ///     選択タイルの位置ｙ
+        ///     切抜きカーソル。元画像ベースの位置ｙ
         /// </summary>
-        public int SourceSelectedTileTopAsInt
+        public int SourceCroppedCursorTopAsInt
         {
-            get => _tileCursorPoint.Y.AsInt;
+            get => sourceCroppedCursorPoint.Y.AsInt;
             set
             {
-                if (_tileCursorPoint.Y.AsInt != value)
+                if (sourceCroppedCursorPoint.Y.AsInt != value)
                 {
-                    _tileCursorPoint = new Models.Geometric.PointInt(_tileCursorPoint.X, new Models.Geometric.YInt(value));
-                    OnPropertyChanged(nameof(SourceSelectedTileTopAsInt));
+                    sourceCroppedCursorPoint = new Models.Geometric.PointInt(sourceCroppedCursorPoint.X, new Models.Geometric.YInt(value));
+                    OnPropertyChanged(nameof(SourceCroppedCursorTopAsInt));
 
                     this.workingCroppedCursorPointAsMargin = new Thickness(
                         // 左
-                        this.SourceSelectedTileLeftAsInt,
+                        this.SourceCroppedCursorLeftAsInt,
                         // 上
-                        this.SourceSelectedTileTopAsInt,
+                        this.SourceCroppedCursorTopAsInt,
                         // 右
                         0,
                         // 下
@@ -240,7 +240,7 @@
         /// <summary>
         ///     切抜きカーソル。元画像ベース
         /// </summary>
-        Models.Geometric.PointInt _tileCursorPoint = Models.Geometric.PointInt.Empty;
+        Models.Geometric.PointInt sourceCroppedCursorPoint = Models.Geometric.PointInt.Empty;
 
         /// <summary>
         ///     切抜きカーソル。ズーム済みの位置（マージンとして）

@@ -460,28 +460,28 @@
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SourceSelectedTileLeftAsInt}"
+                   Text="{Binding SourceCroppedCursorLeftAsInt}"
                    FontSize="24"/>
 
             <!-- 元画像：　選択タイルＹ -->
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SourceSelectedTileTopAsInt}"
+                   Text="{Binding SourceCroppedCursorTopAsInt}"
                    FontSize="24"/>
 
             <!-- 元画像：　選択タイル横幅 -->
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SourceSelectedTileWidthAsInt}"
+                   Text="{Binding SourceCroppedCursorWidthAsInt}"
                    FontSize="24"/>
 
             <!-- 選択タイル縦幅 -->
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SourceSelectedTileHeightAsInt}"
+                   Text="{Binding SourceCroppedCursorHeightAsInt}"
                    FontSize="24"/>
 
             <!--    ◆３段目 読み仮名部
