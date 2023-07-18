@@ -19,7 +19,7 @@
             {
                 if (_pointingPointOnImage.X.AsInt != value)
                 {
-                    _pointingPointOnImage = new Models.Point(new Models.X(value), _pointingPointOnImage.Y);
+                    _pointingPointOnImage = new Models.PointInt(new Models.XInt(value), _pointingPointOnImage.Y);
                     OnPropertyChanged(nameof(PointingXOnImageAsInt));
                 }
             }
@@ -35,7 +35,7 @@
             {
                 if (_pointingPointOnImage.Y.AsInt != value)
                 {
-                    _pointingPointOnImage = new Models.Point(_pointingPointOnImage.X, new Models.Y(value));
+                    _pointingPointOnImage = new Models.PointInt(_pointingPointOnImage.X, new Models.YInt(value));
                     OnPropertyChanged(nameof(PointingYOnImageAsInt));
                 }
             }
@@ -51,7 +51,7 @@
             {
                 if (_tappedPointOnImage.X.AsInt != value)
                 {
-                    _tappedPointOnImage = new Models.Point(new Models.X(value), _tappedPointOnImage.Y);
+                    _tappedPointOnImage = new Models.PointInt(new Models.XInt(value), _tappedPointOnImage.Y);
                     OnPropertyChanged(nameof(TappedXOnImageAsInt));
                 }
             }
@@ -67,7 +67,7 @@
             {
                 if (_tappedPointOnImage.Y.AsInt != value)
                 {
-                    _tappedPointOnImage = new Models.Point(_tappedPointOnImage.X, new Models.Y(value));
+                    _tappedPointOnImage = new Models.PointInt(_tappedPointOnImage.X, new Models.YInt(value));
                     OnPropertyChanged(nameof(TappedYOnImageAsInt));
                 }
             }
@@ -83,7 +83,7 @@
             {
                 if (_pointingPointOnWindow.X.AsInt != value)
                 {
-                    _pointingPointOnWindow = new Models.Point(new Models.X(value), _pointingPointOnWindow.Y);
+                    _pointingPointOnWindow = new Models.PointInt(new Models.XInt(value), _pointingPointOnWindow.Y);
                     OnPropertyChanged(nameof(PointingXOnWindowAsInt));
                 }
             }
@@ -99,7 +99,7 @@
             {
                 if (_pointingPointOnWindow.Y.AsInt != value)
                 {
-                    _pointingPointOnWindow = new Models.Point(_pointingPointOnWindow.X, new Models.Y(value));
+                    _pointingPointOnWindow = new Models.PointInt(_pointingPointOnWindow.X, new Models.YInt(value));
                     OnPropertyChanged(nameof(PointingYOnWindowAsInt));
                 }
             }
@@ -115,7 +115,7 @@
             {
                 if (_tileCursorPoint.X.AsInt != value)
                 {
-                    _tileCursorPoint = new Models.Point(new Models.X(value), _tileCursorPoint.Y);
+                    _tileCursorPoint = new Models.PointInt(new Models.XInt(value), _tileCursorPoint.Y);
                     OnPropertyChanged(nameof(SelectedTileLeftAsInt));
 
                     this.TileCursorPointAsMargin = new Thickness(
@@ -141,7 +141,7 @@
             {
                 if (_tileCursorPoint.Y.AsInt != value)
                 {
-                    _tileCursorPoint = new Models.Point(_tileCursorPoint.X, new Models.Y(value));
+                    _tileCursorPoint = new Models.PointInt(_tileCursorPoint.X, new Models.YInt(value));
                     OnPropertyChanged(nameof(SelectedTileTopAsInt));
 
                     this.TileCursorPointAsMargin = new Thickness(
@@ -174,12 +174,12 @@
         }
 
         #region 変更通知プロパティ（グリッド全体の左上表示位置）
-        Models.Point workingGridLeftTop = Models.Point.Empty;
+        Models.PointInt workingGridLeftTop = Models.PointInt.Empty;
 
         /// <summary>
         ///     グリッド全体の左上表示位置
         /// </summary>
-        public Models.Point WorkingGridLeftTop
+        public Models.PointInt WorkingGridLeftTop
         {
             get => this.workingGridLeftTop;
             set
@@ -211,22 +211,22 @@
         /// <summary>
         ///     画像上のポインティング位置
         /// </summary>
-        Models.Point _pointingPointOnImage = Models.Point.Empty;
+        Models.PointInt _pointingPointOnImage = Models.PointInt.Empty;
 
         /// <summary>
         ///     画像上のタップ位置
         /// </summary>
-        Models.Point _tappedPointOnImage = Models.Point.Empty;
+        Models.PointInt _tappedPointOnImage = Models.PointInt.Empty;
 
         /// <summary>
         ///     ウィンドウ上のポインティング位置
         /// </summary>
-        Models.Point _pointingPointOnWindow = Models.Point.Empty;
+        Models.PointInt _pointingPointOnWindow = Models.PointInt.Empty;
 
         /// <summary>
         ///     タイル・カーソル位置
         /// </summary>
-        Models.Point _tileCursorPoint = Models.Point.Empty;
+        Models.PointInt _tileCursorPoint = Models.PointInt.Empty;
 
         /// <summary>
         ///     タイル・カーソルの位置（マージンとして）

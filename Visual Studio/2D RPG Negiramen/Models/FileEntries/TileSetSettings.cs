@@ -89,13 +89,13 @@
                         // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
                         tilesetSettings.Add(
                             id: new Models.TileId(tileId),
-                            rect: new Models.Rectangle(
-                                point: new Models.Point(
-                                    x: new Models.X(x),
-                                    y: new Models.Y(y)),
-                                size: new Models.Size(
-                                    width: new Models.Width(width),
-                                    height: new Models.Height(height))),
+                            rect: new Models.RectangleInt(
+                                point: new Models.PointInt(
+                                    x: new Models.XInt(x),
+                                    y: new Models.YInt(y)),
+                                size: new Models.SizeInt(
+                                    width: new Models.WidthInt(width),
+                                    height: new Models.HeightInt(height))),
                             comment: new Models.Comment(comment),
                             logicalDelete: logicalDelete,
                             onTileIdUpdated: () =>
@@ -144,7 +144,7 @@
         /// <param name="onTileIdUpdated">タイルＩｄ更新時</param>
         internal void Add(
             Models.TileId id,
-            Models.Rectangle rect,
+            Models.RectangleInt rect,
             Models.Comment comment,
             Models.LogicalDelete logicalDelete,
             Action onTileIdUpdated)
@@ -198,7 +198,7 @@
         /// <param name="rect">矩形</param>
         /// <param name="result">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetByRectangle(Models.Rectangle rect, out TileRecord result)
+        internal bool TryGetByRectangle(Models.RectangleInt rect, out TileRecord result)
         {
             foreach (var record in this.RecordList)
             {

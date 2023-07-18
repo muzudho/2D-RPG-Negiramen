@@ -14,9 +14,9 @@
         /// <summary>
         ///     グリッド・キャンバス画像のサイズ
         /// </summary>
-        public Models.Size GridCanvasImageSize
+        public Models.SizeInt GridCanvasImageSize
         {
-            get => (Models.Size)GetValue(GridCanvasImageSizeProperty);
+            get => (Models.SizeInt)GetValue(GridCanvasImageSizeProperty);
             set => SetValue(GridCanvasImageSizeProperty, value);
         }
 
@@ -27,7 +27,7 @@
             // プロパティ名
             propertyName: nameof(GridCanvasImageSize),
             // 返却型
-            returnType: typeof(Models.Size),
+            returnType: typeof(Models.SizeInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid));
         #endregion
@@ -58,9 +58,9 @@
         /// <summary>
         ///     グリッド位相の左上表示位置
         /// </summary>
-        public Models.Point GridPhase
+        public Models.PointInt GridPhase
         {
-            get => (Models.Point)GetValue(GridPhaseProperty);
+            get => (Models.PointInt)GetValue(GridPhaseProperty);
             set => SetValue(GridPhaseProperty, value);
         }
 
@@ -71,20 +71,20 @@
             // プロパティ名
             propertyName: nameof(GridPhase),
             // 返却型
-            returnType: typeof(Models.Point),
+            returnType: typeof(Models.PointInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
-            defaultValue: Models.Point.Empty);
+            defaultValue: Models.PointInt.Empty);
         #endregion
 
         #region 束縛可能プロパティ（グリッド・タイル・サイズ）
         /// <summary>
         ///     グリッド・タイル・サイズ
         /// </summary>
-        public Models.Size GridTileSize
+        public Models.SizeInt GridTileSize
         {
-            get => (Models.Size)GetValue(GridTileSizeProperty);
+            get => (Models.SizeInt)GetValue(GridTileSizeProperty);
             set => SetValue(GridTileSizeProperty, value);
         }
 
@@ -95,11 +95,11 @@
             // プロパティ名
             propertyName: nameof(GridTileSize),
             // 返却型
-            returnType: typeof(Models.Size),
+            returnType: typeof(Models.SizeInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
-            defaultValue: Models.Size.Empty);
+            defaultValue: Models.SizeInt.Empty);
         #endregion
 
         // - パブリック・メソッド
@@ -129,7 +129,7 @@
             int gridPhaseTopAsInt = this.GridPhase.Y.AsInt;
 
             // グリッド・タイル・サイズ
-            Models.Size gridTileSize = this.GridTileSize;
+            Models.SizeInt gridTileSize = this.GridTileSize;
 
             // キャンバス・サイズ
             var canvasWidth = this.GridCanvasImageSize.Width.AsInt;

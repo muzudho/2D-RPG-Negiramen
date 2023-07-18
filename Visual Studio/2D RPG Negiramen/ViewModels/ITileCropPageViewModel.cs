@@ -41,26 +41,26 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
-    Models.Point SourceGridPhase { get; }
+    Models.PointInt SourceGridPhase { get; }
 
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
-    Models.Point WorkingGridPhase { get; }
+    Models.PointInt WorkingGridPhase { get; }
     #endregion
 
     #region プロパティ（グリッド・タイルのサイズ）
     /// <summary>
     ///     グリッド・タイルのサイズ
     /// </summary>
-    Models.Size SourceGridTileSize { get; }
+    Models.SizeInt SourceGridTileSize { get; }
     #endregion
 
     #region プロパティ（グリッド・タイルのサイズ）
     /// <summary>
     ///     グリッド・タイルのサイズ
     /// </summary>
-    Models.Size WorkingGridTileSize { get; }
+    Models.SizeInt WorkingGridTileSize { get; }
     #endregion
 
     #region プロパティ（タイル・カーソルの線の半分の太さ）
@@ -74,7 +74,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     選択タイルのサイズ
     /// </summary>
-    Models.Size SelectedTileSize { get; }
+    Models.SizeInt SelectedTileSize { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）

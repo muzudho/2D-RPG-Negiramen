@@ -49,14 +49,14 @@ public partial class TileCropPage : ContentPage
     /// <summary>
     ///     ポインティング・デバイス押下開始位置
     /// </summary>
-    Models.Point PointingDeviceStartPoint { get; set; }
+    Models.PointInt PointingDeviceStartPoint { get; set; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス現在位置）
     /// <summary>
     ///     ポインティング・デバイス現在位置
     /// </summary>
-    Models.Point PointingDeviceCurrentPoint { get; set; }
+    Models.PointInt PointingDeviceCurrentPoint { get; set; }
     #endregion
 
     // - プライベート・メソッド
@@ -304,9 +304,9 @@ public partial class TileCropPage : ContentPage
             Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
 
             // ポイントしている位置
-            PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.Point(
-                new Models.X((int)e.GetPosition((Element)sender).Value.X),
-                new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.PointInt(
+                new Models.XInt((int)e.GetPosition((Element)sender).Value.X),
+                new Models.YInt((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TileCropPage TapGestureRecognizer_Tapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
@@ -322,9 +322,9 @@ public partial class TileCropPage : ContentPage
             Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
 
             // ポイントしている位置
-            PointingDeviceCurrentPoint = new Models.Point(
-                new Models.X((int)e.GetPosition((Element)sender).Value.X),
-                new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = new Models.PointInt(
+                new Models.XInt((int)e.GetPosition((Element)sender).Value.X),
+                new Models.YInt((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
@@ -351,9 +351,9 @@ public partial class TileCropPage : ContentPage
             //
 
             // ポイントしている位置
-            PointingDeviceCurrentPoint = new Models.Point(
-                new Models.X((int)e.GetPosition((Element)sender).Value.X),
-                new Models.Y((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = new Models.PointInt(
+                new Models.XInt((int)e.GetPosition((Element)sender).Value.X),
+                new Models.YInt((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
@@ -414,13 +414,13 @@ public partial class TileCropPage : ContentPage
         context.TilesetSettings.Add(
             // 新しいＩｄを追加
             id: context.TilesetSettings.UsableId,
-            rect: new Models.Rectangle(
-                point: new Models.Point(
-                    x: new Models.X(context.SelectedTileLeftAsInt),
-                    y: new Models.Y(context.SelectedTileTopAsInt)),
-                size: new Models.Size(
-                    width: new Models.Width(context.SelectedTileWidthAsInt),
-                    height: new Models.Height(context.SelectedTileHeightAsInt))),
+            rect: new Models.RectangleInt(
+                point: new Models.PointInt(
+                    x: new Models.XInt(context.SelectedTileLeftAsInt),
+                    y: new Models.YInt(context.SelectedTileTopAsInt)),
+                size: new Models.SizeInt(
+                    width: new Models.WidthInt(context.SelectedTileWidthAsInt),
+                    height: new Models.HeightInt(context.SelectedTileHeightAsInt))),
             comment: new Models.Comment(context.SelectedTileCommentAsStr),
             logicalDelete: logicalDelete,
             onTileIdUpdated: () =>

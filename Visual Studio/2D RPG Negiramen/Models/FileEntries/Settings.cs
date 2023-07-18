@@ -29,7 +29,7 @@
             SettingsBuffer buffer = new SettingsBuffer()
             {
                 // 一辺が 2048 ピクセルのキャンバスを想定し、両端に太さが 2px のグリッドの線があって 1px ずつ食み出るから 2px 引いて 2046
-                TileMaxSize = new Models.Size(new Models.Width(2046), new Models.Height(2046)),
+                TileMaxSize = new Models.SizeInt(new Models.WidthInt(2046), new Models.HeightInt(2046)),
             };
 
             try
@@ -59,7 +59,7 @@
                             {
                                 if (maxWidthObj is int maxWidthAsInt)
                                 {
-                                    buffer.TileMaxSize = new Models.Size(new Models.Width(maxWidthAsInt), buffer.TileMaxSize.Height);
+                                    buffer.TileMaxSize = new Models.SizeInt(new Models.WidthInt(maxWidthAsInt), buffer.TileMaxSize.Height);
                                 }
                             }
 
@@ -68,7 +68,7 @@
                             {
                                 if (maxHeightObj is int maxHeightAsInt)
                                 {
-                                    buffer.TileMaxSize = new Models.Size(buffer.TileMaxSize.Width, new Models.Height(maxHeightAsInt));
+                                    buffer.TileMaxSize = new Models.SizeInt(buffer.TileMaxSize.Width, new Models.HeightInt(maxHeightAsInt));
                                 }
                             }
                         }
@@ -129,7 +129,7 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
         /// <summary>
         ///     タイルの最大サイズ
         /// </summary>
-        internal Models.Size TileMaxSize { get; }
+        internal Models.SizeInt TileMaxSize { get; }
 
         ///// <summary>
         /////     生成
@@ -144,7 +144,7 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
         /// </summary>
         /// <param name="tileMaxSize">タイルの最大サイズ</param>
         internal Settings(
-            Models.Size tileMaxSize)
+            Models.SizeInt tileMaxSize)
         {
             this.TileMaxSize = tileMaxSize;
         }

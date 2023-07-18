@@ -1,9 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 位置ｙ
+    ///     😁 縦幅
+    ///     
+    ///     <list type="bullet">
+    ///         <item>double 型</item>
+    ///     </list>
     /// </summary>
-    internal class Y
+    internal class HeightDouble
     {
         // - 演算子のオーバーロード
 
@@ -19,7 +23,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(Y c1, Y c2)
+        public static bool operator ==(HeightDouble c1, HeightDouble c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -45,29 +49,29 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(Y c1, Y c2)
+        public static bool operator !=(HeightDouble c1, HeightDouble c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
         }
 
         /// <summary>
-        ///     任意のオブジェクトと、自分自身が等価か？
+        /// 任意のオブジェクトと、自分自身が等価か？
         /// </summary>
         /// <param name="obj">任意のオブジェクト</param>
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            // objがnullか、型が違うときは、等価でない
+            //objがnullか、型が違うときは、等価でない
             if (obj == null || this.GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Y))
+            //if (!(obj is Height))
 
             // 要素で比較する
-            Y c = (Y)obj;
+            HeightDouble c = (HeightDouble)obj;
             return (this.source == c.source);
             //または、
             //return (this.Number.Equals(c.Number));
@@ -79,7 +83,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return this.source;
+            return (this.source).GetHashCode();
         }
         #endregion
 
@@ -99,7 +103,7 @@
                 return 1;
             if (this.GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((Y)other).source);
+            return this.source.CompareTo(((HeightDouble)other).source);
         }
 
         /// <summary>
@@ -109,7 +113,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(Y c1, Y c2)
+        public static bool operator <(HeightDouble c1, HeightDouble c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -127,7 +131,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(Y c1, Y c2)
+        public static bool operator >(HeightDouble c1, HeightDouble c2)
         {
             //逆にして"<"で比較
             return (c2 < c1);
@@ -140,14 +144,13 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(Y c1, Y c2)
+        public static bool operator <=(HeightDouble c1, HeightDouble c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
             {
                 throw new ArgumentNullException();
             }
-
             //CompareToメソッドを呼び出す
             return (c1.CompareTo(c2) <= 0);
         }
@@ -159,20 +162,11 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(Y c1, Y c2)
+        public static bool operator >=(HeightDouble c1, HeightDouble c2)
         {
             //逆にして"<="で比較
             return (c2 <= c1);
         }
-        #endregion
-
-        // - 静的プロパティー
-
-        #region プロパティ（ゼロ・オブジェクト）
-        /// <summary>
-        ///     ゼロ・オブジェクト
-        /// </summary>
-        internal static Y Empty = new Y(0);
         #endregion
 
         // - その他
@@ -182,28 +176,37 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal Y(int source)
+        internal HeightDouble(double source)
         {
             this.source = source;
         }
         #endregion
 
-        // - プロパティー
+        // - インターナル静的プロパティー
 
-        #region プロパティ（値。整数型形式）
+        #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
-        ///     値。整数型形式
+        ///     ゼロ・オブジェクト
         /// </summary>
-        internal int AsInt => source;
+        internal static HeightDouble Empty = new HeightDouble(0);
         #endregion
 
-        // - フィールド
+        // - インターナル・プロパティー
+
+        #region プロパティ（値。倍精度浮動小数点数形式）
+        /// <summary>
+        ///     値。倍精度浮動小数点数形式
+        /// </summary>
+        internal double AsDouble => source;
+        #endregion
+
+        // - プライベート・フィールド
 
         #region フィールド（値）
         /// <summary>
         ///     値
         /// </summary>
-        int source;
+        double source;
         #endregion
     }
 }

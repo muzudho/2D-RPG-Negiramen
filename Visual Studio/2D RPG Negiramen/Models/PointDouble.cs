@@ -1,9 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 大きさ
+    ///     😁 位置
+    ///     
+    ///     <list type="bullet">
+    ///         <item>double 型</item>
+    ///     </list>
     /// </summary>
-    public class Size
+    public class PointDouble
     {
         // - 演算子のオーバーロード
 
@@ -19,7 +23,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(Size c1, Size c2)
+        public static bool operator ==(PointDouble c1, PointDouble c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -36,7 +40,7 @@
                 return false;
             }
 
-            return (c1.Width == c2.Width) && (c1.Height == c2.Height);
+            return (c1.X == c2.X) && (c1.Y == c2.Y);
         }
 
         /// <summary>
@@ -45,7 +49,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(Size c1, Size c2)
+        public static bool operator !=(PointDouble c1, PointDouble c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -58,17 +62,17 @@
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            // objがnullか、型が違うときは、等価でない
+            //objがnullか、型が違うときは、等価でない
             if (obj == null || this.GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Size))
+            //if (!(obj is Point))
 
             // 要素で比較する
-            Size c = (Size)obj;
-            return (this.Width == c.Width) && (this.Height == c.Height);
+            PointDouble c = (PointDouble)obj;
+            return (this.X == c.X) && (this.Y == c.Y);
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -79,17 +83,17 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (this.Width, this.Height).GetHashCode();
+            return (this.X, this.Y).GetHashCode();
         }
         #endregion
 
-        // - インターナル静的プロパティー
+        // - 静的プロパティー
 
         #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static Size Empty = new Size(Models.Width.Empty, Models.Height.Empty);
+        internal static PointDouble Empty = new PointDouble(Models.XDouble.Empty, Models.YDouble.Empty);
         #endregion
 
         // - その他
@@ -98,29 +102,29 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="width">横幅</param>
-        /// <param name="height">縦幅</param>
-        internal Size(Models.Width width, Models.Height height)
+        /// <param name="x">位置ｘ</param>
+        /// <param name="y">位置ｙ</param>
+        internal PointDouble(Models.XDouble x, Models.YDouble y)
         {
-            this.Width = width;
-            this.Height = height;
+            this.X = x;
+            this.Y = y;
         }
         #endregion
 
         // - インターナル・プロパティー
 
-        #region プロパティ（横幅）
+        #region プロパティ（位置ｘ）
         /// <summary>
-        ///     横幅
+        ///     位置ｘ
         /// </summary>
-        internal Models.Width Width { get; private set; }
+        internal Models.XDouble X { get; private set; }
         #endregion
 
-        #region プロパティ（縦幅）
+        #region プロパティ（位置ｙ）
         /// <summary>
-        ///     縦幅
+        ///     位置ｙ
         /// </summary>
-        internal Models.Height Height { get; private set; }
+        internal Models.YDouble Y { get; private set; }
         #endregion
 
         // - インターナル・メソッド
@@ -132,7 +136,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Width:{this.Width.AsInt}, Height:{this.Height.AsInt}";
+            return $"X:{this.X.AsDouble}, Y:{this.Y.AsDouble}";
         }
         #endregion
     }

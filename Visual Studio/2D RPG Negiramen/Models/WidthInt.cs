@@ -1,9 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 縦幅
+    ///     😁 横幅
+    ///     
+    ///     <list type="bullet">
+    ///         <item>int 型</item>
+    ///     </list>
     /// </summary>
-    internal class Height
+    internal class WidthInt
     {
         // - 演算子のオーバーロード
 
@@ -19,7 +23,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(Height c1, Height c2)
+        public static bool operator ==(WidthInt c1, WidthInt c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -45,7 +49,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(Height c1, Height c2)
+        public static bool operator !=(WidthInt c1, WidthInt c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -58,16 +62,16 @@
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            //objがnullか、型が違うときは、等価でない
+            // objがnullか、型が違うときは、等価でない
             if (obj == null || this.GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Height))
+            //if (!(obj is Width))
 
             // 要素で比較する
-            Height c = (Height)obj;
+            WidthInt c = (WidthInt)obj;
             return (this.source == c.source);
             //または、
             //return (this.Number.Equals(c.Number));
@@ -99,7 +103,7 @@
                 return 1;
             if (this.GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((Height)other).source);
+            return this.source.CompareTo(((WidthInt)other).source);
         }
 
         /// <summary>
@@ -109,7 +113,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(Height c1, Height c2)
+        public static bool operator <(WidthInt c1, WidthInt c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -127,7 +131,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(Height c1, Height c2)
+        public static bool operator >(WidthInt c1, WidthInt c2)
         {
             //逆にして"<"で比較
             return (c2 < c1);
@@ -140,7 +144,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(Height c1, Height c2)
+        public static bool operator <=(WidthInt c1, WidthInt c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -158,7 +162,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(Height c1, Height c2)
+        public static bool operator >=(WidthInt c1, WidthInt c2)
         {
             //逆にして"<="で比較
             return (c2 <= c1);
@@ -172,7 +176,7 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal Height(int source)
+        internal WidthInt(int source)
         {
             this.source = source;
         }
@@ -182,16 +186,16 @@
 
         #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
-        ///     ゼロ・オブジェクト
+        /// ゼロ・オブジェクト
         /// </summary>
-        internal static Height Empty = new Height(0);
+        internal static WidthInt Empty = new WidthInt(0);
         #endregion
 
         // - インターナル・プロパティー
 
-        #region プロパティ（整数型形式で取得）
+        #region プロパティ（値。整数型形式）
         /// <summary>
-        ///     整数型形式で取得
+        ///     値。整数型形式
         /// </summary>
         internal int AsInt => source;
         #endregion

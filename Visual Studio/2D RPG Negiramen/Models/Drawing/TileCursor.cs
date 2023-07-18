@@ -40,9 +40,9 @@
         /// <summary>
         ///     選択タイルのサイズ
         /// </summary>
-        public Models.Size SelectedTileSize
+        public Models.SizeInt SelectedTileSize
         {
-            get => (Models.Size)GetValue(SelectedTileSizeProperty);
+            get => (Models.SizeInt)GetValue(SelectedTileSizeProperty);
             set => SetValue(SelectedTileSizeProperty, value);
         }
 
@@ -53,10 +53,10 @@
             // プロパティ名
             propertyName: nameof(SelectedTileSize),
             // 返却型
-            returnType: typeof(Models.Size),
+            returnType: typeof(Models.SizeInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
-            defaultValue: Models.Size.Empty);
+            defaultValue: Models.SizeInt.Empty);
         #endregion
 
         #region 束縛可能プロパティ（ポインティング・デバイス押下中か？）
@@ -129,7 +129,7 @@
             canvas.StrokeSize = thickness.AsInt;
 
             // 選択タイルのサイズ
-            Models.Size tileCursorSize = this.SelectedTileSize;
+            Models.SizeInt tileCursorSize = this.SelectedTileSize;
 
             // キャンバス・サイズいっぱいにタイル・カーソルを描画
             canvas.DrawRectangle(new Rect(

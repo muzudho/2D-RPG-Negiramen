@@ -164,7 +164,7 @@
         /// <summary>
         ///     タイルセット元画像のサイズ
         /// </summary>
-        public Models.Size TilesetSourceImageSize => tilesetSourceImageSize;
+        public Models.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
         #endregion
 
         #region プロパティ（タイルセット作業画像関連）
@@ -313,7 +313,7 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
-                        rectangle: Models.Rectangle.Empty,
+                        rectangle: Models.RectangleInt.Empty,
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -419,7 +419,7 @@
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
-        public Models.Size GridCanvasImageSize
+        public Models.SizeInt GridCanvasImageSize
         {
             get => this.gridCanvasImageSize;
             set
@@ -447,7 +447,7 @@
             {
                 if (this.gridCanvasImageSize.Width.AsInt != value)
                 {
-                    this.gridCanvasImageSize = new Models.Size(new Models.Width(value), this.gridCanvasImageSize.Height);
+                    this.gridCanvasImageSize = new Models.SizeInt(new Models.WidthInt(value), this.gridCanvasImageSize.Height);
                     OnPropertyChanged(nameof(GridCanvasImageWidthAsInt));
                     OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
@@ -468,7 +468,7 @@
             {
                 if (this.gridCanvasImageSize.Height.AsInt != value)
                 {
-                    this.gridCanvasImageSize = new Models.Size(this.gridCanvasImageSize.Width, new Models.Height(value));
+                    this.gridCanvasImageSize = new Models.SizeInt(this.gridCanvasImageSize.Width, new Models.HeightInt(value));
                     OnPropertyChanged(nameof(GridCanvasImageHeightAsInt));
                     OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
@@ -503,12 +503,12 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド位相の左上表示位置）
-        Models.Point sourceGridPhase = Models.Point.Empty;
+        Models.PointInt sourceGridPhase = Models.PointInt.Empty;
 
         /// <summary>
         ///     グリッド位相の左上表示位置。元画像ベース
         /// </summary>
-        public Models.Point SourceGridPhase
+        public Models.PointInt SourceGridPhase
         {
             get => this.sourceGridPhase;
             set
@@ -531,7 +531,7 @@
             {
                 if (this.sourceGridPhase.X.AsInt != value)
                 {
-                    this.sourceGridPhase = new Models.Point(new Models.X(value), this.sourceGridPhase.Y);
+                    this.sourceGridPhase = new Models.PointInt(new Models.XInt(value), this.sourceGridPhase.Y);
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -556,7 +556,7 @@
             {
                 if (this.sourceGridPhase.Y.AsInt != value)
                 {
-                    this.sourceGridPhase = new Models.Point(this.sourceGridPhase.X, new Models.Y(value));
+                    this.sourceGridPhase = new Models.PointInt(this.sourceGridPhase.X, new Models.YInt(value));
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -574,11 +574,11 @@
         /// <summary>
         ///     グリッド位相の左上表示位置。ズーム後
         /// </summary>
-        public Models.Point WorkingGridPhase
+        public Models.PointInt WorkingGridPhase
         {
-            get => new Models.Point(
-                x: new Models.X(this.WorkingGridPhaseLeftAsInt),
-                y: new Models.Y(this.WorkingGridPhaseTopAsInt));
+            get => new Models.PointInt(
+                x: new Models.XInt(this.WorkingGridPhaseLeftAsInt),
+                y: new Models.YInt(this.WorkingGridPhaseTopAsInt));
         }
 
         /// <summary>
@@ -599,12 +599,12 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド・タイルのサイズ関連）
-        Models.Size sourceGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
+        Models.SizeInt sourceGridTileSize = new Models.SizeInt(new Models.WidthInt(32), new Models.HeightInt(32));
 
         /// <summary>
         ///     グリッド・タイルのサイズ。元画像ベース
         /// </summary>
-        public Models.Size SourceGridTileSize
+        public Models.SizeInt SourceGridTileSize
         {
             get => this.sourceGridTileSize;
             set
@@ -629,7 +629,7 @@
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.sourceGridTileSize = new Models.Size(new Models.Width(value), this.sourceGridTileSize.Height);
+                    this.sourceGridTileSize = new Models.SizeInt(new Models.WidthInt(value), this.sourceGridTileSize.Height);
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasWidthAsInt = this.sourceGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
@@ -660,7 +660,7 @@
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.sourceGridTileSize = new Models.Size(this.sourceGridTileSize.Width, new Models.Height(value));
+                    this.sourceGridTileSize = new Models.SizeInt(this.sourceGridTileSize.Width, new Models.HeightInt(value));
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasHeightAsInt = this.sourceGridTileSize.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
@@ -682,11 +682,11 @@
         /// <summary>
         ///     グリッド・タイルのサイズ。ズーム後（読取専用）
         /// </summary>
-        public Models.Size WorkingGridTileSize
+        public Models.SizeInt WorkingGridTileSize
         {
-            get => new Models.Size(
-                width: new Models.Width(this.WorkingGridTileWidthAsInt),
-                height: new Models.Height(this.WorkingGridTileHeightAsInt));
+            get => new Models.SizeInt(
+                width: new Models.WidthInt(this.WorkingGridTileWidthAsInt),
+                height: new Models.HeightInt(this.WorkingGridTileHeightAsInt));
         }
 
         /// <summary>
@@ -730,7 +730,7 @@
         ///         カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする
         ///     </pre>
         /// </summary>
-        public Models.Size TileCursorCanvasSize
+        public Models.SizeInt TileCursorCanvasSize
         {
             get => _tileCursorCanvasSize;
             set
@@ -759,7 +759,7 @@
             {
                 if (_tileCursorCanvasSize.Width.AsInt != value)
                 {
-                    _tileCursorCanvasSize = new Models.Size(new Models.Width(value), _tileCursorCanvasSize.Height);
+                    _tileCursorCanvasSize = new Models.SizeInt(new Models.WidthInt(value), _tileCursorCanvasSize.Height);
 
                     // キャンバスを再描画
                     RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel TileCursorCanvasWidthAsInt set]");
@@ -786,7 +786,7 @@
             {
                 if (_tileCursorCanvasSize.Height.AsInt != value)
                 {
-                    _tileCursorCanvasSize = new Models.Size(_tileCursorCanvasSize.Width, new Models.Height(value));
+                    _tileCursorCanvasSize = new Models.SizeInt(_tileCursorCanvasSize.Width, new Models.HeightInt(value));
 
                     // キャンバスを再描画
                     RefreshCanvasOfTileCursor("[TileCropPageViewModel TileCursorCanvasHeightAsInt set]");
@@ -1052,7 +1052,7 @@
         ///         選択タイルの矩形
         ///     </pre>
         /// </summary>
-        public Models.Rectangle SelectedTileRectangle
+        public Models.RectangleInt SelectedTileRectangle
         {
             get
             {
@@ -1063,7 +1063,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    return Models.Rectangle.Empty;
+                    return Models.RectangleInt.Empty;
                 }
             }
             set
@@ -1131,8 +1131,8 @@
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
-                        rectangle: new Models.Rectangle(
-                            point: new Models.Point(new Models.X(value), selectedTile.Rectangle.Point.Y),
+                        rectangle: new Models.RectangleInt(
+                            point: new Models.PointInt(new Models.XInt(value), selectedTile.Rectangle.Point.Y),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
@@ -1142,9 +1142,9 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
-                        rectangle: new Models.Rectangle(
-                            point: new Models.Point(new Models.X(value), Models.Y.Empty),
-                            size: Models.Size.Empty),
+                        rectangle: new Models.RectangleInt(
+                            point: new Models.PointInt(new Models.XInt(value), Models.YInt.Empty),
+                            size: Models.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1198,8 +1198,8 @@
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
-                        rectangle: new Models.Rectangle(
-                            point: new Models.Point(selectedTile.Rectangle.Point.X, new Models.Y(value)),
+                        rectangle: new Models.RectangleInt(
+                            point: new Models.PointInt(selectedTile.Rectangle.Point.X, new Models.YInt(value)),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
@@ -1209,9 +1209,9 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
-                        rectangle: new Models.Rectangle(
-                            point: new Models.Point(Models.X.Empty, new Models.Y(value)),
-                            size: Models.Size.Empty),
+                        rectangle: new Models.RectangleInt(
+                            point: new Models.PointInt(Models.XInt.Empty, new Models.YInt(value)),
+                            size: Models.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1237,7 +1237,7 @@
         /// <summary>
         ///     選択タイルのサイズ
         /// </summary>
-        public Models.Size SelectedTileSize
+        public Models.SizeInt SelectedTileSize
         {
             get
             {
@@ -1248,7 +1248,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    return Models.Size.Empty;
+                    return Models.SizeInt.Empty;
                 }
             }
             set
@@ -1329,7 +1329,7 @@
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
-                        rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(new Models.Width(value), selectedTile.Rectangle.Size.Height)),
+                        rectangle: new Models.RectangleInt(selectedTile.Rectangle.Point, new Models.SizeInt(new Models.WidthInt(value), selectedTile.Rectangle.Size.Height)),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
                 }
@@ -1338,7 +1338,7 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
-                        rectangle: new Models.Rectangle(Models.Point.Empty, new Models.Size(new Models.Width(value), Models.Height.Empty)),
+                        rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), Models.HeightInt.Empty)),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1392,7 +1392,7 @@
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
-                        rectangle: new Models.Rectangle(selectedTile.Rectangle.Point, new Models.Size(selectedTile.Rectangle.Size.Width, new Models.Height(value))),
+                        rectangle: new Models.RectangleInt(selectedTile.Rectangle.Point, new Models.SizeInt(selectedTile.Rectangle.Size.Width, new Models.HeightInt(value))),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
                 }
@@ -1401,7 +1401,7 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
-                        rectangle: new Models.Rectangle(Models.Point.Empty, new Models.Size(Models.Width.Empty, new Models.Height(value))),
+                        rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(Models.WidthInt.Empty, new Models.HeightInt(value))),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1463,7 +1463,7 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
-                        rectangle: Models.Rectangle.Empty,
+                        rectangle: Models.RectangleInt.Empty,
                         comment: new Models.Comment(value),
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1487,10 +1487,10 @@
             // グリッド・キャンバス
             {
                 // グリッドの左上位置（初期値）
-                this.SourceGridPhase = new Models.Point(new Models.X(0), new Models.Y(0));
+                this.SourceGridPhase = new Models.PointInt(new Models.XInt(0), new Models.YInt(0));
 
                 // グリッドのタイルサイズ（初期値）
-                this.SourceGridTileSize = new Models.Size(new Models.Width(32), new Models.Height(32));
+                this.SourceGridTileSize = new Models.SizeInt(new Models.WidthInt(32), new Models.HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
                 this.RemakeGridCanvasImage();
@@ -1559,7 +1559,7 @@
             }
 
             // 循環参照を避けるために、直接フィールドを変更
-            this._tileCursorCanvasSize = new Models.Size(new Models.Width(this._tileCursorCanvasSize.Width.AsInt + offset), new Models.Height(this._tileCursorCanvasSize.Height.AsInt));
+            this._tileCursorCanvasSize = new Models.SizeInt(new Models.WidthInt(this._tileCursorCanvasSize.Width.AsInt + offset), new Models.HeightInt(this._tileCursorCanvasSize.Height.AsInt));
             OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
         }
         #endregion
@@ -1608,21 +1608,21 @@
         /// <summary>
         ///     タイルセット元画像サイズ
         /// </summary>
-        Models.Size tilesetSourceImageSize = Models.Size.Empty;
+        Models.SizeInt tilesetSourceImageSize = Models.SizeInt.Empty;
         #endregion
 
         #region フィールド（タイルセット作業画像　関連）
         /// <summary>
         ///     タイルセット作業画像サイズ
         /// </summary>
-        Models.Size workingImageSize = Models.Size.Empty;
+        Models.SizeInt workingImageSize = Models.SizeInt.Empty;
         #endregion
 
         #region フィールド（グリッド　関連）
         /// <summary>
         ///     グリッド・キャンバス画像サイズ
         /// </summary>
-        Models.Size gridCanvasImageSize = Models.Size.Empty;
+        Models.SizeInt gridCanvasImageSize = Models.SizeInt.Empty;
         #endregion
 
         #region フィールド（選択タイル　関連）
@@ -1638,7 +1638,7 @@
         ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
         ///     </pre>
         /// </summary>
-        Models.Size _tileCursorCanvasSize = Models.Size.Empty;
+        Models.SizeInt _tileCursorCanvasSize = Models.SizeInt.Empty;
 
         /// <summary>
         ///     選択タイル
@@ -1683,9 +1683,9 @@
         /// </summary>
         void RemakeGridCanvasImage()
         {
-            this.GridCanvasImageSize = new Models.Size(
-                width: new Models.Width((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Height((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
+            this.GridCanvasImageSize = new Models.SizeInt(
+                width: new Models.WidthInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.HeightInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
         #endregion
 
@@ -1712,9 +1712,9 @@
             this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
 
             // 作業画像のサイズ計算
-            this.workingImageSize = new Models.Size(
-                width: new Models.Width((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Height((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt)));
+            this.workingImageSize = new Models.SizeInt(
+                width: new Models.WidthInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.HeightInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(

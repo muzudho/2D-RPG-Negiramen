@@ -1,9 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 位置ｘ
+    ///     😁 横幅
+    ///     
+    ///     <list type="bullet">
+    ///         <item>double 型</item>
+    ///     </list>
     /// </summary>
-    internal class X
+    internal class WidthDouble
     {
         // - 演算子のオーバーロード
 
@@ -19,7 +23,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(X c1, X c2)
+        public static bool operator ==(WidthDouble c1, WidthDouble c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -45,14 +49,14 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(X c1, X c2)
+        public static bool operator !=(WidthDouble c1, WidthDouble c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
         }
 
         /// <summary>
-        ///     任意のオブジェクトと、自分自身が等価か？
+        /// 任意のオブジェクトと、自分自身が等価か？
         /// </summary>
         /// <param name="obj">任意のオブジェクト</param>
         /// <returns>そうだ</returns>
@@ -64,10 +68,10 @@
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is X))
+            //if (!(obj is Width))
 
             // 要素で比較する
-            X c = (X)obj;
+            WidthDouble c = (WidthDouble)obj;
             return (this.source == c.source);
             //または、
             //return (this.Number.Equals(c.Number));
@@ -79,7 +83,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return this.source;
+            return (this.source).GetHashCode();
         }
         #endregion
 
@@ -99,7 +103,7 @@
                 return 1;
             if (this.GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((X)other).source);
+            return this.source.CompareTo(((WidthDouble)other).source);
         }
 
         /// <summary>
@@ -109,7 +113,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(X c1, X c2)
+        public static bool operator <(WidthDouble c1, WidthDouble c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -127,7 +131,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(X c1, X c2)
+        public static bool operator >(WidthDouble c1, WidthDouble c2)
         {
             //逆にして"<"で比較
             return (c2 < c1);
@@ -140,7 +144,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(X c1, X c2)
+        public static bool operator <=(WidthDouble c1, WidthDouble c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -158,20 +162,11 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(X c1, X c2)
+        public static bool operator >=(WidthDouble c1, WidthDouble c2)
         {
             //逆にして"<="で比較
             return (c2 <= c1);
         }
-        #endregion
-
-        // - 静的プロパティー
-
-        #region プロパティ（ゼロ・オブジェクト）
-        /// <summary>
-        ///     ゼロ・オブジェクト
-        /// </summary>
-        internal static X Empty = new X(0);
         #endregion
 
         // - その他
@@ -181,19 +176,28 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal X(int source)
+        internal WidthDouble(double source)
         {
             this.source = source;
         }
         #endregion
 
+        // - インターナル静的プロパティー
+
+        #region プロパティ（ゼロ・オブジェクト）
+        /// <summary>
+        /// ゼロ・オブジェクト
+        /// </summary>
+        internal static WidthDouble Empty = new WidthDouble(0);
+        #endregion
+
         // - インターナル・プロパティー
 
-        #region プロパティ（値。整数型形式）
+        #region プロパティ（値。倍精度浮動小数点数形式）
         /// <summary>
-        ///     値。整数型形式
+        ///     値。倍精度浮動小数点数形式
         /// </summary>
-        internal int AsInt => source;
+        internal double AsDouble => source;
         #endregion
 
         // - プライベート・フィールド
@@ -202,7 +206,7 @@
         /// <summary>
         ///     値
         /// </summary>
-        int source;
+        double source;
         #endregion
     }
 }

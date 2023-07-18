@@ -31,7 +31,7 @@
         /// </summary>
         public TileRecord()
             : this(Models.TileId.Empty,
-                   Models.Rectangle.Empty,
+                   Models.RectangleInt.Empty,
                    Models.Comment.Empty,
                    Models.LogicalDelete.False)
         {
@@ -45,7 +45,7 @@
         /// <param name="rectangle">レクタングル</param>
         internal TileRecord(
             Models.TileId id,
-            Models.Rectangle rectangle,
+            Models.RectangleInt rectangle,
             Models.Comment comment,
             Models.LogicalDelete logicalDelete)
         {
@@ -73,7 +73,7 @@
         /// <summary>
         ///     矩形
         /// </summary>
-        internal Models.Rectangle Rectangle { get; }
+        internal Models.RectangleInt Rectangle { get; }
         #endregion
 
         #region プロパティ（コメント）

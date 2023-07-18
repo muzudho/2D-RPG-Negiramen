@@ -1,11 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
-    using TheGraphics = Microsoft.Maui.Graphics;
-
     /// <summary>
-    ///     😁 矩形
+    ///     😁 位置
+    ///     
+    ///     <list type="bullet">
+    ///         <item>int 型</item>
+    ///     </list>
     /// </summary>
-    internal class Rectangle
+    public class PointInt
     {
         // - 演算子のオーバーロード
 
@@ -21,7 +23,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(Rectangle c1, Rectangle c2)
+        public static bool operator ==(PointInt c1, PointInt c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -38,7 +40,7 @@
                 return false;
             }
 
-            return (c1.Point == c2.Point) && (c1.Size == c2.Size);
+            return (c1.X == c2.X) && (c1.Y == c2.Y);
         }
 
         /// <summary>
@@ -47,7 +49,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(Rectangle c1, Rectangle c2)
+        public static bool operator !=(PointInt c1, PointInt c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -60,17 +62,17 @@
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            // objがnullか、型が違うときは、等価でない
+            //objがnullか、型が違うときは、等価でない
             if (obj == null || this.GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Rectangle))
+            //if (!(obj is Point))
 
             // 要素で比較する
-            Rectangle c = (Rectangle)obj;
-            return (this.Point == c.Point) && (this.Size == c.Size);
+            PointInt c = (PointInt)obj;
+            return (this.X == c.X) && (this.Y == c.Y);
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -81,17 +83,17 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (this.Point, this.Size).GetHashCode();
+            return (this.X, this.Y).GetHashCode();
         }
         #endregion
 
-        // - インターナル静的プロパティ
+        // - 静的プロパティー
 
-        #region プロパティ（空オブジェクト）
+        #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
-        ///     空オブジェクト
+        ///     ゼロ・オブジェクト
         /// </summary>
-        internal static Rectangle Empty = new Rectangle(Models.Point.Empty, Models.Size.Empty);
+        internal static PointInt Empty = new PointInt(Models.XInt.Empty, Models.YInt.Empty);
         #endregion
 
         // - その他
@@ -100,56 +102,41 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="point">位置</param>
-        /// <param name="size">大きさ</param>
-        internal Rectangle(Models.Point point, Models.Size size)
+        /// <param name="x">位置ｘ</param>
+        /// <param name="y">位置ｙ</param>
+        internal PointInt(Models.XInt x, Models.YInt y)
         {
-            this.Point = point;
-            this.Size = size;
+            this.X = x;
+            this.Y = y;
         }
         #endregion
 
         // - インターナル・プロパティー
 
-        #region プロパティ（位置）
+        #region プロパティ（位置ｘ）
         /// <summary>
-        ///     位置
+        ///     位置ｘ
         /// </summary>
-        internal Models.Point Point { get; private set; }
+        internal Models.XInt X { get; private set; }
         #endregion
 
-        #region プロパティ（大きさ）
+        #region プロパティ（位置ｙ）
         /// <summary>
-        ///     大きさ
+        ///     位置ｙ
         /// </summary>
-        internal Models.Size Size { get; private set; }
+        internal Models.YInt Y { get; private set; }
         #endregion
 
         // - インターナル・メソッド
 
-        #region メソッド（描画で使う形式）
+        #region メソッド（ダンプ）
         /// <summary>
-        ///     描画で使う形式
-        /// </summary>
-        /// <returns></returns>
-        internal TheGraphics.Rect AsGraphis()
-        {
-            return new Rect(
-                x: this.Point.X.AsInt,
-                y: this.Point.Y.AsInt,
-                width: this.Size.Width.AsInt,
-                height: this.Size.Height.AsInt);
-        }
-        #endregion
-
-        #region メソッド（プロパティ出力）
-        /// <summary>
-        ///     プロパティ出力
+        ///     ダンプ
         /// </summary>
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Point:{this.Point.Dump()}, Size:{this.Size.Dump()}";
+            return $"X:{this.X.AsInt}, Y:{this.Y.AsInt}";
         }
         #endregion
     }

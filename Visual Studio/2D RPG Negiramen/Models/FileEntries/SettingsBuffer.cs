@@ -8,6 +8,6 @@
         /// <summary>
         ///     タイルの最大サイズ
         /// </summary>
-        internal Models.Size TileMaxSize { get; set; }
+        internal Models.SizeInt TileMaxSize { get; set; }
     }
 }
