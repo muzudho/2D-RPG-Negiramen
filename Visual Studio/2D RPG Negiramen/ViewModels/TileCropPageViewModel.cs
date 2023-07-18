@@ -1838,12 +1838,20 @@
         Models.Geometric.SizeFloat workingGridUnit = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32), new Models.Geometric.HeightFloat(32));
         #endregion
 
-        #region フィールド（選択矩形。元画像ベース　関連）
+        #region フィールド（矩形カーソル。元画像ベース　関連）
+        /// <summary>
+        ///     矩形カーソル。元画像ベース
+        ///     
+        ///     <list type="bullet">
+        ///         <item>タイル・カーソルが有るときと、無いときを分ける</item>
+        ///     </list>
+        /// </summary>
+        Option<TileRecord> sourceSelectedTileOption = new Option<TileRecord>(Models.TileRecord.Empty);
         #endregion
 
-        #region フィールド（選択矩形。ズーム済み　関連）
+        #region フィールド（矩形カーソル。ズーム済み　関連）
         /// <summary>
-        ///     選択矩形。ズーム済みの位置（マージンとして）
+        ///     矩形カーソル。ズーム済みの位置（マージンとして）
         ///     
         ///     <list type="bullet">
         ///         <item>マージンを含んだカーソルの左上位置</item>
@@ -1852,24 +1860,15 @@
         Thickness workingRectCursorPointAsMargin = Thickness.Zero;
 
         /// <summary>
-        ///     選択矩形。ズーム済みのキャンバス・サイズ
+        ///     矩形カーソル。ズーム済みのキャンバス・サイズ
         ///         
         ///     <list type="bullet">
-        ///         <item>カーソルの線の幅が 4px なので、画像サイズは + 8px にする</item>
+        ///         <item>カーソルの線の幅が 4px</item>
+        ///         <item>カーソルは、グリッドに外接する</item>
+        ///         <item>なので、画像サイズは縦横共に 8px 大きめにする</item>
         ///     </list>
         /// </summary>
         Models.Geometric.SizeFloat workingRectCursorCanvasSize = Models.Geometric.SizeFloat.Empty;
-        #endregion
-
-        #region フィールド（選択タイル　関連）
-        /// <summary>
-        ///     選択タイル。元画像ベース
-        ///     
-        ///     <list type="bullet">
-        ///         <item>タイル・カーソルが有るときと、無いときを分ける</item>
-        ///     </list>
-        /// </summary>
-        Option<TileRecord> sourceSelectedTileOption = new Option<TileRecord>(Models.TileRecord.Empty);
 
         /// <summary>
         ///     選択タイルの位置とサイズ。ズーム済み
