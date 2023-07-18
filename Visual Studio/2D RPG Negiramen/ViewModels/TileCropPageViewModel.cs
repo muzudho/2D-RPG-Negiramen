@@ -1381,6 +1381,7 @@
 
                     OnPropertyChanged(nameof(WorkingCroppedCursorLeftAsFloat));
                     OnPropertyChanged(nameof(WorkingCroppedCursorPoint));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
                 }
             }
         }
@@ -1405,6 +1406,7 @@
 
                     OnPropertyChanged(nameof(WorkingCroppedCursorTopAsFloat));
                     OnPropertyChanged(nameof(WorkingCroppedCursorPoint));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
                 }
             }
         }
