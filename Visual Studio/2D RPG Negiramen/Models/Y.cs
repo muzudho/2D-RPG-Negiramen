@@ -168,13 +168,16 @@
 
         // - 静的プロパティー
 
+        #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
         internal static Y Empty = new Y(0);
+        #endregion
 
         // - その他
 
+        #region その他（生成）
         /// <summary>
         ///     生成
         /// </summary>
@@ -183,19 +186,24 @@
         {
             this.source = source;
         }
+        #endregion
+
+        // - プロパティー
+
+        #region プロパティ（値。整数型形式）
+        /// <summary>
+        ///     値。整数型形式
+        /// </summary>
+        internal int AsInt => source;
+        #endregion
 
         // - フィールド
 
+        #region フィールド（値）
         /// <summary>
         ///     値
         /// </summary>
         int source;
-
-        // - プロパティー
-
-        /// <summary>
-        ///     整数型形式で取得
-        /// </summary>
-        internal int AsInt => source;
+        #endregion
     }
 }

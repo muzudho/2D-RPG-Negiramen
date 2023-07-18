@@ -165,15 +165,9 @@
         }
         #endregion
 
-        // - 静的プロパティー
-
-        /// <summary>
-        /// ゼロ・オブジェクト
-        /// </summary>
-        internal static Width Empty = new Width(0);
-
         // - その他
 
+        #region その他（生成）
         /// <summary>
         ///     生成
         /// </summary>
@@ -182,19 +176,33 @@
         {
             this.source = source;
         }
+        #endregion
 
-        // - フィールド
+        // - インターナル静的プロパティー
 
+        #region プロパティ（ゼロ・オブジェクト）
+        /// <summary>
+        /// ゼロ・オブジェクト
+        /// </summary>
+        internal static Width Empty = new Width(0);
+        #endregion
+
+        // - インターナル・プロパティー
+
+        #region プロパティ（値。整数型形式）
+        /// <summary>
+        ///     値。整数型形式
+        /// </summary>
+        internal int AsInt => source;
+        #endregion
+
+        // - プライベート・フィールド
+
+        #region フィールド（値）
         /// <summary>
         ///     値
         /// </summary>
         int source;
-
-        // - プロパティー
-
-        /// <summary>
-        ///     整数型形式で取得
-        /// </summary>
-        internal int AsInt => source;
+        #endregion
     }
 }
