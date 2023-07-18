@@ -44,7 +44,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
-    Models.Geometric.PointDouble WorkingGridPhase { get; }
+    Models.Geometric.PointFloat WorkingGridPhase { get; }
 
     /// <summary>
     ///     グリッド・タイルのサイズ。元画像ベース
@@ -54,7 +54,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     グリッド・タイルのサイズ。ズーム後
     /// </summary>
-    Models.Geometric.SizeDouble WorkingGridTileSize { get; }
+    Models.Geometric.SizeFloat WorkingGridTileSize { get; }
     #endregion
 
     #region プロパティ（選択タイル　関連）

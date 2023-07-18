@@ -1,13 +1,14 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
-    ///     😁 大きさ
+    ///     😁 位置
     ///     
     ///     <list type="bullet">
-    ///         <item>double 型</item>
+    ///         <item>float 型</item>
+    ///         <item>用途：　図形描画。 SkiaSharp のメソッドが float 型で受け付けるから</item>
     ///     </list>
     /// </summary>
-    public class SizeDouble
+    public class PointFloat
     {
         // - 演算子のオーバーロード
 
@@ -23,7 +24,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(SizeDouble c1, SizeDouble c2)
+        public static bool operator ==(PointFloat c1, PointFloat c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -40,7 +41,7 @@
                 return false;
             }
 
-            return c1.Width == c2.Width && c1.Height == c2.Height;
+            return c1.X == c2.X && c1.Y == c2.Y;
         }
 
         /// <summary>
@@ -49,7 +50,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(SizeDouble c1, SizeDouble c2)
+        public static bool operator !=(PointFloat c1, PointFloat c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -62,17 +63,17 @@
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            // objがnullか、型が違うときは、等価でない
+            //objがnullか、型が違うときは、等価でない
             if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Size))
+            //if (!(obj is Point))
 
             // 要素で比較する
-            SizeDouble c = (SizeDouble)obj;
-            return Width == c.Width && Height == c.Height;
+            PointFloat c = (PointFloat)obj;
+            return X == c.X && Y == c.Y;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -83,24 +84,17 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (Width, Height).GetHashCode();
+            return (X, Y).GetHashCode();
         }
         #endregion
 
-        // - インターナル静的プロパティー
+        // - 静的プロパティー
 
         #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal static SizeDouble Empty = new SizeDouble(Models.WidthDouble.Empty, Models.HeightDouble.Empty);
-        後:
-                internal static SizeDouble Empty = new SizeDouble(WidthDouble.Empty, Models.HeightDouble.Empty);
-        */
-        internal static SizeDouble Empty = new SizeDouble(WidthDouble.Empty, HeightDouble.Empty);
+        internal static PointFloat Empty = new PointFloat(XFloat.Empty, YFloat.Empty);
         #endregion
 
         // - その他
@@ -109,43 +103,29 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="width">横幅</param>
-        /// <param name="height">縦幅</param>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal SizeDouble(Models.WidthDouble width, Models.HeightDouble height)
-        後:
-                internal SizeDouble(WidthDouble width, Models.HeightDouble height)
-        */
-        internal SizeDouble(WidthDouble width, HeightDouble height)
+        /// <param name="x">位置ｘ</param>
+        /// <param name="y">位置ｙ</param>
+        internal PointFloat(XFloat x, YFloat y)
         {
-            Width = width;
-            Height = height;
+            X = x;
+            Y = y;
         }
         #endregion
 
         // - インターナル・プロパティー
 
-        #region プロパティ（横幅）
+        #region プロパティ（位置ｘ）
         /// <summary>
-        ///     横幅
+        ///     位置ｘ
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal Models.WidthDouble Width { get; private set; }
-        後:
-                internal WidthDouble Width { get; private set; }
-        */
-        internal WidthDouble Width { get; private set; }
+        internal XFloat X { get; private set; }
         #endregion
 
-        #region プロパティ（縦幅）
+        #region プロパティ（位置ｙ）
         /// <summary>
-        ///     縦幅
+        ///     位置ｙ
         /// </summary>
-        internal HeightDouble Height { get; private set; }
+        internal YFloat Y { get; private set; }
         #endregion
 
         // - インターナル・メソッド
@@ -157,7 +137,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Width:{Width.AsDouble}, Height:{Height.AsDouble}";
+            return $"X:{X.AsFloat}, Y:{Y.AsFloat}";
         }
         #endregion
     }

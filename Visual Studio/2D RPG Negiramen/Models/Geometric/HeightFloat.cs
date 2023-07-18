@@ -4,10 +4,11 @@
     ///     😁 縦幅
     ///     
     ///     <list type="bullet">
-    ///         <item>double 型</item>
+    ///         <item>float 型</item>
+    ///         <item>用途：　図形描画。 SkiaSharp のメソッドが float 型で受け付けるから</item>
     ///     </list>
     /// </summary>
-    internal class HeightDouble
+    internal class HeightFloat
     {
         // - 演算子のオーバーロード
 
@@ -23,7 +24,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(HeightDouble c1, HeightDouble c2)
+        public static bool operator ==(HeightFloat c1, HeightFloat c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -49,7 +50,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(HeightDouble c1, HeightDouble c2)
+        public static bool operator !=(HeightFloat c1, HeightFloat c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -71,7 +72,7 @@
             //if (!(obj is Height))
 
             // 要素で比較する
-            HeightDouble c = (HeightDouble)obj;
+            HeightFloat c = (HeightFloat)obj;
             return source == c.source;
             //または、
             //return (this.Number.Equals(c.Number));
@@ -103,7 +104,7 @@
                 return 1;
             if (GetType() != other.GetType())
                 throw new ArgumentException();
-            return source.CompareTo(((HeightDouble)other).source);
+            return source.CompareTo(((HeightFloat)other).source);
         }
 
         /// <summary>
@@ -113,7 +114,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(HeightDouble c1, HeightDouble c2)
+        public static bool operator <(HeightFloat c1, HeightFloat c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -131,7 +132,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(HeightDouble c1, HeightDouble c2)
+        public static bool operator >(HeightFloat c1, HeightFloat c2)
         {
             //逆にして"<"で比較
             return c2 < c1;
@@ -144,7 +145,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(HeightDouble c1, HeightDouble c2)
+        public static bool operator <=(HeightFloat c1, HeightFloat c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -162,7 +163,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(HeightDouble c1, HeightDouble c2)
+        public static bool operator >=(HeightFloat c1, HeightFloat c2)
         {
             //逆にして"<="で比較
             return c2 <= c1;
@@ -176,7 +177,7 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal HeightDouble(double source)
+        internal HeightFloat(float source)
         {
             this.source = source;
         }
@@ -188,16 +189,16 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static HeightDouble Empty = new HeightDouble(0);
+        internal static HeightFloat Empty = new HeightFloat(0);
         #endregion
 
         // - インターナル・プロパティー
 
-        #region プロパティ（値。倍精度浮動小数点数形式）
+        #region プロパティ（値。浮動小数点数形式）
         /// <summary>
-        ///     値。倍精度浮動小数点数形式
+        ///     値。浮動小数点数形式
         /// </summary>
-        internal double AsDouble => source;
+        internal float AsFloat => source;
         #endregion
 
         // - プライベート・フィールド
@@ -206,7 +207,7 @@
         /// <summary>
         ///     値
         /// </summary>
-        double source;
+        float source;
         #endregion
     }
 }

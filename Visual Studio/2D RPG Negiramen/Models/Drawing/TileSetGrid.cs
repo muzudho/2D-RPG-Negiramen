@@ -79,9 +79,9 @@
         /// <summary>
         ///     グリッド位相の左上表示位置
         /// </summary>
-        public Geometric.PointDouble GridPhase
+        public Geometric.PointFloat GridPhase
         {
-            get => (Geometric.PointDouble)GetValue(GridPhaseProperty);
+            get => (Geometric.PointFloat)GetValue(GridPhaseProperty);
             set => SetValue(GridPhaseProperty, value);
         }
 
@@ -92,20 +92,20 @@
             // プロパティ名
             propertyName: nameof(GridPhase),
             // 返却型
-            returnType: typeof(Geometric.PointDouble),
+            returnType: typeof(Geometric.PointFloat),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
-            defaultValue: Geometric.PointDouble.Empty);
+            defaultValue: Geometric.PointFloat.Empty);
         #endregion
 
         #region 束縛可能プロパティ（グリッド・タイル　関連）
         /// <summary>
         ///     グリッド・タイル・サイズ
         /// </summary>
-        public Geometric.SizeDouble GridTileSize
+        public Geometric.SizeFloat GridTileSize
         {
-            get => (Geometric.SizeDouble)GetValue(GridTileSizeProperty);
+            get => (Geometric.SizeFloat)GetValue(GridTileSizeProperty);
             set => SetValue(GridTileSizeProperty, value);
         }
 
@@ -116,11 +116,11 @@
             // プロパティ名
             propertyName: nameof(GridTileSize),
             // 返却型
-            returnType: typeof(Geometric.SizeDouble),
+            returnType: typeof(Geometric.SizeFloat),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
-            defaultValue: Geometric.SizeDouble.Empty);
+            defaultValue: Geometric.SizeFloat.Empty);
         #endregion
 
         // - パブリック・メソッド
@@ -154,15 +154,15 @@
             // ==================
             //
             {
-                double y1 = halfThicknessOfLineAsInt + this.GridPhase.Y.AsDouble;
-                double y2 = canvasHeight + halfThicknessOfLineAsInt + this.GridPhase.Y.AsDouble;
+                double y1 = halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
+                double y2 = canvasHeight + halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
 
                 int prevX = 0;
                 int x = 0;
                 for (var i = 0; x < canvasWidth + halfThicknessOfLineAsInt; i++)
                 {
                     prevX = x;
-                    x = (int)(i * this.GridTileSize.Width.AsDouble + this.GridPhase.X.AsDouble + halfThicknessOfLineAsInt);
+                    x = (int)(i * this.GridTileSize.Width.AsFloat + this.GridPhase.X.AsFloat + halfThicknessOfLineAsInt);
 
                     if (x <= prevX)
                     {
@@ -179,20 +179,20 @@
             // ==================
             //
             {
-                double x1 = halfThicknessOfLineAsInt + this.GridPhase.X.AsDouble;
+                double x1 = halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
 
                 // CANCEL CODE: 横幅が偶数なら横幅を +1、奇数なら横幅を -1 するという TRICK CODE が別の箇所にあるので、
                 //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
                 //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
                 //              右辺の線の手前まで線を引くようにする
-                double x2 = canvasWidth - halfThicknessOfLineAsInt + this.GridPhase.X.AsDouble;
+                double x2 = canvasWidth - halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
 
                 int prevY = 0;
                 int y = 0;
                 for (var i = 0; y < canvasHeight + halfThicknessOfLineAsInt; i++)
                 {
                     prevY = y;
-                    y = (int)(i * this.GridTileSize.Height.AsDouble + this.GridPhase.Y.AsDouble + halfThicknessOfLineAsInt);
+                    y = (int)(i * this.GridTileSize.Height.AsFloat + this.GridPhase.Y.AsFloat + halfThicknessOfLineAsInt);
 
                     if (y <= prevY)
                     {

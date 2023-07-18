@@ -1,15 +1,14 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
-    using TheGraphics = Microsoft.Maui.Graphics;
-
     /// <summary>
     ///     😁 矩形
     ///     
     ///     <list type="bullet">
-    ///         <item>double 型</item>
+    ///         <item>float 型</item>
+    ///         <item>用途：　図形描画。 SkiaSharp のメソッドが float 型で受け付けるから</item>
     ///     </list>
     /// </summary>
-    internal class RectangleDouble
+    internal class RectangleFloat
     {
         // - 演算子のオーバーロード
 
@@ -25,7 +24,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(RectangleDouble c1, RectangleDouble c2)
+        public static bool operator ==(RectangleFloat c1, RectangleFloat c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -51,7 +50,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(RectangleDouble c1, RectangleDouble c2)
+        public static bool operator !=(RectangleFloat c1, RectangleFloat c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -73,7 +72,7 @@
             //if (!(obj is Rectangle))
 
             // 要素で比較する
-            RectangleDouble c = (RectangleDouble)obj;
+            RectangleFloat c = (RectangleFloat)obj;
             return Point == c.Point && Size == c.Size;
             //または、
             //return (this.Number.Equals(c.Number));
@@ -95,21 +94,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal static RectangleDouble Empty = new RectangleDouble(Models.PointDouble.Empty, Models.SizeDouble.Empty);
-        後:
-                internal static RectangleDouble Empty = new RectangleDouble(Models.PointDouble.Empty, SizeDouble.Empty);
-        */
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal static RectangleDouble Empty = new RectangleDouble(Models.PointDouble.Empty, Geometric.SizeDouble.Empty);
-        後:
-                internal static RectangleDouble Empty = new RectangleDouble(PointDouble.Empty, Geometric.SizeDouble.Empty);
-        */
-        internal static RectangleDouble Empty = new RectangleDouble(PointDouble.Empty, SizeDouble.Empty);
+        internal static RectangleFloat Empty = new RectangleFloat(PointFloat.Empty, SizeFloat.Empty);
         #endregion
 
         // - その他
@@ -120,21 +105,7 @@
         /// </summary>
         /// <param name="point">位置</param>
         /// <param name="size">大きさ</param>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal RectangleDouble(Models.PointDouble point, Models.SizeDouble size)
-        後:
-                internal RectangleDouble(Models.PointDouble point, SizeDouble size)
-        */
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal RectangleDouble(Models.PointDouble point, Geometric.SizeDouble size)
-        後:
-                internal RectangleDouble(PointDouble point, Geometric.SizeDouble size)
-        */
-        internal RectangleDouble(PointDouble point, SizeDouble size)
+        internal RectangleFloat(PointFloat point, SizeFloat size)
         {
             Point = point;
             Size = size;
@@ -147,28 +118,14 @@
         /// <summary>
         ///     位置
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal Models.PointDouble Point { get; private set; }
-        後:
-                internal PointDouble Point { get; private set; }
-        */
-        internal PointDouble Point { get; private set; }
+        internal PointFloat Point { get; private set; }
         #endregion
 
         #region プロパティ（大きさ）
         /// <summary>
         ///     大きさ
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal Models.SizeDouble Size { get; private set; }
-        後:
-                internal SizeDouble Size { get; private set; }
-        */
-        internal SizeDouble Size { get; private set; }
+        internal SizeFloat Size { get; private set; }
         #endregion
 
         // - インターナル・メソッド
@@ -181,10 +138,10 @@
         internal Rect AsGraphis()
         {
             return new Rect(
-                x: Point.X.AsDouble,
-                y: Point.Y.AsDouble,
-                width: Size.Width.AsDouble,
-                height: Size.Height.AsDouble);
+                x: Point.X.AsFloat,
+                y: Point.Y.AsFloat,
+                width: Size.Width.AsFloat,
+                height: Size.Height.AsFloat);
         }
         #endregion
 

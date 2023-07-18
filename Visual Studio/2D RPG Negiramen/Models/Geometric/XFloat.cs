@@ -1,13 +1,14 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
-    ///     😁 横幅
+    ///     😁 位置ｘ
     ///     
     ///     <list type="bullet">
-    ///         <item>double 型</item>
+    ///         <item>float 型</item>
+    ///         <item>用途：　図形描画。 SkiaSharp のメソッドが float 型で受け付けるから</item>
     ///     </list>
     /// </summary>
-    internal class WidthDouble
+    internal class XFloat
     {
         // - 演算子のオーバーロード
 
@@ -23,7 +24,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(WidthDouble c1, WidthDouble c2)
+        public static bool operator ==(XFloat c1, XFloat c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -49,14 +50,14 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(WidthDouble c1, WidthDouble c2)
+        public static bool operator !=(XFloat c1, XFloat c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
         }
 
         /// <summary>
-        /// 任意のオブジェクトと、自分自身が等価か？
+        ///     任意のオブジェクトと、自分自身が等価か？
         /// </summary>
         /// <param name="obj">任意のオブジェクト</param>
         /// <returns>そうだ</returns>
@@ -68,10 +69,10 @@
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Width))
+            //if (!(obj is X))
 
             // 要素で比較する
-            WidthDouble c = (WidthDouble)obj;
+            XFloat c = (XFloat)obj;
             return source == c.source;
             //または、
             //return (this.Number.Equals(c.Number));
@@ -103,7 +104,7 @@
                 return 1;
             if (GetType() != other.GetType())
                 throw new ArgumentException();
-            return source.CompareTo(((WidthDouble)other).source);
+            return source.CompareTo(((XFloat)other).source);
         }
 
         /// <summary>
@@ -113,7 +114,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(WidthDouble c1, WidthDouble c2)
+        public static bool operator <(XFloat c1, XFloat c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -131,7 +132,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(WidthDouble c1, WidthDouble c2)
+        public static bool operator >(XFloat c1, XFloat c2)
         {
             //逆にして"<"で比較
             return c2 < c1;
@@ -144,7 +145,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(WidthDouble c1, WidthDouble c2)
+        public static bool operator <=(XFloat c1, XFloat c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -162,11 +163,20 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(WidthDouble c1, WidthDouble c2)
+        public static bool operator >=(XFloat c1, XFloat c2)
         {
             //逆にして"<="で比較
             return c2 <= c1;
         }
+        #endregion
+
+        // - 静的プロパティー
+
+        #region プロパティ（ゼロ・オブジェクト）
+        /// <summary>
+        ///     ゼロ・オブジェクト
+        /// </summary>
+        internal static XFloat Empty = new XFloat(0);
         #endregion
 
         // - その他
@@ -176,28 +186,19 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal WidthDouble(double source)
+        internal XFloat(float source)
         {
             this.source = source;
         }
         #endregion
 
-        // - インターナル静的プロパティー
-
-        #region プロパティ（ゼロ・オブジェクト）
-        /// <summary>
-        /// ゼロ・オブジェクト
-        /// </summary>
-        internal static WidthDouble Empty = new WidthDouble(0);
-        #endregion
-
         // - インターナル・プロパティー
 
-        #region プロパティ（値。倍精度浮動小数点数形式）
+        #region プロパティ（値。浮動小数点数形式）
         /// <summary>
-        ///     値。倍精度浮動小数点数形式
+        ///     値。浮動小数点数形式
         /// </summary>
-        internal double AsDouble => source;
+        internal float AsFloat => source;
         #endregion
 
         // - プライベート・フィールド
@@ -206,7 +207,7 @@
         /// <summary>
         ///     値
         /// </summary>
-        double source;
+        float source;
         #endregion
     }
 }

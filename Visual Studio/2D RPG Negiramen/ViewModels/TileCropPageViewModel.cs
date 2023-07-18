@@ -553,7 +553,7 @@
                 if (this.sourceGridPhase.X.AsInt != value)
                 {
                     this.sourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.sourceGridPhase.Y);
-                    this.WorkingGridPhaseLeftAsDouble = this.ZoomAsDouble * this.sourceGridPhase.X.AsInt;
+                    this.WorkingGridPhaseLeftAsFloat = (float)(this.ZoomAsDouble * this.sourceGridPhase.X.AsInt); // TODO float 型
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -562,7 +562,7 @@
                     OnPropertyChanged(nameof(SourceGridPhaseLeftAsInt));
                     OnPropertyChanged(nameof(SourceGridPhase));
 
-                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
                     OnPropertyChanged(nameof(WorkingGridPhase));
                 }
             }
@@ -579,7 +579,7 @@
                 if (this.sourceGridPhase.Y.AsInt != value)
                 {
                     this.sourceGridPhase = new Models.Geometric.PointInt(this.sourceGridPhase.X, new Models.Geometric.YInt(value));
-                    this.WorkingGridPhaseTopAsDouble = this.ZoomAsDouble * this.sourceGridPhase.Y.AsInt;
+                    this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsDouble * this.sourceGridPhase.Y.AsInt);
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -588,7 +588,7 @@
                     OnPropertyChanged(nameof(SourceGridPhaseTopAsInt));
                     OnPropertyChanged(nameof(SourceGridPhase));
 
-                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
                     OnPropertyChanged(nameof(WorkingGridPhase));
                 }
             }
@@ -597,15 +597,15 @@
         /// <summary>
         ///     グリッド位相の左上表示位置。ズーム後
         /// </summary>
-        public Models.Geometric.PointDouble WorkingGridPhase
+        public Models.Geometric.PointFloat WorkingGridPhase
         {
             get => this.workingGridPhase;
             set
             {
                 if (this.workingGridPhase != value)
                 {
-                    this.WorkingGridPhaseLeftAsDouble = value.X.AsDouble;
-                    this.WorkingGridPhaseTopAsDouble = value.Y.AsDouble;
+                    this.WorkingGridPhaseLeftAsFloat = value.X.AsFloat;
+                    this.WorkingGridPhaseTopAsFloat = value.Y.AsFloat;
                 }
             }
         }
@@ -613,18 +613,18 @@
         /// <summary>
         ///     グリッド位相の左上表示位置ｘ。ズーム後（読取専用）
         /// </summary>
-        public double WorkingGridPhaseLeftAsDouble
+        public float WorkingGridPhaseLeftAsFloat
         {
-            get => this.workingGridPhase.X.AsDouble;
+            get => this.workingGridPhase.X.AsFloat;
             set
             {
-                if (this.workingGridPhase.X.AsDouble != value)
+                if (this.workingGridPhase.X.AsFloat != value)
                 {
-                    this.workingGridPhase = new Models.Geometric.PointDouble(
-                        x: new Models.Geometric.XDouble(value),
+                    this.workingGridPhase = new Models.Geometric.PointFloat(
+                        x: new Models.Geometric.XFloat(value),
                         y: this.workingGridPhase.Y);
 
-                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
                     OnPropertyChanged(nameof(WorkingGridPhase));
                 }
             }
@@ -633,18 +633,18 @@
         /// <summary>
         ///     グリッド位相の左上表示位置ｙ。ズーム後（読取専用）
         /// </summary>
-        public double WorkingGridPhaseTopAsDouble
+        public float WorkingGridPhaseTopAsFloat
         {
-            get => this.workingGridPhase.Y.AsDouble;
+            get => this.workingGridPhase.Y.AsFloat;
             set
             {
-                if (this.workingGridPhase.Y.AsDouble != value)
+                if (this.workingGridPhase.Y.AsFloat != value)
                 {
-                    this.workingGridPhase = new Models.Geometric.PointDouble(
+                    this.workingGridPhase = new Models.Geometric.PointFloat(
                         x: this.workingGridPhase.X,
-                        y: new Models.Geometric.YDouble(value));
+                        y: new Models.Geometric.YFloat(value));
 
-                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
                     OnPropertyChanged(nameof(WorkingGridPhase));
                 }
             }
@@ -681,7 +681,7 @@
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
                     this.sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridTileSize.Height);
-                    this.WorkingGridTileWidthAsDouble = (double)(this.ZoomAsDouble * this.sourceGridTileSize.Width.AsInt);
+                    this.WorkingGridTileWidthAsFloat = (float)(this.ZoomAsDouble * this.sourceGridTileSize.Width.AsInt); // TODO float 型
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasWidthAsInt = this.sourceGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
@@ -694,7 +694,7 @@
                     OnPropertyChanged(nameof(SourceGridTileWidthAsInt));
                     OnPropertyChanged(nameof(SourceGridTileSize));
 
-                    OnPropertyChanged(nameof(WorkingGridTileWidthAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
                     OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
@@ -725,7 +725,7 @@
                     OnPropertyChanged(nameof(SourceGridTileHeightAsInt));
                     OnPropertyChanged(nameof(SourceGridTileSize));
 
-                    OnPropertyChanged(nameof(WorkingGridTileHeightAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
                     OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
@@ -734,15 +734,15 @@
         /// <summary>
         ///     グリッド・タイルのサイズ。ズーム後（読取専用）
         /// </summary>
-        public Models.Geometric.SizeDouble WorkingGridTileSize
+        public Models.Geometric.SizeFloat WorkingGridTileSize
         {
             get => this.workingGridTileSize;
             set
             {
                 if (this.workingGridTileSize != value)
                 {
-                    this.WorkingGridTileWidthAsDouble = value.Width.AsDouble;
-                    this.WorkingGridTileHeightAsDouble = value.Height.AsDouble;
+                    this.WorkingGridTileWidthAsFloat = value.Width.AsFloat;
+                    this.WorkingGridTileHeightAsFloat = value.Height.AsFloat;
                 }
             }
         }
@@ -750,18 +750,18 @@
         /// <summary>
         ///     グリッド・タイルの横幅。ズーム後（読取専用）
         /// </summary>
-        public double WorkingGridTileWidthAsDouble
+        public float WorkingGridTileWidthAsFloat
         {
-            get => this.workingGridTileSize.Width.AsDouble;
+            get => this.workingGridTileSize.Width.AsFloat;
             set
             {
-                if (this.workingGridTileSize.Width.AsDouble != value)
+                if (this.workingGridTileSize.Width.AsFloat != value)
                 {
-                    this.workingGridTileSize = new Models.Geometric.SizeDouble(
-                        width: new Models.Geometric.WidthDouble(value),
+                    this.workingGridTileSize = new Models.Geometric.SizeFloat(
+                        width: new Models.Geometric.WidthFloat(value),
                         height: this.WorkingGridTileSize.Height);
 
-                    OnPropertyChanged(nameof(WorkingGridTileWidthAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
                     OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
@@ -770,18 +770,18 @@
         /// <summary>
         ///     グリッド・タイルの縦幅。ズーム後（読取専用）
         /// </summary>
-        public double WorkingGridTileHeightAsDouble
+        public float WorkingGridTileHeightAsFloat
         {
-            get => this.workingGridTileSize.Height.AsDouble;
+            get => this.workingGridTileSize.Height.AsFloat;
             set
             {
-                if (this.workingGridTileSize.Height.AsDouble != value)
+                if (this.workingGridTileSize.Height.AsFloat != value)
                 {
-                    this.workingGridTileSize = new Models.Geometric.SizeDouble(
+                    this.workingGridTileSize = new Models.Geometric.SizeFloat(
                         width: this.WorkingGridTileSize.Width,
-                        height: new Models.Geometric.HeightDouble(value));
+                        height: new Models.Geometric.HeightFloat(value));
 
-                    OnPropertyChanged(nameof(WorkingGridTileHeightAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
                     OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
@@ -931,12 +931,12 @@
                         this.RemakeGridCanvasImage();
 
                         OnPropertyChanged(nameof(ZoomAsDouble));
-                        OnPropertyChanged(nameof(WorkingGridPhaseLeftAsDouble));
-                        OnPropertyChanged(nameof(WorkingGridPhaseTopAsDouble));
+                        OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
+                        OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhase));
 
-                        OnPropertyChanged(nameof(WorkingGridTileWidthAsDouble));
-                        OnPropertyChanged(nameof(WorkingGridTileHeightAsDouble));
+                        OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
+                        OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
                         OnPropertyChanged(nameof(WorkingGridTileSize));
                     }
                 }
@@ -1826,12 +1826,12 @@
         /// <summary>
         ///     グリッド位相の左上表示位置。ズーム後
         /// </summary>
-        Models.Geometric.PointDouble workingGridPhase = Models.Geometric.PointDouble.Empty;
+        Models.Geometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Empty;
 
         /// <summary>
         ///     グリッド・タイルのサイズ。ズーム後
         /// </summary>
-        Models.Geometric.SizeDouble workingGridTileSize = new Models.Geometric.SizeDouble(new Models.Geometric.WidthDouble(32), new Models.Geometric.HeightDouble(32));
+        Models.Geometric.SizeFloat workingGridTileSize = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32), new Models.Geometric.HeightFloat(32));
         #endregion
 
         #region フィールド（選択タイル　関連）
