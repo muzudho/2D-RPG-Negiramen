@@ -197,13 +197,6 @@
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
         ///     </list>
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.Zoom Zoom
-後:
-        public Zoom Zoom
-*/
         public Models.Geometric.Zoom Zoom
         {
             get => this.zoom;
@@ -674,7 +667,9 @@
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
                     this.sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridTileSize.Height);
-                    this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridTileSize.Width.AsInt;
+
+                    // 作業グリッド・タイル横幅の再計算
+                    RefreshWorkingGridTileWidth();
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasWidthAsInt = this.sourceGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
@@ -686,9 +681,6 @@
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridTileWidthAsInt));
                     OnPropertyChanged(nameof(SourceGridTileSize));
-
-                    OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
         }
@@ -707,6 +699,9 @@
                 {
                     this.sourceGridTileSize = new Models.Geometric.SizeInt(this.sourceGridTileSize.Width, new Models.Geometric.HeightInt(value));
 
+                    // 作業グリッド・タイル横幅の再計算
+                    RefreshWorkingGridTileHeight();
+
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasHeightAsInt = this.sourceGridTileSize.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
@@ -717,9 +712,6 @@
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridTileHeightAsInt));
                     OnPropertyChanged(nameof(SourceGridTileSize));
-
-                    OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
         }
@@ -919,6 +911,12 @@
 
                         // 作業画像を再作成
                         this.RemakeWorkingImage();
+
+                        // 作業グリッド・タイル横幅の再計算
+                        RefreshWorkingGridTileWidth();
+
+                        // 作業グリッド・タイル縦幅の再計算
+                        RefreshWorkingGridTileHeight();
 
                         // グリッド・キャンバス画像の再作成
                         this.RemakeGridCanvasImage();
@@ -1951,6 +1949,28 @@
 
             OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
             OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
+        }
+
+        /// <summary>
+        ///     作業グリッド・タイル横幅の再計算
+        /// </summary>
+        void RefreshWorkingGridTileWidth()
+        {
+            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridTileSize.Width.AsInt;
+
+            OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
+            OnPropertyChanged(nameof(WorkingGridTileSize));
+        }
+
+        /// <summary>
+        ///     作業グリッド・タイル縦幅の再計算
+        /// </summary>
+        void RefreshWorkingGridTileHeight()
+        {
+            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.sourceGridTileSize.Height.AsInt;
+
+            OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
+            OnPropertyChanged(nameof(WorkingGridTileSize));
         }
     }
 }

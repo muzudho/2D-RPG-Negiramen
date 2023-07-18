@@ -145,24 +145,20 @@
             Models.ThicknessOfLine lineThickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = lineThickness.AsInt;
 
-            // キャンバス・サイズ
-            var canvasWidth = this.GridCanvasImageSize.Width.AsInt;
-            var canvasHeight = this.GridCanvasImageSize.Height.AsInt;
-
             //
             // 縦線を引いていこう
             // ==================
             //
             {
                 float y1 = halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
-                float y2 = canvasHeight + halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
+                float y2 = this.GridCanvasImageSize.Height.AsInt + halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
 
-                int prevX;
-                int x = 0;
-                for (var i = 0; x < canvasWidth + halfThicknessOfLineAsInt; i++)
+                float prevX;
+                float x = 0;
+                for (var i = 0; x < this.GridCanvasImageSize.Width.AsInt + halfThicknessOfLineAsInt; i++)
                 {
                     prevX = x;
-                    x = (int)(i * this.GridTileSize.Width.AsFloat + this.GridPhase.X.AsFloat + halfThicknessOfLineAsInt);
+                    x = i * this.GridTileSize.Width.AsFloat + this.GridPhase.X.AsFloat + halfThicknessOfLineAsInt;
 
                     if (x <= prevX)
                     {
@@ -185,14 +181,14 @@
                 //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
                 //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
                 //              右辺の線の手前まで線を引くようにする
-                float x2 = canvasWidth - halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
+                float x2 = this.GridCanvasImageSize.Width.AsInt - halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
 
-                int prevY;
-                int y = 0;
-                for (var i = 0; y < canvasHeight + halfThicknessOfLineAsInt; i++)
+                float prevY;
+                float y = 0;
+                for (var i = 0; y < this.GridCanvasImageSize.Height.AsInt + halfThicknessOfLineAsInt; i++)
                 {
                     prevY = y;
-                    y = (int)(i * this.GridTileSize.Height.AsFloat + this.GridPhase.Y.AsFloat + halfThicknessOfLineAsInt);
+                    y = i * this.GridTileSize.Height.AsFloat + this.GridPhase.Y.AsFloat + halfThicknessOfLineAsInt;
 
                     if (y <= prevY)
                     {
