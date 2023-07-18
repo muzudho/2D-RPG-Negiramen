@@ -97,4 +97,44 @@
 「　👆　数字を　ちょこちょこ変更できる入力欄に　すぐ反応するように　ズーム機能を実装するの　大変だな。  
 要らん処理しないようにすることが」  
 
+# 📅 （2023-07-18 tue） 健康診断のため休み
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　寝不足で　電車移動と　炎天下の徒歩で　きつい」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　せっかくの年休なのに　お父んが　ヘロヘロだ。  
+寝てるぐらいなら　風呂掃除でもしてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ユニットバスの床だけ　洗い流した。  
+全部きっちりやろうとすると　つらいので　これで終わり」  
+
+## グリッドの画像サイズ
+
+![202307__maui__18-1404--Grid.png](https://crieit.now.sh/upload_images/87e0efed897c66ca6ef088c39bfec3a464b61da98f6d5.png)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　グリッドがなんか切れてない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　グリッドも画像だからな。ズームをしたときに  
+グリッドの画像サイズも変えてないので　切れてるんだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　分かってるんだったら　直せだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画面上に　グリッドの画像サイズを出そうかな。わたしがデバッグするために」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　グリッドは　なんかトリック・コード書いていて　やりづらいな……」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　トリック無しで　グリッドを再描画できないの？  
+`Invalidate()` メソッドとか使えば　再描画できないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　なんらかのプロパティが変わってないと　再描画しないようだぜ」  
+
 ＜書きかけ＞

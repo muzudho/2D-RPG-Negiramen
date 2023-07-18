@@ -1579,28 +1579,7 @@
 
         // - プライベート・フィールド
 
-        #region フィールド（元画像サイズ）
-        /// <summary>
-        ///     元画像サイズ
-        /// </summary>
-        Models.Size tilesetSourceImageSize = Models.Size.Empty;
-        #endregion
-
-        #region フィールド（作業画像サイズ）
-        /// <summary>
-        ///     作業画像サイズ
-        /// </summary>
-        Models.Size workingImageSize = Models.Size.Empty;
-        #endregion
-
-        #region フィールド（内部的グリッド画像サイズ）
-        /// <summary>
-        ///     内部的グリッド画像サイズ
-        /// </summary>
-        Models.Size _gridCanvasSize = Models.Size.Empty;
-        #endregion
-
-        #region フィールド（タイルセット設定関連）
+        #region フィールド（タイルセット設定　関連）
         /// <summary>
         ///     タイルセット設定のCSVファイル
         /// </summary>
@@ -1612,43 +1591,47 @@
         Models.FileEntries.TilesetSettings _tilesetSettings = new Models.FileEntries.TilesetSettings();
         #endregion
 
-        #region フィールド（タイルセット画像ファイルへのパス）
+        #region フィールド（タイルセット元画像　関連）
         /// <summary>
-        ///     タイルセット画像ファイルへのパス
+        ///     タイルセット元画像ファイルへのパス
         /// </summary>
         Models.FileEntries.Locations.TilesetImageFile tilesetImageFile = Models.FileEntries.Locations.TilesetImageFile.Empty;
+
+        /// <summary>
+        ///     タイルセット元画像サイズ
+        /// </summary>
+        Models.Size tilesetSourceImageSize = Models.Size.Empty;
         #endregion
 
-        #region フィールド（タイル・カーソルの位置（マージンとして））
+        #region フィールド（タイルセット作業画像　関連）
         /// <summary>
-        ///     タイル・カーソルの位置（マージンとして）
+        ///     タイルセット作業画像サイズ
+        /// </summary>
+        Models.Size workingImageSize = Models.Size.Empty;
+        #endregion
+
+        #region フィールド（グリッド　関連）
+        /// <summary>
+        ///     グリッド画像サイズ
+        /// </summary>
+        Models.Size _gridCanvasSize = Models.Size.Empty;
+        #endregion
+
+        #region フィールド（選択タイル　関連）
+        /// <summary>
+        ///     選択タイルカーソルの位置（マージンとして）
         /// </summary>
         Thickness _tileCursorPointAsMargin = Thickness.Zero;
-        #endregion
 
-        #region フィールド（タイル・カーソルのキャンバス・サイズ）
         /// <summary>
         ///     <pre>
-        ///         タイル・カーソルのキャンバス・サイズ
+        ///         選択タイルカーソルのキャンバス・サイズ
         ///     
         ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
         ///     </pre>
         /// </summary>
         Models.Size _tileCursorCanvasSize = Models.Size.Empty;
-        #endregion
 
-        #region フィールド（タイルの最大サイズ）
-        /// <summary>
-        ///     <pre>
-        ///         タイルの最大サイズ
-        ///     
-        ///         設定ファイルから与えられる
-        ///     </pre>
-        /// </summary>
-        Models.Size _tileMaxSize = Models.Size.Empty;
-        #endregion
-
-        #region フィールド（選択タイル）
         /// <summary>
         ///     選択タイル
         ///     
