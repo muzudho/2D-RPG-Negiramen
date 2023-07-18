@@ -115,6 +115,46 @@ public interface ITileCropPageViewModel
     ///     矩形カーソル。ズーム済みの縦幅。線の太さを含む
     /// </summary>
     public float WorkingCroppedCursorCanvasHeightAsFloat { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの位置ｘ
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>表示用テキスト</item>
+    ///     </list>
+    /// </summary>
+    string WorkingCroppedCursorLeftAsPresentableText { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの位置ｙ
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>表示用テキスト</item>
+    ///     </list>
+    /// </summary>
+    string WorkingCroppedCursorTopAsPresentableText { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの横幅
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>表示用テキスト</item>
+    ///     </list>
+    /// </summary>
+    string WorkingCroppedCursorWidthAsPresentableText { get; }
+
+    /// <summary>
+    ///     矩形カーソル。ズーム済みの縦幅
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>表示用テキスト</item>
+    ///     </list>
+    /// </summary>
+    string WorkingCroppedCursorHeightAsPresentableText { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）

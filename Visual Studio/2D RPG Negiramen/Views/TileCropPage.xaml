@@ -495,28 +495,28 @@
             <Label Grid.Row="3" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorLeftAsFloat}"
+                   Text="{Binding WorkingCroppedCursorLeftAsPresentableText}"
                    FontSize="24"/>
 
             <!-- ズーム済み：　切抜きカーソル。位置Ｙ -->
             <Label Grid.Row="3" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorTopAsFloat}"
+                   Text="{Binding WorkingCroppedCursorTopAsPresentableText}"
                    FontSize="24"/>
 
             <!-- ズーム済み：　切抜きカーソル。横幅 -->
             <Label Grid.Row="3" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorWidthAsFloat}"
+                   Text="{Binding WorkingCroppedCursorWidthAsPresentableText}"
                    FontSize="24"/>
 
             <!-- ズーム済み：　切抜きカーソル。縦幅 -->
             <Label Grid.Row="3" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorHeightAsFloat}"
+                   Text="{Binding WorkingCroppedCursorHeightAsPresentableText}"
                    FontSize="24"/>
 
             <!--    ◆５段目 読み仮名部

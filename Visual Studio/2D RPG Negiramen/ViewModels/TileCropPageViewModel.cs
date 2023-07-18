@@ -1382,6 +1382,8 @@
                     OnPropertyChanged(nameof(WorkingCroppedCursorLeftAsFloat));
                     OnPropertyChanged(nameof(WorkingCroppedCursorPoint));
                     OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
+
+                    OnPropertyChanged(nameof(WorkingCroppedCursorLeftAsPresentableText));
                 }
             }
         }
@@ -1407,6 +1409,8 @@
                     OnPropertyChanged(nameof(WorkingCroppedCursorTopAsFloat));
                     OnPropertyChanged(nameof(WorkingCroppedCursorPoint));
                     OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
+
+                    OnPropertyChanged(nameof(WorkingCroppedCursorTopAsPresentableText));
                 }
             }
         }
@@ -1456,6 +1460,7 @@
                     OnPropertyChanged(nameof(WorkingCroppedCursorSize));
 
                     OnPropertyChanged(nameof(WorkingCroppedCursorCanvasWidthAsFloat));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorWidthAsPresentableText));
                 }
             }
         }
@@ -1485,6 +1490,7 @@
                     OnPropertyChanged(nameof(WorkingCroppedCursorSize));
 
                     OnPropertyChanged(nameof(WorkingCroppedCursorCanvasHeightAsFloat));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorHeightAsPresentableText));
                 }
             }
         }
@@ -1514,6 +1520,47 @@
         {
             get => this.workingCroppedCursorSize.Height.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
         }
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの位置ｘ
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///         <item>表示用テキスト</item>
+        ///         <item>📖 [Microsoft　＞　Standard numeric format strings](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings?redirectedfrom=MSDN)  </item>
+        ///     </list>
+        /// </summary>
+        public string WorkingCroppedCursorLeftAsPresentableText => this.workingCroppedCursorPoint.X.AsFloat.ToString("F1");
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの位置ｙ
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///         <item>表示用テキスト</item>
+        ///     </list>
+        /// </summary>
+        public string WorkingCroppedCursorTopAsPresentableText => this.workingCroppedCursorPoint.Y.AsFloat.ToString("F1");
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの横幅
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///         <item>表示用テキスト</item>
+        ///     </list>
+        /// </summary>
+        public string WorkingCroppedCursorWidthAsPresentableText => this.workingCroppedCursorSize.Width.AsFloat.ToString("F1");
+
+        /// <summary>
+        ///     矩形カーソル。ズーム済みの縦幅
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///         <item>表示用テキスト</item>
+        ///     </list>
+        /// </summary>
+        public string WorkingCroppedCursorHeightAsPresentableText => this.workingCroppedCursorSize.Height.AsFloat.ToString("F1");
         #endregion
 
         #region プロパティ（登録タイル　関連）
