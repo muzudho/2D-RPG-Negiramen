@@ -267,14 +267,14 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingGridTileWidthAsInt}"/>
+                   Text="{Binding WorkingGridTileWidthAsDouble}"/>
 
             <!-- ズーム後：タイル縦幅 -->
             <Label Grid.Row="3" Grid.Column="8"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    FontSize="24"
-                   Text="{Binding WorkingGridTileHeightAsInt}"/>
+                   Text="{Binding WorkingGridTileHeightAsDouble}"/>
 
             <!-- ズーム -->
             <Entry Grid.Row="3" Grid.Column="10"

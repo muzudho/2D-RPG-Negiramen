@@ -127,27 +127,13 @@
             defaultValue: Geometric.PointInt.Empty);
         #endregion
 
-        #region 束縛可能プロパティ（グリッド・タイル・サイズ）
+        #region 束縛可能プロパティ（グリッド・タイル　関連）
         /// <summary>
         ///     グリッド・タイル・サイズ
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.SizeInt GridTileSize
-後:
-        public SizeInt GridTileSize
-*/
-        public Geometric.SizeInt GridTileSize
+        public Geometric.SizeDouble GridTileSize
         {
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            get => (Models.SizeInt)GetValue(GridTileSizeProperty);
-後:
-            get => (SizeInt)GetValue(GridTileSizeProperty);
-*/
-            get => (Geometric.SizeInt)GetValue(GridTileSizeProperty);
+            get => (Geometric.SizeDouble)GetValue(GridTileSizeProperty);
             set => SetValue(GridTileSizeProperty, value);
         }
 
@@ -158,25 +144,11 @@
             // プロパティ名
             propertyName: nameof(GridTileSize),
             // 返却型
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            returnType: typeof(Models.SizeInt),
-後:
-            returnType: typeof(SizeInt),
-*/
-            returnType: typeof(Geometric.SizeInt),
+            returnType: typeof(Geometric.SizeDouble),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            defaultValue: Models.SizeInt.Empty);
-後:
-            defaultValue: SizeInt.Empty);
-*/
-            defaultValue: Geometric.SizeInt.Empty);
+            defaultValue: Geometric.SizeDouble.Empty);
         #endregion
 
         // - パブリック・メソッド
@@ -205,16 +177,6 @@
             int gridPhaseLeftAsInt = this.GridPhase.X.AsInt;
             int gridPhaseTopAsInt = this.GridPhase.Y.AsInt;
 
-            // グリッド・タイル・サイズ
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            Models.SizeInt gridTileSize = this.GridTileSize;
-後:
-            SizeInt gridTileSize = this.GridTileSize;
-*/
-            Geometric.SizeInt gridTileSize = this.GridTileSize;
-
             // キャンバス・サイズ
             var canvasWidth = this.GridCanvasImageSize.Width.AsInt;
             var canvasHeight = this.GridCanvasImageSize.Height.AsInt;
@@ -232,7 +194,7 @@
                 for (var i = 0; x < canvasWidth + halfThicknessOfLineAsInt; i++)
                 {
                     prevX = x;
-                    x = i * gridTileSize.Width.AsInt + gridPhaseLeftAsInt + halfThicknessOfLineAsInt;
+                    x = (int)(i * this.GridTileSize.Width.AsDouble + gridPhaseLeftAsInt + halfThicknessOfLineAsInt);
 
                     if (x <= prevX)
                     {
@@ -262,7 +224,7 @@
                 for (var i = 0; y < canvasHeight + halfThicknessOfLineAsInt; i++)
                 {
                     prevY = y;
-                    y = i * gridTileSize.Height.AsInt + gridPhaseTopAsInt + halfThicknessOfLineAsInt;
+                    y = (int)(i * this.GridTileSize.Height.AsDouble + gridPhaseTopAsInt + halfThicknessOfLineAsInt);
 
                     if (y <= prevY)
                     {

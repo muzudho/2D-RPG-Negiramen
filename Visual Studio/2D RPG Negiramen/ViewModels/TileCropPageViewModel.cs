@@ -524,25 +524,11 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド位相の左上表示位置）
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        Models.PointInt sourceGridPhase = Models.PointInt.Empty;
-後:
-        PointInt sourceGridPhase = PointInt.Empty;
-*/
         Models.Geometric.PointInt sourceGridPhase = Models.Geometric.PointInt.Empty;
 
         /// <summary>
         ///     グリッド位相の左上表示位置。元画像ベース
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.PointInt SourceGridPhase
-後:
-        public PointInt SourceGridPhase
-*/
         public Models.Geometric.PointInt SourceGridPhase
         {
             get => this.sourceGridPhase;
@@ -640,26 +626,10 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（グリッド・タイルのサイズ関連）
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        Models.SizeInt sourceGridTileSize = new Models.SizeInt(new Models.WidthInt(32), new Models.HeightInt(32));
-後:
-        SizeInt sourceGridTileSize = new Models.SizeInt(new Models.WidthInt(32), new Models.HeightInt(32));
-*/
-        Models.Geometric.SizeInt sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
-
+        #region 変更通知プロパティ（グリッド・タイルのサイズ　関連）
         /// <summary>
         ///     グリッド・タイルのサイズ。元画像ベース
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.SizeInt SourceGridTileSize
-後:
-        public SizeInt SourceGridTileSize
-*/
         public Models.Geometric.SizeInt SourceGridTileSize
         {
             get => this.sourceGridTileSize;
@@ -686,6 +656,7 @@
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
                     this.sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridTileSize.Height);
+                    this.WorkingGridTileWidthAsDouble = (double)(this.ZoomAsDouble * this.sourceGridTileSize.Width.AsInt);
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasWidthAsInt = this.sourceGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
@@ -698,7 +669,7 @@
                     OnPropertyChanged(nameof(SourceGridTileWidthAsInt));
                     OnPropertyChanged(nameof(SourceGridTileSize));
 
-                    OnPropertyChanged(nameof(WorkingGridTileWidthAsInt));
+                    OnPropertyChanged(nameof(WorkingGridTileWidthAsDouble));
                     OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
@@ -729,7 +700,7 @@
                     OnPropertyChanged(nameof(SourceGridTileHeightAsInt));
                     OnPropertyChanged(nameof(SourceGridTileSize));
 
-                    OnPropertyChanged(nameof(WorkingGridTileHeightAsInt));
+                    OnPropertyChanged(nameof(WorkingGridTileHeightAsDouble));
                     OnPropertyChanged(nameof(WorkingGridTileSize));
                 }
             }
@@ -738,34 +709,57 @@
         /// <summary>
         ///     グリッド・タイルのサイズ。ズーム後（読取専用）
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.SizeInt WorkingGridTileSize
-後:
-        public SizeInt WorkingGridTileSize
-*/
-        public Models.Geometric.SizeInt WorkingGridTileSize
+        public Models.Geometric.SizeDouble WorkingGridTileSize
         {
-            get => new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt(this.WorkingGridTileWidthAsInt),
-                height: new Models.Geometric.HeightInt(this.WorkingGridTileHeightAsInt));
+            get => this.workingGridTileSize;
+            set
+            {
+                if (this.workingGridTileSize != value)
+                {
+                    this.WorkingGridTileWidthAsDouble = value.Width.AsDouble;
+                    this.WorkingGridTileHeightAsDouble = value.Height.AsDouble;
+                }
+            }
         }
 
         /// <summary>
         ///     グリッド・タイルの横幅。ズーム後（読取専用）
         /// </summary>
-        public int WorkingGridTileWidthAsInt
+        public double WorkingGridTileWidthAsDouble
         {
-            get => (int)(this.sourceGridTileSize.Width.AsInt * this.ZoomAsDouble);
+            get => this.workingGridTileSize.Width.AsDouble;
+            set
+            {
+                if (this.workingGridTileSize.Width.AsDouble != value)
+                {
+                    this.workingGridTileSize = new Models.Geometric.SizeDouble(
+                        width: new Models.Geometric.WidthDouble(value),
+                        height: this.WorkingGridTileSize.Height);
+
+                    OnPropertyChanged(nameof(WorkingGridTileWidthAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridTileSize));
+                }
+            }
         }
 
         /// <summary>
         ///     グリッド・タイルの縦幅。ズーム後（読取専用）
         /// </summary>
-        public int WorkingGridTileHeightAsInt
+        public double WorkingGridTileHeightAsDouble
         {
-            get => (int)(this.sourceGridTileSize.Height.AsInt * this.ZoomAsDouble);
+            get => this.workingGridTileSize.Height.AsDouble;
+            set
+            {
+                if (this.workingGridTileSize.Height.AsDouble != value)
+                {
+                    this.workingGridTileSize = new Models.Geometric.SizeDouble(
+                        width: this.WorkingGridTileSize.Width,
+                        height: new Models.Geometric.HeightDouble(value));
+
+                    OnPropertyChanged(nameof(WorkingGridTileHeightAsDouble));
+                    OnPropertyChanged(nameof(WorkingGridTileSize));
+                }
+            }
         }
 
         /// <summary>
@@ -916,8 +910,8 @@
                         OnPropertyChanged(nameof(WorkingGridPhaseTopAsInt));
                         OnPropertyChanged(nameof(WorkingGridPhase));
 
-                        OnPropertyChanged(nameof(WorkingGridTileWidthAsInt));
-                        OnPropertyChanged(nameof(WorkingGridTileHeightAsInt));
+                        OnPropertyChanged(nameof(WorkingGridTileWidthAsDouble));
+                        OnPropertyChanged(nameof(WorkingGridTileHeightAsDouble));
                         OnPropertyChanged(nameof(WorkingGridTileSize));
                     }
                 }
@@ -1797,14 +1791,17 @@
         /// <summary>
         ///     グリッド・キャンバス画像サイズ
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        Models.SizeInt gridCanvasImageSize = Models.SizeInt.Empty;
-後:
-        SizeInt gridCanvasImageSize = SizeInt.Empty;
-*/
         Models.Geometric.SizeInt gridCanvasImageSize = Models.Geometric.SizeInt.Empty;
+
+        /// <summary>
+        ///     グリッド・タイルのサイズ。元画像ベース
+        /// </summary>
+        Models.Geometric.SizeInt sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
+
+        /// <summary>
+        ///     グリッド・タイルのサイズ。ズーム後（読取専用）
+        /// </summary>
+        Models.Geometric.SizeDouble workingGridTileSize = new Models.Geometric.SizeDouble(new Models.Geometric.WidthDouble(32), new Models.Geometric.HeightDouble(32));
         #endregion
 
         #region フィールド（選択タイル　関連）

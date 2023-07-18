@@ -9,106 +9,63 @@ using SkiaSharp;
 /// </summary>
 public interface ITileCropPageViewModel
 {
-    #region プロパティ（タイルセット設定）
+    #region プロパティ（タイルセット設定　関連）
     /// <summary>
     ///     タイルセット設定
     /// </summary>
     TilesetSettings TilesetSettings { get; }
     #endregion
 
-    #region プロパティ（タイルセットの元画像。ビットマップ形式）
+    #region プロパティ（タイルセット元画像　関連）
     /// <summary>
     ///     タイルセットの元画像。ビットマップ形式
     /// </summary>
     SKBitmap TilesetSourceBitmap { get; }
     #endregion
 
-    #region プロパティ（タイルセットの作業画像。ビットマップ形式）
+    #region プロパティ（タイルセット作業画像　関連）
     /// <summary>
     ///     タイルセットの作業画像。ビットマップ形式
     /// </summary>
     SKBitmap TilesetWorkingBitmap { get; }
     #endregion
 
-    #region プロパティ（グリッドの線の太さの半分）
+    #region プロパティ（グリッド　関連）
     /// <summary>
     ///     グリッドの線の太さの半分
     /// </summary>
     int HalfThicknessOfGridLineAsInt { get; }
-    #endregion
 
-    #region プロパティ（グリッド位相の左上表示位置）
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    Models.PointInt SourceGridPhase { get; }
-後:
-    PointInt SourceGridPhase { get; }
-*/
     Models.Geometric.PointInt SourceGridPhase { get; }
 
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    Models.PointInt WorkingGridPhase { get; }
-後:
-    PointInt WorkingGridPhase { get; }
-*/
     Models.Geometric.PointInt WorkingGridPhase { get; }
-    #endregion
 
-    #region プロパティ（グリッド・タイルのサイズ）
     /// <summary>
-    ///     グリッド・タイルのサイズ
+    ///     グリッド・タイルのサイズ。元画像ベース
     /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    Models.SizeInt SourceGridTileSize { get; }
-後:
-    SizeInt SourceGridTileSize { get; }
-*/
     Models.Geometric.SizeInt SourceGridTileSize { get; }
-    #endregion
 
-    #region プロパティ（グリッド・タイルのサイズ）
     /// <summary>
-    ///     グリッド・タイルのサイズ
+    ///     グリッド・タイルのサイズ。ズーム後
     /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    Models.SizeInt WorkingGridTileSize { get; }
-後:
-    SizeInt WorkingGridTileSize { get; }
-*/
-    Models.Geometric.SizeInt WorkingGridTileSize { get; }
+    Models.Geometric.SizeDouble WorkingGridTileSize { get; }
     #endregion
 
-    #region プロパティ（タイル・カーソルの線の半分の太さ）
+    #region プロパティ（選択タイル　関連）
     /// <summary>
     ///     タイル・カーソルの線の半分の太さ
     /// </summary>
     ThicknessOfLine HalfThicknessOfTileCursorLine { get; }
-    #endregion
 
-    #region プロパティ（選択タイルのサイズ）
     /// <summary>
     ///     選択タイルのサイズ
     /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    Models.SizeInt SelectedTileSize { get; }
-後:
-    SizeInt SelectedTileSize { get; }
-*/
     Models.Geometric.SizeInt SelectedTileSize { get; }
     #endregion
 
