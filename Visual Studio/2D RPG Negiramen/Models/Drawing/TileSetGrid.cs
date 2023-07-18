@@ -14,9 +14,23 @@
         /// <summary>
         ///     グリッド・キャンバス画像のサイズ
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.SizeInt GridCanvasImageSize
+後:
+        public SizeInt GridCanvasImageSize
+*/
+        public Geometric.SizeInt GridCanvasImageSize
         {
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             get => (Models.SizeInt)GetValue(GridCanvasImageSizeProperty);
+後:
+            get => (SizeInt)GetValue(GridCanvasImageSizeProperty);
+*/
+            get => (Geometric.SizeInt)GetValue(GridCanvasImageSizeProperty);
             set => SetValue(GridCanvasImageSizeProperty, value);
         }
 
@@ -27,7 +41,14 @@
             // プロパティ名
             propertyName: nameof(GridCanvasImageSize),
             // 返却型
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             returnType: typeof(Models.SizeInt),
+後:
+            returnType: typeof(SizeInt),
+*/
+            returnType: typeof(Geometric.SizeInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid));
         #endregion
@@ -58,9 +79,23 @@
         /// <summary>
         ///     グリッド位相の左上表示位置
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.PointInt GridPhase
+後:
+        public PointInt GridPhase
+*/
+        public Geometric.PointInt GridPhase
         {
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             get => (Models.PointInt)GetValue(GridPhaseProperty);
+後:
+            get => (PointInt)GetValue(GridPhaseProperty);
+*/
+            get => (Geometric.PointInt)GetValue(GridPhaseProperty);
             set => SetValue(GridPhaseProperty, value);
         }
 
@@ -71,20 +106,48 @@
             // プロパティ名
             propertyName: nameof(GridPhase),
             // 返却型
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             returnType: typeof(Models.PointInt),
+後:
+            returnType: typeof(PointInt),
+*/
+            returnType: typeof(Geometric.PointInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             defaultValue: Models.PointInt.Empty);
+後:
+            defaultValue: PointInt.Empty);
+*/
+            defaultValue: Geometric.PointInt.Empty);
         #endregion
 
         #region 束縛可能プロパティ（グリッド・タイル・サイズ）
         /// <summary>
         ///     グリッド・タイル・サイズ
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.SizeInt GridTileSize
+後:
+        public SizeInt GridTileSize
+*/
+        public Geometric.SizeInt GridTileSize
         {
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             get => (Models.SizeInt)GetValue(GridTileSizeProperty);
+後:
+            get => (SizeInt)GetValue(GridTileSizeProperty);
+*/
+            get => (Geometric.SizeInt)GetValue(GridTileSizeProperty);
             set => SetValue(GridTileSizeProperty, value);
         }
 
@@ -95,11 +158,25 @@
             // プロパティ名
             propertyName: nameof(GridTileSize),
             // 返却型
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             returnType: typeof(Models.SizeInt),
+後:
+            returnType: typeof(SizeInt),
+*/
+            returnType: typeof(Geometric.SizeInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             defaultValue: Models.SizeInt.Empty);
+後:
+            defaultValue: SizeInt.Empty);
+*/
+            defaultValue: Geometric.SizeInt.Empty);
         #endregion
 
         // - パブリック・メソッド
@@ -129,7 +206,14 @@
             int gridPhaseTopAsInt = this.GridPhase.Y.AsInt;
 
             // グリッド・タイル・サイズ
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             Models.SizeInt gridTileSize = this.GridTileSize;
+後:
+            SizeInt gridTileSize = this.GridTileSize;
+*/
+            Geometric.SizeInt gridTileSize = this.GridTileSize;
 
             // キャンバス・サイズ
             var canvasWidth = this.GridCanvasImageSize.Width.AsInt;

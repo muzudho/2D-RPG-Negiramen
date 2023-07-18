@@ -31,7 +31,14 @@
         /// </summary>
         public TileRecord()
             : this(Models.TileId.Empty,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                    Models.RectangleInt.Empty,
+後:
+                   RectangleInt.Empty,
+*/
+                   Geometric.RectangleInt.Empty,
                    Models.Comment.Empty,
                    Models.LogicalDelete.False)
         {
@@ -45,7 +52,14 @@
         /// <param name="rectangle">レクタングル</param>
         internal TileRecord(
             Models.TileId id,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             Models.RectangleInt rectangle,
+後:
+            RectangleInt rectangle,
+*/
+            Geometric.RectangleInt rectangle,
             Models.Comment comment,
             Models.LogicalDelete logicalDelete)
         {
@@ -73,7 +87,14 @@
         /// <summary>
         ///     矩形
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         internal Models.RectangleInt Rectangle { get; }
+後:
+        internal RectangleInt Rectangle { get; }
+*/
+        internal Geometric.RectangleInt Rectangle { get; }
         #endregion
 
         #region プロパティ（コメント）

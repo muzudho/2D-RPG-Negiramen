@@ -8,6 +8,7 @@ using TheGraphics = Microsoft.Maui.Graphics;
 
 #if IOS || ANDROID || MACCATALYST
 using Microsoft.Maui.Graphics.Platform;
+using _2D_RPG_Negiramen.Models.Geometric;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
 using System.Diagnostics;
@@ -15,6 +16,7 @@ using _2D_RPG_Negiramen.Models;
 using System.Net;
 using SkiaSharp;
 using _2D_RPG_Negiramen.FeatSkia;
+using _2D_RPG_Negiramen.Models.Geometric;
 #endif
 
 /// <summary>
@@ -49,14 +51,28 @@ public partial class TileCropPage : ContentPage
     /// <summary>
     ///     ポインティング・デバイス押下開始位置
     /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
     Models.PointInt PointingDeviceStartPoint { get; set; }
+後:
+    PointInt PointingDeviceStartPoint { get; set; }
+*/
+    Models.Geometric.PointInt PointingDeviceStartPoint { get; set; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス現在位置）
     /// <summary>
     ///     ポインティング・デバイス現在位置
     /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
     Models.PointInt PointingDeviceCurrentPoint { get; set; }
+後:
+    PointInt PointingDeviceCurrentPoint { get; set; }
+*/
+    Models.Geometric.PointInt PointingDeviceCurrentPoint { get; set; }
     #endregion
 
     // - プライベート・メソッド
@@ -304,9 +320,9 @@ public partial class TileCropPage : ContentPage
             Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
 
             // ポイントしている位置
-            PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.PointInt(
-                new Models.XInt((int)e.GetPosition((Element)sender).Value.X),
-                new Models.YInt((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.Geometric.PointInt(
+                new Models.Geometric.XInt((int)e.GetPosition((Element)sender).Value.X),
+                new Models.Geometric.YInt((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TileCropPage TapGestureRecognizer_Tapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
@@ -322,9 +338,9 @@ public partial class TileCropPage : ContentPage
             Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
 
             // ポイントしている位置
-            PointingDeviceCurrentPoint = new Models.PointInt(
-                new Models.XInt((int)e.GetPosition((Element)sender).Value.X),
-                new Models.YInt((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = new Models.Geometric.PointInt(
+                new Models.Geometric.XInt((int)e.GetPosition((Element)sender).Value.X),
+                new Models.Geometric.YInt((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
@@ -351,9 +367,9 @@ public partial class TileCropPage : ContentPage
             //
 
             // ポイントしている位置
-            PointingDeviceCurrentPoint = new Models.PointInt(
-                new Models.XInt((int)e.GetPosition((Element)sender).Value.X),
-                new Models.YInt((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = new Models.Geometric.PointInt(
+                new Models.Geometric.XInt((int)e.GetPosition((Element)sender).Value.X),
+                new Models.Geometric.YInt((int)e.GetPosition((Element)sender).Value.Y));
             // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
@@ -414,13 +430,13 @@ public partial class TileCropPage : ContentPage
         context.TilesetSettings.Add(
             // 新しいＩｄを追加
             id: context.TilesetSettings.UsableId,
-            rect: new Models.RectangleInt(
-                point: new Models.PointInt(
-                    x: new Models.XInt(context.SelectedTileLeftAsInt),
-                    y: new Models.YInt(context.SelectedTileTopAsInt)),
-                size: new Models.SizeInt(
-                    width: new Models.WidthInt(context.SelectedTileWidthAsInt),
-                    height: new Models.HeightInt(context.SelectedTileHeightAsInt))),
+            rect: new Models.Geometric.RectangleInt(
+                point: new Models.Geometric.PointInt(
+                    x: new Models.Geometric.XInt(context.SelectedTileLeftAsInt),
+                    y: new Models.Geometric.YInt(context.SelectedTileTopAsInt)),
+                size: new Models.Geometric.SizeInt(
+                    width: new Models.Geometric.WidthInt(context.SelectedTileWidthAsInt),
+                    height: new Models.Geometric.HeightInt(context.SelectedTileHeightAsInt))),
             comment: new Models.Comment(context.SelectedTileCommentAsStr),
             logicalDelete: logicalDelete,
             onTileIdUpdated: () =>

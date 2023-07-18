@@ -41,26 +41,54 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
     Models.PointInt SourceGridPhase { get; }
+後:
+    PointInt SourceGridPhase { get; }
+*/
+    Models.Geometric.PointInt SourceGridPhase { get; }
 
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
     Models.PointInt WorkingGridPhase { get; }
+後:
+    PointInt WorkingGridPhase { get; }
+*/
+    Models.Geometric.PointInt WorkingGridPhase { get; }
     #endregion
 
     #region プロパティ（グリッド・タイルのサイズ）
     /// <summary>
     ///     グリッド・タイルのサイズ
     /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
     Models.SizeInt SourceGridTileSize { get; }
+後:
+    SizeInt SourceGridTileSize { get; }
+*/
+    Models.Geometric.SizeInt SourceGridTileSize { get; }
     #endregion
 
     #region プロパティ（グリッド・タイルのサイズ）
     /// <summary>
     ///     グリッド・タイルのサイズ
     /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
     Models.SizeInt WorkingGridTileSize { get; }
+後:
+    SizeInt WorkingGridTileSize { get; }
+*/
+    Models.Geometric.SizeInt WorkingGridTileSize { get; }
     #endregion
 
     #region プロパティ（タイル・カーソルの線の半分の太さ）
@@ -74,7 +102,14 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     選択タイルのサイズ
     /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
     Models.SizeInt SelectedTileSize { get; }
+後:
+    SizeInt SelectedTileSize { get; }
+*/
+    Models.Geometric.SizeInt SelectedTileSize { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）

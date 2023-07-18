@@ -1,13 +1,13 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
-    ///     😁 大きさ
+    ///     😁 位置
     ///     
     ///     <list type="bullet">
     ///         <item>int 型</item>
     ///     </list>
     /// </summary>
-    public class SizeInt
+    public class PointInt
     {
         // - 演算子のオーバーロード
 
@@ -23,24 +23,24 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(SizeInt c1, SizeInt c2)
+        public static bool operator ==(PointInt c1, PointInt c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
             // (c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             // どちらかがnullか
             // (c1 == null)とすると、無限ループ
-            if (((object)c1 == null) || ((object)c2 == null))
+            if ((object)c1 == null || (object)c2 == null)
             {
                 return false;
             }
 
-            return (c1.Width == c2.Width) && (c1.Height == c2.Height);
+            return c1.X == c2.X && c1.Y == c2.Y;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(SizeInt c1, SizeInt c2)
+        public static bool operator !=(PointInt c1, PointInt c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -62,17 +62,17 @@
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            // objがnullか、型が違うときは、等価でない
-            if (obj == null || this.GetType() != obj.GetType())
+            //objがnullか、型が違うときは、等価でない
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Size))
+            //if (!(obj is Point))
 
             // 要素で比較する
-            SizeInt c = (SizeInt)obj;
-            return (this.Width == c.Width) && (this.Height == c.Height);
+            PointInt c = (PointInt)obj;
+            return X == c.X && Y == c.Y;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -83,17 +83,17 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (this.Width, this.Height).GetHashCode();
+            return (X, Y).GetHashCode();
         }
         #endregion
 
-        // - インターナル静的プロパティー
+        // - 静的プロパティー
 
         #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static SizeInt Empty = new SizeInt(Models.WidthInt.Empty, Models.HeightInt.Empty);
+        internal static PointInt Empty = new PointInt(XInt.Empty, YInt.Empty);
         #endregion
 
         // - その他
@@ -102,29 +102,29 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="width">横幅</param>
-        /// <param name="height">縦幅</param>
-        internal SizeInt(Models.WidthInt width, Models.HeightInt height)
+        /// <param name="x">位置ｘ</param>
+        /// <param name="y">位置ｙ</param>
+        internal PointInt(XInt x, YInt y)
         {
-            this.Width = width;
-            this.Height = height;
+            X = x;
+            Y = y;
         }
         #endregion
 
         // - インターナル・プロパティー
 
-        #region プロパティ（横幅）
+        #region プロパティ（位置ｘ）
         /// <summary>
-        ///     横幅
+        ///     位置ｘ
         /// </summary>
-        internal Models.WidthInt Width { get; private set; }
+        internal XInt X { get; private set; }
         #endregion
 
-        #region プロパティ（縦幅）
+        #region プロパティ（位置ｙ）
         /// <summary>
-        ///     縦幅
+        ///     位置ｙ
         /// </summary>
-        internal Models.HeightInt Height { get; private set; }
+        internal YInt Y { get; private set; }
         #endregion
 
         // - インターナル・メソッド
@@ -136,7 +136,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Width:{this.Width.AsInt}, Height:{this.Height.AsInt}";
+            return $"X:{X.AsInt}, Y:{Y.AsInt}";
         }
         #endregion
     }

@@ -10,11 +10,36 @@
         /// <summary>
         ///     ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         internal static Models.RectangleInt GetCursorRectangle(
+後:
+        internal static RectangleInt GetCursorRectangle(
+*/
+        internal static Geometric.RectangleInt GetCursorRectangle(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             Models.PointInt startPoint,
             Models.PointInt endPoint,
             Models.PointInt gridLeftTop,
+後:
+            PointInt startPoint,
+            PointInt endPoint,
+            PointInt gridLeftTop,
+*/
+            Geometric.PointInt startPoint,
+            Geometric.PointInt endPoint,
+            Geometric.PointInt gridLeftTop,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             Models.SizeInt gridTile)
+後:
+            SizeInt gridTile)
+*/
+            Geometric.SizeInt gridTile)
         {
             // タイル・カーソルの始点Ｂ位置
             var begin = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
@@ -28,7 +53,14 @@
                 gridLeftTop: gridLeftTop,
                 gridTile: gridTile);
 
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             Models.RectangleInt rect;
+後:
+            RectangleInt rect;
+*/
+            Geometric.RectangleInt rect;
 
             // 始点Ｓと終点Ｅの位置関係
             if (end.X < begin.X && end.Y < begin.Y)
@@ -40,11 +72,11 @@
                 //  │　│Ｂ│
                 //  └─┴─┘
                 //
-                rect = new Models.RectangleInt(
+                rect = new Models.Geometric.RectangleInt(
                     end,
-                    new Models.SizeInt(
-                        new Models.WidthInt(begin.X.AsInt - end.X.AsInt + gridTile.Width.AsInt),
-                        new Models.HeightInt(begin.Y.AsInt - end.Y.AsInt + gridTile.Height.AsInt)));
+                    new Models.Geometric.SizeInt(
+                        new Models.Geometric.WidthInt(begin.X.AsInt - end.X.AsInt + gridTile.Width.AsInt),
+                        new Models.Geometric.HeightInt(begin.Y.AsInt - end.Y.AsInt + gridTile.Height.AsInt)));
             }
             else if (begin.X <= end.X && end.Y < begin.Y)
             {
@@ -55,11 +87,11 @@
                 //  │Ｂ│　│
                 //  └─┴─┘
                 //
-                rect = new Models.RectangleInt(
-                    new Models.PointInt(begin.X,end.Y),
-                    new Models.SizeInt(
-                        new Models.WidthInt(end.X.AsInt - begin.X.AsInt + gridTile.Width.AsInt),
-                        new Models.HeightInt(begin.Y.AsInt - end.Y.AsInt + gridTile.Height.AsInt)));
+                rect = new Models.Geometric.RectangleInt(
+                    new Models.Geometric.PointInt(begin.X,end.Y),
+                    new Models.Geometric.SizeInt(
+                        new Models.Geometric.WidthInt(end.X.AsInt - begin.X.AsInt + gridTile.Width.AsInt),
+                        new Models.Geometric.HeightInt(begin.Y.AsInt - end.Y.AsInt + gridTile.Height.AsInt)));
             }
             else if (end.X <= begin.X && begin.Y <= end.Y)
             {
@@ -70,20 +102,20 @@
                 //  │Ｅ│　│
                 //  └─┴─┘
                 //
-                rect = new Models.RectangleInt(
-                    new Models.PointInt(end.X, begin.Y),
-                    new Models.SizeInt(
-                        new Models.WidthInt(begin.X.AsInt - end.X.AsInt + gridTile.Width.AsInt),
-                        new Models.HeightInt(end.Y.AsInt - begin.Y.AsInt + gridTile.Height.AsInt)));
+                rect = new Models.Geometric.RectangleInt(
+                    new Models.Geometric.PointInt(end.X, begin.Y),
+                    new Models.Geometric.SizeInt(
+                        new Models.Geometric.WidthInt(begin.X.AsInt - end.X.AsInt + gridTile.Width.AsInt),
+                        new Models.Geometric.HeightInt(end.Y.AsInt - begin.Y.AsInt + gridTile.Height.AsInt)));
             }
             else
             {
                 // その他
-                rect = new Models.RectangleInt(
+                rect = new Models.Geometric.RectangleInt(
                     begin,
-                    new Models.SizeInt(
-                        new Models.WidthInt(end.X.AsInt - begin.X.AsInt + gridTile.Width.AsInt),
-                        new Models.HeightInt(end.Y.AsInt - begin.Y.AsInt + gridTile.Height.AsInt)));
+                    new Models.Geometric.SizeInt(
+                        new Models.Geometric.WidthInt(end.X.AsInt - begin.X.AsInt + gridTile.Width.AsInt),
+                        new Models.Geometric.HeightInt(end.Y.AsInt - begin.Y.AsInt + gridTile.Height.AsInt)));
             }
 
 
@@ -99,10 +131,28 @@
         /// </summary>
         /// <param name="tapped">タップした位置</param>
         /// <param name="gridTile">グリッド・タイルのサイズ</param>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         internal static Models.PointInt TranslateTappedPointToTileCursorPoint(
             Models.PointInt tapped,
             Models.PointInt gridLeftTop,
+後:
+        internal static PointInt TranslateTappedPointToTileCursorPoint(
+            PointInt tapped,
+            PointInt gridLeftTop,
+*/
+        internal static Geometric.PointInt TranslateTappedPointToTileCursorPoint(
+            Geometric.PointInt tapped,
+            Geometric.PointInt gridLeftTop,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             Models.SizeInt gridTile)
+後:
+            SizeInt gridTile)
+*/
+            Geometric.SizeInt gridTile)
         {
             // 下図の 0 が原点、 1 がグリッドの左上位置とする
             //
@@ -118,9 +168,9 @@
             //         + ---- + ---- +
             //
             // ここで、 1 が無い状態にする
-            tapped = new Models.PointInt(
-                new Models.XInt(tapped.X.AsInt - gridLeftTop.X.AsInt),
-                new Models.YInt(tapped.Y.AsInt - gridLeftTop.Y.AsInt));
+            tapped = new Models.Geometric.PointInt(
+                new Models.Geometric.XInt(tapped.X.AsInt - gridLeftTop.X.AsInt),
+                new Models.Geometric.YInt(tapped.Y.AsInt - gridLeftTop.Y.AsInt));
 
             // 下図の 0 が原点、 1 が任意の点、 2 が任意の点が含まれるタイルの左上隅だとする
             //
@@ -133,9 +183,9 @@
             //  + ---- + ---- +
             //
             // ここで、 1 を、 2 へ丸める
-            tapped = new Models.PointInt(
-                new Models.XInt(tapped.X.AsInt / gridTile.Width.AsInt * gridTile.Width.AsInt),
-                new Models.YInt(tapped.Y.AsInt / gridTile.Height.AsInt * gridTile.Height.AsInt));
+            tapped = new Models.Geometric.PointInt(
+                new Models.Geometric.XInt(tapped.X.AsInt / gridTile.Width.AsInt * gridTile.Width.AsInt),
+                new Models.Geometric.YInt(tapped.Y.AsInt / gridTile.Height.AsInt * gridTile.Height.AsInt));
 
             // 下図の 0 が原点、 1 がグリッドの左上位置とする
             //
@@ -151,9 +201,9 @@
             //         + ---- + ---- +
             //
             // ここで、 1 が有る状態にする
-            tapped = new Models.PointInt(
-                new Models.XInt(tapped.X.AsInt + gridLeftTop.X.AsInt),
-                new Models.YInt(tapped.Y.AsInt + gridLeftTop.Y.AsInt));
+            tapped = new Models.Geometric.PointInt(
+                new Models.Geometric.XInt(tapped.X.AsInt + gridLeftTop.X.AsInt),
+                new Models.Geometric.YInt(tapped.Y.AsInt + gridLeftTop.Y.AsInt));
 
             // タイル・カーソルの位置を返却
             return tapped;

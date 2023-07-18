@@ -1,13 +1,13 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
     ///     😁 位置ｘ
     ///     
     ///     <list type="bullet">
-    ///         <item>int 型</item>
+    ///         <item>double 型</item>
     ///     </list>
     /// </summary>
-    internal class XInt
+    internal class XDouble
     {
         // - 演算子のオーバーロード
 
@@ -23,19 +23,19 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(XInt c1, XInt c2)
+        public static bool operator ==(XDouble c1, XDouble c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
             // (c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             // どちらかがnullか
             // (c1 == null)とすると、無限ループ
-            if (((object)c1 == null) || ((object)c2 == null))
+            if ((object)c1 == null || (object)c2 == null)
             {
                 return false;
             }
@@ -49,7 +49,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(XInt c1, XInt c2)
+        public static bool operator !=(XDouble c1, XDouble c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -63,7 +63,7 @@
         public override bool Equals(object obj)
         {
             // objがnullか、型が違うときは、等価でない
-            if (obj == null || this.GetType() != obj.GetType())
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
@@ -71,8 +71,8 @@
             //if (!(obj is X))
 
             // 要素で比較する
-            XInt c = (XInt)obj;
-            return (this.source == c.source);
+            XDouble c = (XDouble)obj;
+            return source == c.source;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -83,7 +83,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return this.source;
+            return source.GetHashCode();
         }
         #endregion
 
@@ -99,11 +99,11 @@
         /// <exception cref="ArgumentException">自分自身と、別のオブジェクトが別の型だった</exception>
         public int CompareTo(object other)
         {
-            if ((object)other == null)
+            if (other == null)
                 return 1;
-            if (this.GetType() != other.GetType())
+            if (GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((XInt)other).source);
+            return source.CompareTo(((XDouble)other).source);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(XInt c1, XInt c2)
+        public static bool operator <(XDouble c1, XDouble c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -121,7 +121,7 @@
                 throw new ArgumentNullException();
             }
             //CompareToメソッドを呼び出す
-            return (c1.CompareTo(c2) < 0);
+            return c1.CompareTo(c2) < 0;
         }
 
         /// <summary>
@@ -131,10 +131,10 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(XInt c1, XInt c2)
+        public static bool operator >(XDouble c1, XDouble c2)
         {
             //逆にして"<"で比較
-            return (c2 < c1);
+            return c2 < c1;
         }
 
         /// <summary>
@@ -144,7 +144,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(XInt c1, XInt c2)
+        public static bool operator <=(XDouble c1, XDouble c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -152,7 +152,7 @@
                 throw new ArgumentNullException();
             }
             //CompareToメソッドを呼び出す
-            return (c1.CompareTo(c2) <= 0);
+            return c1.CompareTo(c2) <= 0;
         }
 
         /// <summary>
@@ -162,10 +162,10 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(XInt c1, XInt c2)
+        public static bool operator >=(XDouble c1, XDouble c2)
         {
             //逆にして"<="で比較
-            return (c2 <= c1);
+            return c2 <= c1;
         }
         #endregion
 
@@ -175,7 +175,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static XInt Empty = new XInt(0);
+        internal static XDouble Empty = new XDouble(0);
         #endregion
 
         // - その他
@@ -185,7 +185,7 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal XInt(int source)
+        internal XDouble(double source)
         {
             this.source = source;
         }
@@ -193,11 +193,11 @@
 
         // - インターナル・プロパティー
 
-        #region プロパティ（値。整数型形式）
+        #region プロパティ（値。倍精度浮動小数点数形式）
         /// <summary>
-        ///     値。整数型形式
+        ///     値。倍精度浮動小数点数形式
         /// </summary>
-        internal int AsInt => source;
+        internal double AsDouble => source;
         #endregion
 
         // - プライベート・フィールド
@@ -206,7 +206,7 @@
         /// <summary>
         ///     値
         /// </summary>
-        int source;
+        double source;
         #endregion
     }
 }

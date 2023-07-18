@@ -1,13 +1,13 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
-    ///     😁 大きさ
+    ///     😁 位置
     ///     
     ///     <list type="bullet">
     ///         <item>double 型</item>
     ///     </list>
     /// </summary>
-    public class SizeDouble
+    public class PointDouble
     {
         // - 演算子のオーバーロード
 
@@ -23,24 +23,24 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(SizeDouble c1, SizeDouble c2)
+        public static bool operator ==(PointDouble c1, PointDouble c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
             // (c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             // どちらかがnullか
             // (c1 == null)とすると、無限ループ
-            if (((object)c1 == null) || ((object)c2 == null))
+            if ((object)c1 == null || (object)c2 == null)
             {
                 return false;
             }
 
-            return (c1.Width == c2.Width) && (c1.Height == c2.Height);
+            return c1.X == c2.X && c1.Y == c2.Y;
         }
 
         /// <summary>
@@ -49,7 +49,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(SizeDouble c1, SizeDouble c2)
+        public static bool operator !=(PointDouble c1, PointDouble c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -62,17 +62,17 @@
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            // objがnullか、型が違うときは、等価でない
-            if (obj == null || this.GetType() != obj.GetType())
+            //objがnullか、型が違うときは、等価でない
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Size))
+            //if (!(obj is Point))
 
             // 要素で比較する
-            SizeDouble c = (SizeDouble)obj;
-            return (this.Width == c.Width) && (this.Height == c.Height);
+            PointDouble c = (PointDouble)obj;
+            return X == c.X && Y == c.Y;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -83,17 +83,31 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (this.Width, this.Height).GetHashCode();
+            return (X, Y).GetHashCode();
         }
         #endregion
 
-        // - インターナル静的プロパティー
+        // - 静的プロパティー
 
         #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static SizeDouble Empty = new SizeDouble(Models.WidthDouble.Empty, Models.HeightDouble.Empty);
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal static PointDouble Empty = new PointDouble(Models.XDouble.Empty, Models.YDouble.Empty);
+        後:
+                internal static PointDouble Empty = new PointDouble(XDouble.Empty, Models.YDouble.Empty);
+        */
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal static PointDouble Empty = new PointDouble(Geometric.XDouble.Empty, Models.YDouble.Empty);
+        後:
+                internal static PointDouble Empty = new PointDouble(Geometric.XDouble.Empty, YDouble.Empty);
+        */
+        internal static PointDouble Empty = new PointDouble(XDouble.Empty, YDouble.Empty);
         #endregion
 
         // - その他
@@ -102,29 +116,57 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="width">横幅</param>
-        /// <param name="height">縦幅</param>
-        internal SizeDouble(Models.WidthDouble width, Models.HeightDouble height)
+        /// <param name="x">位置ｘ</param>
+        /// <param name="y">位置ｙ</param>
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal PointDouble(Models.XDouble x, Models.YDouble y)
+        後:
+                internal PointDouble(XDouble x, Models.YDouble y)
+        */
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal PointDouble(Geometric.XDouble x, Models.YDouble y)
+        後:
+                internal PointDouble(Geometric.XDouble x, YDouble y)
+        */
+        internal PointDouble(XDouble x, YDouble y)
         {
-            this.Width = width;
-            this.Height = height;
+            X = x;
+            Y = y;
         }
         #endregion
 
         // - インターナル・プロパティー
 
-        #region プロパティ（横幅）
+        #region プロパティ（位置ｘ）
         /// <summary>
-        ///     横幅
+        ///     位置ｘ
         /// </summary>
-        internal Models.WidthDouble Width { get; private set; }
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal Models.XDouble X { get; private set; }
+        後:
+                internal XDouble X { get; private set; }
+        */
+        internal XDouble X { get; private set; }
         #endregion
 
-        #region プロパティ（縦幅）
+        #region プロパティ（位置ｙ）
         /// <summary>
-        ///     縦幅
+        ///     位置ｙ
         /// </summary>
-        internal Models.HeightDouble Height { get; private set; }
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal Models.YDouble Y { get; private set; }
+        後:
+                internal YDouble Y { get; private set; }
+        */
+        internal YDouble Y { get; private set; }
         #endregion
 
         // - インターナル・メソッド
@@ -136,7 +178,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Width:{this.Width.AsDouble}, Height:{this.Height.AsDouble}";
+            return $"X:{X.AsDouble}, Y:{Y.AsDouble}";
         }
         #endregion
     }

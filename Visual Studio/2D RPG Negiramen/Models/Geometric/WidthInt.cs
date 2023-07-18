@@ -1,13 +1,13 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
-    ///     😁 位置ｙ
+    ///     😁 横幅
     ///     
     ///     <list type="bullet">
     ///         <item>int 型</item>
     ///     </list>
     /// </summary>
-    internal class YInt
+    internal class WidthInt
     {
         // - 演算子のオーバーロード
 
@@ -23,19 +23,19 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(YInt c1, YInt c2)
+        public static bool operator ==(WidthInt c1, WidthInt c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
             // (c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             // どちらかがnullか
             // (c1 == null)とすると、無限ループ
-            if (((object)c1 == null) || ((object)c2 == null))
+            if ((object)c1 == null || (object)c2 == null)
             {
                 return false;
             }
@@ -49,30 +49,30 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(YInt c1, YInt c2)
+        public static bool operator !=(WidthInt c1, WidthInt c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
         }
 
         /// <summary>
-        ///     任意のオブジェクトと、自分自身が等価か？
+        /// 任意のオブジェクトと、自分自身が等価か？
         /// </summary>
         /// <param name="obj">任意のオブジェクト</param>
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
             // objがnullか、型が違うときは、等価でない
-            if (obj == null || this.GetType() != obj.GetType())
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Y))
+            //if (!(obj is Width))
 
             // 要素で比較する
-            YInt c = (YInt)obj;
-            return (this.source == c.source);
+            WidthInt c = (WidthInt)obj;
+            return source == c.source;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -83,7 +83,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return this.source;
+            return source;
         }
         #endregion
 
@@ -99,11 +99,11 @@
         /// <exception cref="ArgumentException">自分自身と、別のオブジェクトが別の型だった</exception>
         public int CompareTo(object other)
         {
-            if ((object)other == null)
+            if (other == null)
                 return 1;
-            if (this.GetType() != other.GetType())
+            if (GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((YInt)other).source);
+            return source.CompareTo(((WidthInt)other).source);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(YInt c1, YInt c2)
+        public static bool operator <(WidthInt c1, WidthInt c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -121,7 +121,7 @@
                 throw new ArgumentNullException();
             }
             //CompareToメソッドを呼び出す
-            return (c1.CompareTo(c2) < 0);
+            return c1.CompareTo(c2) < 0;
         }
 
         /// <summary>
@@ -131,10 +131,10 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(YInt c1, YInt c2)
+        public static bool operator >(WidthInt c1, WidthInt c2)
         {
             //逆にして"<"で比較
-            return (c2 < c1);
+            return c2 < c1;
         }
 
         /// <summary>
@@ -144,16 +144,15 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(YInt c1, YInt c2)
+        public static bool operator <=(WidthInt c1, WidthInt c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
             {
                 throw new ArgumentNullException();
             }
-
             //CompareToメソッドを呼び出す
-            return (c1.CompareTo(c2) <= 0);
+            return c1.CompareTo(c2) <= 0;
         }
 
         /// <summary>
@@ -163,20 +162,11 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(YInt c1, YInt c2)
+        public static bool operator >=(WidthInt c1, WidthInt c2)
         {
             //逆にして"<="で比較
-            return (c2 <= c1);
+            return c2 <= c1;
         }
-        #endregion
-
-        // - 静的プロパティー
-
-        #region プロパティ（ゼロ・オブジェクト）
-        /// <summary>
-        ///     ゼロ・オブジェクト
-        /// </summary>
-        internal static YInt Empty = new YInt(0);
         #endregion
 
         // - その他
@@ -186,13 +176,22 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal YInt(int source)
+        internal WidthInt(int source)
         {
             this.source = source;
         }
         #endregion
 
-        // - プロパティー
+        // - インターナル静的プロパティー
+
+        #region プロパティ（ゼロ・オブジェクト）
+        /// <summary>
+        /// ゼロ・オブジェクト
+        /// </summary>
+        internal static WidthInt Empty = new WidthInt(0);
+        #endregion
+
+        // - インターナル・プロパティー
 
         #region プロパティ（値。整数型形式）
         /// <summary>
@@ -201,7 +200,7 @@
         internal int AsInt => source;
         #endregion
 
-        // - フィールド
+        // - プライベート・フィールド
 
         #region フィールド（値）
         /// <summary>

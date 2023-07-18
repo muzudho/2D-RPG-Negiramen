@@ -89,13 +89,13 @@
                         // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
                         tilesetSettings.Add(
                             id: new Models.TileId(tileId),
-                            rect: new Models.RectangleInt(
-                                point: new Models.PointInt(
-                                    x: new Models.XInt(x),
-                                    y: new Models.YInt(y)),
-                                size: new Models.SizeInt(
-                                    width: new Models.WidthInt(width),
-                                    height: new Models.HeightInt(height))),
+                            rect: new Models.Geometric.RectangleInt(
+                                point: new Models.Geometric.PointInt(
+                                    x: new Models.Geometric.XInt(x),
+                                    y: new Models.Geometric.YInt(y)),
+                                size: new Models.Geometric.SizeInt(
+                                    width: new Models.Geometric.WidthInt(width),
+                                    height: new Models.Geometric.HeightInt(height))),
                             comment: new Models.Comment(comment),
                             logicalDelete: logicalDelete,
                             onTileIdUpdated: () =>
@@ -144,7 +144,14 @@
         /// <param name="onTileIdUpdated">タイルＩｄ更新時</param>
         internal void Add(
             Models.TileId id,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
             Models.RectangleInt rect,
+後:
+            RectangleInt rect,
+*/
+            Geometric.RectangleInt rect,
             Models.Comment comment,
             Models.LogicalDelete logicalDelete,
             Action onTileIdUpdated)
@@ -198,7 +205,14 @@
         /// <param name="rect">矩形</param>
         /// <param name="result">結果</param>
         /// <returns>有った</returns>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         internal bool TryGetByRectangle(Models.RectangleInt rect, out TileRecord result)
+後:
+        internal bool TryGetByRectangle(RectangleInt rect, out TileRecord result)
+*/
+        internal bool TryGetByRectangle(Geometric.RectangleInt rect, out TileRecord result)
         {
             foreach (var record in this.RecordList)
             {

@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     using TheGraphics = Microsoft.Maui.Graphics;
 
@@ -30,19 +30,19 @@
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
             // (c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             // どちらかがnullか
             // (c1 == null)とすると、無限ループ
-            if (((object)c1 == null) || ((object)c2 == null))
+            if ((object)c1 == null || (object)c2 == null)
             {
                 return false;
             }
 
-            return (c1.Point == c2.Point) && (c1.Size == c2.Size);
+            return c1.Point == c2.Point && c1.Size == c2.Size;
         }
 
         /// <summary>
@@ -65,7 +65,7 @@
         public override bool Equals(object obj)
         {
             // objがnullか、型が違うときは、等価でない
-            if (obj == null || this.GetType() != obj.GetType())
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
@@ -74,7 +74,7 @@
 
             // 要素で比較する
             RectangleInt c = (RectangleInt)obj;
-            return (this.Point == c.Point) && (this.Size == c.Size);
+            return Point == c.Point && Size == c.Size;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -85,7 +85,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (this.Point, this.Size).GetHashCode();
+            return (Point, Size).GetHashCode();
         }
         #endregion
 
@@ -95,7 +95,14 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static RectangleInt Empty = new RectangleInt(Models.PointInt.Empty, Models.SizeInt.Empty);
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal static RectangleInt Empty = new RectangleInt(Models.PointInt.Empty, Models.SizeInt.Empty);
+        後:
+                internal static RectangleInt Empty = new RectangleInt(PointInt.Empty, Models.SizeInt.Empty);
+        */
+        internal static RectangleInt Empty = new RectangleInt(PointInt.Empty, SizeInt.Empty);
         #endregion
 
         // - その他
@@ -106,10 +113,17 @@
         /// </summary>
         /// <param name="point">位置</param>
         /// <param name="size">大きさ</param>
-        internal RectangleInt(Models.PointInt point, Models.SizeInt size)
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal RectangleInt(Models.PointInt point, Models.SizeInt size)
+        後:
+                internal RectangleInt(PointInt point, Models.SizeInt size)
+        */
+        internal RectangleInt(PointInt point, SizeInt size)
         {
-            this.Point = point;
-            this.Size = size;
+            Point = point;
+            Size = size;
         }
         #endregion
 
@@ -119,14 +133,21 @@
         /// <summary>
         ///     位置
         /// </summary>
-        internal Models.PointInt Point { get; private set; }
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                internal Models.PointInt Point { get; private set; }
+        後:
+                internal PointInt Point { get; private set; }
+        */
+        internal PointInt Point { get; private set; }
         #endregion
 
         #region プロパティ（大きさ）
         /// <summary>
         ///     大きさ
         /// </summary>
-        internal Models.SizeInt Size { get; private set; }
+        internal SizeInt Size { get; private set; }
         #endregion
 
         // - インターナル・メソッド
@@ -136,13 +157,13 @@
         ///     描画で使う形式
         /// </summary>
         /// <returns></returns>
-        internal TheGraphics.Rect AsGraphis()
+        internal Rect AsGraphis()
         {
             return new Rect(
-                x: this.Point.X.AsInt,
-                y: this.Point.Y.AsInt,
-                width: this.Size.Width.AsInt,
-                height: this.Size.Height.AsInt);
+                x: Point.X.AsInt,
+                y: Point.Y.AsInt,
+                width: Size.Width.AsInt,
+                height: Size.Height.AsInt);
         }
         #endregion
 
@@ -153,7 +174,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Point:{this.Point.Dump()}, Size:{this.Size.Dump()}";
+            return $"Point:{Point.Dump()}, Size:{Size.Dump()}";
         }
         #endregion
     }

@@ -164,7 +164,14 @@
         /// <summary>
         ///     タイルセット元画像のサイズ
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
+後:
+        public SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
+*/
+        public Models.Geometric.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
         #endregion
 
         #region プロパティ（タイルセット作業画像関連）
@@ -313,7 +320,14 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                         rectangle: Models.RectangleInt.Empty,
+後:
+                        rectangle: RectangleInt.Empty,
+*/
+                        rectangle: Models.Geometric.RectangleInt.Empty,
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -419,7 +433,14 @@
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.SizeInt GridCanvasImageSize
+後:
+        public SizeInt GridCanvasImageSize
+*/
+        public Models.Geometric.SizeInt GridCanvasImageSize
         {
             get => this.gridCanvasImageSize;
             set
@@ -447,7 +468,7 @@
             {
                 if (this.gridCanvasImageSize.Width.AsInt != value)
                 {
-                    this.gridCanvasImageSize = new Models.SizeInt(new Models.WidthInt(value), this.gridCanvasImageSize.Height);
+                    this.gridCanvasImageSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.gridCanvasImageSize.Height);
                     OnPropertyChanged(nameof(GridCanvasImageWidthAsInt));
                     OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
@@ -468,7 +489,7 @@
             {
                 if (this.gridCanvasImageSize.Height.AsInt != value)
                 {
-                    this.gridCanvasImageSize = new Models.SizeInt(this.gridCanvasImageSize.Width, new Models.HeightInt(value));
+                    this.gridCanvasImageSize = new Models.Geometric.SizeInt(this.gridCanvasImageSize.Width, new Models.Geometric.HeightInt(value));
                     OnPropertyChanged(nameof(GridCanvasImageHeightAsInt));
                     OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
@@ -503,12 +524,26 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド位相の左上表示位置）
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         Models.PointInt sourceGridPhase = Models.PointInt.Empty;
+後:
+        PointInt sourceGridPhase = PointInt.Empty;
+*/
+        Models.Geometric.PointInt sourceGridPhase = Models.Geometric.PointInt.Empty;
 
         /// <summary>
         ///     グリッド位相の左上表示位置。元画像ベース
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.PointInt SourceGridPhase
+後:
+        public PointInt SourceGridPhase
+*/
+        public Models.Geometric.PointInt SourceGridPhase
         {
             get => this.sourceGridPhase;
             set
@@ -531,7 +566,7 @@
             {
                 if (this.sourceGridPhase.X.AsInt != value)
                 {
-                    this.sourceGridPhase = new Models.PointInt(new Models.XInt(value), this.sourceGridPhase.Y);
+                    this.sourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.sourceGridPhase.Y);
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -556,7 +591,7 @@
             {
                 if (this.sourceGridPhase.Y.AsInt != value)
                 {
-                    this.sourceGridPhase = new Models.PointInt(this.sourceGridPhase.X, new Models.YInt(value));
+                    this.sourceGridPhase = new Models.Geometric.PointInt(this.sourceGridPhase.X, new Models.Geometric.YInt(value));
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -574,11 +609,18 @@
         /// <summary>
         ///     グリッド位相の左上表示位置。ズーム後
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.PointInt WorkingGridPhase
+後:
+        public PointInt WorkingGridPhase
+*/
+        public Models.Geometric.PointInt WorkingGridPhase
         {
-            get => new Models.PointInt(
-                x: new Models.XInt(this.WorkingGridPhaseLeftAsInt),
-                y: new Models.YInt(this.WorkingGridPhaseTopAsInt));
+            get => new Models.Geometric.PointInt(
+                x: new Models.Geometric.XInt(this.WorkingGridPhaseLeftAsInt),
+                y: new Models.Geometric.YInt(this.WorkingGridPhaseTopAsInt));
         }
 
         /// <summary>
@@ -599,12 +641,26 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド・タイルのサイズ関連）
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         Models.SizeInt sourceGridTileSize = new Models.SizeInt(new Models.WidthInt(32), new Models.HeightInt(32));
+後:
+        SizeInt sourceGridTileSize = new Models.SizeInt(new Models.WidthInt(32), new Models.HeightInt(32));
+*/
+        Models.Geometric.SizeInt sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
         /// <summary>
         ///     グリッド・タイルのサイズ。元画像ベース
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.SizeInt SourceGridTileSize
+後:
+        public SizeInt SourceGridTileSize
+*/
+        public Models.Geometric.SizeInt SourceGridTileSize
         {
             get => this.sourceGridTileSize;
             set
@@ -629,7 +685,7 @@
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.sourceGridTileSize = new Models.SizeInt(new Models.WidthInt(value), this.sourceGridTileSize.Height);
+                    this.sourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridTileSize.Height);
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasWidthAsInt = this.sourceGridTileSize.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
@@ -660,7 +716,7 @@
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.sourceGridTileSize = new Models.SizeInt(this.sourceGridTileSize.Width, new Models.HeightInt(value));
+                    this.sourceGridTileSize = new Models.Geometric.SizeInt(this.sourceGridTileSize.Width, new Models.Geometric.HeightInt(value));
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
                     this.TileCursorCanvasHeightAsInt = this.sourceGridTileSize.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
@@ -682,11 +738,18 @@
         /// <summary>
         ///     グリッド・タイルのサイズ。ズーム後（読取専用）
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.SizeInt WorkingGridTileSize
+後:
+        public SizeInt WorkingGridTileSize
+*/
+        public Models.Geometric.SizeInt WorkingGridTileSize
         {
-            get => new Models.SizeInt(
-                width: new Models.WidthInt(this.WorkingGridTileWidthAsInt),
-                height: new Models.HeightInt(this.WorkingGridTileHeightAsInt));
+            get => new Models.Geometric.SizeInt(
+                width: new Models.Geometric.WidthInt(this.WorkingGridTileWidthAsInt),
+                height: new Models.Geometric.HeightInt(this.WorkingGridTileHeightAsInt));
         }
 
         /// <summary>
@@ -730,7 +793,14 @@
         ///         カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする
         ///     </pre>
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.SizeInt TileCursorCanvasSize
+後:
+        public SizeInt TileCursorCanvasSize
+*/
+        public Models.Geometric.SizeInt TileCursorCanvasSize
         {
             get => _tileCursorCanvasSize;
             set
@@ -759,7 +829,7 @@
             {
                 if (_tileCursorCanvasSize.Width.AsInt != value)
                 {
-                    _tileCursorCanvasSize = new Models.SizeInt(new Models.WidthInt(value), _tileCursorCanvasSize.Height);
+                    _tileCursorCanvasSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), _tileCursorCanvasSize.Height);
 
                     // キャンバスを再描画
                     RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel TileCursorCanvasWidthAsInt set]");
@@ -786,7 +856,7 @@
             {
                 if (_tileCursorCanvasSize.Height.AsInt != value)
                 {
-                    _tileCursorCanvasSize = new Models.SizeInt(_tileCursorCanvasSize.Width, new Models.HeightInt(value));
+                    _tileCursorCanvasSize = new Models.Geometric.SizeInt(_tileCursorCanvasSize.Width, new Models.Geometric.HeightInt(value));
 
                     // キャンバスを再描画
                     RefreshCanvasOfTileCursor("[TileCropPageViewModel TileCursorCanvasHeightAsInt set]");
@@ -1052,7 +1122,14 @@
         ///         選択タイルの矩形
         ///     </pre>
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.RectangleInt SelectedTileRectangle
+後:
+        public RectangleInt SelectedTileRectangle
+*/
+        public Models.Geometric.RectangleInt SelectedTileRectangle
         {
             get
             {
@@ -1063,7 +1140,14 @@
                 else
                 {
                     // タイル・カーソル無し時
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                     return Models.RectangleInt.Empty;
+後:
+                    return RectangleInt.Empty;
+*/
+                    return Models.Geometric.RectangleInt.Empty;
                 }
             }
             set
@@ -1131,8 +1215,8 @@
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
-                        rectangle: new Models.RectangleInt(
-                            point: new Models.PointInt(new Models.XInt(value), selectedTile.Rectangle.Point.Y),
+                        rectangle: new Models.Geometric.RectangleInt(
+                            point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTile.Rectangle.Point.Y),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
@@ -1142,9 +1226,23 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
-                        rectangle: new Models.RectangleInt(
+                        rectangle: new Models.Geometric.RectangleInt(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                             point: new Models.PointInt(new Models.XInt(value), Models.YInt.Empty),
+後:
+                            point: new Models.PointInt(new Models.XInt(value), YInt.Empty),
+*/
+                            point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                             size: Models.SizeInt.Empty),
+後:
+                            size: SizeInt.Empty),
+*/
+                            size: Models.Geometric.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1198,8 +1296,8 @@
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
-                        rectangle: new Models.RectangleInt(
-                            point: new Models.PointInt(selectedTile.Rectangle.Point.X, new Models.YInt(value)),
+                        rectangle: new Models.Geometric.RectangleInt(
+                            point: new Models.Geometric.PointInt(selectedTile.Rectangle.Point.X, new Models.Geometric.YInt(value)),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
@@ -1209,9 +1307,23 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
-                        rectangle: new Models.RectangleInt(
+                        rectangle: new Models.Geometric.RectangleInt(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                             point: new Models.PointInt(Models.XInt.Empty, new Models.YInt(value)),
+後:
+                            point: new Models.PointInt(XInt.Empty, new Models.YInt(value)),
+*/
+                            point: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                             size: Models.SizeInt.Empty),
+後:
+                            size: SizeInt.Empty),
+*/
+                            size: Models.Geometric.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1237,7 +1349,14 @@
         /// <summary>
         ///     選択タイルのサイズ
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         public Models.SizeInt SelectedTileSize
+後:
+        public SizeInt SelectedTileSize
+*/
+        public Models.Geometric.SizeInt SelectedTileSize
         {
             get
             {
@@ -1248,7 +1367,14 @@
                 else
                 {
                     // タイル・カーソル無し時
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                     return Models.SizeInt.Empty;
+後:
+                    return SizeInt.Empty;
+*/
+                    return Models.Geometric.SizeInt.Empty;
                 }
             }
             set
@@ -1329,7 +1455,7 @@
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
-                        rectangle: new Models.RectangleInt(selectedTile.Rectangle.Point, new Models.SizeInt(new Models.WidthInt(value), selectedTile.Rectangle.Size.Height)),
+                        rectangle: new Models.Geometric.RectangleInt(selectedTile.Rectangle.Point, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), selectedTile.Rectangle.Size.Height)),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
                 }
@@ -1338,7 +1464,21 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                         rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), Models.HeightInt.Empty)),
+後:
+                        rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), HeightInt.Empty)),
+*/
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
+                        rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), Models.Geometric.HeightInt.Empty)),
+後:
+                        rectangle: new Models.RectangleInt(PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), Models.Geometric.HeightInt.Empty)),
+*/
+                        rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1392,7 +1532,7 @@
 
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
-                        rectangle: new Models.RectangleInt(selectedTile.Rectangle.Point, new Models.SizeInt(selectedTile.Rectangle.Size.Width, new Models.HeightInt(value))),
+                        rectangle: new Models.Geometric.RectangleInt(selectedTile.Rectangle.Point, new Models.Geometric.SizeInt(selectedTile.Rectangle.Size.Width, new Models.Geometric.HeightInt(value))),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
                 }
@@ -1401,7 +1541,21 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                         rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(Models.WidthInt.Empty, new Models.HeightInt(value))),
+後:
+                        rectangle: new Models.RectangleInt(PointInt.Empty, new Models.SizeInt(Models.WidthInt.Empty, new Models.HeightInt(value))),
+*/
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
+                        rectangle: new Models.RectangleInt(Models.Geometric.PointInt.Empty, new Models.SizeInt(Models.WidthInt.Empty, new Models.HeightInt(value))),
+後:
+                        rectangle: new Models.RectangleInt(Models.Geometric.PointInt.Empty, new Models.SizeInt(WidthInt.Empty, new Models.HeightInt(value))),
+*/
+                        rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1463,7 +1617,14 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
                         rectangle: Models.RectangleInt.Empty,
+後:
+                        rectangle: RectangleInt.Empty,
+*/
+                        rectangle: Models.Geometric.RectangleInt.Empty,
                         comment: new Models.Comment(value),
                         logicalDelete: Models.LogicalDelete.False));
                 }
@@ -1487,10 +1648,10 @@
             // グリッド・キャンバス
             {
                 // グリッドの左上位置（初期値）
-                this.SourceGridPhase = new Models.PointInt(new Models.XInt(0), new Models.YInt(0));
+                this.SourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(0), new Models.Geometric.YInt(0));
 
                 // グリッドのタイルサイズ（初期値）
-                this.SourceGridTileSize = new Models.SizeInt(new Models.WidthInt(32), new Models.HeightInt(32));
+                this.SourceGridTileSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
                 this.RemakeGridCanvasImage();
@@ -1559,7 +1720,7 @@
             }
 
             // 循環参照を避けるために、直接フィールドを変更
-            this._tileCursorCanvasSize = new Models.SizeInt(new Models.WidthInt(this._tileCursorCanvasSize.Width.AsInt + offset), new Models.HeightInt(this._tileCursorCanvasSize.Height.AsInt));
+            this._tileCursorCanvasSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(this._tileCursorCanvasSize.Width.AsInt + offset), new Models.Geometric.HeightInt(this._tileCursorCanvasSize.Height.AsInt));
             OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
         }
         #endregion
@@ -1608,21 +1769,42 @@
         /// <summary>
         ///     タイルセット元画像サイズ
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         Models.SizeInt tilesetSourceImageSize = Models.SizeInt.Empty;
+後:
+        SizeInt tilesetSourceImageSize = SizeInt.Empty;
+*/
+        Models.Geometric.SizeInt tilesetSourceImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
         #region フィールド（タイルセット作業画像　関連）
         /// <summary>
         ///     タイルセット作業画像サイズ
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         Models.SizeInt workingImageSize = Models.SizeInt.Empty;
+後:
+        SizeInt workingImageSize = SizeInt.Empty;
+*/
+        Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
         #region フィールド（グリッド　関連）
         /// <summary>
         ///     グリッド・キャンバス画像サイズ
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         Models.SizeInt gridCanvasImageSize = Models.SizeInt.Empty;
+後:
+        SizeInt gridCanvasImageSize = SizeInt.Empty;
+*/
+        Models.Geometric.SizeInt gridCanvasImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
         #region フィールド（選択タイル　関連）
@@ -1638,7 +1820,14 @@
         ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
         ///     </pre>
         /// </summary>
+
+/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+前:
         Models.SizeInt _tileCursorCanvasSize = Models.SizeInt.Empty;
+後:
+        SizeInt _tileCursorCanvasSize = SizeInt.Empty;
+*/
+        Models.Geometric.SizeInt _tileCursorCanvasSize = Models.Geometric.SizeInt.Empty;
 
         /// <summary>
         ///     選択タイル
@@ -1683,9 +1872,9 @@
         /// </summary>
         void RemakeGridCanvasImage()
         {
-            this.GridCanvasImageSize = new Models.SizeInt(
-                width: new Models.WidthInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.HeightInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
+            this.GridCanvasImageSize = new Models.Geometric.SizeInt(
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
         #endregion
 
@@ -1712,9 +1901,9 @@
             this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
 
             // 作業画像のサイズ計算
-            this.workingImageSize = new Models.SizeInt(
-                width: new Models.WidthInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.HeightInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt)));
+            this.workingImageSize = new Models.Geometric.SizeInt(
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsDouble * this.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(

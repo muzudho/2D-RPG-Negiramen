@@ -54,16 +54,16 @@ public partial class TilePalettePage : ContentPage
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
 
         // タップした位置
-        var tapped = new Models.PointInt(
-            new Models.XInt((int)e.GetPosition((Element)sender).Value.X),
-            new Models.YInt((int)e.GetPosition((Element)sender).Value.Y));
+        var tapped = new Models.Geometric.PointInt(
+            new Models.Geometric.XInt((int)e.GetPosition((Element)sender).Value.X),
+            new Models.Geometric.YInt((int)e.GetPosition((Element)sender).Value.Y));
         Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tapped.X.AsInt} y:{tapped.Y.AsInt}");
 
         // タイル・カーソルの位置
         var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
             tapped: tapped,
             gridLeftTop: context.WorkingGridLeftTop,
-            gridTile: new Models.SizeInt(new Models.WidthInt(32), new Models.HeightInt(32)));
+            gridTile: new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32)));
 
         //
         // 計算値の反映

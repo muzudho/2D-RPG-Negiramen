@@ -1,13 +1,13 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
-    ///     😁 横幅
+    ///     😁 縦幅
     ///     
     ///     <list type="bullet">
     ///         <item>int 型</item>
     ///     </list>
     /// </summary>
-    internal class WidthInt
+    internal class HeightInt
     {
         // - 演算子のオーバーロード
 
@@ -23,19 +23,19 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(WidthInt c1, WidthInt c2)
+        public static bool operator ==(HeightInt c1, HeightInt c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
             // (c1 == c2)とすると、無限ループ
-            if (object.ReferenceEquals(c1, c2))
+            if (ReferenceEquals(c1, c2))
             {
                 return true;
             }
 
             // どちらかがnullか
             // (c1 == null)とすると、無限ループ
-            if (((object)c1 == null) || ((object)c2 == null))
+            if ((object)c1 == null || (object)c2 == null)
             {
                 return false;
             }
@@ -49,7 +49,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(WidthInt c1, WidthInt c2)
+        public static bool operator !=(HeightInt c1, HeightInt c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -62,17 +62,17 @@
         /// <returns>そうだ</returns>
         public override bool Equals(object obj)
         {
-            // objがnullか、型が違うときは、等価でない
-            if (obj == null || this.GetType() != obj.GetType())
+            //objがnullか、型が違うときは、等価でない
+            if (obj == null || GetType() != obj.GetType())
             {
                 return false;
             }
             // この型が継承できないクラスや構造体であれば、次のようにできる
-            //if (!(obj is Width))
+            //if (!(obj is Height))
 
             // 要素で比較する
-            WidthInt c = (WidthInt)obj;
-            return (this.source == c.source);
+            HeightInt c = (HeightInt)obj;
+            return source == c.source;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -83,7 +83,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return this.source;
+            return source;
         }
         #endregion
 
@@ -99,11 +99,11 @@
         /// <exception cref="ArgumentException">自分自身と、別のオブジェクトが別の型だった</exception>
         public int CompareTo(object other)
         {
-            if ((object)other == null)
+            if (other == null)
                 return 1;
-            if (this.GetType() != other.GetType())
+            if (GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((WidthInt)other).source);
+            return source.CompareTo(((HeightInt)other).source);
         }
 
         /// <summary>
@@ -113,7 +113,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(WidthInt c1, WidthInt c2)
+        public static bool operator <(HeightInt c1, HeightInt c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -121,7 +121,7 @@
                 throw new ArgumentNullException();
             }
             //CompareToメソッドを呼び出す
-            return (c1.CompareTo(c2) < 0);
+            return c1.CompareTo(c2) < 0;
         }
 
         /// <summary>
@@ -131,10 +131,10 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(WidthInt c1, WidthInt c2)
+        public static bool operator >(HeightInt c1, HeightInt c2)
         {
             //逆にして"<"で比較
-            return (c2 < c1);
+            return c2 < c1;
         }
 
         /// <summary>
@@ -144,7 +144,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(WidthInt c1, WidthInt c2)
+        public static bool operator <=(HeightInt c1, HeightInt c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -152,7 +152,7 @@
                 throw new ArgumentNullException();
             }
             //CompareToメソッドを呼び出す
-            return (c1.CompareTo(c2) <= 0);
+            return c1.CompareTo(c2) <= 0;
         }
 
         /// <summary>
@@ -162,10 +162,10 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(WidthInt c1, WidthInt c2)
+        public static bool operator >=(HeightInt c1, HeightInt c2)
         {
             //逆にして"<="で比較
-            return (c2 <= c1);
+            return c2 <= c1;
         }
         #endregion
 
@@ -176,7 +176,7 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal WidthInt(int source)
+        internal HeightInt(int source)
         {
             this.source = source;
         }
@@ -186,16 +186,16 @@
 
         #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
-        /// ゼロ・オブジェクト
+        ///     ゼロ・オブジェクト
         /// </summary>
-        internal static WidthInt Empty = new WidthInt(0);
+        internal static HeightInt Empty = new HeightInt(0);
         #endregion
 
         // - インターナル・プロパティー
 
-        #region プロパティ（値。整数型形式）
+        #region プロパティ（整数型形式で取得）
         /// <summary>
-        ///     値。整数型形式
+        ///     整数型形式で取得
         /// </summary>
         internal int AsInt => source;
         #endregion
