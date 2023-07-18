@@ -6,6 +6,7 @@
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
     using System.Globalization;
 
     /// <summary>
@@ -1443,12 +1444,14 @@
                 if (this.workingCroppedCursorSize.Width.AsFloat != value)
                 {
                     this.workingCroppedCursorSize = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(value), workingCroppedCursorSize.Height);
+                    Trace.WriteLine($"[TileCropPageViewModel.cs WorkingCroppedCursorWidthAsFloat] this.workingCroppedCursorSize: {this.workingCroppedCursorSize.Dump()}");
 
                     // キャンバスを再描画
                     // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel WorkingCroppedCursorWidthAsFloat set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(WorkingCroppedCursorWidthAsFloat));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorSize));
                 }
             }
         }
@@ -1468,12 +1471,14 @@
                 if (this.workingCroppedCursorSize.Height.AsFloat != value)
                 {
                     this.workingCroppedCursorSize = new Models.Geometric.SizeFloat(this.workingCroppedCursorSize.Width, new Models.Geometric.HeightFloat(value));
+                    Trace.WriteLine($"[TileCropPageViewModel.cs WorkingCroppedCursorHeightAsFloat] this.workingCroppedCursorSize: {this.workingCroppedCursorSize.Dump()}");
 
                     // キャンバスを再描画
                     // RefreshCanvasOfTileCursor("[TileCropPageViewModel WorkingCroppedCursorHeightAsFloat set]");
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(WorkingCroppedCursorHeightAsFloat));
+                    OnPropertyChanged(nameof(WorkingCroppedCursorSize));
                 }
             }
         }

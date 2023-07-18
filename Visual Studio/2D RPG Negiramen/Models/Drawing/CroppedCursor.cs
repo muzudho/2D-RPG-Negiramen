@@ -102,7 +102,7 @@
             if (this.CroppedCursorSize.Width.AsFloat < 1 || this.CroppedCursorSize.Height.AsFloat < 1)
             {
                 // カーソルが無いケース
-                Trace.WriteLine($"[TileCursor Draw] 切抜きカーソルに大きさが無いから描画しない。  this.IsMouseDragging: {this.IsMouseDragging}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}");
+                Trace.WriteLine($"[TileCursor Draw] 切抜きカーソルに大きさが無いから描画しない。  this.IsMouseDragging: {this.IsMouseDragging}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.CroppedCursorSize.Width.AsFloat: {this.CroppedCursorSize.Width.AsFloat}, this.CroppedCursorSize.Height.AsFloat: {this.CroppedCursorSize.Height.AsFloat}");
                 return;
             }
 
