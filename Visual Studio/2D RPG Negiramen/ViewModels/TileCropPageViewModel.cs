@@ -666,7 +666,7 @@
                     RefreshWorkingGridTileWidth();
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasWidthAsInt = this.sourceGridUnit.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
+                    this.WorkingRectCursorCanvasWidthAsFloat = this.sourceGridUnit.Width.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -697,7 +697,7 @@
                     RefreshWorkingGridTileHeight();
 
                     // カーソルの線の幅が 4px なので、タイル・カーソルの画像サイズは + 8px にする
-                    this.TileCursorCanvasHeightAsInt = this.sourceGridUnit.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
+                    this.WorkingRectCursorCanvasHeightAsFloat = this.sourceGridUnit.Height.AsInt + 4 * this.HalfThicknessOfTileCursorLine.AsInt;
 
                     // キャンバスを再描画
                     InvalidateCanvasOfGrid();
@@ -808,65 +808,65 @@
         ///         <item>カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.SizeInt TileCursorCanvasSize
+        public Models.Geometric.SizeFloat WorkingRectCursorCanvasSize
         {
-            get => _tileCursorCanvasSize;
+            get => workingRectCursorCanvasSize;
             set
             {
-                if (_tileCursorCanvasSize != value)
+                if (workingRectCursorCanvasSize != value)
                 {
-                    this.TileCursorCanvasWidthAsInt = value.Width.AsInt;
-                    this.TileCursorCanvasHeightAsInt = value.Height.AsInt;
+                    this.WorkingRectCursorCanvasWidthAsFloat = value.Width.AsFloat;
+                    this.WorkingRectCursorCanvasHeightAsFloat = value.Height.AsFloat;
                 }
             }
         }
 
         /// <summary>
-        ///     <pre>
-        ///         タイル・カーソルのキャンバスの横幅
+        ///     矩形カーソル。ズーム済みのキャンバスの横幅
         ///         
-        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
-        ///     </pre>
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする</item>
+        ///     </list>
         /// </summary>
-        public int TileCursorCanvasWidthAsInt
+        public float WorkingRectCursorCanvasWidthAsFloat
         {
-            get => _tileCursorCanvasSize.Width.AsInt;
+            get => this.workingRectCursorCanvasSize.Width.AsFloat;
             set
             {
-                if (_tileCursorCanvasSize.Width.AsInt != value)
+                if (this.workingRectCursorCanvasSize.Width.AsFloat != value)
                 {
-                    _tileCursorCanvasSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), _tileCursorCanvasSize.Height);
+                    this.workingRectCursorCanvasSize = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(value), workingRectCursorCanvasSize.Height);
 
                     // キャンバスを再描画
-                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel TileCursorCanvasWidthAsInt set]");
+                    RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel WorkingRectCursorCanvasWidthAsFloat set]");
 
                     // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
+                    OnPropertyChanged(nameof(WorkingRectCursorCanvasWidthAsFloat));
                 }
             }
         }
 
         /// <summary>
-        ///     <pre>
-        ///         タイル・カーソルのキャンバスの縦幅
+        ///     矩形カーソル。ズーム済みのキャンバスの縦幅
         ///         
-        ///         カーソルの線の幅が 4px なので、画像サイズは + 8px にする
-        ///     </pre>
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする</item>
+        ///     </list>
         /// </summary>
-        public int TileCursorCanvasHeightAsInt
+        public float WorkingRectCursorCanvasHeightAsFloat
         {
-            get => _tileCursorCanvasSize.Height.AsInt;
+            get => this.workingRectCursorCanvasSize.Height.AsFloat;
             set
             {
-                if (_tileCursorCanvasSize.Height.AsInt != value)
+                if (this.workingRectCursorCanvasSize.Height.AsFloat != value)
                 {
-                    _tileCursorCanvasSize = new Models.Geometric.SizeInt(_tileCursorCanvasSize.Width, new Models.Geometric.HeightInt(value));
+                    this.workingRectCursorCanvasSize = new Models.Geometric.SizeFloat(this.workingRectCursorCanvasSize.Width, new Models.Geometric.HeightFloat(value));
 
                     // キャンバスを再描画
-                    RefreshCanvasOfTileCursor("[TileCropPageViewModel TileCursorCanvasHeightAsInt set]");
+                    RefreshCanvasOfTileCursor("[TileCropPageViewModel WorkingRectCursorCanvasHeightAsFloat set]");
 
                     // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
+                    OnPropertyChanged(nameof(WorkingRectCursorCanvasHeightAsFloat));
                 }
             }
         }
@@ -1407,7 +1407,7 @@
                 // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
                 var cursorWidth = value;
                 var doubleCursorLineThickness = 4 * this.HalfThicknessOfTileCursorLine.AsInt;
-                TileCursorCanvasWidthAsInt = cursorWidth + doubleCursorLineThickness;
+                WorkingRectCursorCanvasWidthAsFloat = cursorWidth + doubleCursorLineThickness;
 
                 OnPropertyChanged(nameof(SourceSelectedTileWidthAsInt));
                 OnPropertyChanged(nameof(SourceSelectedTileSize));
@@ -1468,7 +1468,7 @@
                 // カーソルの線の幅が 4px なので、タイル・カーソルのキャンバス・サイズは + 8px にする
                 var cursorHeight = value;
                 var doubleCursorLineThickness = 4 * this.HalfThicknessOfTileCursorLine.AsInt;
-                TileCursorCanvasHeightAsInt = cursorHeight + doubleCursorLineThickness;
+                WorkingRectCursorCanvasHeightAsFloat = cursorHeight + doubleCursorLineThickness;
 
                 OnPropertyChanged(nameof(SourceSelectedTileHeightAsInt));
                 OnPropertyChanged(nameof(SourceSelectedTileSize));
@@ -1714,10 +1714,10 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（タイル・カーソルのキャンバスの再描画）
+        #region メソッド（矩形カーソル。ズーム済み　関連）
         /// <summary>
         ///     <pre>
-        ///         タイル・カーソルのキャンバスの再描画
+        ///         矩形カーソル。ズーム済みのキャンバスの再描画
         /// 
         ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
         ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
@@ -1728,7 +1728,7 @@
         {
             int offset;
 
-            if (this._tileCursorCanvasSize.Width.AsInt % 2 == 1)
+            if (((int)this.workingRectCursorCanvasSize.Width.AsFloat) % 2 == 1) // FIXME 浮動小数点型の剰余は無理がある
             {
                 // Trace.WriteLine($"{codePlace} 幅 {this._tileCursorCanvasSize.Width.AsInt} から 1 引く");
                 offset = -1;
@@ -1740,8 +1740,11 @@
             }
 
             // 循環参照を避けるために、直接フィールドを変更
-            this._tileCursorCanvasSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(this._tileCursorCanvasSize.Width.AsInt + offset), new Models.Geometric.HeightInt(this._tileCursorCanvasSize.Height.AsInt));
-            OnPropertyChanged(nameof(TileCursorCanvasWidthAsInt));
+            this.workingRectCursorCanvasSize = new Models.Geometric.SizeFloat(
+                width: new Models.Geometric.WidthFloat(this.workingRectCursorCanvasSize.Width.AsFloat + offset),
+                height: new Models.Geometric.HeightFloat(this.workingRectCursorCanvasSize.Height.AsFloat));
+
+            OnPropertyChanged(nameof(WorkingRectCursorCanvasWidthAsFloat));
         }
         #endregion
 
@@ -1840,7 +1843,7 @@
 
         #region フィールド（選択矩形。ズーム済み　関連）
         /// <summary>
-        ///     選択矩形の位置。ズーム済み（マージンとして）
+        ///     選択矩形。ズーム済みの位置（マージンとして）
         ///     
         ///     <list type="bullet">
         ///         <item>マージンを含んだカーソルの左上位置</item>
@@ -1849,13 +1852,13 @@
         Thickness workingRectCursorPointAsMargin = Thickness.Zero;
 
         /// <summary>
-        ///     選択矩形のキャンバス・サイズ。ズーム済み
+        ///     選択矩形。ズーム済みのキャンバス・サイズ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅が 4px なので、画像サイズは + 8px にする</item>
         ///     </list>
         /// </summary>
-        Models.Geometric.SizeInt _tileCursorCanvasSize = Models.Geometric.SizeInt.Empty;
+        Models.Geometric.SizeFloat workingRectCursorCanvasSize = Models.Geometric.SizeFloat.Empty;
         #endregion
 
         #region フィールド（選択タイル　関連）
