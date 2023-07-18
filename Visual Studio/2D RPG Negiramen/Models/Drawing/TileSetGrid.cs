@@ -79,23 +79,9 @@
         /// <summary>
         ///     グリッド位相の左上表示位置
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.PointInt GridPhase
-後:
-        public PointInt GridPhase
-*/
-        public Geometric.PointInt GridPhase
+        public Geometric.PointDouble GridPhase
         {
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            get => (Models.PointInt)GetValue(GridPhaseProperty);
-後:
-            get => (PointInt)GetValue(GridPhaseProperty);
-*/
-            get => (Geometric.PointInt)GetValue(GridPhaseProperty);
+            get => (Geometric.PointDouble)GetValue(GridPhaseProperty);
             set => SetValue(GridPhaseProperty, value);
         }
 
@@ -106,25 +92,11 @@
             // プロパティ名
             propertyName: nameof(GridPhase),
             // 返却型
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            returnType: typeof(Models.PointInt),
-後:
-            returnType: typeof(PointInt),
-*/
-            returnType: typeof(Geometric.PointInt),
+            returnType: typeof(Geometric.PointDouble),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            defaultValue: Models.PointInt.Empty);
-後:
-            defaultValue: PointInt.Empty);
-*/
-            defaultValue: Geometric.PointInt.Empty);
+            defaultValue: Geometric.PointDouble.Empty);
         #endregion
 
         #region 束縛可能プロパティ（グリッド・タイル　関連）
@@ -173,10 +145,6 @@
             Models.ThicknessOfLine lineThickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = lineThickness.AsInt;
 
-            // グリッド位相の左上表示位置
-            int gridPhaseLeftAsInt = this.GridPhase.X.AsInt;
-            int gridPhaseTopAsInt = this.GridPhase.Y.AsInt;
-
             // キャンバス・サイズ
             var canvasWidth = this.GridCanvasImageSize.Width.AsInt;
             var canvasHeight = this.GridCanvasImageSize.Height.AsInt;
@@ -186,15 +154,15 @@
             // ==================
             //
             {
-                int y1 = halfThicknessOfLineAsInt + gridPhaseTopAsInt;
-                int y2 = canvasHeight + halfThicknessOfLineAsInt + gridPhaseTopAsInt;
+                double y1 = halfThicknessOfLineAsInt + this.GridPhase.Y.AsDouble;
+                double y2 = canvasHeight + halfThicknessOfLineAsInt + this.GridPhase.Y.AsDouble;
 
                 int prevX = 0;
                 int x = 0;
                 for (var i = 0; x < canvasWidth + halfThicknessOfLineAsInt; i++)
                 {
                     prevX = x;
-                    x = (int)(i * this.GridTileSize.Width.AsDouble + gridPhaseLeftAsInt + halfThicknessOfLineAsInt);
+                    x = (int)(i * this.GridTileSize.Width.AsDouble + this.GridPhase.X.AsDouble + halfThicknessOfLineAsInt);
 
                     if (x <= prevX)
                     {
@@ -202,7 +170,7 @@
                         break;
                     }
 
-                    canvas.DrawLine(x, y1, x, y2);
+                    canvas.DrawLine(x, (float)y1, x, (float)y2);    // TODO float型
                 }
             }
 
@@ -211,20 +179,20 @@
             // ==================
             //
             {
-                int x1 = halfThicknessOfLineAsInt + gridPhaseLeftAsInt;
+                double x1 = halfThicknessOfLineAsInt + this.GridPhase.X.AsDouble;
 
                 // CANCEL CODE: 横幅が偶数なら横幅を +1、奇数なら横幅を -1 するという TRICK CODE が別の箇所にあるので、
                 //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
                 //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
                 //              右辺の線の手前まで線を引くようにする
-                int x2 = canvasWidth - halfThicknessOfLineAsInt + gridPhaseLeftAsInt;
+                double x2 = canvasWidth - halfThicknessOfLineAsInt + this.GridPhase.X.AsDouble;
 
                 int prevY = 0;
                 int y = 0;
                 for (var i = 0; y < canvasHeight + halfThicknessOfLineAsInt; i++)
                 {
                     prevY = y;
-                    y = (int)(i * this.GridTileSize.Height.AsDouble + gridPhaseTopAsInt + halfThicknessOfLineAsInt);
+                    y = (int)(i * this.GridTileSize.Height.AsDouble + this.GridPhase.Y.AsDouble + halfThicknessOfLineAsInt);
 
                     if (y <= prevY)
                     {
@@ -232,7 +200,7 @@
                         break;
                     }
 
-                    canvas.DrawLine(x1, y, x2, y);
+                    canvas.DrawLine((float)x1, y, (float)x2, y); // TODO float型
                 }
             }
         }
