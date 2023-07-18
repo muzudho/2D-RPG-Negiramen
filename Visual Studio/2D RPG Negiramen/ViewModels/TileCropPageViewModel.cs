@@ -789,7 +789,24 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（タイル・カーソルのキャンバス・サイズ）
+
+        #region 変更通知プロパティ（選択タイル　関連）
+        /// <summary>
+        ///     タイル・カーソルの位置（マージンとして）
+        /// </summary>
+        public Thickness TileCursorPointAsMargin
+        {
+            get => _tileCursorPointAsMargin;
+            set
+            {
+                if (_tileCursorPointAsMargin != value)
+                {
+                    _tileCursorPointAsMargin = value;
+                    OnPropertyChanged(nameof(TileCursorPointAsMargin));
+                }
+            }
+        }
+
         /// <summary>
         ///     <pre>
         ///         タイル・カーソルのキャンバス・サイズ
@@ -797,13 +814,6 @@
         ///         カーソルの線の幅が 4px なので、キャンバス・サイズは + 8px にする
         ///     </pre>
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.SizeInt TileCursorCanvasSize
-後:
-        public SizeInt TileCursorCanvasSize
-*/
         public Models.Geometric.SizeInt TileCursorCanvasSize
         {
             get => _tileCursorCanvasSize;
@@ -816,9 +826,7 @@
                 }
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（タイル・カーソルのキャンバスの横幅）
         /// <summary>
         ///     <pre>
         ///         タイル・カーソルのキャンバスの横幅
@@ -843,9 +851,7 @@
                 }
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（タイル・カーソルのキャンバスの縦幅）
         /// <summary>
         ///     <pre>
         ///         タイル・カーソルのキャンバスの縦幅
@@ -867,24 +873,6 @@
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(TileCursorCanvasHeightAsInt));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（タイル・カーソルの位置）
-        /// <summary>
-        ///     タイル・カーソルの位置（マージンとして）
-        /// </summary>
-        public Thickness TileCursorPointAsMargin
-        {
-            get => _tileCursorPointAsMargin;
-            set
-            {
-                if (_tileCursorPointAsMargin != value)
-                {
-                    _tileCursorPointAsMargin = value;
-                    OnPropertyChanged(nameof(TileCursorPointAsMargin));
                 }
             }
         }
@@ -1126,19 +1114,12 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（選択タイルの矩形）
+        #region 変更通知プロパティ（選択タイル　関連）
         /// <summary>
         ///     <pre>
         ///         選択タイルの矩形
         ///     </pre>
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.RectangleInt SelectedTileRectangle
-後:
-        public RectangleInt SelectedTileRectangle
-*/
         public Models.Geometric.RectangleInt SelectedTileRectangle
         {
             get
@@ -1150,13 +1131,6 @@
                 else
                 {
                     // タイル・カーソル無し時
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                    return Models.RectangleInt.Empty;
-後:
-                    return RectangleInt.Empty;
-*/
                     return Models.Geometric.RectangleInt.Empty;
                 }
             }
@@ -1190,9 +1164,7 @@
                     0);
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（選択タイルの位置ｘ）
         /// <summary>
         ///     <pre>
         ///         選択タイルの位置ｘ
@@ -1237,21 +1209,7 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                            point: new Models.PointInt(new Models.XInt(value), Models.YInt.Empty),
-後:
-                            point: new Models.PointInt(new Models.XInt(value), YInt.Empty),
-*/
                             point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                            size: Models.SizeInt.Empty),
-後:
-                            size: SizeInt.Empty),
-*/
                             size: Models.Geometric.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
@@ -1271,9 +1229,7 @@
                 OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（選択タイルの位置ｙ）
         /// <summary>
         ///     <pre>
         ///         選択タイルの位置ｙ
@@ -1318,21 +1274,7 @@
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                            point: new Models.PointInt(Models.XInt.Empty, new Models.YInt(value)),
-後:
-                            point: new Models.PointInt(XInt.Empty, new Models.YInt(value)),
-*/
                             point: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                            size: Models.SizeInt.Empty),
-後:
-                            size: SizeInt.Empty),
-*/
                             size: Models.Geometric.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
@@ -1352,20 +1294,10 @@
                 OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
-        #endregion
-
-        #region 変更通知プロパティ（選択タイルのサイズ）
 
         /// <summary>
         ///     選択タイルのサイズ
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.SizeInt SelectedTileSize
-後:
-        public SizeInt SelectedTileSize
-*/
         public Models.Geometric.SizeInt SelectedTileSize
         {
             get
@@ -1377,13 +1309,6 @@
                 else
                 {
                     // タイル・カーソル無し時
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                    return Models.SizeInt.Empty;
-後:
-                    return SizeInt.Empty;
-*/
                     return Models.Geometric.SizeInt.Empty;
                 }
             }
@@ -1396,24 +1321,10 @@
                         // 値に変化がない
                         return;
                     }
-
-                    //_selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
-                    //    id: selectedTile.Id,
-                    //    rectangle: new Models.Rectangle(
-                    //        point: selectedTile.Rectangle.Point,
-                    //        size: value),
-                    //    comment: selectedTile.Comment));
                 }
                 else
                 {
                     // タイル・カーソル無し時
-
-                    //_selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
-                    //    id: Models.TileId.Empty,
-                    //    rectangle: new Models.Rectangle(
-                    //        point: Models.Point.Empty,
-                    //        size: value),
-                    //    comment: Models.Comment.Empty));
                 }
 
                 //
@@ -1423,19 +1334,10 @@
                 this.SelectedTileWidthAsInt = value.Width.AsInt;
                 this.SelectedTileHeightAsInt = value.Height.AsInt;
 
-                ////
-                //// タイル・カーソルのキャンバス・サイズ変更
-                //// ========================================
-                ////
-                //this.TileCursorCanvasWidthAsInt = value.Width.AsInt;
-                //this.TileCursorCanvasHeightAsInt = value.Height.AsInt;
-
                 OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（選択タイルの横幅）
         /// <summary>
         ///     選択タイルの横幅
         /// </summary>
@@ -1474,27 +1376,10 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                        rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), Models.HeightInt.Empty)),
-後:
-                        rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), HeightInt.Empty)),
-*/
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                        rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), Models.Geometric.HeightInt.Empty)),
-後:
-                        rectangle: new Models.RectangleInt(PointInt.Empty, new Models.SizeInt(new Models.WidthInt(value), Models.Geometric.HeightInt.Empty)),
-*/
                         rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
-
-
-                // this.SelectedTileSize = new Models.Size(new Models.Width(value), this.SelectedTileSize.Height);
 
                 //
                 // タイル・カーソルのキャンバス・サイズ変更
@@ -1510,9 +1395,7 @@
                 OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（選択タイルの縦幅）
         /// <summary>
         ///     選択タイルの縦幅
         /// </summary>
@@ -1551,26 +1434,10 @@
                     // タイル・カーソル無し時
                     _selectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                        rectangle: new Models.RectangleInt(Models.PointInt.Empty, new Models.SizeInt(Models.WidthInt.Empty, new Models.HeightInt(value))),
-後:
-                        rectangle: new Models.RectangleInt(PointInt.Empty, new Models.SizeInt(Models.WidthInt.Empty, new Models.HeightInt(value))),
-*/
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                        rectangle: new Models.RectangleInt(Models.Geometric.PointInt.Empty, new Models.SizeInt(Models.WidthInt.Empty, new Models.HeightInt(value))),
-後:
-                        rectangle: new Models.RectangleInt(Models.Geometric.PointInt.Empty, new Models.SizeInt(WidthInt.Empty, new Models.HeightInt(value))),
-*/
                         rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
-
-                // this.SelectedTileSize = new Models.Size(this.SelectedTileSize.Width, new Models.Height(value));
 
                 //
                 // タイル・カーソルのキャンバス・サイズ変更
@@ -1586,9 +1453,7 @@
                 OnPropertyChanged(nameof(SelectedTileRectangle));
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（選択タイルのコメント）
         /// <summary>
         ///     選択タイルのコメント
         /// </summary>
