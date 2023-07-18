@@ -377,7 +377,7 @@
                     <GraphicsView.Drawable>
                         <modelsDrawing:TileCursor BindingContext="{x:Reference thisContentPage}"
                                                   HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"
-                                                  SelectedTileSize="{Binding TileCropPageVM.SourceSelectedTileSize}"
+                                                  WorkingSelectedTileRect="{Binding TileCropPageVM.WorkingSelectedTileRect}"
                                                   SelectingOnPointingDevice="{Binding TileCropPageVM.SelectingOnPointingDevice}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>

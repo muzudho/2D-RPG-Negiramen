@@ -36,27 +36,27 @@
             defaultValue: ThicknessOfLine.Min);
         #endregion
 
-        #region 束縛可能プロパティ（選択タイルのサイズ）
+        #region 束縛可能プロパティ（作業選択タイル　関連）
         /// <summary>
-        ///     選択タイルのサイズ。ズーム済み
+        ///     作業選択タイルの位置とサイズ。ズーム済み
         /// </summary>
-        public Geometric.SizeInt SelectedTileSize   // TODO float
+        public Geometric.RectangleFloat WorkingSelectedTileRect
         {
-            get => (Geometric.SizeInt)GetValue(SelectedTileSizeProperty);
-            set => SetValue(SelectedTileSizeProperty, value);
+            get => (Geometric.RectangleFloat)GetValue(WorkingSelectedTileRectProperty);
+            set => SetValue(WorkingSelectedTileRectProperty, value);
         }
 
         /// <summary>
-        ///     選択タイルのサイズ。ズーム済み
+        ///     作業選択タイルの位置とサイズ。ズーム済み
         /// </summary>
-        public static BindableProperty SelectedTileSizeProperty = BindableProperty.Create(
+        public static BindableProperty WorkingSelectedTileRectProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(SelectedTileSize),
+            propertyName: nameof(WorkingSelectedTileRect),
             // 返却型
-            returnType: typeof(Geometric.SizeInt),  // TODO float
+            returnType: typeof(Geometric.RectangleFloat),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
-            defaultValue: Geometric.SizeInt.Empty);
+            defaultValue: Geometric.RectangleFloat.Empty);
         #endregion
 
         #region 束縛可能プロパティ（ポインティング・デバイス押下中か？）
@@ -90,7 +90,7 @@
         /// <param name="dirtyRect">位置とサイズ</param>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            if (this.SelectedTileSize.Width.AsInt < 1 || this.SelectedTileSize.Height.AsInt < 1)
+            if (this.WorkingSelectedTileRect.Size.Width.AsFloat < 1 || this.WorkingSelectedTileRect.Size.Height.AsFloat < 1)
             {
                 // カーソルが無いケース
                 // Trace.WriteLine($"[TileCursor Draw] カーソルに大きさが無いから描画しない。  this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}");
@@ -99,7 +99,7 @@
 
             //try
             //{
-            //    Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.SourceSelectedTileSize: {this.SelectedTileSize.Dump()}");
+            //    Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.SourceSelectedTileSize: {this.WorkingSelectedTileSize.Dump()}");
             //}
             //catch
             //{
@@ -128,9 +128,6 @@
             Models.ThicknessOfLine thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = thickness.AsInt;
 
-            // 選択タイルのサイズ
-            Geometric.SizeInt tileCursorSize = this.SelectedTileSize;
-
             // キャンバス・サイズいっぱいにタイル・カーソルを描画
             canvas.DrawRectangle(new Rect(
                 // タイル・カーソルの位置を調整するのは、キャンバス自体の位置を動かすこと
@@ -138,8 +135,8 @@
                 halfThicknessOfLineAsInt,
                 halfThicknessOfLineAsInt,
                 // 境界線上ではなく、境界線に外接するように描くために、線の太さの半分をずらして描画
-                tileCursorSize.Width.AsInt + thickness.AsInt,
-                tileCursorSize.Height.AsInt + thickness.AsInt));
+                this.WorkingSelectedTileRect.Size.Width.AsFloat + thickness.AsInt,
+                this.WorkingSelectedTileRect.Size.Height.AsFloat + thickness.AsInt));
         }
     }
 }

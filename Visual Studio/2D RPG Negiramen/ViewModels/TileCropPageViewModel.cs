@@ -1191,24 +1191,41 @@
                         return;
                     }
 
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+                    // 元画像ベース
+                    this.sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTile.Rectangle.Point.Y),
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
+
+                    // ズーム済み
+                    this.WorkingSelectedTileRect = new RectangleFloat(
+                        point: new PointFloat(
+                            x: new XFloat(this.ZoomAsFloat * value),
+                            y: this.workingSelectedTileRect.Point.Y),
+                        size: this.workingSelectedTileRect.Size);
                 }
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
+
+                    // 元画像ベース
+                    this.sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
                             size: Models.Geometric.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
+
+                    // ズーム済み
+                    this.WorkingSelectedTileRect = new RectangleFloat(
+                        point: new PointFloat(
+                            x: new XFloat(this.ZoomAsFloat * value),
+                            y: YFloat.Empty),
+                        size: SizeFloat.Empty);
                 }
 
                 this.TileCursorPointAsMargin = new Thickness(
@@ -1253,6 +1270,7 @@
                         return;
                     }
 
+                    // 元画像ベース
                     sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(
@@ -1260,10 +1278,17 @@
                             size: selectedTile.Rectangle.Size),
                         comment: selectedTile.Comment,
                         logicalDelete: selectedTile.LogicalDelete));
+
+                    // ズーム済み
+                    this.WorkingSelectedTileRect = new RectangleFloat(
+                        point: new PointFloat(x: XFloat.Empty, y: new YFloat(this.ZoomAsFloat * value)),
+                        size: SizeFloat.Empty);
                 }
                 else
                 {
                     // タイル・カーソル無し時
+
+                    // 元画像ベース
                     sourceSelectedTileOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(
@@ -1271,6 +1296,11 @@
                             size: Models.Geometric.SizeInt.Empty),
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
+
+                    // ズーム済み
+                    this.WorkingSelectedTileRect = new RectangleFloat(
+                        point: new PointFloat(x: XFloat.Empty, y: new YFloat(this.ZoomAsFloat * value)),
+                        size: SizeFloat.Empty);
                 }
 
                 this.TileCursorPointAsMargin = new Thickness(
@@ -1374,6 +1404,9 @@
                         logicalDelete: Models.LogicalDelete.False));
                 }
 
+                // ズーム済み
+                this.WorkingSelectedTileWidthAsFloat = this.ZoomAsFloat * value;
+
                 //
                 // タイル・カーソルのキャンバス・サイズ変更
                 // ========================================
@@ -1431,6 +1464,9 @@
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False));
                 }
+
+                // ズーム済み
+                this.WorkingSelectedTileHeightAsFloat = this.ZoomAsFloat * value;
 
                 //
                 // タイル・カーソルのキャンバス・サイズ変更
@@ -1615,7 +1651,7 @@
                     this.workingSelectedTileRect = new RectangleFloat(
                         point: this.workingSelectedTileRect.Point,
                         size: new SizeFloat(
-                            width: this.workingSelectedTileRect.Size.Width                            ,
+                            width: this.workingSelectedTileRect.Size.Width,
                             height: new HeightFloat(value)));
 
                     OnPropertyChanged(nameof(WorkingSelectedTileHeightAsFloat));
