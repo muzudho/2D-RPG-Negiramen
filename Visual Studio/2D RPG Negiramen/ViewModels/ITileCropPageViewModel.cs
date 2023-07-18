@@ -113,9 +113,10 @@ public interface ITileCropPageViewModel
     /// 
     ///     <list type="bullet">
     ///         <item>タイルを選択開始していて、まだ未確定だ</item>
+    ///         <item>マウスじゃないと思うけど</item>
     ///     </list>
     /// </summary>
-    bool SelectingOnPointingDevice { get; }
+    bool IsMouseDragging { get; }
     #endregion
 
     // - メソッド

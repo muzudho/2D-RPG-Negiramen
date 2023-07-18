@@ -947,9 +947,10 @@
         /// 
         ///     <list type="bullet">
         ///         <item>タイルを選択開始していて、まだ未確定だ</item>
+        ///         <item>マウスじゃないと思うけど</item>
         ///     </list>
         /// </summary>
-        public bool SelectingOnPointingDevice
+        public bool IsMouseDragging
         {
             get => this.selectingOnPointingDevice;
             set
@@ -957,7 +958,7 @@
                 if (this.selectingOnPointingDevice != value)
                 {
                     this.selectingOnPointingDevice = value;
-                    OnPropertyChanged(nameof(SelectingOnPointingDevice));
+                    OnPropertyChanged(nameof(IsMouseDragging));
                 }
             }
         }

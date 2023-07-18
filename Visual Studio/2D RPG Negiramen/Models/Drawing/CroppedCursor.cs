@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing
 {
     using Microsoft.Maui.Graphics;
+    using System.Diagnostics;
 
     /// <summary>
     ///     <pre>
@@ -66,19 +67,23 @@
         #region 束縛可能プロパティ（ポインティング・デバイス押下中か？）
         /// <summary>
         ///     ポインティング・デバイス押下中か？
+        ///     
+        ///     <list type="bullet">
+        ///         <item>マウスじゃないと思うけど</item>
+        ///     </list>
         /// </summary>
-        public bool SelectingOnPointingDevice
+        public bool IsMouseDragging
         {
-            get => (bool)GetValue(SelectingOnPointingDeviceProperty);
-            set => SetValue(SelectingOnPointingDeviceProperty, value);
+            get => (bool)GetValue(IsMouseDraggingProperty);
+            set => SetValue(IsMouseDraggingProperty, value);
         }
 
         /// <summary>
         ///     ポインティング・デバイス押下中か？
         /// </summary>
-        public static BindableProperty SelectingOnPointingDeviceProperty = BindableProperty.Create(
+        public static BindableProperty IsMouseDraggingProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(SelectingOnPointingDevice),
+            propertyName: nameof(IsMouseDragging),
             // 返却型
             returnType: typeof(bool),
             // これを含んでいるクラス
@@ -97,13 +102,13 @@
             if (this.CroppedCursorSize.Width.AsFloat < 1 || this.CroppedCursorSize.Height.AsFloat < 1)
             {
                 // カーソルが無いケース
-                // Trace.WriteLine($"[TileCursor Draw] カーソルに大きさが無いから描画しない。  this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}");
+                Trace.WriteLine($"[TileCursor Draw] 切抜きカーソルに大きさが無いから描画しない。  this.IsMouseDragging: {this.IsMouseDragging}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}");
                 return;
             }
 
             //try
             //{
-            //    Trace.WriteLine($"[TileCursor Draw] this.SelectingOnPointingDevice: {this.SelectingOnPointingDevice}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.WorkingSelectedTileSize: {this.WorkingSelectedTileSize.Dump()}");
+            //    Trace.WriteLine($"[TileCursor Draw] this.IsMouseDragging: {this.IsMouseDragging}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.WorkingSelectedTileSize: {this.WorkingSelectedTileSize.Dump()}");
             //}
             //catch
             //{
@@ -111,7 +116,7 @@
             //}
 
             // 線の色
-            if (this.SelectingOnPointingDevice)
+            if (this.IsMouseDragging)
             {
                 // 選択中
                 canvas.StrokeColor = new Color(0, 0, 255, 95);

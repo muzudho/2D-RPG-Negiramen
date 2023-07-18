@@ -90,7 +90,7 @@ public partial class TileCropPage : ContentPage
         // 計算値の反映
         // ============
         //
-        // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.SelectingOnPointingDevice: {context.SelectingOnPointingDevice}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
+        // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
 
         context.SourceCroppedCursorRect = rect;
 
@@ -302,9 +302,9 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 反転
-        context.SelectingOnPointingDevice = !context.SelectingOnPointingDevice;
+        context.IsMouseDragging = !context.IsMouseDragging;
 
-        if (context.SelectingOnPointingDevice)
+        if (context.IsMouseDragging)
         {
             //
             // 疑似マウス・ダウン
@@ -354,7 +354,7 @@ public partial class TileCropPage : ContentPage
     {
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        if (context.SelectingOnPointingDevice)
+        if (context.IsMouseDragging)
         {
             //
             // 疑似マウス・ドラッグ
