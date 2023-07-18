@@ -85,13 +85,16 @@
 
         // - 静的プロパティー
 
+        #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
         internal static Point Empty = new Point(Models.X.Empty, Models.Y.Empty);
+        #endregion
 
         // - その他
 
+        #region その他（生成）
         /// <summary>
         ///     生成
         /// </summary>
@@ -102,24 +105,35 @@
             this.X = x;
             this.Y = y;
         }
+        #endregion
 
-        // - プロパティー
+        // - インターナル・プロパティー
 
+        #region プロパティ（位置ｘ）
         /// <summary>
         ///     位置ｘ
         /// </summary>
         internal Models.X X { get; private set; }
+        #endregion
 
+        #region プロパティ（位置ｙ）
         /// <summary>
         ///     位置ｙ
         /// </summary>
         internal Models.Y Y { get; private set; }
+        #endregion
 
         // - インターナル・メソッド
 
+        #region メソッド（ダンプ）
+        /// <summary>
+        ///     ダンプ
+        /// </summary>
+        /// <returns></returns>
         internal string Dump()
         {
             return $"X:{this.X.AsInt}, Y:{this.Y.AsInt}";
         }
+        #endregion
     }
 }

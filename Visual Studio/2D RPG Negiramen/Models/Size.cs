@@ -83,15 +83,18 @@
         }
         #endregion
 
-        // - 静的プロパティー
+        // - インターナル静的プロパティー
 
+        #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
         internal static Size Empty = new Size(Models.Width.Empty, Models.Height.Empty);
+        #endregion
 
         // - その他
 
+        #region その他（生成）
         /// <summary>
         ///     生成
         /// </summary>
@@ -102,24 +105,35 @@
             this.Width = width;
             this.Height = height;
         }
+        #endregion
 
-        // - プロパティー
+        // - インターナル・プロパティー
 
+        #region プロパティ（横幅）
         /// <summary>
         ///     横幅
         /// </summary>
         internal Models.Width Width { get; private set; }
+        #endregion
 
+        #region プロパティ（縦幅）
         /// <summary>
         ///     縦幅
         /// </summary>
         internal Models.Height Height { get; private set; }
+        #endregion
 
         // - インターナル・メソッド
 
+        #region メソッド（ダンプ）
+        /// <summary>
+        ///     ダンプ
+        /// </summary>
+        /// <returns></returns>
         internal string Dump()
         {
             return $"Width:{this.Width.AsInt}, Height:{this.Height.AsInt}";
         }
+        #endregion
     }
 }
