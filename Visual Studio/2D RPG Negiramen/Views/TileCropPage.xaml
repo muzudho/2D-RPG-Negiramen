@@ -496,8 +496,8 @@
                    Padding="20,0,0,0"
                    Text="{app:Translate TileName}"/>
 
-            <!--    ４段目 入力部
-                    =============
+            <!--    ◆４段目 入力部
+                    ===============
             -->
             <!-- 管理コード BASE64形式 -->
             <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
@@ -512,8 +512,8 @@
                    Text="{Binding SelectedTileCommentAsStr}"
                    BackgroundColor="FloralWhite"/>
 
-            <!--    ５段目 ヒント部
-                    ===============
+            <!--    ◆５段目 ヒント部
+                    =================
             -->
             <!-- 「コードのおぼえかた」 -->
             <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"

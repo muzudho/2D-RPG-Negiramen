@@ -65,13 +65,6 @@ public partial class TileCropPage : ContentPage
     /// <summary>
     ///     ポインティング・デバイス現在位置
     /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    Models.PointInt PointingDeviceCurrentPoint { get; set; }
-後:
-    PointInt PointingDeviceCurrentPoint { get; set; }
-*/
     Models.Geometric.PointInt PointingDeviceCurrentPoint { get; set; }
     #endregion
 
@@ -327,6 +320,7 @@ public partial class TileCropPage : ContentPage
 
             // タイル・フォームの表示更新
             RefreshTileForm();
+            context.RefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TapGestureRecognizer_Tapped 疑似マウスダウン]");
         }
         else
         {
@@ -345,6 +339,7 @@ public partial class TileCropPage : ContentPage
 
             // タイル・フォームの表示更新
             RefreshTileForm();
+            context.RefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TapGestureRecognizer_Tapped 疑似マウスアップ]");
         }
     }
     #endregion
@@ -374,6 +369,7 @@ public partial class TileCropPage : ContentPage
 
             // タイル・フォームの表示更新
             RefreshTileForm();
+            context.RefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
         }
     }
     #endregion

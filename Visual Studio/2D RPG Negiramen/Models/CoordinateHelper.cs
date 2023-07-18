@@ -10,35 +10,10 @@
         /// <summary>
         ///     ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        internal static Models.RectangleInt GetCursorRectangle(
-後:
-        internal static RectangleInt GetCursorRectangle(
-*/
         internal static Geometric.RectangleInt GetCursorRectangle(
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            Models.PointInt startPoint,
-            Models.PointInt endPoint,
-            Models.PointInt gridLeftTop,
-後:
-            PointInt startPoint,
-            PointInt endPoint,
-            PointInt gridLeftTop,
-*/
             Geometric.PointInt startPoint,
             Geometric.PointInt endPoint,
             Geometric.PointInt gridLeftTop,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            Models.SizeInt gridTile)
-後:
-            SizeInt gridTile)
-*/
             Geometric.SizeInt gridTile)
         {
             // タイル・カーソルの始点Ｂ位置
@@ -53,13 +28,6 @@
                 gridLeftTop: gridLeftTop,
                 gridTile: gridTile);
 
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            Models.RectangleInt rect;
-後:
-            RectangleInt rect;
-*/
             Geometric.RectangleInt rect;
 
             // 始点Ｓと終点Ｅの位置関係
@@ -131,27 +99,9 @@
         /// </summary>
         /// <param name="tapped">タップした位置</param>
         /// <param name="gridTile">グリッド・タイルのサイズ</param>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        internal static Models.PointInt TranslateTappedPointToTileCursorPoint(
-            Models.PointInt tapped,
-            Models.PointInt gridLeftTop,
-後:
-        internal static PointInt TranslateTappedPointToTileCursorPoint(
-            PointInt tapped,
-            PointInt gridLeftTop,
-*/
         internal static Geometric.PointInt TranslateTappedPointToTileCursorPoint(
             Geometric.PointInt tapped,
             Geometric.PointInt gridLeftTop,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            Models.SizeInt gridTile)
-後:
-            SizeInt gridTile)
-*/
             Geometric.SizeInt gridTile)
         {
             // 下図の 0 が原点、 1 がグリッドの左上位置とする
