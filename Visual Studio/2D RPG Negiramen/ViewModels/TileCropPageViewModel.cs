@@ -813,6 +813,16 @@
                         OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
                         OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
                         OnPropertyChanged(nameof(WorkingGridUnit));
+
+                        // 切抜きカーソル。ズーム後
+                        OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
+                        OnPropertyChanged(nameof(WorkingCroppedCursorCanvasWidthAsFloat));
+                        OnPropertyChanged(nameof(WorkingCroppedCursorCanvasHeightAsFloat));
+                        OnPropertyChanged(nameof(WorkingCroppedCursorSize));
+                        OnPropertyChanged(nameof(WorkingCroppedCursorLeftAsPresentableText));   // TODO これは要るか？
+                        OnPropertyChanged(nameof(WorkingCroppedCursorTopAsPresentableText));   // TODO これは要るか？
+                        OnPropertyChanged(nameof(WorkingCroppedCursorWidthAsPresentableText));   // TODO これは要るか？
+                        OnPropertyChanged(nameof(WorkingCroppedCursorHeightAsPresentableText));   // TODO これは要るか？
                     }
                 }
             }

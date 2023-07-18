@@ -180,4 +180,10 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　"F1" にすれば　小数点以下１桁　になるみたいだぜ」  
 
+![202307__maui__19-0033--WIP-Zoom-o2o0.png](https://crieit.now.sh/upload_images/52d71dc2809ad70e6b2c3bc26ea673c664b6b11c38546.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　カーソルや、カラー・マップを　ズームに対応させるの　まだまだ　かかりそう。  
+今日はもう寝る」  
+
 ＜書きかけ＞
