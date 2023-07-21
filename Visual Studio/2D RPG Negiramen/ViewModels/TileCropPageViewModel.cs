@@ -1925,7 +1925,10 @@
         void RemakeWorkingTilesetImage()
         {
             // 元画像をベースに、作業画像を複製
-            this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
+            var temporaryBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
+
+            // 画像処理（明度を下げる）
+            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
 
             // 作業画像のサイズ計算
             this.workingImageSize = new Models.Geometric.SizeInt(
@@ -1933,7 +1936,7 @@
                 height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
-            this.TilesetWorkingBitmap = this.TilesetSourceBitmap.Resize(
+            this.TilesetWorkingBitmap = temporaryBitmap.Resize(
                 size: new SKSizeI(
                     width: this.workingImageSize.Width.AsInt,
                     height: this.workingImageSize.Height.AsInt),
