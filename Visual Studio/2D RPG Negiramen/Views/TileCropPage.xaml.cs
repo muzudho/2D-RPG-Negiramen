@@ -135,7 +135,7 @@ public partial class TileCropPage : ContentPage
                     rectangle: context.SourceCroppedCursorRect,
                     comment: Models.Comment.Empty,
                     logicalDelete: Models.LogicalDelete.False),
-                workingRect: new RectangleInt(context.SourceCroppedCursorRect)));
+                workingRect: RectangleFloat.FromModel(context.SourceCroppedCursorRect)));
         }
     }
     #endregion
@@ -436,13 +436,13 @@ public partial class TileCropPage : ContentPage
                 size: new Models.Geometric.SizeInt(
                     width: new Models.Geometric.WidthInt(context.SourceCroppedCursorWidthAsInt),
                     height: new Models.Geometric.HeightInt(context.SourceCroppedCursorHeightAsInt))),
-            workingRect: new Models.Geometric.RectangleInt(
-                point: new Models.Geometric.PointInt(
-                    x: new Models.Geometric.XInt(context.SourceCroppedCursorLeftAsInt),
-                    y: new Models.Geometric.YInt(context.SourceCroppedCursorTopAsInt)),
-                size: new Models.Geometric.SizeInt(
-                    width: new Models.Geometric.WidthInt(context.SourceCroppedCursorWidthAsInt),
-                    height: new Models.Geometric.HeightInt(context.SourceCroppedCursorHeightAsInt))),
+            workingRect: new Models.Geometric.RectangleFloat(
+                point: new Models.Geometric.PointFloat(
+                    x: new Models.Geometric.XFloat(context.SourceCroppedCursorLeftAsInt),
+                    y: new Models.Geometric.YFloat(context.SourceCroppedCursorTopAsInt)),
+                size: new Models.Geometric.SizeFloat(
+                    width: new Models.Geometric.WidthFloat(context.SourceCroppedCursorWidthAsInt),
+                    height: new Models.Geometric.HeightFloat(context.SourceCroppedCursorHeightAsInt))),
             comment: new Models.Comment(context.SelectedTileCommentAsStr),
             logicalDelete: logicalDelete,
             onTileIdUpdated: () =>

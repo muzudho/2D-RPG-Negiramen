@@ -44,7 +44,7 @@
                     tilesetSettingsVM.RecordViewModelList.Add(
                         TileRecordViewModel.FromModel(
                             tileRecord: record,
-                            workingRect: new TheGeometric.RectangleInt(record.Rectangle)));
+                            workingRect: TheGeometric.RectangleFloat.FromModel(record.Rectangle)));
                 }
                 try
                 {
@@ -102,7 +102,7 @@
         internal void Add(
             Models.TileId id,
             TheGeometric.RectangleInt rect,
-            TheGeometric.RectangleInt workingRect,
+            TheGeometric.RectangleFloat workingRect,
             Models.Comment comment,
             Models.LogicalDelete logicalDelete,
             Action onTileIdUpdated)

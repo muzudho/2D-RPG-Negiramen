@@ -103,6 +103,21 @@
         /// <summary>
         ///     生成
         /// </summary>
+        /// <param name="sourceRect">矩形の位置とサイズ</param>
+        internal static RectangleFloat FromModel(RectangleInt sourceRect)
+        {
+            return new RectangleFloat(
+                point: new PointFloat(
+                    x: new XFloat(sourceRect.Point.X.AsInt),
+                    y: new YFloat(sourceRect.Point.Y.AsInt)),
+                size: new SizeFloat(
+                    width: new WidthFloat(sourceRect.Size.Width.AsInt),
+                    height: new HeightFloat(sourceRect.Size.Height.AsInt)));
+        }
+
+        /// <summary>
+        ///     生成
+        /// </summary>
         /// <param name="point">位置</param>
         /// <param name="size">大きさ</param>
         internal RectangleFloat(PointFloat point, SizeFloat size)

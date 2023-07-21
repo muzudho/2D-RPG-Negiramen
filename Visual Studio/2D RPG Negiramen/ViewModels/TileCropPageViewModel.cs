@@ -319,7 +319,7 @@
                             rectangle: selectedTileVM.SourceRectangle,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: new TheGeometric.RectangleInt(selectedTileVM.SourceRectangle)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(selectedTileVM.SourceRectangle)));
                 }
                 else
                 {
@@ -330,7 +330,7 @@
                             rectangle: Models.Geometric.RectangleInt.Empty,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                    workingRect: new TheGeometric.RectangleInt(Models.Geometric.RectangleInt.Empty)));
+                    workingRect: TheGeometric.RectangleFloat.FromModel(Models.Geometric.RectangleInt.Empty)));
                 }
 
                 this.RefreshByLocaleChanged();
@@ -824,6 +824,18 @@
                         // グリッド・キャンバス画像の再作成
                         this.RemakeGridCanvasImage();
 
+                        //// TODO 全ての登録タイルのズーム時の位置とサイズを更新
+                        //foreach (var registeredTileVM in this.TilesetSettingsVM.RecordViewModelList)
+                        //{
+                        //    registeredTileVM.WorkingRectangle = new TheGeometric.RectangleInt(
+                        //        point: new TheGeometric.PointInt(
+                        //            x: new TheGeometric.XInt(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Point.X.AsInt),
+                        //            y: new TheGeometric.YInt()),
+                        //        size: new TheGeometric.SizeInt(
+                        //            width: new TheGeometric.WidthInt(),
+                        //            height: new TheGeometric.HeightInt()));
+                        //}
+
                         OnPropertyChanged(nameof(ZoomAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
@@ -1123,7 +1135,7 @@
                             rectangle: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: new TheGeometric.RectangleInt(rect1)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
                 else
                 {
@@ -1139,7 +1151,7 @@
                             rectangle: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: new TheGeometric.RectangleInt(rect1)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -1189,7 +1201,7 @@
                             rectangle: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: new TheGeometric.RectangleInt(rect1)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
                 else
                 {
@@ -1205,7 +1217,7 @@
                             rectangle: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: new TheGeometric.RectangleInt(rect1)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -1299,7 +1311,7 @@
                             rectangle: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: new TheGeometric.RectangleInt(rect1)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
                 else
                 {
@@ -1311,7 +1323,7 @@
                             rectangle: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: new TheGeometric.RectangleInt(rect1)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
 
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
@@ -1357,7 +1369,7 @@
                             rectangle: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: rect1));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
                 else
                 {
@@ -1369,7 +1381,7 @@
                             rectangle: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: new TheGeometric.RectangleInt(rect1)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
@@ -1651,7 +1663,7 @@
                             rectangle: rect1,
                             comment: new Models.Comment(value),
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: new TheGeometric.RectangleInt(rect1)));
+                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
                 else
                 {
@@ -1663,7 +1675,7 @@
                             rectangle: rect1,
                             comment: new Models.Comment(value),
                             logicalDelete: Models.LogicalDelete.False),
-                       workingRect: new TheGeometric.RectangleInt(rect1)));
+                       workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
                 }
 
                 OnPropertyChanged(nameof(SelectedTileCommentAsStr));

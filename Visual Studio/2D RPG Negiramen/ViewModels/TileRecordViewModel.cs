@@ -24,7 +24,7 @@
         /// <returns></returns>
         public static TileRecordViewModel FromModel(
             TileRecord tileRecord,
-            TheGeometric.RectangleInt workingRect)
+            TheGeometric.RectangleFloat workingRect)
         {
             return new TileRecordViewModel()
             {
@@ -43,7 +43,7 @@
         {
             this.Id = Models.TileId.Empty;
             this.SourceRectangle = TheGeometric.RectangleInt.Empty;
-            this.WorkingRectangle = TheGeometric.RectangleInt.Empty;
+            this.WorkingRectangle = TheGeometric.RectangleFloat.Empty;
             this.Comment = Models.Comment.Empty;
             this.LogicalDelete = Models.LogicalDelete.False;
         }
@@ -71,7 +71,7 @@
         /// <summary>
         ///     矩形（ズーム後）
         /// </summary>
-        internal TheGeometric.RectangleInt WorkingRectangle { get; set; }
+        internal TheGeometric.RectangleFloat WorkingRectangle { get; set; }
         #endregion
 
         #region プロパティ（コメント）
