@@ -3,7 +3,7 @@
     using System.Text;
 
     /// <summary>
-    ///     タイルセットの設定
+    ///     タイルセット設定
     ///     
     ///     <list type="bullet">
     ///         <item>とりあえずミュータブル</item>

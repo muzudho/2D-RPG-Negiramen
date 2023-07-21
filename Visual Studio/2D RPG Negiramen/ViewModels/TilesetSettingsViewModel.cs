@@ -7,9 +7,13 @@
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
     /// <summary>
-    ///     タイル設定ビューモデル
+    ///     タイルセット設定ビューモデル
+    ///     
+    ///     <list type="bullet">
+    ///         <item>ビューモデル</item>
+    ///     </list>
     /// </summary>
-    internal class TileSettingsViewModel : ObservableObject
+    internal class TilesetSettingsViewModel : ObservableObject
     {
         // - インターナル静的メソッド
 
@@ -17,12 +21,12 @@
         /// <summary>
         ///     CSV形式ファイルの読込
         /// </summary>
-        /// <param name="tilesetSettings">タイルセット設定</param>
+        /// <param name="tilesetSettingsVM">タイルセット設定ビューモデル</param>
         /// <returns></returns>
-        internal static bool LoadCSV(TheFileEntryLocations.TilesetSettingsFile tilesetSettingsFile, out TilesetSettings tilesetSettings)
+        internal static bool LoadCSV(TheFileEntryLocations.TilesetSettingsFile tilesetSettingsFile, out TilesetSettingsViewModel tilesetSettingsVM)
         {
             // 既定値の設定（空っぽ）
-            tilesetSettings = new TilesetSettings();
+            tilesetSettingsVM = new TilesetSettingsViewModel();
 
             try
             {
@@ -87,9 +91,16 @@
                         }
 
                         // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
-                        tilesetSettings.Add(
+                        tilesetSettingsVM.Add(
                             id: new Models.TileId(tileId),
                             rect: new Models.Geometric.RectangleInt(
+                                point: new Models.Geometric.PointInt(
+                                    x: new Models.Geometric.XInt(x),
+                                    y: new Models.Geometric.YInt(y)),
+                                size: new Models.Geometric.SizeInt(
+                                    width: new Models.Geometric.WidthInt(width),
+                                    height: new Models.Geometric.HeightInt(height))),
+                            workingRect: new Models.Geometric.RectangleInt(
                                 point: new Models.Geometric.PointInt(
                                     x: new Models.Geometric.XInt(x),
                                     y: new Models.Geometric.YInt(y)),
