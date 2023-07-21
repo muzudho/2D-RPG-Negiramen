@@ -53,25 +53,27 @@ public partial class TilePalettePage : ContentPage
         // Image image = (Image)sender;
         TilePalettePageViewModel context = (TilePalettePageViewModel)this.BindingContext;
 
+        Point? tappedPosition = e.GetPosition((Element)sender) ?? Point.Zero;
+
         // タップした位置
-        var tapped = new Models.Geometric.PointInt(
-            new Models.Geometric.XInt((int)e.GetPosition((Element)sender).Value.X),
-            new Models.Geometric.YInt((int)e.GetPosition((Element)sender).Value.Y));
-        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tapped.X.AsInt} y:{tapped.Y.AsInt}");
+        var tapped = new Models.Geometric.PointFloat(
+            new Models.Geometric.XFloat((float)tappedPosition.Value.X),
+            new Models.Geometric.YFloat((float)tappedPosition.Value.Y));
+        Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tapped.X.AsFloat} y:{tapped.Y.AsFloat}");
 
         // タイル・カーソルの位置
         var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
             tapped: tapped,
             gridLeftTop: context.WorkingGridLeftTop,
-            gridTile: new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32)));
+            gridTile: new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32), new Models.Geometric.HeightFloat(32)));
 
         //
         // 計算値の反映
         // ============
         //
-        context.TappedXOnImageAsInt = tapped.X.AsInt;
-        context.TappedYOnImageAsInt = tapped.Y.AsInt;
-        context.SourceCroppedCursorLeftAsInt = tileCursor.X.AsInt;
-        context.SourceCroppedCursorTopAsInt = tileCursor.Y.AsInt;
+        context.TappedXOnImageAsInt = (int)tapped.X.AsFloat;
+        context.TappedYOnImageAsInt = (int)tapped.Y.AsFloat;
+        context.SourceCroppedCursorLeftAsInt = (int)tileCursor.X.AsFloat;
+        context.SourceCroppedCursorTopAsInt = (int)tileCursor.Y.AsFloat;
     }
 }

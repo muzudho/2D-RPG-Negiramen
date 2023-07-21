@@ -140,5 +140,18 @@
             return $"Width:{Width.AsFloat}, Height:{Height.AsFloat}";
         }
         #endregion
+
+        #region メソッド（型変換）
+        /// <summary>
+        ///     型変換
+        /// </summary>
+        /// <returns></returns>
+        internal SizeInt ToInt()
+        {
+            return new SizeInt(
+                width: this.Width.ToInt(),
+                height: this.Height.ToInt());
+        }
+        #endregion
     }
 }

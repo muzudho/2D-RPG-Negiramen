@@ -271,4 +271,9 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　入力は　ズームかかってないからな。そこも実装しないといけないか～」  
 
+![202307_maui_22-0316--zoomedCursor.png](https://crieit.now.sh/upload_images/edd41c943c871459fcad62d652f3a91864bacbbb5067e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　入力も　ズームを考慮して　行えるようにしたぜ」  
+
 ＜書きかけ＞

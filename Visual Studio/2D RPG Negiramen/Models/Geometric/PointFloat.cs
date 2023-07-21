@@ -140,5 +140,18 @@
             return $"X:{X.AsFloat}, Y:{Y.AsFloat}";
         }
         #endregion
+
+        #region メソッド（型変換）
+        /// <summary>
+        ///     型変換
+        /// </summary>
+        /// <returns></returns>
+        internal PointInt ToInt()
+        {
+            return new PointInt(
+                x: this.X.ToInt(),
+                y: this.Y.ToInt());
+        }
+        #endregion
     }
 }

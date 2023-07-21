@@ -193,7 +193,7 @@
         }
         #endregion
 
-        // - プロパティー
+        // - インターナル・プロパティー
 
         #region プロパティ（値。浮動小数点数形式）
         /// <summary>
@@ -202,7 +202,20 @@
         internal float AsFloat => source;
         #endregion
 
-        // - フィールド
+        // - インターナル・メソッド
+
+        #region メソッド（型変換）
+        /// <summary>
+        ///     型変換
+        /// </summary>
+        /// <returns></returns>
+        internal YInt ToInt()
+        {
+            return new YInt((int)this.source);
+        }
+        #endregion
+
+        // - プライベート・フィールド
 
         #region フィールド（値）
         /// <summary>

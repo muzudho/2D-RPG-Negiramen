@@ -170,5 +170,18 @@
             return $"Point:{Point.Dump()}, Size:{Size.Dump()}";
         }
         #endregion
+
+        #region メソッド（型変換）
+        /// <summary>
+        ///     型変換
+        /// </summary>
+        /// <returns></returns>
+        internal RectangleInt ToInt()
+        {
+            return new RectangleInt(
+                point: this.Point.ToInt(),
+                size: this.Size.ToInt());
+        }
+        #endregion
     }
 }

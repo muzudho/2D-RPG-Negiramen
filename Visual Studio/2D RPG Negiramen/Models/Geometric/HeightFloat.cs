@@ -201,6 +201,19 @@
         internal float AsFloat => source;
         #endregion
 
+        // - インターナル・メソッド
+
+        #region メソッド（型変換）
+        /// <summary>
+        ///     型変換
+        /// </summary>
+        /// <returns></returns>
+        internal HeightInt ToInt()
+        {
+            return new HeightInt((int)this.source);
+        }
+        #endregion
+
         // - プライベート・フィールド
 
         #region フィールド（値）

@@ -1865,7 +1865,7 @@
         /// <summary>
         ///     グリッド単位。ズーム後
         /// </summary>
-        Models.Geometric.SizeFloat workingGridUnit = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32), new Models.Geometric.HeightFloat(32));
+        Models.Geometric.SizeFloat workingGridUnit = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32.0f), new Models.Geometric.HeightFloat(32.0f));
         #endregion
 
         #region フィールド（矩形カーソル。元画像ベース　関連）

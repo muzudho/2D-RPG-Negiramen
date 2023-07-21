@@ -174,26 +174,12 @@
         }
 
         #region 変更通知プロパティ（グリッド全体の左上表示位置）
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        Models.PointInt workingGridLeftTop = Models.PointInt.Empty;
-後:
-        PointInt workingGridLeftTop = PointInt.Empty;
-*/
-        Models.Geometric.PointInt workingGridLeftTop = Models.Geometric.PointInt.Empty;
+        Models.Geometric.PointFloat workingGridLeftTop = Models.Geometric.PointFloat.Empty;
 
         /// <summary>
         ///     グリッド全体の左上表示位置
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.PointInt WorkingGridLeftTop
-後:
-        public PointInt WorkingGridLeftTop
-*/
-        public Models.Geometric.PointInt WorkingGridLeftTop
+        public Models.Geometric.PointFloat WorkingGridLeftTop
         {
             get => this.workingGridLeftTop;
             set

@@ -51,21 +51,14 @@ public partial class TileCropPage : ContentPage
     /// <summary>
     ///     ポインティング・デバイス押下開始位置
     /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    Models.PointInt PointingDeviceStartPoint { get; set; }
-後:
-    PointInt PointingDeviceStartPoint { get; set; }
-*/
-    Models.Geometric.PointInt PointingDeviceStartPoint { get; set; }
+    Models.Geometric.PointFloat PointingDeviceStartPoint { get; set; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス現在位置）
     /// <summary>
     ///     ポインティング・デバイス現在位置
     /// </summary>
-    Models.Geometric.PointInt PointingDeviceCurrentPoint { get; set; }
+    Models.Geometric.PointFloat PointingDeviceCurrentPoint { get; set; }
     #endregion
 
     // - プライベート・メソッド
@@ -78,13 +71,26 @@ public partial class TileCropPage : ContentPage
     {
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
+        //
         // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
-        var rect = Models.CoordinateHelper.GetCursorRectangle(
+        // ====================================================================
+        //
+
+        // ズームしたまま
+        RectangleFloat workingRect = Models.CoordinateHelper.GetCursorRectangle(
             startPoint: PointingDeviceStartPoint,
             endPoint: PointingDeviceCurrentPoint,
-            gridLeftTop: context.SourceGridPhase,
-            gridTile: context.SourceGridUnit);
+            gridLeftTop: context.WorkingGridPhase,
+            gridTile: context.WorkingGridUnit);
 
+        // ズームを除去
+        RectangleInt sourceRect = new RectangleInt(
+            point: new PointInt(
+                x: new XInt((int)(workingRect.Point.X.AsFloat / context.ZoomAsFloat)),
+                y: new YInt((int)(workingRect.Point.Y.AsFloat / context.ZoomAsFloat))),
+            size: new SizeInt(
+                width: new WidthInt((int)(workingRect.Size.Width.AsFloat / context.ZoomAsFloat)),
+                height: new HeightInt((int)(workingRect.Size.Height.AsFloat / context.ZoomAsFloat))));
 
         //
         // 計算値の反映
@@ -92,7 +98,7 @@ public partial class TileCropPage : ContentPage
         //
         // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
 
-        context.SourceCroppedCursorRect = rect;
+        context.SourceCroppedCursorRect = sourceRect;
 
         //
         // タイルが登録済みか？
@@ -307,6 +313,8 @@ public partial class TileCropPage : ContentPage
         // 反転
         context.IsMouseDragging = !context.IsMouseDragging;
 
+        Point? tappedPoint = e.GetPosition((Element)sender) ?? Point.Zero;
+
         if (context.IsMouseDragging)
         {
             //
@@ -316,9 +324,9 @@ public partial class TileCropPage : ContentPage
             Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
 
             // ポイントしている位置
-            PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.Geometric.PointInt(
-                new Models.Geometric.XInt((int)e.GetPosition((Element)sender).Value.X),
-                new Models.Geometric.YInt((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.Geometric.PointFloat(
+                new Models.Geometric.XFloat((float)tappedPoint.Value.X),
+                new Models.Geometric.YFloat((float)tappedPoint.Value.Y));
             // Trace.WriteLine($"[TileCropPage TapGestureRecognizer_Tapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
@@ -335,9 +343,9 @@ public partial class TileCropPage : ContentPage
             Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
 
             // ポイントしている位置
-            PointingDeviceCurrentPoint = new Models.Geometric.PointInt(
-                new Models.Geometric.XInt((int)e.GetPosition((Element)sender).Value.X),
-                new Models.Geometric.YInt((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                new Models.Geometric.XFloat((float)tappedPoint.Value.X),
+                new Models.Geometric.YFloat((float)tappedPoint.Value.Y));
             // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
@@ -364,10 +372,12 @@ public partial class TileCropPage : ContentPage
             // ====================
             //
 
+            Point? tappedPoint = e.GetPosition((Element)sender) ?? Point.Zero;
+
             // ポイントしている位置
-            PointingDeviceCurrentPoint = new Models.Geometric.PointInt(
-                new Models.Geometric.XInt((int)e.GetPosition((Element)sender).Value.X),
-                new Models.Geometric.YInt((int)e.GetPosition((Element)sender).Value.Y));
+            PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                new Models.Geometric.XFloat((float)tappedPoint.Value.X),
+                new Models.Geometric.YFloat((float)tappedPoint.Value.Y));
             // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
