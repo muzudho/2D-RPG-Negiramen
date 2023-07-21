@@ -2,6 +2,9 @@
 
 using _2D_RPG_Negiramen.ViewModels;
 
+/// <summary>
+///     カラーマップ
+/// </summary>
 internal class ColoredMap : BindableObject, IDrawable
 {
     // - パブリック束縛可能プロパティ
