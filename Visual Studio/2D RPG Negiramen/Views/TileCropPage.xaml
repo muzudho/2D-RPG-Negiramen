@@ -354,7 +354,7 @@
                 <!--    カラード・マップ
                         ================
                 -->
-                <GraphicsView x:Name="coloredMapGraphicsView"
+                <GraphicsView x:Name="coloredMapGraphicsView1"
                               HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="4,4,0,0"
                               WidthRequest="{Binding TilesetWorkingImageWidthAsInt}" HeightRequest="{Binding TilesetWorkingImageHeightAsInt}"

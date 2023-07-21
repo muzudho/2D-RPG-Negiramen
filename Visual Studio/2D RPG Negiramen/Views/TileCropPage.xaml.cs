@@ -473,6 +473,12 @@ public partial class TileCropPage : ContentPage
         {
             // TODO 保存失敗時のエラー対応
         }
+
+        //
+        // カラーマップの再描画
+        // ====================
+        //
+        coloredMapGraphicsView1.Invalidate();
     }
     #endregion
 
@@ -518,6 +524,12 @@ public partial class TileCropPage : ContentPage
         {
             // TODO 保存失敗時のエラー対応
         }
+
+        //
+        // カラーマップの再描画
+        // ====================
+        //
+        coloredMapGraphicsView1.Invalidate();
     }
     #endregion
 
