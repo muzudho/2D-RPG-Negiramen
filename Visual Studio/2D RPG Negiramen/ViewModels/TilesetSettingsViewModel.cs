@@ -10,11 +10,20 @@
     ///     タイルセット設定ビューモデル
     ///     
     ///     <list type="bullet">
-    ///         <item>ビューモデル</item>
+    ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    internal class TilesetSettingsViewModel : ObservableObject
+    public class TilesetSettingsViewModel : ObservableObject
     {
+        // - その他
+
+        #region その他（生成）
+        internal TilesetSettingsViewModel()
+        {
+
+        }
+        #endregion
+
         // - インターナル静的メソッド
 
         #region メソッド（CSV形式ファイルの読込）
@@ -28,99 +37,35 @@
             // 既定値の設定（空っぽ）
             tilesetSettingsVM = new TilesetSettingsViewModel();
 
-            try
+            if (TilesetSettings.LoadCSV(tilesetSettingsFile, out TilesetSettings tilesetSettings))
             {
-                //
-                // ファイルの有無確認
-                // ==================
-                //
-                if (System.IO.File.Exists(tilesetSettingsFile.Path.AsStr))
+                foreach (TileRecord record in tilesetSettings.RecordList)
                 {
-                    // ファイルが有るなら
-
-                    //
-                    // ファイル読取
-                    // ============
-                    //
-                    var text = System.IO.File.ReadAllText(tilesetSettingsFile.Path.AsStr);
-
-                    //
-                    // ＣＳＶとして解析
-                    // ================
-                    //
-
-                    // 先頭行は列名なので取り除く
-                    var newLineIndex = text.IndexOf("\r\n");
-                    text = text.Substring(newLineIndex + 2);
-
-                    // 最後の改行は取り除く（空行は読込めない）
-                    text = text.TrimEnd();
-
-                    // とりあえず改行で分割
-                    var lines = text.Split("\r\n");
-
-                    // 各行について
-                    foreach (var line in lines)
-                    {
-                        // 空行は読み飛ばす
-                        if (string.IsNullOrWhiteSpace(line))
-                        {
-                            continue;
-                        }
-
-                        // TODO ダブル・クォーテーション対応
-
-                        // とりあえずカンマで分割
-                        var cells = line.Split(",");
-
-                        int tileId = int.Parse(cells[0]);
-                        int x = int.Parse(cells[1]);
-                        int y = int.Parse(cells[2]);
-                        int width = int.Parse(cells[3]);
-                        int height = int.Parse(cells[4]);
-                        string comment = cells[5];
-
-                        Models.LogicalDelete logicalDelete;
-                        if (7 <= cells.Length)
-                        {
-                            logicalDelete = new Models.LogicalDelete(int.Parse(cells[6]));
-                        }
-                        else
-                        {
-                            logicalDelete = Models.LogicalDelete.False;
-                        }
-
-                        // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
-                        tilesetSettingsVM.Add(
-                            id: new Models.TileId(tileId),
-                            rect: new Models.Geometric.RectangleInt(
-                                point: new Models.Geometric.PointInt(
-                                    x: new Models.Geometric.XInt(x),
-                                    y: new Models.Geometric.YInt(y)),
-                                size: new Models.Geometric.SizeInt(
-                                    width: new Models.Geometric.WidthInt(width),
-                                    height: new Models.Geometric.HeightInt(height))),
-                            workingRect: new Models.Geometric.RectangleInt(
-                                point: new Models.Geometric.PointInt(
-                                    x: new Models.Geometric.XInt(x),
-                                    y: new Models.Geometric.YInt(y)),
-                                size: new Models.Geometric.SizeInt(
-                                    width: new Models.Geometric.WidthInt(width),
-                                    height: new Models.Geometric.HeightInt(height))),
-                            comment: new Models.Comment(comment),
-                            logicalDelete: logicalDelete,
-                            onTileIdUpdated: () =>
-                            {
-                                // 自明なんで省略
-                            });
-                    }
+                    tilesetSettingsVM.RecordViewModelList.Add(
+                        TileRecordViewModel.FromModel(
+                            tileRecord: record,
+                            workingRect: new TheGeometric.RectangleInt(record.Rectangle)));
                 }
+                try
+                {
+                    //
+                    // ファイルの有無確認
+                    // ==================
+                    //
+                    if (System.IO.File.Exists(tilesetSettingsFile.Path.AsStr))
+                    {
+                    }
 
-                return true;
+                    return true;
+                }
+                catch (Exception ex)
+                {
+                    // TODO エラー対応
+                    return false;
+                }
             }
-            catch (Exception ex)
+            else
             {
-                // TODO エラー対応
                 return false;
             }
         }

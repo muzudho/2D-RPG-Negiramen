@@ -2,11 +2,9 @@
 {
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
-    using _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
-    using System.Diagnostics;
     using System.Globalization;
 
     /// <summary>
@@ -76,17 +74,17 @@
         }
 
         /// <summary>
-        ///     タイルセット設定
+        ///     タイルセット設定ビューモデル
         /// </summary>
-        public Models.FileEntries.TilesetSettings TilesetSettings
+        public TilesetSettingsViewModel TilesetSettingsVM
         {
-            get => this._tilesetSettings;
+            get => this._tilesetSettingsVM;
             set
             {
-                if (this._tilesetSettings != value)
+                if (this._tilesetSettingsVM != value)
                 {
-                    this._tilesetSettings = value;
-                    OnPropertyChanged(nameof(TilesetSettings));
+                    this._tilesetSettingsVM = value;
+                    OnPropertyChanged(nameof(TilesetSettingsVM));
 
                     // TODO これ要るか？ 再描画
                     NotifyTileIdChange();
@@ -226,16 +224,16 @@
         /// <summary>
         ///     切抜きカーソル。元画像ベース
         /// </summary>
-        public Option<TileRecord> SelectedTileOption
+        public Option<TileRecord> SelectedTileVMOption
         {
-            get => this.sourceCroppedCursorOption;
+            get => this.selectedTileVMOption;
             set
             {
                 Models.TileRecord newValue;
 
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
-                    if (SelectedTileOption == value)
+                    if (SelectedTileVMOption == value)
                     {
                         // 値に変化がない
                         return;
@@ -278,7 +276,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Id;
                 }
@@ -290,7 +288,7 @@
             }
             set
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Id == value)
                     {
@@ -298,7 +296,7 @@
                         return;
                     }
 
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
                         rectangle: selectedTile.Rectangle,
                         comment: selectedTile.Comment,
@@ -307,7 +305,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: value,
                         rectangle: Models.Geometric.RectangleInt.Empty,
                         comment: Models.Comment.Empty,
@@ -316,7 +314,7 @@
 
                 this.RefreshByLocaleChanged();
 
-                if (this.sourceCroppedCursorOption.TryGetValue(out var record))
+                if (this.selectedTileVMOption.TryGetValue(out var record))
                 {
                     if (record.Id == TileId.Empty)
                     {
@@ -860,7 +858,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Id == Models.TileId.Empty)
                     {
@@ -985,7 +983,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Id.AsBASE64;
                 }
@@ -1008,7 +1006,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Id.AsPhoneticCode;
                 }
@@ -1029,7 +1027,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle;
                 }
@@ -1041,7 +1039,7 @@
             }
             set
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle == value)
                     {
@@ -1074,7 +1072,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Point.X.AsInt;
                 }
@@ -1086,7 +1084,7 @@
             }
             set
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Point.X.AsInt == value)
                     {
@@ -1095,7 +1093,7 @@
                     }
 
                     // 元画像ベース
-                    this.sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    this.selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTile.Rectangle.Point.Y),
@@ -1108,7 +1106,7 @@
                     // タイル・カーソル無し時
 
                     // 元画像ベース
-                    this.sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    this.selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
@@ -1134,7 +1132,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Point.Y.AsInt;
                 }
@@ -1146,7 +1144,7 @@
             }
             set
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Point.Y.AsInt == value)
                     {
@@ -1155,7 +1153,7 @@
                     }
 
                     // 元画像ベース
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(selectedTile.Rectangle.Point.X, new Models.Geometric.YInt(value)),
@@ -1168,7 +1166,7 @@
                     // タイル・カーソル無し時
 
                     // 元画像ベース
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
@@ -1198,7 +1196,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Size;
                 }
@@ -1210,7 +1208,7 @@
             }
             set
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Size == value)
                     {
@@ -1241,7 +1239,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Size.Width.AsInt;
                 }
@@ -1253,7 +1251,7 @@
             }
             set
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Size.Width.AsInt == value)
                     {
@@ -1261,7 +1259,7 @@
                         return;
                     }
 
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(selectedTile.Rectangle.Point, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), selectedTile.Rectangle.Size.Height)),
                         comment: selectedTile.Comment,
@@ -1270,7 +1268,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                         comment: Models.Comment.Empty,
@@ -1293,7 +1291,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Rectangle.Size.Height.AsInt;
                 }
@@ -1305,7 +1303,7 @@
             }
             set
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Rectangle.Size.Height.AsInt == value)
                     {
@@ -1313,7 +1311,7 @@
                         return;
                     }
 
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: new Models.Geometric.RectangleInt(selectedTile.Rectangle.Point, new Models.Geometric.SizeInt(selectedTile.Rectangle.Size.Width, new Models.Geometric.HeightInt(value))),
                         comment: selectedTile.Comment,
@@ -1322,7 +1320,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
                         rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
                         comment: Models.Comment.Empty,
@@ -1581,7 +1579,7 @@
         {
             get
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     return selectedTile.Comment.AsStr;
                 }
@@ -1593,7 +1591,7 @@
             }
             set
             {
-                if (this.sourceCroppedCursorOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
                 {
                     if (selectedTile.Comment.AsStr == value)
                     {
@@ -1601,7 +1599,7 @@
                         return;
                     }
 
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: selectedTile.Id,
                         rectangle: selectedTile.Rectangle,
                         comment: new Models.Comment(value),
@@ -1610,7 +1608,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    sourceCroppedCursorOption = new Option<TileRecord>(new Models.TileRecord(
+                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
                         id: TileId.Empty,
 
                         /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
@@ -1664,7 +1662,7 @@
         /// </summary>
         public void RefreshByLocaleChanged()
         {
-            if (this.sourceCroppedCursorOption.TryGetValue(out var record))
+            if (this.selectedTileVMOption.TryGetValue(out var record))
             {
                 if (record.Id == TileId.Empty)
                 {
@@ -1754,9 +1752,9 @@
         Models.FileEntries.Locations.TilesetSettingsFile _tilesetSettingsFile = Models.FileEntries.Locations.TilesetSettingsFile.Empty;
 
         /// <summary>
-        ///     タイルセット設定
+        ///     タイルセット設定ビューモデル
         /// </summary>
-        Models.FileEntries.TilesetSettings _tilesetSettings = new Models.FileEntries.TilesetSettings();
+        TilesetSettingsViewModel _tilesetSettingsVM = new TilesetSettingsViewModel();
         #endregion
 
         #region フィールド（タイルセット元画像　関連）
@@ -1822,7 +1820,7 @@
         ///         <item>タイル・カーソルが有るときと、無いときを分ける</item>
         ///     </list>
         /// </summary>
-        Option<TileRecord> sourceCroppedCursorOption = new Option<TileRecord>(Models.TileRecord.Empty);
+        Option<TileRecordViewModel> selectedTileVMOption = new Option<TileRecordViewModel>(new TileRecordViewModel());
         #endregion
 
         #region フィールド（矩形カーソル。ズーム済み　関連）

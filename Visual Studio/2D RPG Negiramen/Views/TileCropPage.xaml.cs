@@ -98,9 +98,9 @@ public partial class TileCropPage : ContentPage
         // タイルが登録済みか？
         // ====================
         //
-        if (context.TilesetSettings.TryGetByRectangle(
-            rect: context.SourceCroppedCursorRect,
-            out Models.TileRecord record))
+        if (context.TilesetSettingsVM.TryGetByRectangle(
+            sourceRect: context.SourceCroppedCursorRect,
+            out TileRecordViewModel recordVM))
         {
             // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
 
@@ -113,7 +113,7 @@ public partial class TileCropPage : ContentPage
             // TODO 削除ボタン活性化
 
             // 選択中のタイルを設定
-            context.SelectedTileOption = new Option<Models.TileRecord>(record);
+            context.SelectedTileVMOption = new Option<Models.TileRecord>(recordVM);
         }
         else
         {
@@ -128,7 +128,7 @@ public partial class TileCropPage : ContentPage
             // TODO 削除ボタン不活性化
 
             // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-            context.SelectedTileOption = new Option<Models.TileRecord>(new Models.TileRecord(
+            context.SelectedTileVMOption = new Option<Models.TileRecord>(new Models.TileRecord(
                 id: Models.TileId.Empty,
                 rectangle: context.SourceCroppedCursorRect,
                 comment: Models.Comment.Empty,
@@ -410,7 +410,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         Models.LogicalDelete logicalDelete;
-        if (context.SelectedTileOption.TryGetValue(out var record))
+        if (context.SelectedTileVMOption.TryGetValue(out var record))
         {
             logicalDelete = record.LogicalDelete;
         }
@@ -469,7 +469,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         Models.LogicalDelete logicalDelete;
-        if (context.SelectedTileOption.TryGetValue(out var record))
+        if (context.SelectedTileVMOption.TryGetValue(out var record))
         {
             logicalDelete = record.LogicalDelete;
         }
