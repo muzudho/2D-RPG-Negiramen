@@ -1,7 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
-    using TheGraphics = Microsoft.Maui.Graphics;
-
     /// <summary>
     ///     😁 矩形
     ///     
@@ -89,6 +87,31 @@
         }
         #endregion
 
+        // - その他
+
+        #region その他（生成　関連）
+        /// <summary>
+        ///     生成
+        /// </summary>
+        /// <param name="rect">位置と大きさ</param>
+        internal RectangleInt(RectangleInt rect)
+        {
+            Point = rect.Point;
+            Size = rect.Size;
+        }
+
+        /// <summary>
+        ///     生成
+        /// </summary>
+        /// <param name="point">位置</param>
+        /// <param name="size">大きさ</param>
+        internal RectangleInt(PointInt point, SizeInt size)
+        {
+            Point = point;
+            Size = size;
+        }
+        #endregion
+
         // - インターナル静的プロパティ
 
         #region プロパティ（空オブジェクト）
@@ -103,28 +126,6 @@
                 internal static RectangleInt Empty = new RectangleInt(PointInt.Empty, Models.SizeInt.Empty);
         */
         internal static RectangleInt Empty = new RectangleInt(PointInt.Empty, SizeInt.Empty);
-        #endregion
-
-        // - その他
-
-        #region その他（生成）
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="point">位置</param>
-        /// <param name="size">大きさ</param>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal RectangleInt(Models.PointInt point, Models.SizeInt size)
-        後:
-                internal RectangleInt(PointInt point, Models.SizeInt size)
-        */
-        internal RectangleInt(PointInt point, SizeInt size)
-        {
-            Point = point;
-            Size = size;
-        }
         #endregion
 
         // - インターナル・プロパティー

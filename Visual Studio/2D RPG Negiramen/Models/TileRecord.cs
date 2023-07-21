@@ -4,9 +4,44 @@
 
     /// <summary>
     ///     タイル１件分の記録
+    ///     
+    ///     <list type="bullet">
+    ///         <item>イミュータブル</item>
+    ///     </list>
     /// </summary>
     class TileRecord
     {
+        // - その他
+
+        #region その他（生成　関連）
+        /// <summary>
+        ///     生成
+        /// </summary>
+        public TileRecord()
+            : this(Models.TileId.Empty,
+                   Geometric.RectangleInt.Empty,
+                   Models.Comment.Empty,
+                   Models.LogicalDelete.False)
+        {
+        }
+
+        /// <summary>
+        ///     生成
+        /// </summary>
+        /// <param name="rectangle">レクタングル</param>
+        internal TileRecord(
+            Models.TileId id,
+            Geometric.RectangleInt rectangle,
+            Models.Comment comment,
+            Models.LogicalDelete logicalDelete)
+        {
+            this.Id = id ?? throw new ArgumentNullException(nameof(id));
+            this.Rectangle = rectangle ?? throw new ArgumentNullException(nameof(rectangle));
+            this.Comment = comment ?? throw new ArgumentNullException(nameof(comment));
+            this.LogicalDelete = logicalDelete ?? throw new ArgumentNullException(nameof(logicalDelete));
+        }
+        #endregion
+
         // - インターナル静的プロパティ
 
         #region プロパティ（空オブジェクト）
@@ -21,53 +56,6 @@
         ///     空オブジェクト
         /// </summary>
         internal static Option<TileRecord> EmptyOption = new Option<TileRecord>(TileRecord.Empty);
-        #endregion
-
-        // - その他
-
-        #region その他（生成）
-        /// <summary>
-        ///     生成
-        /// </summary>
-        public TileRecord()
-            : this(Models.TileId.Empty,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                   Models.RectangleInt.Empty,
-後:
-                   RectangleInt.Empty,
-*/
-                   Geometric.RectangleInt.Empty,
-                   Models.Comment.Empty,
-                   Models.LogicalDelete.False)
-        {
-        }
-        #endregion
-
-        #region その他（生成）
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="rectangle">レクタングル</param>
-        internal TileRecord(
-            Models.TileId id,
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            Models.RectangleInt rectangle,
-後:
-            RectangleInt rectangle,
-*/
-            Geometric.RectangleInt rectangle,
-            Models.Comment comment,
-            Models.LogicalDelete logicalDelete)
-        {
-            this.Id = id ?? throw new ArgumentNullException(nameof(id));
-            this.Rectangle = rectangle ?? throw new ArgumentNullException(nameof(rectangle));
-            this.Comment = comment ?? throw new ArgumentNullException(nameof(comment));
-            this.LogicalDelete = logicalDelete ?? throw new ArgumentNullException(nameof(logicalDelete));
-        }
         #endregion
 
         // - インターナル・プロパティ
@@ -87,13 +75,6 @@
         /// <summary>
         ///     矩形
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        internal Models.RectangleInt Rectangle { get; }
-後:
-        internal RectangleInt Rectangle { get; }
-*/
         internal Geometric.RectangleInt Rectangle { get; }
         #endregion
 

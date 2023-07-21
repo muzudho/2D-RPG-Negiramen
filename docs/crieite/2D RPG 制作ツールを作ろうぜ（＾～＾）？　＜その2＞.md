@@ -186,4 +186,48 @@
 「　👆　カーソルや、カラー・マップを　ズームに対応させるの　まだまだ　かかりそう。  
 今日はもう寝る」  
 
+# 📅 （2023-07-19 wed） 野球のオールスター観てた
+
+休み  
+
+# 📅 （2023-07-20 thu） 野球のオールスター観てた
+
+休み  
+
+# 📅 （2023-07-21 fri） カラーマップもズームに対応しろだぜ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　作業用ＢＧＭなんか　ないかな？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　植松伸夫の　バトル１　を永遠に聞き続けなさい」  
+
+📖　[バトル1](https://www.youtube.com/watch?v=VQ0nLB4WIas)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ＲＰＧだ！」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　原曲じゃないか……　アレンジがいいのに……」  
+
+![202307_maui_21-2230--recordList-o2o0.png](https://crieit.now.sh/upload_images/34c68df5f651b70d538fe8efd1e41d0c64ba88ee28a08.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　この `List<TileRecord> RecordList` というのが　タイル１個分のデータだが、  
+ズーム後の表示サイズのようなものは　記録しないぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そこで　例えば　`List<TileViewModelRecord> RecordViewModelList`　のように  
+ズーム後の表示サイズも記録するように　拡張するのが　基本的な考え方だぜ」  
+
+![202307_maui_21-2237--tileRecord-o2o0.png](https://crieit.now.sh/upload_images/6e2f151a2e3a7502c69ca13d3b9857d464ba8a56e4cdd.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`TileRecord`　ってこういうモデルだが、  これとは別に　`TileRecordViewModel`　というビューモデルを作ることにしよう」  
+
+![202307_maui_21-2259--tileRecordViewModel-o2o0.png](https://crieit.now.sh/upload_images/1fc5be594ce5afc9d3fa9e5e6195731c64ba909ca4b76.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　主な違いは、位置とサイズを、元データとズーム後の２つに分けて持つことだぜ」  
+
 ＜書きかけ＞
