@@ -113,7 +113,7 @@ public partial class TileCropPage : ContentPage
             // TODO 削除ボタン活性化
 
             // 選択中のタイルを設定
-            context.SelectedTileVMOption = new Option<Models.TileRecord>(recordVM);
+            context.SelectedTileVMOption = new Option<TileRecordViewModel>(recordVM);
         }
         else
         {
@@ -128,11 +128,13 @@ public partial class TileCropPage : ContentPage
             // TODO 削除ボタン不活性化
 
             // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-            context.SelectedTileVMOption = new Option<Models.TileRecord>(new Models.TileRecord(
-                id: Models.TileId.Empty,
-                rectangle: context.SourceCroppedCursorRect,
-                comment: Models.Comment.Empty,
-                logicalDelete: Models.LogicalDelete.False));
+            context.SelectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                tileRecord: new TileRecord(
+                    id: Models.TileId.Empty,
+                    rectangle: context.SourceCroppedCursorRect,
+                    comment: Models.Comment.Empty,
+                    logicalDelete: Models.LogicalDelete.False),
+                workingRect: new RectangleInt(context.SourceCroppedCursorRect)));
         }
     }
     #endregion
@@ -163,9 +165,9 @@ public partial class TileCropPage : ContentPage
         // タイル設定ファイルの読込
         // ========================
         //
-        if (Models.FileEntries.TilesetSettings.LoadCSV(context.TilesetSettingsFile, out Models.FileEntries.TilesetSettings tileSetSettings))
+        if (TilesetSettingsViewModel.LoadCSV(context.TilesetSettingsFile, out TilesetSettingsViewModel tileSetSettingsVM))
         {
-            context.TilesetSettings = tileSetSettings;
+            context.TilesetSettingsVM = tileSetSettingsVM;
 
             //// 登録タイルのデバッグ出力
             //foreach (var record in context.TilesetSettings.RecordList)
@@ -423,10 +425,17 @@ public partial class TileCropPage : ContentPage
         // 設定ファイルの編集
         // ==================
         //
-        context.TilesetSettings.Add(
+        context.TilesetSettingsVM.Add(
             // 新しいＩｄを追加
-            id: context.TilesetSettings.UsableId,
+            id: context.TilesetSettingsVM.UsableId,
             rect: new Models.Geometric.RectangleInt(
+                point: new Models.Geometric.PointInt(
+                    x: new Models.Geometric.XInt(context.SourceCroppedCursorLeftAsInt),
+                    y: new Models.Geometric.YInt(context.SourceCroppedCursorTopAsInt)),
+                size: new Models.Geometric.SizeInt(
+                    width: new Models.Geometric.WidthInt(context.SourceCroppedCursorWidthAsInt),
+                    height: new Models.Geometric.HeightInt(context.SourceCroppedCursorHeightAsInt))),
+            workingRect: new Models.Geometric.RectangleInt(
                 point: new Models.Geometric.PointInt(
                     x: new Models.Geometric.XInt(context.SourceCroppedCursorLeftAsInt),
                     y: new Models.Geometric.YInt(context.SourceCroppedCursorTopAsInt)),
@@ -445,7 +454,7 @@ public partial class TileCropPage : ContentPage
         // 設定ファイルの保存
         // ==================
         //
-        if (context.TilesetSettings.SaveCSV(context.TilesetSettingsFile))
+        if (context.TilesetSettingsVM.SaveCSV(context.TilesetSettingsFile))
         {
             // 保存成功
         }
@@ -482,7 +491,7 @@ public partial class TileCropPage : ContentPage
         // 設定ファイルの編集
         // ==================
         //
-        context.TilesetSettings.DeleteLogical(
+        context.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のＩｄ
             id: context.SelectedTileId);
 
@@ -490,7 +499,7 @@ public partial class TileCropPage : ContentPage
         // 設定ファイルの保存
         // ==================
         //
-        if (context.TilesetSettings.SaveCSV(context.TilesetSettingsFile))
+        if (context.TilesetSettingsVM.SaveCSV(context.TilesetSettingsFile))
         {
             // 保存成功
         }

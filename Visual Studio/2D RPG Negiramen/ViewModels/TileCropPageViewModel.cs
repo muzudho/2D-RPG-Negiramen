@@ -2,6 +2,7 @@
 {
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
+    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -224,40 +225,41 @@
         /// <summary>
         ///     切抜きカーソル。元画像ベース
         /// </summary>
-        public Option<TileRecord> SelectedTileVMOption
+        public Option<TileRecordViewModel> SelectedTileVMOption
         {
             get => this.selectedTileVMOption;
             set
             {
-                Models.TileRecord newValue;
-
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption == value)
                 {
-                    if (SelectedTileVMOption == value)
-                    {
-                        // 値に変化がない
-                        return;
-                    }
+                    // 値に変化がない
+                    return;
+                }
 
-                    // 必ず取れる想定
-                    if (!value.TryGetValue(out newValue))
+                TileRecordViewModel tileRecordVM;
+
+                if (this.selectedTileVMOption.TryGetValue(out tileRecordVM))
+                {
+                    // 非ヌルの想定
+                    if (tileRecordVM == null)
                     {
-                        throw new InvalidOperationException("none must not be specified");
+                        throw new InvalidOperationException("must not be null");
                     }
                 }
                 else
                 {
                     // タイル・カーソル無し時
-                    newValue = Models.TileRecord.Empty;
+                    tileRecordVM = new TileRecordViewModel();
+                    this.selectedTileVMOption = new Option<TileRecordViewModel>(tileRecordVM);
                 }
 
                 // 変更通知を送りたいので、構成要素ごとに設定
-                this.SelectedTileId = newValue.Id;
-                this.SourceCroppedCursorLeftAsInt = newValue.Rectangle.Point.X.AsInt;
-                this.SourceCroppedCursorTopAsInt = newValue.Rectangle.Point.Y.AsInt;
-                this.SourceCroppedCursorWidthAsInt = newValue.Rectangle.Size.Width.AsInt;
-                this.SourceCroppedCursorHeightAsInt = newValue.Rectangle.Size.Height.AsInt;
-                this.SelectedTileCommentAsStr = newValue.Comment.AsStr;
+                this.SelectedTileId = tileRecordVM.Id;
+                this.SourceCroppedCursorLeftAsInt = tileRecordVM.SourceRectangle.Point.X.AsInt;
+                this.SourceCroppedCursorTopAsInt = tileRecordVM.SourceRectangle.Point.Y.AsInt;
+                this.SourceCroppedCursorWidthAsInt = tileRecordVM.SourceRectangle.Size.Width.AsInt;
+                this.SourceCroppedCursorHeightAsInt = tileRecordVM.SourceRectangle.Size.Height.AsInt;
+                this.SelectedTileCommentAsStr = tileRecordVM.Comment.AsStr;
 
                 OnPropertyChanged(nameof(AddsButtonHint));
                 OnPropertyChanged(nameof(AddsButtonText));
@@ -276,9 +278,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Id;
+                    return selectedTileVM.Id;
                 }
                 else
                 {
@@ -288,28 +290,32 @@
             }
             set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Id == value)
+                    if (selectedTileVM.Id == value)
                     {
                         // 値に変化がない
                         return;
                     }
 
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: value,
-                        rectangle: selectedTile.Rectangle,
-                        comment: selectedTile.Comment,
-                        logicalDelete: selectedTile.LogicalDelete));
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new TileRecord(
+                            id: value,
+                            rectangle: selectedTileVM.SourceRectangle,
+                            comment: selectedTileVM.Comment,
+                            logicalDelete: selectedTileVM.LogicalDelete),
+                        workingRect: new TheGeometric.RectangleInt(selectedTileVM.SourceRectangle)));
                 }
                 else
                 {
                     // タイル・カーソル無し時
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: value,
-                        rectangle: Models.Geometric.RectangleInt.Empty,
-                        comment: Models.Comment.Empty,
-                        logicalDelete: Models.LogicalDelete.False));
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: value,
+                            rectangle: Models.Geometric.RectangleInt.Empty,
+                            comment: Models.Comment.Empty,
+                            logicalDelete: Models.LogicalDelete.False),
+                    workingRect: new TheGeometric.RectangleInt(Models.Geometric.RectangleInt.Empty)));
                 }
 
                 this.RefreshByLocaleChanged();
@@ -858,9 +864,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Id == Models.TileId.Empty)
+                    if (selectedTileVM.Id == Models.TileId.Empty)
                     {
                         // 未選択時
                         return "選択タイルを、タイル一覧画面へ追加";
@@ -983,9 +989,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Id.AsBASE64;
+                    return selectedTileVM.Id.AsBASE64;
                 }
                 else
                 {
@@ -1006,9 +1012,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Id.AsPhoneticCode;
+                    return selectedTileVM.Id.AsPhoneticCode;
                 }
                 else
                 {
@@ -1027,9 +1033,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Rectangle;
+                    return selectedTileVM.SourceRectangle;
                 }
                 else
                 {
@@ -1039,9 +1045,9 @@
             }
             set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Rectangle == value)
+                    if (selectedTileVM.SourceRectangle == value)
                     {
                         // 値に変化がない
                         return;
@@ -1072,9 +1078,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Rectangle.Point.X.AsInt;
+                    return selectedTileVM.SourceRectangle.Point.X.AsInt;
                 }
                 else
                 {
@@ -1084,35 +1090,41 @@
             }
             set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Rectangle.Point.X.AsInt == value)
+                    if (selectedTileVM.SourceRectangle.Point.X.AsInt == value)
                     {
                         // 値に変化がない
                         return;
                     }
 
                     // 元画像ベース
-                    this.selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
-                        rectangle: new Models.Geometric.RectangleInt(
-                            point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTile.Rectangle.Point.Y),
-                            size: selectedTile.Rectangle.Size),
-                        comment: selectedTile.Comment,
-                        logicalDelete: selectedTile.LogicalDelete));
+                    var rect1 = new Models.Geometric.RectangleInt(
+                                point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTileVM.SourceRectangle.Point.Y),
+                                size: selectedTileVM.SourceRectangle.Size);
+                    this.selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: selectedTileVM.Id,
+                            rectangle: rect1,
+                            comment: selectedTileVM.Comment,
+                            logicalDelete: selectedTileVM.LogicalDelete),
+                        workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
                 else
                 {
                     // タイル・カーソル無し時
 
                     // 元画像ベース
-                    this.selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: Models.TileId.Empty,
-                        rectangle: new Models.Geometric.RectangleInt(
-                            point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
-                            size: Models.Geometric.SizeInt.Empty),
-                        comment: Models.Comment.Empty,
-                        logicalDelete: Models.LogicalDelete.False));
+                    var rect1 = new Models.Geometric.RectangleInt(
+                                point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
+                                size: Models.Geometric.SizeInt.Empty);
+                    this.selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: Models.TileId.Empty,
+                            rectangle: rect1,
+                            comment: Models.Comment.Empty,
+                            logicalDelete: Models.LogicalDelete.False),
+                        workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -1132,9 +1144,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Rectangle.Point.Y.AsInt;
+                    return selectedTileVM.SourceRectangle.Point.Y.AsInt;
                 }
                 else
                 {
@@ -1144,35 +1156,41 @@
             }
             set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Rectangle.Point.Y.AsInt == value)
+                    if (selectedTileVM.SourceRectangle.Point.Y.AsInt == value)
                     {
                         // 値に変化がない
                         return;
                     }
 
                     // 元画像ベース
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
-                        rectangle: new Models.Geometric.RectangleInt(
-                            point: new Models.Geometric.PointInt(selectedTile.Rectangle.Point.X, new Models.Geometric.YInt(value)),
-                            size: selectedTile.Rectangle.Size),
-                        comment: selectedTile.Comment,
-                        logicalDelete: selectedTile.LogicalDelete));
+                    var rect1 = new Models.Geometric.RectangleInt(
+                            point: new Models.Geometric.PointInt(selectedTileVM.SourceRectangle.Point.X, new Models.Geometric.YInt(value)),
+                            size: selectedTileVM.SourceRectangle.Size);
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: selectedTileVM.Id,
+                            rectangle: rect1,
+                            comment: selectedTileVM.Comment,
+                            logicalDelete: selectedTileVM.LogicalDelete),
+                        workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
                 else
                 {
                     // タイル・カーソル無し時
 
                     // 元画像ベース
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: Models.TileId.Empty,
-                        rectangle: new Models.Geometric.RectangleInt(
+                    var rect1 = new Models.Geometric.RectangleInt(
                             point: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
-                            size: Models.Geometric.SizeInt.Empty),
-                        comment: Models.Comment.Empty,
-                        logicalDelete: Models.LogicalDelete.False));
+                            size: Models.Geometric.SizeInt.Empty);
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: Models.TileId.Empty,
+                            rectangle: rect1,
+                            comment: Models.Comment.Empty,
+                            logicalDelete: Models.LogicalDelete.False),
+                        workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -1196,9 +1214,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Rectangle.Size;
+                    return selectedTileVM.SourceRectangle.Size;
                 }
                 else
                 {
@@ -1208,9 +1226,9 @@
             }
             set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Rectangle.Size == value)
+                    if (selectedTileVM.SourceRectangle.Size == value)
                     {
                         // 値に変化がない
                         return;
@@ -1239,9 +1257,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Rectangle.Size.Width.AsInt;
+                    return selectedTileVM.SourceRectangle.Size.Width.AsInt;
                 }
                 else
                 {
@@ -1251,28 +1269,34 @@
             }
             set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Rectangle.Size.Width.AsInt == value)
+                    if (selectedTileVM.SourceRectangle.Size.Width.AsInt == value)
                     {
                         // 値に変化がない
                         return;
                     }
 
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
-                        rectangle: new Models.Geometric.RectangleInt(selectedTile.Rectangle.Point, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), selectedTile.Rectangle.Size.Height)),
-                        comment: selectedTile.Comment,
-                        logicalDelete: selectedTile.LogicalDelete));
+                    var rect1 = new Models.Geometric.RectangleInt(selectedTileVM.SourceRectangle.Point, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), selectedTileVM.SourceRectangle.Size.Height));
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: selectedTileVM.Id,
+                            rectangle: rect1,
+                            comment: selectedTileVM.Comment,
+                            logicalDelete: selectedTileVM.LogicalDelete),
+                        workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
                 else
                 {
                     // タイル・カーソル無し時
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: Models.TileId.Empty,
-                        rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
-                        comment: Models.Comment.Empty,
-                        logicalDelete: Models.LogicalDelete.False));
+                    var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty));
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: Models.TileId.Empty,
+                            rectangle: rect1,
+                            comment: Models.Comment.Empty,
+                            logicalDelete: Models.LogicalDelete.False),
+                        workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
 
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
@@ -1291,9 +1315,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Rectangle.Size.Height.AsInt;
+                    return selectedTileVM.SourceRectangle.Size.Height.AsInt;
                 }
                 else
                 {
@@ -1303,28 +1327,34 @@
             }
             set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Rectangle.Size.Height.AsInt == value)
+                    if (selectedTileVM.SourceRectangle.Size.Height.AsInt == value)
                     {
                         // 値に変化がない
                         return;
                     }
 
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
-                        rectangle: new Models.Geometric.RectangleInt(selectedTile.Rectangle.Point, new Models.Geometric.SizeInt(selectedTile.Rectangle.Size.Width, new Models.Geometric.HeightInt(value))),
-                        comment: selectedTile.Comment,
-                        logicalDelete: selectedTile.LogicalDelete));
+                    var rect1 = new Models.Geometric.RectangleInt(selectedTileVM.SourceRectangle.Point, new Models.Geometric.SizeInt(selectedTileVM.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: selectedTileVM.Id,
+                            rectangle: rect1,
+                            comment: selectedTileVM.Comment,
+                            logicalDelete: selectedTileVM.LogicalDelete),
+                        workingRect: rect1));
                 }
                 else
                 {
                     // タイル・カーソル無し時
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: TileId.Empty,
-                        rectangle: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
-                        comment: Models.Comment.Empty,
-                        logicalDelete: Models.LogicalDelete.False));
+                    var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value)));
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: TileId.Empty,
+                            rectangle: rect1,
+                            comment: Models.Comment.Empty,
+                            logicalDelete: Models.LogicalDelete.False),
+                        workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
@@ -1579,9 +1609,9 @@
         {
             get
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTile.Comment.AsStr;
+                    return selectedTileVM.Comment.AsStr;
                 }
                 else
                 {
@@ -1591,35 +1621,34 @@
             }
             set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecord selectedTile))
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTile.Comment.AsStr == value)
+                    if (selectedTileVM.Comment.AsStr == value)
                     {
                         // 値に変化がない
                         return;
                     }
 
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: selectedTile.Id,
-                        rectangle: selectedTile.Rectangle,
-                        comment: new Models.Comment(value),
-                        logicalDelete: selectedTile.LogicalDelete));
+                    var rect1 = selectedTileVM.SourceRectangle;
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: selectedTileVM.Id,
+                            rectangle: rect1,
+                            comment: new Models.Comment(value),
+                            logicalDelete: selectedTileVM.LogicalDelete),
+                        workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
                 else
                 {
                     // タイル・カーソル無し時
-                    selectedTileVMOption = new Option<TileRecord>(new Models.TileRecord(
-                        id: TileId.Empty,
-
-                        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-                        前:
-                                                rectangle: Models.RectangleInt.Empty,
-                        後:
-                                                rectangle: RectangleInt.Empty,
-                        */
-                        rectangle: Models.Geometric.RectangleInt.Empty,
-                        comment: new Models.Comment(value),
-                        logicalDelete: Models.LogicalDelete.False));
+                    var rect1 = Models.Geometric.RectangleInt.Empty;
+                    selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: TileId.Empty,
+                            rectangle: rect1,
+                            comment: new Models.Comment(value),
+                            logicalDelete: Models.LogicalDelete.False),
+                       workingRect: new TheGeometric.RectangleInt(rect1)));
                 }
 
                 OnPropertyChanged(nameof(SelectedTileCommentAsStr));
