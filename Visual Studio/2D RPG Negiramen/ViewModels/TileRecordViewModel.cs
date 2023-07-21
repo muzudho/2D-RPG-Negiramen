@@ -20,14 +20,17 @@
         ///     生成
         /// </summary>
         /// <param name="tileRecord">タイル</param>
+        /// <param name="workingRect">ズーム後の位置とサイズ</param>
         /// <returns></returns>
-        public static TileRecordViewModel FromModel(TileRecord tileRecord)
+        public static TileRecordViewModel FromModel(
+            TileRecord tileRecord,
+            TheGeometric.RectangleInt workingRect)
         {
             return new TileRecordViewModel()
             {
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
-                WorkingRectangle = tileRecord.Rectangle,
+                WorkingRectangle = workingRect,
                 Comment = tileRecord.Comment,
                 LogicalDelete = tileRecord.LogicalDelete,
             };

@@ -1,15 +1,15 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries
+﻿namespace _2D_RPG_Negiramen.ViewModels
 {
-    using System.Text;
+    using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.FileEntries;
+    using CommunityToolkit.Mvvm.ComponentModel;
+    using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
     /// <summary>
-    ///     タイルセットの設定
-    ///     
-    ///     <list type="bullet">
-    ///         <item>とりあえずミュータブル</item>
-    ///     </list>
+    ///     タイル設定ビューモデル
     /// </summary>
-    public class TilesetSettings
+    internal class TileSettingsViewModel : ObservableObject
     {
         // - インターナル静的メソッド
 
@@ -19,7 +19,7 @@
         /// </summary>
         /// <param name="tilesetSettings">タイルセット設定</param>
         /// <returns></returns>
-        internal static bool LoadCSV(Locations.TilesetSettingsFile tilesetSettingsFile, out TilesetSettings tilesetSettings)
+        internal static bool LoadCSV(TheFileEntryLocations.TilesetSettingsFile tilesetSettingsFile, out TilesetSettings tilesetSettings)
         {
             // 既定値の設定（空っぽ）
             tilesetSettings = new TilesetSettings();
@@ -115,43 +115,13 @@
         }
         #endregion
 
-        #region メソッド（保存）
-        /// <summary>
-        ///     保存
-        /// </summary>
-        /// <returns>完了した</returns>
-        internal static bool SaveCSV(
-            Locations.TilesetSettingsFile tileSetSettingsFile,
-            List<TileRecord> recordList)
-        {
-            // 保存したいファイルへのパス
-            var settingsFilePathAsStr = tileSetSettingsFile.Path.AsStr;
-
-            var builder = new StringBuilder();
-
-            // ヘッダー部
-            builder.AppendLine("Id,Left,Top,Width,Height,Comment,Delete");
-
-            // データ部
-            foreach (var record in recordList)
-            {
-                // TODO ダブルクォーテーションのエスケープ
-                builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Point.X.AsInt},{record.Rectangle.Point.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Comment.AsStr}");
-            }
-
-            // 上書き
-            System.IO.File.WriteAllText(settingsFilePathAsStr, builder.ToString());
-            return true;
-        }
-        #endregion
-
         // - インターナル・プロパティー
 
         #region プロパティ（対象のタイルセットに含まれるすべてのタイルの記録）
         /// <summary>
         /// 対象のタイルセットに含まれるすべてのタイルの記録
         /// </summary>
-        internal List<TileRecord> RecordList { get; private set; } = new List<TileRecord>();
+        internal List<TileRecordViewModel> RecordViewModelList { get; private set; } = new List<TileRecordViewModel>();
         #endregion
 
         #region プロパティ（次に採番できるＩｄ。１から始まる）
@@ -169,22 +139,26 @@
         /// </summary>
         /// <param name="id">タイルＩｄ</param>
         /// <param name="rect">位置とサイズ</param>
+        /// <param name="workingRect">（ズーム後の）位置とサイズ</param>
         /// <param name="comment">コメント</param>
         /// <param name="logicalDelete">論理削除</param>
         /// <param name="onTileIdUpdated">タイルＩｄ更新時</param>
         internal void Add(
             Models.TileId id,
-            Geometric.RectangleInt rect,
+            TheGeometric.RectangleInt rect,
+            TheGeometric.RectangleInt workingRect,
             Models.Comment comment,
             Models.LogicalDelete logicalDelete,
             Action onTileIdUpdated)
         {
-            this.RecordList.Add(
-                new TileRecord(
-                    id,
-                    rect,
-                    comment,
-                    logicalDelete));
+            this.RecordViewModelList.Add(
+                TileRecordViewModel.FromModel(
+                    tileRecord: new TileRecord(
+                        id,
+                        rect,
+                        comment,
+                        logicalDelete),
+                    workingRect: workingRect));
 
             // ［次に採番できるＩｄ］を（できるなら）更新
             if (this.UpdateUsableId(id))
@@ -204,18 +178,20 @@
             Models.TileId id)
         {
             // 愚直な検索
-            for (int i=0; i<this.RecordList.Count; i++)
+            for (int i = 0; i < this.RecordViewModelList.Count; i++)
             {
-                var record = this.RecordList[i];
+                var recordVM = this.RecordViewModelList[i];
 
-                if (record.Id == id)
+                if (recordVM.Id == id)
                 {
                     // 差替え
-                    this.RecordList[i] = new TileRecord(
-                        id: record.Id,
-                        rectangle: record.Rectangle,
-                        comment: record.Comment,
-                        logicalDelete: Models.LogicalDelete.True);
+                    this.RecordViewModelList[i] = TileRecordViewModel.FromModel(
+                        tileRecord: new TileRecord(
+                            id: recordVM.Id,
+                            rectangle: recordVM.SourceRectangle,
+                            comment: recordVM.Comment,
+                            logicalDelete: Models.LogicalDelete.True),
+                        workingRect: this.RecordViewModelList[i].WorkingRectangle);
                 }
             }
         }
@@ -225,21 +201,21 @@
         /// <summary>
         ///     指定の矩形と一致するレコードを返す
         /// </summary>
-        /// <param name="rect">矩形</param>
+        /// <param name="sourceRect">矩形</param>
         /// <param name="result">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetByRectangle(Geometric.RectangleInt rect, out TileRecord result)
+        internal bool TryGetByRectangle(TheGeometric.RectangleInt sourceRect, out TileRecordViewModel resultVM)
         {
-            foreach (var record in this.RecordList)
+            foreach (var recordVM in this.RecordViewModelList)
             {
-                if (record.Rectangle == rect)
+                if (recordVM.SourceRectangle == sourceRect)
                 {
-                    result = record;
+                    resultVM = recordVM;
                     return true;
                 }
             }
 
-            result = null;
+            resultVM = null;
             return false;
         }
         #endregion
@@ -251,11 +227,23 @@
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-        internal bool SaveCSV(Locations.TilesetSettingsFile tileSetSettingsFile)
+        internal bool SaveCSV(TheFileEntryLocations.TilesetSettingsFile tileSetSettingsFile)
         {
+            List<TileRecord> recordList = new List<TileRecord>();
+
+            foreach (var recordVM in this.RecordViewModelList)
+            {
+                TileRecord record = new TileRecord(
+                    id: recordVM.Id,
+                    rectangle: recordVM.SourceRectangle,
+                    comment: recordVM.Comment,
+                    logicalDelete: recordVM.LogicalDelete);
+                recordList.Add(record);
+            }
+
             return TilesetSettings.SaveCSV(
                 tileSetSettingsFile: tileSetSettingsFile,
-                recordList: this.RecordList);
+                recordList: recordList);
         }
         #endregion
 
