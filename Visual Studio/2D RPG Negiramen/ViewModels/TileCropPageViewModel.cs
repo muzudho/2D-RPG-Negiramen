@@ -824,17 +824,17 @@
                         // グリッド・キャンバス画像の再作成
                         this.RemakeGridCanvasImage();
 
-                        //// TODO 全ての登録タイルのズーム時の位置とサイズを更新
-                        //foreach (var registeredTileVM in this.TilesetSettingsVM.RecordViewModelList)
-                        //{
-                        //    registeredTileVM.WorkingRectangle = new TheGeometric.RectangleInt(
-                        //        point: new TheGeometric.PointInt(
-                        //            x: new TheGeometric.XInt(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Point.X.AsInt),
-                        //            y: new TheGeometric.YInt()),
-                        //        size: new TheGeometric.SizeInt(
-                        //            width: new TheGeometric.WidthInt(),
-                        //            height: new TheGeometric.HeightInt()));
-                        //}
+                        // 全ての登録タイルのズーム時の位置とサイズを更新
+                        foreach (var registeredTileVM in this.TilesetSettingsVM.RecordViewModelList)
+                        {
+                            registeredTileVM.WorkingRectangle = new TheGeometric.RectangleFloat(
+                                point: new TheGeometric.PointFloat(
+                                    x: new TheGeometric.XFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Point.X.AsInt),
+                                    y: new TheGeometric.YFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Point.Y.AsInt)),
+                                size: new TheGeometric.SizeFloat(
+                                    width: new TheGeometric.WidthFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Size.Width.AsInt),
+                                    height: new TheGeometric.HeightFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Size.Height.AsInt)));
+                        }
 
                         OnPropertyChanged(nameof(ZoomAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));

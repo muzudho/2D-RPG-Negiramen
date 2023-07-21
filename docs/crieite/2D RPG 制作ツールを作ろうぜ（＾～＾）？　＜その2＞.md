@@ -235,4 +235,27 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　タイル設定ファイルも　ビューモデル　バージョンを作っておこうぜ」  
 
+![202307_maui_22-0148--zoomAsFloat-o2o0.png](https://crieit.now.sh/upload_images/3b491eff4e3325bb08480f489c0b091964bab7338717e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　そして　ズーム欄の数値を変更したタイミングで、  
+カラー・マップの　色矩形の位置とサイズを　全部更新すればいいわけだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ズームの数値を変えたときに　起こることが  
+タイルセット画像の伸縮と、グリッドの伸縮と、  
+切抜きカーソルや、画面上のオブジェクトの位置とサイズの変更と、  
+やることが多いのよねえ」  
+
+![202307_maui_22-0211--zoomedColorMap.png](https://crieit.now.sh/upload_images/4ff6bd3001e78df0f9c4f1059470e53a64babc4235457.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　カラーマップを拡大したぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父ん、タイルセット画像を暗くしていたのが　効いてないぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれま　ほんとだぜ。なんでだろな　調べるか」  
+
 ＜書きかけ＞
