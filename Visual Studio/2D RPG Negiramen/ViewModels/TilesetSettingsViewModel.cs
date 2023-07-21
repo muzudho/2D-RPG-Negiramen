@@ -158,20 +158,20 @@
         ///     指定の矩形と一致するレコードを返す
         /// </summary>
         /// <param name="sourceRect">矩形</param>
-        /// <param name="result">結果</param>
+        /// <param name="resultVMOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetByRectangle(TheGeometric.RectangleInt sourceRect, out TileRecordViewModel resultVM)
+        internal bool TryGetByRectangle(TheGeometric.RectangleInt sourceRect, out TileRecordViewModel? resultVMOrNull)
         {
             foreach (var recordVM in this.RecordViewModelList)
             {
                 if (recordVM.SourceRectangle == sourceRect)
                 {
-                    resultVM = recordVM;
+                    resultVMOrNull = recordVM;
                     return true;
                 }
             }
 
-            resultVM = null;
+            resultVMOrNull = null;
             return false;
         }
         #endregion

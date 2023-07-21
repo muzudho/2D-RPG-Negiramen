@@ -221,9 +221,9 @@
         public float ZoomMinAsFloat => this.zoomMin.AsFloat;
         #endregion
 
-        #region プロパティ（切抜きカーソル。元画像ベース）
+        #region プロパティ（選択タイル）
         /// <summary>
-        ///     切抜きカーソル。元画像ベース
+        ///     選択タイル
         /// </summary>
         public Option<TileRecordViewModel> SelectedTileVMOption
         {
@@ -236,30 +236,45 @@
                     return;
                 }
 
-                TileRecordViewModel tileRecordVM;
+                TileRecordViewModel newTileRecordVM;
 
-                if (this.selectedTileVMOption.TryGetValue(out tileRecordVM))
+                if (value.TryGetValue(out newTileRecordVM))
                 {
                     // 非ヌルの想定
-                    if (tileRecordVM == null)
+                    if (newTileRecordVM == null)
                     {
-                        throw new InvalidOperationException("must not be null");
+                        throw new InvalidOperationException($"{nameof(newTileRecordVM)} must not be null");
+                    }
+                }
+                else
+                {
+                    // クリアーの意図
+                    newTileRecordVM = new TileRecordViewModel();
+                }
+
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel oldTileRecordVM))
+                {
+                    // 非ヌルの想定
+                    if (oldTileRecordVM == null)
+                    {
+                        throw new InvalidOperationException($"{nameof(oldTileRecordVM)} must not be null");
                     }
                 }
                 else
                 {
                     // タイル・カーソル無し時
-                    tileRecordVM = new TileRecordViewModel();
-                    this.selectedTileVMOption = new Option<TileRecordViewModel>(tileRecordVM);
+
+                    // 新規作成
+                    this.selectedTileVMOption = new Option<TileRecordViewModel>(new TileRecordViewModel());
                 }
 
                 // 変更通知を送りたいので、構成要素ごとに設定
-                this.SelectedTileId = tileRecordVM.Id;
-                this.SourceCroppedCursorLeftAsInt = tileRecordVM.SourceRectangle.Point.X.AsInt;
-                this.SourceCroppedCursorTopAsInt = tileRecordVM.SourceRectangle.Point.Y.AsInt;
-                this.SourceCroppedCursorWidthAsInt = tileRecordVM.SourceRectangle.Size.Width.AsInt;
-                this.SourceCroppedCursorHeightAsInt = tileRecordVM.SourceRectangle.Size.Height.AsInt;
-                this.SelectedTileCommentAsStr = tileRecordVM.Comment.AsStr;
+                this.SelectedTileId = newTileRecordVM.Id;
+                this.SourceCroppedCursorLeftAsInt = newTileRecordVM.SourceRectangle.Point.X.AsInt;
+                this.SourceCroppedCursorTopAsInt = newTileRecordVM.SourceRectangle.Point.Y.AsInt;
+                this.SourceCroppedCursorWidthAsInt = newTileRecordVM.SourceRectangle.Size.Width.AsInt;
+                this.SourceCroppedCursorHeightAsInt = newTileRecordVM.SourceRectangle.Size.Height.AsInt;
+                this.SelectedTileCommentAsStr = newTileRecordVM.Comment.AsStr;
 
                 OnPropertyChanged(nameof(AddsButtonHint));
                 OnPropertyChanged(nameof(AddsButtonText));

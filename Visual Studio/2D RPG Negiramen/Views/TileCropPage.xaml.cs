@@ -100,9 +100,10 @@ public partial class TileCropPage : ContentPage
         //
         if (context.TilesetSettingsVM.TryGetByRectangle(
             sourceRect: context.SourceCroppedCursorRect,
-            out TileRecordViewModel recordVM))
+            out TileRecordViewModel? recordVMOrNull))
         {
-            // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{record.Id.AsInt}, X:{record.Rectangle.Point.X.AsInt}, Y:{record.Rectangle.Point.Y.AsInt}, Width:{record.Rectangle.Size.Width.AsInt}, Height:{record.Rectangle.Size.Height.AsInt}, Comment:{record.Comment.AsStr}");
+            TileRecordViewModel recordVM = recordVMOrNull ?? throw new NullReferenceException(nameof(recordVMOrNull));
+            Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Point.X.AsInt}, Y:{recordVM.SourceRectangle.Point.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Comment:{recordVM.Comment.AsStr}");
 
             //
             // データ表示
