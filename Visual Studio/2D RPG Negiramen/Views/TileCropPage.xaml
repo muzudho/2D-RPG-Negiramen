@@ -361,7 +361,7 @@
                               InputTransparent="True">
                     <GraphicsView.Drawable>
                         <modelsDrawing:ColoredMap BindingContext="{x:Reference thisContentPage}"
-                                                  TilesetSettings="{Binding TileCropPageVM.TilesetSettings}"/>
+                                                  TilesetSettingsVM="{Binding TileCropPageVM.TilesetSettingsVM}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
 

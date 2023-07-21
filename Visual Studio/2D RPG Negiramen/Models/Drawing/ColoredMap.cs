@@ -1,29 +1,29 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing;
 
-using _2D_RPG_Negiramen.Models.FileEntries;
+using _2D_RPG_Negiramen.ViewModels;
 
 internal class ColoredMap : BindableObject, IDrawable
 {
     // - パブリック束縛可能プロパティ
 
-    #region 束縛可能プロパティ（タイルセット設定）
+    #region 束縛可能プロパティ（タイルセット設定ビューモデル）
     /// <summary>
-    ///     タイルセット設定
+    ///     タイルセット設定ビューモデル
     /// </summary>
-    public TilesetSettings TilesetSettings
+    public TilesetSettingsViewModel TilesetSettingsVM
     {
-        get => (TilesetSettings)GetValue(TilesetSettingsProperty);
-        set => SetValue(TilesetSettingsProperty, value);
+        get => (TilesetSettingsViewModel)GetValue(TilesetSettingsVMProperty);
+        set => SetValue(TilesetSettingsVMProperty, value);
     }
 
     /// <summary>
-    ///     タイルセット設定
+    ///     <see cref="TilesetSettingsVM"/>
     /// </summary>
-    public static BindableProperty TilesetSettingsProperty = BindableProperty.Create(
+    public static BindableProperty TilesetSettingsVMProperty = BindableProperty.Create(
         // プロパティ名
-        propertyName: nameof(TilesetSettings),
+        propertyName: nameof(TilesetSettingsVM),
         // 返却型
-        returnType: typeof(TilesetSettings),
+        returnType: typeof(TilesetSettingsViewModel),
         // これを含んでいるクラス
         declaringType: typeof(ColoredMap));
     #endregion
@@ -35,17 +35,17 @@ internal class ColoredMap : BindableObject, IDrawable
     /// <param name="dirtyRect">位置とサイズ</param>
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {
-        if (this.TilesetSettings == null)
+        if (this.TilesetSettingsVM == null)
         {
             return;
         }
 
         // 各登録タイル
-        foreach (var record in this.TilesetSettings.RecordList)
+        foreach (var recordVM in this.TilesetSettingsVM.RecordViewModelList)
         {
             // Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
 
-            if (record.LogicalDelete == Models.LogicalDelete.True)
+            if (recordVM.LogicalDelete == Models.LogicalDelete.True)
             {
                 // 論理削除されてるから無視
                 continue;
@@ -72,7 +72,7 @@ internal class ColoredMap : BindableObject, IDrawable
             canvas.StrokeSize = 2 * halfFrameThickness;
             canvas.DrawRoundedRectangle(
                 // 枠の線の太さの半分だけサイズを縮める
-                rect: record.Rectangle.AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
+                rect: recordVM.WorkingRectangle.AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
                 cornerRadius: 16.0d);
 
             //canvas.FillColor = new Color(220, 220, 220, 96);
