@@ -836,6 +836,16 @@
                                     height: new TheGeometric.HeightFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Size.Height.AsInt)));
                         }
 
+                        // 切抜きカーソルの位置とサイズを更新
+                        this.WorkingCroppedCursorPoint = new TheGeometric.PointFloat(
+                            x: new TheGeometric.XFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Point.X.AsInt),
+                            y: new TheGeometric.YFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Point.Y.AsInt));
+                        this.WorkingCroppedCursorSize = new TheGeometric.SizeFloat(
+                            width: new TheGeometric.WidthFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Width.AsInt),
+                            height: new TheGeometric.HeightFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Height.AsInt));
+
+                        TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
+
                         OnPropertyChanged(nameof(ZoomAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
@@ -1743,10 +1753,10 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（矩形カーソル。ズーム済み　関連）
+        #region メソッド（切抜きカーソル。ズーム済み　関連）
         /// <summary>
         ///     <pre>
-        ///         矩形カーソル。ズーム済みのキャンバスの再描画
+        ///         切抜きカーソル。ズーム済みのキャンバスの再描画
         /// 
         ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
         ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して

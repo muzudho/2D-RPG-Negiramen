@@ -371,7 +371,8 @@
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
                               Margin="{Binding WorkingCroppedCursorPointAsMargin}"
                               WidthRequest="{Binding WorkingCroppedCursorCanvasWidthAsFloat}" HeightRequest="{Binding WorkingCroppedCursorCanvasHeightAsFloat}"
-                              InputTransparent="True">
+                              InputTransparent="True"
+                              x:Name="croppedCursor1">
                     <GraphicsView.Drawable>
                         <modelsDrawing:CroppedCursor BindingContext="{x:Reference thisContentPage}"
                                                      HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"

@@ -566,16 +566,22 @@ public partial class TileCropPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     private void ZoomEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
-        // タイルセット画像
+        // 再描画（タイルセット画像）
         if (skiaTilesetCanvas != null)
         {
             skiaTilesetCanvas.InvalidateSurface();
         }
 
-        // グリッド画像
+        // 再描画（グリッド画像）
         if (gridView1 != null)
         {
             gridView1.Invalidate();
+        }
+
+        // 再描画（切抜きカーソル）
+        if (croppedCursor1 != null)
+        {
+            croppedCursor1.Invalidate();
         }
     }
     #endregion
