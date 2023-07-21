@@ -165,13 +165,6 @@
         /// <summary>
         ///     タイルセット元画像のサイズ
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                public Models.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
-        後:
-                public SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
-        */
         public Models.Geometric.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
         #endregion
 
@@ -1638,9 +1631,9 @@
         public string WorkingCroppedCursorHeightAsPresentableText => this.workingCroppedCursorSize.Height.AsFloat.ToString("F1");
         #endregion
 
-        #region プロパティ（登録タイル　関連）
+        #region 変更通知プロパティ（登録タイル　関連）
         /// <summary>
-        ///     矩形カーソル。元画像ベースのコメント
+        ///     登録タイルへのコメント
         /// </summary>
         public string SelectedTileCommentAsStr
         {
@@ -2008,6 +2001,7 @@
         }
         #endregion
 
+        #region メソッド（作業グリッド・タイル横幅の再計算）
         /// <summary>
         ///     作業グリッド・タイル横幅の再計算
         /// </summary>
@@ -2018,7 +2012,9 @@
             OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
             OnPropertyChanged(nameof(WorkingGridUnit));
         }
+        #endregion
 
+        #region メソッド（作業グリッド・タイル縦幅の再計算）
         /// <summary>
         ///     作業グリッド・タイル縦幅の再計算
         /// </summary>
@@ -2029,5 +2025,6 @@
             OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
             OnPropertyChanged(nameof(WorkingGridUnit));
         }
+        #endregion
     }
 }
