@@ -136,7 +136,6 @@
             Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.GridPhase.Dump()}, this.GridUnit: {this.GridUnit.Dump()} dirtyRect: ({dirtyRect.Width:.2}, {dirtyRect.Height:.2})");
 
             // 線の色
-            // canvas.StrokeColor = ResourcesHelper.GentleWhite;   // new Color(255, 0, 0, 127);
             canvas.StrokeColor = new Color((int)(0.7 * 255), (int)(0.7 * 255), (int)(0.7 * 255));
 
             // グリッドの線の太さの半分

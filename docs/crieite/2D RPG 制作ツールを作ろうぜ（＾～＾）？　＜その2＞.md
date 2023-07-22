@@ -445,4 +445,33 @@
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　SkiaSharp には　ＲＧＢじゃなくて　色相と明度で指定する方法　無いの？」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ＨＳＶか。有るかも知れないな。調べてみるか。有った」
+
+📖 [SKColor.FromHsv(Single, Single, Single, Byte) Method](https://learn.microsoft.com/en-us/dotnet/api/skiasharp.skcolor.fromhsv?view=skiasharp-2.88)
+
+![202307_maui_23-0013--colorMap.png](https://crieit.now.sh/upload_images/89cd37bb76a75a348d294047336be8e664bbf281ae56a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　目に優しくないな……」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ビビッドか、ストロングなの　やめなさいよ」  
+
+![202307_maui_23-0019--light.png](https://crieit.now.sh/upload_images/9bf400ab3303e9a523382bc5d566117c64bbf39a39f72.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　じゃあ　ライトで」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ここらへんで　決めましょう」  
+
+## 作業中の表示が邪魔じゃないか？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ここまで画面ができあがってくると、画面上に出ている **作業中** の表示は　もう要らないんじゃないか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　コメントアウトの切替えで復活できるようには　しておきたいな」  
+
 ＜書きかけ＞

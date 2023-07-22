@@ -63,20 +63,13 @@ internal class ColoredMap : BindableObject, IDrawable
             // 枠の線の太さの半分
             int halfFrameThickness = 2;
 
-            // ランダム色作成
-            {
-                int minValue = 160;
-                int maxValue = 255;
-                int[] values = new int[3] { minValue, maxValue, Random.Shared.Next(minValue, maxValue) };
-
-                // シャッフル
-                MathEx.FisherYatesShuffle(values);
-
-                canvas.StrokeColor = new Color(
-                    red: values[0],
-                    green: values[1],
-                    blue: values[2]);
-            }
+            // 線の色はランダム。自然数を散らしているだけ。色相は黄緑になるところが多いので、黄緑が沢山出てくるのは仕方ない。
+            float hue = ((int)((float)recordVM.Id.AsInt / 7.0f * 100.0f) % 100) / 100.0f;
+            canvas.StrokeColor = Color.FromHsv(
+                h: hue,                                     // ヒュー（Hue；色相）
+                                                            // h: (float)Random.Shared.NextDouble(),    // ヒュー（Hue；色相）
+                s: 0.3f,                                    // サチュレーション（Saturation；彩度）
+                v: 1.0f);                                   // バリュー（Value；明度）
 
             //
             // TODO キャンバスの該当矩形をクリアー
