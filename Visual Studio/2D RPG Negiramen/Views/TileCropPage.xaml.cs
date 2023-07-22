@@ -84,9 +84,9 @@ public partial class TileCropPage : ContentPage
 
         // ズームを除去
         RectangleInt sourceRect = new RectangleInt(
-            point: new PointInt(
-                x: new XInt((int)(workingRect.Point.X.AsFloat / context.ZoomAsFloat)),
-                y: new YInt((int)(workingRect.Point.Y.AsFloat / context.ZoomAsFloat))),
+            location: new PointInt(
+                x: new XInt((int)(workingRect.Location.X.AsFloat / context.ZoomAsFloat)),
+                y: new YInt((int)(workingRect.Location.Y.AsFloat / context.ZoomAsFloat))),
             size: new SizeInt(
                 width: new WidthInt((int)(workingRect.Size.Width.AsFloat / context.ZoomAsFloat)),
                 height: new HeightInt((int)(workingRect.Size.Height.AsFloat / context.ZoomAsFloat))));
@@ -423,23 +423,18 @@ public partial class TileCropPage : ContentPage
         // 設定ファイルの編集
         // ==================
         //
-        context.TilesetSettingsVM.Add(
-            // 新しいＩｄを追加
-            id: context.TilesetSettingsVM.UsableId,
-            rect: new Models.Geometric.RectangleInt(
-                point: new Models.Geometric.PointInt(
+        var sourceRectangle = new Models.Geometric.RectangleInt(
+                location: new Models.Geometric.PointInt(
                     x: new Models.Geometric.XInt(context.SourceCroppedCursorLeftAsInt),
                     y: new Models.Geometric.YInt(context.SourceCroppedCursorTopAsInt)),
                 size: new Models.Geometric.SizeInt(
                     width: new Models.Geometric.WidthInt(context.SourceCroppedCursorWidthAsInt),
-                    height: new Models.Geometric.HeightInt(context.SourceCroppedCursorHeightAsInt))),
-            workingRect: new Models.Geometric.RectangleFloat(
-                point: new Models.Geometric.PointFloat(
-                    x: new Models.Geometric.XFloat(context.SourceCroppedCursorLeftAsInt),
-                    y: new Models.Geometric.YFloat(context.SourceCroppedCursorTopAsInt)),
-                size: new Models.Geometric.SizeFloat(
-                    width: new Models.Geometric.WidthFloat(context.SourceCroppedCursorWidthAsInt),
-                    height: new Models.Geometric.HeightFloat(context.SourceCroppedCursorHeightAsInt))),
+                    height: new Models.Geometric.HeightInt(context.SourceCroppedCursorHeightAsInt)));
+        context.TilesetSettingsVM.Add(
+            // 新しいＩｄを追加
+            id: context.TilesetSettingsVM.UsableId,
+            rect: sourceRectangle,
+            workingRect: sourceRectangle.Do(context.Zoom),
             comment: new Models.Comment(context.SelectedTileCommentAsStr),
             logicalDelete: logicalDelete,
             onTileIdUpdated: () =>

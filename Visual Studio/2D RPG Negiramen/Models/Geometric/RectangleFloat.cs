@@ -42,7 +42,7 @@
                 return false;
             }
 
-            return c1.Point == c2.Point && c1.Size == c2.Size;
+            return c1.Location == c2.Location && c1.Size == c2.Size;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@
 
             // 要素で比較する
             RectangleFloat c = (RectangleFloat)obj;
-            return Point == c.Point && Size == c.Size;
+            return Location == c.Location && Size == c.Size;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -85,7 +85,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (Point, Size).GetHashCode();
+            return (Location, Size).GetHashCode();
         }
         #endregion
 
@@ -100,30 +100,15 @@
 
         // - その他
 
-        #region その他（生成）
+        #region その他（生成　関連）
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="sourceRect">矩形の位置とサイズ</param>
-        internal static RectangleFloat FromModel(RectangleInt sourceRect)
-        {
-            return new RectangleFloat(
-                point: new PointFloat(
-                    x: new XFloat(sourceRect.Point.X.AsInt),
-                    y: new YFloat(sourceRect.Point.Y.AsInt)),
-                size: new SizeFloat(
-                    width: new WidthFloat(sourceRect.Size.Width.AsInt),
-                    height: new HeightFloat(sourceRect.Size.Height.AsInt)));
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="point">位置</param>
+        /// <param name="location">位置</param>
         /// <param name="size">大きさ</param>
-        internal RectangleFloat(PointFloat point, SizeFloat size)
+        internal RectangleFloat(PointFloat location, SizeFloat size)
         {
-            Point = point;
+            Location = location;
             Size = size;
         }
         #endregion
@@ -134,7 +119,7 @@
         /// <summary>
         ///     位置
         /// </summary>
-        internal PointFloat Point { get; private set; }
+        internal PointFloat Location { get; private set; }
         #endregion
 
         #region プロパティ（大きさ）
@@ -154,8 +139,8 @@
         internal Rect AsGraphis()
         {
             return new Rect(
-                x: Point.X.AsFloat,
-                y: Point.Y.AsFloat,
+                x: Location.X.AsFloat,
+                y: Location.Y.AsFloat,
                 width: Size.Width.AsFloat,
                 height: Size.Height.AsFloat);
         }
@@ -168,7 +153,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Point:{Point.Dump()}, Size:{Size.Dump()}";
+            return $"Point:{Location.Dump()}, Size:{Size.Dump()}";
         }
         #endregion
 
@@ -180,7 +165,7 @@
         internal RectangleInt ToInt()
         {
             return new RectangleInt(
-                point: this.Point.ToInt(),
+                location: this.Location.ToInt(),
                 size: this.Size.ToInt());
         }
         #endregion
@@ -194,7 +179,7 @@
         internal RectangleFloat Do(Zoom zoom)
         {
             return new RectangleFloat(
-                point: this.Point.Do(zoom),
+                location: this.Location.Do(zoom),
                 size: this.Size.Do(zoom));
         }
         #endregion

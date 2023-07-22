@@ -92,7 +92,7 @@
                         tilesetSettings.Add(
                             id: new Models.TileId(tileId),
                             rect: new Models.Geometric.RectangleInt(
-                                point: new Models.Geometric.PointInt(
+                                location: new Models.Geometric.PointInt(
                                     x: new Models.Geometric.XInt(x),
                                     y: new Models.Geometric.YInt(y)),
                                 size: new Models.Geometric.SizeInt(
@@ -140,7 +140,7 @@
                 TileRecord record = recordList.Current;
 
                 // TODO ダブルクォーテーションのエスケープ
-                builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Point.X.AsInt},{record.Rectangle.Point.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Comment.AsStr},{record.LogicalDelete.AsInt}");
+                builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Location.X.AsInt},{record.Rectangle.Location.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Comment.AsStr},{record.LogicalDelete.AsInt}");
             }
 
             // 上書き

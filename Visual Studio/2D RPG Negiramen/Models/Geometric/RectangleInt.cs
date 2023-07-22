@@ -42,7 +42,7 @@
                 return false;
             }
 
-            return c1.Point == c2.Point && c1.Size == c2.Size;
+            return c1.Location == c2.Location && c1.Size == c2.Size;
         }
 
         /// <summary>
@@ -74,7 +74,7 @@
 
             // 要素で比較する
             RectangleInt c = (RectangleInt)obj;
-            return Point == c.Point && Size == c.Size;
+            return Location == c.Location && Size == c.Size;
             //または、
             //return (this.Number.Equals(c.Number));
         }
@@ -85,7 +85,7 @@
         /// <returns>ハッシュ値</returns>
         public override int GetHashCode()
         {
-            return (Point, Size).GetHashCode();
+            return (Location, Size).GetHashCode();
         }
         #endregion
 
@@ -95,21 +95,11 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="rect">位置と大きさ</param>
-        internal RectangleInt(RectangleInt rect)
-        {
-            Point = rect.Point;
-            Size = rect.Size;
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="point">位置</param>
+        /// <param name="location">位置</param>
         /// <param name="size">大きさ</param>
-        internal RectangleInt(PointInt point, SizeInt size)
+        internal RectangleInt(PointInt location, SizeInt size)
         {
-            Point = point;
+            Location = location;
             Size = size;
         }
         #endregion
@@ -136,7 +126,7 @@
         /// <summary>
         ///     位置
         /// </summary>
-        internal PointInt Point { get; private set; }
+        internal PointInt Location { get; private set; }
         #endregion
 
         #region プロパティ（左辺の位置ｘ）
@@ -149,11 +139,11 @@
             {
                 if (0 < this.Size.Width.AsInt)
                 {
-                    return this.Point.X.AsInt;
+                    return this.Location.X.AsInt;
                 }
 
                 // 横幅がマイナスのとき
-                return this.Point.X.AsInt + this.Size.Width.AsInt;
+                return this.Location.X.AsInt + this.Size.Width.AsInt;
             }
         }
         #endregion
@@ -168,11 +158,11 @@
             {
                 if (0 < this.Size.Width.AsInt)
                 {
-                    return this.Point.X.AsInt + this.Size.Width.AsInt;
+                    return this.Location.X.AsInt + this.Size.Width.AsInt;
                 }
 
                 // 横幅がマイナスのとき
-                return this.Point.X.AsInt;
+                return this.Location.X.AsInt;
             }
         }
         #endregion
@@ -187,11 +177,11 @@
             {
                 if (0 < this.Size.Height.AsInt)
                 {
-                    return this.Point.Y.AsInt;
+                    return this.Location.Y.AsInt;
                 }
 
                 // 縦幅がマイナスのとき
-                return this.Point.Y.AsInt + this.Size.Height.AsInt;
+                return this.Location.Y.AsInt + this.Size.Height.AsInt;
             }
         }
         #endregion
@@ -206,11 +196,11 @@
             {
                 if (0 < this.Size.Height.AsInt)
                 {
-                    return this.Point.Y.AsInt + this.Size.Height.AsInt;
+                    return this.Location.Y.AsInt + this.Size.Height.AsInt;
                 }
 
                 // 縦幅がマイナスのとき
-                return this.Point.Y.AsInt;
+                return this.Location.Y.AsInt;
             }
         }
         #endregion
@@ -232,8 +222,8 @@
         internal Rect AsGraphis()
         {
             return new Rect(
-                x: Point.X.AsInt,
-                y: Point.Y.AsInt,
+                x: Location.X.AsInt,
+                y: Location.Y.AsInt,
                 width: Size.Width.AsInt,
                 height: Size.Height.AsInt);
         }
@@ -246,7 +236,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Point:{Point.Dump()}, Size:{Size.Dump()}";
+            return $"Point:{Location.Dump()}, Size:{Size.Dump()}";
         }
         #endregion
 
@@ -296,7 +286,7 @@
         internal RectangleFloat ToFloat()
         {
             return new RectangleFloat(
-                point: this.Point.ToFloat(),
+                location: this.Location.ToFloat(),
                 size: this.Size.ToFloat());
         }
         #endregion
@@ -310,7 +300,7 @@
         internal RectangleFloat Do(Zoom zoom)
         {
             return new RectangleFloat(
-                point: this.Point.Do(zoom),
+                location: this.Location.Do(zoom),
                 size: this.Size.Do(zoom));
         }
         #endregion

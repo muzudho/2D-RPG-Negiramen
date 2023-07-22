@@ -45,7 +45,7 @@
                     tilesetSettingsVM.RecordViewModelList.Add(
                         TileRecordViewModel.FromModel(
                             tileRecord: record,
-                            workingRect: TheGeometric.RectangleFloat.FromModel(record.Rectangle)));
+                            workingRect: record.Rectangle.ToFloat()));
                 }
                 try
                 {

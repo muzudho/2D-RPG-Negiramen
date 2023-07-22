@@ -245,8 +245,8 @@
 
                 // 変更通知を送りたいので、構成要素ごとに設定
                 this.SelectedTileId = newTileRecordVM.Id;
-                this.SourceCroppedCursorLeftAsInt = newTileRecordVM.SourceRectangle.Point.X.AsInt;
-                this.SourceCroppedCursorTopAsInt = newTileRecordVM.SourceRectangle.Point.Y.AsInt;
+                this.SourceCroppedCursorLeftAsInt = newTileRecordVM.SourceRectangle.Location.X.AsInt;
+                this.SourceCroppedCursorTopAsInt = newTileRecordVM.SourceRectangle.Location.Y.AsInt;
                 this.SourceCroppedCursorWidthAsInt = newTileRecordVM.SourceRectangle.Size.Width.AsInt;
                 this.SourceCroppedCursorHeightAsInt = newTileRecordVM.SourceRectangle.Size.Height.AsInt;
                 this.SelectedTileCommentAsStr = newTileRecordVM.Comment.AsStr;
@@ -294,7 +294,7 @@
                             rect: selectedTileVM.SourceRectangle,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(selectedTileVM.SourceRectangle)));
+                        workingRect: selectedTileVM.SourceRectangle.Do(this.Zoom)));
                 }
                 else
                 {
@@ -305,7 +305,7 @@
                             rect: Models.Geometric.RectangleInt.Empty,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                    workingRect: TheGeometric.RectangleFloat.FromModel(Models.Geometric.RectangleInt.Empty)));
+                    workingRect: Models.Geometric.RectangleFloat.Empty));
                 }
 
                 this.RefreshByLocaleChanged();
@@ -812,8 +812,8 @@
 
                         // 切抜きカーソルの位置とサイズを更新
                         this.WorkingCroppedCursorPoint = new TheGeometric.PointFloat(
-                            x: new TheGeometric.XFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Point.X.AsInt),
-                            y: new TheGeometric.YFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Point.Y.AsInt));
+                            x: new TheGeometric.XFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Location.X.AsInt),
+                            y: new TheGeometric.YFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Location.Y.AsInt));
                         this.WorkingCroppedCursorSize = new TheGeometric.SizeFloat(
                             width: new TheGeometric.WidthFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Width.AsInt),
                             height: new TheGeometric.HeightFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Height.AsInt));
@@ -1073,8 +1073,8 @@
                     // タイル・カーソル無し時
                 }
 
-                this.SourceCroppedCursorLeftAsInt = value.Point.X.AsInt;
-                this.SourceCroppedCursorTopAsInt = value.Point.Y.AsInt;
+                this.SourceCroppedCursorLeftAsInt = value.Location.X.AsInt;
+                this.SourceCroppedCursorTopAsInt = value.Location.Y.AsInt;
                 this.SourceCroppedCursorSize = value.Size;
 
                 // 切抜きカーソル。ズーム済み
@@ -1095,7 +1095,7 @@
             {
                 if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTileVM.SourceRectangle.Point.X.AsInt;
+                    return selectedTileVM.SourceRectangle.Location.X.AsInt;
                 }
                 else
                 {
@@ -1107,7 +1107,7 @@
             {
                 if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTileVM.SourceRectangle.Point.X.AsInt == value)
+                    if (selectedTileVM.SourceRectangle.Location.X.AsInt == value)
                     {
                         // 値に変化がない
                         return;
@@ -1115,7 +1115,7 @@
 
                     // 元画像ベース
                     var rect1 = new Models.Geometric.RectangleInt(
-                                point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTileVM.SourceRectangle.Point.Y),
+                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTileVM.SourceRectangle.Location.Y),
                                 size: selectedTileVM.SourceRectangle.Size);
                     this.selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
@@ -1123,7 +1123,7 @@
                             rect: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
                 else
                 {
@@ -1131,7 +1131,7 @@
 
                     // 元画像ベース
                     var rect1 = new Models.Geometric.RectangleInt(
-                                point: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
+                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
                                 size: Models.Geometric.SizeInt.Empty);
                     this.selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
@@ -1139,7 +1139,7 @@
                             rect: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -1161,7 +1161,7 @@
             {
                 if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTileVM.SourceRectangle.Point.Y.AsInt;
+                    return selectedTileVM.SourceRectangle.Location.Y.AsInt;
                 }
                 else
                 {
@@ -1173,7 +1173,7 @@
             {
                 if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTileVM.SourceRectangle.Point.Y.AsInt == value)
+                    if (selectedTileVM.SourceRectangle.Location.Y.AsInt == value)
                     {
                         // 値に変化がない
                         return;
@@ -1181,7 +1181,7 @@
 
                     // 元画像ベース
                     var rect1 = new Models.Geometric.RectangleInt(
-                            point: new Models.Geometric.PointInt(selectedTileVM.SourceRectangle.Point.X, new Models.Geometric.YInt(value)),
+                            location: new Models.Geometric.PointInt(selectedTileVM.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
                             size: selectedTileVM.SourceRectangle.Size);
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
@@ -1189,7 +1189,7 @@
                             rect: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
                 else
                 {
@@ -1197,7 +1197,7 @@
 
                     // 元画像ベース
                     var rect1 = new Models.Geometric.RectangleInt(
-                            point: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
+                            location: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
                             size: Models.Geometric.SizeInt.Empty);
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
@@ -1205,7 +1205,7 @@
                             rect: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -1292,14 +1292,14 @@
                         return;
                     }
 
-                    var rect1 = new Models.Geometric.RectangleInt(selectedTileVM.SourceRectangle.Point, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), selectedTileVM.SourceRectangle.Size.Height));
+                    var rect1 = new Models.Geometric.RectangleInt(selectedTileVM.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), selectedTileVM.SourceRectangle.Size.Height));
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
                 else
                 {
@@ -1311,7 +1311,7 @@
                             rect: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
 
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
@@ -1350,14 +1350,14 @@
                         return;
                     }
 
-                    var rect1 = new Models.Geometric.RectangleInt(selectedTileVM.SourceRectangle.Point, new Models.Geometric.SizeInt(selectedTileVM.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
+                    var rect1 = new Models.Geometric.RectangleInt(selectedTileVM.SourceRectangle.Location, new Models.Geometric.SizeInt(selectedTileVM.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
                 else
                 {
@@ -1369,7 +1369,7 @@
                             rect: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
@@ -1651,7 +1651,7 @@
                             rect: rect1,
                             comment: new Models.Comment(value),
                             logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                        workingRect: rect1.Do(this.Zoom)));
                 }
                 else
                 {
@@ -1663,7 +1663,7 @@
                             rect: rect1,
                             comment: new Models.Comment(value),
                             logicalDelete: Models.LogicalDelete.False),
-                       workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
+                       workingRect: rect1.Do(this.Zoom)));
                 }
 
                 OnPropertyChanged(nameof(SelectedTileCommentAsStr));
@@ -1797,7 +1797,7 @@
     out TileRecordViewModel? recordVMOrNull))
             {
                 TileRecordViewModel recordVM = recordVMOrNull ?? throw new NullReferenceException(nameof(recordVMOrNull));
-                Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Point.X.AsInt}, Y:{recordVM.SourceRectangle.Point.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Comment:{recordVM.Comment.AsStr}");
+                Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Comment:{recordVM.Comment.AsStr}");
 
                 //
                 // データ表示
@@ -1823,7 +1823,7 @@
                         rect: this.SourceCroppedCursorRect,
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False),
-                    workingRect: TheGeometric.RectangleFloat.FromModel(this.SourceCroppedCursorRect)));
+                    workingRect: this.SourceCroppedCursorRect.Do(this.Zoom)));
             }
         }
         #endregion
