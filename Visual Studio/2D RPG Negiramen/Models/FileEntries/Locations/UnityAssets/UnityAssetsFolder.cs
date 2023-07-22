@@ -1,13 +1,16 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets
 {
+    using _2D_RPG_Negiramen;
     using _2D_RPG_Negiramen.Coding;
+    using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
     ///     😁 Unityの 📂 `Assets` フォルダーへのパス
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
-    ///         <item><see cref="_2D_RPG_Negiramen.App.Configuration"/></item>
+    ///         <item><see cref="App.Configuration"/></item>
     ///     </list>
     /// </summary>
     class UnityAssetsFolder : Its
@@ -55,7 +58,7 @@
                 {
                     yourCircleNameFolder = new UnityAssetsYourCircleNameFolder(
                         pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(this.Path.AsStr, App.GetOrLoadConfiguration().YourCircleName.AsStr)),
+                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().YourCircleName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }

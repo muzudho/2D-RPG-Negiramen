@@ -5,6 +5,7 @@
     using CommunityToolkit.Mvvm.Input;
     using System.Windows.Input;
     using TheFileEntryLocations = Models.FileEntries.Locations;
+    using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
     ///     😁 ［初期設定］ページ用のビューモデル
@@ -84,7 +85,7 @@
                 if (_unityAssetsFolder.Path.AsStr == value)
                     return;
 
-                _unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder(
+                _unityAssetsFolder = new TheLocationOfUnityAssets.UnityAssetsFolder(
                     pathSource: FileEntryPathSource.FromString(value),
                     convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                 replaceSeparators: true));
@@ -134,7 +135,7 @@
         /// <summary>
         ///     Unity の 📂 `Assets` フォルダーの場所
         /// </summary>
-        internal TheFileEntryLocations.UnityAssetsFolder UnityAssetsFolder { get; private set; }
+        internal TheLocationOfUnityAssets.UnityAssetsFolder UnityAssetsFolder { get; private set; }
 
         // - プライベート・フィールド
 
@@ -146,7 +147,7 @@
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        private TheFileEntryLocations.UnityAssetsFolder _unityAssetsFolder = TheFileEntryLocations.UnityAssetsFolder.Empty;
+        private TheLocationOfUnityAssets.UnityAssetsFolder _unityAssetsFolder = TheLocationOfUnityAssets.UnityAssetsFolder.Empty;
 
         /// <summary>
         ///     あなたのサークル名

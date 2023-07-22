@@ -2,6 +2,7 @@
 {
     using Tomlyn;
     using Tomlyn.Model;
+    using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
     ///     😁 構成
@@ -37,7 +38,7 @@
 
                 Locations.Negiramen.WorkingTilesetImageFile workingTilesetImageFile = new Models.FileEntries.Locations.Negiramen.WorkingTilesetImageFile();
 
-                Locations.UnityAssetsFolder unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder();
+                TheLocationOfUnityAssets.UnityAssetsFolder unityAssetsFolder = new TheLocationOfUnityAssets.UnityAssetsFolder();
 
                 Locations.Negiramen.UserConfigurationFile userConfiguration = new Models.FileEntries.Locations.Negiramen.UserConfigurationFile();
                 YourCircleName yourCircleName = new YourCircleName();

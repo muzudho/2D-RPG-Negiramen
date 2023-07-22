@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
+    using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
+
     /// <summary>
     ///     😁 構成ファイルの差分
     /// </summary>
@@ -13,7 +15,7 @@
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        internal Locations.UnityAssetsFolder UnityAssetsFolder { get; set; }
+        internal TheLocationOfUnityAssets.UnityAssetsFolder UnityAssetsFolder { get; set; }
 
         /// <summary>
         ///     ユーザー構成ファイルへのパス

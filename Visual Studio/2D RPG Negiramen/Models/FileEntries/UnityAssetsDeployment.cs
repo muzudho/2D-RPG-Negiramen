@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
-    using TheFileEntryLocations = Models.FileEntries.Locations;
+    using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
     ///     😁 Unity の Assets フォルダーを想定したもの
@@ -21,7 +21,7 @@
         /// </summary>
         /// <param name="unityAssetsFolder">Unityの 📂 `Assets` フォルダーの場所</param>
         /// <returns>完了した</returns>
-        internal static bool PushStartupMemberToUnityAssetsFolder(TheFileEntryLocations.UnityAssetsFolder unityAssetsFolder)
+        internal static bool PushStartupMemberToUnityAssetsFolder(TheLocationOfUnityAssets.UnityAssetsFolder unityAssetsFolder)
         {
             if (!Directory.Exists(unityAssetsFolder.Path.AsStr))
             {

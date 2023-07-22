@@ -1,8 +1,8 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using Tomlyn;
     using Tomlyn.Model;
+    using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
     ///     😁 構成
@@ -41,7 +41,7 @@
 
                 Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolder = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder();
 
-                Locations.UnityAssetsFolder unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder();
+                TheLocationOfUnityAssets.UnityAssetsFolder unityAssetsFolder = new TheLocationOfUnityAssets.UnityAssetsFolder();
 
                 Locations.Negiramen.UserConfigurationFile userConfiguration = new Models.FileEntries.Locations.Negiramen.UserConfigurationFile();
                 YourCircleName yourCircleName = new YourCircleName();
@@ -77,7 +77,7 @@
                             {
                                 if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
                                 {
-                                    unityAssetsFolder = new Locations.UnityAssetsFolder(
+                                    unityAssetsFolder = new TheLocationOfUnityAssets.UnityAssetsFolder(
                                         pathSource: FileEntryPathSource.FromString(unityAssetsFolderPathAsStr),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true));
@@ -259,7 +259,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
-        internal Locations.UnityAssetsFolder UnityAssetsFolder { get; }
+        internal TheLocationOfUnityAssets.UnityAssetsFolder UnityAssetsFolder { get; }
 
         /// <summary>
         ///     ユーザー構成ファイルへのパス
@@ -284,7 +284,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// </summary>
         internal Configuration() : this(
             Locations.Negiramen.WorkspaceFolder.Empty,
-            Locations.UnityAssetsFolder.Empty,
+            TheLocationOfUnityAssets.UnityAssetsFolder.Empty,
             Locations.Negiramen.UserConfigurationFile.Empty,
             YourCircleName.Empty,
             YourWorkName.Empty)
@@ -301,7 +301,7 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <param name="yourWorkName">あなたの作品名</param>
         internal Configuration(
             Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolderPath,
-            Locations.UnityAssetsFolder unityAssetsFolderPath,
+            TheLocationOfUnityAssets.UnityAssetsFolder unityAssetsFolderPath,
             Locations.Negiramen.UserConfigurationFile userConfigurationFilePath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)
