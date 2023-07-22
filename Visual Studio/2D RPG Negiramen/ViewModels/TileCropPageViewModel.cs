@@ -1828,6 +1828,10 @@
         /// </summary>
         internal void InvalidateAddsButton()
         {
+            // TODO ★ ぴったりの時は、「交差中」ではなく「上書き」したい
+            // マウスドラッグ中で、かつ、
+            // this.IsMouseDragging && 
+
             // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
             if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
             {

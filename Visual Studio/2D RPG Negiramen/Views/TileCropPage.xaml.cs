@@ -469,16 +469,6 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        //Models.LogicalDelete logicalDelete;
-        //if (context.SelectedTileVMOption.TryGetValue(out TileRecordViewModel? recordVMOrNull))
-        //{
-        //    logicalDelete = recordVMOrNull.LogicalDelete;
-        //}
-        //else
-        //{
-        //    logicalDelete = Models.LogicalDelete.False;
-        //}
-
         //
         // 設定ファイルの編集
         // ==================
