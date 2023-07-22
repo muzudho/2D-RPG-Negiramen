@@ -50,13 +50,13 @@
         /// <summary>
         ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝`フォルダーの場所
         /// </summary>
-        internal UnityAssetsYourWorkNameFolder YourWorkNameFolder
+        internal YourWorkNameFolder YourWorkNameFolder
         {
             get
             {
                 if (yourWorkNameFolder == null)
                 {
-                    yourWorkNameFolder = new UnityAssetsYourWorkNameFolder(
+                    yourWorkNameFolder = new YourWorkNameFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().YourWorkName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
@@ -70,6 +70,6 @@
 
         // - プライベート・フィールド
 
-        UnityAssetsYourWorkNameFolder yourWorkNameFolder;
+        YourWorkNameFolder yourWorkNameFolder;
     }
 }
