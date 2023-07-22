@@ -72,31 +72,6 @@ internal class ColoredMap : BindableObject, IDrawable
                 v: 1.0f);                                   // バリュー（Value；明度）
 
             //
-            // TODO キャンバスの該当矩形をクリアー
-            // ===================================
-            //
-
-            //
-            // TODO 元画像から部分を切り抜く
-            // =============================
-            //
-
-            //
-            // TODO 角丸のマスクを作成
-            // =======================
-            //
-
-            //
-            // TODO 元画像の切抜きにマスクを当てて、枠の外を透過
-            // =================================================
-            //
-
-            //
-            // TODO 角丸の画像を描画
-            // =====================
-            //
-
-            //
             // 角丸の矩形を引く
             // ================
             //
@@ -105,11 +80,6 @@ internal class ColoredMap : BindableObject, IDrawable
                 // 枠の線の太さの半分だけサイズを縮める
                 rect: recordVM.WorkingRectangle.AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
                 cornerRadius: 16.0d);
-
-            //canvas.FillColor = new Color(220, 220, 220, 96);
-            //canvas.FillRectangle(record.Rectangle.AsGraphis());
-
-
         }
     }
 }

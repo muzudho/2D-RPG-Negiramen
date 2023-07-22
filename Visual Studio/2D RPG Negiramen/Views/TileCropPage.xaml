@@ -203,27 +203,33 @@
                 </Entry.Behaviors>
             </Entry>
 
+            <!-- 「ズーム」 -->
+            <Label Grid.Row="1" Grid.Column="9"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="{app:Translate Zoom}"/>
+
+            <!-- ズーム -->
+            <Entry Grid.Row="1" Grid.Column="10"
+                   HorizontalTextAlignment="End"
+                   Placeholder="32"
+                   Text="{Binding ZoomAsFloat}"
+                   BackgroundColor="FloralWhite"
+                   TextChanged="ZoomEntry_TextChanged">
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                       ValidStyle="{StaticResource ValidEntryStyle}"
+                                                       Flags="ValidateOnValueChanged"
+                                                       MinimumValue="{Binding ZoomMinAsFloat}"
+                                                       MaximumValue="{Binding ZoomMaxAsFloat}"
+                                                       MaximumDecimalPlaces="1" />
+                </Entry.Behaviors>
+            </Entry>
+
 
             <!--    ◆３段目　ラベル列
                     ==================
             -->
-            <!-- 「よこ」
-            <Label Grid.Row="2" Grid.Column="1"
-                   HorizontalTextAlignment="End"
-                   Text="{app:Translate Width}"/>
-            -->
-
-            <!-- 「たて」
-            <Label Grid.Row="2" Grid.Column="2"
-                   HorizontalTextAlignment="End"
-                   Text="{app:Translate Height}"/>
-            -->
-
-            <!-- 「ズーム」 -->
-            <Label Grid.Row="3" Grid.Column="9"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{app:Translate Zoom}"/>
 
             <!--    ◆４段目 入出力行
                     =================
@@ -276,22 +282,6 @@
                    FontSize="24"
                    Text="{Binding WorkingGridTileHeightAsFloat}"/>
 
-            <!-- ズーム -->
-            <Entry Grid.Row="3" Grid.Column="10"
-                   HorizontalTextAlignment="End"
-                   Placeholder="32"
-                   Text="{Binding ZoomAsFloat}"
-                   BackgroundColor="FloralWhite"
-                   TextChanged="ZoomEntry_TextChanged">
-                <Entry.Behaviors>
-                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                       ValidStyle="{StaticResource ValidEntryStyle}"
-                                                       Flags="ValidateOnValueChanged"
-                                                       MinimumValue="{Binding ZoomMinAsFloat}"
-                                                       MaximumValue="{Binding ZoomMaxAsFloat}"
-                                                       MaximumDecimalPlaces="1" />
-                </Entry.Behaviors>
-            </Entry>
         </Grid>
 
         <ScrollView Grid.Row="1">
