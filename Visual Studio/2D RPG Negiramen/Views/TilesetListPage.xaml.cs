@@ -1,4 +1,5 @@
-﻿using _2D_RPG_Negiramen.ViewModels;
+﻿using _2D_RPG_Negiramen.Models.FileEntries;
+using _2D_RPG_Negiramen.ViewModels;
 
 namespace _2D_RPG_Negiramen.Views;
 
@@ -29,6 +30,32 @@ public partial class TilesetListPage : ContentPage
     #endregion
 
     // - プライベート・イベントハンドラ
+
+    #region イベントハンドラ（ページ読込完了時）
+    /// <summary>
+    ///     ページ読込完了時
+    /// </summary>
+    /// <param name="sender">このイベントを送っているコントロール</param>
+    /// <param name="e">イベント</param>
+    private void ContentPage_Loaded(object sender, EventArgs e)
+    {
+        //
+        // ユーザー設定の読込
+        // ==========================
+        //
+        UserConfiguration userConfiguration = App.GetOrLoadUserConfiguration();
+
+        //
+        // ビューモデルの取得
+        // ==================
+        //
+        TilesetListPageViewModel context = (TilesetListPageViewModel)this.BindingContext;
+
+        // TODO タイルセット画像が入っているフォルダーを取得
+
+        // TODO フォルダーの中を一覧
+    }
+    #endregion
 
     #region イベントハンドラ（［ホーム］ボタン・クリック時）
     /// <summary>

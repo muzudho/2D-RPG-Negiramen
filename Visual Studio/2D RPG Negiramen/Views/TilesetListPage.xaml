@@ -1,10 +1,17 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:app="clr-namespace:_2D_RPG_Negiramen"
+             xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.TilesetListPage"
-             Title="TilesetListPage">
-    
+             Title="TilesetListPage"
+             Loaded="ContentPage_Loaded">
+
+    <!-- 束縛しているビューモデル -->
+    <ContentPage.BindingContext>
+        <viewModels:TilesetListPageViewModel />
+    </ContentPage.BindingContext>
+
     <!--    画面内タイトルバー
             ==================
     -->
