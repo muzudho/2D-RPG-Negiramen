@@ -160,5 +160,19 @@
             return $"Width:{Width.AsInt}, Height:{Height.AsInt}";
         }
         #endregion
+
+        #region メソッド（ズームする）
+        /// <summary>
+        ///     ズームする
+        /// </summary>
+        /// <param name="zoom">ズーム率</param>
+        /// <returns>ズーム後</returns>
+        internal SizeFloat Do(Zoom zoom)
+        {
+            return new SizeFloat(
+                width: this.Width.Do(zoom),
+                height: this.Height.Do(zoom));
+        }
+        #endregion
     }
 }

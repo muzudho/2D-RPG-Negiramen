@@ -183,5 +183,19 @@
                 size: this.Size.ToInt());
         }
         #endregion
+
+        #region メソッド（ズームする）
+        /// <summary>
+        ///     ズームする
+        /// </summary>
+        /// <param name="zoom">ズーム率</param>
+        /// <returns>ズーム後</returns>
+        internal RectangleFloat Do(Zoom zoom)
+        {
+            return new RectangleFloat(
+                point: this.Point.Do(zoom),
+                size: this.Size.Do(zoom));
+        }
+        #endregion
     }
 }

@@ -200,6 +200,20 @@
         internal int AsInt => source;
         #endregion
 
+        // - インターナル・メソッド
+
+        #region メソッド（ズームする）
+        /// <summary>
+        ///     ズームする
+        /// </summary>
+        /// <param name="zoom">ズーム率</param>
+        /// <returns>ズーム後</returns>
+        internal WidthFloat Do(Zoom zoom)
+        {
+            return new WidthFloat(zoom.AsFloat * this.source);
+        }
+        #endregion
+
         // - プライベート・フィールド
 
         #region フィールド（値）

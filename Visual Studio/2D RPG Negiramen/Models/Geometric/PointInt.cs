@@ -139,5 +139,19 @@
             return $"X:{X.AsInt}, Y:{Y.AsInt}";
         }
         #endregion
+
+        #region メソッド（ズームする）
+        /// <summary>
+        ///     ズームする
+        /// </summary>
+        /// <param name="zoom">ズーム率</param>
+        /// <returns>ズーム後</returns>
+        internal PointFloat Do(Zoom zoom)
+        {
+            return new PointFloat(
+                x: this.X.Do(zoom),
+                y: this.Y.Do(zoom));
+        }
+        #endregion
     }
 }

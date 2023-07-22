@@ -128,6 +128,20 @@
         internal YFloat Y { get; private set; }
         #endregion
 
+        #region メソッド（ズームする）
+        /// <summary>
+        ///     ズームする
+        /// </summary>
+        /// <param name="zoom">ズーム率</param>
+        /// <returns>ズーム後</returns>
+        internal PointFloat Do(Zoom zoom)
+        {
+            return new PointFloat(
+                x: this.X.Do(zoom),
+                y: this.Y.Do(zoom));
+        }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（ダンプ）

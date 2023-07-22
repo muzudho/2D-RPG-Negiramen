@@ -251,6 +251,7 @@ namespace _2D_RPG_Negiramen.Models.Geometric
         }
         #endregion
 
+        #region メソッド（矩形は交差しているか？）
         /// <summary>
         ///     矩形は交差しているか？
         ///     
@@ -286,5 +287,20 @@ namespace _2D_RPG_Negiramen.Models.Geometric
             return Math.Max(this.LeftAsInt, target.LeftAsInt) < Math.Min(this.RightAsInt, target.RightAsInt) &&
                 Math.Max(this.TopAsInt, target.TopAsInt) < Math.Min(this.BottomAsInt, target.BottomAsInt);
         }
+        #endregion
+
+        #region メソッド（ズームする）
+        /// <summary>
+        ///     ズームする
+        /// </summary>
+        /// <param name="zoom">ズーム率</param>
+        /// <returns>ズーム後</returns>
+        internal RectangleFloat Do(Zoom zoom)
+        {
+            return new RectangleFloat(
+                point: this.Point.Do(zoom),
+                size: this.Size.Do(zoom));
+        }
+        #endregion
     }
 }

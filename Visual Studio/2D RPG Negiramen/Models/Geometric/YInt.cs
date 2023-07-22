@@ -192,7 +192,7 @@
         }
         #endregion
 
-        // - プロパティー
+        // - インターナル・プロパティー
 
         #region プロパティ（値。整数型形式）
         /// <summary>
@@ -201,7 +201,21 @@
         internal int AsInt => source;
         #endregion
 
-        // - フィールド
+        // - インターナル・メソッド
+
+        #region メソッド（ズームする）
+        /// <summary>
+        ///     ズームする
+        /// </summary>
+        /// <param name="zoom">ズーム率</param>
+        /// <returns>ズーム後</returns>
+        internal YFloat Do(Zoom zoom)
+        {
+            return new YFloat(zoom.AsFloat * this.source);
+        }
+        #endregion
+
+        // - プライベート・フィールド
 
         #region フィールド（値）
         /// <summary>
