@@ -238,4 +238,7 @@
   <data name="Intersecting" xml:space="preserve">
     <value>交差中</value>
   </data>
+  <data name="EditTileset" xml:space="preserve">
+    <value>タイルセット編集</value>
+  </data>
 </root>

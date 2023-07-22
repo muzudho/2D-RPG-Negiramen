@@ -196,6 +196,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   タイルセット編集 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string EditTileset {
+            get {
+                return ResourceManager.GetString("EditTileset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   データを編集する に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string EditYourData {

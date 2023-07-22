@@ -63,6 +63,11 @@
         Route="EditStoryPage" />
 
     <ShellContent
+        Title="Edit tileset"
+        ContentTemplate="{DataTemplate views:EditTilesetPage}"
+        Route="EditTilesetPage" />
+
+    <ShellContent
         Title="Startup configuration"
         ContentTemplate="{DataTemplate views:StartupConfigurationPage}"
         Route="StartupConfigurationPage" />

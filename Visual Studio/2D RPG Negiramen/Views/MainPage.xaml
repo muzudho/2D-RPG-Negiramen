@@ -147,7 +147,7 @@
                    SemanticProperties.HeadingLevel="Level1"
                    FontSize="32"/>
 
-                <Grid ColumnDefinitions="*,*" RowDefinitions="*,*,*">
+                <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*">
 
                     <!-- 「プレイヤー・キャラクターを編集」 -->
                     <Button Grid.Row="0" Grid.Column="0"
@@ -207,6 +207,18 @@
                         Text="{app:Translate EditTheTalk}"
                         SemanticProperties.Hint="Edit the story"
                         Clicked="EditorStoryBtn_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
+
+                    <!-- 「タイルセット編集」 -->
+                    <Button Grid.Row="3" Grid.Column="0"
+                        Text="{app:Translate EditTileset}"
+                        SemanticProperties.Hint="Edit the Tileset"
+                        Clicked="EditsTilesetButton_Clicked">
 
                         <Button.GestureRecognizers>
                             <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"

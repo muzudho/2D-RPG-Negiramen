@@ -332,6 +332,31 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
+    #region イベントハンドラ（［タイルセット編集］ボタン押下時）
+    /// <summary>
+    /// ［タイルセット編集］ボタン押下時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void EditsTilesetButton_Clicked(object sender, EventArgs e)
+    {
+        var shellNavigationState = new ShellNavigationState("//EditTilesetPage");
+
+        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
+        await ReadyGoToNext(
+            onOk: async () =>
+            {
+                await Shell.Current.GoToAsync(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            },
+            onNotYetConfiguration: async () =>
+            {
+                await GoToConfigurationPage(shellNavigationState);
+                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+            });
+    }
+    #endregion
+
     #region イベントハンドラ（［初期設定］ボタン押下時）
     /// <summary>
     /// ［初期設定］ボタン押下時
