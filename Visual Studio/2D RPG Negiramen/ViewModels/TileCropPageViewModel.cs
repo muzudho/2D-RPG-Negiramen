@@ -807,13 +807,7 @@
                         // 全ての登録タイルのズーム時の位置とサイズを更新
                         foreach (var registeredTileVM in this.TilesetSettingsVM.RecordViewModelList)
                         {
-                            registeredTileVM.WorkingRectangle = new TheGeometric.RectangleFloat(
-                                point: new TheGeometric.PointFloat(
-                                    x: new TheGeometric.XFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Point.X.AsInt),
-                                    y: new TheGeometric.YFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Point.Y.AsInt)),
-                                size: new TheGeometric.SizeFloat(
-                                    width: new TheGeometric.WidthFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Size.Width.AsInt),
-                                    height: new TheGeometric.HeightFloat(this.ZoomAsFloat * registeredTileVM.SourceRectangle.Size.Height.AsInt)));
+                            registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Zoom);
                         }
 
                         // 切抜きカーソルの位置とサイズを更新

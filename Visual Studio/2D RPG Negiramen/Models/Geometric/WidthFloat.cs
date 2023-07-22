@@ -4,6 +4,7 @@
     ///     😁 横幅
     ///     
     ///     <list type="bullet">
+    ///         <item>イミュータブル</item>
     ///         <item>float 型</item>
     ///         <item>用途：　図形描画。 SkiaSharp のメソッドが float 型で受け付けるから</item>
     ///     </list>

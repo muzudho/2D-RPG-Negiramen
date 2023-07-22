@@ -4,6 +4,7 @@
     ///     😁 位置
     ///     
     ///     <list type="bullet">
+    ///         <item>イミュータブル</item>
     ///         <item>int 型</item>
     ///     </list>
     /// </summary>
@@ -137,6 +138,19 @@
         internal string Dump()
         {
             return $"X:{X.AsInt}, Y:{Y.AsInt}";
+        }
+        #endregion
+
+        #region メソッド（型変換　＞　float）
+        /// <summary>
+        ///     float型へ変換
+        /// </summary>
+        /// <returns>変換後</returns>
+        internal PointFloat ToFloat()
+        {
+            return new PointFloat(
+                x: this.X.ToFloat(),
+                y: this.Y.ToFloat());
         }
         #endregion
 

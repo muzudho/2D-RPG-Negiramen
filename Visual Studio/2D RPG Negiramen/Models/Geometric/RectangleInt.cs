@@ -1,11 +1,10 @@
-﻿using System.Diagnostics;
-
-namespace _2D_RPG_Negiramen.Models.Geometric
+﻿namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
     ///     😁 矩形
     ///     
     ///     <list type="bullet">
+    ///         <item>イミュータブル</item>
     ///         <item>int 型</item>
     ///         <item>原点は左上。Ｙ軸は下方向へ増える</item>
     ///     </list>
@@ -286,6 +285,19 @@ namespace _2D_RPG_Negiramen.Models.Geometric
         {
             return Math.Max(this.LeftAsInt, target.LeftAsInt) < Math.Min(this.RightAsInt, target.RightAsInt) &&
                 Math.Max(this.TopAsInt, target.TopAsInt) < Math.Min(this.BottomAsInt, target.BottomAsInt);
+        }
+        #endregion
+
+        #region メソッド（型変換　＞　float）
+        /// <summary>
+        ///     float型へ変換
+        /// </summary>
+        /// <returns>変換後</returns>
+        internal RectangleFloat ToFloat()
+        {
+            return new RectangleFloat(
+                point: this.Point.ToFloat(),
+                size: this.Size.ToFloat());
         }
         #endregion
 

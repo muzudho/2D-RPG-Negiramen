@@ -4,6 +4,7 @@
     ///     😁 位置ｙ
     ///     
     ///     <list type="bullet">
+    ///         <item>イミュータブル</item>
     ///         <item>int 型</item>
     ///     </list>
     /// </summary>
@@ -202,6 +203,17 @@
         #endregion
 
         // - インターナル・メソッド
+
+        #region メソッド（型変換　＞　float）
+        /// <summary>
+        ///     float型へ変換
+        /// </summary>
+        /// <returns>変換後</returns>
+        internal YFloat ToFloat()
+        {
+            return new YFloat(this.source);
+        }
+        #endregion
 
         #region メソッド（ズームする）
         /// <summary>
