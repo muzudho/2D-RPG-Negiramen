@@ -517,4 +517,64 @@
 「　ファイルの説明のファイルだから、ファイルの隣に有ってほしいんだぜ。  
 同じファイル・パスですぐ見つかる感じで」  
 
+## ファイル名のリストを表示してみろだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　試しにファイル名のリストを表示してみろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　といっても　テーブル・ビューを使えばいいのか、  
+コレクション・ビューを使えばいいのか、　リスト・ビューを使えばいいのか、  
+さっぱり分からないが……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　サンプルがあるそうだぜ」  
+
+📖 [.NET MAUIのCollectionViewを試してみる](https://devlog.grapecity.co.jp/dotnet-maui-collectionview/)  
+📖 [DotNet　＞　maui-samples](https://github.com/dotnet/maui-samples)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　これを見てみるかだぜ」  
+
+📖 [https://github.com/dotnet/maui-samples/tree/main/7.0/UserInterface/ControlGallery](https://github.com/dotnet/maui-samples/tree/main/7.0/UserInterface/ControlGallery)  
+
+![202307_maui_23-0512--collectionView.png](https://crieit.now.sh/upload_images/8c42b74a9b8f66de44b6570f78090dbe64bc384c682e4.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これが　コレクション・ビュー　らしいんだが、何がいいんだろなあ？」  
+
+![202307_maui_23-0512--listView.png](https://crieit.now.sh/upload_images/114a992b8c83925456287e6aee71a95264bc39d43dd10.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これが　リスト・ビュー　らしいんだが、何がいいんだろなあ？」  
+
+![202307_maui_23-0531--refreshView.png](https://crieit.now.sh/upload_images/40db734690019a1bb2d134e0e1a0819664bc3cd9a8018.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これが　リフレッシュ・ビュー　らしいんだが、何がいいんだろなあ？」  
+
+![202307_maui_23-0533--swipeView.png](https://crieit.now.sh/upload_images/e71c084469cd1979fc3191621b2bdfa664bc3d48317a6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これが　スワイプ・ビュー　らしいんだが、何がいいんだろなあ？」  
+
+![202307_maui_23-0535--tableViewForAForm.png](https://crieit.now.sh/upload_images/f30779f654104b9a220649bafc743d6164bc3daec83b9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これが　フォームが乗っているテーブル・ビュー　らしいんだが、何がいいんだろなあ？」  
+
+![202307_maui_23-0536--tableViewForAMenu.png](https://crieit.now.sh/upload_images/20ffebfb1aac79919642fc0f4261194b64bc3dfc47cd3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これが　メニューになっているテーブル・ビュー　らしいんだが、クリックすると画面遷移するぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　どれが　いいんだろな？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　グーグルのイメージ検索結果みたいに　画像を並べるのがいいんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そういうのが　コレクション・ビュー　なのかな」  
+
 ＜書きかけ＞
