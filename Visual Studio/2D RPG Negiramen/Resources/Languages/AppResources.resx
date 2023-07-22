@@ -235,4 +235,7 @@
   <data name="Working" xml:space="preserve">
     <value>作業中</value>
   </data>
+  <data name="Intersecting" xml:space="preserve">
+    <value>交差中</value>
+  </data>
 </root>

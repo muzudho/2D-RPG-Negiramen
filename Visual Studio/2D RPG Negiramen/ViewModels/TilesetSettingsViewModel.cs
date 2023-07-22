@@ -176,6 +176,29 @@
         }
         #endregion
 
+        /// <summary>
+        ///     全ての矩形（元画像ベース）
+        /// </summary>
+        /// <returns>ストリーム</returns>
+        internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles()
+        {
+            foreach (var recordVM in this.RecordViewModelList)
+            {
+                // 矩形を１件返す
+                yield return recordVM.SourceRectangle;
+            }
+        }
+
+        /// <summary>
+        ///     指定の矩形は、登録されている矩形のいずれかと交差するか？
+        /// </summary>
+        /// <param name="sourceRectangle">矩形（元画像ベース）</param>
+        /// <returns>そうだ</returns>
+        internal bool HasIntersection(TheGeometric.RectangleInt sourceRectangle)
+        {
+            return TilesetSettings.HasIntersection(sourceRectangle, this.GetAllSourceRectangles());
+        }
+
         // - プライベート・メソッド
 
         #region メソッド（保存）

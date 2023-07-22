@@ -5,6 +5,7 @@
     ///     
     ///     <list type="bullet">
     ///         <item>int 型</item>
+    ///         <item>原点は左上。Ｙ軸は下方向へ増える</item>
     ///     </list>
     /// </summary>
     internal class RectangleInt
@@ -134,14 +135,83 @@
         /// <summary>
         ///     位置
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal Models.PointInt Point { get; private set; }
-        後:
-                internal PointInt Point { get; private set; }
-        */
         internal PointInt Point { get; private set; }
+        #endregion
+
+        #region プロパティ（左辺の位置ｘ）
+        /// <summary>
+        ///     左辺の位置ｘ
+        /// </summary>
+        internal int LeftAsInt
+        {
+            get
+            {
+                if (0 < this.Size.Width.AsInt)
+                {
+                    return this.Point.X.AsInt;
+                }
+
+                // 横幅がマイナスのとき
+                return this.Point.X.AsInt + this.Size.Width.AsInt;
+            }
+        }
+        #endregion
+
+        #region プロパティ（右辺の位置ｘ）
+        /// <summary>
+        ///     右辺の位置ｘ
+        /// </summary>
+        internal int RightAsInt
+        {
+            get
+            {
+                if (0 < this.Size.Width.AsInt)
+                {
+                    return this.Point.X.AsInt + this.Size.Width.AsInt;
+                }
+
+                // 横幅がマイナスのとき
+                return this.Point.X.AsInt;
+            }
+        }
+        #endregion
+
+        #region プロパティ（上辺の位置ｙ）
+        /// <summary>
+        ///     上辺の位置ｙ
+        /// </summary>
+        internal int TopAsInt
+        {
+            get
+            {
+                if (0 < this.Size.Height.AsInt)
+                {
+                    return this.Point.Y.AsInt;
+                }
+
+                // 縦幅がマイナスのとき
+                return this.Point.Y.AsInt + this.Size.Height.AsInt;
+            }
+        }
+        #endregion
+
+        #region プロパティ（下辺の位置ｙ）
+        /// <summary>
+        ///     下辺の位置ｙ
+        /// </summary>
+        internal int BottomAsInt
+        {
+            get
+            {
+                if (0 < this.Size.Height.AsInt)
+                {
+                    return this.Point.Y.AsInt + this.Size.Height.AsInt;
+                }
+
+                // 縦幅がマイナスのとき
+                return this.Point.Y.AsInt;
+            }
+        }
         #endregion
 
         #region プロパティ（大きさ）
@@ -178,5 +248,41 @@
             return $"Point:{Point.Dump()}, Size:{Size.Dump()}";
         }
         #endregion
+
+        /// <summary>
+        ///     矩形は交差しているか？
+        ///     
+        ///     <list type="bullet">
+        ///         <item>📖 [矩形同士の交差](https://blog.y-yuki.net/entry/2019/08/29/200000)</item>
+        ///     </list>
+        ///     
+        ///     <pre>
+        ///                    Min Right
+        ///                    v
+        ///          +---------+
+        ///          | A       |
+        ///          |         |
+        ///          |    +----+----+ ＜ Min Top
+        ///          |    |    |    |
+        ///          |    |    |    |
+        ///          +----+----+    | ＜ Max Bottom
+        ///               |         |
+        ///               |       B |
+        ///               +---------+
+        ///               ^
+        ///               Max Left
+        ///         
+        ///         
+        ///         
+        ///         Max(a.Left, b.Left) ＜ Min(a.Right, b.Right) かつ Max(a.Bottom, b.Bottom) ＜ Min(a.Top, b.Top)
+        ///     </pre>
+        /// </summary>
+        /// <param name="target">もう１つの矩形</param>
+        /// <returns></returns>
+        internal bool HasIntersection(RectangleInt target)
+        {
+            return Math.Max(this.LeftAsInt, target.LeftAsInt) < Math.Min(this.RightAsInt, target.RightAsInt) &&
+                Math.Max(this.BottomAsInt, target.BottomAsInt) < Math.Min(this.TopAsInt, target.TopAsInt);
+        }
     }
 }

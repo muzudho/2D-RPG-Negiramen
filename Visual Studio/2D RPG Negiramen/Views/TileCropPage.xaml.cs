@@ -101,6 +101,12 @@ public partial class TileCropPage : ContentPage
         context.SourceCroppedCursorRect = sourceRect;
 
         //
+        // 既存の登録タイルと被っていないか判定
+        // ====================================
+        //
+        context.RecalculateIntersectionBetweenCroppedCursorAndRegisteredTile();
+
+        //
         // 切抜きカーソル更新
         // ==================
         //

@@ -228,4 +228,7 @@
   <data name="Working" xml:space="preserve">
     <value>Working</value>
   </data>
+  <data name="Intersecting" xml:space="preserve">
+    <value>Intersecting</value>
+  </data>
 </root>

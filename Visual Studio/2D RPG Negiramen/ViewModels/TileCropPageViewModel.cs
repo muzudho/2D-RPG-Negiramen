@@ -1043,6 +1043,10 @@
         #region 変更通知プロパティ（切抜きカーソル。元画像ベース　関連）
         /// <summary>
         ///     切抜きカーソル。元画像ベースの矩形
+        ///     
+        ///     <list type="bullet">
+        ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
+        ///     </list>
         /// </summary>
         public Models.Geometric.RectangleInt SourceCroppedCursorRect
         {
@@ -1710,6 +1714,14 @@
         }
         #endregion
 
+        // - インターナル・プロパティ
+
+        /// <summary>
+        ///     切抜きカーソルと、既存タイルが交差しているか？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; private set; }
+
         // - インターナル・メソッド
 
         #region メソッド（切抜きカーソル。ズーム済み　関連）
@@ -1816,6 +1828,15 @@
         /// </summary>
         internal void InvalidateAddsButton()
         {
+            // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
+            if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+            {
+                // 「交差中」
+                this.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
+                this.AddsButtonIsEnabled = false;
+                return;
+            }
+
             if (this.selectedTileVMOption.TryGetValue(out var recordVM))
             {
                 // 切抜きカーソル有り時
@@ -1874,6 +1895,26 @@
             }
         }
         #endregion
+
+        /// <summary>
+        ///     切抜きカーソルと、既存タイルが交差しているか？　を再計算
+        ///     
+        ///     <list type="bullet">
+        ///         <item>軽くはない処理</item>
+        ///     </list>
+        /// </summary>
+        internal void RecalculateIntersectionBetweenCroppedCursorAndRegisteredTile()
+        {
+            if (this.SourceCroppedCursorRect == TheGeometric.RectangleInt.Empty)
+            {
+                // カーソルが無ければ、交差も無い
+                this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                return;
+            }
+
+            // 軽くはない処理
+            this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.SourceCroppedCursorRect);
+        }
 
         // - プライベート・フィールド
 

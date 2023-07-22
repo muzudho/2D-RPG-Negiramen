@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
+    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
     using System.Text;
 
     /// <summary>
@@ -145,6 +146,27 @@
         }
         #endregion
 
+        /// <summary>
+        ///     指定の矩形は、指定の矩形のリストの中の矩形のいずれかと交差するか？
+        /// </summary>
+        /// <param name="target">矩形</param>
+        /// <param name="rectangles">矩形のリスト</param>
+        /// <returns>そうだ</returns>
+        internal static bool HasIntersection(TheGeometric.RectangleInt target, IEnumerator<TheGeometric.RectangleInt> rectangles)
+        {
+            while (rectangles.MoveNext())
+            {
+                var rect = rectangles.Current;
+
+                if (target.HasIntersection(rect))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
         // - インターナル・プロパティー
 
         #region プロパティ（対象のタイルセットに含まれるすべてのタイルの記録）
@@ -243,6 +265,29 @@
             return false;
         }
         #endregion
+
+        /// <summary>
+        ///     全ての矩形
+        /// </summary>
+        /// <returns>ストリーム</returns>
+        internal IEnumerator<TheGeometric.RectangleInt> GetAllRectangles()
+        {
+            foreach (var record in this.RecordList)
+            {
+                // 矩形を１件返す
+                yield return record.Rectangle;
+            }
+        }
+
+        /// <summary>
+        ///     指定の矩形は、登録されている矩形のいずれかと交差するか？
+        /// </summary>
+        /// <param name="target">矩形</param>
+        /// <returns>そうだ</returns>
+        internal bool HasIntersection(TheGeometric.RectangleInt target)
+        {
+            return TilesetSettings.HasIntersection(target, this.GetAllRectangles());
+        }
 
         // - プライベート・メソッド
 

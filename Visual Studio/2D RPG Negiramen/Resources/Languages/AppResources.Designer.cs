@@ -259,6 +259,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   交差中 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Intersecting {
+            get {
+                return ResourceManager.GetString("Intersecting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   画面をレイアウトする に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string LayoutTheScreen {
