@@ -101,48 +101,16 @@ public partial class TileCropPage : ContentPage
         context.SourceCroppedCursorRect = sourceRect;
 
         //
-        // タイルが登録済みか？
-        // ====================
+        // 切抜きカーソル更新
+        // ==================
         //
-        if (context.TilesetSettingsVM.TryGetByRectangle(
-            sourceRect: context.SourceCroppedCursorRect,
-            out TileRecordViewModel? recordVMOrNull))
-        {
-            TileRecordViewModel recordVM = recordVMOrNull ?? throw new NullReferenceException(nameof(recordVMOrNull));
-            Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Point.X.AsInt}, Y:{recordVM.SourceRectangle.Point.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Comment:{recordVM.Comment.AsStr}");
+        context.InvalidateCroppedCursor();
 
-            //
-            // データ表示
-            // ==========
-            //
+        // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
+        context.InvalidateAddsButton();
 
-            // TODO 追加ボタンを、上書きボタンへラベル変更
-            // TODO 削除ボタン活性化
-
-            // 選択中のタイルを設定
-            context.SelectedTileVMOption = new Option<TileRecordViewModel>(recordVM);
-        }
-        else
-        {
-            // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
-
-            //
-            // 空欄にする
-            // ==========
-            //
-
-            // TODO 追加ボタン活性化
-            // TODO 削除ボタン不活性化
-
-            // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-            context.SelectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
-                tileRecord: new TileRecord(
-                    id: Models.TileId.Empty,
-                    rectangle: context.SourceCroppedCursorRect,
-                    comment: Models.Comment.Empty,
-                    logicalDelete: Models.LogicalDelete.False),
-                workingRect: RectangleFloat.FromModel(context.SourceCroppedCursorRect)));
-        }
+        // （切抜きカーソル更新後）［削除］ボタン活性化
+        context.InvalidateDeletesButton();
     }
     #endregion
 

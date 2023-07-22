@@ -7,6 +7,7 @@
     using SkiaSharp;
     using System.Collections.ObjectModel;
     using System.Globalization;
+    using System.Diagnostics;
 
     /// <summary>
     ///     😁 ［タイル切抜きページ］ビューモデル
@@ -328,27 +329,11 @@
 
                 this.RefreshByLocaleChanged();
 
-                if (this.selectedTileVMOption.TryGetValue(out var record))
-                {
-                    if (record.Id == TileId.Empty)
-                    {
-                        // 未選択時
-                        this.AddsButtonIsEnabled = true;
-                        this.DeletesButtonIsEnabled = false;
-                    }
-                    else
-                    {
-                        // 「上書」
-                        this.AddsButtonIsEnabled = true;
-                        this.DeletesButtonIsEnabled = true;
-                    }
-                }
-                else
-                {
-                    // タイル・カーソル無し時
-                    this.AddsButtonIsEnabled = false;
-                    this.DeletesButtonIsEnabled = false;
-                }
+                // ［追加／上書き］ボタン再描画
+                this.InvalidateAddsButton();
+
+                // ［削除］ボタン再描画
+                this.InvalidateDeletesButton();
 
                 NotifyTileIdChange();
             }
@@ -1721,26 +1706,7 @@
         /// </summary>
         public void RefreshByLocaleChanged()
         {
-            if (this.selectedTileVMOption.TryGetValue(out var record))
-            {
-                if (record.Id == TileId.Empty)
-                {
-                    // 未選択時
-                    // ［追加」
-                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-                }
-                else
-                {
-                    // 「上書」
-                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
-                }
-            }
-            else
-            {
-                // タイル・カーソル無し時
-                // 「追加」
-                this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-            }
+            this.InvalidateAddsButton();
         }
         #endregion
 
@@ -1799,6 +1765,113 @@
         internal void RefreshWorkingTilesetImage()
         {
             OnPropertyChanged(nameof(TilesetWorkingImageFilePathAsStr));
+        }
+        #endregion
+
+        #region メソッド　＞　再描画　＞　切抜きカーソル
+        /// <summary>
+        ///     切抜きカーソルの再描画
+        /// </summary>
+        internal void InvalidateCroppedCursor()
+        {
+            if (this.TilesetSettingsVM.TryGetByRectangle(
+    sourceRect: this.SourceCroppedCursorRect,
+    out TileRecordViewModel? recordVMOrNull))
+            {
+                TileRecordViewModel recordVM = recordVMOrNull ?? throw new NullReferenceException(nameof(recordVMOrNull));
+                Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Point.X.AsInt}, Y:{recordVM.SourceRectangle.Point.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Comment:{recordVM.Comment.AsStr}");
+
+                //
+                // データ表示
+                // ==========
+                //
+
+                // 選択中のタイルを設定
+                this.SelectedTileVMOption = new Option<TileRecordViewModel>(recordVM);
+            }
+            else
+            {
+                Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+
+                //
+                // 空欄にする
+                // ==========
+                //
+
+                // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
+                this.SelectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
+                    tileRecord: new Models.TileRecord(
+                        id: Models.TileId.Empty,
+                        rectangle: this.SourceCroppedCursorRect,
+                        comment: Models.Comment.Empty,
+                        logicalDelete: Models.LogicalDelete.False),
+                    workingRect: TheGeometric.RectangleFloat.FromModel(this.SourceCroppedCursorRect)));
+            }
+        }
+        #endregion
+
+        #region メソッド　＞　再描画　＞　［追加／上書き］ボタン
+        /// <summary>
+        ///     ［追加／上書き］ボタンの再描画
+        /// </summary>
+        internal void InvalidateAddsButton()
+        {
+            if (this.selectedTileVMOption.TryGetValue(out var recordVM))
+            {
+                // 切抜きカーソル有り時
+
+                if (recordVM.Id == TileId.Empty)
+                {
+                    // Ｉｄ未設定時
+
+                    // ［追加」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                }
+                else
+                {
+                    // 「上書」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
+                }
+
+                this.AddsButtonIsEnabled = true;
+            }
+            else
+            {
+                // 切抜きカーソル無し時
+
+                // 「追加」
+                this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                this.AddsButtonIsEnabled = false;
+            }
+        }
+        #endregion
+
+        #region メソッド　＞　再描画　＞　［削除］ボタン
+        /// <summary>
+        ///     ［削除］ボタンの再描画
+        /// </summary>
+        internal void InvalidateDeletesButton()
+        {
+            if (this.selectedTileVMOption.TryGetValue(out var recordVM))
+            {
+                // 切抜きカーソル有り時
+
+                if (recordVM.Id == TileId.Empty)
+                {
+                    // Ｉｄ未設定時
+                    this.DeletesButtonIsEnabled = false;
+                }
+                else
+                {
+                    // タイル登録済み時
+                    this.DeletesButtonIsEnabled = true;
+                }
+            }
+            else
+            {
+                // 切抜きカーソル無し時
+                this.DeletesButtonIsEnabled = false;
+            }
         }
         #endregion
 

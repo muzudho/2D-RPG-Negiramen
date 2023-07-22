@@ -276,4 +276,36 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　入力も　ズームを考慮して　行えるようにしたぜ」  
 
+![202307_maui_22-0319--zoomedCursorError-o2o0.png](https://crieit.now.sh/upload_images/d54b4cd78beefcc9932d3af2e6ffacde64bacc5ccdda7.png)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　ズームを変えても、切抜きカーソルが　置いてけぼりをくらってるぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ズームの数字が変わったら、切抜きカーソルの矩形の位置とサイズも　再設定しないといけないな」  
+
+![202307_maui_22-0422--zoomedCursor.png](https://crieit.now.sh/upload_images/feaa3e7eaae0d99307ec42bc3f549ebc64bb5eec6c105.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　カーソルも　ズームに置いてけぼりされないようにしたぜ」  
+
+## インターセクションしないようにしましょう
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　矩形が　重なりまくって　分けわかんないんだけど」  
+
+![202307_maui_22-1435--noIntersection.png](https://crieit.now.sh/upload_images/a159f5fd02bfda991b205c20d8ad0d1864bb6adaaae52.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　つまり　こういう状態になることを　強制する方法か」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　既存の登録タイルと重なっているときは　タイルを追加できないようにすればいいのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　**既存のタイルと重なっている** と、ユーザーにどうやって　気づかせるんだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　とりあえず　追加ボタンが押せなければいいんじゃないの？」  
+
 ＜書きかけ＞
