@@ -147,7 +147,7 @@
                             rectangle: recordVM.SourceRectangle,
                             comment: recordVM.Comment,
                             logicalDelete: Models.LogicalDelete.True),
-                        workingRect: this.RecordViewModelList[i].WorkingRectangle);
+                        workingRect: recordVM.WorkingRectangle);
                 }
             }
         }

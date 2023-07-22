@@ -103,15 +103,9 @@ public partial class TileCropPage : ContentPage
         // 登録済みのタイルと被っていないか判定
         // ====================================
         //
+        //      - （軽くない処理）
+        //
         context.RecalculateIntersectionBetweenCroppedCursorAndRegisteredTile();
-        if (context.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
-        {
-            Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] 登録済みのタイルと被っている");
-        }
-        else
-        {
-            Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] 登録済みのタイルと被っていない");
-        }
 
         //
         // 切抜きカーソル更新
@@ -475,22 +469,24 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        Models.LogicalDelete logicalDelete;
-        if (context.SelectedTileVMOption.TryGetValue(out var record))
-        {
-            logicalDelete = record.LogicalDelete;
-        }
-        else
-        {
-            logicalDelete = Models.LogicalDelete.False;
-        }
+        //Models.LogicalDelete logicalDelete;
+        //if (context.SelectedTileVMOption.TryGetValue(out TileRecordViewModel? recordVMOrNull))
+        //{
+        //    logicalDelete = recordVMOrNull.LogicalDelete;
+        //}
+        //else
+        //{
+        //    logicalDelete = Models.LogicalDelete.False;
+        //}
 
         //
         // 設定ファイルの編集
         // ==================
         //
+        //      - 選択中のタイルを論理削除
+        //
         context.TilesetSettingsVM.DeleteLogical(
-            // 現在選択中のＩｄ
+            // 現在選択中のタイルのＩｄ
             id: context.SelectedTileId);
 
         //
