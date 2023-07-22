@@ -405,7 +405,7 @@
                             Clicked="AddsButton_Clicked">
                         <Button.GestureRecognizers>
                             <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
-                                                  PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
                         </Button.GestureRecognizers>
                     </Button>
 
@@ -416,7 +416,7 @@
                             Clicked="DeletesButton_Clicked">
                         <Button.GestureRecognizers>
                             <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
-                                                  PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
                         </Button.GestureRecognizers>
                     </Button>
 

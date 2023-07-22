@@ -392,4 +392,31 @@
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　Ｉｄの採番部を見直せだぜ」  
 
+![202307_maui_22-2300--fix-id.png](https://crieit.now.sh/upload_images/bb19a84999e705ac2b9b4893578254be64bbe14c3a5f9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Ｉｄの採番部を直したぜ」  
+
+## Disable のボタンのスタイル直せないの？
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　不活性のボタンは　文字が黒い青いボタンになってるけど、  
+グレーのボタンにできないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　スタイル　いつの間にか　おかしくなった　調べるか」  
+
+![202307_maui_22-2306--buttonStyle-o2o0.png](https://crieit.now.sh/upload_images/6efe601d2a7b39091da867aea930c60c64bbe27ff3705.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ここに指定している通りに　表示してくれたらいいのに……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　その上で　`BackgroundColor`　を指定しているのが　ダメなんだろうかだぜ？」  
+
+![202307_maui_22-2311--buttonStyleNormal-o2o0.png](https://crieit.now.sh/upload_images/0a6b079c3db7194b98e4a04b5ae2bae464bbe3c1d7b79.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Normal も設定したら　直った」  
+
 ＜書きかけ＞
