@@ -5,6 +5,57 @@
     /// </summary>
     internal static class ResourcesHelper
     {
+        // - インターナル静的プロパティ
+
+        /// <summary>
+        ///     白
+        /// </summary>
+        internal static Color GentleWhite
+        {
+            get
+            {
+                if (gentleWhite == null)
+                {
+                    if (ResourcesHelper.TryFind("GentleWhite", out var color))
+                    {
+                        gentleWhite = (Color)color;
+                    }
+                    else
+                    {
+                        throw new Exception($"[ResourceHelper.cs GentleWhite] not found");
+                    }
+                }
+
+                return gentleWhite;
+            }
+        }
+
+        /// <summary>
+        ///     基調色
+        /// </summary>
+        internal static Color Primary
+        {
+            get
+            {
+                if (primary==null)
+                {
+                    if (ResourcesHelper.TryFind("Primary", out var color))
+                    {
+                        primary = (Color)color;
+                    }
+                    else
+                    {
+                        throw new Exception($"[ResourceHelper.cs Primary] not found");
+                    }
+                }
+
+                return primary;
+            }
+        }
+
+        // - インターナル静的メソッド
+
+        #region メソッド（探す）
         /// <summary>
         ///     探す
         ///     
@@ -35,5 +86,11 @@
             resource = 0;
             return false;
         }
+        #endregion
+
+        // プライベート静的フィールド
+
+        static Color? gentleWhite;
+        static Color? primary;
     }
 }

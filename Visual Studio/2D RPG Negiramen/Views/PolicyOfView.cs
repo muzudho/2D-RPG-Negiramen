@@ -49,10 +49,7 @@ internal static class PolicyOfView
     {
         // ボタンの色変更
         // TODO スタイルの名前のハードコーディングは止めたい
-        if (ResourcesHelper.TryFind("Primary", out var color))
-        {
-            button.BackgroundColor = (Color)color;
-        }
+        button.BackgroundColor = ResourcesHelper.Primary;
     }
 
     /*

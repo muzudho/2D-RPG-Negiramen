@@ -15,21 +15,21 @@
         ///     グリッド・キャンバス画像のサイズ
         /// </summary>
 
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        public Models.SizeInt GridCanvasImageSize
-後:
-        public SizeInt GridCanvasImageSize
-*/
+        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+        前:
+                public Models.SizeInt GridCanvasImageSize
+        後:
+                public SizeInt GridCanvasImageSize
+        */
         public Geometric.SizeInt GridCanvasImageSize
         {
 
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            get => (Models.SizeInt)GetValue(GridCanvasImageSizeProperty);
-後:
-            get => (SizeInt)GetValue(GridCanvasImageSizeProperty);
-*/
+            /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+            前:
+                        get => (Models.SizeInt)GetValue(GridCanvasImageSizeProperty);
+            後:
+                        get => (SizeInt)GetValue(GridCanvasImageSizeProperty);
+            */
             get => (Geometric.SizeInt)GetValue(GridCanvasImageSizeProperty);
             set => SetValue(GridCanvasImageSizeProperty, value);
         }
@@ -42,12 +42,12 @@
             propertyName: nameof(GridCanvasImageSize),
             // 返却型
 
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            returnType: typeof(Models.SizeInt),
-後:
-            returnType: typeof(SizeInt),
-*/
+            /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
+            前:
+                        returnType: typeof(Models.SizeInt),
+            後:
+                        returnType: typeof(SizeInt),
+            */
             returnType: typeof(Geometric.SizeInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid));
@@ -136,7 +136,8 @@
             Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.GridPhase.Dump()}, this.GridUnit: {this.GridUnit.Dump()} dirtyRect: ({dirtyRect.Width:.2}, {dirtyRect.Height:.2})");
 
             // 線の色
-            canvas.StrokeColor = new Color(255, 0, 0, 127);
+            // canvas.StrokeColor = ResourcesHelper.GentleWhite;   // new Color(255, 0, 0, 127);
+            canvas.StrokeColor = new Color((int)(0.7 * 255), (int)(0.7 * 255), (int)(0.7 * 255));
 
             // グリッドの線の太さの半分
             int halfThicknessOfLineAsInt = this.HalfThicknessOfGridLineAsInt;

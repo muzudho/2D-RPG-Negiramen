@@ -419,4 +419,30 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　Normal も設定したら　直った」  
 
+## グリッドの色を白にしない？
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　グリッドの色が赤なの主張が強いから　白にしない？」  
+
+![202307_maui_22-2333--gridIsWhite.png](https://crieit.now.sh/upload_images/ddc115bc1f417e803c4b799a18f7fb9964bbe8ebf36f8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　カラーマップの色と　衝突してしまうぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　タイルセット画像と同じだけ　明度を落とした白にすんのよ」  
+
+![202307_maui_22-2337--gridIsGray.png](https://crieit.now.sh/upload_images/5098b48fdf11afcb3844d47efb9cff9a64bbe9b5f156a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　落ち着いた　目に優しい色になったぜ」  
+
+## カラーマップの枠の色の青紫の明度を上げれないか？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　青紫の明度が低いなあ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　SkiaSharp には　ＲＧＢじゃなくて　色相と明度で指定する方法　無いの？」  
+
 ＜書きかけ＞

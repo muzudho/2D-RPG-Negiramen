@@ -425,7 +425,7 @@ public partial class TileCropPage : ContentPage
             throw new InvalidOperationException("[TileCropPage.xaml.cs AddsButton_Clicked] cropped cursor is nothing");
         }
 
-        if (context.SelectedTileId == TileId.Empty)
+        if (context.SelectedTileId == Models.TileId.Empty)
         {
             // Ｉｄが無いということは、新規作成だ
 
