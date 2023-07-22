@@ -175,7 +175,7 @@
                     // 合同の矩形が含まれていたらエラー
                     if (recordI.Rectangle == recordJ.Rectangle)
                     {
-                        Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。合同の矩形が含まれていた。 (1) [{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsBASE64}]");
+                        Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。合同の矩形が含まれていた。 (1) [{recordI.Id.AsInt}][{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsInt}][{recordJ.Id.AsBASE64}]");
                         errorCount++;
                     }
                 }

@@ -384,4 +384,12 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　とりあえず　デバッグモードで確認するようにした」  
 
+![202307_maui_22-2140--Id-o2o0.png](https://crieit.now.sh/upload_images/0c12b600870ddfa9af7cc0f9920d613c64bbcea793fcb.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あれっ！　Ｉｄが重複しまくってる！」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　Ｉｄの採番部を見直せだぜ」  
+
 ＜書きかけ＞
