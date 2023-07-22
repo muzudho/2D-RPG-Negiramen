@@ -204,13 +204,13 @@
         static void PushStartupMemberToImagesFolder(UnityAssetsImagesFolder imagesFolder)
         {
             // 📂 `Tileset` フォルダー
-            if (!Directory.Exists(imagesFolder.ImagesTilesetFolder.Path.AsStr))
+            if (!Directory.Exists(imagesFolder.TilesetFolder.Path.AsStr))
             {
-                Directory.CreateDirectory(imagesFolder.ImagesTilesetFolder.Path.AsStr);
+                Directory.CreateDirectory(imagesFolder.TilesetFolder.Path.AsStr);
             }
 
-            CopyTileset("adventure_field.png");
-            CopyTileset("map-tileset-format-8x19.png");
+            CopyTileset(imagesFolder.TilesetFolder, "adventure_field.png");
+            CopyTileset(imagesFolder.TilesetFolder, "map-tileset-format-8x19.png");
 
             //var configuration = App.GetOrLoadConfiguration();
             //var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tileset", "adventure_field.png");
@@ -236,21 +236,14 @@
         ///     タイルセットをコピー
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        static void CopyTileset(string fileName)
+        static void CopyTileset(UnityAssetsImagesTilesetFolder tilesetFolder, string fileName)
         {
             var configuration = App.GetOrLoadConfiguration();
 
             // 画像ファイルのコピー
             {
                 var source = Path.Combine(configuration.NegiramenWorkspaceFolder.Path.AsStr, "For Unity Assets", "Images", "Tileset", fileName);
-                var destination = Path.Combine(
-                        configuration.UnityAssetsFolder.Path.AsStr,
-                        configuration.YourCircleName.AsStr,
-                        configuration.YourWorkName.AsStr,
-                        "Auto Generated",
-                        "Images",
-                        "Tileset",
-                        fileName);
+                var destination = Path.Combine(tilesetFolder.Path.AsStr, fileName);
 
                 if (!File.Exists(destination))
                 {
@@ -265,14 +258,7 @@
             {
                 var fileStem = Path.GetFileNameWithoutExtension(fileName);
                 var source = Path.Combine(configuration.NegiramenWorkspaceFolder.Path.AsStr, "For Unity Assets", "Images", "Tileset", $"{fileStem}.toml");
-                var destination = Path.Combine(
-                        configuration.UnityAssetsFolder.Path.AsStr,
-                        configuration.YourCircleName.AsStr,
-                        configuration.YourWorkName.AsStr,
-                        "Auto Generated",
-                        "Images",
-                        "Tileset",
-                        $"{fileStem}.toml");
+                var destination = Path.Combine(tilesetFolder.Path.AsStr, $"{fileStem}.toml");
 
                 if (!File.Exists(destination))
                 {
