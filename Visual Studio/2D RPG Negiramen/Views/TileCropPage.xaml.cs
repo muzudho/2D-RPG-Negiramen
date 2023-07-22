@@ -246,7 +246,7 @@ public partial class TileCropPage : ContentPage
                     };
 
                     // 再描画
-                    skiaTilesetCanvas.InvalidateSurface();
+                    this.skiaTilesetCanvas1.InvalidateSurface();
                 }
             }
             catch (Exception ex)
@@ -409,40 +409,57 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        Models.LogicalDelete logicalDelete;
-        if (context.SelectedTileVMOption.TryGetValue(out var record))
+        //
+        // 切抜きカーソルの中身
+        //
+        TileRecordViewModel tileRecordViewModel;
+
+        // 切抜きカーソルの中身を取得
+        if (context.SelectedTileVMOption.TryGetValue(out TileRecordViewModel? tileRecordViewModelOrNull))
         {
-            logicalDelete = record.LogicalDelete;
+            tileRecordViewModel = tileRecordViewModelOrNull ?? throw new NullReferenceException(nameof(tileRecordViewModelOrNull));
         }
         else
         {
-            logicalDelete = Models.LogicalDelete.False;
+            // 空カーソルなら、ここに来ない（何もしない）
+            throw new InvalidOperationException("[TileCropPage.xaml.cs AddsButton_Clicked] cropped cursor is nothing");
+        }
+
+        if (context.SelectedTileId == TileId.Empty)
+        {
+            // Ｉｄが無いということは、新規作成だ
+
+            // 新しいＩｄを追加
+            context.SelectedTileId = context.TilesetSettingsVM.UsableId;
+
+            context.TilesetSettingsVM.IncreaseUsableId();
+
+            // ビューの再描画（タイルＩｄ更新）
+            context.NotifyTileIdChange();
+
+            // タイルを新規登録（ダミー値。あとですぐ上書きする）
+            context.TilesetSettingsVM.AddTile(
+                id: context.SelectedTileId,
+                rect: RectangleInt.Empty,
+                workingRect: RectangleFloat.Empty,
+                comment: Models.Comment.Empty,
+                logicalDelete: Models.LogicalDelete.False);
         }
 
         //
-        // 設定ファイルの編集
-        // ==================
+        // この時点で、タイルは必ず登録されている
         //
-        var sourceRectangle = new Models.Geometric.RectangleInt(
-                location: new Models.Geometric.PointInt(
-                    x: new Models.Geometric.XInt(context.SourceCroppedCursorLeftAsInt),
-                    y: new Models.Geometric.YInt(context.SourceCroppedCursorTopAsInt)),
-                size: new Models.Geometric.SizeInt(
-                    width: new Models.Geometric.WidthInt(context.SourceCroppedCursorWidthAsInt),
-                    height: new Models.Geometric.HeightInt(context.SourceCroppedCursorHeightAsInt)));
 
-        context.TilesetSettingsVM.Add(
-            // 新しいＩｄを追加
-            id: context.TilesetSettingsVM.UsableId,
-            rect: sourceRectangle,
-            workingRect: sourceRectangle.Do(context.Zoom),
-            comment: new Models.Comment(context.SelectedTileCommentAsStr),
-            logicalDelete: logicalDelete);
+        // タイルＩｄを使って、タイル・レコードを取得、その内容を上書き
+        if (context.TilesetSettingsVM.TryGetTileById(context.SelectedTileId, out TileRecordViewModel? tileRecordVMOrNull))
+        {
+            TileRecordViewModel recordVM = tileRecordVMOrNull ?? throw new NullReferenceException(nameof(tileRecordVMOrNull));
 
-        context.TilesetSettingsVM.IncreaseUsableId();
-
-        // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
-        context.NotifyTileIdChange();
+            recordVM.SourceRectangle = context.SourceCroppedCursorRect;
+            recordVM.WorkingRectangle = context.SourceCroppedCursorRect.Do(context.Zoom);
+            recordVM.Comment = new Models.Comment(context.SelectedTileCommentAsStr);
+            recordVM.LogicalDelete = Models.LogicalDelete.False;
+        }
 
         //
         // 設定ファイルの保存
@@ -461,7 +478,7 @@ public partial class TileCropPage : ContentPage
         // カラーマップの再描画
         // ====================
         //
-        coloredMapGraphicsView1.Invalidate();
+        this.coloredMapGraphicsView1.Invalidate();
     }
     #endregion
 
@@ -510,7 +527,7 @@ public partial class TileCropPage : ContentPage
         // カラーマップの再描画
         // ====================
         //
-        coloredMapGraphicsView1.Invalidate();
+        this.coloredMapGraphicsView1.Invalidate();
     }
     #endregion
 
@@ -560,21 +577,21 @@ public partial class TileCropPage : ContentPage
     private void ZoomEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         // 再描画（タイルセット画像）
-        if (skiaTilesetCanvas != null)
+        if (this.skiaTilesetCanvas1 != null)
         {
-            skiaTilesetCanvas.InvalidateSurface();
+            this.skiaTilesetCanvas1.InvalidateSurface();
         }
 
         // 再描画（グリッド画像）
-        if (gridView1 != null)
+        if (this.gridView1 != null)
         {
-            gridView1.Invalidate();
+            this.gridView1.Invalidate();
         }
 
         // 再描画（切抜きカーソル）
-        if (croppedCursor1 != null)
+        if (this.croppedCursor1 != null)
         {
-            croppedCursor1.Invalidate();
+            this.croppedCursor1.Invalidate();
         }
     }
     #endregion

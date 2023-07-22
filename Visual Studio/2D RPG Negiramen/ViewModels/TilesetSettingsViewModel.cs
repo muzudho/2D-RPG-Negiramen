@@ -101,7 +101,7 @@
         /// <param name="workingRect">（ズーム後の）位置とサイズ</param>
         /// <param name="comment">コメント</param>
         /// <param name="logicalDelete">論理削除</param>
-        internal void Add(
+        internal void AddTile(
             Models.TileId id,
             TheGeometric.RectangleInt rect,
             TheGeometric.RectangleFloat workingRect,
@@ -150,6 +150,29 @@
                 }
             }
 
+            return false;
+        }
+        #endregion
+
+        #region メソッド（指定のＩｄと一致するレコードを返す）
+        /// <summary>
+        ///     指定のＩｄと一致するレコードを返す
+        /// </summary>
+        /// <param name="tileId">タイルＩｄ</param>
+        /// <param name="resultVMOrNull">結果</param>
+        /// <returns>有った</returns>
+        internal bool TryGetTileById(TileId tileId, out TileRecordViewModel? resultVMOrNull)
+        {
+            foreach (var recordVM in this.RecordViewModelList)
+            {
+                if (recordVM.Id == tileId)
+                {
+                    resultVMOrNull = recordVM;
+                    return true;
+                }
+            }
+
+            resultVMOrNull = null;
             return false;
         }
         #endregion

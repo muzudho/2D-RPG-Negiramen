@@ -98,7 +98,7 @@
 
                         // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
                         var tileId = new Models.TileId(tileIdAsInt);
-                        tilesetSettings.Add(
+                        tilesetSettings.AddTile(
                             id: tileId,
                             rect: new Models.Geometric.RectangleInt(
                                 location: new Models.Geometric.PointInt(
@@ -280,7 +280,7 @@
         /// <param name="rect">位置とサイズ</param>
         /// <param name="comment">コメント</param>
         /// <param name="logicalDelete">論理削除</param>
-        internal void Add(
+        internal void AddTile(
             Models.TileId id,
             Geometric.RectangleInt rect,
             Models.Comment comment,
