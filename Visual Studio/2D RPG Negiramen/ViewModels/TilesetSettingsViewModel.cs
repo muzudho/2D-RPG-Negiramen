@@ -3,6 +3,7 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.FileEntries;
     using CommunityToolkit.Mvvm.ComponentModel;
+    using System.Diagnostics;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
@@ -130,7 +131,8 @@
         ///     タイルの論理削除
         /// </summary>
         /// <param name="id">タイルＩｄ</param>
-        internal void DeleteLogical(
+        /// <remarks>完了</remarks>
+        internal bool DeleteLogical(
             Models.TileId id)
         {
             // 愚直な検索
@@ -140,6 +142,8 @@
 
                 if (recordVM.Id == id)
                 {
+                    Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{recordVM.Id.AsBASE64}]");
+
                     // 差替え
                     this.RecordViewModelList[i] = TileRecordViewModel.FromModel(
                         tileRecord: new TileRecord(
@@ -148,8 +152,12 @@
                             comment: recordVM.Comment,
                             logicalDelete: Models.LogicalDelete.True),
                         workingRect: recordVM.WorkingRectangle);
+
+                    return true;
                 }
             }
+
+            return false;
         }
         #endregion
 
@@ -222,6 +230,33 @@
         }
         #endregion
 
+        #region メソッド（指定の矩形は、登録されている矩形のいずれかと合同か？）
+        /// <summary>
+        ///     指定の矩形は、登録されている矩形のいずれかと合同るか？
+        /// </summary>
+        /// <param name="sourceRectangle">矩形（元画像ベース）</param>
+        /// <returns>そうだ</returns>
+        internal bool IsCongruence(TheGeometric.RectangleInt sourceRectangle)
+        {
+            return TilesetSettings.IsCongruence(sourceRectangle, this.GetAllSourceRectangles());
+        }
+        #endregion
+
+        #region メソッド（妥当だ）
+        /// <summary>
+        ///     妥当だ
+        ///     
+        ///     <list type="bullet">
+        ///         <item>重たい処理</item>
+        ///     </list>
+        /// </summary>
+        /// <returns></returns>
+        internal bool IsValid()
+        {
+            return TilesetSettings.IsValid(this.CreateTileRecordList());
+        }
+        #endregion
+
         // - プライベート・メソッド
 
         #region メソッド（保存）
@@ -259,6 +294,28 @@
             }
 
             return false;
+        }
+        #endregion
+
+        #region メソッド（タイルレコード一覧作成）
+        /// <summary>
+        ///     タイルレコード一覧作成
+        /// </summary>
+        /// <returns>タイルレコード一覧</returns>
+        List<TileRecord> CreateTileRecordList()
+        {
+            List<TileRecord> list = new List<TileRecord>();
+
+            foreach (var recordVM in this.RecordViewModelList)
+            {
+                list.Add(new TileRecord(
+                    id: recordVM.Id,
+                    rect: recordVM.SourceRectangle,
+                    comment: recordVM.Comment,
+                    logicalDelete: recordVM.LogicalDelete));
+            }
+
+            return list;
         }
         #endregion
     }

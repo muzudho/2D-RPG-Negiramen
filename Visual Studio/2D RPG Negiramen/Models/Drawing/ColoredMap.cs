@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing;
 
 using _2D_RPG_Negiramen.ViewModels;
+using System.Diagnostics;
 
 /// <summary>
 ///     カラーマップ
@@ -38,6 +39,8 @@ internal class ColoredMap : BindableObject, IDrawable
     /// <param name="dirtyRect">位置とサイズ</param>
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {
+        Trace.WriteLine($"[ColoredMap.cs Draw] 開始");
+
         if (this.TilesetSettingsVM == null)
         {
             return;
@@ -46,13 +49,16 @@ internal class ColoredMap : BindableObject, IDrawable
         // 各登録タイル
         foreach (var recordVM in this.TilesetSettingsVM.RecordViewModelList)
         {
-            // Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
-
             if (recordVM.LogicalDelete == Models.LogicalDelete.True)
             {
                 // 論理削除されてるから無視
+                // Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] 論理削除されてるから無視　Id: {recordVM.Id.AsBASE64}");
                 continue;
             }
+            //else
+            //{
+            //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] recordVM: {recordVM.Dump()}");
+            //}
 
             // 枠の線の太さの半分
             int halfFrameThickness = 2;

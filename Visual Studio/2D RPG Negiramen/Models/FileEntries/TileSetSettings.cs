@@ -2,6 +2,7 @@
 {
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
     using System.Text;
+    using System.Diagnostics;
 
     /// <summary>
     ///     タイルセット設定
@@ -148,6 +149,40 @@
         }
         #endregion
 
+        #region メソッド（妥当だ）
+        /// <summary>
+        ///     妥当だ
+        ///     
+        ///     <list type="bullet">
+        ///         <item>重たい処理</item>
+        ///     </list>
+        /// </summary>
+        /// <param name="recordList">タイル一覧</param>
+        /// <returns>そうだ</returns>
+        internal static bool IsValid(List<TileRecord> recordList)
+        {
+            // 総当たりするか？
+            for (int i=0; i<recordList.Count; i++)
+            {
+                TileRecord recordI = recordList[i];
+
+                for (int j = i+1; i < recordList.Count; i++)
+                {
+                    TileRecord recordJ = recordList[j];
+
+                    // 合同の矩形が含まれていたらエラー
+                    if (recordI.Rectangle == recordJ.Rectangle)
+                    {
+                        Trace.WriteLine($"[TilesetSettings.cs IsValid] エラー。合同の矩形が含まれていた。 (1) [{recordI.Id}] (2) [{recordJ.Id}]");
+                        return false;
+                    }
+                }
+            }
+
+            return true;
+        }
+        #endregion
+
         #region メソッド（指定の矩形は、指定の矩形のリストの中の矩形のいずれかと交差するか？）
         /// <summary>
         ///     指定の矩形は、指定の矩形のリストの中の矩形のいずれかと交差するか？
@@ -162,6 +197,29 @@
                 var rect = rectangles.Current;
 
                 if (target.HasIntersection(rect))
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        #endregion
+
+        #region メソッド（指定の矩形は、指定の矩形のリストの中の矩形のいずれかと合同か？）
+        /// <summary>
+        ///     指定の矩形は、指定の矩形のリストの中の矩形のいずれかと合同か？
+        /// </summary>
+        /// <param name="target">矩形</param>
+        /// <param name="rectangles">矩形のリスト</param>
+        /// <returns>そうだ</returns>
+        internal static bool IsCongruence(TheGeometric.RectangleInt target, IEnumerator<TheGeometric.RectangleInt> rectangles)
+        {
+            while (rectangles.MoveNext())
+            {
+                var rect = rectangles.Current;
+
+                if (target == rect)
                 {
                     return true;
                 }
@@ -309,6 +367,33 @@
         internal bool HasIntersection(TheGeometric.RectangleInt target)
         {
             return TilesetSettings.HasIntersection(target, this.GetAllRectangles());
+        }
+        #endregion
+
+        #region メソッド（指定の矩形は、登録されている矩形のいずれかと合同か？）
+        /// <summary>
+        ///     指定の矩形は、登録されている矩形のいずれかと合同か？
+        /// </summary>
+        /// <param name="target">矩形</param>
+        /// <returns>そうだ</returns>
+        internal bool IsCongruence(TheGeometric.RectangleInt target)
+        {
+            return TilesetSettings.IsCongruence(target, this.GetAllRectangles());
+        }
+        #endregion
+
+        #region メソッド（妥当だ）
+        /// <summary>
+        ///     妥当だ
+        ///     
+        ///     <list type="bullet">
+        ///         <item>重たい処理</item>
+        ///     </list>
+        /// </summary>
+        /// <returns></returns>
+        internal bool IsValid()
+        {
+            return TilesetSettings.IsValid(this.RecordList);
         }
         #endregion
 

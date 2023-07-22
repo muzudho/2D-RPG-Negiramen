@@ -101,7 +101,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Id:{this.Id.AsBASE64}, SourceRect:{this.SourceRectangle.Dump()}, WorkingRect:{this.WorkingRectangle.Dump()}, Comment:{this.Comment.AsStr}";
+            return $"Id:{this.Id.AsBASE64}, SourceRect:{this.SourceRectangle.Dump()}, WorkingRect:{this.WorkingRectangle.Dump()}, Comment:{this.Comment.AsStr}, LogicalDelete: {this.LogicalDelete.AsInt}";
         }
         #endregion
     }

@@ -74,25 +74,6 @@
                 }
             }
         }
-
-        /// <summary>
-        ///     タイルセット設定ビューモデル
-        /// </summary>
-        public TilesetSettingsViewModel TilesetSettingsVM
-        {
-            get => this._tilesetSettingsVM;
-            set
-            {
-                if (this._tilesetSettingsVM != value)
-                {
-                    this._tilesetSettingsVM = value;
-                    OnPropertyChanged(nameof(TilesetSettingsVM));
-
-                    // TODO これ要るか？ 再描画
-                    NotifyTileIdChange();
-                }
-            }
-        }
         #endregion
 
         #region プロパティ（タイルセット元画像）
@@ -366,6 +347,27 @@
         ///     ロケールＩｄのリスト
         /// </summary>
         public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
+        #endregion
+
+        #region 変更通知プロパティ（タイルセット設定ビューモデル）
+        /// <summary>
+        ///     タイルセット設定ビューモデル
+        /// </summary>
+        public TilesetSettingsViewModel TilesetSettingsVM
+        {
+            get => this._tilesetSettingsVM;
+            set
+            {
+                if (this._tilesetSettingsVM != value)
+                {
+                    this._tilesetSettingsVM = value;
+                    OnPropertyChanged(nameof(TilesetSettingsVM));
+
+                    // TODO これ要るか？ 再描画
+                    NotifyTileIdChange();
+                }
+            }
+        }
         #endregion
 
         #region 変更通知プロパティ（タイルセット元画像関連）
@@ -1716,11 +1718,21 @@
 
         // - インターナル・プロパティ
 
+        #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
         /// <summary>
         ///     切抜きカーソルと、既存タイルが交差しているか？
         /// </summary>
         /// <returns>そうだ</returns>
         internal bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; private set; }
+        #endregion
+
+        #region プロパティ（切抜きカーソルと、既存タイルは合同か？）
+        /// <summary>
+        ///     切抜きカーソルと、既存タイルは合同か？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; private set; }
+        #endregion
 
         // - インターナル・メソッド
 
@@ -1822,23 +1834,36 @@
         }
         #endregion
 
+        #region メソッド　＞　変更あり　＞　タイルセット設定ビューモデル
+        /// <summary>
+        ///     タイルセット設定ビューモデルに変更あり
+        /// </summary>
+        internal void InvalidateTilesetSettingsVM()
+        {
+            OnPropertyChanged(nameof(TilesetSettingsVM));
+        }
+        #endregion
+
         #region メソッド　＞　再描画　＞　［追加／上書き］ボタン
         /// <summary>
         ///     ［追加／上書き］ボタンの再描画
         /// </summary>
         internal void InvalidateAddsButton()
         {
-            // TODO ★ ぴったりの時は、「交差中」ではなく「上書き」したい
-            // マウスドラッグ中で、かつ、
-            // this.IsMouseDragging && 
-
-            // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-            if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+            // 合同のときは「交差中」とは表示しない
+            if (!this.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
-                // 「交差中」
-                this.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
-                this.AddsButtonIsEnabled = false;
-                return;
+                // マウスドラッグ中で、かつ、
+                // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
+                if (this.IsMouseDragging && this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+                {
+                    // 「交差中」
+                    Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
+
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
+                    this.AddsButtonIsEnabled = false;
+                    return;
+                }
             }
 
             if (this.selectedTileVMOption.TryGetValue(out var recordVM))
@@ -1911,13 +1936,15 @@
         {
             if (this.SourceCroppedCursorRect == TheGeometric.RectangleInt.Empty)
             {
-                // カーソルが無ければ、交差も無い
+                // カーソルが無ければ、交差も無い。合同ともしない
                 this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
                 return;
             }
 
             // 軽くはない処理
             this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.SourceCroppedCursorRect);
+            this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.SourceCroppedCursorRect);
         }
 
         // - プライベート・フィールド

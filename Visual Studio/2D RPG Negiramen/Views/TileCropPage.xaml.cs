@@ -151,6 +151,18 @@ public partial class TileCropPage : ContentPage
         {
             context.TilesetSettingsVM = tileSetSettingsVM;
 
+#if DEBUG
+            // ファイルの整合性チェック（重い処理）
+            if (!context.TilesetSettingsVM.IsValid())
+            {
+                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {context.TilesetSettingsFile.Path.AsStr}");
+            }
+            else
+            {
+                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {context.TilesetSettingsFile.Path.AsStr}");
+            }
+#endif
+
             //// 登録タイルのデバッグ出力
             //foreach (var record in context.TilesetSettings.RecordList)
             //{
@@ -475,9 +487,15 @@ public partial class TileCropPage : ContentPage
         //
         //      - 選択中のタイルを論理削除
         //
-        context.TilesetSettingsVM.DeleteLogical(
+        if(context.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のタイルのＩｄ
-            id: context.SelectedTileId);
+            id: context.SelectedTileId))
+        {
+            // タイルセット設定ビューモデルに変更あり
+            context.InvalidateTilesetSettingsVM();
+        }
+
+        Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 context.SelectedTileId: [{context.SelectedTileId.AsBASE64}]");
 
         //
         // 設定ファイルの保存
