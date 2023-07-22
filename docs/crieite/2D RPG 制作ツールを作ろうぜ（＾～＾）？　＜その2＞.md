@@ -289,7 +289,7 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　カーソルも　ズームに置いてけぼりされないようにしたぜ」  
 
-## インターセクションしないようにしましょう
+## インターセクションが無いようにしましょう
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　矩形が　重なりまくって　分けわかんないんだけど」  
@@ -307,5 +307,36 @@
 
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　とりあえず　追加ボタンが押せなければいいんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　切抜きカーソルの位置を決めるために　マウスを動かしている間、  
+インターセクション（Intersection；重なり合った領域）があるかどうか　判定すればいいんだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　交差の判定方法を調べて」  
+
+📖 [矩形同士の交差](https://blog.y-yuki.net/entry/2019/08/29/200000)  
+
+![202307_maui_22-1658--rectangleIntersection-o2o0.png](https://crieit.now.sh/upload_images/a3152154833608af519c5ef818ca8c3564bb8c9fa649f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　判定方法を実装」  
+
+![202307_maui_22-1703--hasIntersection-o2o0.png](https://crieit.now.sh/upload_images/59217521a2a8ae91b7647b4981d515c664bb8dace9a34.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　登録されているすべてのタイルと　比較すればいいわけだが、  
+リストではなく、 `IEnumerator` 型を使うのが　ひと工夫だぜ」  
+
+![202307_maui_22-1707--viewModelIntersection-o2o0.png](https://crieit.now.sh/upload_images/5e14b7ed4bb687f1dc0f56241962695b64bb8e7da0f56.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　このように　ストリームで渡せるようにしておくと、  
+ビューモデルも　同じアルゴリズムを使い回せるな」  
+
+![202307_maui_22-1711--intersecting-o2o0.png](https://crieit.now.sh/upload_images/95710ce502d90b65ef5a301d307fdd0464bb8f8bcf445.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これで交差中か　判定できるようになったぜ」  
 
 ＜書きかけ＞

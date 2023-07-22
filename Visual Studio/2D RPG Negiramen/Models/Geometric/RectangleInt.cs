@@ -283,12 +283,8 @@ namespace _2D_RPG_Negiramen.Models.Geometric
         /// <returns></returns>
         internal bool HasIntersection(RectangleInt target)
         {
-            var hasIntersection = Math.Max(this.LeftAsInt, target.LeftAsInt) < Math.Min(this.RightAsInt, target.RightAsInt) &&
+            return Math.Max(this.LeftAsInt, target.LeftAsInt) < Math.Min(this.RightAsInt, target.RightAsInt) &&
                 Math.Max(this.TopAsInt, target.TopAsInt) < Math.Min(this.BottomAsInt, target.BottomAsInt);
-
-            Trace.WriteLine($"[RectangleInt.cs HasIntersection] this.LeftAsInt: {this.LeftAsInt}, target.LeftAsInt: {target.LeftAsInt}, this.RightAsInt: {this.RightAsInt}, target.RightAsInt: {target.RightAsInt}, this.BottomAsInt: {this.BottomAsInt}, target.BottomAsInt: {target.BottomAsInt}, this.TopAsInt: {this.TopAsInt}, target.TopAsInt: {target.TopAsInt}");
-
-            return hasIntersection;
         }
     }
 }

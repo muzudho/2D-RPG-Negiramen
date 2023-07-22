@@ -176,8 +176,9 @@
         }
         #endregion
 
+        #region メソッド（全ての矩形（元画像ベース）を取得）
         /// <summary>
-        ///     全ての矩形（元画像ベース）
+        ///     全ての矩形（元画像ベース）を取得
         /// </summary>
         /// <returns>ストリーム</returns>
         internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles()
@@ -188,7 +189,9 @@
                 yield return recordVM.SourceRectangle;
             }
         }
+        #endregion
 
+        #region メソッド（指定の矩形は、登録されている矩形のいずれかと交差するか？）
         /// <summary>
         ///     指定の矩形は、登録されている矩形のいずれかと交差するか？
         /// </summary>
@@ -198,6 +201,7 @@
         {
             return TilesetSettings.HasIntersection(sourceRectangle, this.GetAllSourceRectangles());
         }
+        #endregion
 
         // - プライベート・メソッド
 
