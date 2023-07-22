@@ -4,6 +4,7 @@
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
     using System.Windows.Input;
+    using TheFileEntryLocations = Models.FileEntries.Locations;
 
     /// <summary>
     ///     😁 ［初期設定］ページ用のビューモデル
@@ -26,7 +27,10 @@
             var configuration = App.GetOrLoadConfiguration();
 
             NegiramenWorkspaceFolderPathAsStr = configuration.NegiramenWorkspaceFolder.Path.AsStr;
-            UnityAssetsFolderPathAsStr = configuration.UnityAssetsFolder.Path.AsStr;
+
+            this.UnityAssetsFolder = configuration.UnityAssetsFolder;
+            UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
+
             YourCircleNameAsStr = configuration.YourCircleName.AsStr;
             YourWorkNameAsStr = configuration.YourWorkName.AsStr;
 
@@ -125,17 +129,24 @@
         }
         #endregion
 
+        // - インターナル・プロパティ
+
+        /// <summary>
+        ///     Unity の 📂 `Assets` フォルダーの場所
+        /// </summary>
+        internal TheFileEntryLocations.UnityAssetsFolder UnityAssetsFolder { get; private set; }
+
         // - プライベート・フィールド
 
         /// <summary>
         ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
         /// </summary>
-        private Models.FileEntries.Locations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolder = Models.FileEntries.Locations.Negiramen.WorkspaceFolder.Empty;
+        private TheFileEntryLocations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolder = TheFileEntryLocations.Negiramen.WorkspaceFolder.Empty;
 
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        private Models.FileEntries.Locations.UnityAssetsFolder _unityAssetsFolder = Models.FileEntries.Locations.UnityAssetsFolder.Empty;
+        private TheFileEntryLocations.UnityAssetsFolder _unityAssetsFolder = TheFileEntryLocations.UnityAssetsFolder.Empty;
 
         /// <summary>
         ///     あなたのサークル名
@@ -158,9 +169,6 @@
         {
             await Task.Run(() =>
             {
-                // テキスト・ボックスから、Unity エディターの Assets フォルダーへのパスを取得
-                var assetsFolderPathAsStr = this.UnityAssetsFolderPathAsStr;
-
                 // 構成ファイルの更新差分
                 var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
                 {
@@ -185,7 +193,7 @@
                     }
 
                     // Unity の Assets フォルダ―へ初期設定をコピー
-                    if (!Models.FileEntries.UnityAssetsDeployment.PushStartupMemberToUnityAssetsFolder(assetsFolderPathAsStr))
+                    if (!Models.FileEntries.UnityAssetsDeployment.PushStartupMemberToUnityAssetsFolder(this.UnityAssetsFolder))
                     {
                         // TODO 異常時の処理
                         return;

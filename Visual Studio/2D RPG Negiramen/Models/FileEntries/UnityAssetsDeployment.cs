@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
+    using TheFileEntryLocations = Models.FileEntries.Locations;
+
     /// <summary>
     ///     😁 Unity の Assets フォルダーを想定したもの
     /// </summary>
@@ -16,20 +18,20 @@
         ///         👉　└─ 📂 Assets
         ///     </pre>
         /// </summary>
-        /// <param name="unityAssetsFolderPath">Unityのアセット・フォルダーへのパス</param>
+        /// <param name="unityAssetsFolder">Unityの 📂 `Assets` フォルダーの場所</param>
         /// <returns>完了した</returns>
-        internal static bool PushStartupMemberToUnityAssetsFolder(string unityAssetsFolderPath)
+        internal static bool PushStartupMemberToUnityAssetsFolder(TheFileEntryLocations.UnityAssetsFolder unityAssetsFolder)
         {
             // 引数より、グローバル変数から取ってこれないか？（フリーズする？）
             // var unityAssetsFolderPath2 = App.GetOrLoadConfiguration().UnityAssetsFolder.PathSource.AsStr;
 
-            if (!Directory.Exists(unityAssetsFolderPath))
+            if (!Directory.Exists(unityAssetsFolder.Path.AsStr))
             {
                 // TODO Unity の Assets フォルダ―へのパスでなければ失敗
                 return false;
             }
 
-            var yourCircleNameFolderPath = Path.Combine(unityAssetsFolderPath, App.GetOrLoadConfiguration().YourCircleName.AsStr);
+            var yourCircleNameFolderPath = Path.Combine(unityAssetsFolder.Path.AsStr, App.GetOrLoadConfiguration().YourCircleName.AsStr);
 
             if (!Directory.Exists(yourCircleNameFolderPath))
             {
