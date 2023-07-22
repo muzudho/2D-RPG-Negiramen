@@ -85,7 +85,7 @@
                 if (_unityAssetsFolder.Path.AsStr == value)
                     return;
 
-                _unityAssetsFolder = new TheLocationOfUnityAssets.UnityAssetsFolder(
+                _unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder(
                     pathSource: FileEntryPathSource.FromString(value),
                     convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                 replaceSeparators: true));
@@ -135,7 +135,7 @@
         /// <summary>
         ///     Unity の 📂 `Assets` フォルダーの場所
         /// </summary>
-        internal TheLocationOfUnityAssets.UnityAssetsFolder UnityAssetsFolder { get; private set; }
+        internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; private set; }
 
         // - プライベート・フィールド
 
@@ -147,7 +147,7 @@
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        private TheLocationOfUnityAssets.UnityAssetsFolder _unityAssetsFolder = TheLocationOfUnityAssets.UnityAssetsFolder.Empty;
+        private TheLocationOfUnityAssets.ItsFolder _unityAssetsFolder = TheLocationOfUnityAssets.ItsFolder.Empty;
 
         /// <summary>
         ///     あなたのサークル名

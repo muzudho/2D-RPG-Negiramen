@@ -1,23 +1,19 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets
 {
+    using _2D_RPG_Negiramen;
     using _2D_RPG_Negiramen.Coding;
+    using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
     ///     😁 Unityの 📂 `Assets/{Your Circle Name}` フォルダーの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
-
-    /* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
-    前:
-        ///         <item><see cref="_2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssetsFolder"/></item>
-    後:
-        ///         <item><see cref="UnityAssets.UnityAssetsFolder"/></item>
-    */
-    ///         <item><see cref="Locations.UnityAssets.UnityAssetsFolder"/></item>
+    ///         <item><see cref="_2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets.UnityAssets.ItsFolder"/></item>
     ///     </list>
     /// </summary>
-    internal class UnityAssetsYourCircleNameFolder : Its
+    internal class YourCircleNameFolder : Its
     {
         // - その他
 
@@ -25,7 +21,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UnityAssetsYourCircleNameFolder()
+        internal YourCircleNameFolder()
             : base()
         {
         }
@@ -33,7 +29,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UnityAssetsYourCircleNameFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal YourCircleNameFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }
@@ -45,7 +41,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static UnityAssetsYourCircleNameFolder Empty { get; } = new UnityAssetsYourCircleNameFolder();
+        internal static YourCircleNameFolder Empty { get; } = new YourCircleNameFolder();
         #endregion
 
         // - インターナル・プロパティ
@@ -62,7 +58,7 @@
                 {
                     yourWorkNameFolder = new UnityAssetsYourWorkNameFolder(
                         pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(this.Path.AsStr, App.GetOrLoadConfiguration().YourWorkName.AsStr)),
+                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().YourWorkName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }

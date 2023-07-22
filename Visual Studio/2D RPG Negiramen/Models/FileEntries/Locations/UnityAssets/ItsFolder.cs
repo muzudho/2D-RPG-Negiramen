@@ -3,7 +3,7 @@
     using _2D_RPG_Negiramen;
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
+    using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
     ///     😁 Unityの 📂 `Assets` フォルダーへのパス
@@ -13,7 +13,7 @@
     ///         <item><see cref="App.Configuration"/></item>
     ///     </list>
     /// </summary>
-    class UnityAssetsFolder : Its
+    class ItsFolder : TheFileEntryLocation.Its
     {
         // - その他
 
@@ -21,7 +21,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UnityAssetsFolder()
+        internal ItsFolder()
             : base()
         {
         }
@@ -29,7 +29,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UnityAssetsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal ItsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }
@@ -41,7 +41,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static UnityAssetsFolder Empty { get; } = new UnityAssetsFolder();
+        internal static ItsFolder Empty { get; } = new ItsFolder();
         #endregion
 
         // - インターナル・プロパティ
@@ -50,13 +50,13 @@
         /// <summary>
         ///     Unityの 📂 `Assets/{Your Circle Name}` フォルダーの場所
         /// </summary>
-        internal UnityAssetsYourCircleNameFolder YourCircleNameFolder
+        internal YourCircleNameFolder YourCircleNameFolder
         {
             get
             {
                 if (yourCircleNameFolder == null)
                 {
-                    yourCircleNameFolder = new UnityAssetsYourCircleNameFolder(
+                    yourCircleNameFolder = new YourCircleNameFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().YourCircleName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
@@ -70,6 +70,6 @@
 
         // - プライベート・フィールド
 
-        UnityAssetsYourCircleNameFolder yourCircleNameFolder;
+        YourCircleNameFolder yourCircleNameFolder;
     }
 }

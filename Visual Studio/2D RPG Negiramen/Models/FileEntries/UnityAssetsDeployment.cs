@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
     using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
@@ -21,7 +22,7 @@
         /// </summary>
         /// <param name="unityAssetsFolder">Unityの 📂 `Assets` フォルダーの場所</param>
         /// <returns>完了した</returns>
-        internal static bool PushStartupMemberToUnityAssetsFolder(TheLocationOfUnityAssets.UnityAssetsFolder unityAssetsFolder)
+        internal static bool PushStartupMemberToUnityAssetsFolder(TheLocationOfUnityAssets.ItsFolder unityAssetsFolder)
         {
             if (!Directory.Exists(unityAssetsFolder.Path.AsStr))
             {
@@ -51,7 +52,7 @@
         ///     </pre>
         /// </summary>
         /// <param name="yourCircleNameFolderPath">あなたのサークル名フォルダ―へのパス</param>
-        static void PushStartupMemberToYourCircleNameFolder(UnityAssetsYourCircleNameFolder yourCircleNameFolder)
+        static void PushStartupMemberToYourCircleNameFolder(TheLocationOfUnityAssets.YourCircleNameFolder yourCircleNameFolder)
         {
             if (!Directory.Exists(yourCircleNameFolder.YourWorkNameFolder.Path.AsStr))
             {

@@ -38,7 +38,7 @@
 
                 Locations.Negiramen.WorkingTilesetImageFile workingTilesetImageFile = new Models.FileEntries.Locations.Negiramen.WorkingTilesetImageFile();
 
-                TheLocationOfUnityAssets.UnityAssetsFolder unityAssetsFolder = new TheLocationOfUnityAssets.UnityAssetsFolder();
+                TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder();
 
                 Locations.Negiramen.UserConfigurationFile userConfiguration = new Models.FileEntries.Locations.Negiramen.UserConfigurationFile();
                 YourCircleName yourCircleName = new YourCircleName();

@@ -15,7 +15,7 @@
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        internal TheLocationOfUnityAssets.UnityAssetsFolder UnityAssetsFolder { get; set; }
+        internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; set; }
 
         /// <summary>
         ///     ユーザー構成ファイルへのパス
