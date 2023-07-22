@@ -212,7 +212,7 @@
             }
 
             CopyTileset("adventure_field.png");
-            CopyTileset("map-tile-format-8x19.png");
+            CopyTileset("map-tileset-format-8x19.png");
 
             //var configuration = App.GetOrLoadConfiguration();
             //var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tileset", "adventure_field.png");

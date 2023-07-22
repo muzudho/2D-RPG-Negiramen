@@ -455,7 +455,7 @@ public partial class MainPage : ContentPage
                 var unityAssetsFolderPathAsStr = App.GetOrLoadConfiguration().UnityAssetsFolder.Path.AsStr;
 
                 // ファイル名の拡張子抜き
-                var fileStem = "map-tile-format-8x19";
+                var fileStem = "map-tileset-format-8x19";
 
                 // タイルセット画像ファイル・パス
                 var tilesetImageFile = new Models.FileEntries.Locations.TilesetImageFile(
