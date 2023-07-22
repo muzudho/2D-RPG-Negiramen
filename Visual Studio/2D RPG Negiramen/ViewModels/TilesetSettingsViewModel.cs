@@ -38,8 +38,10 @@
             // 既定値の設定（空っぽ）
             tilesetSettingsVM = new TilesetSettingsViewModel();
 
-            if (TilesetSettings.LoadCSV(tilesetSettingsFile, out TilesetSettings tilesetSettings))
+            if (TilesetSettings.LoadCSV(tilesetSettingsFile, out TilesetSettings tilesetSettings, out TileId usableId))
             {
+                tilesetSettingsVM.UsableId = usableId;
+
                 foreach (TileRecord record in tilesetSettings.RecordList)
                 {
                     tilesetSettingsVM.RecordViewModelList.Add(
@@ -85,7 +87,7 @@
         /// <summary>
         /// 次に採番できるＩｄ。１から始まる
         /// </summary>
-        internal Models.TileId UsableId { get; private set; } = new Models.TileId(1);
+        internal Models.TileId UsableId { get; set; } = new Models.TileId(1);
         #endregion
 
         // - インターナル・メソッド
@@ -99,14 +101,12 @@
         /// <param name="workingRect">（ズーム後の）位置とサイズ</param>
         /// <param name="comment">コメント</param>
         /// <param name="logicalDelete">論理削除</param>
-        /// <param name="onTileIdUpdated">タイルＩｄ更新時</param>
         internal void Add(
             Models.TileId id,
             TheGeometric.RectangleInt rect,
             TheGeometric.RectangleFloat workingRect,
             Models.Comment comment,
-            Models.LogicalDelete logicalDelete,
-            Action onTileIdUpdated)
+            Models.LogicalDelete logicalDelete)
         {
             this.RecordViewModelList.Add(
                 TileRecordViewModel.FromModel(
@@ -116,13 +116,6 @@
                         comment,
                         logicalDelete),
                     workingRect: workingRect));
-
-            // ［次に採番できるＩｄ］を（できるなら）更新
-            if (this.UpdateUsableId(id))
-            {
-                // 更新した
-                onTileIdUpdated();
-            }
         }
         #endregion
 
@@ -265,7 +258,25 @@
         /// <returns></returns>
         internal bool IsValid()
         {
-            return TilesetSettings.IsValid(this.CreateTileRecordList());
+            // 論理削除されているものも妥当性検証に含める
+            return TilesetSettings.IsValid(this.CreateTileRecordList(includeLogicalDelete:true));
+        }
+        #endregion
+
+        #region メソッド（次に使えるＩｄを増やす）
+        /// <summary>
+        ///     次に使えるＩｄを増やす
+        /// </summary>
+        /// <exception cref="IndexOutOfRangeException">上限</exception>
+        internal void IncreaseUsableId()
+        {
+            // 上限リミット・チェック
+            if (this.UsableId.AsInt == int.MaxValue)
+            {
+                throw new IndexOutOfRangeException($"Usable Id {nameof(this.UsableId.AsInt)} must not be max");
+            }
+
+            this.UsableId = new TileId(this.UsableId.AsInt + 1);
         }
         #endregion
 
@@ -282,31 +293,6 @@
             return TilesetSettings.SaveCSV(
                 tileSetSettingsFile: tileSetSettingsFile,
                 recordList: this.GetAllSourceRecords(includeLogicalDelete: true));
-        }
-        #endregion
-
-        #region メソッド（［次に採番できるＩｄ］を（できるなら）更新）
-        /// <summary>
-        /// ［次に採番できるＩｄ］を（できるなら）更新
-        /// </summary>
-        /// <returns>更新した</returns>
-        /// <exception cref="IndexOutOfRangeException">型の範囲に収まらない</exception>
-        bool UpdateUsableId(Models.TileId id)
-        {
-            // ［次に採番できるＩｄ］更新
-            if (this.UsableId <= id)
-            {
-                // 上限リミット・チェック
-                if (this.UsableId.AsInt == int.MaxValue)
-                {
-                    throw new IndexOutOfRangeException($"{nameof(UsableId)} is max");
-                }
-
-                this.UsableId = new Models.TileId(id.AsInt + 1);
-                return true;
-            }
-
-            return false;
         }
         #endregion
 

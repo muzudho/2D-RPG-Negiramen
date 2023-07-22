@@ -153,13 +153,13 @@ public partial class TileCropPage : ContentPage
 
 #if DEBUG
             // ファイルの整合性チェック（重い処理）
-            if (!context.TilesetSettingsVM.IsValid())
+            if (context.TilesetSettingsVM.IsValid())
             {
-                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {context.TilesetSettingsFile.Path.AsStr}");
+                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {context.TilesetSettingsFile.Path.AsStr}");
             }
             else
             {
-                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {context.TilesetSettingsFile.Path.AsStr}");
+                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {context.TilesetSettingsFile.Path.AsStr}");
             }
 #endif
 
@@ -430,18 +430,19 @@ public partial class TileCropPage : ContentPage
                 size: new Models.Geometric.SizeInt(
                     width: new Models.Geometric.WidthInt(context.SourceCroppedCursorWidthAsInt),
                     height: new Models.Geometric.HeightInt(context.SourceCroppedCursorHeightAsInt)));
+
         context.TilesetSettingsVM.Add(
             // 新しいＩｄを追加
             id: context.TilesetSettingsVM.UsableId,
             rect: sourceRectangle,
             workingRect: sourceRectangle.Do(context.Zoom),
             comment: new Models.Comment(context.SelectedTileCommentAsStr),
-            logicalDelete: logicalDelete,
-            onTileIdUpdated: () =>
-            {
-                // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
-                context.NotifyTileIdChange();
-            });
+            logicalDelete: logicalDelete);
+
+        context.TilesetSettingsVM.IncreaseUsableId();
+
+        // ビューの再描画（レコードの追加により、タイルＩｄが更新されるので）
+        context.NotifyTileIdChange();
 
         //
         // 設定ファイルの保存
@@ -482,7 +483,7 @@ public partial class TileCropPage : ContentPage
         //
         //      - 選択中のタイルを論理削除
         //
-        if(context.TilesetSettingsVM.DeleteLogical(
+        if (context.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: context.SelectedTileId))
         {

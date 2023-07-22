@@ -19,15 +19,23 @@
         /// <summary>
         ///     CSV形式ファイルの読込
         /// </summary>
+        /// <param name="tilesetSettingsFile">タイルセット設定ファイルの場所</param>
         /// <param name="tilesetSettings">タイルセット設定</param>
+        /// <param name="usableId">次に使えるＩｄ</param>
         /// <returns></returns>
-        internal static bool LoadCSV(Locations.TilesetSettingsFile tilesetSettingsFile, out TilesetSettings tilesetSettings)
+        internal static bool LoadCSV(
+            Locations.TilesetSettingsFile tilesetSettingsFile,
+            out TilesetSettings tilesetSettings,
+            out TileId usableId)
         {
             // 既定値の設定（空っぽ）
             tilesetSettings = new TilesetSettings();
 
+            usableId = new TileId(1);
+
             try
             {
+
                 //
                 // ファイルの有無確認
                 // ==================
@@ -71,7 +79,7 @@
                         // とりあえずカンマで分割
                         var cells = line.Split(",");
 
-                        int tileId = int.Parse(cells[0]);
+                        int tileIdAsInt = int.Parse(cells[0]);
                         int x = int.Parse(cells[1]);
                         int y = int.Parse(cells[2]);
                         int width = int.Parse(cells[3]);
@@ -89,8 +97,9 @@
                         }
 
                         // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
+                        var tileId = new Models.TileId(tileIdAsInt);
                         tilesetSettings.Add(
-                            id: new Models.TileId(tileId),
+                            id: tileId,
                             rect: new Models.Geometric.RectangleInt(
                                 location: new Models.Geometric.PointInt(
                                     x: new Models.Geometric.XInt(x),
@@ -99,12 +108,20 @@
                                     width: new Models.Geometric.WidthInt(width),
                                     height: new Models.Geometric.HeightInt(height))),
                             comment: new Models.Comment(comment),
-                            logicalDelete: logicalDelete,
-                            onTileIdUpdated: () =>
-                            {
-                                // 自明なんで省略
-                            });
+                            logicalDelete: logicalDelete);
+
+                        if (usableId < tileId)
+                        {
+                            usableId = tileId;
+                        }
                     }
+
+                    tilesetSettings.UsableId = usableId;
+
+                    // 次に使えるＩｄを増やす
+                    tilesetSettings.IncreaseUsableId();
+
+                    usableId = tilesetSettings.UsableId;
                 }
 
                 return true;
@@ -172,9 +189,15 @@
                 {
                     TileRecord recordJ = recordList[j];
 
-                    // 合同の矩形が含まれていたらエラー
-                    if (recordI.Rectangle == recordJ.Rectangle)
+                    if (recordI.Id == recordJ.Id)
                     {
+                        // 同じＩｄが含まれていたらエラー
+                        Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。同じＩｄが含まれていた。 (1) [{recordI.Id.AsInt}][{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsInt}][{recordJ.Id.AsBASE64}]");
+                        errorCount++;
+                    }
+                    else if (recordI.Rectangle == recordJ.Rectangle)
+                    {
+                        // 合同の矩形が含まれていたらエラー
                         Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。合同の矩形が含まれていた。 (1) [{recordI.Id.AsInt}][{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsInt}][{recordJ.Id.AsBASE64}]");
                         errorCount++;
                     }
@@ -257,13 +280,11 @@
         /// <param name="rect">位置とサイズ</param>
         /// <param name="comment">コメント</param>
         /// <param name="logicalDelete">論理削除</param>
-        /// <param name="onTileIdUpdated">タイルＩｄ更新時</param>
         internal void Add(
             Models.TileId id,
             Geometric.RectangleInt rect,
             Models.Comment comment,
-            Models.LogicalDelete logicalDelete,
-            Action onTileIdUpdated)
+            Models.LogicalDelete logicalDelete)
         {
             this.RecordList.Add(
                 new TileRecord(
@@ -271,13 +292,6 @@
                     rect,
                     comment,
                     logicalDelete));
-
-            // ［次に採番できるＩｄ］を（できるなら）更新
-            if (this.UpdateUsableId(id))
-            {
-                // 更新した
-                onTileIdUpdated();
-            }
         }
         #endregion
 
@@ -412,6 +426,23 @@
         }
         #endregion
 
+        #region メソッド（次に使えるＩｄを増やす）
+        /// <summary>
+        ///     次に使えるＩｄを増やす
+        /// </summary>
+        /// <exception cref="IndexOutOfRangeException">上限</exception>
+        internal void IncreaseUsableId()
+        {
+            // 上限リミット・チェック
+            if (this.UsableId.AsInt == int.MaxValue)
+            {
+                throw new IndexOutOfRangeException($"Usable Id {nameof(this.UsableId.AsInt)} must not be max");
+            }
+
+            this.UsableId = new TileId(this.UsableId.AsInt + 1);
+        }
+        #endregion
+
         // - プライベート・メソッド
 
         #region メソッド（保存）
@@ -425,31 +456,6 @@
             return TilesetSettings.SaveCSV(
                 tileSetSettingsFile: tileSetSettingsFile,
                 recordList: this.GetAllRecords(includeLogicalDelete: true));
-        }
-        #endregion
-
-        #region メソッド（［次に採番できるＩｄ］を（できるなら）更新）
-        /// <summary>
-        /// ［次に採番できるＩｄ］を（できるなら）更新
-        /// </summary>
-        /// <returns>更新した</returns>
-        /// <exception cref="IndexOutOfRangeException">型の範囲に収まらない</exception>
-        bool UpdateUsableId(Models.TileId id)
-        {
-            // ［次に採番できるＩｄ］更新
-            if (this.UsableId <= id)
-            {
-                // 上限リミット・チェック
-                if (this.UsableId.AsInt == int.MaxValue)
-                {
-                    throw new IndexOutOfRangeException($"{nameof(UsableId)} is max");
-                }
-
-                this.UsableId = new Models.TileId(id.AsInt + 1);
-                return true;
-            }
-
-            return false;
         }
         #endregion
 

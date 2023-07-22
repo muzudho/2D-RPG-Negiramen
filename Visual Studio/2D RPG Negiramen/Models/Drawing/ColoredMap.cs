@@ -52,13 +52,13 @@ internal class ColoredMap : BindableObject, IDrawable
             if (recordVM.LogicalDelete == Models.LogicalDelete.True)
             {
                 // 論理削除されてるから無視
-                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] 論理削除されてるから無視　recordVM: {recordVM.Dump()}");
+                // Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] 論理削除されてるから無視　recordVM: {recordVM.Dump()}");
                 continue;
             }
-            else
-            {
-                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] recordVM: {recordVM.Dump()}");
-            }
+            //else
+            //{
+            //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] recordVM: {recordVM.Dump()}");
+            //}
 
             // 枠の線の太さの半分
             int halfFrameThickness = 2;
