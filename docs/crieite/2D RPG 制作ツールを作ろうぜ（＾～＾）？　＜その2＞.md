@@ -482,4 +482,39 @@
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　ひとまず　この画面は完成としましょう」  
 
+## タイルセット画像選択画面を作れだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　その画面に入る前に　本当は　タイルセット画像を選ぶ画面が要るだろ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　フォルダーや　ファイルの概念が分からない　ツクラー種族や、スマホ種族を　どうしてくれよう」  
+
+![202307_maui_23-0111--tileset-folder.png](https://crieit.now.sh/upload_images/af5068fc4bed227a009c4bc5439b14f964bbffc72fd6f.png)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　このフォルダーに置け、と決めて置いたら　いいんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイルセット画像というものが、ファイル名ぐらいでしか管理されてないことに  
+前時代的なものを感じるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　Author で分けたくは　ある」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　全ての `.png` 画像に、 `.toml` 設定ファイルを添えるかな？」  
+
+![202307_maui_23-0140--image-data.png](https://crieit.now.sh/upload_images/fcf9d06697988421aa7a4ff69e2e07d664bc0684ea8c3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これぐらいじゃ　全然足りないだろうけど」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画像フォルダーに　`.toml`　入ってたら　邪魔じゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイルの説明のファイルだから、ファイルの隣に有ってほしいんだぜ。  
+同じファイル・パスですぐ見つかる感じで」  
+
 ＜書きかけ＞
