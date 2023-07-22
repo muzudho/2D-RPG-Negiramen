@@ -40,5 +40,33 @@
         /// </summary>
         internal static UnityAssetsImagesFolder Empty { get; } = new UnityAssetsImagesFolder();
         #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダーの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダーの場所
+        /// </summary>
+        internal UnityAssetsImagesTilesetFolder ImagesTilesetFolder
+        {
+            get
+            {
+                if (imagesTilesetFolder == null)
+                {
+                    imagesTilesetFolder = new UnityAssetsImagesTilesetFolder(
+                        pathSource: FileEntryPathSource.FromString(
+                            System.IO.Path.Combine(this.Path.AsStr, "Tileset")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
+                }
+
+                return imagesTilesetFolder;
+            }
+        }
+        #endregion
+
+        // - プライベート・フィールド
+
+        UnityAssetsImagesTilesetFolder imagesTilesetFolder;
     }
 }
