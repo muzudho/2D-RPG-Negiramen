@@ -1844,12 +1844,14 @@
         /// </summary>
         internal void InvalidateAddsButton()
         {
-            // 合同のときは「交差中」とは表示しない
-            if (!this.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            // マウスドラッグ中で、かつ、
+            // this.IsMouseDragging && 
+
+            // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
+            if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
             {
-                // マウスドラッグ中で、かつ、
-                // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-                if (this.IsMouseDragging && this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+                // 合同のときは「交差中」とは表示しない
+                if (!this.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
                 {
                     // 「交差中」
                     // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
@@ -1919,14 +1921,15 @@
         }
         #endregion
 
+        #region メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
         /// <summary>
-        ///     切抜きカーソルと、既存タイルが交差しているか？　を再計算
+        ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算
         ///     
         ///     <list type="bullet">
         ///         <item>軽くはない処理</item>
         ///     </list>
         /// </summary>
-        internal void RecalculateIntersectionBetweenCroppedCursorAndRegisteredTile()
+        internal void RecalculateBetweenCroppedCursorAndRegisteredTile()
         {
             if (this.SourceCroppedCursorRect == TheGeometric.RectangleInt.Empty)
             {
@@ -1940,6 +1943,7 @@
             this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.SourceCroppedCursorRect);
             this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.SourceCroppedCursorRect);
         }
+        #endregion
 
         // - プライベート・フィールド
 

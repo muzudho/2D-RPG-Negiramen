@@ -105,7 +105,7 @@ public partial class TileCropPage : ContentPage
         //
         //      - （軽くない処理）
         //
-        context.RecalculateIntersectionBetweenCroppedCursorAndRegisteredTile();
+        context.RecalculateBetweenCroppedCursorAndRegisteredTile();
 
         //
         // 切抜きカーソル更新

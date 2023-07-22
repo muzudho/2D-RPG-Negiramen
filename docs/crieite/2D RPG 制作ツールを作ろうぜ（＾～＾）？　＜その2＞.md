@@ -355,4 +355,11 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　じゃあメソッドを分けるか」  
 
+![202307_maui_22-2040--congruence.png](https://crieit.now.sh/upload_images/4a20a5979804632d63ed340ba481635b64bbc0b60f5c4.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　合同のときは　上書きできるように直したが、  
+今度は削除ボタンが効かなくなった。調べるぜ」  
+
+
 ＜書きかけ＞
