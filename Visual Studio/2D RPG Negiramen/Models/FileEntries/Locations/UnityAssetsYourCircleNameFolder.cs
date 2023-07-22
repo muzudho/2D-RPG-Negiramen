@@ -51,22 +51,22 @@
         {
             get
             {
-                if (unityAssetsYourWorkNameFolder == null)
+                if (yourWorkNameFolder == null)
                 {
-                    unityAssetsYourWorkNameFolder = new UnityAssetsYourWorkNameFolder(
+                    yourWorkNameFolder = new UnityAssetsYourWorkNameFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(this.Path.AsStr, App.GetOrLoadConfiguration().YourWorkName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return unityAssetsYourWorkNameFolder;
+                return yourWorkNameFolder;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        UnityAssetsYourWorkNameFolder unityAssetsYourWorkNameFolder;
+        UnityAssetsYourWorkNameFolder yourWorkNameFolder;
     }
 }

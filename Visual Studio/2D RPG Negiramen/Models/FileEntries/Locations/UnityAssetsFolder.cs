@@ -51,22 +51,22 @@
         {
             get
             {
-                if (unityAssetsYourCircleNameFolder == null)
+                if (yourCircleNameFolder == null)
                 {
-                    unityAssetsYourCircleNameFolder = new UnityAssetsYourCircleNameFolder(
+                    yourCircleNameFolder = new UnityAssetsYourCircleNameFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(this.Path.AsStr, App.GetOrLoadConfiguration().YourCircleName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return unityAssetsYourCircleNameFolder;
+                return yourCircleNameFolder;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        UnityAssetsYourCircleNameFolder unityAssetsYourCircleNameFolder;
+        UnityAssetsYourCircleNameFolder yourCircleNameFolder;
     }
 }
