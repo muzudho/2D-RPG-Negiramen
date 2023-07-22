@@ -1797,7 +1797,7 @@
     out TileRecordViewModel? recordVMOrNull))
             {
                 TileRecordViewModel recordVM = recordVMOrNull ?? throw new NullReferenceException(nameof(recordVMOrNull));
-                Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Comment:{recordVM.Comment.AsStr}");
+                // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Comment:{recordVM.Comment.AsStr}");
 
                 //
                 // データ表示
@@ -1809,7 +1809,7 @@
             }
             else
             {
-                Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+                // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
 
                 //
                 // 空欄にする
@@ -1852,7 +1852,7 @@
                 if (this.IsMouseDragging && this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
                 {
                     // 「交差中」
-                    Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
+                    // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
                     this.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
                     this.AddsButtonIsEnabled = false;

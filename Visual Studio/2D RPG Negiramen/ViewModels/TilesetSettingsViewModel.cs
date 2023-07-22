@@ -212,6 +212,12 @@
         {
             foreach (var recordVM in this.RecordViewModelList)
             {
+                // 論理削除されているものは除く
+                if (recordVM.LogicalDelete == LogicalDelete.True)
+                {
+                    continue;
+                }
+
                 // 矩形を１件返す
                 yield return recordVM.SourceRectangle;
             }
@@ -308,6 +314,12 @@
 
             foreach (var recordVM in this.RecordViewModelList)
             {
+                // 論理削除されているものは除く
+                if (recordVM.LogicalDelete == LogicalDelete.True)
+                {
+                    continue;
+                }
+
                 list.Add(new TileRecord(
                     id: recordVM.Id,
                     rect: recordVM.SourceRectangle,
