@@ -3,7 +3,7 @@
     using _2D_RPG_Negiramen.Coding;
 
     /// <summary>
-    ///     😁 Unityの Assets フォルダーへのパス
+    ///     😁 Unityの 📂 `Assets` フォルダーへのパス
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -40,5 +40,33 @@
         /// </summary>
         internal static UnityAssetsFolder Empty { get; } = new UnityAssetsFolder();
         #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（Unityの 📂 `Assets/{Your Circle Name}` フォルダーの場所）
+        /// <summary>
+        ///     Unityの 📂 `Assets/{Your Circle Name}` フォルダーの場所
+        /// </summary>
+        internal UnityAssetsYourCircleNameFolder YourCircleNameFolder
+        {
+            get
+            {
+                if (unityAssetsYourCircleNameFolder == null)
+                {
+                    unityAssetsYourCircleNameFolder = new UnityAssetsYourCircleNameFolder(
+                        pathSource: FileEntryPathSource.FromString(
+                            System.IO.Path.Combine(this.Path.AsStr, App.GetOrLoadConfiguration().YourCircleName.AsStr)),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
+                }
+
+                return unityAssetsYourCircleNameFolder;
+            }
+        }
+        #endregion
+
+        // - プライベート・フィールド
+
+        UnityAssetsYourCircleNameFolder unityAssetsYourCircleNameFolder;
     }
 }
