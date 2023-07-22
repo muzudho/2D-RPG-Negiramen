@@ -80,15 +80,15 @@
     </Shell.TitleView>
 
     <!--
-        Row     Height      Description
-        ===     ========    ================================================
-          0     88          上メニュー
-          1      0 or 68    上メニュー（デバッグ用。使う時に広げること）
-          2      *          コンテンツ領域
-          3      0          下メニュー（デバッグ用。使う時に広げること）
-          4                 下メニュー
+        Row     Height          Description
+        ===     =========       ================================================
+          0      88             上メニュー
+          1       0 or 68       上メニュー（デバッグ用。使う時に広げること）
+          2       *             コンテンツ領域
+          3       0 or 68       下メニュー（デバッグ用。使う時に広げること）
+          4     172             下メニュー
     -->
-    <Grid RowDefinitions="88,0,*,0,240">
+    <Grid RowDefinitions="88,0,*,0,172">
 
         <!--    上メニュー
                 ==========
@@ -397,11 +397,67 @@
             </Grid>
         </ScrollView>
 
+        <!--    下メニュー（デバッグ用）
+                ========================
+        
+                            IsVisible
+                            =========
+                使用時      True
+                非使用時    False
+        -->
+        <Grid Grid.Row="3"
+              IsVisible="False"
+              RowDefinitions="20,48" ColumnDefinitions="128,64,64,64,64,64,*"
+              Padding="8,8,8,8"
+              BackgroundColor="SkyBlue">
+
+            <!--    ◆１段目 読み仮名部
+                    ===================
+            -->
+
+            <!--    ◆２段目 入力部
+                    ===============
+            -->
+            <!-- 「作業中」 -->
+            <Label Grid.Row="1" Grid.Column="1"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="{app:Translate Working}"/>
+
+            <!-- ズーム済み：　切抜きカーソル。位置Ｘ -->
+            <Label Grid.Row="1" Grid.Column="2"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="{Binding WorkingCroppedCursorLeftAsPresentableText}"
+                   FontSize="24"/>
+
+            <!-- ズーム済み：　切抜きカーソル。位置Ｙ -->
+            <Label Grid.Row="1" Grid.Column="3"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="{Binding WorkingCroppedCursorTopAsPresentableText}"
+                   FontSize="24"/>
+
+            <!-- ズーム済み：　切抜きカーソル。横幅 -->
+            <Label Grid.Row="1" Grid.Column="4"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="{Binding WorkingCroppedCursorWidthAsPresentableText}"
+                   FontSize="24"/>
+
+            <!-- ズーム済み：　切抜きカーソル。縦幅 -->
+            <Label Grid.Row="1" Grid.Column="5"
+                   HorizontalTextAlignment="End"
+                   VerticalTextAlignment="Center"
+                   Text="{Binding WorkingCroppedCursorHeightAsPresentableText}"
+                   FontSize="24"/>
+        </Grid>
+
         <!--    下メニュー
                 ==========
         -->
         <Grid Grid.Row="4"
-              RowDefinitions="20,48,20,48,20,48,20" ColumnDefinitions="128,64,64,64,64,64,*"
+              RowDefinitions="20,48,20,48,20" ColumnDefinitions="128,64,64,64,64,64,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
@@ -436,7 +492,7 @@
                 </VerticalStackLayout>
             </Grid>
 
-            <!--    ◆０段目 読み仮名部
+            <!--    ◆１段目 読み仮名部
                     ===================
             -->
             <!-- 「ひだり」 -->
@@ -496,85 +552,48 @@
                    Text="{Binding SourceCroppedCursorHeightAsInt}"
                    FontSize="24"/>
 
-            <!--    ◆４段目 入力部
-                    ===============
-            -->
-            <!-- 「作業中」 -->
-            <Label Grid.Row="3" Grid.Column="1"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{app:Translate Working}"/>
-
-            <!-- ズーム済み：　切抜きカーソル。位置Ｘ -->
-            <Label Grid.Row="3" Grid.Column="2"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorLeftAsPresentableText}"
-                   FontSize="24"/>
-
-            <!-- ズーム済み：　切抜きカーソル。位置Ｙ -->
-            <Label Grid.Row="3" Grid.Column="3"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorTopAsPresentableText}"
-                   FontSize="24"/>
-
-            <!-- ズーム済み：　切抜きカーソル。横幅 -->
-            <Label Grid.Row="3" Grid.Column="4"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorWidthAsPresentableText}"
-                   FontSize="24"/>
-
-            <!-- ズーム済み：　切抜きカーソル。縦幅 -->
-            <Label Grid.Row="3" Grid.Column="5"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorHeightAsPresentableText}"
-                   FontSize="24"/>
-
-            <!--    ◆５段目 読み仮名部
+            <!--    ◆３段目 読み仮名部
                     ===================
             -->
             <!-- 「管理コード」 -->
-            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
+            <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    Padding="0,0,4,0"
                    Text="{app:Translate ControlCode}"/>
 
             <!-- 「タイル名」 -->
-            <Label Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
+            <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
                    Padding="20,0,0,0"
                    Text="{app:Translate TileName}"/>
 
-            <!--    ◆６段目 入力部
+            <!--    ◆４段目 入力部
                     ===============
             -->
             <!-- 管理コード BASE64形式 -->
-            <Entry Grid.Row="5" Grid.Column="1" Grid.ColumnSpan="2"
+            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    Text="{Binding SelectedTileIdAsBASE64, Mode=OneWay}"
                    IsReadOnly="True"/>
 
             <!-- タイル名 -->
-            <Entry Grid.Row="5" Grid.Column="3" Grid.ColumnSpan="4"
+            <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                    Placeholder="草原"
                    Text="{Binding SelectedTileCommentAsStr}"
                    BackgroundColor="FloralWhite"/>
 
-            <!--    ◆７段目 ヒント部
+            <!--    ◆５段目 ヒント部
                     =================
             -->
             <!-- 「コードのおぼえかた」 -->
-            <Label Grid.Row="6" Grid.Column="1" Grid.ColumnSpan="2"
+            <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Start"
                    Padding="0,0,4,0"
                    Text="{app:Translate HowToRememberControlCode}"/> 
 
             <!-- コードのおぼえかた -->
-            <Label Grid.Row="6" Grid.Column="3" Grid.ColumnSpan="4"
+            <Label Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
                    HorizontalTextAlignment="Start"
                    VerticalTextAlignment="Start"
                    Padding="0,0,4,0"

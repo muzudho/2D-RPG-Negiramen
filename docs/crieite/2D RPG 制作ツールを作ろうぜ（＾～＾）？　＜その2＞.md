@@ -474,4 +474,12 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　コメントアウトの切替えで復活できるようには　しておきたいな」  
 
+![202307_maui_23-0100--no-debug.png](https://crieit.now.sh/upload_images/81fe2be5d48f4598f715fd5a5a82f82464bbfd6d49e0f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　デバッグ用のものを　非表示にしたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ひとまず　この画面は完成としましょう」  
+
 ＜書きかけ＞
