@@ -70,6 +70,6 @@
 
         // - プライベート・フィールド
 
-        YourWorkNameFolder yourWorkNameFolder;
+        YourWorkNameFolder? yourWorkNameFolder;
     }
 }

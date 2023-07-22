@@ -70,6 +70,6 @@
 
         // - プライベート・フィールド
 
-        YourCircleNameFolder yourCircleNameFolder;
+        YourCircleNameFolder? yourCircleNameFolder;
     }
 }
