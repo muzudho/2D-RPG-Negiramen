@@ -49,13 +49,13 @@
         /// <summary>
         ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダーの場所
         /// </summary>
-        internal UnityAssetsImagesTilesetFolder TilesetFolder
+        internal ImagesTilesetFolder TilesetFolder
         {
             get
             {
                 if (tilesetFolder == null)
                 {
-                    tilesetFolder = new UnityAssetsImagesTilesetFolder(
+                    tilesetFolder = new ImagesTilesetFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, "Tileset")),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
@@ -69,6 +69,6 @@
 
         // - プライベート・フィールド
 
-        UnityAssetsImagesTilesetFolder? tilesetFolder;
+        ImagesTilesetFolder? tilesetFolder;
     }
 }

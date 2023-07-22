@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
     using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
@@ -237,7 +236,7 @@
         ///     タイルセットをコピー
         /// </summary>
         /// <param name="fileName">ファイル名</param>
-        static void CopyTileset(UnityAssetsImagesTilesetFolder tilesetFolder, string fileName)
+        static void CopyTileset(TheLocationOfUnityAssets.ImagesTilesetFolder tilesetFolder, string fileName)
         {
             var configuration = App.GetOrLoadConfiguration();
 
