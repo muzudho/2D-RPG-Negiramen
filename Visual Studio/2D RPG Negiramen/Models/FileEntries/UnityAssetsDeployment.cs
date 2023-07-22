@@ -202,7 +202,7 @@
         ///     </pre>
         /// </summary>
         /// <param name="imagesFolder">画像フォルダ―の場所</param>
-        static void PushStartupMemberToImagesFolder(UnityAssetsImagesFolder imagesFolder)
+        static void PushStartupMemberToImagesFolder(TheLocationOfUnityAssets.ImagesFolder imagesFolder)
         {
             // 📂 `Tileset` フォルダー
             if (!Directory.Exists(imagesFolder.TilesetFolder.Path.AsStr))

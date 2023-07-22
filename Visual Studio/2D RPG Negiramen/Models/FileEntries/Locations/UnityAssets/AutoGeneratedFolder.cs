@@ -49,13 +49,13 @@
         /// <summary>
         ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダーの場所
         /// </summary>
-        internal UnityAssetsImagesFolder ImagesFolder
+        internal ImagesFolder ImagesFolder
         {
             get
             {
                 if (imagesFolder == null)
                 {
-                    imagesFolder = new UnityAssetsImagesFolder(
+                    imagesFolder = new ImagesFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, "Images")),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
@@ -69,6 +69,6 @@
 
         // - プライベート・フィールド
 
-        UnityAssetsImagesFolder? imagesFolder;
+        ImagesFolder? imagesFolder;
     }
 }
