@@ -39,9 +39,11 @@ public partial class TilesetListPage : ContentPage
     /// <param name="e">イベント</param>
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
+        var unityAssetsFolder = App.GetOrLoadConfiguration().UnityAssetsFolder;
+
         //
         // ユーザー設定の読込
-        // ==========================
+        // ==================
         //
         UserConfiguration userConfiguration = App.GetOrLoadUserConfiguration();
 

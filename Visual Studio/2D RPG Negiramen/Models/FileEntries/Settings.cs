@@ -129,13 +129,6 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
         /// <summary>
         ///     タイルの最大サイズ
         /// </summary>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-        internal Models.SizeInt TileMaxSize { get; }
-後:
-        internal SizeInt TileMaxSize { get; }
-*/
         internal Geometric.SizeInt TileMaxSize { get; }
 
         ///// <summary>
@@ -151,13 +144,6 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
         /// </summary>
         /// <param name="tileMaxSize">タイルの最大サイズ</param>
         internal Settings(
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-            Models.SizeInt tileMaxSize)
-後:
-            SizeInt tileMaxSize)
-*/
             Geometric.SizeInt tileMaxSize)
         {
             this.TileMaxSize = tileMaxSize;

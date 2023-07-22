@@ -5,6 +5,9 @@
     /// </summary>
     internal class UnityAssetsDeployment
     {
+        // - インターナル静的メソッド
+
+        #region メソッド（Unity の Assets フォルダーにファイルを送り込みます）
         /// <summary>
         ///     <pre>
         ///         Unity の Assets フォルダーにファイルを送り込みます
@@ -17,6 +20,8 @@
         /// <returns>完了した</returns>
         internal static bool PushStartupMemberToUnityAssetsFolder(string unityAssetsFolderPath)
         {
+            // 引数より、グローバル変数から取ってこれないか？（フリーズする？）
+            // var unityAssetsFolderPath2 = App.GetOrLoadConfiguration().UnityAssetsFolder.PathSource.AsStr;
 
             if (!Directory.Exists(unityAssetsFolderPath))
             {
@@ -36,6 +41,7 @@
 
             return true;
         }
+        #endregion
 
         /// <summary>
         ///     <pre>

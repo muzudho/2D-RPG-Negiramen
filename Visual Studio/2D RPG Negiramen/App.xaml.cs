@@ -1,7 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen;
 
-using _2D_RPG_Negiramen.Models;
-using CsvHelper;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -11,6 +9,50 @@ using System.Globalization;
 /// </summary>
 public partial class App : Application
 {
+    // - その他
+
+    #region その他（生成）
+    /// <summary>
+    ///     生成
+    /// </summary>
+    public App()
+    {
+        // 調査
+        {
+            Trace.WriteLine($"[App.xaml.cs App] Environment.CurrentDirectory: {Environment.CurrentDirectory}");
+            // [App.xaml.cs App] Environment.CurrentDirectory: C:\WINDOWS\system32
+
+            Trace.WriteLine($"[App.xaml.cs App] FileSystem.AppDataDirectory : {FileSystem.AppDataDirectory}");
+            // [App.xaml.cs App] FileSystem.AppDataDirectory: C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState
+
+            Trace.WriteLine($"[App.xaml.cs App] FileSystem.CacheDirectory   : {FileSystem.CacheDirectory}");
+            // [App.xaml.cs App] FileSystem.CacheDirectory  : C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache
+
+        }
+
+        /*
+        // TODO ★ CSV 読取
+        {
+            using (var reader = new StreamReader("languages.csv"))
+            using (var csv = new CsvReader(reader, CultureInfo.CurrentCulture))
+            {
+
+            }
+        }
+        */
+
+        // 初期化（多言語対応）
+        {
+            // TODO 切替方法はあとで考える
+            LocalizationResourceManager.Instance.SetCulture(new CultureInfo("ja-JP"));
+        }
+
+        InitializeComponent();
+
+        MainPage = new AppShell();
+    }
+    #endregion
+
     // - インターナル静的プロパティ
 
     #region プロパティ（ロケールＩｄのリスト）
@@ -145,50 +187,6 @@ public partial class App : Application
     static internal void SetSettings(Models.FileEntries.Settings settings)
     {
         App.Settings = settings;
-    }
-    #endregion
-
-    // - その他
-
-    #region その他（生成）
-    /// <summary>
-    ///     生成
-    /// </summary>
-    public App()
-    {
-        // 調査
-        {
-            Trace.WriteLine($"[App.xaml.cs App] Environment.CurrentDirectory: {Environment.CurrentDirectory}");
-            // [App.xaml.cs App] Environment.CurrentDirectory: C:\WINDOWS\system32
-
-            Trace.WriteLine($"[App.xaml.cs App] FileSystem.AppDataDirectory : {FileSystem.AppDataDirectory}");
-            // [App.xaml.cs App] FileSystem.AppDataDirectory: C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState
-
-            Trace.WriteLine($"[App.xaml.cs App] FileSystem.CacheDirectory   : {FileSystem.CacheDirectory}");
-            // [App.xaml.cs App] FileSystem.CacheDirectory  : C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache
-
-        }
-
-        /*
-        // TODO ★ CSV 読取
-        {
-            using (var reader = new StreamReader("languages.csv"))
-            using (var csv = new CsvReader(reader, CultureInfo.CurrentCulture))
-            {
-
-            }
-        }
-        */
-
-        // 初期化（多言語対応）
-        {
-            // TODO 切替方法はあとで考える
-            LocalizationResourceManager.Instance.SetCulture(new CultureInfo("ja-JP"));
-        }
-
-        InitializeComponent();
-
-        MainPage = new AppShell();
     }
     #endregion
 

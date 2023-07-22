@@ -10,13 +10,6 @@
     /// </summary>
     class StartupConfigurationPageViewModel : ObservableObject
     {
-        // - プロパティ
-
-        /// <summary>
-        ///     Unity の Assets フォルダ―へ初期設定をコピーするコマンド
-        /// </summary>
-        public ICommand PushStartupToUnityAssetsFolderCommand { get; }
-
         // - その他
 
         #region その他（生成）
@@ -42,7 +35,16 @@
         }
         #endregion
 
-        // - 変更通知プロパティ
+        // - パブリック・プロパティ
+
+        #region プロパティ（Unity の Assets フォルダ―へ初期設定をコピーするコマンド）
+        /// <summary>
+        ///     Unity の Assets フォルダ―へ初期設定をコピーするコマンド
+        /// </summary>
+        public ICommand PushStartupToUnityAssetsFolderCommand { get; }
+        #endregion
+
+        // - パブリック変更通知プロパティ
 
         #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式）
         /// <summary>
@@ -65,6 +67,7 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（Unity の Assets フォルダーへのパス。文字列形式）
         /// <summary>
         ///     Unity の Assets フォルダーへのパス。文字列形式
         /// </summary>
@@ -74,17 +77,19 @@
             get => _unityAssetsFolder.Path.AsStr;
             set
             {
-                if (_unityAssetsFolder.Path.AsStr != value)
-                {
-                    _unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder(
-                        pathSource: FileEntryPathSource.FromString(value),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
-                    OnPropertyChanged();
-                }
+                if (_unityAssetsFolder.Path.AsStr == value)
+                    return;
+
+                _unityAssetsFolder = new Models.FileEntries.Locations.UnityAssetsFolder(
+                    pathSource: FileEntryPathSource.FromString(value),
+                    convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                replaceSeparators: true));
+                OnPropertyChanged();
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（あなたのサークル名）
         /// <summary>
         ///     あなたのサークル名
         /// </summary>
@@ -93,14 +98,16 @@
             get => _yourCircleName.AsStr;
             set
             {
-                if (_yourCircleName.AsStr != value)
-                {
-                    _yourCircleName = Models.YourCircleName.FromString(value);
-                    OnPropertyChanged();
-                }
+                if (_yourCircleName.AsStr == value)
+                    return;
+
+                _yourCircleName = Models.YourCircleName.FromString(value);
+                OnPropertyChanged();
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（あなたの作品名）
         /// <summary>
         ///     あなたの作品名
         /// </summary>
@@ -109,16 +116,40 @@
             get => _yourWorkName.AsStr;
             set
             {
-                if (_yourWorkName.AsStr != value)
-                {
-                    _yourWorkName = Models.YourWorkName.FromString(value);
-                    OnPropertyChanged();
-                }
+                if (_yourWorkName.AsStr == value)
+                    return;
+
+                _yourWorkName = Models.YourWorkName.FromString(value);
+                OnPropertyChanged();
             }
         }
+        #endregion
 
-        // - コマンド
+        // - プライベート・フィールド
 
+        /// <summary>
+        ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
+        /// </summary>
+        private Models.FileEntries.Locations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolder = Models.FileEntries.Locations.Negiramen.WorkspaceFolder.Empty;
+
+        /// <summary>
+        ///     Unity の Assets フォルダーへのパス
+        /// </summary>
+        private Models.FileEntries.Locations.UnityAssetsFolder _unityAssetsFolder = Models.FileEntries.Locations.UnityAssetsFolder.Empty;
+
+        /// <summary>
+        ///     あなたのサークル名
+        /// </summary>
+        private YourCircleName _yourCircleName = YourCircleName.Empty;
+
+        /// <summary>
+        ///     あなたの作品名
+        /// </summary>
+        private YourWorkName _yourWorkName = YourWorkName.Empty;
+
+        // - プライベート・メソッド
+
+        #region メソッド（［Unity の Assets フォルダ―へ初期設定をコピーする］コマンドを実行）
         /// <summary>
         ///     ［Unity の Assets フォルダ―へ初期設定をコピーする］コマンドを実行
         /// </summary>
@@ -175,27 +206,6 @@
                 await Shell.Current.GoToAsync(shellNavigationState);
             }
         }
-
-        // - プライベート・フィールド
-
-        /// <summary>
-        ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
-        /// </summary>
-        private Models.FileEntries.Locations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolder = Models.FileEntries.Locations.Negiramen.WorkspaceFolder.Empty;
-
-        /// <summary>
-        ///     Unity の Assets フォルダーへのパス
-        /// </summary>
-        private Models.FileEntries.Locations.UnityAssetsFolder _unityAssetsFolder = Models.FileEntries.Locations.UnityAssetsFolder.Empty;
-
-        /// <summary>
-        ///     あなたのサークル名
-        /// </summary>
-        private YourCircleName _yourCircleName = YourCircleName.Empty;
-
-        /// <summary>
-        ///     あなたの作品名
-        /// </summary>
-        private YourWorkName _yourWorkName = YourWorkName.Empty;
+        #endregion
     }
 }
