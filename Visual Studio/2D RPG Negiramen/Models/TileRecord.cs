@@ -28,15 +28,15 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="rectangle">レクタングル</param>
+        /// <param name="rect">レクタングル</param>
         internal TileRecord(
             Models.TileId id,
-            Geometric.RectangleInt rectangle,
+            Geometric.RectangleInt rect,
             Models.Comment comment,
             Models.LogicalDelete logicalDelete)
         {
             this.Id = id ?? throw new ArgumentNullException(nameof(id));
-            this.Rectangle = rectangle ?? throw new ArgumentNullException(nameof(rectangle));
+            this.Rectangle = rect ?? throw new ArgumentNullException(nameof(rect));
             this.Comment = comment ?? throw new ArgumentNullException(nameof(comment));
             this.LogicalDelete = logicalDelete ?? throw new ArgumentNullException(nameof(logicalDelete));
         }

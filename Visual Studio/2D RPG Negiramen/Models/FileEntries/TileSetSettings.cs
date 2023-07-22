@@ -123,7 +123,7 @@
         /// <returns>完了した</returns>
         internal static bool SaveCSV(
             Locations.TilesetSettingsFile tileSetSettingsFile,
-            List<TileRecord> recordList)
+            IEnumerator<TileRecord> recordList)
         {
             // 保存したいファイルへのパス
             var settingsFilePathAsStr = tileSetSettingsFile.Path.AsStr;
@@ -134,8 +134,10 @@
             builder.AppendLine("Id,Left,Top,Width,Height,Comment,Delete");
 
             // データ部
-            foreach (var record in recordList)
+            while (recordList.MoveNext())
             {
+                TileRecord record = recordList.Current;
+
                 // TODO ダブルクォーテーションのエスケープ
                 builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Point.X.AsInt},{record.Rectangle.Point.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Comment.AsStr},{record.LogicalDelete.AsInt}");
             }
@@ -237,7 +239,7 @@
                     // 差替え
                     this.RecordList[i] = new TileRecord(
                         id: record.Id,
-                        rectangle: record.Rectangle,
+                        rect: record.Rectangle,
                         comment: record.Comment,
                         logicalDelete: Models.LogicalDelete.True);
                 }
@@ -265,6 +267,21 @@
 
             result = null;
             return false;
+        }
+        #endregion
+
+        #region メソッド（全てのレコードを取得）
+        /// <summary>
+        ///     全てのレコードを取得
+        /// </summary>
+        /// <returns>ストリーム</returns>
+        internal IEnumerator<TileRecord> GetAllRecords()
+        {
+            foreach (var record in this.RecordList)
+            {
+                // レコードを１件返す
+                yield return record;
+            }
         }
         #endregion
 
@@ -306,7 +323,7 @@
         {
             return TilesetSettings.SaveCSV(
                 tileSetSettingsFile: tileSetSettingsFile,
-                recordList: this.RecordList);
+                recordList: this.GetAllRecords());
         }
         #endregion
 

@@ -310,7 +310,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new TileRecord(
                             id: value,
-                            rectangle: selectedTileVM.SourceRectangle,
+                            rect: selectedTileVM.SourceRectangle,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: TheGeometric.RectangleFloat.FromModel(selectedTileVM.SourceRectangle)));
@@ -321,7 +321,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: value,
-                            rectangle: Models.Geometric.RectangleInt.Empty,
+                            rect: Models.Geometric.RectangleInt.Empty,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                     workingRect: TheGeometric.RectangleFloat.FromModel(Models.Geometric.RectangleInt.Empty)));
@@ -1124,7 +1124,7 @@
                     this.selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1140,7 +1140,7 @@
                     this.selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileId.Empty,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1190,7 +1190,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1206,7 +1206,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileId.Empty,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1300,7 +1300,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1312,7 +1312,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileId.Empty,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1358,7 +1358,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: selectedTileVM.Comment,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1370,7 +1370,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileId.Empty,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: Models.Comment.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1652,7 +1652,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: new Models.Comment(value),
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1664,7 +1664,7 @@
                     selectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileId.Empty,
-                            rectangle: rect1,
+                            rect: rect1,
                             comment: new Models.Comment(value),
                             logicalDelete: Models.LogicalDelete.False),
                        workingRect: TheGeometric.RectangleFloat.FromModel(rect1)));
@@ -1814,7 +1814,7 @@
                 this.SelectedTileVMOption = new Option<TileRecordViewModel>(TileRecordViewModel.FromModel(
                     tileRecord: new Models.TileRecord(
                         id: Models.TileId.Empty,
-                        rectangle: this.SourceCroppedCursorRect,
+                        rect: this.SourceCroppedCursorRect,
                         comment: Models.Comment.Empty,
                         logicalDelete: Models.LogicalDelete.False),
                     workingRect: TheGeometric.RectangleFloat.FromModel(this.SourceCroppedCursorRect)));

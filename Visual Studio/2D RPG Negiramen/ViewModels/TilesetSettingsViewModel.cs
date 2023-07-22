@@ -144,7 +144,7 @@
                     this.RecordViewModelList[i] = TileRecordViewModel.FromModel(
                         tileRecord: new TileRecord(
                             id: recordVM.Id,
-                            rectangle: recordVM.SourceRectangle,
+                            rect: recordVM.SourceRectangle,
                             comment: recordVM.Comment,
                             logicalDelete: Models.LogicalDelete.True),
                         workingRect: recordVM.WorkingRectangle);
@@ -173,6 +173,25 @@
 
             resultVMOrNull = null;
             return false;
+        }
+        #endregion
+
+        #region メソッド（全てのレコード（元画像ベース）を取得）
+        /// <summary>
+        ///     全てのレコード（元画像ベース）を取得
+        /// </summary>
+        /// <returns>ストリーム</returns>
+        internal IEnumerator<TileRecord> GetAllSourceRecords()
+        {
+            foreach (var recordVM in this.RecordViewModelList)
+            {
+                // レコードを１件返す
+                yield return new TileRecord(
+                    id: recordVM.Id,
+                    rect: recordVM.SourceRectangle,
+                    comment: recordVM.Comment,
+                    logicalDelete: recordVM.LogicalDelete);
+            }
         }
         #endregion
 
@@ -212,21 +231,9 @@
         /// <returns>完了した</returns>
         internal bool SaveCSV(TheFileEntryLocations.TilesetSettingsFile tileSetSettingsFile)
         {
-            List<TileRecord> recordList = new List<TileRecord>();
-
-            foreach (var recordVM in this.RecordViewModelList)
-            {
-                TileRecord record = new TileRecord(
-                    id: recordVM.Id,
-                    rectangle: recordVM.SourceRectangle,
-                    comment: recordVM.Comment,
-                    logicalDelete: recordVM.LogicalDelete);
-                recordList.Add(record);
-            }
-
             return TilesetSettings.SaveCSV(
                 tileSetSettingsFile: tileSetSettingsFile,
-                recordList: recordList);
+                recordList: this.GetAllSourceRecords());
         }
         #endregion
 
