@@ -241,22 +241,48 @@
         static void CopyTileset(string fileName)
         {
             var configuration = App.GetOrLoadConfiguration();
-            var source = Path.Combine(configuration.NegiramenWorkspaceFolder.Path.AsStr, "For Unity Assets", "Images", "Tileset", fileName);
-            var destination = Path.Combine(
-                    configuration.UnityAssetsFolder.Path.AsStr,
-                    configuration.YourCircleName.AsStr,
-                    configuration.YourWorkName.AsStr,
-                    "Auto Generated",
-                    "Images",
-                    "Tileset",
-                    fileName);
 
-            if (!File.Exists(destination))
+            // 画像ファイルのコピー
             {
-                // 📄 `Tileset` ファイルを複写
-                File.Copy(
-                    sourceFileName: source,
-                    destFileName: destination);
+                var source = Path.Combine(configuration.NegiramenWorkspaceFolder.Path.AsStr, "For Unity Assets", "Images", "Tileset", fileName);
+                var destination = Path.Combine(
+                        configuration.UnityAssetsFolder.Path.AsStr,
+                        configuration.YourCircleName.AsStr,
+                        configuration.YourWorkName.AsStr,
+                        "Auto Generated",
+                        "Images",
+                        "Tileset",
+                        fileName);
+
+                if (!File.Exists(destination))
+                {
+                    // ファイルを複写
+                    File.Copy(
+                        sourceFileName: source,
+                        destFileName: destination);
+                }
+            }
+
+            // 添付の TOML ファイルのコピー
+            {
+                var fileStem = Path.GetFileNameWithoutExtension(fileName);
+                var source = Path.Combine(configuration.NegiramenWorkspaceFolder.Path.AsStr, "For Unity Assets", "Images", "Tileset", $"{fileStem}.toml");
+                var destination = Path.Combine(
+                        configuration.UnityAssetsFolder.Path.AsStr,
+                        configuration.YourCircleName.AsStr,
+                        configuration.YourWorkName.AsStr,
+                        "Auto Generated",
+                        "Images",
+                        "Tileset",
+                        $"{fileStem}.toml");
+
+                if (!File.Exists(destination))
+                {
+                    // ファイルを複写
+                    File.Copy(
+                        sourceFileName: source,
+                        destFileName: destination);
+                }
             }
         }
 

@@ -116,8 +116,9 @@
     <Style TargetType="Entry">
         <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource GentleBlack}, Dark={StaticResource GentleWhite}}" />
 
-        <!-- 背景は透明にしないと、リードオンリー設定のとき、おかしくなる -->
+        <!-- 背景は透明にしないと、リードオンリー設定のとき、おかしくなる
         <Setter Property="BackgroundColor" Value="Transparent" />
+        -->
 
         <Setter Property="FontFamily" Value="OpenSansRegular"/>
         <Setter Property="FontSize" Value="14" />
@@ -127,7 +128,11 @@
         <Setter Property="VisualStateManager.VisualStateGroups">
             <VisualStateGroupList>
                 <VisualStateGroup x:Name="CommonStates">
-                    <VisualState x:Name="Normal" />
+                    <VisualState x:Name="Normal">
+                        <VisualState.Setters>
+                            <Setter Property="BackgroundColor" Value="{StaticResource GentleWhite}" />
+                        </VisualState.Setters>
+                    </VisualState>
                     <VisualState x:Name="Disabled">
                         <VisualState.Setters>
                             <Setter Property="TextColor" Value="{AppThemeBinding Light={StaticResource Gray300}, Dark={StaticResource Gray600}}" />
