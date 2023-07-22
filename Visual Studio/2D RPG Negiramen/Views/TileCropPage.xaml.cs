@@ -1,9 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
-using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models.FileEntries;
 using _2D_RPG_Negiramen.ViewModels;
 using System.IO;
+using System.Diagnostics;
 using TheGraphics = Microsoft.Maui.Graphics;
 
 #if IOS || ANDROID || MACCATALYST
@@ -11,7 +11,6 @@ using Microsoft.Maui.Graphics.Platform;
 using _2D_RPG_Negiramen.Models.Geometric;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
-using System.Diagnostics;
 using _2D_RPG_Negiramen.Models;
 using System.Net;
 using SkiaSharp;
@@ -101,10 +100,18 @@ public partial class TileCropPage : ContentPage
         context.SourceCroppedCursorRect = sourceRect;
 
         //
-        // 既存の登録タイルと被っていないか判定
+        // 登録済みのタイルと被っていないか判定
         // ====================================
         //
         context.RecalculateIntersectionBetweenCroppedCursorAndRegisteredTile();
+        if (context.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        {
+            Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] 登録済みのタイルと被っている");
+        }
+        else
+        {
+            Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] 登録済みのタイルと被っていない");
+        }
 
         //
         // 切抜きカーソル更新

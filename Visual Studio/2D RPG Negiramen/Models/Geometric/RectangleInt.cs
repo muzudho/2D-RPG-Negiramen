@@ -1,4 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.Models.Geometric
+﻿using System.Diagnostics;
+
+namespace _2D_RPG_Negiramen.Models.Geometric
 {
     /// <summary>
     ///     😁 矩形
@@ -262,10 +264,10 @@
         ///          +---------+
         ///          | A       |
         ///          |         |
-        ///          |    +----+----+ ＜ Min Top
+        ///          |    +----+----+ ＜ Max Top
         ///          |    |    |    |
         ///          |    |    |    |
-        ///          +----+----+    | ＜ Max Bottom
+        ///          +----+----+    | ＜ Min Bottom
         ///               |         |
         ///               |       B |
         ///               +---------+
@@ -273,16 +275,20 @@
         ///               Max Left
         ///         
         ///         
-        ///         
-        ///         Max(a.Left, b.Left) ＜ Min(a.Right, b.Right) かつ Max(a.Bottom, b.Bottom) ＜ Min(a.Top, b.Top)
+        ///         Y 軸は下に行くほど増える座標では、
+        ///         Max(a.Left, b.Left) ＜ Min(a.Right, b.Right) かつ Max(a.Top, b.Top) ＜ Min(a.Bottom, b.Bottom)
         ///     </pre>
         /// </summary>
         /// <param name="target">もう１つの矩形</param>
         /// <returns></returns>
         internal bool HasIntersection(RectangleInt target)
         {
-            return Math.Max(this.LeftAsInt, target.LeftAsInt) < Math.Min(this.RightAsInt, target.RightAsInt) &&
-                Math.Max(this.BottomAsInt, target.BottomAsInt) < Math.Min(this.TopAsInt, target.TopAsInt);
+            var hasIntersection = Math.Max(this.LeftAsInt, target.LeftAsInt) < Math.Min(this.RightAsInt, target.RightAsInt) &&
+                Math.Max(this.TopAsInt, target.TopAsInt) < Math.Min(this.BottomAsInt, target.BottomAsInt);
+
+            Trace.WriteLine($"[RectangleInt.cs HasIntersection] this.LeftAsInt: {this.LeftAsInt}, target.LeftAsInt: {target.LeftAsInt}, this.RightAsInt: {this.RightAsInt}, target.RightAsInt: {target.RightAsInt}, this.BottomAsInt: {this.BottomAsInt}, target.BottomAsInt: {target.BottomAsInt}, this.TopAsInt: {this.TopAsInt}, target.TopAsInt: {target.TopAsInt}");
+
+            return hasIntersection;
         }
     }
 }
