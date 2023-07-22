@@ -40,5 +40,33 @@
         /// </summary>
         internal static UnityAssetsYourCircleNameFolder Empty { get; } = new UnityAssetsYourCircleNameFolder();
         #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝`フォルダーの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝`フォルダーの場所
+        /// </summary>
+        internal UnityAssetsYourWorkNameFolder YourWorkNameFolder
+        {
+            get
+            {
+                if (unityAssetsYourWorkNameFolder == null)
+                {
+                    unityAssetsYourWorkNameFolder = new UnityAssetsYourWorkNameFolder(
+                        pathSource: FileEntryPathSource.FromString(
+                            System.IO.Path.Combine(this.Path.AsStr, App.GetOrLoadConfiguration().YourWorkName.AsStr)),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
+                }
+
+                return unityAssetsYourWorkNameFolder;
+            }
+        }
+        #endregion
+
+        // - プライベート・フィールド
+
+        UnityAssetsYourWorkNameFolder unityAssetsYourWorkNameFolder;
     }
 }

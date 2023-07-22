@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheFileEntryLocations = Models.FileEntries.Locations;
 
     /// <summary>
@@ -12,7 +13,7 @@
         #region メソッド（Unity の Assets フォルダーにファイルを送り込みます）
         /// <summary>
         ///     <pre>
-        ///         Unity の Assets フォルダーにファイルを送り込みます
+        ///         Unity の 📂 `Assets` フォルダーにファイルを送り込みます
         ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         👉　└─ 📂 Assets
@@ -28,16 +29,13 @@
                 return false;
             }
 
-            // var yourCircleNameFolderPathAsStr = System.IO.Path.Combine(unityAssetsFolder.Path.AsStr, App.GetOrLoadConfiguration().YourCircleName.AsStr);
-            var yourCircleNameFolderPathAsStr = unityAssetsFolder.YourCircleNameFolder.Path.AsStr;
-
-            if (!Directory.Exists(yourCircleNameFolderPathAsStr))
+            if (!Directory.Exists(unityAssetsFolder.YourCircleNameFolder.Path.AsStr))
             {
                 // 無ければ作成
-                Directory.CreateDirectory(yourCircleNameFolderPathAsStr);
+                Directory.CreateDirectory(unityAssetsFolder.YourCircleNameFolder.Path.AsStr);
             }
 
-            PushStartupMemberToYourCircleNameFolder(yourCircleNameFolderPathAsStr);
+            PushStartupMemberToYourCircleNameFolder(unityAssetsFolder.YourCircleNameFolder);
 
             return true;
         }
@@ -45,7 +43,7 @@
 
         /// <summary>
         ///     <pre>
-        ///         ｛あなたのサークル名｝フォルダーにファイルを送り込みます
+        ///          Unity の 📂 `Assets/｛あなたのサークル名｝` フォルダーにファイルを送り込みます
         ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         　　└─ 📂 Assets
@@ -53,22 +51,20 @@
         ///     </pre>
         /// </summary>
         /// <param name="yourCircleNameFolderPath">あなたのサークル名フォルダ―へのパス</param>
-        static void PushStartupMemberToYourCircleNameFolder(string yourCircleNameFolderPath)
+        static void PushStartupMemberToYourCircleNameFolder(UnityAssetsYourCircleNameFolder yourCircleNameFolder)
         {
-            var yourWorkNameFolderPath = Path.Combine(yourCircleNameFolderPath, App.GetOrLoadConfiguration().YourWorkName.AsStr);
-
-            if (!Directory.Exists(yourWorkNameFolderPath))
+            if (!Directory.Exists(yourCircleNameFolder.YourWorkNameFolder.Path.AsStr))
             {
                 // 無ければ作成
-                Directory.CreateDirectory(yourWorkNameFolderPath);
+                Directory.CreateDirectory(yourCircleNameFolder.YourWorkNameFolder.Path.AsStr);
             }
 
-            PushStartupMemberToYourWorkNameFolder(yourWorkNameFolderPath);
+            PushStartupMemberToYourWorkNameFolder(yourCircleNameFolder.YourWorkNameFolder.Path.AsStr);
         }
 
         /// <summary>
         ///     <pre>
-        ///         ｛あなたの作品名｝フォルダーにファイルを送り込みます
+        ///         Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝`フォルダーにファイルを送り込みます
         ///     
         ///             📂 例: C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/
         ///         　　└─ 📂 Assets
