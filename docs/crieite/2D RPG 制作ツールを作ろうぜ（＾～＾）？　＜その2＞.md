@@ -361,5 +361,27 @@
 「　👆　合同のときは　上書きできるように直したが、  
 今度は削除ボタンが効かなくなった。調べるぜ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　論理削除されているものを　保存から除外してたから　保存されなかったんだ。  
+論理削除されているものも　保存するように直そう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　それでも直らん」  
+
+## ファイルの内容をチェックするプログラムを入れておくべきでは？
+
+![202307_maui_22-2104--congruence-o2o0.png](https://crieit.now.sh/upload_images/8c5e29f5f051945b43cdf0adaf2850e264bbc6432831a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　データの中に　合同の矩形が２つある！  
+片方を論理削除しても、もう片方が残ってる！」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ファイルの内容をチェックするプログラムを入れておくべきでは？」  
+
+![202307_maui_22-2132--validation-o2o0.png](https://crieit.now.sh/upload_images/f7a931f50ba82418dd5e90fde947376f64bbccafa154f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　デバッグモードで確認するようにした」  
 
 ＜書きかけ＞

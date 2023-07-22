@@ -157,29 +157,31 @@
         ///         <item>重たい処理</item>
         ///     </list>
         /// </summary>
-        /// <param name="recordList">タイル一覧</param>
+        /// <param name="recordList">タイル一覧。論理削除されているものも含むこと</param>
         /// <returns>そうだ</returns>
         internal static bool IsValid(List<TileRecord> recordList)
         {
+            int errorCount = 0;
+
             // 総当たりするか？
             for (int i = 0; i < recordList.Count; i++)
             {
                 TileRecord recordI = recordList[i];
 
-                for (int j = i + 1; i < recordList.Count; i++)
+                for (int j = i + 1; j < recordList.Count; j++)
                 {
                     TileRecord recordJ = recordList[j];
 
                     // 合同の矩形が含まれていたらエラー
                     if (recordI.Rectangle == recordJ.Rectangle)
                     {
-                        Trace.WriteLine($"[TilesetSettings.cs IsValid] エラー。合同の矩形が含まれていた。 (1) [{recordI.Id}] (2) [{recordJ.Id}]");
-                        return false;
+                        Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。合同の矩形が含まれていた。 (1) [{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsBASE64}]");
+                        errorCount++;
                     }
                 }
             }
 
-            return true;
+            return errorCount == 0;
         }
         #endregion
 
@@ -405,7 +407,8 @@
         /// <returns></returns>
         internal bool IsValid()
         {
-            return TilesetSettings.IsValid(this.RecordList);
+            // 論理削除されているものも妥当性チェックで使う
+            return TilesetSettings.IsValid(this.CreateTileRecordList(includeLogicalDelete: true));
         }
         #endregion
 
@@ -447,6 +450,34 @@
             }
 
             return false;
+        }
+        #endregion
+
+        #region メソッド（タイルレコード一覧作成）
+        /// <summary>
+        ///     タイルレコード一覧作成
+        /// </summary>
+        /// <returns>タイルレコード一覧</returns>
+        List<TileRecord> CreateTileRecordList(bool includeLogicalDelete = false)
+        {
+            List<TileRecord> list = new List<TileRecord>();
+
+            foreach (var record in this.RecordList)
+            {
+                // 論理削除されているものは除く
+                if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
+                {
+                    continue;
+                }
+
+                list.Add(new TileRecord(
+                    id: record.Id,
+                    rect: record.Rectangle,
+                    comment: record.Comment,
+                    logicalDelete: record.LogicalDelete));
+            }
+
+            return list;
         }
         #endregion
     }

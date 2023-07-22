@@ -315,14 +315,14 @@
         ///     タイルレコード一覧作成
         /// </summary>
         /// <returns>タイルレコード一覧</returns>
-        List<TileRecord> CreateTileRecordList()
+        List<TileRecord> CreateTileRecordList(bool includeLogicalDelete = false)
         {
             List<TileRecord> list = new List<TileRecord>();
 
             foreach (var recordVM in this.RecordViewModelList)
             {
                 // 論理削除されているものは除く
-                if (recordVM.LogicalDelete == LogicalDelete.True)
+                if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)
                 {
                     continue;
                 }
