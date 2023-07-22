@@ -189,10 +189,16 @@
         ///     全てのレコード（元画像ベース）を取得
         /// </summary>
         /// <returns>ストリーム</returns>
-        internal IEnumerator<TileRecord> GetAllSourceRecords()
+        internal IEnumerator<TileRecord> GetAllSourceRecords(bool includeLogicalDelete = false)
         {
             foreach (var recordVM in this.RecordViewModelList)
             {
+                // 論理削除されているものは除く
+                if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)
+                {
+                    continue;
+                }
+
                 // レコードを１件返す
                 yield return new TileRecord(
                     id: recordVM.Id,
@@ -208,12 +214,12 @@
         ///     全ての矩形（元画像ベース）を取得
         /// </summary>
         /// <returns>ストリーム</returns>
-        internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles()
+        internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles(bool includeLogicalDelete = false)
         {
             foreach (var recordVM in this.RecordViewModelList)
             {
                 // 論理削除されているものは除く
-                if (recordVM.LogicalDelete == LogicalDelete.True)
+                if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)
                 {
                     continue;
                 }
@@ -272,9 +278,10 @@
         /// <returns>完了した</returns>
         internal bool SaveCSV(TheFileEntryLocations.TilesetSettingsFile tileSetSettingsFile)
         {
+            // 論理削除されているものも保存する
             return TilesetSettings.SaveCSV(
                 tileSetSettingsFile: tileSetSettingsFile,
-                recordList: this.GetAllSourceRecords());
+                recordList: this.GetAllSourceRecords(includeLogicalDelete: true));
         }
         #endregion
 

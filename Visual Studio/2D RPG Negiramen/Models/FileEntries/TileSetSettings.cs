@@ -162,11 +162,11 @@
         internal static bool IsValid(List<TileRecord> recordList)
         {
             // 総当たりするか？
-            for (int i=0; i<recordList.Count; i++)
+            for (int i = 0; i < recordList.Count; i++)
             {
                 TileRecord recordI = recordList[i];
 
-                for (int j = i+1; i < recordList.Count; i++)
+                for (int j = i + 1; i < recordList.Count; i++)
                 {
                     TileRecord recordJ = recordList[j];
 
@@ -288,7 +288,7 @@
             Models.TileId id)
         {
             // 愚直な検索
-            for (int i=0; i<this.RecordList.Count; i++)
+            for (int i = 0; i < this.RecordList.Count; i++)
             {
                 var record = this.RecordList[i];
 
@@ -333,10 +333,16 @@
         ///     全てのレコードを取得
         /// </summary>
         /// <returns>ストリーム</returns>
-        internal IEnumerator<TileRecord> GetAllRecords()
+        internal IEnumerator<TileRecord> GetAllRecords(bool includeLogicalDelete = false)
         {
             foreach (var record in this.RecordList)
             {
+                // 論理削除されているものは除く
+                if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
+                {
+                    continue;
+                }
+
                 // レコードを１件返す
                 yield return record;
             }
@@ -348,10 +354,16 @@
         ///     全ての矩形を取得
         /// </summary>
         /// <returns>ストリーム</returns>
-        internal IEnumerator<TheGeometric.RectangleInt> GetAllRectangles()
+        internal IEnumerator<TheGeometric.RectangleInt> GetAllRectangles(bool includeLogicalDelete = false)
         {
             foreach (var record in this.RecordList)
             {
+                // 論理削除されているものは除く
+                if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
+                {
+                    continue;
+                }
+
                 // 矩形を１件返す
                 yield return record.Rectangle;
             }
@@ -406,9 +418,10 @@
         /// <returns>完了した</returns>
         internal bool SaveCSV(Locations.TilesetSettingsFile tileSetSettingsFile)
         {
+            // 論理削除されているものも保存する
             return TilesetSettings.SaveCSV(
                 tileSetSettingsFile: tileSetSettingsFile,
-                recordList: this.GetAllRecords());
+                recordList: this.GetAllRecords(includeLogicalDelete: true));
         }
         #endregion
 
