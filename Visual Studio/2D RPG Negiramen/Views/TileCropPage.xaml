@@ -31,8 +31,8 @@
         <viewModels:TileCropPageViewModel />
     </ContentPage.BindingContext>
 
-    <!--    画面内タイトル
-            ==============
+    <!--    画面内タイトルバー
+            ==================
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"

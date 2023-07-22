@@ -2,12 +2,11 @@
 {
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
-    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
     using System.Globalization;
-    using System.Diagnostics;
+    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
     /// <summary>
     ///     😁 ［タイル切抜きページ］ビューモデル
@@ -308,7 +307,7 @@
                     workingRect: Models.Geometric.RectangleFloat.Empty));
                 }
 
-                this.RefreshByLocaleChanged();
+                this.InvalidateLocale();
 
                 // ［追加／上書き］ボタン再描画
                 this.InvalidateAddsButton();
@@ -1704,7 +1703,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        public void RefreshByLocaleChanged()
+        public void InvalidateLocale()
         {
             this.InvalidateAddsButton();
         }

@@ -265,7 +265,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    private void thisContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    void thisContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
         var context = this.TileCropPageVM;
 
@@ -293,7 +293,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    private void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
     {
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
@@ -348,7 +348,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    private void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
+    void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
     {
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
@@ -380,7 +380,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    private void skiaView1_PaintSurface(object sender, SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e)
+    void skiaView1_PaintSurface(object sender, SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e)
     {
         var bindingContext = this.TileCropPageVM;
 
@@ -537,7 +537,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void Button_PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
+    void Button_PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
     {
         PolicyOfView.ReactOnMouseEntered((Button)sender);
     }
@@ -549,7 +549,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void Button_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
+    void Button_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
     {
         PolicyOfView.ReactOnMouseLeaved((Button)sender);
     }
@@ -561,10 +561,10 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
+    void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         var context = this.TileCropPageVM;
-        context.RefreshByLocaleChanged();
+        context.InvalidateLocale();
     }
     #endregion
 
@@ -574,7 +574,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void ZoomEntry_TextChanged(object sender, TextChangedEventArgs e)
+    void ZoomEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         // 再描画（タイルセット画像）
         if (this.skiaTilesetCanvas1 != null)

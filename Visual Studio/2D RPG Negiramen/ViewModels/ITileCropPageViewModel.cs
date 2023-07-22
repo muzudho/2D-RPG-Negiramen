@@ -4,7 +4,7 @@ using _2D_RPG_Negiramen.Models;
 using SkiaSharp;
 
 /// <summary>
-///     タイル切抜きページ・ビューモデル
+///     😁 タイル切抜きページ・ビューモデル
 /// </summary>
 public interface ITileCropPageViewModel
 {
@@ -170,13 +170,6 @@ public interface ITileCropPageViewModel
 
     // - メソッド
 
-    #region メソッド（画面遷移でこの画面に戻ってきた時）
-    /// <summary>
-    ///     画面遷移でこの画面に戻ってきた時
-    /// </summary>
-    void ReactOnVisited();
-    #endregion
-
     #region メソッド（ロケール変更による再描画）
     /// <summary>
     ///     ロケール変更による再描画
@@ -185,6 +178,13 @@ public interface ITileCropPageViewModel
     ///         <item>動的にテキストを変えている部分に対応するため</item>
     ///     </list>
     /// </summary>
-    void RefreshByLocaleChanged();
+    void InvalidateLocale();
+    #endregion
+
+    #region メソッド（画面遷移でこの画面に戻ってきた時）
+    /// <summary>
+    ///     画面遷移でこの画面に戻ってきた時
+    /// </summary>
+    void ReactOnVisited();
     #endregion
 }

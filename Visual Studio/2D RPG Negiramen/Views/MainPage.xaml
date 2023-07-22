@@ -214,9 +214,9 @@
                         </Button.GestureRecognizers>
                     </Button>
 
-                    <!-- 「タイルセット編集」 -->
+                    <!-- 「タイルセット一覧」 -->
                     <Button Grid.Row="3" Grid.Column="0"
-                        Text="{app:Translate EditTileset}"
+                        Text="{app:Translate TilesetList}"
                         SemanticProperties.Hint="Edit the Tileset"
                         Clicked="EditsTilesetButton_Clicked">
 

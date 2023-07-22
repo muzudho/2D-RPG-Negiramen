@@ -64,8 +64,8 @@
 
     <ShellContent
         Title="Edit tileset"
-        ContentTemplate="{DataTemplate views:EditTilesetPage}"
-        Route="EditTilesetPage" />
+        ContentTemplate="{DataTemplate views:TilesetListPage}"
+        Route="TilesetListPage" />
 
     <ShellContent
         Title="Startup configuration"

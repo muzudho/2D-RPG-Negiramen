@@ -231,7 +231,7 @@
   <data name="Intersecting" xml:space="preserve">
     <value>Intersecting</value>
   </data>
-  <data name="EditTileset" xml:space="preserve">
-    <value>Edit Tileset</value>
+  <data name="TilesetList" xml:space="preserve">
+    <value>Tileset List</value>
   </data>
 </root>

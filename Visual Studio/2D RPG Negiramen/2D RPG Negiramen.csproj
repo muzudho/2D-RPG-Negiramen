@@ -87,6 +87,9 @@
 	  <Compile Update="Views\EditMonsterGroupPage.xaml.cs">
 	    <DependentUpon>EditMonsterGroupPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\TilesetListPage.xaml.cs">
+	    <DependentUpon>TilesetListPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\MapExplorerPage.xaml.cs">
 	    <DependentUpon>MapExplorerPage.xaml</DependentUpon>
 	  </Compile>
@@ -142,7 +145,7 @@
 	  <MauiXaml Update="Views\EditMonsterGroupPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\EditTilesetPage.xaml">
+	  <MauiXaml Update="Views\TilesetListPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\MapDrawingPage.xaml">

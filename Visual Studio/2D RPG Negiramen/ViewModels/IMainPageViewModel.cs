@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
 /// <summary>
-///     ［メイン・ページ］ビューモデル
+///     😁 ［メイン・ページ］ビューモデル
 /// </summary>
 public interface IMainPageViewModel
 {
