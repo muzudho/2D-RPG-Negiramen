@@ -212,6 +212,7 @@
             // 差分適用
             configurationBuffer.NegiramenWorkspaceFolder = difference.NegiramenWorkspaceFolder == null ? current.NegiramenWorkspaceFolder : difference.NegiramenWorkspaceFolder;
             configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder == null ? current.UnityAssetsFolder : difference.UnityAssetsFolder;
+            configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile == null ? current.UserConfigurationFile : difference.UserConfigurationFile;
             configurationBuffer.YourCircleName = difference.YourCircleName == null ? current.YourCircleName : difference.YourCircleName;
             configurationBuffer.YourWorkName = difference.YourWorkName == null ? current.YourWorkName : difference.YourWorkName;
 
