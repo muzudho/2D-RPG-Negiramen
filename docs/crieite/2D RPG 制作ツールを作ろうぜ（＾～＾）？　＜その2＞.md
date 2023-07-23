@@ -577,4 +577,48 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　そういうのが　コレクション・ビュー　なのかな」  
 
+![202307_maui_23-1433--collectionViewXaml-o2o0.png](https://crieit.now.sh/upload_images/d959a741125693d1fb42de48a2d8b40164bcbc0b9a7b4.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　じゃあ　コレクション・ビューの　ＸＡＭＬ　を見てみるか」  
+
+```xaml
+ItemsSource="{Binding Monkeys}"
+```
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　`Monkeys`　って何なの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ＭＶＶＭ　使ったサンプルなのかと思ったら　ＭＶＶＭ　使ってねー」  
+
+![202307_maui_23-1445--monkeyList-o2o0.png](https://crieit.now.sh/upload_images/2830c39a4e3c8ceda7ae00d7a0650ee464bcbea90728b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ただの　Monkey　型のリストだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Monkey　型は、　Name,　Location,　Details,　ImageURL　のプロパティを持っているぜ」  
+
+## 作業用ＢＧＭをかけようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　作業用ＢＧＭを掛けようぜ？   
+ＹｏｕＴｕｂｅ　に何かないかな？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　それは　作業用ＢＧＭじゃなくて　違法アップロード動画なのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　この音楽データは　買ったことがあると思うぜ」  
+
+📺 [Rockman Arrange Album - iwao](https://www.youtube.com/watch?v=G5XHR6v6JAc)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　また　ＲＯＣＫＭＡＮ　だ。　お父んは　音楽の聞き分けは　ＲＯＣＫＭＡＮ　かそうでないか　ぐらいしか　耳が分からないんだ」  
+
+## コレクション・ビューを調べようぜ？
+
+
+
 ＜書きかけ＞
