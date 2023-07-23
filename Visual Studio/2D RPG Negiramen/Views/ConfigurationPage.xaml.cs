@@ -44,33 +44,35 @@ public partial class ConfigurationPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（［キャッシュ・ディレクトリー］の［開く］ボタン・クリック時）
-    /// <summary>
-    ///     ［キャッシュ・ディレクトリー］の［開く］ボタン・クリック時
-    /// </summary>
-    /// <param name="sender">このイベントを呼び出したコントロール</param>
-    /// <param name="e">この発生イベントの制御変数</param>
-    private void OpensCacheDirectoryButton_Clicked(object sender, EventArgs e)
-    {
-        try
-        {
-            // ディレクトリーを開く場合、末尾はセパレーターにする必要がある
-            string path = FileSystem.Current.CacheDirectory;
-            if (!path.EndsWith(System.IO.Path.DirectorySeparatorChar))
-            {
-                path += System.IO.Path.DirectorySeparatorChar;
-            }
+    //#region イベントハンドラ（［ネギラーメンのワークスペース・ディレクトリー］の［開く］ボタン・クリック時）
+    ///// <summary>
+    /////     ［ネギラーメンのワークスペース・ディレクトリー］の［開く］ボタン・クリック時
+    ///// </summary>
+    ///// <param name="sender">このイベントを呼び出したコントロール</param>
+    ///// <param name="e">この発生イベントの制御変数</param>
+    //private void NegiramenWorkspaceDirectoryButton_Clicked(object sender, EventArgs e)
+    //{
+    //    var context = this.ConfigurationPageVM;
 
-            // 隠しフォルダーにはアクセスできない
-            Trace.WriteLine($"[ConfigurationPage.xaml.cs OpensCacheDirectoryButton_Clicked] path: [{path}]");
-            Process.Start(path);
-        }
-        catch (Win32Exception win32Exception)
-        {
-            // TODO エラー処理どうするかまだ決めてない（＾～＾）
-            // The system cannot find the file specified...
-            Trace.WriteLine($"[ConfigurationPage.xaml.cs OpensCacheDirectoryButton_Clicked] e: {win32Exception.Message}");
-        }
-    }
-    #endregion
+    //    // ディレクトリーを開く場合、末尾はセパレーターにする必要がある
+    //    string path = context.NegiramenWorkspaceFolderPathAsStr;
+    //    if (!path.EndsWith(System.IO.Path.DirectorySeparatorChar))
+    //    {
+    //        path += System.IO.Path.DirectorySeparatorChar;
+    //    }
+
+    //    try
+    //    {
+    //        // 隠しフォルダーにはアクセスできない
+    //        Trace.WriteLine($"[ConfigurationPage.xaml.cs NegiramenWorkspaceDirectoryButton_Clicked] path: [{path}]");
+    //        Process.Start(path,);
+    //    }
+    //    catch (Win32Exception win32Exception)
+    //    {
+    //        // TODO エラー処理どうするかまだ決めてない（＾～＾）
+    //        // The system cannot find the file specified...
+    //        Trace.WriteLine($"[ConfigurationPage.xaml.cs NegiramenWorkspaceDirectoryButton_Clicked] e: {win32Exception.Message}");
+    //    }
+    //}
+    //#endregion
 }

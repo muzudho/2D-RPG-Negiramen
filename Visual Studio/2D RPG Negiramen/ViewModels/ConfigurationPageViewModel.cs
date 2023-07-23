@@ -80,7 +80,7 @@
         public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
         #endregion
 
-        #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式）
+        #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダー）
         /// <summary>
         ///     ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式
         /// </summary>

@@ -724,5 +724,47 @@ ItemsLayout="VerticalGrid, 2"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　MAUI の流儀では　テンポラリー（Temporary；一時的な）と呼ばず　キャッシュ（Cache；隠し場）って呼ぶんだな」  
 
+（カタ　カタ　カタ　カタ）
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　C# で Windows のファイル・エクスプローラーを開く方法も調べとこう」  
+
+📖 [How can I open a folder in Windows Explorer?](https://stackoverflow.com/questions/32395163/how-can-i-open-a-folder-in-windows-explorer)  
+
+![202307_maui_23-1843--accessDenied.png](https://crieit.now.sh/upload_images/f6c016e7378b72b60483b0b1218fa57964bcf68dd298c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　キャッシュ・ディレクトリーを開こうとしたら　アクセスを拒否されたぜ」  
+
+（カタ　カタ　カタ　カタ）
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれっ？　隠しフォルダーではないフォルダーからも　アクセスを拒否されたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　MAUI で ファイル・エクスプローラーを開けることが　イレギュラーなんじゃないか？」  
+
+![202307_maui_23-1922--cacheDirectory-o2o0.png](https://crieit.now.sh/upload_images/a6ce4d2e16c6d7580e2a4f641008084964bcff9de2ac9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　キャッシュ・ディレクトリーの場所だけ示すことにした」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　キャッシュ・ディレクトリーの下は　どのように使うかといった流儀は　あるのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI より、 UWP を調べた方がいいんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　分からん。　とりあえず　勝手に使って、文句出たら　変えよう」  
+
+![202307_maui_23-1945--longDirectoryName-o2o0.png](https://crieit.now.sh/upload_images/c02b0882ff588a40f75355a4d1cd7ef564bd04ed8912c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　１７０文字ぐらいあるが、だいたい　２５５文字しか入らないのに大丈夫か？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　まあ　とりあえず　それで」  
+
 
 ＜書きかけ＞
