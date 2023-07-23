@@ -68,9 +68,9 @@
         Route="TilesetListPage" />
 
     <ShellContent
-        Title="Startup configuration"
-        ContentTemplate="{DataTemplate views:StartupConfigurationPage}"
-        Route="StartupConfigurationPage" />
+        Title="Configuration"
+        ContentTemplate="{DataTemplate views:ConfigurationPage}"
+        Route="ConfigurationPage" />
 
     <ShellContent
         Title="Tile palette"

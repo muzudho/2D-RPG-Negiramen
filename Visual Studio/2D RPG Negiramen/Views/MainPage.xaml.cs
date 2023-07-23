@@ -86,7 +86,7 @@ public partial class MainPage : ContentPage
     async Task GoToConfigurationPage(ShellNavigationState shellNavigationState)
     {
         App.NextPage.Push(shellNavigationState);
-        await Navigation.PushAsync(new StartupConfigurationPage());
+        await Navigation.PushAsync(new ConfigurationPage());
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
     #endregion
@@ -368,7 +368,7 @@ public partial class MainPage : ContentPage
         // 必ず、初期設定を要求
         // 戻り先はホーム
         App.NextPage.Push(new ShellNavigationState("//MainPage"));
-        await Navigation.PushAsync(new StartupConfigurationPage());
+        await Navigation.PushAsync(new ConfigurationPage());
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
     #endregion
@@ -384,7 +384,7 @@ public partial class MainPage : ContentPage
         /*
         var secondWindow = new Window
         {
-            Page = new StartupConfigurationPage
+            Page = new ConfigurationPage
             {
                 // ...
             },
@@ -395,7 +395,7 @@ public partial class MainPage : ContentPage
         Application.Current.OpenWindow(secondWindow);
         */
 
-        await Navigation.PushAsync(new StartupConfigurationPage());
+        await Navigation.PushAsync(new ConfigurationPage());
     }
     #endregion
 

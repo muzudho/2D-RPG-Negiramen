@@ -87,6 +87,9 @@
 	  <Compile Update="Views\EditMonsterGroupPage.xaml.cs">
 	    <DependentUpon>EditMonsterGroupPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\ConfigurationPage.xaml.cs">
+	    <DependentUpon>ConfigurationPage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TilesetListPage.xaml.cs">
 	    <DependentUpon>TilesetListPage.xaml</DependentUpon>
 	  </Compile>
@@ -184,7 +187,7 @@
 	  <MauiXaml Update="Views\TilePalettePage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
-	  <MauiXaml Update="Views\StartupConfigurationPage.xaml">
+	  <MauiXaml Update="Views\ConfigurationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\PopupPractice.xaml">
