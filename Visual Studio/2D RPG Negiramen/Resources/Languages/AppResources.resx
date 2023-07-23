@@ -262,4 +262,11 @@
   <data name="ConfigurationPageDeployButtonDescription" xml:space="preserve">
     <value>Unity の Assets フォルダ―へ足りてないファイルを転送</value>
   </data>
+  <data name="CacheDirectory" xml:space="preserve">
+    <value>キャッシュ・ディレクトリー</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>開く</value>
+    <comment>ファイルなどを開く</comment>
+  </data>
 </root>

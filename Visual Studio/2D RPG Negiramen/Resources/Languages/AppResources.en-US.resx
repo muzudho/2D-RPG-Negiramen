@@ -255,4 +255,10 @@
   <data name="YourWorkName" xml:space="preserve">
     <value>Your title</value>
   </data>
+  <data name="CacheDirectory" xml:space="preserve">
+    <value>Cache Directory</value>
+  </data>
+  <data name="Open" xml:space="preserve">
+    <value>Open</value>
+  </data>
 </root>

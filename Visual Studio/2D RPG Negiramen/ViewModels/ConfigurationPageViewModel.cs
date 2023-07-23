@@ -159,6 +159,13 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（キャッシュ・ディレクトリー）
+        /// <summary>
+        ///     キャッシュ・ディレクトリー
+        /// </summary>
+        public string CacheDirectoryAsStr => FileSystem.Current.CacheDirectory;
+        #endregion
+
         // - パブリック・メソッド
 
         #region メソッド（ロケール変更による再描画）

@@ -49,10 +49,10 @@
         </Grid>
     </Shell.TitleView>
 
+    <!--    以下、本文
+            ==========
+    -->
     <VerticalStackLayout Margin="10,10,10,10">
-        <!--    以下、本文
-                ==========
-        -->
         <Grid RowDefinitions="*,*" ColumnDefinitions="20,*" Margin="10,10,10,10">
             <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Workspace フォルダーへのパス」 -->
             <Label Grid.Row="0" Grid.Column="1"
@@ -151,6 +151,29 @@
                 Text="{app:Translate ConfigurationPageDeployButtonDescription}"
                 SemanticProperties.Hint="Overwrite project to Unity"
                 Command="{Binding PushStartupToUnityAssetsFolderCommand}"/>
+
+        <Grid RowDefinitions="*,*" ColumnDefinitions="20,*,64" Margin="10,10,10,10">
+            <!-- 「キャッシュ・ディレクトリー」 -->
+            <Label Grid.Row="0" Grid.Column="1"
+                   Text="{app:Translate CacheDirectory}"
+                   VerticalTextAlignment="Center"
+                   SemanticProperties.Hint="Cache directory"/>
+
+            <Label Grid.Row="1" Grid.Column="0"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Text="📂"
+                   SemanticProperties.Hint="Folder emoji"/>
+
+            <Entry Grid.Row="1" Grid.Column="1"
+                   IsEnabled="False"
+                   Text="{Binding CacheDirectoryAsStr}"/>
+
+            <!-- 「開く」 -->
+            <Button Grid.Row="1" Grid.Column="2"
+                    Text="{app:Translate Open}"
+                    Clicked="OpensCacheDirectoryButton_Clicked"/>
+        </Grid>
 
     </VerticalStackLayout>
 </ContentPage>
