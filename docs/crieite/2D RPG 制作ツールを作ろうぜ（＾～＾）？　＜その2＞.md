@@ -703,4 +703,26 @@ ItemsLayout="VerticalGrid, 2"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　こういう見た目になった。　サムネイル画像が無いと　寂しい」  
 
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　サムネイル画像を生成するプログラムを　先に書いたらいいんじゃない？」  
+
+## テンポラリー・フォルダーをどこにするかだぜ？
+
+![202307_maui_23-1632--temporaryFolder.png](https://crieit.now.sh/upload_images/e1989d577b4321b3ade48c0772aa8d1c64bcd7ac8e6c5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ユニティ・プロジェクトに　一時ファイルを入れたくないんで、  
+ローカルＰＣのフォルダーに　著者名、作品名で　フォルダー切った方がいいかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　Windows べったりな発想だな。MAUI に　テンポラリー・フォルダーの概念　無いのかだぜ？  
+👇　調べろだぜ」  
+
+📖 [How can I save temporary file in .NET MAUI?](https://stackoverflow.com/questions/70164497/how-can-i-save-temporary-file-in-net-maui)  
+📖 [File system helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI の流儀では　テンポラリー（Temporary；一時的な）と呼ばず　キャッシュ（Cache；隠し場）って呼ぶんだな」  
+
+
 ＜書きかけ＞
