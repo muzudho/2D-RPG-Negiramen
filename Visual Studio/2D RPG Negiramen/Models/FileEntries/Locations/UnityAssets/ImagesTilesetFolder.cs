@@ -33,5 +33,21 @@
         {
         }
         #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset/{名前}.png` フォルダーの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset/{名前}.png` フォルダーの場所
+        /// </summary>
+        internal ImagesTilesetPng CreateTilesetPng(string fileStem)
+        {
+            return new ImagesTilesetPng(
+                pathSource: FileEntryPathSource.FromString(
+                    System.IO.Path.Combine(Path.AsStr, $"{fileStem}.png")),
+                convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                            replaceSeparators: true));
+        }
+        #endregion
     }
 }
