@@ -3,14 +3,17 @@
     using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
     using CommunityToolkit.Mvvm.Input;
+    using System.Collections.ObjectModel;
+    using System.Globalization;
     using System.Windows.Input;
     using TheFileEntryLocations = Models.FileEntries.Locations;
     using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
-    ///     😁 ［初期設定］ページ用のビューモデル
+    ///     😁 ［構成］ページ用のビューモデル
     /// </summary>
-    class StartupConfigurationPageViewModel : ObservableObject
+    class ConfigurationPageViewModel
+        : ObservableObject, IConfigurationPageViewModel
     {
         // - その他
 
@@ -22,7 +25,7 @@
         ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
         ///     </list>
         /// </summary>
-        public StartupConfigurationPageViewModel()
+        public ConfigurationPageViewModel()
         {
             // 構成ファイル取得
             var configuration = App.GetOrLoadConfiguration();
@@ -50,6 +53,32 @@
         #endregion
 
         // - パブリック変更通知プロパティ
+
+        #region 変更通知プロパティ（ロケール　関連）
+        /// <summary>
+        ///     現在選択中の文化情報。文字列形式
+        /// </summary>
+        public string CultureInfoAsStr
+        {
+            get
+            {
+                return LocalizationResourceManager.Instance.CultureInfo.Name;
+            }
+            set
+            {
+                if (LocalizationResourceManager.Instance.CultureInfo.Name != value)
+                {
+                    LocalizationResourceManager.Instance.SetCulture(new CultureInfo(value));
+                    OnPropertyChanged(nameof(CultureInfoAsStr));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ロケールＩｄのリスト
+        /// </summary>
+        public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
+        #endregion
 
         #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式）
         /// <summary>
@@ -130,34 +159,60 @@
         }
         #endregion
 
+        // - パブリック・メソッド
+
+        #region メソッド（ロケール変更による再描画）
+        /// <summary>
+        ///     ロケール変更による再描画
+        ///     
+        ///     <list type="bullet">
+        ///         <item>動的にテキストを変えている部分に対応するため</item>
+        ///     </list>
+        /// </summary>
+        public void InvalidateLocale()
+        {
+            // this.InvalidateAddsButton();
+        }
+        #endregion
+
         // - インターナル・プロパティ
 
+        #region プロパティ（Unity の 📂 `Assets` フォルダーの場所）
         /// <summary>
         ///     Unity の 📂 `Assets` フォルダーの場所
         /// </summary>
         internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; private set; }
+        #endregion
 
         // - プライベート・フィールド
 
+        #region フィールド（ネギラーメンの 📂 `Workspace` フォルダーへのパス）
         /// <summary>
         ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
         /// </summary>
-        private TheFileEntryLocations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolder = TheFileEntryLocations.Negiramen.WorkspaceFolder.Empty;
+        TheFileEntryLocations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolder = TheFileEntryLocations.Negiramen.WorkspaceFolder.Empty;
+        #endregion
 
+        #region フィールド（Unity の Assets フォルダーへのパス）
         /// <summary>
         ///     Unity の Assets フォルダーへのパス
         /// </summary>
-        private TheLocationOfUnityAssets.ItsFolder _unityAssetsFolder = TheLocationOfUnityAssets.ItsFolder.Empty;
+        TheLocationOfUnityAssets.ItsFolder _unityAssetsFolder = TheLocationOfUnityAssets.ItsFolder.Empty;
+        #endregion
 
+        #region フィールド（あなたのサークル名）
         /// <summary>
         ///     あなたのサークル名
         /// </summary>
-        private YourCircleName _yourCircleName = YourCircleName.Empty;
+        YourCircleName _yourCircleName = YourCircleName.Empty;
+        #endregion
 
+        #region フィールド（あなたの作品名）
         /// <summary>
         ///     あなたの作品名
         /// </summary>
-        private YourWorkName _yourWorkName = YourWorkName.Empty;
+        YourWorkName _yourWorkName = YourWorkName.Empty;
+        #endregion
 
         // - プライベート・メソッド
 

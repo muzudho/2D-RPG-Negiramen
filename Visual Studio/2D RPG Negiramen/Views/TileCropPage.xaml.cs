@@ -259,6 +259,20 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
+    #region イベントハンドラ（ロケール変更時）
+    /// <summary>
+    ///     ロケール変更時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
+        var context = this.TileCropPageVM;
+        context.InvalidateLocale();
+    }
+    #endregion
+
     #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
     /// <summary>
     ///     別ページから、このページに訪れたときに呼び出される
@@ -552,19 +566,6 @@ public partial class TileCropPage : ContentPage
     void Button_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
     {
         PolicyOfView.ReactOnMouseLeaved((Button)sender);
-    }
-    #endregion
-
-    #region イベントハンドラ（ロケール変更時）
-    /// <summary>
-    ///     ロケール変更時
-    /// </summary>
-    /// <param name="sender">このイベントを呼び出したコントロール</param>
-    /// <param name="e">この発生イベントの制御変数</param>
-    void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        var context = this.TileCropPageVM;
-        context.InvalidateLocale();
     }
     #endregion
 

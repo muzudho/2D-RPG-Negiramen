@@ -1672,6 +1672,20 @@
 
         // - パブリック・メソッド
 
+        #region メソッド（ロケール変更による再描画）
+        /// <summary>
+        ///     ロケール変更による再描画
+        ///     
+        ///     <list type="bullet">
+        ///         <item>動的にテキストを変えている部分に対応するため</item>
+        ///     </list>
+        /// </summary>
+        public void InvalidateLocale()
+        {
+            this.InvalidateAddsButton();
+        }
+        #endregion
+
         #region メソッド（画面遷移でこの画面に戻ってきた時）
         /// <summary>
         ///     画面遷移でこの画面に戻ってきた時
@@ -1692,20 +1706,6 @@
                 // グリッド・キャンバス画像の再作成
                 this.RemakeGridCanvasImage();
             }
-        }
-        #endregion
-
-        #region メソッド（ロケール変更による再描画）
-        /// <summary>
-        ///     ロケール変更による再描画
-        ///     
-        ///     <list type="bullet">
-        ///         <item>動的にテキストを変えている部分に対応するため</item>
-        ///     </list>
-        /// </summary>
-        public void InvalidateLocale()
-        {
-            this.InvalidateAddsButton();
         }
         #endregion
 

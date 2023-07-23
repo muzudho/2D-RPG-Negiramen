@@ -11,15 +11,30 @@
              Title="構成">
     
     <ContentPage.BindingContext>
-        <viewModels:StartupConfigurationPageViewModel />
+        <viewModels:ConfigurationPageViewModel />
     </ContentPage.BindingContext>
 
-    <VerticalStackLayout Margin="10,10,10,10">
-        <!--
-            パンくずリストはありません
-            ==========================
-        -->
+    <!--    画面内タイトルバー
+            ==================
+    -->
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*"
+              BackgroundColor="SkyBlue">
+            <!--    パンくずリストはありません
+                ==========================
+            -->
 
+            <!-- 「言語を選ぶ」 -->
+            <Picker Grid.Column="1"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    ItemsSource="{Binding LocaleIdCollection}"
+                    SelectedItem="{Binding CultureInfoAsStr}"
+                    SelectedIndexChanged="LocalePicker_SelectedIndexChanged"/>
+        </Grid>
+    </Shell.TitleView>
+
+    <VerticalStackLayout Margin="10,10,10,10">
         <!--    以下、本文
                 ==========
         -->

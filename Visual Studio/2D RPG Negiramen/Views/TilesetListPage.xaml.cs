@@ -109,6 +109,7 @@ public partial class TilesetListPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
     {
+        // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
         var context = this.TilesetListPageVM;
         context.InvalidateLocale();
     }

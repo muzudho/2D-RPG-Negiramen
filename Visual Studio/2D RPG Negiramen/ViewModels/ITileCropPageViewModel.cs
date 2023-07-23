@@ -4,10 +4,12 @@ using _2D_RPG_Negiramen.Models;
 using SkiaSharp;
 
 /// <summary>
-///     😁 タイル切抜きページ・ビューモデル
+///     😁 ［タイル切抜き］ページ・ビューモデル
 /// </summary>
 public interface ITileCropPageViewModel
 {
+    // - パブリック・プロパティ
+
     #region プロパティ（タイルセット設定ビューモデル　関連）
     /// <summary>
     ///     タイルセット設定ビューモデル
@@ -168,7 +170,7 @@ public interface ITileCropPageViewModel
     bool IsMouseDragging { get; }
     #endregion
 
-    // - メソッド
+    // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）
     /// <summary>
