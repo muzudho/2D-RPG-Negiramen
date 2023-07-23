@@ -76,6 +76,14 @@
         }
         #endregion
 
+        // - インターナル・メソッド
+
+        /// <summary>
+        ///     存在するか？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool IsExists() => System.IO.Directory.Exists(this.Path.AsStr);
+
         // - プライベート・フィールド
 
         DataFolder? dataFolder;

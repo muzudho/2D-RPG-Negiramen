@@ -108,8 +108,11 @@ public partial class App : Application
             {
                 App.Configuration = configuration;
             }
-
-            // TODO 構成ファイルが無かったら、エラー対応したい
+            else
+            {
+                // TODO 構成ファイルが無かったら、エラー対応したい
+                throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
+            }
         }
 
         return App.Configuration;
