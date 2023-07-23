@@ -5,14 +5,14 @@
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
-    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダーの場所
+    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/Data/CSV/Tileset` フォルダーの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
     ///         <item><see cref="ItsFolder"/></item>
     ///     </list>
     /// </summary>
-    class ImagesTilesetFolder : Its
+    class DataCsvTilesetFolder : Its
     {
         // - その他
 
@@ -20,7 +20,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ImagesTilesetFolder()
+        internal DataCsvTilesetFolder()
             : base()
         {
         }
@@ -28,7 +28,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ImagesTilesetFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal DataCsvTilesetFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }

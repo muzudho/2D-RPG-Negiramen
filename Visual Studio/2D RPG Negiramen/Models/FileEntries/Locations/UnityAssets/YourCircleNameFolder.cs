@@ -35,15 +35,6 @@
         }
         #endregion
 
-        // - インターナル静的プロパティ
-
-        #region プロパティ（空オブジェクト）
-        /// <summary>
-        ///     空オブジェクト
-        /// </summary>
-        internal static YourCircleNameFolder Empty { get; } = new YourCircleNameFolder();
-        #endregion
-
         // - インターナル・プロパティ
 
         #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝`フォルダーの場所）

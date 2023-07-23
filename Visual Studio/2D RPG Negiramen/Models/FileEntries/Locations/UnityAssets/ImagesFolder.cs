@@ -34,15 +34,6 @@
         }
         #endregion
 
-        // - インターナル静的プロパティ
-
-        #region プロパティ（空オブジェクト）
-        /// <summary>
-        ///     空オブジェクト
-        /// </summary>
-        internal static ImagesFolder Empty { get; } = new ImagesFolder();
-        #endregion
-
         // - インターナル・プロパティ
 
         #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダーの場所）
