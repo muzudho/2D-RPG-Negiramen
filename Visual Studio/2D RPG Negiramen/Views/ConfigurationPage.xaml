@@ -20,11 +20,26 @@
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
               BackgroundColor="SkyBlue">
-            <!--    パンくずリストはありません
-                ==========================
+            <!--    パンくずリスト
+                    ==============
             -->
+            <HorizontalStackLayout Grid.Column="0"
+                                   HorizontalOptions="Start">
 
-            <!-- 「言語を選ぶ」 -->
+                <!--    ［ホーム］ボタンはありません
+                        ============================
+                -->
+
+                <!--    ページ・タイトル
+                        ================
+                -->
+                <Label Text="{app:Translate Configure}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="Large"/>
+            </HorizontalStackLayout>
+
+            <!-- ロケール選択 -->
             <Picker Grid.Column="1"
                     VerticalOptions="Center"
                     HorizontalOptions="End"
