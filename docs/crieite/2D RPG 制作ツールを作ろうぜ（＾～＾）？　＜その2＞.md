@@ -582,7 +582,7 @@
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　じゃあ　コレクション・ビューの　ＸＡＭＬ　を見てみるか」  
 
-```xaml
+```xml
 ItemsSource="{Binding Monkeys}"
 ```
 
@@ -619,6 +619,88 @@ ItemsSource="{Binding Monkeys}"
 
 ## コレクション・ビューを調べようぜ？
 
+![202307_maui_23-1516--monkeyClass-o2o0.png](https://crieit.now.sh/upload_images/fc170123741f8e1ac58b70396cfaf44764bcc5f17a4af.png)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Monkey　クラスは　ただのモデルだぜ」  
+
+```xml
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="80" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="2" 
+                               Source="{Binding ImageUrl}" 
+                               Aspect="AspectFill"
+                               HeightRequest="60" 
+                               WidthRequest="60" />
+                        <Label Grid.Column="1" 
+                               Text="{Binding Name}" 
+                               FontAttributes="Bold"
+                               LineBreakMode="TailTruncation" />
+                        <Label Grid.Row="1"
+                               Grid.Column="1" 
+                               Text="{Binding Location}"
+                               LineBreakMode="TailTruncation"
+                               FontAttributes="Italic" 
+                               VerticalOptions="End" />
+                    </Grid>
+                </DataTemplate>
+```
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　じゃあ　`<DataTemplate>`　というのは　ただのグリッド・レイアウトだから  
+それ以外のところに　コレクション・ビュー　独自のものがあるはずよ」  
+
+```xml
+ItemsLayout="VerticalGrid, 2"
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ここだけしか　独自のものが無いが……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　`ItemsLayout` は　ここにまとまってあるぜ」  
+
+📖 [CollectionView レイアウトの指定](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/controls/collectionview/layout)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　コレクション・ビューの使い方は分かった。使ってみよう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　Monkey　クラスに当たるものを作ろう。  
+`TilesetRecord`　みたいな名前でいいかな」  
+
+![202307_maui_23-1543--tilesetRecord-o2o0.png](https://crieit.now.sh/upload_images/1b4acb4ad591bdbad486338933c6d82e64bccc2e39449.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　深く考えず　`TilesetRecord`　を作った」  
+
+![202307_maui_23-1610--tilesetRecords-o2o0.png](https://crieit.now.sh/upload_images/26b0d46478a7367fa6aa495331b76a7764bcd2aea8040.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　リストも　仮の内容で　作っておこうぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`internal` プロパティは　ＸＡＭＬから見えないのか。 `public` プロパティに変えよ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　モデルのプロパティに　`public`　を強要するのは　おかしい。  
+本来は　ビューモデル　にするべきでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ＭＶＶＭのサンプルじゃないしなあ。  
+ＭＶＶＵでやるなら　ビューモデルかな」  
+
+![202307_maui_23-1626--collectionView.png](https://crieit.now.sh/upload_images/18d489ed85ca337dfe585e69002b152d64bcd65891225.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こういう見た目になった。　サムネイル画像が無いと　寂しい」  
 
 ＜書きかけ＞

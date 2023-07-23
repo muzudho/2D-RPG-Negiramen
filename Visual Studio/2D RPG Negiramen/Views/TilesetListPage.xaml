@@ -59,8 +59,45 @@
                     SelectedIndexChanged="LocalePicker_SelectedIndexChanged"/>
         </Grid>
     </Shell.TitleView>
-    
-    <VerticalStackLayout>
+
+    <VerticalStackLayout Margin="20">
+        <Label Text="CollectionView"
+               FontSize="50"
+               FontAttributes="Bold"
+               HorizontalOptions="Center" />
+
+        <CollectionView ItemsSource="{Binding TilesetRecordVMCollection}"
+                        ItemsLayout="VerticalGrid, 2">
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <Grid Padding="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="35" />
+                            <RowDefinition Height="35" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="70" />
+                            <ColumnDefinition Width="80" />
+                        </Grid.ColumnDefinitions>
+                        <Image Grid.RowSpan="2" 
+                               Aspect="AspectFill"
+                               WidthRequest="{Binding ThumbnailWidthAsInt}"
+                               HeightRequest="{Binding ThumbnailHeightAsInt}" 
+                               Source="{Binding ThumbnailFilePathAsStr}" />
+                        <Label Grid.Column="1" 
+                               LineBreakMode="TailTruncation"
+                               Text="{Binding NameAsStr}" 
+                               FontAttributes="Bold"/>
+                        <Label Grid.Row="1" Grid.Column="1" 
+                               VerticalOptions="End"
+                               LineBreakMode="TailTruncation"
+                               Text="{Binding UuidAsStr}"
+                               FontAttributes="Italic"/>
+                    </Grid>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
         <Label 
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
