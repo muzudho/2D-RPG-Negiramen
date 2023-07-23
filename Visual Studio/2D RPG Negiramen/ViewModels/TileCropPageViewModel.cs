@@ -2,6 +2,7 @@
 {
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -51,7 +52,7 @@
 
                 if (_tilesetSettingsFile.Path.AsStr != value)
                 {
-                    _tilesetSettingsFile = new Models.FileEntries.Locations.TilesetSettingsFile(
+                    _tilesetSettingsFile = new DataCsvTilesetCsv(
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
@@ -62,7 +63,7 @@
         /// <summary>
         ///     タイルセット設定ファイルへのパス
         /// </summary>
-        public Models.FileEntries.Locations.TilesetSettingsFile TilesetSettingsFile
+        public DataCsvTilesetCsv TilesetSettingsFile
         {
             get => _tilesetSettingsFile;
             set
@@ -79,7 +80,7 @@
         /// <summary>
         ///     タイルセット元画像ファイルへのパス
         /// </summary>
-        public Models.FileEntries.Locations.TilesetImageFile TilesetImageFile
+        public ImagesTilesetPng TilesetImageFile
         {
             get => tilesetImageFile;
             set
@@ -101,7 +102,7 @@
             {
                 if (tilesetImageFile.Path.AsStr != value)
                 {
-                    tilesetImageFile = new Models.FileEntries.Locations.TilesetImageFile(
+                    tilesetImageFile = new ImagesTilesetPng(
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
@@ -1950,7 +1951,7 @@
         /// <summary>
         ///     タイルセット設定のCSVファイル
         /// </summary>
-        Models.FileEntries.Locations.TilesetSettingsFile _tilesetSettingsFile = Models.FileEntries.Locations.TilesetSettingsFile.Empty;
+        DataCsvTilesetCsv _tilesetSettingsFile = DataCsvTilesetCsv.Empty;
 
         /// <summary>
         ///     タイルセット設定ビューモデル
@@ -1962,7 +1963,7 @@
         /// <summary>
         ///     タイルセット元画像ファイルへのパス
         /// </summary>
-        Models.FileEntries.Locations.TilesetImageFile tilesetImageFile = Models.FileEntries.Locations.TilesetImageFile.Empty;
+        ImagesTilesetPng tilesetImageFile = ImagesTilesetPng.Empty;
 
         /// <summary>
         ///     タイルセット元画像サイズ

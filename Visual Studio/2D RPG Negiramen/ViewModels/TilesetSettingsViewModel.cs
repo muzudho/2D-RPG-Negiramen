@@ -2,6 +2,7 @@
 {
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.FileEntries;
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
     using CommunityToolkit.Mvvm.ComponentModel;
     using System.Diagnostics;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
@@ -33,7 +34,7 @@
         /// </summary>
         /// <param name="tilesetSettingsVM">タイルセット設定ビューモデル</param>
         /// <returns></returns>
-        internal static bool LoadCSV(TheFileEntryLocations.TilesetSettingsFile tilesetSettingsFile, out TilesetSettingsViewModel tilesetSettingsVM)
+        internal static bool LoadCSV(DataCsvTilesetCsv tilesetSettingsFile, out TilesetSettingsViewModel tilesetSettingsVM)
         {
             // 既定値の設定（空っぽ）
             tilesetSettingsVM = new TilesetSettingsViewModel();
@@ -310,7 +311,7 @@
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-        internal bool SaveCSV(TheFileEntryLocations.TilesetSettingsFile tileSetSettingsFile)
+        internal bool SaveCSV(DataCsvTilesetCsv tileSetSettingsFile)
         {
             // 論理削除されているものも保存する
             return TilesetSettings.SaveCSV(

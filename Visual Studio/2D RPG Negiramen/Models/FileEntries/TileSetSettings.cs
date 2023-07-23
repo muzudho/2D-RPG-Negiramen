@@ -3,6 +3,7 @@
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
     using System.Text;
     using System.Diagnostics;
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
     ///     タイルセット設定
@@ -24,7 +25,7 @@
         /// <param name="usableId">次に使えるＩｄ</param>
         /// <returns></returns>
         internal static bool LoadCSV(
-            Locations.TilesetSettingsFile tilesetSettingsFile,
+            DataCsvTilesetCsv tilesetSettingsFile,
             out TilesetSettings tilesetSettings,
             out TileId usableId)
         {
@@ -140,7 +141,7 @@
         /// </summary>
         /// <returns>完了した</returns>
         internal static bool SaveCSV(
-            Locations.TilesetSettingsFile tileSetSettingsFile,
+            DataCsvTilesetCsv tileSetSettingsFile,
             IEnumerator<TileRecord> recordList)
         {
             // 保存したいファイルへのパス
@@ -450,7 +451,7 @@
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-        internal bool SaveCSV(Locations.TilesetSettingsFile tileSetSettingsFile)
+        internal bool SaveCSV(DataCsvTilesetCsv tileSetSettingsFile)
         {
             // 論理削除されているものも保存する
             return TilesetSettings.SaveCSV(

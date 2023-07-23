@@ -33,5 +33,12 @@
         {
         }
         #endregion
+
+        // - インターナル静的プロパティ
+
+        /// <summary>
+        ///     空オブジェクト
+        /// </summary>
+        internal static ImagesTilesetPng Empty { get; } = new ImagesTilesetPng();
     }
 }

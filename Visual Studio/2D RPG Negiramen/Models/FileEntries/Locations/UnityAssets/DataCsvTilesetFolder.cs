@@ -38,9 +38,9 @@
         /// <summary>
         ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset/{名前}.csv` フォルダーの場所
         /// </summary>
-        internal ImagesTilesetCsv CreateTilesetCsv(string fileStem)
+        internal DataCsvTilesetCsv CreateTilesetCsv(string fileStem)
         {
-            return new ImagesTilesetCsv(
+            return new DataCsvTilesetCsv(
                 pathSource: FileEntryPathSource.FromString(
                     System.IO.Path.Combine(Path.AsStr, $"{fileStem}.csv")),
                 convert: (pathSource) => FileEntryPath.From(pathSource,
