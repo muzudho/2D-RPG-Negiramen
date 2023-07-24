@@ -797,5 +797,26 @@ ItemsLayout="VerticalGrid, 2"
 「　タイルセットが　いくつか入っていることを期待するから　`Tilesets`　でフォルダーだぜ。  
 うおお。　名前の付け直しだ」  
 
+## タイルセットのサムネイル画像の仕様を決めようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そもそも　タイルセット画像って　小さいんだよな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　そのまま　並べりゃどうなの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　とりあえず、タイルセット画像を、そのまま複製して　キャッシュ・フォルダーの下に置くプログラムを考えてみようぜ？」  
+
+![202307_maui_24-2142--image-copy-o2o0.png](https://crieit.now.sh/upload_images/6eddf616ca327e07de7ef420671cfb1564be71ee22186.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　前に似たプログラムを書いたので参考にしよう」  
+
+![202307_maui_24-2203--thumbnails.png](https://crieit.now.sh/upload_images/ccce1d3d194936ea99f94c50c6012d5464be76e0af206.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ファイルのコピーは　できたが、  
+サイズを調整したいぜ。 MAUI ではできないから、 SkiaSharp でやるかな」  
 
 ＜書きかけ＞

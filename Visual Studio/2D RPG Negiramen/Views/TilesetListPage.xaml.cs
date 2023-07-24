@@ -68,7 +68,7 @@ public partial class TilesetListPage : ContentPage
             //
             // TODO 画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーしたい
             //
-            var task = Task.Run(async () =>
+            var task = Task.Run(() =>
             {
                 try
                 {
@@ -88,6 +88,8 @@ public partial class TilesetListPage : ContentPage
                         //
                         if (image != null)
                         {
+                            
+
                             // ディレクトリーが無ければ作成する
                             var folder = App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.TilesetFolder.ImagesTilesetsThumbnailsFolder;
                             folder.CreateThisDirectoryIfItDoesNotExist();
