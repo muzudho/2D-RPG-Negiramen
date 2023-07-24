@@ -219,8 +219,8 @@
   <data name="ControlCode" xml:space="preserve">
     <value>管理コード</value>
   </data>
-  <data name="TileName" xml:space="preserve">
-    <value>タイル名</value>
+  <data name="TileTitle" xml:space="preserve">
+    <value>タイル タイトル</value>
   </data>
   <data name="HowToRememberControlCode" xml:space="preserve">
     <value>コードのおぼえかた</value>

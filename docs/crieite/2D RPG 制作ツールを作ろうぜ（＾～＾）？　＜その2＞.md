@@ -847,4 +847,20 @@ ItemsLayout="VerticalGrid, 2"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　こういう名称変更をするぜ」  
 
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　名前って　何だったんだろな？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ローカルで通じればいいのが　名前よ」  
+
+![202307_maui_24-2321--uuidAndTitle.png](https://crieit.now.sh/upload_images/1f5ceb28ccf9c3291675867eac7ceb6964be891476234.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　UUID と　タイトルだけあれば　いいのでは？」  
+
+![202307_maui_24-2326--tileTitle-o2o0.png](https://crieit.now.sh/upload_images/926c3bff0c64c451a55215ed9458359664be8a2a9c05b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　タイル名も、　タイル タイトル　に名前を変えたろ」  
+
 ＜書きかけ＞

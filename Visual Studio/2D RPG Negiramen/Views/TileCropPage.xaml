@@ -561,10 +561,10 @@
                    Padding="0,0,4,0"
                    Text="{app:Translate ControlCode}"/>
 
-            <!-- 「タイル名」 -->
+            <!-- 「タイル・タイトル」 -->
             <Label Grid.Row="2" Grid.Column="3" Grid.ColumnSpan="4"
                    Padding="20,0,0,0"
-                   Text="{app:Translate TileName}"/>
+                   Text="{app:Translate TileTitle}"/>
 
             <!--    ◆４段目 入力部
                     ===============

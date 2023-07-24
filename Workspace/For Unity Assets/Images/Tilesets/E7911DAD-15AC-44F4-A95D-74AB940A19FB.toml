@@ -1,7 +1,8 @@
 [introduction]
 
 uuid = "E7911DAD-15AC-44F4-A95D-74AB940A19FB"
-file_name = "map-tileset-format-8x19.png"
+extension = ".png"
+title = "マップ用タイルセット様式８ｘ１９"
 author = "Muzudho"
 publish_date = 2023-07-01
 

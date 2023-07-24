@@ -403,15 +403,6 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   タイル名 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string TileName {
-            get {
-                return ResourceManager.GetString("TileName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   タイル・パレット表示 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string TilePaletteDisplay {
@@ -426,6 +417,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string TilesetList {
             get {
                 return ResourceManager.GetString("TilesetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイル タイトル に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TileTitle {
+            get {
+                return ResourceManager.GetString("TileTitle", resourceCulture);
             }
         }
         
