@@ -56,8 +56,29 @@
         }
         #endregion
 
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/JSON` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/JSON` フォルダの場所
+        /// </summary>
+        internal DataJsonFolder JsonFolder
+        {
+            get
+            {
+                if (jsonFolder == null)
+                {
+                    jsonFolder = new DataJsonFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "JSON")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return jsonFolder;
+            }
+        }
+        #endregion
+
         // - プライベート・フィールド
 
         DataCsvFolder? csvFolder;
+        DataJsonFolder? jsonFolder;
     }
 }
