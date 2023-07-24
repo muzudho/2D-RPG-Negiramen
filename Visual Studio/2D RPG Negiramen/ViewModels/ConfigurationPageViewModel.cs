@@ -163,7 +163,7 @@
         /// <summary>
         ///     キャッシュ・ディレクトリー
         /// </summary>
-        public string CacheDirectoryAsStr => FileSystem.Current.CacheDirectory;
+        public string CacheDirectoryAsStr => App.CacheFolder.Path.AsStr;
         #endregion
 
         // - パブリック・メソッド

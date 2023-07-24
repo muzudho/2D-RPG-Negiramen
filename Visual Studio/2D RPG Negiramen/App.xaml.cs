@@ -30,10 +30,6 @@ public partial class App : Application
 
             Trace.WriteLine($"[App.xaml.cs App] FileSystem.AppDataDirectory : {FileSystem.AppDataDirectory}");
             // [App.xaml.cs App] FileSystem.AppDataDirectory: C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState
-
-            Trace.WriteLine($"[App.xaml.cs App] FileSystem.CacheDirectory   : {FileSystem.CacheDirectory}");
-            // [App.xaml.cs App] FileSystem.CacheDirectory  : C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache
-
         }
 
         /*
@@ -49,7 +45,6 @@ public partial class App : Application
 
         // 初期化（多言語対応）
         {
-            // TODO 切替方法はあとで考える
             LocalizationResourceManager.Instance.SetCulture(new CultureInfo("ja-JP"));
         }
 
