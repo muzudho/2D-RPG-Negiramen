@@ -176,11 +176,6 @@ public partial class TileCropPage : ContentPage
         var tilesetImageFilePathAsStr = context.TilesetImageFilePathAsStr;
 
         //
-        // 作業用のタイルセット画像ファイルへのパスを取得
-        //
-        var workingTilesetImagefilePathAsStr = App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
-
-        //
         // タイルセット画像の読込、作業中タイルセット画像の書出
         // ====================================================
         //
@@ -207,8 +202,11 @@ public partial class TileCropPage : ContentPage
                     //
                     if (image != null)
                     {
+                        // ディレクトリーが無ければ作成する
+                        App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.CreateThisDirectoryIfItDoesNotExist();
+
                         // 書出先（ウィンドウズ・ローカルＰＣ）
-                        using (Stream outputFileStream = System.IO.File.Open(workingTilesetImagefilePathAsStr, FileMode.OpenOrCreate))
+                        using (Stream outputFileStream = System.IO.File.Open(App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr, FileMode.OpenOrCreate))
                         {
                             image.Save(outputFileStream);
                         }

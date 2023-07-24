@@ -5,7 +5,9 @@
     /// <summary>
     ///     😁 ネギラーメン・ワークスペースの作業中のタイルセット画像ファイルへのパス
     /// </summary>
-    /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/Temporary/Images/working_tileset.png"</example>
+    /// <example>
+    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache\Doujin Circle Negiramen\Negiramen Quest\Images\working_tileset.png"
+    /// </example>
     class WorkingTilesetImageFile : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
 
     {

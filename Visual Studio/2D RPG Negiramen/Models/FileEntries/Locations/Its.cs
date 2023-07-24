@@ -9,6 +9,7 @@
     {
         // - その他
 
+        #region その他（生成　関連）
         /// <summary>
         ///     未設定
         /// </summary>
@@ -25,9 +26,11 @@
             PathSource = pathSource;
             Path = convert(PathSource);
         }
+        #endregion
 
         // - インターナル・プロパティー
 
+        #region プロパティ（ファイル・エントリー・パス）
         /// <summary>
         ///     ファイル・エントリー・パス
         ///     
@@ -37,7 +40,9 @@
         ///     </list>
         /// </summary>
         internal FileEntryPath Path { get; }
+        #endregion
 
+        #region プロパティ（ファイル・エントリー・パス・ソース）
         /// <summary>
         ///     ファイル・エントリー・パス・ソース
         ///     
@@ -47,5 +52,21 @@
         ///     </list>
         /// </summary>
         internal FileEntryPathSource PathSource { get; }
+        #endregion
+
+        // - インターナル・メソッド
+
+        #region メソッド（このディレクトリーが存在しないなら、作成する）
+        /// <summary>
+        ///     このディレクトリーが存在しないなら、作成する
+        /// </summary>
+        internal void CreateThisDirectoryIfItDoesNotExist()
+        {
+            if (!Directory.Exists(this.Path.AsStr))
+            {
+                Directory.CreateDirectory(this.Path.AsStr);
+            }
+        }
+        #endregion
     }
 }
