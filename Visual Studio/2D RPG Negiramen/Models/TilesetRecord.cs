@@ -11,6 +11,18 @@
     {
         // - その他
 
+        #region その他（生成）
+        /// <summary>
+        ///     生成
+        /// </summary>
+        /// <param name="uuidAsStr"></param>
+        /// <param name="filePathAsStr"></param>
+        /// <param name="widthAsInt"></param>
+        /// <param name="heightAsInt"></param>
+        /// <param name="thumbnailFilePathAsStr"></param>
+        /// <param name="thumbnailWidthAsInt"></param>
+        /// <param name="thumbnailHeightAsInt"></param>
+        /// <param name="title"></param>
         internal TilesetRecord(
             string uuidAsStr,
             string filePathAsStr,
@@ -19,7 +31,7 @@
             string thumbnailFilePathAsStr,
             int thumbnailWidthAsInt,
             int thumbnailHeightAsInt,
-            string name)
+            string title)
         {
             this.UuidAsStr = uuidAsStr;
             this.FilePathAsStr = filePathAsStr;
@@ -28,8 +40,9 @@
             this.ThumbnailFilePathAsStr = thumbnailFilePathAsStr;
             this.ThumbnailWidthAsInt = thumbnailWidthAsInt;
             this.ThumbnailHeightAsInt = thumbnailHeightAsInt;
-            this.NameAsStr = name;
+            this.TitleAsStr = title;
         }
+        #endregion
 
         // - インターナル・プロパティ
 
@@ -69,12 +82,12 @@
         internal int ThumbnailHeightAsInt { get; }
 
         /// <summary>
-        ///     名前
+        ///     タイトル
         ///     
         ///     <list type="bullet">
         ///         <item>実質、コメントのようなもの</item>
         ///     </list>
         /// </summary>
-        internal string NameAsStr { get; }
+        internal string TitleAsStr { get; }
     }
 }

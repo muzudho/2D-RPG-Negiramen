@@ -863,4 +863,15 @@ ItemsLayout="VerticalGrid, 2"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　タイル名も、　タイル タイトル　に名前を変えたろ」  
 
+![202307_maui_25-0005--collectionView.png](https://crieit.now.sh/upload_images/ac5330f87268476cca7fff2b5191221764be937d77033.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　サムネイル画像を出すところまでは　できたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　やったな！」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　やったわね！」  
+
 ＜書きかけ＞

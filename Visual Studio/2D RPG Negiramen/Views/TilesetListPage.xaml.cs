@@ -61,9 +61,25 @@ public partial class TilesetListPage : ContentPage
         List<Task> taskList = new List<Task>();
 
         // フォルダの中の PNG画像ファイルを一覧
-        foreach (var pathAsStr in System.IO.Directory.GetFiles(tilesetFolder.Path.AsStr, "*.png"))
+        foreach (var originalPngPathAsStr in System.IO.Directory.GetFiles(tilesetFolder.Path.AsStr, "*.png"))
         {
-            Trace.WriteLine($"[TilesetListPage.xaml.cs ContentPage_Loaded] path: [{pathAsStr}]");
+            Trace.WriteLine($"[TilesetListPage.xaml.cs ContentPage_Loaded] path: [{originalPngPathAsStr}]");
+
+            // 画像ファイルの名前は UUID という想定
+            var uuid = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
+
+            // TODO TOML があれば読込む。無ければ新規作成
+            string tomlPathAsStr = System.IO.Path.Join(
+                System.IO.Path.GetDirectoryName(originalPngPathAsStr),
+                $"{uuid}.toml");
+            if (System.IO.File.Exists(tomlPathAsStr))
+            {
+                // TODO TOML 読込
+            }
+            else
+            {
+                // TODO TOML 新規作成
+            }
 
             //
             // TODO 画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーしたい
@@ -76,8 +92,17 @@ public partial class TilesetListPage : ContentPage
                     var outputFolder = App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.TilesetFolder.ImagesTilesetsThumbnailsFolder;
                     outputFolder.CreateThisDirectoryIfItDoesNotExist();
 
+                    // サムネイル画像のファイルパス
+                    string thumbnailPathAsStr;
+
+                    // サイズ
+                    int originalWidth;
+                    int originalHeight;
+                    int thumbnailWidth;
+                    int thumbnailHeight;
+
                     // タイルセット画像読込
-                    using (Stream inputFileStream = System.IO.File.OpenRead(pathAsStr))
+                    using (Stream inputFileStream = System.IO.File.OpenRead(originalPngPathAsStr))
                     {
                         // ↓ １つのストリームが使えるのは、１回切り
                         using (MemoryStream memStream = new MemoryStream())
@@ -87,24 +112,29 @@ public partial class TilesetListPage : ContentPage
 
                             // 元画像
                             var bitmap = SkiaSharp.SKBitmap.Decode(memStream);
-                            
-                            int width = bitmap.Width;
-                            int height = bitmap.Height;
-                            int longLength = Math.Max(width, height);
-                            int shortLength = Math.Min(width, height);
+
+                            originalWidth = bitmap.Width;
+                            originalHeight = bitmap.Height;
+                            int longLength = Math.Max(originalWidth, originalHeight);
+                            int shortLength = Math.Min(originalWidth, originalHeight);
                             // 長い方が 128 より大きければ縮める
                             if (128 < longLength)
                             {
                                 float rate = (float)longLength / 128.0f;
-                                width = (int)(width / rate);
-                                height = (int)(height / rate);
+                                thumbnailWidth = (int)(originalWidth / rate);
+                                thumbnailHeight = (int)(originalHeight / rate);
+                            }
+                            else
+                            {
+                                thumbnailWidth = originalWidth;
+                                thumbnailHeight = originalHeight;
                             }
 
                             // 作業画像のリサイズ
                             bitmap = bitmap.Resize(
                                 size: new SKSizeI(
-                                    width: width,
-                                    height: height),
+                                    width: thumbnailWidth,
+                                    height: thumbnailHeight),
                                 quality: SKFilterQuality.Medium);
 
                             //
@@ -112,9 +142,10 @@ public partial class TilesetListPage : ContentPage
                             //
                             // 📖 [Using SkiaSharp, how to save a SKBitmap ?](https://social.msdn.microsoft.com/Forums/en-US/25fe8438-8afb-4acf-9d68-09acc6846918/using-skiasharp-how-to-save-a-skbitmap-?forum=xamarinforms)  
                             //
-                            var fileStem = System.IO.Path.GetFileNameWithoutExtension(pathAsStr);
+                            var fileStem = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
+                            thumbnailPathAsStr = outputFolder.CreateTilesetThumbnailPng(fileStem).Path.AsStr;
                             using (Stream outputFileStream = System.IO.File.Open(
-                                path: outputFolder.CreateTilesetThumbnailPng(fileStem).Path.AsStr,
+                                path: thumbnailPathAsStr,
                                 mode: FileMode.OpenOrCreate))
                             {
                                 // 画像にする
@@ -130,14 +161,14 @@ public partial class TilesetListPage : ContentPage
                     }
 
                     context.EnqueueTilesetRecordVM(new TilesetRecordViewModel(
-                            uuidAsStr: "１１１１てきとう",
-                            filePathAsStr: "てきとう",
-                            widthAsInt: 256,
-                            heightAsInt: 512,
-                            thumbnailFilePathAsStr: "てきとう",
-                            thumbnailWidthAsInt: 256,
-                            thumbnailHeightAsInt: 256,
-                            name: "なまえ１"));
+                            uuidAsStr: uuid,
+                            filePathAsStr: originalPngPathAsStr,
+                            widthAsInt: originalWidth,
+                            heightAsInt: originalHeight,
+                            thumbnailFilePathAsStr: thumbnailPathAsStr,
+                            thumbnailWidthAsInt: thumbnailWidth,
+                            thumbnailHeightAsInt: thumbnailHeight,
+                            title: "たいとる１"));
 
 
                 }
