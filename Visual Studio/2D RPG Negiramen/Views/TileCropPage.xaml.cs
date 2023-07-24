@@ -178,7 +178,7 @@ public partial class TileCropPage : ContentPage
         //
         // 作業用のタイルセット画像ファイルへのパスを取得
         //
-        var workingTilesetImagefilePathAsStr = userConfiguration.WorkingTilesetImageFile.Path.AsStr;
+        var workingTilesetImagefilePathAsStr = App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
 
         //
         // タイルセット画像の読込、作業中タイルセット画像の書出

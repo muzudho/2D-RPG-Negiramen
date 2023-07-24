@@ -156,7 +156,7 @@
         /// </summary>
         public string TilesetWorkingImageFilePathAsStr
         {
-            get => App.GetOrLoadUserConfiguration().WorkingTilesetImageFile.Path.AsStr;
+            get => App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
         }
 
         /// <summary>

@@ -43,26 +43,49 @@
         /// <summary>
         ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tilesets` フォルダの場所
         /// </summary>
-        internal ImagesTilesetsFolder ImagesTilesetFolder
+        internal ImagesTilesetsFolder TilesetFolder
         {
             get
             {
-                if (imagesTilesetsFolder == null)
+                if (tilesetsFolder == null)
                 {
-                    imagesTilesetsFolder = new ImagesTilesetsFolder(
+                    tilesetsFolder = new ImagesTilesetsFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, "Tilesets")),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return imagesTilesetsFolder;
+                return tilesetsFolder;
+            }
+        }
+        #endregion
+
+        #region プロパティ（OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/working_tileset.png` ファイルの場所）
+        /// <summary>
+        ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/working_tileset.png` ファイルの場所
+        /// </summary>
+        internal ImagesWorkingTilesetPng WorkingTilesetPng
+        {
+            get
+            {
+                if (workingTilesetPng == null)
+                {
+                    workingTilesetPng = new ImagesWorkingTilesetPng(
+                        pathSource: FileEntryPathSource.FromString(
+                            System.IO.Path.Combine(Path.AsStr, "working_tileset.png")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
+                }
+
+                return workingTilesetPng;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        ImagesTilesetsFolder? imagesTilesetsFolder;
+        ImagesTilesetsFolder? tilesetsFolder;
+        ImagesWorkingTilesetPng? workingTilesetPng;
     }
 }

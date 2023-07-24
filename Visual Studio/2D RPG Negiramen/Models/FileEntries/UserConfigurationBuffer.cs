@@ -9,9 +9,5 @@
     /// </summary>
     internal class UserConfigurationBuffer
     {
-        /// <summary>
-        ///     作業中のタイルセット画像のファイルへのパス
-        /// </summary>
-        internal Locations.Negiramen.WorkingTilesetImageFile WorkingTilesetImageFile { get; set; }
     }
 }

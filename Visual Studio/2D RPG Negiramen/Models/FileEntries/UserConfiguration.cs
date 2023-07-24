@@ -49,33 +49,10 @@
 
                 if (document != null)
                 {
-                    //
-                    // [paths]
-                    // =======
-                    //
-                    if (document.TryGetValue("paths", out object pathsObj))
-                    {
-                        if (pathsObj != null && pathsObj is TomlTable paths)
-                        {
-                            // ネギラーメン・ワークスペースの作業中のタイルセット画像ファイルへのパス
-                            if (paths.TryGetValue("working_tileset", out object workingTilesetFilePathObj))
-                            {
-                                if (workingTilesetFilePathObj is string workingTilesetFilePathAsStr)
-                                {
-                                    workingTilesetImageFile = new Locations.Negiramen.WorkingTilesetImageFile(
-                                        pathSource: FileEntryPathSource.FromString(workingTilesetFilePathAsStr),
-                                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                                    replaceSeparators: true,
-                                                                                    // 変数展開に備える
-                                                                                    expandVariables: App.GetOrLoadConfiguration().Variables));
-                                }
-                            }
-                        }
-                    }
+                    // 準備
                 }
 
-                configuration = new UserConfiguration(
-                    workingTilesetImageFile);
+                configuration = new UserConfiguration();
                 return true;
             }
             catch (Exception ex)
@@ -97,16 +74,10 @@
         {
             var configurationBuffer = new UserConfigurationBuffer();
 
-            // 差分適用
-            configurationBuffer.WorkingTilesetImageFile = difference.WorkingTilesetImageFile == null ? current.WorkingTilesetImageFile : difference.WorkingTilesetImageFile;
-
             //
             // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
             //
-            var text = $@"[paths]
-
-# ネギラーメン・ワークスペースの作業中のタイルセット画像ファイルへのパス
-working_tileset = ""{configurationBuffer.WorkingTilesetImageFile.PathSource.AsStr}""
+            var text = $@"# 準備
 ";
 
             // 上書き
@@ -116,39 +87,17 @@ working_tileset = ""{configurationBuffer.WorkingTilesetImageFile.PathSource.AsSt
                 contents: text);
 
             // イミュータブル・オブジェクトを生成
-            newConfiguration = new UserConfiguration(
-                configurationBuffer.WorkingTilesetImageFile);
+            newConfiguration = new UserConfiguration();
             return true;
         }
-
-        // - インターナル・プロパティー
-
-        #region プロパティ（ネギラーメン・ワークスペースの作業中のタイルセット画像ファイルへのパス）
-        /// <summary>
-        ///     ネギラーメン・ワークスペースの作業中のタイルセット画像ファイルへのパス
-        /// </summary>
-        /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/Temporary/Images/working_tileset.png"</example>
-        internal Locations.Negiramen.WorkingTilesetImageFile WorkingTilesetImageFile { get; }
-        #endregion
 
         // - その他
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal UserConfiguration() : this(
-            Locations.Negiramen.WorkingTilesetImageFile.Empty)
+        internal UserConfiguration()
         {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="negiramenWorkspaceFolderPath">ネギラーメン・ワークスペースの作業中のタイルセット画像ファイルへのパス</param>
-        internal UserConfiguration(
-            Locations.Negiramen.WorkingTilesetImageFile workingTilesetImageFile)
-        {
-            this.WorkingTilesetImageFile = workingTilesetImageFile;
         }
     }
 }
