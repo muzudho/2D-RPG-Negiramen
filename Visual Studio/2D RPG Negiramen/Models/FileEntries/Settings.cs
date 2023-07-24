@@ -146,15 +146,6 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
         }
         #endregion
 
-        // - インターナル静的プロパティ
-
-        #region プロパティ（空オブジェクト）
-        /// <summary>
-        ///     空オブジェクト
-        /// </summary>
-        internal static Settings Empty = new Settings(Models.Geometric.SizeInt.Empty);
-        #endregion
-
         // - プライベート・プロパティ
 
         #region プロパティ（タイルの最大サイズ）

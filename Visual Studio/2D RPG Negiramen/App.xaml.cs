@@ -163,7 +163,7 @@ public partial class App : Application
     ///			<item>ミュータブル</item>
     ///		</list>
     /// </summary>
-    static Models.FileEntries.Settings Settings { get; set; } = Models.FileEntries.Settings.Empty;
+    static Models.FileEntries.Settings? Settings { get; set; }
     #endregion
 
     // - プライベート静的メソッド
