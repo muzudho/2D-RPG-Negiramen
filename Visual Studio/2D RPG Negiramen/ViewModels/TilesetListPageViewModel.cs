@@ -2,6 +2,7 @@
 
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -18,36 +19,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// </summary>
     public TilesetListPageViewModel()
     {
-        this.TilesetRecordVMCollection = new ObservableCollection<TilesetRecordViewModel>()
-        {
-            new TilesetRecordViewModel(
-                uuidAsStr: "１１１１てきとう",
-                filePathAsStr: "てきとう",
-                widthAsInt: 256,
-                heightAsInt: 512,
-                thumbnailFilePathAsStr: "てきとう",
-                thumbnailWidthAsInt: 256,
-                thumbnailHeightAsInt: 256,
-                name: "なまえ１"),
-            new TilesetRecordViewModel(
-                uuidAsStr: "２２２２てきとう",
-                filePathAsStr: "てきとう",
-                widthAsInt: 256,
-                heightAsInt: 512,
-                thumbnailFilePathAsStr: "てきとう",
-                thumbnailWidthAsInt: 256,
-                thumbnailHeightAsInt: 256,
-                name: "なまえ２"),
-            new TilesetRecordViewModel(
-                uuidAsStr: "３３３３てきとう",
-                filePathAsStr: "てきとう",
-                widthAsInt: 256,
-                heightAsInt: 512,
-                thumbnailFilePathAsStr: "てきとう",
-                thumbnailWidthAsInt: 256,
-                thumbnailHeightAsInt: 256,
-                name: "なまえ３"),
-        };
+        this.TilesetRecordVMQueue = new ConcurrentQueue<TilesetRecordViewModel>();
     }
     #endregion
 
@@ -57,7 +29,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// <summary>
     ///     タイルセット・レコード・ビューモデルのリスト
     /// </summary>
-    public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection { get; set; } = new ObservableCollection<TilesetRecordViewModel>();
+    public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection => new ObservableCollection<TilesetRecordViewModel>(this.TilesetRecordVMQueue.ToList());
     #endregion
 
     // - パブリック変更通知プロパティ
@@ -102,5 +74,24 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     {
         // this.InvalidateAddsButton();
     }
+    #endregion
+
+    /// <summary>
+    ///     タイルセット・レコード・ビューモデル追加
+    /// </summary>
+    /// <param name="element"></param>
+    public void EnqueueTilesetRecordVM(TilesetRecordViewModel element)
+    {
+        this.TilesetRecordVMQueue.Enqueue(element);
+        OnPropertyChanged(nameof(TilesetRecordVMCollection));
+    }
+
+    // - プライベート・プロパティ
+
+    #region プロパティ（タイルセット・レコード・ビューモデルのリスト）
+    /// <summary>
+    ///     タイルセット・レコード・ビューモデルのリスト
+    /// </summary>
+    ConcurrentQueue<TilesetRecordViewModel> TilesetRecordVMQueue { get; set; } = new ConcurrentQueue<TilesetRecordViewModel>();
     #endregion
 }

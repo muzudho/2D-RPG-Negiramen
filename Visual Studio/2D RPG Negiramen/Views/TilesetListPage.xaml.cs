@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
+using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.FileEntries;
 using _2D_RPG_Negiramen.ViewModels;
 using SkiaSharp;
@@ -127,6 +128,18 @@ public partial class TilesetListPage : ContentPage
                             }
                         };
                     }
+
+                    context.EnqueueTilesetRecordVM(new TilesetRecordViewModel(
+                            uuidAsStr: "１１１１てきとう",
+                            filePathAsStr: "てきとう",
+                            widthAsInt: 256,
+                            heightAsInt: 512,
+                            thumbnailFilePathAsStr: "てきとう",
+                            thumbnailWidthAsInt: 256,
+                            thumbnailHeightAsInt: 256,
+                            name: "なまえ１"));
+
+
                 }
                 catch (Exception ex)
                 {
