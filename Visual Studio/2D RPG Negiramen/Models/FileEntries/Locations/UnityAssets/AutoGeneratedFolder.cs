@@ -78,11 +78,13 @@
 
         // - インターナル・メソッド
 
+        #region メソッド（存在するか？）
         /// <summary>
         ///     存在するか？
         /// </summary>
         /// <returns>そうだ</returns>
         internal bool IsExists() => System.IO.Directory.Exists(this.Path.AsStr);
+        #endregion
 
         // - プライベート・フィールド
 

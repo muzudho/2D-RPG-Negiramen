@@ -13,7 +13,7 @@
         internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolder { get; set; }
 
         /// <summary>
-        ///     Unity の Assets フォルダーへのパス
+        ///     Unity の 📂 `Assets` フォルダーへのパス
         /// </summary>
         internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; set; }
 

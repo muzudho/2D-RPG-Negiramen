@@ -103,7 +103,7 @@
 
         #region 変更通知プロパティ（Unity の Assets フォルダーへのパス。文字列形式）
         /// <summary>
-        ///     Unity の Assets フォルダーへのパス。文字列形式
+        ///     Unity の 📂 `Assets` フォルダーへのパス。文字列形式
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
         public string UnityAssetsFolderPathAsStr

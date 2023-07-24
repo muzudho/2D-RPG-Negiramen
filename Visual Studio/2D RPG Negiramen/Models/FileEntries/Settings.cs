@@ -5,11 +5,28 @@
 
     /// <summary>
     ///     😁 設定
+    ///     
+    ///     <list type="bullet">
+    ///         <item>イミュータブル</item>
+    ///     </list>
     /// </summary>
     class Settings
     {
-        // - 静的メソッド
+        // - その他
 
+        /// <summary>
+        ///     生成
+        /// </summary>
+        /// <param name="tileMaxSize">タイルの最大サイズ</param>
+        internal Settings(
+            Geometric.SizeInt tileMaxSize)
+        {
+            this.TileMaxSize = tileMaxSize;
+        }
+
+        // - インターナル静的メソッド
+
+        #region メソッド（TOML形式ファイルの読取）
         /// <summary>
         ///     <pre>
         ///         TOML形式ファイルの読取
@@ -88,7 +105,9 @@
                     buffer.TileMaxSize);
             }
         }
+        #endregion
 
+        #region メソッド（保存）
         /// <summary>
         ///     保存
         /// </summary>
@@ -125,28 +144,24 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
                 settingsBuffer.TileMaxSize);
             return true;
         }
+        #endregion
 
+        // - インターナル静的プロパティ
+
+        #region プロパティ（空オブジェクト）
+        /// <summary>
+        ///     空オブジェクト
+        /// </summary>
+        internal static Settings Empty = new Settings(Models.Geometric.SizeInt.Empty);
+        #endregion
+
+        // - プライベート・プロパティ
+
+        #region プロパティ（タイルの最大サイズ）
         /// <summary>
         ///     タイルの最大サイズ
         /// </summary>
         internal Geometric.SizeInt TileMaxSize { get; }
-
-        ///// <summary>
-        /////     生成
-        ///// </summary>
-        //internal Settings() : this(
-        //    Models.Size.Empty)
-        //{
-        //}
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="tileMaxSize">タイルの最大サイズ</param>
-        internal Settings(
-            Geometric.SizeInt tileMaxSize)
-        {
-            this.TileMaxSize = tileMaxSize;
-        }
+        #endregion
     }
 }

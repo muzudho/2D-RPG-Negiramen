@@ -766,5 +766,26 @@ ItemsLayout="VerticalGrid, 2"
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　まあ　とりあえず　それで」  
 
+# 📅 （2023-07-24 mon）フォルダーなの？　ディレクトリーなの？
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　フォルダーなの？　ディレクトリーなの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　どっちでもいい」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父んのソースコードでは　`ディレクトリ`　という単語は０件で、　`フォルダ`　で統一されているぜ。  
+しかし　C# の入出力ライブラリーのプロパティ名は　`Folder`　ではなく　`Directory`　だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　プログラマーは　この表記ゆれを気にしないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイルで連想する対になるものは　フォルダーだぜ。  
+ディレクトリーは　歴史的な名称だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　ネギラーメンは　フォルダーで統一するかだぜ」  
 
 ＜書きかけ＞

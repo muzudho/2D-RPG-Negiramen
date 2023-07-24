@@ -1,11 +1,17 @@
 ﻿namespace _2D_RPG_Negiramen;
 
+using _2D_RPG_Negiramen.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 アプリケーション
+///     
+///     <list type="bullet">
+///         <item>ミュータブル</item>
+///     </list>
 /// </summary>
 public partial class App : Application
 {
@@ -73,6 +79,31 @@ public partial class App : Application
     static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
     #endregion
 
+    #region プロパティ（キャッシュ・フォルダ）
+    /// <summary>
+    ///		キャッシュ・フォルダ
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    internal static TheFileEntryLocations.Cache.ItsFolder CacheFolder
+    {
+        get
+        {
+            if (cacheFolder == null)
+            {
+                cacheFolder = new TheFileEntryLocations.Cache.ItsFolder(
+                    pathSource: FileEntryPathSource.FromString(FileSystem.CacheDirectory),
+                    convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                replaceSeparators: true));
+            }
+
+            return cacheFolder;
+        }
+    }
+    #endregion
+
     // - インターナル静的メソッド
 
     ///// <summary>
@@ -91,6 +122,54 @@ public partial class App : Application
 
     //    return await reader.ReadToEndAsync();
     //}
+
+    // - プライベート静的フィールド
+
+    #region プロパティ（キャッシュ・フォルダ）
+    /// <summary>
+    ///		キャッシュ・フォルダ
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    static TheFileEntryLocations.Cache.ItsFolder? cacheFolder;
+    #endregion
+
+    // - プライベート静的プロパティー
+
+    #region プロパティ（現在の構成）
+    /// <summary>
+    ///		現在の構成
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    static Models.FileEntries.Configuration Configuration { get; set; }
+    #endregion
+
+    #region プロパティ（現在のユーザー構成）
+    /// <summary>
+    ///		現在のユーザー構成
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    static Models.FileEntries.UserConfiguration UserConfiguration { get; set; }
+    #endregion
+
+    #region プロパティ（現在の設定）
+    /// <summary>
+    ///		現在の設定
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    static Models.FileEntries.Settings Settings { get; set; } = Models.FileEntries.Settings.Empty;
+    #endregion
 
     // - プライベート静的メソッド
 
@@ -191,40 +270,5 @@ public partial class App : Application
     {
         App.Settings = settings;
     }
-    #endregion
-
-    // - プライベート静的プロパティー
-
-    #region プロパティ（現在の構成）
-    /// <summary>
-    ///		現在の構成
-    /// 
-    ///		<list type="bullet">
-    ///			<item>ミュータブル</item>
-    ///		</list>
-    /// </summary>
-    static Models.FileEntries.Configuration Configuration { get; set; }
-    #endregion
-
-    #region プロパティ（現在のユーザー構成）
-    /// <summary>
-    ///		現在のユーザー構成
-    /// 
-    ///		<list type="bullet">
-    ///			<item>ミュータブル</item>
-    ///		</list>
-    /// </summary>
-    static Models.FileEntries.UserConfiguration UserConfiguration { get; set; }
-    #endregion
-
-    #region プロパティ（現在の設定）
-    /// <summary>
-    ///		現在の設定
-    /// 
-    ///		<list type="bullet">
-    ///			<item>ミュータブル</item>
-    ///		</list>
-    /// </summary>
-    static Models.FileEntries.Settings Settings { get; set; }
     #endregion
 }
