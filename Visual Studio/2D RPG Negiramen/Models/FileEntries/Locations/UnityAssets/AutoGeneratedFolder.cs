@@ -5,7 +5,7 @@
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
-    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated` フォルダーの場所
+    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated` フォルダの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -36,9 +36,9 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data` フォルダーの場所）
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data` フォルダの場所）
         /// <summary>
-        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data` フォルダーの場所
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data` フォルダの場所
         /// </summary>
         internal DataFolder DataFolder
         {
@@ -56,9 +56,9 @@
         }
         #endregion
 
-        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダーの場所）
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダの場所）
         /// <summary>
-        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダーの場所
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダの場所
         /// </summary>
         internal ImagesFolder ImagesFolder
         {

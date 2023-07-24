@@ -5,7 +5,7 @@
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
-    ///     😁 OSの 📂 キャッシュ・フォルダの場所
+    ///     😁 OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -13,9 +13,9 @@
     ///     </list>
     /// </summary>
     /// <example>
-    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache"
+    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache\Doujin Circle Negiramen\Negiramen Quest"
     /// </example>
-    internal class ItsFolder : Its
+    internal class YourWorkNameFolder : Its
     {
         // - その他
 
@@ -23,7 +23,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ItsFolder()
+        internal YourWorkNameFolder()
             : base()
         {
         }
@@ -31,7 +31,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ItsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal YourWorkNameFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }
@@ -39,30 +39,30 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（OSの 📂 キャッシュ・フォルダ の `{あたなのサークル名}` フォルダの場所）
+        #region プロパティ（OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images` フォルダの場所）
         /// <summary>
-        ///     OSの 📂 キャッシュ・フォルダ の `{あたなのサークル名}` フォルダの場所
+        ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images` フォルダの場所
         /// </summary>
-        internal YourCircleNameFolder YourCircleNameFolder
+        internal ImagesFolder ImagesFolder
         {
             get
             {
-                if (yourCircleNameFolder == null)
+                if (imagesFolder == null)
                 {
-                    yourCircleNameFolder = new YourCircleNameFolder(
+                    imagesFolder = new ImagesFolder(
                         pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().YourCircleName.AsStr)),
+                            System.IO.Path.Combine(Path.AsStr, "Images")),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return yourCircleNameFolder;
+                return imagesFolder;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        YourCircleNameFolder? yourCircleNameFolder;
+        ImagesFolder? imagesFolder;
     }
 }

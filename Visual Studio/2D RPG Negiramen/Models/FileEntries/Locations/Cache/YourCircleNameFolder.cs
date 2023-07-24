@@ -1,18 +1,20 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Cache
 {
     using _2D_RPG_Negiramen;
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
-    ///     😁 Unityの 📂 `Assets/{Your Circle Name}` フォルダの場所
+    ///     😁 OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}` フォルダの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
-    ///         <item><see cref="_2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets.UnityAssets.ItsFolder"/></item>
+    ///         <item><see cref="App.Configuration"/></item>
     ///     </list>
     /// </summary>
+    /// <example>
+    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache\Doujin Circle Negiramen"
+    /// </example>
     internal class YourCircleNameFolder : Its
     {
         // - その他
@@ -37,9 +39,9 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝`フォルダの場所）
+        #region プロパティ（OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダの場所）
         /// <summary>
-        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝`フォルダの場所
+        ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダの場所
         /// </summary>
         internal YourWorkNameFolder YourWorkNameFolder
         {

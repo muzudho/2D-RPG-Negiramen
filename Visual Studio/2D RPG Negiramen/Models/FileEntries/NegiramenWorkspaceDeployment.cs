@@ -4,7 +4,7 @@
 
     /// <summary>
     ///     <pre>
-    ///         😁 ネギラーメンのワークスペース・フォルダーの内容を確認します
+    ///         😁 ネギラーメンのワークスペース・フォルダの内容を確認します
     ///         
     ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
     ///         👉　└─ 📂 Workspace
@@ -15,8 +15,8 @@
     {
         /// <summary>
         ///     <pre>
-        ///         ユニティの Assets フォルダーにファイルをコピーするために、
-        ///         ネギラーメンのワークスペース・フォルダーの内容を確認します
+        ///         ユニティの Assets フォルダにファイルをコピーするために、
+        ///         ネギラーメンのワークスペース・フォルダの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         👉　└─ 📂 Workspace
@@ -46,7 +46,7 @@
                 return false;
             }
 
-            // 📂 `For Unity Assets` フォルダーのチェック
+            // 📂 `For Unity Assets` フォルダのチェック
             bool isOk = CheckForUnityAssetsFolder(assetsInfo);
 
             return isOk;
@@ -54,7 +54,7 @@
 
         /// <summary>
         ///     <pre>
-        ///         `For Unity Assets` フォルダーの内容を確認します
+        ///         `For Unity Assets` フォルダの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         　　└─ 📂 Workspace
@@ -84,7 +84,7 @@
                 return false;
             }
 
-            // 📂 `Images` フォルダーのチェック
+            // 📂 `Images` フォルダのチェック
             bool isOk = CheckImagesFolder(imagesInfo);
 
             return isOk;
@@ -92,13 +92,13 @@
 
         /// <summary>
         ///     <pre>
-        ///         Images フォルダーの内容を確認します
+        ///         Images フォルダの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         　　└─ 📂 Workspace
         ///         　　　　└─ 📂 For Unity Assets
         ///         👉 　　　　└─ 📂 Images
-        ///         　　　　　　　　└─ 📂 Tileset
+        ///         　　　　　　　　└─ 📂 Tilesets
         ///     </pre>
         /// </summary>
         /// <param name="imagesInfo"></param>
@@ -110,7 +110,7 @@
 
             foreach (var dirInfo in imagesInfo.EnumerateDirectories())
             {
-                if (dirInfo.Name == "Tileset")
+                if (dirInfo.Name == "Tilesets")
                 {
                     tileSetInfo = dirInfo;
                     break;
@@ -123,27 +123,27 @@
                 return false;
             }
 
-            // 📂 `Tileset` フォルダーのチェック
-            bool isOk = CheckTilesetFolder(tileSetInfo);
+            // 📂 `Tilesets` フォルダのチェック
+            bool isOk = CheckTilesetsFolder(tileSetInfo);
 
             return isOk;
         }
 
         /// <summary>
         ///     <pre>
-        ///         Tileset フォルダーの内容を確認します
+        ///         Tileset フォルダの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
         ///         　　└─ 📂 Workspace
         ///         　　　　└─ 📂 For Unity Assets
         ///         　　　　　　└─ 📂 Images
-        ///         👉 　　　　　　└─ 📂 Tileset
+        ///         👉 　　　　　　└─ 📂 Tilesets
         ///         　　　　　　　　　　└─ 📄 adventure_field.png
         ///     </pre>
         /// </summary>
         /// <param name="tilesetInfo"></param>
         /// <returns></returns>
-        static bool CheckTilesetFolder(DirectoryInfo tilesetInfo)
+        static bool CheckTilesetsFolder(DirectoryInfo tilesetInfo)
         {
             // 📄 `adventure_field.png` が含まれていれば OK
             FileInfo adventureFieldPngFileInfo = null;

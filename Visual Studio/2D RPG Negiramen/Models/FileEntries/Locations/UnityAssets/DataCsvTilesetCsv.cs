@@ -5,7 +5,7 @@
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
-    ///     😁 Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/CSV/Tileset/{名前}.csv` ファイルの場所
+    ///     😁 Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/CSV/Tilesets/{名前}.csv` ファイルの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>

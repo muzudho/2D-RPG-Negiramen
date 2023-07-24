@@ -6,7 +6,7 @@
     using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
-    ///     😁 Unityの 📂 `Assets` フォルダーへのパス
+    ///     😁 Unityの 📂 `Assets` フォルダへのパス
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -46,9 +46,9 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（Unityの 📂 `Assets/{Your Circle Name}` フォルダーの場所）
+        #region プロパティ（Unityの 📂 `Assets/{Your Circle Name}` フォルダの場所）
         /// <summary>
-        ///     Unityの 📂 `Assets/{Your Circle Name}` フォルダーの場所
+        ///     Unityの 📂 `Assets/{Your Circle Name}` フォルダの場所
         /// </summary>
         internal YourCircleNameFolder YourCircleNameFolder
         {

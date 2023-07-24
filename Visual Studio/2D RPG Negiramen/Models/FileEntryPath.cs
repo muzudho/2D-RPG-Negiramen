@@ -4,7 +4,7 @@
     ///     😁 ファイル・エントリー・パス
     ///     
     ///     <list type="bullet">
-    ///         <item>ファイルや、フォルダーのパスのこと</item>
+    ///         <item>ファイルや、フォルダのパスのこと</item>
     ///     </list>
     /// </summary>
     internal class FileEntryPath

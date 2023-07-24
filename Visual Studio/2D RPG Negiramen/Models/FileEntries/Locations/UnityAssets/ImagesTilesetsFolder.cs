@@ -5,14 +5,14 @@
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
-    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダーの場所
+    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets` フォルダの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
     ///         <item><see cref="ItsFolder"/></item>
     ///     </list>
     /// </summary>
-    class ImagesTilesetFolder : Its
+    class ImagesTilesetsFolder : Its
     {
         // - その他
 
@@ -20,7 +20,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ImagesTilesetFolder()
+        internal ImagesTilesetsFolder()
             : base()
         {
         }
@@ -28,7 +28,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ImagesTilesetFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal ImagesTilesetsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }
@@ -36,9 +36,9 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset/{名前}.png` フォルダーの場所）
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.png` フォルダの場所）
         /// <summary>
-        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset/{名前}.png` フォルダーの場所
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.png` フォルダの場所
         /// </summary>
         internal ImagesTilesetPng CreateTilesetPng(string fileStem)
         {

@@ -1,17 +1,20 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Cache
 {
+    using _2D_RPG_Negiramen;
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
-    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダの場所
+    ///     😁 OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images` フォルダの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
-    ///         <item><see cref="ItsFolder"/></item>
+    ///         <item><see cref="App.Configuration"/></item>
     ///     </list>
     /// </summary>
+    /// <example>
+    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache\Doujin Circle Negiramen\Negiramen Quest\Images"
+    /// </example>
     internal class ImagesFolder : Its
     {
         // - その他
@@ -36,30 +39,30 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets` フォルダの場所）
+        #region プロパティ（OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tileset` フォルダの場所）
         /// <summary>
-        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダの場所
+        ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tilesets` フォルダの場所
         /// </summary>
-        internal ImagesTilesetsFolder TilesetsFolder
+        internal ImagesTilesetsFolder ImagesTilesetFolder
         {
             get
             {
-                if (tilesetFolder == null)
+                if (imagesTilesetsFolder == null)
                 {
-                    tilesetFolder = new ImagesTilesetsFolder(
+                    imagesTilesetsFolder = new ImagesTilesetsFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, "Tilesets")),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return tilesetFolder;
+                return imagesTilesetsFolder;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        ImagesTilesetsFolder? tilesetFolder;
+        ImagesTilesetsFolder? imagesTilesetsFolder;
     }
 }

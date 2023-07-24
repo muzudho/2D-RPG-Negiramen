@@ -14,7 +14,7 @@
     
     <VerticalStackLayout>
         <!--
-        <Image Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tileset/adventure_field.png"/>
+        <Image Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tilesets/adventure_field.png"/>
         -->
         <Label 
             Text="Welcome to .NET MAUI!"

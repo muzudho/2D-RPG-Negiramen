@@ -8,12 +8,12 @@
     internal class ConfigurationBuffer
     {
         /// <summary>
-        ///     ネギラーメンのワークスペース・フォルダーへのパス
+        ///     ネギラーメンのワークスペース・フォルダへのパス
         /// </summary>
         internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolder { get; set; }
 
         /// <summary>
-        ///     Unity の 📂 `Assets` フォルダーへのパス
+        ///     Unity の 📂 `Assets` フォルダへのパス
         /// </summary>
         internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; set; }
 

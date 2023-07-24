@@ -80,9 +80,9 @@
         public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
         #endregion
 
-        #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダー）
+        #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダ）
         /// <summary>
-        ///     ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式
+        ///     ネギラーメン・ワークスペース・フォルダへのパス。文字列形式
         /// </summary>
         public string NegiramenWorkspaceFolderPathAsStr
         {
@@ -101,9 +101,9 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（Unity の Assets フォルダーへのパス。文字列形式）
+        #region 変更通知プロパティ（Unity の Assets フォルダへのパス。文字列形式）
         /// <summary>
-        ///     Unity の 📂 `Assets` フォルダーへのパス。文字列形式
+        ///     Unity の 📂 `Assets` フォルダへのパス。文字列形式
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
         public string UnityAssetsFolderPathAsStr
@@ -184,25 +184,25 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（Unity の 📂 `Assets` フォルダーの場所）
+        #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
         /// <summary>
-        ///     Unity の 📂 `Assets` フォルダーの場所
+        ///     Unity の 📂 `Assets` フォルダの場所
         /// </summary>
         internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; private set; }
         #endregion
 
         // - プライベート・フィールド
 
-        #region フィールド（ネギラーメンの 📂 `Workspace` フォルダーへのパス）
+        #region フィールド（ネギラーメンの 📂 `Workspace` フォルダへのパス）
         /// <summary>
-        ///     ネギラーメンの 📂 `Workspace` フォルダーへのパス
+        ///     ネギラーメンの 📂 `Workspace` フォルダへのパス
         /// </summary>
         TheFileEntryLocations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolder = TheFileEntryLocations.Negiramen.WorkspaceFolder.Empty;
         #endregion
 
-        #region フィールド（Unity の Assets フォルダーへのパス）
+        #region フィールド（Unity の Assets フォルダへのパス）
         /// <summary>
-        ///     Unity の Assets フォルダーへのパス
+        ///     Unity の Assets フォルダへのパス
         /// </summary>
         TheLocationOfUnityAssets.ItsFolder _unityAssetsFolder = TheLocationOfUnityAssets.ItsFolder.Empty;
         #endregion
@@ -247,7 +247,7 @@
                     // グローバル変数を更新
                     App.SetConfiguration(newConfiguration);
 
-                    // ネギラーメンのワークスペース・フォルダーの内容を確認
+                    // ネギラーメンのワークスペース・フォルダの内容を確認
                     var isOk = Models.FileEntries.NegiramenWorkspaceDeployment.CheckForUnityAssets();
                     if (!isOk)
                     {

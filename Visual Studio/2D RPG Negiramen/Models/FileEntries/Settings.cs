@@ -51,7 +51,7 @@
 
             try
             {
-                // フォルダー名は自動的に与えられているので、これを使う
+                // フォルダ名は自動的に与えられているので、これを使う
                 string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
                 // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
 
@@ -117,7 +117,7 @@
         /// <returns>完了した</returns>
         internal static bool SaveTOML(Settings current, SettingsBuffer difference, out Settings newSettings)
         {
-            // フォルダー名は自動的に与えられているので、これを使う
+            // フォルダ名は自動的に与えられているので、これを使う
             string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
             // Example: `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState`
 

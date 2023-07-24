@@ -5,7 +5,7 @@
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
-    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/CSV` フォルダーの場所
+    ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/CSV` フォルダの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -36,18 +36,18 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/CSV/Tileset` フォルダーの場所）
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/CSV/Tilesets` フォルダの場所）
         /// <summary>
-        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/CSV/Tileset` フォルダーの場所
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Data/CSV/Tilesets` フォルダの場所
         /// </summary>
-        internal DataCsvTilesetFolder TilesetFolder
+        internal DataCsvTilesetsFolder TilesetsFolder
         {
             get
             {
                 if (tilesetFolder == null)
                 {
-                    tilesetFolder = new DataCsvTilesetFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Tileset")),
+                    tilesetFolder = new DataCsvTilesetsFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Tilesets")),
                         convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
                 }
 
@@ -58,6 +58,6 @@
 
         // - プライベート・フィールド
 
-        DataCsvTilesetFolder? tilesetFolder;
+        DataCsvTilesetsFolder? tilesetFolder;
     }
 }

@@ -3,7 +3,7 @@
     using _2D_RPG_Negiramen.Coding;
 
     /// <summary>
-    ///     😁 ネギラーメン・ワークスペース・フォルダーのパス
+    ///     😁 ネギラーメン・ワークスペース・フォルダのパス
     /// </summary>
     class WorkspaceFolder : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
 

@@ -63,7 +63,7 @@ public partial class ConfigurationPage : ContentPage
 
     //    try
     //    {
-    //        // 隠しフォルダーにはアクセスできない
+    //        // 隠しフォルダにはアクセスできない
     //        Trace.WriteLine($"[ConfigurationPage.xaml.cs NegiramenWorkspaceDirectoryButton_Clicked] path: [{path}]");
     //        Process.Start(path,);
     //    }

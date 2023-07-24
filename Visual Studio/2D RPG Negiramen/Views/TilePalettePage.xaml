@@ -29,7 +29,7 @@
                        Margin="4,4,0,0"
                        HorizontalOptions="Start" VerticalOptions="Start"
                        WidthRequest="64" HeightRequest="64"
-                       Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tileset/adventure_field.png">
+                       Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tilesets/adventure_field.png">
                     
                     <Image.GestureRecognizers>
                         <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved" />

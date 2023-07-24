@@ -29,7 +29,7 @@
         {
             try
             {
-                // フォルダー名は自動的に与えられているので、これを使う
+                // フォルダ名は自動的に与えられているので、これを使う
                 string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
                 // Example: `C:/Users/むずでょ/AppData/Local/Packages/1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm/LocalState`
 
@@ -200,7 +200,7 @@
             // 📖　[File system helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
             //
 
-            // フォルダー名は自動的に与えられているので、これを使う
+            // フォルダ名は自動的に与えられているので、これを使う
             string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
             // Example: `C:/Users/むずでょ/AppData/Local/Packages/1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm/LocalState`
 
@@ -254,17 +254,17 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 
         // - インターナル・プロパティー
 
-        #region プロパティ（ネギラーメン・ワークスペース・フォルダーの場所）
+        #region プロパティ（ネギラーメン・ワークスペース・フォルダの場所）
         /// <summary>
-        ///     ネギラーメン・ワークスペース・フォルダーの場所
+        ///     ネギラーメン・ワークスペース・フォルダの場所
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace"</example>
         internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolder { get; }
         #endregion
 
-        #region プロパティ（Unity の 📂 `Assets` フォルダーの場所）
+        #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
         /// <summary>
-        ///     Unity の 📂 `Assets` フォルダーの場所
+        ///     Unity の 📂 `Assets` フォルダの場所
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
         internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; }
@@ -310,8 +310,8 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="negiramenWorkspaceFolderPath">ネギラーメン・ワークスペース・フォルダーへのパス</param>
-        /// <param name="unityAssetsFolderPath">Unity の Assets フォルダーへのパス</param>
+        /// <param name="negiramenWorkspaceFolderPath">ネギラーメン・ワークスペース・フォルダへのパス</param>
+        /// <param name="unityAssetsFolderPath">Unity の Assets フォルダへのパス</param>
         /// <param name="userConfigurationFilePath">ユーザー構成ファイルへのパス</param>
         /// <param name="yourCircleName">あなたのサークル名</param>
         /// <param name="yourWorkName">あなたの作品名</param>

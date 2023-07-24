@@ -9,9 +9,9 @@ public interface IConfigurationPageViewModel
 {
     // - パブリック変更通知プロパティ
 
-    #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダー）
+    #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダ）
     /// <summary>
-    ///     ネギラーメン・ワークスペース・フォルダーへのパス。文字列形式
+    ///     ネギラーメン・ワークスペース・フォルダへのパス。文字列形式
     /// </summary>
     string NegiramenWorkspaceFolderPathAsStr { get; }
     #endregion
