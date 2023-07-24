@@ -56,6 +56,26 @@
         }
         #endregion
 
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Editor` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Editor` フォルダの場所
+        /// </summary>
+        internal EditorFolder EditorFolder
+        {
+            get
+            {
+                if (editorFolder == null)
+                {
+                    editorFolder = new EditorFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Editor")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return editorFolder;
+            }
+        }
+        #endregion
+
         #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダの場所）
         /// <summary>
         ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダの場所
@@ -76,6 +96,66 @@
         }
         #endregion
 
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Materials` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Materials` フォルダの場所
+        /// </summary>
+        internal MaterialsFolder MaterialsFolder
+        {
+            get
+            {
+                if (materialsFolder == null)
+                {
+                    materialsFolder = new MaterialsFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Materials")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return materialsFolder;
+            }
+        }
+        #endregion
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Movies` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Movies` フォルダの場所
+        /// </summary>
+        internal MoviesFolder MoviesFolder
+        {
+            get
+            {
+                if (moviesFolder == null)
+                {
+                    moviesFolder = new MoviesFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Movies")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return moviesFolder;
+            }
+        }
+        #endregion
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Prefabs` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Prefabs` フォルダの場所
+        /// </summary>
+        internal PrefabsFolder PrefabsFolder
+        {
+            get
+            {
+                if (prefabsFolder == null)
+                {
+                    prefabsFolder = new PrefabsFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Prefabs")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return prefabsFolder;
+            }
+        }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（存在するか？）
@@ -89,6 +169,10 @@
         // - プライベート・フィールド
 
         DataFolder? dataFolder;
+        EditorFolder? editorFolder;
         ImagesFolder? imagesFolder;
+        MaterialsFolder? materialsFolder;
+        MoviesFolder? moviesFolder;
+        PrefabsFolder? prefabsFolder;
     }
 }
