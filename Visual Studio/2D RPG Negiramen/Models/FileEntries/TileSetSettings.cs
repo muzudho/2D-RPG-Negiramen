@@ -85,7 +85,7 @@
                         int y = int.Parse(cells[2]);
                         int width = int.Parse(cells[3]);
                         int height = int.Parse(cells[4]);
-                        string comment = cells[5];
+                        string title = cells[5];
 
                         Models.LogicalDelete logicalDelete;
                         if (7 <= cells.Length)
@@ -97,7 +97,7 @@
                             logicalDelete = Models.LogicalDelete.False;
                         }
 
-                        // TODO とりあえず、 Id, Left, Top, Width, Height, Comment の順で並んでいるとする。ちゃんと列名を見て対応したい
+                        // TODO とりあえず、 Id, Left, Top, Width, Height, Title の順で並んでいるとする。ちゃんと列名を見て対応したい
                         var tileId = new Models.TileId(tileIdAsInt);
                         tilesetSettings.AddTile(
                             id: tileId,
@@ -108,7 +108,7 @@
                                 size: new Models.Geometric.SizeInt(
                                     width: new Models.Geometric.WidthInt(width),
                                     height: new Models.Geometric.HeightInt(height))),
-                            comment: new Models.Comment(comment),
+                            tileTitle: new Models.TileTitle(title),
                             logicalDelete: logicalDelete);
 
                         if (usableId < tileId)
@@ -150,7 +150,7 @@
             var builder = new StringBuilder();
 
             // ヘッダー部
-            builder.AppendLine("Id,Left,Top,Width,Height,Comment,Delete");
+            builder.AppendLine("Id,Left,Top,Width,Height,Title,Delete");
 
             // データ部
             while (recordList.MoveNext())
@@ -158,7 +158,7 @@
                 TileRecord record = recordList.Current;
 
                 // TODO ダブルクォーテーションのエスケープ
-                builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Location.X.AsInt},{record.Rectangle.Location.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Comment.AsStr},{record.LogicalDelete.AsInt}");
+                builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Location.X.AsInt},{record.Rectangle.Location.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Title.AsStr},{record.LogicalDelete.AsInt}");
             }
 
             // 上書き
@@ -279,19 +279,19 @@
         /// </summary>
         /// <param name="id">タイルＩｄ</param>
         /// <param name="rect">位置とサイズ</param>
-        /// <param name="comment">コメント</param>
+        /// <param name="tileTitle">タイル・タイトル</param>
         /// <param name="logicalDelete">論理削除</param>
         internal void AddTile(
             Models.TileId id,
             Geometric.RectangleInt rect,
-            Models.Comment comment,
+            Models.TileTitle tileTitle,
             Models.LogicalDelete logicalDelete)
         {
             this.RecordList.Add(
                 new TileRecord(
                     id,
                     rect,
-                    comment,
+                    tileTitle,
                     logicalDelete));
         }
         #endregion
@@ -315,7 +315,7 @@
                     this.RecordList[i] = new TileRecord(
                         id: record.Id,
                         rect: record.Rectangle,
-                        comment: record.Comment,
+                        title: record.Title,
                         logicalDelete: Models.LogicalDelete.True);
                 }
             }
@@ -480,7 +480,7 @@
                 list.Add(new TileRecord(
                     id: record.Id,
                     rect: record.Rectangle,
-                    comment: record.Comment,
+                    title: record.Title,
                     logicalDelete: record.LogicalDelete));
             }
 

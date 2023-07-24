@@ -249,7 +249,7 @@
                 this.SourceCroppedCursorTopAsInt = newTileRecordVM.SourceRectangle.Location.Y.AsInt;
                 this.SourceCroppedCursorWidthAsInt = newTileRecordVM.SourceRectangle.Size.Width.AsInt;
                 this.SourceCroppedCursorHeightAsInt = newTileRecordVM.SourceRectangle.Size.Height.AsInt;
-                this.SelectedTileCommentAsStr = newTileRecordVM.Comment.AsStr;
+                this.SelectedTileTitleAsStr = newTileRecordVM.Title.AsStr;
 
                 OnPropertyChanged(nameof(AddsButtonHint));
                 OnPropertyChanged(nameof(AddsButtonText));
@@ -292,7 +292,7 @@
                         tileRecord: new TileRecord(
                             id: value,
                             rect: selectedTileVM.SourceRectangle,
-                            comment: selectedTileVM.Comment,
+                            title: selectedTileVM.Title,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: selectedTileVM.SourceRectangle.Do(this.Zoom)));
                 }
@@ -303,7 +303,7 @@
                         tileRecord: new Models.TileRecord(
                             id: value,
                             rect: Models.Geometric.RectangleInt.Empty,
-                            comment: Models.Comment.Empty,
+                            title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                     workingRect: Models.Geometric.RectangleFloat.Empty));
                 }
@@ -1121,7 +1121,7 @@
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
-                            comment: selectedTileVM.Comment,
+                            title: selectedTileVM.Title,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1137,7 +1137,7 @@
                         tileRecord: new Models.TileRecord(
                             id: Models.TileId.Empty,
                             rect: rect1,
-                            comment: Models.Comment.Empty,
+                            title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1187,7 +1187,7 @@
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
-                            comment: selectedTileVM.Comment,
+                            title: selectedTileVM.Title,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1203,7 +1203,7 @@
                         tileRecord: new Models.TileRecord(
                             id: Models.TileId.Empty,
                             rect: rect1,
-                            comment: Models.Comment.Empty,
+                            title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1297,7 +1297,7 @@
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
-                            comment: selectedTileVM.Comment,
+                            title: selectedTileVM.Title,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1309,7 +1309,7 @@
                         tileRecord: new Models.TileRecord(
                             id: Models.TileId.Empty,
                             rect: rect1,
-                            comment: Models.Comment.Empty,
+                            title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1355,7 +1355,7 @@
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
-                            comment: selectedTileVM.Comment,
+                            title: selectedTileVM.Title,
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1367,7 +1367,7 @@
                         tileRecord: new Models.TileRecord(
                             id: TileId.Empty,
                             rect: rect1,
-                            comment: Models.Comment.Empty,
+                            title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1618,15 +1618,15 @@
 
         #region 変更通知プロパティ（登録タイル　関連）
         /// <summary>
-        ///     登録タイルへのコメント
+        ///     登録タイルのタイトル
         /// </summary>
-        public string SelectedTileCommentAsStr
+        public string SelectedTileTitleAsStr
         {
             get
             {
                 if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    return selectedTileVM.Comment.AsStr;
+                    return selectedTileVM.Title.AsStr;
                 }
                 else
                 {
@@ -1638,7 +1638,7 @@
             {
                 if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
                 {
-                    if (selectedTileVM.Comment.AsStr == value)
+                    if (selectedTileVM.Title.AsStr == value)
                     {
                         // 値に変化がない
                         return;
@@ -1649,7 +1649,7 @@
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
-                            comment: new Models.Comment(value),
+                            title: new Models.TileTitle(value),
                             logicalDelete: selectedTileVM.LogicalDelete),
                         workingRect: rect1.Do(this.Zoom)));
                 }
@@ -1661,12 +1661,12 @@
                         tileRecord: new Models.TileRecord(
                             id: TileId.Empty,
                             rect: rect1,
-                            comment: new Models.Comment(value),
+                            title: new Models.TileTitle(value),
                             logicalDelete: Models.LogicalDelete.False),
                        workingRect: rect1.Do(this.Zoom)));
                 }
 
-                OnPropertyChanged(nameof(SelectedTileCommentAsStr));
+                OnPropertyChanged(nameof(SelectedTileTitleAsStr));
             }
         }
         #endregion
@@ -1797,7 +1797,7 @@
     out TileRecordViewModel? recordVMOrNull))
             {
                 TileRecordViewModel recordVM = recordVMOrNull ?? throw new NullReferenceException(nameof(recordVMOrNull));
-                // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Comment:{recordVM.Comment.AsStr}");
+                // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
 
                 //
                 // データ表示
@@ -1821,7 +1821,7 @@
                     tileRecord: new Models.TileRecord(
                         id: Models.TileId.Empty,
                         rect: this.SourceCroppedCursorRect,
-                        comment: Models.Comment.Empty,
+                        title: Models.TileTitle.Empty,
                         logicalDelete: Models.LogicalDelete.False),
                     workingRect: this.SourceCroppedCursorRect.Do(this.Zoom)));
             }

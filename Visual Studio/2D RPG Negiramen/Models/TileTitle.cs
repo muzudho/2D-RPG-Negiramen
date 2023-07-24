@@ -1,36 +1,36 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 コメント
+    ///     😁 タイル・タイトル
     /// </summary>
-    class Comment
+    class TileTitle
     {
         // - 静的プロパティ
 
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static Comment Empty { get; } = new Comment();
+        internal static TileTitle Empty { get; } = new TileTitle();
 
         /// <summary>
         ///     文字列を与えて初期化
         /// </summary>
-        /// <param name="comment">コメント</param>
+        /// <param name="title">タイトル</param>
         /// <returns>実例</returns>
-        internal static Comment FromString(string comment)
+        internal static TileTitle FromString(string title)
         {
-            if (comment == null)
+            if (title == null)
             {
-                throw new ArgumentNullException(nameof(comment));
+                throw new ArgumentNullException(nameof(title));
             }
 
-            return new Comment(comment);
+            return new TileTitle(title);
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal Comment()
+        internal TileTitle()
         {
             this.AsStr = string.Empty;
         }
@@ -38,7 +38,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal Comment(string asStr)
+        internal TileTitle(string asStr)
         {
             this.AsStr = asStr;
         }

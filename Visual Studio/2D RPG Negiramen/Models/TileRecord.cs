@@ -20,7 +20,7 @@
         public TileRecord()
             : this(Models.TileId.Empty,
                    Geometric.RectangleInt.Empty,
-                   Models.Comment.Empty,
+                   Models.TileTitle.Empty,
                    Models.LogicalDelete.False)
         {
         }
@@ -28,16 +28,19 @@
         /// <summary>
         ///     生成
         /// </summary>
+        /// <param name="id">Ｉｄ</param>
         /// <param name="rect">レクタングル</param>
+        /// <param name="title">タイル・タイトル</param>
+        /// <param name="logicalDelete">論理削除か？</param>
         internal TileRecord(
             Models.TileId id,
             Geometric.RectangleInt rect,
-            Models.Comment comment,
+            Models.TileTitle title,
             Models.LogicalDelete logicalDelete)
         {
             this.Id = id ?? throw new ArgumentNullException(nameof(id));
             this.Rectangle = rect ?? throw new ArgumentNullException(nameof(rect));
-            this.Comment = comment ?? throw new ArgumentNullException(nameof(comment));
+            this.Title = title ?? throw new ArgumentNullException(nameof(title));
             this.LogicalDelete = logicalDelete ?? throw new ArgumentNullException(nameof(logicalDelete));
         }
         #endregion
@@ -78,11 +81,11 @@
         internal Geometric.RectangleInt Rectangle { get; }
         #endregion
 
-        #region プロパティ（コメント）
+        #region プロパティ（タイトル）
         /// <summary>
-        ///     コメント
+        ///     タイトル
         /// </summary>
-        internal Models.Comment Comment { get; }
+        internal Models.TileTitle Title { get; }
         #endregion
 
         #region プロパティ（論理削除）
@@ -105,7 +108,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Id:{this.Id.AsBASE64}, Rect:{this.Rectangle.Dump()}, Comment:{this.Comment.AsStr}";
+            return $"Id:{this.Id.AsBASE64}, Rect:{this.Rectangle.Dump()}, Title:{this.Title.AsStr}";
         }
         #endregion
     }

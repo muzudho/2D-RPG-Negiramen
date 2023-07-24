@@ -100,13 +100,13 @@
         /// <param name="id">タイルＩｄ</param>
         /// <param name="rect">位置とサイズ</param>
         /// <param name="workingRect">（ズーム後の）位置とサイズ</param>
-        /// <param name="comment">コメント</param>
+        /// <param name="title">タイトル</param>
         /// <param name="logicalDelete">論理削除</param>
         internal void AddTile(
             Models.TileId id,
             TheGeometric.RectangleInt rect,
             TheGeometric.RectangleFloat workingRect,
-            Models.Comment comment,
+            Models.TileTitle title,
             Models.LogicalDelete logicalDelete)
         {
             this.RecordViewModelList.Add(
@@ -114,7 +114,7 @@
                     tileRecord: new TileRecord(
                         id,
                         rect,
-                        comment,
+                        title,
                         logicalDelete),
                     workingRect: workingRect));
         }
@@ -143,7 +143,7 @@
                         tileRecord: new TileRecord(
                             id: recordVM.Id,
                             rect: recordVM.SourceRectangle,
-                            comment: recordVM.Comment,
+                            title: recordVM.Title,
                             logicalDelete: Models.LogicalDelete.True),
                         workingRect: recordVM.WorkingRectangle);
 
@@ -220,7 +220,7 @@
                 yield return new TileRecord(
                     id: recordVM.Id,
                     rect: recordVM.SourceRectangle,
-                    comment: recordVM.Comment,
+                    title: recordVM.Title,
                     logicalDelete: recordVM.LogicalDelete);
             }
         }
@@ -340,7 +340,7 @@
                 list.Add(new TileRecord(
                     id: recordVM.Id,
                     rect: recordVM.SourceRectangle,
-                    comment: recordVM.Comment,
+                    title: recordVM.Title,
                     logicalDelete: recordVM.LogicalDelete));
             }
 

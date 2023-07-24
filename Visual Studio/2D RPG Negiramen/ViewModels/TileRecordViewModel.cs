@@ -31,7 +31,7 @@
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
                 WorkingRectangle = workingRect,
-                Comment = tileRecord.Comment,
+                Title = tileRecord.Title,
                 LogicalDelete = tileRecord.LogicalDelete,
             };
         }
@@ -44,7 +44,7 @@
             this.Id = Models.TileId.Empty;
             this.SourceRectangle = TheGeometric.RectangleInt.Empty;
             this.WorkingRectangle = TheGeometric.RectangleFloat.Empty;
-            this.Comment = Models.Comment.Empty;
+            this.Title = Models.TileTitle.Empty;
             this.LogicalDelete = Models.LogicalDelete.False;
         }
         #endregion
@@ -74,11 +74,11 @@
         internal TheGeometric.RectangleFloat WorkingRectangle { get; set; }
         #endregion
 
-        #region プロパティ（コメント）
+        #region プロパティ（タイトル）
         /// <summary>
-        ///     コメント
+        ///     タイトル
         /// </summary>
-        internal Models.Comment Comment { get; set; }
+        internal Models.TileTitle Title { get; set; }
         #endregion
 
         #region プロパティ（論理削除）
@@ -101,7 +101,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Id:{this.Id.AsBASE64}, SourceRect:{this.SourceRectangle.Dump()}, WorkingRect:{this.WorkingRectangle.Dump()}, Comment:{this.Comment.AsStr}, LogicalDelete: {this.LogicalDelete.AsInt}";
+            return $"Id:{this.Id.AsBASE64}, SourceRect:{this.SourceRectangle.Dump()}, WorkingRect:{this.WorkingRectangle.Dump()}, Title:{this.Title.AsStr}, LogicalDelete: {this.LogicalDelete.AsInt}";
         }
         #endregion
     }

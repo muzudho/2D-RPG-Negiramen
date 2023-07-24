@@ -579,7 +579,7 @@
             <!-- タイル名 -->
             <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                    Placeholder="草原"
-                   Text="{Binding SelectedTileCommentAsStr}"
+                   Text="{Binding SelectedTileTitleAsStr}"
                    BackgroundColor="FloralWhite"/>
 
             <!--    ◆５段目 ヒント部

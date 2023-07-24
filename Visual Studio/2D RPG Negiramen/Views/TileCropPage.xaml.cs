@@ -452,7 +452,7 @@ public partial class TileCropPage : ContentPage
                 id: context.SelectedTileId,
                 rect: RectangleInt.Empty,
                 workingRect: RectangleFloat.Empty,
-                comment: Models.Comment.Empty,
+                title: Models.TileTitle.Empty,
                 logicalDelete: Models.LogicalDelete.False);
         }
 
@@ -467,7 +467,7 @@ public partial class TileCropPage : ContentPage
 
             recordVM.SourceRectangle = context.SourceCroppedCursorRect;
             recordVM.WorkingRectangle = context.SourceCroppedCursorRect.Do(context.Zoom);
-            recordVM.Comment = new Models.Comment(context.SelectedTileCommentAsStr);
+            recordVM.Title = new Models.TileTitle(context.SelectedTileTitleAsStr);
             recordVM.LogicalDelete = Models.LogicalDelete.False;
         }
 
