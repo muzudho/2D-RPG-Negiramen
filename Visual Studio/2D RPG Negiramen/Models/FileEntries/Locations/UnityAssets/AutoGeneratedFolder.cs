@@ -236,6 +236,46 @@
         }
         #endregion
 
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/System` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/System` フォルダの場所
+        /// </summary>
+        internal SystemFolder SystemFolder
+        {
+            get
+            {
+                if (systemFolder == null)
+                {
+                    systemFolder = new SystemFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "System")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return systemFolder;
+            }
+        }
+        #endregion
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Texts` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Texts` フォルダの場所
+        /// </summary>
+        internal TextsFolder TextsFolder
+        {
+            get
+            {
+                if (textsFolder == null)
+                {
+                    textsFolder = new TextsFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Texts")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return textsFolder;
+            }
+        }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（存在するか？）
@@ -258,5 +298,7 @@
         ScriptsFolder? scriptsFolder;
         ScriptingObjectsFolder? scriptingObjectsFolder;
         SoundsFolder? soundsFolder;
+        SystemFolder? systemFolder;
+        TextsFolder? textsFolder;
     }
 }
