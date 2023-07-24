@@ -138,19 +138,19 @@
         ///         　　　　└─ 📂 For Unity Assets
         ///         　　　　　　└─ 📂 Images
         ///         👉 　　　　　　└─ 📂 Tilesets
-        ///         　　　　　　　　　　└─ 📄 adventure_field.png
+        ///         　　　　　　　　　　└─ 📄 86A25699-E391-4D61-85A5-356BA8049881.png
         ///     </pre>
         /// </summary>
         /// <param name="tilesetInfo"></param>
         /// <returns></returns>
         static bool CheckTilesetsFolder(DirectoryInfo tilesetInfo)
         {
-            // 📄 `adventure_field.png` が含まれていれば OK
+            // 📄 `86A25699-E391-4D61-85A5-356BA8049881.png` が含まれていれば OK
             FileInfo adventureFieldPngFileInfo = null;
 
             foreach (var fileInfo in tilesetInfo.EnumerateFiles())
             {
-                if (fileInfo.Name == "adventure_field.png")
+                if (fileInfo.Name == "86A25699-E391-4D61-85A5-356BA8049881.png")
                 {
                     adventureFieldPngFileInfo = fileInfo;
                     break;

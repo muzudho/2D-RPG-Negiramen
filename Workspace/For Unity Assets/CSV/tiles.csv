@@ -1,5 +1,5 @@
-code                  , file               ,  x,  y, width, height, comment
-adventure_field.grass , adventure_field.png,  0,  0,    32,     32, 草原
-adventure_field.desert, adventure_field.png, 32,  0,    32,     32, 砂漠
-adventure_field.rock  , adventure_field.png,  0, 32,    32,     32, 岩
-adventure_field.sea   , adventure_field.png, 32, 32,    32,     32, 海
+code                                       , file                                    ,  x,  y, width, height, comment
+86A25699-E391-4D61-85A5-356BA8049881.grass , 86A25699-E391-4D61-85A5-356BA8049881.png,  0,  0,    32,     32, 草原
+86A25699-E391-4D61-85A5-356BA8049881.desert, 86A25699-E391-4D61-85A5-356BA8049881.png, 32,  0,    32,     32, 砂漠
+86A25699-E391-4D61-85A5-356BA8049881.rock  , 86A25699-E391-4D61-85A5-356BA8049881.png,  0, 32,    32,     32, 岩
+86A25699-E391-4D61-85A5-356BA8049881.sea   , 86A25699-E391-4D61-85A5-356BA8049881.png, 32, 32,    32,     32, 海

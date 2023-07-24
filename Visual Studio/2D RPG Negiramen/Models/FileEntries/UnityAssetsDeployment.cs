@@ -147,27 +147,8 @@
             // 📂 `Tileset` フォルダ
             imagesFolder.TilesetsFolder.CreateThisDirectoryIfItDoesNotExist();
 
-            CopyTileset(imagesFolder.TilesetsFolder, "adventure_field.png");
-            CopyTileset(imagesFolder.TilesetsFolder, "map-tileset-format-8x19.png");
-
-            //var configuration = App.GetOrLoadConfiguration();
-            //var source = Path.Combine(configuration.NegiramenWorkspaceFolderPath.AsStr, "Assets", "Images", "Tilesets", "adventure_field.png");
-            //var destination = Path.Combine(
-            //        configuration.UnityAssetsFolderPath.AsStr,
-            //        configuration.YourCircleName.AsStr,
-            //        configuration.YourWorkName.AsStr,
-            //        "Auto Generated",
-            //        "Images",
-            //        "Tilesets",
-            //        "adventure_field.png");
-
-            //if (!File.Exists(destination))
-            //{
-            //    // 📄 `Tileset` ファイルを複写
-            //    File.Copy(
-            //        sourceFileName: source,
-            //        destFileName: destination);
-            //}
+            CopyTileset(imagesFolder.TilesetsFolder, "86A25699-E391-4D61-85A5-356BA8049881.png");
+            CopyTileset(imagesFolder.TilesetsFolder, "E7911DAD-15AC-44F4-A95D-74AB940A19FB.png");
         }
 
         /// <summary>

@@ -829,4 +829,22 @@ ItemsLayout="VerticalGrid, 2"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　画像サイズの変更もでけた」  
 
+## ファイル名は UUID にするか？
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　インターネット上の　すべてのタイルセット画像のファイル名が　被らないようにする対策は　してんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ガチでやるなら　ファイル名は　UUID　にするか」  
+
+![202307_maui_24-2255--rename-file.png](https://crieit.now.sh/upload_images/9af9cb3296d4a38852c53bbd8597ad9764be83071f786.png)  
+
+```plaintext
+"adventure_field" ----> "86A25699-E391-4D61-85A5-356BA8049881"
+"map-tileset-format-8x19.png" ----> "E7911DAD-15AC-44F4-A95D-74AB940A19FB"
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こういう名称変更をするぜ」  
+
 ＜書きかけ＞
