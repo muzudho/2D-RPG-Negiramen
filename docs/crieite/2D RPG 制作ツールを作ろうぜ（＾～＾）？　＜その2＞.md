@@ -819,4 +819,14 @@ ItemsLayout="VerticalGrid, 2"
 「　👆　ファイルのコピーは　できたが、  
 サイズを調整したいぜ。 MAUI ではできないから、 SkiaSharp でやるかな」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　SkiaSharp で作ったビットマップを保存する方法が分からん」  
+
+📖 [Using SkiaSharp, how to save a SKBitmap ?](https://social.msdn.microsoft.com/Forums/en-US/25fe8438-8afb-4acf-9d68-09acc6846918/using-skiasharp-how-to-save-a-skbitmap-?forum=xamarinforms)  
+
+![202307_maui_24-2247--resizeImage-o2o0.png](https://crieit.now.sh/upload_images/ff256391313ce4fab6a33da994ee7aae64be812c99e39.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　画像サイズの変更もでけた」  
+
 ＜書きかけ＞

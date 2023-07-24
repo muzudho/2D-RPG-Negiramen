@@ -2,10 +2,9 @@
 
 using _2D_RPG_Negiramen.Models.FileEntries;
 using _2D_RPG_Negiramen.ViewModels;
-using Microsoft.Maui.Graphics.Win2D;
+using SkiaSharp;
 using System.Diagnostics;
 using System.Threading.Tasks;
-using TheGraphics = Microsoft.Maui.Graphics;
 
 /// <summary>
 ///     😁 タイルセット一覧ページ
@@ -68,41 +67,65 @@ public partial class TilesetListPage : ContentPage
             //
             // TODO 画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーしたい
             //
-            var task = Task.Run(() =>
+            var task = Task.Run(async () =>
             {
                 try
                 {
+                    // 出力先ディレクトリーが無ければ作成する
+                    var outputFolder = App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.TilesetFolder.ImagesTilesetsThumbnailsFolder;
+                    outputFolder.CreateThisDirectoryIfItDoesNotExist();
+
                     // タイルセット画像読込
                     using (Stream inputFileStream = System.IO.File.OpenRead(pathAsStr))
                     {
-#if IOS || ANDROID || MACCATALYST
-                        // PlatformImage isn't currently supported on Windows.
-                    
-                        TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
-#elif WINDOWS
-                        TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
-#endif
-
-                        //
-                        // 作業中のタイルセット画像の保存
-                        //
-                        if (image != null)
+                        // ↓ １つのストリームが使えるのは、１回切り
+                        using (MemoryStream memStream = new MemoryStream())
                         {
+                            await inputFileStream.CopyToAsync(memStream);
+                            memStream.Seek(0, SeekOrigin.Begin);
+
+                            // 元画像
+                            var bitmap = SkiaSharp.SKBitmap.Decode(memStream);
                             
+                            int width = bitmap.Width;
+                            int height = bitmap.Height;
+                            int longLength = Math.Max(width, height);
+                            int shortLength = Math.Min(width, height);
+                            // 長い方が 128 より大きければ縮める
+                            if (128 < longLength)
+                            {
+                                float rate = (float)longLength / 128.0f;
+                                width = (int)(width / rate);
+                                height = (int)(height / rate);
+                            }
 
-                            // ディレクトリーが無ければ作成する
-                            var folder = App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.TilesetFolder.ImagesTilesetsThumbnailsFolder;
-                            folder.CreateThisDirectoryIfItDoesNotExist();
+                            // 作業画像のリサイズ
+                            bitmap = bitmap.Resize(
+                                size: new SKSizeI(
+                                    width: width,
+                                    height: height),
+                                quality: SKFilterQuality.Medium);
 
+                            //
                             // 書出先（ウィンドウズ・ローカルＰＣ）
+                            //
+                            // 📖 [Using SkiaSharp, how to save a SKBitmap ?](https://social.msdn.microsoft.com/Forums/en-US/25fe8438-8afb-4acf-9d68-09acc6846918/using-skiasharp-how-to-save-a-skbitmap-?forum=xamarinforms)  
+                            //
                             var fileStem = System.IO.Path.GetFileNameWithoutExtension(pathAsStr);
                             using (Stream outputFileStream = System.IO.File.Open(
-                                path: folder.CreateTilesetThumbnailPng(fileStem).Path.AsStr,
+                                path: outputFolder.CreateTilesetThumbnailPng(fileStem).Path.AsStr,
                                 mode: FileMode.OpenOrCreate))
                             {
-                                image.Save(outputFileStream);
+                                // 画像にする
+                                SKImage skImage = SkiaSharp.SKImage.FromBitmap(bitmap);
+
+                                // PNG画像にする
+                                SKData pngImage = skImage.Encode(SKEncodedImageFormat.Png, 100);
+
+                                // 出力
+                                pngImage.SaveTo(outputFileStream);
                             }
-                        }
+                        };
                     }
                 }
                 catch (Exception ex)
