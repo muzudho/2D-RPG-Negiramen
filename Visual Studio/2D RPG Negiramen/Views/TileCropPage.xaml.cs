@@ -193,9 +193,6 @@ public partial class TileCropPage : ContentPage
 #elif WINDOWS
                     TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
 #endif
-                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: {image.GetType().FullName}");
-                    // [TileCropPage.xaml.cs ContentPage_Loaded] image.GetType().FullName: Microsoft.Maui.Graphics.Win2D.W2DImage
-                    // W2DImage にはアクセスできない保護レベル
 
                     //
                     // 作業中のタイルセット画像の保存
@@ -203,10 +200,11 @@ public partial class TileCropPage : ContentPage
                     if (image != null)
                     {
                         // ディレクトリーが無ければ作成する
-                        App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.CreateThisDirectoryIfItDoesNotExist();
+                        var folder = App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder;
+                        folder.CreateThisDirectoryIfItDoesNotExist();
 
                         // 書出先（ウィンドウズ・ローカルＰＣ）
-                        using (Stream outputFileStream = System.IO.File.Open(App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr, FileMode.OpenOrCreate))
+                        using (Stream outputFileStream = System.IO.File.Open(folder.WorkingTilesetPng.Path.AsStr, FileMode.OpenOrCreate))
                         {
                             image.Save(outputFileStream);
                         }

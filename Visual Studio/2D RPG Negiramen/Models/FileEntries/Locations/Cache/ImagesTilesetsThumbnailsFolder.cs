@@ -3,6 +3,7 @@
     using _2D_RPG_Negiramen;
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
     ///     😁 OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tilesets/Thumbnails` フォルダの場所
@@ -34,6 +35,22 @@
         internal ImagesTilesetsThumbnailsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
+        }
+        #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tilesets/Thumbnails/{名前}.png` ファイルの場所）
+        /// <summary>
+        ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tilesets/Thumbnails/{名前}.png` ファイルの場所
+        /// </summary>
+        internal ImagesTilesetsThumbnailsPng CreateTilesetThumbnailPng(string fileStem)
+        {
+            return new ImagesTilesetsThumbnailsPng(
+                pathSource: FileEntryPathSource.FromString(
+                    System.IO.Path.Combine(Path.AsStr, $"{fileStem}.png")),
+                convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                            replaceSeparators: true));
         }
         #endregion
     }
