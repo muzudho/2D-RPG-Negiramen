@@ -156,6 +156,86 @@
         }
         #endregion
 
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Scenes` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Scenes` フォルダの場所
+        /// </summary>
+        internal ScenesFolder ScenesFolder
+        {
+            get
+            {
+                if (scenesFolder == null)
+                {
+                    scenesFolder = new ScenesFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Scenes")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return scenesFolder;
+            }
+        }
+        #endregion
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Scripts` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Scripts` フォルダの場所
+        /// </summary>
+        internal ScriptsFolder ScriptsFolder
+        {
+            get
+            {
+                if (scriptsFolder == null)
+                {
+                    scriptsFolder = new ScriptsFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Scripts")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return scriptsFolder;
+            }
+        }
+        #endregion
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Scripting Objects` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Scripting Objects` フォルダの場所
+        /// </summary>
+        internal ScriptingObjectsFolder ScriptingObjectsFolder
+        {
+            get
+            {
+                if (scriptingObjectsFolder == null)
+                {
+                    scriptingObjectsFolder = new ScriptingObjectsFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Scripting Objects")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return scriptingObjectsFolder;
+            }
+        }
+        #endregion
+
+        #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Sounds` フォルダの場所）
+        /// <summary>
+        ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Sounds` フォルダの場所
+        /// </summary>
+        internal SoundsFolder SoundsFolder
+        {
+            get
+            {
+                if (soundsFolder == null)
+                {
+                    soundsFolder = new SoundsFolder(
+                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Sounds")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                }
+
+                return soundsFolder;
+            }
+        }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（存在するか？）
@@ -174,5 +254,9 @@
         MaterialsFolder? materialsFolder;
         MoviesFolder? moviesFolder;
         PrefabsFolder? prefabsFolder;
+        ScenesFolder? scenesFolder;
+        ScriptsFolder? scriptsFolder;
+        ScriptingObjectsFolder? scriptingObjectsFolder;
+        SoundsFolder? soundsFolder;
     }
 }
