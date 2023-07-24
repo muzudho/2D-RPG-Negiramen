@@ -36,5 +36,33 @@
         {
         }
         #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tileset` フォルダの場所）
+        /// <summary>
+        ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tilesets` フォルダの場所
+        /// </summary>
+        internal ImagesTilesetsThumbnailsFolder ImagesTilesetsThumbnailsFolder
+        {
+            get
+            {
+                if (imagesTilesetsThumbnailsFolder == null)
+                {
+                    imagesTilesetsThumbnailsFolder = new ImagesTilesetsThumbnailsFolder(
+                        pathSource: FileEntryPathSource.FromString(
+                            System.IO.Path.Combine(Path.AsStr, "Thumbnails")),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
+                }
+
+                return imagesTilesetsThumbnailsFolder;
+            }
+        }
+        #endregion
+
+        // - プライベート・フィールド
+
+        ImagesTilesetsThumbnailsFolder? imagesTilesetsThumbnailsFolder;
     }
 }
