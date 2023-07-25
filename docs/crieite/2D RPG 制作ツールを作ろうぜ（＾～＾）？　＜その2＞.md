@@ -874,4 +874,66 @@ ItemsLayout="VerticalGrid, 2"
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　やったわね！」  
 
+# 📅 （2023-07-24 mon）UUIDを勝手に付けてくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　UUID って、どうやって生成するんだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　勝手にファイル名を　UUID　に置き換えてほしいよな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　C# は GUID という名前になってて、UUID とは別物らしいわよ？」
+
+📖 [How can I generate UUID in C#](https://stackoverflow.com/questions/8477664/how-can-i-generate-uuid-in-c-sharp)  
+
+```csharp
+String UUID = Guid.NewGuid().ToString();
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これで作れるらしい。試してみようぜ」  
+
+```plaintext
+be6c25e9-2bca-40ba-84b4-b9f24bef6df3
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　小文字かあ。大文字にしてやるかな」  
+
+```plaintext
+95DE5BEE-A51E-41D1-B068-C6F436603AD4
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　いいんじゃないか？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　📂 `Tilesets` フォルダーの下に 📄 `{名前}.png` 画像を放り込んでおけば、  
+名前が UUID じゃないとき　UUID にしてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そんなことしていいのかな……」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　対応する TOML ファイルも勝手に作ってくれたら便利じゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画像ファイルを　コピー貼り付けしたら、勝手に　UUID　振られる　地獄のフォルダーになるぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　地獄のフォルダーなのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ユーザーの知らない所で　元ファイルを変更すると　ユーザーのストレスになるケースもあるから、  
+`タイルセット一覧画面`　で　『ファイルを変更しますか？』　か何かのメッセージを出してもいいかもしらん」  
+
+![202307_maui_25-1933--test-images.png](https://crieit.now.sh/upload_images/da1e1c01c723bb12da77084e602dc1ea64bfa5389a946.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　うそ画像を　水増しして　`Tilesets`　フォルダーに放り込もう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ひどい……」  
+
 ＜書きかけ＞
