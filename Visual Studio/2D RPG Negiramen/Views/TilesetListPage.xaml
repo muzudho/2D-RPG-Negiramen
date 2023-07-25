@@ -66,35 +66,42 @@
                FontAttributes="Bold"
                HorizontalOptions="Center" />
 
+        <!--
+            ItemsLayout="VerticalGrid, 2"
+            
+        -->
         <CollectionView ItemsSource="{Binding TilesetRecordVMCollection}"
-                        ItemsLayout="VerticalGrid, 2">
+                        ItemsLayout="HorizontalList">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid Padding="10">
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="35" />
-                            <RowDefinition Height="35" />
-                        </Grid.RowDefinitions>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="70" />
-                            <ColumnDefinition Width="80" />
-                        </Grid.ColumnDefinitions>
-                        <Image Grid.RowSpan="2" 
+                    
+                    
+                    <Grid RowDefinitions="*,*">
+                        
+                        <!-- １段目　サムネイル画像 -->
+                        <Image Grid.Row="0" 
                                Aspect="AspectFill"
                                WidthRequest="{Binding ThumbnailWidthAsInt}"
                                HeightRequest="{Binding ThumbnailHeightAsInt}" 
                                Source="{Binding ThumbnailFilePathAsStr}" />
-                        <Label Grid.Column="1" 
-                               LineBreakMode="TailTruncation"
-                               Text="{Binding NameAsStr}" 
-                               FontAttributes="Bold"/>
-                        <Label Grid.Row="1" Grid.Column="1" 
-                               VerticalOptions="End"
+
+                        <!-- ２段目　UUID
+                        <Label Grid.Row="1"
                                LineBreakMode="TailTruncation"
                                Text="{Binding UuidAsStr}"
                                FontAttributes="Italic"/>
+                         -->
+
+                        <!-- ２段目　タイトル -->
+                        <Label Grid.Row="1" 
+                               HorizontalOptions="Center"
+                               LineBreakMode="TailTruncation"
+                               Text="{Binding TitleAsStr}" 
+                               FontAttributes="Bold"/>
                     </Grid>
                 </DataTemplate>
+                
+                
             </CollectionView.ItemTemplate>
         </CollectionView>
 

@@ -936,4 +936,41 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　ひどい……」  
 
+![202307_maui_25-1950--collection-view.png](https://crieit.now.sh/upload_images/f7e9eb5b595c479375a8727cd8e7359464bfa9327aebe.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな風に出てくるのか、嬉しくないな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　もっと　詰めて表示しなきゃ　サムネイル画像を小さくした意味がなくない？」  
+
+![202307_maui_25-2023--horizontal.png](https://crieit.now.sh/upload_images/3021e00f8b005c21cc9bca7efc98e10b64bfb0dd3563e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`ItemsLayout` 属性を `HorizontalList` にすると　１段になってしまうんだな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　UUID が横に長い！」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ファイル名が画像に被ってない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　UUID は３行に折り曲げたろかな？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　UUID なんか表示しなくてよくない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そういう考えもあるか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　Collection View には　Flex Layout　が無いらしいぜ」  
+
+📖 [[Enhancement] WrapLayout support in the CollectionView #1808](https://github.com/dotnet/maui/issues/1808)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　どうすんだぜ？」  
+
+
 ＜書きかけ＞
