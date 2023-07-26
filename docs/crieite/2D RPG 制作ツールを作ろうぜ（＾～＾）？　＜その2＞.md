@@ -874,7 +874,7 @@ ItemsLayout="VerticalGrid, 2"
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　やったわね！」  
 
-# 📅 （2023-07-24 mon）UUIDを勝手に付けてくれだぜ
+# 📅 （2023-07-25 tue）UUIDを勝手に付けてくれだぜ
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　UUID って、どうやって生成するんだぜ？」  
@@ -971,6 +971,58 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　じゃあ　どうすんだぜ？」  
+
+# 📅 （2023-07-26 wed）妥協しようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI のパターンから外れると　つらそうなので　妥協しようぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　と思ったが `HorizontalGrid, 2` が機能しない。なぜだかは分からない」  
+
+![202307_maui_26-1943--VerticalGrid10.png](https://crieit.now.sh/upload_images/9a32e21052cf480d5ef2c147a0ffa41564c0f90c52172.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`VerticalGrid, 10` 。　静止画だと　できているように見えるが、  
+ウィンドウを広げても　ずっと　１０列」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ウィンドウを広げるという概念は、 MAUI が大好きな Android アプリには無いのでは？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI は　デスクトップ・アプリ向けではないのよ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　どうすんだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　妥協しようと思ったが　その妥協ラインでもダメだった　手詰まりだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　他のビューを調べろだぜ」  
+
+![202307_maui_26-2010--ListView.png](https://crieit.now.sh/upload_images/36add7dccbed490ab173526743000fee64c0ff332850b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　リスト・ビューは　縦長で、なんか選べそうな色が付いてるな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面全体を使って　サムネイルを並べる　フラットなレイアウトは無いの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ＭＡＵＩには無いぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　CollectionView　の　`VerticalGrid`　というのは　縦長のスマホで何列にするか　という意味なのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　それでも　`HorizontalGrid`　が機能しない理由が分からない」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　縦でも　横でもなく　ウィンドウ・サイズの面積を　最大限に使ってほしいのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ＭＡＵＩは　デスクトップ・アプリ向けではないんで」  
 
 
 ＜書きかけ＞

@@ -61,53 +61,61 @@
     </Shell.TitleView>
 
     <VerticalStackLayout Margin="20">
-        <Label Text="CollectionView"
-               FontSize="50"
-               FontAttributes="Bold"
-               HorizontalOptions="Center" />
 
         <!--
-            ItemsLayout="VerticalGrid, 2"
-            
+                        ok
+                        ItemsLayout="VerticalGrid, 2"
+                        ItemsLayout="VerticalGrid, 4"
+                        ItemsLayout="VerticalList"
+                        ItemsLayout="HorizontalList"
+
+                        is not work
+                        ItemsLayout="HorizontalGrid, 2"
+                        ItemsLayout="HorizontalGrid, 4"
+
+                        １段目　サムネイル画像
+                        ２段目　タイトル
+                         LineBreakMode="TailTruncation"
         -->
+        <!--
         <CollectionView ItemsSource="{Binding TilesetRecordVMCollection}"
-                        ItemsLayout="HorizontalList">
+                        ItemsLayout="VerticalGrid, 10">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    
-                    
                     <Grid RowDefinitions="*,*">
-                        
-                        <!-- １段目　サムネイル画像 -->
                         <Image Grid.Row="0" 
-                               Aspect="AspectFill"
-                               WidthRequest="{Binding ThumbnailWidthAsInt}"
-                               HeightRequest="{Binding ThumbnailHeightAsInt}" 
-                               Source="{Binding ThumbnailFilePathAsStr}" />
-
-                        <!-- ２段目　UUID
-                        <Label Grid.Row="1"
-                               LineBreakMode="TailTruncation"
-                               Text="{Binding UuidAsStr}"
-                               FontAttributes="Italic"/>
-                         -->
-
-                        <!-- ２段目　タイトル -->
+                                Aspect="AspectFill"
+                                WidthRequest="{Binding ThumbnailWidthAsInt}"
+                                HeightRequest="{Binding ThumbnailHeightAsInt}" 
+                                Source="{Binding ThumbnailFilePathAsStr}"/>
                         <Label Grid.Row="1" 
-                               HorizontalOptions="Center"
-                               LineBreakMode="TailTruncation"
-                               Text="{Binding TitleAsStr}" 
-                               FontAttributes="Bold"/>
-                    </Grid>
+                                HorizontalOptions="Center"
+                                Text="{Binding TitleAsStr}" 
+                                FontAttributes="Bold"/>
+                    </Grid>                        
                 </DataTemplate>
-                
-                
             </CollectionView.ItemTemplate>
         </CollectionView>
+        -->
 
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <ListView ItemsSource="{Binding TilesetRecordVMCollection}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Grid RowDefinitions="*,*">
+                            <Image Grid.Row="0" 
+                                   Aspect="AspectFill"
+                                   WidthRequest="{Binding ThumbnailWidthAsInt}"
+                                   HeightRequest="{Binding ThumbnailHeightAsInt}" 
+                                   Source="{Binding ThumbnailFilePathAsStr}"/>
+                            <Label Grid.Row="1" 
+                                   HorizontalOptions="Center"
+                                   Text="{Binding TitleAsStr}" 
+                                   FontAttributes="Bold"/>
+                        </Grid>
+                    </ViewCell>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
     </VerticalStackLayout>
 </ContentPage>
