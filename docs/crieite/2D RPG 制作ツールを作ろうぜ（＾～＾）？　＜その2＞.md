@@ -1024,6 +1024,8 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　ＭＡＵＩは　デスクトップ・アプリ向けではないんで」  
 
+## コレクション・ビューで進めようぜ？
+
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　じゃあ　`VerticalGrid, 4`　で進めようぜ？」  
 
@@ -1036,5 +1038,31 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 「　👇　これを読めだぜ」  
 
 📖 [Single selection](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/collectionview/selection#single-selection)
+
+![202307_maui_26-2037--SingleSelection.png](https://crieit.now.sh/upload_images/cf10124aee4908f3b5f53ceb875b013c64c105b3d8fab.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんなＵＩが良いとは思わないが　これで我慢するかだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画像が切れてるわよ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　どうして　こんなに　欠陥だらけなのか……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　左上のタイルのサイズに　引きずられているのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そんなん困るぜ」  
+
+![202307_maui_26-2047--SizeRequest.png](https://crieit.now.sh/upload_images/44f7d7d9ab45573bb51cee29c320fd2464c107f4013e0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　固定サイズにするしかないか～」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ユーザーが　ウィンドウサイズを変更するたび、  
+列数を変えることはできないの？」  
 
 ＜書きかけ＞

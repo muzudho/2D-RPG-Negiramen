@@ -78,42 +78,26 @@
                          LineBreakMode="TailTruncation"
         -->
         <CollectionView ItemsSource="{Binding TilesetRecordVMCollection}"
-                        ItemsLayout="VerticalGrid, 4">
+                        ItemsLayout="VerticalGrid, 4"
+                        SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <VerticalStackLayout>
-                        <Image Aspect="AspectFill"
+                    <Grid RowDefinitions="128,20"
+                          WidthRequest="128"
+                          HeightRequest="148">
+                        <Image Grid.Row="0"
+                               Aspect="AspectFill"
                                WidthRequest="{Binding ThumbnailWidthAsInt}"
                                HeightRequest="{Binding ThumbnailHeightAsInt}" 
                                Source="{Binding ThumbnailFilePathAsStr}"/>
-                        <Label HorizontalOptions="Center"
+                        <Label Grid.Row="1"
+                               HorizontalOptions="Center"
                                Text="{Binding TitleAsStr}" 
                                FontAttributes="Bold"/>
-                    </VerticalStackLayout>
+                    </Grid>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <!--
-        <ListView ItemsSource="{Binding TilesetRecordVMCollection}">
-            <ListView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Grid RowDefinitions="*,*">
-                            <Image Grid.Row="0" 
-                                   Aspect="AspectFill"
-                                   WidthRequest="{Binding ThumbnailWidthAsInt}"
-                                   HeightRequest="{Binding ThumbnailHeightAsInt}" 
-                                   Source="{Binding ThumbnailFilePathAsStr}"/>
-                            <Label Grid.Row="1" 
-                                   HorizontalOptions="Center"
-                                   Text="{Binding TitleAsStr}" 
-                                   FontAttributes="Bold"/>
-                        </Grid>
-                    </ViewCell>
-                </DataTemplate>
-            </ListView.ItemTemplate>
-        </ListView>
-        -->
     </VerticalStackLayout>
 </ContentPage>
