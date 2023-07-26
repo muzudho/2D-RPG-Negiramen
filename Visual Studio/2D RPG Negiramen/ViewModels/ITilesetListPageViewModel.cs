@@ -5,6 +5,15 @@
 /// </summary>
 public interface ITilesetListPageViewModel
 {
+    // - プロパティ
+
+    #region プロパティ（CollectionView の ItemsLayout プロパティ）
+    /// <summary>
+    ///     CollectionView の ItemsLayout プロパティ
+    /// </summary>
+    GridItemsLayout ItemsLayout { get; set; }
+    #endregion
+
     // - メソッド
 
     #region メソッド（ロケール変更による再描画）

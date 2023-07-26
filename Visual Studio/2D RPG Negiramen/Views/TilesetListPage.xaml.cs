@@ -237,4 +237,23 @@ public partial class TilesetListPage : ContentPage
         context.InvalidateLocale();
     }
     #endregion
+
+    private void ContentPage_SizeChanged(object sender, EventArgs e)
+    {
+        ITilesetListPageViewModel context = (ITilesetListPageViewModel)this.BindingContext;
+
+        TilesetListPage page = (TilesetListPage)sender;
+
+
+        // セル・サイズ（固定幅）
+        double cellWidth = 128.0f;
+        // double cellHeight = 148.0f;
+
+        int cellColumns = (int)(page.Width / cellWidth);
+        // int cellRows = (int)(page.Height / cellHeight);
+
+        Trace.WriteLine($"コンテント・ページ・サイズ変更 sender: {sender.GetType().FullName} cellColumns: {cellColumns}, Width: {page.Width}, Height: {page.Height}, WidthRequest: {page.WidthRequest}, HeightRequest: {page.HeightRequest}");
+
+        this.TilesetListPageVM.ItemsLayout = new GridItemsLayout(cellColumns, ItemsLayoutOrientation.Vertical);
+    }
 }

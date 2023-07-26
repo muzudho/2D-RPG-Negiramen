@@ -5,7 +5,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.TilesetListPage"
              Title="TilesetListPage"
-             Loaded="ContentPage_Loaded">
+             Loaded="ContentPage_Loaded"
+             SizeChanged="ContentPage_SizeChanged">
 
     <!-- 束縛しているビューモデル -->
     <ContentPage.BindingContext>
@@ -78,7 +79,7 @@
                          LineBreakMode="TailTruncation"
         -->
         <CollectionView ItemsSource="{Binding TilesetRecordVMCollection}"
-                        ItemsLayout="VerticalGrid, 4"
+                        ItemsLayout="{Binding ItemsLayout}"
                         SelectionMode="Single">
             <CollectionView.ItemTemplate>
                 <DataTemplate>

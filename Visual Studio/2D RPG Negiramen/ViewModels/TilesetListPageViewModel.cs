@@ -20,6 +20,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     public TilesetListPageViewModel()
     {
         this.TilesetRecordVMQueue = new ConcurrentQueue<TilesetRecordViewModel>();
+        this.itemsLayout = new GridItemsLayout(4, ItemsLayoutOrientation.Vertical);
     }
     #endregion
 
@@ -60,6 +61,24 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
     #endregion
 
+    #region プロパティ（CollectionView の ItemsLayout プロパティ）
+    /// <summary>
+    ///     CollectionView の ItemsLayout プロパティ
+    /// </summary>
+    public GridItemsLayout ItemsLayout
+    {
+        get => this.itemsLayout;
+        set
+        {
+            if (this.itemsLayout == value)
+                return;
+
+            this.itemsLayout = value;
+            OnPropertyChanged(nameof(ItemsLayout));
+        }
+    }
+    #endregion
+
     // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）
@@ -76,6 +95,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     }
     #endregion
 
+    #region メソッド（タイルセット・レコード・ビューモデル追加）
     /// <summary>
     ///     タイルセット・レコード・ビューモデル追加
     /// </summary>
@@ -85,6 +105,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
         this.TilesetRecordVMQueue.Enqueue(element);
         OnPropertyChanged(nameof(TilesetRecordVMCollection));
     }
+    #endregion
 
     // - プライベート・プロパティ
 
@@ -94,4 +115,6 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// </summary>
     ConcurrentQueue<TilesetRecordViewModel> TilesetRecordVMQueue { get; set; } = new ConcurrentQueue<TilesetRecordViewModel>();
     #endregion
+
+    GridItemsLayout itemsLayout;
 }
