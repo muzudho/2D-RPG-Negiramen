@@ -77,27 +77,24 @@
                         ２段目　タイトル
                          LineBreakMode="TailTruncation"
         -->
-        <!--
         <CollectionView ItemsSource="{Binding TilesetRecordVMCollection}"
-                        ItemsLayout="VerticalGrid, 10">
+                        ItemsLayout="VerticalGrid, 4">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
-                    <Grid RowDefinitions="*,*">
-                        <Image Grid.Row="0" 
-                                Aspect="AspectFill"
-                                WidthRequest="{Binding ThumbnailWidthAsInt}"
-                                HeightRequest="{Binding ThumbnailHeightAsInt}" 
-                                Source="{Binding ThumbnailFilePathAsStr}"/>
-                        <Label Grid.Row="1" 
-                                HorizontalOptions="Center"
-                                Text="{Binding TitleAsStr}" 
-                                FontAttributes="Bold"/>
-                    </Grid>                        
+                    <VerticalStackLayout>
+                        <Image Aspect="AspectFill"
+                               WidthRequest="{Binding ThumbnailWidthAsInt}"
+                               HeightRequest="{Binding ThumbnailHeightAsInt}" 
+                               Source="{Binding ThumbnailFilePathAsStr}"/>
+                        <Label HorizontalOptions="Center"
+                               Text="{Binding TitleAsStr}" 
+                               FontAttributes="Bold"/>
+                    </VerticalStackLayout>
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        -->
 
+        <!--
         <ListView ItemsSource="{Binding TilesetRecordVMCollection}">
             <ListView.ItemTemplate>
                 <DataTemplate>
@@ -117,5 +114,6 @@
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
+        -->
     </VerticalStackLayout>
 </ContentPage>

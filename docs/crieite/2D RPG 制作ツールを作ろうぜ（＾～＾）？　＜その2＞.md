@@ -1024,5 +1024,17 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　ＭＡＵＩは　デスクトップ・アプリ向けではないんで」  
 
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　`VerticalGrid, 4`　で進めようぜ？」  
+
+![202307_maui_26-2026--CollectionView.png](https://crieit.now.sh/upload_images/1216f2fc9f413736c9f000f237976d2e64c10303e17ad.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コレクション・ビューは　初期状態では　項目の選択はできないみたいだな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　これを読めだぜ」  
+
+📖 [Single selection](https://learn.microsoft.com/en-us/dotnet/maui/user-interface/controls/collectionview/selection#single-selection)
 
 ＜書きかけ＞
