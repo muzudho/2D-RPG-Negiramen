@@ -1215,6 +1215,17 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 「　クリックして　すぐ画面遷移すると　タイルセットのデータを見れないんで、  
 タイルセットを選んだあと　ボタンを押してから画面遷移するようにするぜ」  
 
+![202307_maui_27-2227--tileset-data.png](https://crieit.now.sh/upload_images/46ff2a320ad0afc030b083b8af0cca5e64c270e5aefa8.png)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイル名を　UUID　に変えてもらいたいんだが、  
+ユーザーに　どう説明して  
+ファイル名を　UUID　に強制的に変えさすかな？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　『ファイル名をＵＵＩＤに変更する（言うことを聞け）』ボタンを置けだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ＵＵＩＤになってるか、そうでないか　判定する方法が欲しいな」  
 
 ＜書きかけ＞

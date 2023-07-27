@@ -309,7 +309,7 @@ public partial class TilesetListPage : ContentPage
         //Trace.WriteLine($"コレクション・ビュー・サイズ変更 sender: {sender.GetType().FullName}, cellColumns: {cellColumns}, Width: {view.Width}, Height: {view.Height} layout.Span: {layout.Span}");
     }
 
-    async void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         CollectionView view = (CollectionView)sender;
 
@@ -317,7 +317,15 @@ public partial class TilesetListPage : ContentPage
         // [TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] e.CurrentSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
 
         TilesetRecordViewModel record = (TilesetRecordViewModel)view.SelectedItem;
+    }
 
+    /// <summary>
+    ///     ［タイル切抜き］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    async void TileCropButton_Clicked(object sender, EventArgs e)
+    {
         var shellNavigationState = new ShellNavigationState("//TileCropPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
@@ -350,15 +358,5 @@ public partial class TilesetListPage : ContentPage
                 await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
-    }
-
-    /// <summary>
-    ///     ［タイル切抜き］ボタン・クリック時
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    private void TileCropButton_Clicked(object sender, EventArgs e)
-    {
-
     }
 }
