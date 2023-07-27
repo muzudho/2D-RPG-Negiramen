@@ -1235,5 +1235,28 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 
 📖 [UUIDをヒットさせる正規表現](https://qiita.com/miriwo/items/8ea80aebd113edafebb0)  
 
+![202307_maui_27-2328--tileset-list.png](https://crieit.now.sh/upload_images/2d13132c1911bbcb37e358de36922d6a64c27f23f34c0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　画面レイアウトは　こんな感じだとしようぜ？」  
+
+## タイルセット・タイトルは　ローカライズすんの？
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　タイルセット・タイトルは　ローカライズすんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　１つのタイルセットに　２００か国分の添付ファイルが付いてくるのとか　嫌だな……」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　添付の TOML の中にロケールを詰め込んだらどうだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　１つのファイルに　複数のロケールが入っているのは  
+**使わないものが必ず付いてくる**　という　効率が最悪のケースになるかも知らん。  
+ロケールのフォルダーを作って　そこに `.toml` ファイルを置いた方がマシか……？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　丁寧にいくなら　それねえ」  
 
 ＜書きかけ＞

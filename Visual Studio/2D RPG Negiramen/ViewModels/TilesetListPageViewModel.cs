@@ -80,6 +80,24 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     }
     #endregion
 
+    #region 変更通知プロパティ（［タイル切抜き］ボタンの活性性）
+    /// <summary>
+    ///     ［タイル切抜き］ボタンの活性性
+    /// </summary>
+    public bool IsEnabledTileCropButton
+    {
+        get => this.isEnabledTileCropButton;
+        set
+        {
+            if (this.isEnabledTileCropButton == value)
+                return;
+
+            this.isEnabledTileCropButton = value;
+            OnPropertyChanged(nameof(IsEnabledTileCropButton));
+        }
+    }
+    #endregion
+
     #region 変更通知プロパティ（［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性）
     /// <summary>
     ///     ［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性
@@ -173,6 +191,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
     GridItemsLayout itemsLayout;
 
+    bool isEnabledTileCropButton;
     bool isEnabledRenameFileNameToUUIDButton;
 
     string selectedFileStem;

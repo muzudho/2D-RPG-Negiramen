@@ -127,6 +127,7 @@
                     WidthRequest="100"
                     HeightRequest="20"
                     Text="タイル切抜き"
+                    IsEnabled="{Binding IsEnabledTileCropButton}"
                     Clicked="TileCropButton_Clicked"/>
 
             <!--    選択ファイル・ステム。 UUID形式

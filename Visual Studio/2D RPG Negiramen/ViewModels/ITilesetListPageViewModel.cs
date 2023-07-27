@@ -14,6 +14,13 @@ public interface ITilesetListPageViewModel
     GridItemsLayout ItemsLayout { get; set; }
     #endregion
 
+    #region 変更通知プロパティ（［タイル切抜き］ボタンの活性性）
+    /// <summary>
+    ///     ［タイル切抜き］ボタンの活性性
+    /// </summary>
+    bool IsEnabledTileCropButton { get; set; }
+    #endregion
+
     #region プロパティ（［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性）
     /// <summary>
     ///     ［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性

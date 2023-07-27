@@ -326,11 +326,13 @@ public partial class TilesetListPage : ContentPage
         if (UUIDHelper.IsMatch(context.SelectedFileStem))
         {
             // UUID だ
+            context.IsEnabledTileCropButton = true;
             context.IsEnabledRenameFileNameToUUIDButton = false;
         }
         else
         {
             // UUID ではない
+            context.IsEnabledTileCropButton = false;
             context.IsEnabledRenameFileNameToUUIDButton = true;
         }
 
