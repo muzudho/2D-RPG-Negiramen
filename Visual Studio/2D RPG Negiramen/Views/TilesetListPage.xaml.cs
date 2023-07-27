@@ -20,6 +20,8 @@ public partial class TilesetListPage : ContentPage
     /// </summary>
     public TilesetListPage()
     {
+        this.BindingContext = new TilesetListPageViewModel();
+
         InitializeComponent();
     }
     #endregion

@@ -11,10 +11,11 @@
     -->
     
     
-    <!-- 束縛しているビューモデル -->
+    <!-- 束縛しているビューモデル
     <ContentPage.BindingContext>
         <viewModels:TilesetListPageViewModel />
     </ContentPage.BindingContext>
+    -->
 
     <!--    画面内タイトルバー
             ==================
