@@ -39,58 +39,6 @@ public partial class MainPage : ContentPage
     public IMainPageViewModel MainPageVM => (IMainPageViewModel)this.BindingContext;
     #endregion
 
-    // - プライベート・メソッド
-
-    #region メソッド（環境が構成ファイル通りか判定する）
-    /// <summary>
-    ///     環境が構成ファイル通りか判定する
-    ///     
-    ///     <list type="bullet">
-    ///         <item>構成ファイルの設定は、ユーザーは苦手とするだろうから、必要となるまで設定を要求しないようにする仕掛け</item>
-    ///         <item>📖 [同期メソッドを非同期メソッドに変換する（ex. Action → Func＜Task＞）](https://qiita.com/mxProject/items/81ba8dd331484717ee01)</item>
-    ///     </list>
-    /// </summary>
-    /// <paramref name="onNotYetConfiguration">構成ファイル通りだ</paramref>
-    /// <paramref name="onNotYetConfiguration">構成ファイル通りではない</paramref>
-    async Task ReadyGoToNext(
-        Func<Task> onOk,
-        Func<Task> onNotYetConfiguration)
-    {
-        // 構成を取得
-        var configuration = App.GetOrLoadConfiguration();
-
-        // 構成通り準備できているなら、そのまま画面遷移する
-        if (configuration.IsReady())
-        {
-            await onOk();
-        }
-        // そうでなければ、初期構成を要求
-        else
-        {
-            await onNotYetConfiguration();
-            // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
-        }
-    }
-    #endregion
-
-    #region メソッド（構成ページへ移動）
-    /// <summary>
-    ///     <pre>
-    ///         構成ページへ移動
-    ///         
-    ///         本来の移動先をグローバル変数へ記憶して、構成ページへ移動。
-    ///         構成が終わったら、一旦構成ページから戻ったあと、本来の移動先へ遷移
-    ///     </pre>
-    /// </summary>
-    /// <param name="shellNavigationState">本来の移動先</param>
-    async Task GoToConfigurationPage(ShellNavigationState shellNavigationState)
-    {
-        App.NextPage.Push(shellNavigationState);
-        await Navigation.PushAsync(new ConfigurationPage());
-        // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
-    }
-    #endregion
-
     // - プライベート・イベントハンドラ
 
     #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
@@ -135,7 +83,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//MapExplorerPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -143,7 +91,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -160,7 +108,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//CreateBattleViewPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -168,7 +116,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -185,7 +133,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//CreateMenuViewPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -193,7 +141,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -210,7 +158,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//CreateTalkingViewPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -218,7 +166,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -235,7 +183,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//EditPlayerCharacterPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -243,7 +191,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this,shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -260,7 +208,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//EditMonsterPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -268,7 +216,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -285,7 +233,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//EditMonsterGroupPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -293,7 +241,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this,shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -310,7 +258,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//EditItemPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -318,7 +266,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -335,7 +283,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//EditStoryPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -343,7 +291,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this,shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -360,7 +308,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//TilesetListPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
@@ -368,7 +316,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
@@ -490,7 +438,7 @@ public partial class MainPage : ContentPage
         var shellNavigationState = new ShellNavigationState("//TileCropPage");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await ReadyGoToNext(
+        await CodeBehindHelper.ReadyGoToNext(
             onOk: async () =>
             {
                 // ユニティのアセット・フォルダへのパス
@@ -516,7 +464,7 @@ public partial class MainPage : ContentPage
             },
             onNotYetConfiguration: async () =>
             {
-                await GoToConfigurationPage(shellNavigationState);
+                await CodeBehindHelper.GoToConfigurationPage(this,shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }

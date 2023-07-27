@@ -1211,4 +1211,10 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　じゃあ　タイルセットをクリックして、この前作った　タイル切抜き画面へ　遷移してくれだぜ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　クリックして　すぐ画面遷移すると　タイルセットのデータを見れないんで、  
+タイルセットを選んだあと　ボタンを押してから画面遷移するようにするぜ」  
+
+
+
 ＜書きかけ＞

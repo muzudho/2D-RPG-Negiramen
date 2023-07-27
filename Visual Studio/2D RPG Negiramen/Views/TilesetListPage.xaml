@@ -79,7 +79,8 @@
         <CollectionView ItemsSource="{Binding TilesetRecordVMCollection}"
                         ItemsLayout="{Binding ItemsLayout}"
                         SelectionMode="Single"
-                        SizeChanged="CollectionView_SizeChanged">
+                        SizeChanged="CollectionView_SizeChanged"
+                        SelectionChanged="CollectionView_SelectionChanged">
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <Grid RowDefinitions="128,20"
