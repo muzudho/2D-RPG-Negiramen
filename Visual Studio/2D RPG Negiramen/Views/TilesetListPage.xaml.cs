@@ -333,6 +333,9 @@ public partial class TilesetListPage : ContentPage
             // UUID ではない
             context.IsEnabledRenameFileNameToUUIDButton = true;
         }
+
+        // 選択ファイル拡張子
+        context.SelectedFileExtension = System.IO.Path.GetExtension(record.FilePathAsStr);
     }
 
     /// <summary>
@@ -377,7 +380,7 @@ public partial class TilesetListPage : ContentPage
     }
 
     /// <summary>
-    ///     ［ファイル名をＵＵＩＤに変更する］ボタン・クリック時
+    ///     ［ファイル・ステムをＵＵＩＤに変更する］ボタン・クリック時
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>

@@ -14,9 +14,9 @@ public interface ITilesetListPageViewModel
     GridItemsLayout ItemsLayout { get; set; }
     #endregion
 
-    #region プロパティ（［ファイル名をＵＵＩＤに変更する］ボタンの活性性）
+    #region プロパティ（［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性）
     /// <summary>
-    ///     ［ファイル名をＵＵＩＤに変更する］ボタンの活性性
+    ///     ［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性
     /// </summary>
     bool IsEnabledRenameFileNameToUUIDButton { get; set; }
     #endregion
@@ -25,7 +25,14 @@ public interface ITilesetListPageViewModel
     /// <summary>
     ///     選択ファイル・ステム
     /// </summary>
-    public string SelectedFileStem { get; set; }
+    string SelectedFileStem { get; set; }
+    #endregion
+
+    #region 変更通知プロパティ（選択ファイル拡張子）
+    /// <summary>
+    ///     選択ファイル拡張子
+    /// </summary>
+    string SelectedFileExtension { get; set; }
     #endregion
 
     // - メソッド

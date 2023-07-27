@@ -80,9 +80,9 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     }
     #endregion
 
-    #region 変更通知プロパティ（［ファイル名をＵＵＩＤに変更する］ボタンの活性性）
+    #region 変更通知プロパティ（［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性）
     /// <summary>
-    ///     ［ファイル名をＵＵＩＤに変更する］ボタンの活性性
+    ///     ［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性
     /// </summary>
     public bool IsEnabledRenameFileNameToUUIDButton
     {
@@ -112,6 +112,24 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
             this.selectedFileStem = value;
             OnPropertyChanged(nameof(SelectedFileStem));
+        }
+    }
+    #endregion
+
+    #region 変更通知プロパティ（選択ファイル拡張子）
+    /// <summary>
+    ///     選択ファイル拡張子
+    /// </summary>
+    public string SelectedFileExtension
+    {
+        get => this.selectedFileExtension;
+        set
+        {
+            if (this.selectedFileExtension == value)
+                return;
+
+            this.selectedFileExtension = value;
+            OnPropertyChanged(nameof(SelectedFileExtension));
         }
     }
     #endregion
@@ -158,4 +176,5 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     bool isEnabledRenameFileNameToUUIDButton;
 
     string selectedFileStem;
+    string selectedFileExtension;
 }

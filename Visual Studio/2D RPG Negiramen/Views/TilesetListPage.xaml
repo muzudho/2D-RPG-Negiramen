@@ -107,7 +107,7 @@
         </CollectionView>
 
         <Grid Grid.Row="1"
-              RowDefinitions="20,48,20,48" ColumnDefinitions="100,320,300,*"
+              RowDefinitions="20,48,20,48" ColumnDefinitions="100,320,100,300,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
@@ -116,6 +116,9 @@
             -->
             <Label Grid.Row="0" Grid.Column="1"
                    Text="ファイル・ステム。 UUID 形式"/>
+
+            <Label Grid.Row="0" Grid.Column="2"
+                   Text="拡張子"/>
 
             <!--    ２段目
                     ======
@@ -126,8 +129,8 @@
                     Text="タイル切抜き"
                     Clicked="TileCropButton_Clicked"/>
 
-            <!--    ファイル・ステム。 UUID形式
-                    ===========================
+            <!--    選択ファイル・ステム。 UUID形式
+                    ===============================
             
                     XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
             -->
@@ -136,11 +139,21 @@
                    IsReadOnly="True"
                    BackgroundColor="Transparent"/>
 
-            <Button Grid.Row="1" Grid.Column="2"
+            <!--    選択ファイル・拡張子
+                    ====================
+            
+                    .png
+            -->
+            <Entry Grid.Row="1" Grid.Column="2"
+                   Text="{Binding SelectedFileExtension}"
+                   IsReadOnly="True"
+                   BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="1" Grid.Column="3"
                     WidthRequest="300"
                     HeightRequest="20"
                     IsEnabled="{Binding IsEnabledRenameFileNameToUUIDButton}"
-                    Text="ファイル名をＵＵＩＤに変更する"
+                    Text="ファイル・ステムをＵＵＩＤに変更する"
                     Clicked="RenameFileNameToUUIDButton_Clicked"/>
 
             <!--    ３段目
@@ -152,7 +165,7 @@
             <!--    ４段目
                     ======
             -->
-            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
+            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"
                    Placeholder="冒険の荒野"
                    Text=""/>
         </Grid>
