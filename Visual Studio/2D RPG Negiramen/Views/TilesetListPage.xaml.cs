@@ -20,7 +20,23 @@ public partial class TilesetListPage : ContentPage
     /// </summary>
     public TilesetListPage()
     {
-        this.BindingContext = new TilesetListPageViewModel();
+        // TODO ここで横幅を取得する方法が分からない
+        //Trace.WriteLine($"[TilesetListPage.xaml.cs TilesetListPage] this.WidthRequest: {this.WidthRequest}, this.MaximumWidthRequest: {this.MaximumWidthRequest}, this.MinimumWidthRequest: {this.MinimumWidthRequest}, this.Width: {this.Width}");
+
+        //Window window = this.GetParentWindow();
+
+        //Trace.WriteLine($"[TilesetListPage.xaml.cs TilesetListPage] window.Width: {window.Width}, window.MaximumWidth: {window.MaximumWidth}, this.MinimumWidth: {window.MinimumWidth}");
+
+        //// セル・サイズ（固定幅）
+        //double cellWidth = 128.0f;
+        //int cellColumns = (int)(this.Width / cellWidth);
+        // int cellColumns = Random.Shared.Next(5, 8);
+        int cellColumns = 4;
+
+        this.BindingContext = new TilesetListPageViewModel(
+            itemsLayout: new GridItemsLayout(
+                span: cellColumns,
+                orientation: ItemsLayoutOrientation.Vertical));
 
         InitializeComponent();
     }

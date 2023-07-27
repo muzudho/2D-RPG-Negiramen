@@ -17,10 +17,10 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// <summary>
     ///     生成
     /// </summary>
-    public TilesetListPageViewModel()
+    public TilesetListPageViewModel(GridItemsLayout itemsLayout)
     {
         this.TilesetRecordVMQueue = new ConcurrentQueue<TilesetRecordViewModel>();
-        this.ItemsLayout = new GridItemsLayout(4, ItemsLayoutOrientation.Vertical);
+        this.ItemsLayout = itemsLayout;
     }
     #endregion
 
@@ -67,7 +67,8 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// </summary>
     public GridItemsLayout ItemsLayout
     {
-        get => this.itemsLayout;
+        get =>
+            this.itemsLayout;
         set
         {
             if (this.itemsLayout == value)

@@ -1152,4 +1152,45 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ＸＡＭＬの中に　ビューモデルを埋め込むのを　止めろだぜ」  
 
+![202307_maui_27-2018--InitializeComponent.png](https://crieit.now.sh/upload_images/761557e4d2fd91b13a4877e5601e33a664c252a6460b2.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`InitializeComponent()` の中で `ItemsLayout` の読込もしてるようなので、  
+それより前に `ItemsLayout` をセットしないとな」  
+
+![202307_maui_27-2027--pageWidth.png](https://crieit.now.sh/upload_images/afdbeb53391d096e40ece637b0200a9064c254c473d06.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ページのコンストラクターでは、ページの横幅を取れないぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI は　`InitializeComponent( )`　の中で　どうやって　ページの横幅を算出するの？」  
+
+```plaintext
+[TilesetListPage.xaml.cs TilesetListPage] this.WidthRequest: -1, this.MaximumWidthRequest: ∞, this.MinimumWidthRequest: -1, this.Width: -1
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　横幅は　持ってないみたいだなあ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　親ウィンドウのサイズは取れないのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`this.GetParentWindow()`　はヌルだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　このページに遷移してくる前に　横幅を渡せばいいんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画面の遷移は自動化されていて、  
+遷移前に値を渡す方法は　分からないぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そして　ページのコンストラクターは　１回呼ばれると  
+画面遷移して戻ってきても　２回目のコンストラクターは呼び出されないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ページは破棄されてないんだ」  
+
 ＜書きかけ＞
