@@ -351,4 +351,14 @@ public partial class TilesetListPage : ContentPage
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
     }
+
+    /// <summary>
+    ///     ［タイル切抜き］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void TileCropButton_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }

@@ -58,7 +58,12 @@
         </Grid>
     </Shell.TitleView>
 
-    <VerticalStackLayout Margin="20">
+    <!--
+                       ====================
+            １段目     コレクション・ビュー
+            ２段目     ボタン・エリア
+    -->
+    <Grid RowDefinitions="*,80">
 
         <!--
                         ok
@@ -76,7 +81,8 @@
                         ２段目　タイトル
                          LineBreakMode="TailTruncation"
         -->
-        <CollectionView ItemsSource="{Binding TilesetRecordVMCollection}"
+        <CollectionView Grid.Row="0"
+                        ItemsSource="{Binding TilesetRecordVMCollection}"
                         ItemsLayout="{Binding ItemsLayout}"
                         SelectionMode="Single"
                         SizeChanged="CollectionView_SizeChanged"
@@ -100,5 +106,14 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-    </VerticalStackLayout>
+        <Grid Grid.Row="1"
+              BackgroundColor="SkyBlue">
+
+            <Button WidthRequest="100"
+                    HeightRequest="20"
+                    Text="タイル切抜き"
+                    Clicked="TileCropButton_Clicked"/>
+
+        </Grid>
+    </Grid>
 </ContentPage>
