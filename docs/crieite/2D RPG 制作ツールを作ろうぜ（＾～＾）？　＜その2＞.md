@@ -1065,4 +1065,91 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 「　ユーザーが　ウィンドウサイズを変更するたび、  
 列数を変えることはできないの？」  
 
+![202307_maui_26-2128--BindingItemsLayout.png](https://crieit.now.sh/upload_images/075c2afbc08c207a0cebd34fad3f523064c1118fd1437.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コンテント・ページのサイズは取れるけど、  
+コレクション・ビューの ItemsLayout プロパティに Binding した文字列が効いてないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　文字列ではないのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`GridItemsLayout`　クラスを使ってみるが、効かないなあ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　これを読みなさい」  
+
+📖 [CollectionView does not update when changing ItemsLayout #7747](https://github.com/dotnet/maui/issues/7747)  
+📖 [[Windows] Update CollectionView changing ItemsLayout #14532](https://github.com/dotnet/maui/pull/14532)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　これで　できたという報告なんだが、わたしには　理解できないなあ」  
+
+📖 [[Windows] Update CollectionView changing ItemsLayout #14532](https://github.com/dotnet/maui/pull/14532/commits/8097ff10dd15cd08045fb3b2195839b5bc1a87d1)  
+📖 [AdaptiveCollectionView.xaml](https://github.com/dotnet/maui/blob/main/src/Controls/samples/Controls.Sample/Pages/Controls/CollectionViewGalleries/AdaptiveCollectionView.xaml)  
+📖 [AdaptiveCollectionView.xaml.cs
+](https://github.com/dotnet/maui/blob/main/src/Controls/samples/Controls.Sample/Pages/Controls/CollectionViewGalleries/AdaptiveCollectionView.xaml.cs)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そのサンプルを動かせないのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　クラス・ライブラリの出力タイプらしくて、動かないぜ」  
+
+![202307_maui_26-2308--Rotate.png](https://crieit.now.sh/upload_images/54dc7332980dd9c3bc796601c1f46c0664c12907ac548.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　回転したり　半透明にしたりすることはできるのに、  
+１１列にするとか　８列にするとか、列数を変えることは　頑としてできない」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　要らんことは　できるのに……」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　直ってるらしいんだが、直ってないぜ」  
+
+📖 [CollectionView with GridItemsLayout: Issues when changing Span #8387](https://github.com/dotnet/maui/issues/8387)  
+📖 [[Windows] Notify changes in CollectionView Layouts #13137](https://github.com/dotnet/maui/pull/13137)  
+
+## MAUI のバージョンは？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI のバージョンって　どうやってチェックできる？」  
+
+![202307_maui_26-2327--mauiVersion.png](https://crieit.now.sh/upload_images/05fc89128dc6d093a27db3421d89e9d664c12d5b2b2c4.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これは　新しいのかだぜ？　古いのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　公式ページに何か書いてないかしら？」  
+
+![202307_maui_26-2344--bug.png](https://crieit.now.sh/upload_images/9bbb9a980f67aa5de219170db3ea7c4a64c1316701536.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　マイクロソフトは　直ったと言い張り、わたしの環境では　直っていないので　これは放置して次へ進むことにする」  
+
+# 📅 （2023-07-27 thu）ページを開くときに、ページの縦横幅を知ってることはできるの？
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ページを開いたときに　ページの縦横幅を知ることができるなら、  
+ページを開いた直後なら　コレクション・ビューの列数を　調整することができるんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　調べるか……。プログラマーの美徳の１つは　怠惰だしな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　怠惰のくせに　しつこく粘るな」  
+
+![202307_maui_27-1951--viewModel-o2o0.png](https://crieit.now.sh/upload_images/d9a469e219957f3335d2c61320b9726164c24c8535837.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ＸＡＭＬの中で　ビューモデルを埋め込んでいたが、  
+このビューモデルの中で　ItemsLayout　を初期化していて、その値を　そのあと一切　上書きできないというのが  
+今回の不具合だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ＸＡＭＬの中に　ビューモデルを埋め込むのを　止めろだぜ」  
+
 ＜書きかけ＞

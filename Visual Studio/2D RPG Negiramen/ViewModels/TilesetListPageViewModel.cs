@@ -20,7 +20,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     public TilesetListPageViewModel()
     {
         this.TilesetRecordVMQueue = new ConcurrentQueue<TilesetRecordViewModel>();
-        this.itemsLayout = new GridItemsLayout(4, ItemsLayoutOrientation.Vertical);
+        this.ItemsLayout = new GridItemsLayout(4, ItemsLayoutOrientation.Vertical);
     }
     #endregion
 
