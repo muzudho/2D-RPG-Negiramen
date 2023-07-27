@@ -115,7 +115,7 @@
                     ======
             -->
             <Label Grid.Row="0" Grid.Column="1"
-                   Text="UUID"/>
+                   Text="ファイル・ステム。 UUID 形式"/>
 
             <!--    ２段目
                     ======
@@ -126,8 +126,13 @@
                     Text="タイル切抜き"
                     Clicked="TileCropButton_Clicked"/>
 
+            <!--    ファイル・ステム。 UUID形式
+                    ===========================
+            
+                    XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+            -->
             <Entry Grid.Row="1" Grid.Column="1"
-                   Text="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+                   Text="{Binding SelectedFileStem}"
                    IsReadOnly="True"
                    BackgroundColor="Transparent"/>
 

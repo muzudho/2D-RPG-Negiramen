@@ -21,6 +21,13 @@ public interface ITilesetListPageViewModel
     bool IsEnabledRenameFileNameToUUIDButton { get; set; }
     #endregion
 
+    #region 変更通知プロパティ（選択ファイル・ステム）
+    /// <summary>
+    ///     選択ファイル・ステム
+    /// </summary>
+    public string SelectedFileStem { get; set; }
+    #endregion
+
     // - メソッド
 
     #region メソッド（ロケール変更による再描画）

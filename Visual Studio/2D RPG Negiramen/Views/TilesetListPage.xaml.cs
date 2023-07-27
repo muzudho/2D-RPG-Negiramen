@@ -320,8 +320,10 @@ public partial class TilesetListPage : ContentPage
 
         TilesetRecordViewModel record = (TilesetRecordViewModel)view.SelectedItem;
 
-        var fileStem = System.IO.Path.GetFileNameWithoutExtension(record.FilePathAsStr);
-        if (UUIDHelper.IsMatch(fileStem))
+        // 選択ファイル・ステム
+        context.SelectedFileStem = System.IO.Path.GetFileNameWithoutExtension(record.FilePathAsStr);
+
+        if (UUIDHelper.IsMatch(context.SelectedFileStem))
         {
             // UUID だ
             context.IsEnabledRenameFileNameToUUIDButton = false;
