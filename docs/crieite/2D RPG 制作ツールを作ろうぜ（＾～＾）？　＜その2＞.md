@@ -1201,6 +1201,14 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　`NavigatingFrom`　イベントハンドラで　メイン・ページの横幅を取れたぜ」  
 
+![202307_maui_27-2124--navigatingFrom.png](https://crieit.now.sh/upload_images/b77981efb8a4c3705f5a319a910a032d64c2620b8fb21.png)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これは挫折。　マイクロソフトの仕様の前に　失望し、意志を曲げ、諦めよう」  
+
+## タイルセットをクリックして、この前作った　タイル切抜き画面へ　遷移してくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　タイルセットをクリックして、この前作った　タイル切抜き画面へ　遷移してくれだぜ」  
 
 ＜書きかけ＞

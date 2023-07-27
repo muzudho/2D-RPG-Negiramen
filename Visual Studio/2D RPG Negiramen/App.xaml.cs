@@ -85,7 +85,7 @@ public partial class App : Application
     ///         <item>タイルセット一覧画面で使う</item>
     ///     </list>
     /// </summary>
-    static internal double WidthOfWindowForCollectionView { get; set; }
+    static internal double WidthForCollectionView { get; set; }
 
     #region プロパティ（キャッシュ・フォルダ）
     /// <summary>

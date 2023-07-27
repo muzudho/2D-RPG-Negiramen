@@ -29,7 +29,7 @@ public partial class TilesetListPage : ContentPage
 
         //// セル・サイズ（固定幅）
         double cellWidth = 128.0f;
-        int cellColumns = (int)(App.WidthOfWindowForCollectionView / cellWidth);
+        int cellColumns = (int)(App.WidthForCollectionView / cellWidth);
         // int cellColumns = (int)(this.Width / cellWidth);
         // int cellColumns = Random.Shared.Next(5, 8);
         // int cellColumns = 4;

@@ -120,7 +120,7 @@ public partial class MainPage : ContentPage
 
     private void ContentPage_NavigatingFrom(object sender, NavigatingFromEventArgs e)
     {
-        App.WidthOfWindowForCollectionView = this.Width;
+        App.WidthForCollectionView = this.Width;
         Trace.WriteLine($"[MainPage.xaml.cs ContentPage_NavigatingFrom] this.Width: {this.Width}, this.WidthRequest: {this.WidthRequest}, this.MaximumWidthRequest: {this.MaximumWidthRequest}, this.MinimumWidthRequest: {this.MinimumWidthRequest}");
     }
 
