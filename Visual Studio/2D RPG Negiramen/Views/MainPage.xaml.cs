@@ -107,6 +107,23 @@ public partial class MainPage : ContentPage
     }
     #endregion
 
+    ///// <summary>
+    /////     このページから、別のページへ去るときに呼び出される
+    ///// </summary>
+    ///// <param name="sender"></param>
+    ///// <param name="e"></param>
+    //private void ContentPage_NavigatedFrom(object sender, NavigatedFromEventArgs e)
+    //{
+    //    App.WidthOfWindowForCollectionView = this.Width;
+    //    Trace.WriteLine($"[MainPage.xaml.cs ContentPage_NavigatedFrom] this.Width: {this.Width}, this.WidthRequest: {this.WidthRequest}, this.MaximumWidthRequest: {this.MaximumWidthRequest}, this.MinimumWidthRequest: {this.MinimumWidthRequest}");
+    //}
+
+    private void ContentPage_NavigatingFrom(object sender, NavigatingFromEventArgs e)
+    {
+        App.WidthOfWindowForCollectionView = this.Width;
+        Trace.WriteLine($"[MainPage.xaml.cs ContentPage_NavigatingFrom] this.Width: {this.Width}, this.WidthRequest: {this.WidthRequest}, this.MaximumWidthRequest: {this.MaximumWidthRequest}, this.MinimumWidthRequest: {this.MinimumWidthRequest}");
+    }
+
     #region イベントハンドラ（［マップを作る］ボタン押下時）
     /// <summary>
     /// ［マップを作る］ボタン押下時

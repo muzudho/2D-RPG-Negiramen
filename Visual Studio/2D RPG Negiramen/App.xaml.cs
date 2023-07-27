@@ -78,6 +78,15 @@ public partial class App : Application
     static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
     #endregion
 
+    /// <summary>
+    ///     コレクション・ビューのための横幅
+    ///     
+    ///     <list type="bullet">
+    ///         <item>タイルセット一覧画面で使う</item>
+    ///     </list>
+    /// </summary>
+    static internal double WidthOfWindowForCollectionView { get; set; }
+
     #region プロパティ（キャッシュ・フォルダ）
     /// <summary>
     ///		キャッシュ・フォルダ

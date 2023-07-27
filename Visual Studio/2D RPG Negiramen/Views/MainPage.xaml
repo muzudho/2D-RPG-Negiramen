@@ -5,7 +5,11 @@
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.MainPage"
-             NavigatedTo="ContentPage_NavigatedTo">
+             NavigatedTo="ContentPage_NavigatedTo"
+             NavigatingFrom="ContentPage_NavigatingFrom">
+    <!--
+             NavigatedFrom="ContentPage_NavigatedFrom"
+    -->
 
     <!-- 束縛しているビューモデル -->
     <ContentPage.BindingContext>

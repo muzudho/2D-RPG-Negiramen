@@ -1193,4 +1193,14 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ページは破棄されてないんだ」  
 
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　グローバル変数を使えばいいんじゃない？」  
+
+![202307_maui_27-2112--navigatingFrom.png](https://crieit.now.sh/upload_images/a33c348d126cb5d237d5577c4a9f8eec64c25f50d1e0b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`NavigatingFrom`　イベントハンドラで　メイン・ページの横幅を取れたぜ」  
+
+
+
 ＜書きかけ＞
