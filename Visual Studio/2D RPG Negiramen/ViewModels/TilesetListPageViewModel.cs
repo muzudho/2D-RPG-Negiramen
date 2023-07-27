@@ -61,7 +61,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
     #endregion
 
-    #region プロパティ（CollectionView の ItemsLayout プロパティ）
+    #region 変更通知プロパティ（CollectionView の ItemsLayout プロパティ）
     /// <summary>
     ///     CollectionView の ItemsLayout プロパティ
     /// </summary>
@@ -79,6 +79,22 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
         }
     }
     #endregion
+
+    /// <summary>
+    ///     ［ファイル名をＵＵＩＤに変更する］ボタンの活性性
+    /// </summary>
+    public bool IsEnabledRenameFileNameToUUIDButton
+    {
+        get => this.isEnabledRenameFileNameToUUIDButton;
+        set
+        {
+            if (this.isEnabledRenameFileNameToUUIDButton == value)
+                return;
+
+            this.isEnabledRenameFileNameToUUIDButton = value;
+            OnPropertyChanged(nameof(IsEnabledRenameFileNameToUUIDButton));
+        }
+    }
 
     // - パブリック・メソッド
 
@@ -118,4 +134,6 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     #endregion
 
     GridItemsLayout itemsLayout;
+
+    bool isEnabledRenameFileNameToUUIDButton;
 }

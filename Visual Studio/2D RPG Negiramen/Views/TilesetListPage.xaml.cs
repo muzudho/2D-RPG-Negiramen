@@ -311,12 +311,26 @@ public partial class TilesetListPage : ContentPage
 
     void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
+        ITilesetListPageViewModel context = (ITilesetListPageViewModel)this.BindingContext;
+
         CollectionView view = (CollectionView)sender;
 
         Trace.WriteLine($"[TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: {e.PreviousSelection.GetType().FullName} e.CurrentSelection: {e.CurrentSelection.GetType().FullName}");
         // [TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] e.CurrentSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
 
         TilesetRecordViewModel record = (TilesetRecordViewModel)view.SelectedItem;
+
+        var fileStem = System.IO.Path.GetFileNameWithoutExtension(record.FilePathAsStr);
+        if (UUIDHelper.IsMatch(fileStem))
+        {
+            // UUID だ
+            context.IsEnabledRenameFileNameToUUIDButton = false;
+        }
+        else
+        {
+            // UUID ではない
+            context.IsEnabledRenameFileNameToUUIDButton = true;
+        }
     }
 
     /// <summary>
@@ -358,5 +372,15 @@ public partial class TilesetListPage : ContentPage
                 await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
                 // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
             });
+    }
+
+    /// <summary>
+    ///     ［ファイル名をＵＵＩＤに変更する］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void RenameFileNameToUUIDButton_Clicked(object sender, EventArgs e)
+    {
+
     }
 }

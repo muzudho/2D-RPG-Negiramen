@@ -107,7 +107,7 @@
         </CollectionView>
 
         <Grid Grid.Row="1"
-              RowDefinitions="20,48,20,48" ColumnDefinitions="100,320,*"
+              RowDefinitions="20,48,20,48" ColumnDefinitions="100,320,300,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
@@ -128,7 +128,15 @@
 
             <Entry Grid.Row="1" Grid.Column="1"
                    Text="XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX"
+                   IsReadOnly="True"
                    BackgroundColor="Transparent"/>
+
+            <Button Grid.Row="1" Grid.Column="2"
+                    WidthRequest="300"
+                    HeightRequest="20"
+                    IsEnabled="{Binding IsEnabledRenameFileNameToUUIDButton}"
+                    Text="ファイル名をＵＵＩＤに変更する"
+                    Clicked="RenameFileNameToUUIDButton_Clicked"/>
 
             <!--    ３段目
                     ======
@@ -139,7 +147,7 @@
             <!--    ４段目
                     ======
             -->
-            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="3"
                    Placeholder="冒険の荒野"
                    Text=""/>
         </Grid>

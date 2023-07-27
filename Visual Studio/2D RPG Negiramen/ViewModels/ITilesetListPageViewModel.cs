@@ -14,6 +14,13 @@ public interface ITilesetListPageViewModel
     GridItemsLayout ItemsLayout { get; set; }
     #endregion
 
+    #region プロパティ（［ファイル名をＵＵＩＤに変更する］ボタンの活性性）
+    /// <summary>
+    ///     ［ファイル名をＵＵＩＤに変更する］ボタンの活性性
+    /// </summary>
+    bool IsEnabledRenameFileNameToUUIDButton { get; set; }
+    #endregion
+
     // - メソッド
 
     #region メソッド（ロケール変更による再描画）
