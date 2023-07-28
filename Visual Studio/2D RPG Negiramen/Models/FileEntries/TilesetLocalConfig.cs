@@ -5,29 +5,28 @@
 /// </summary>
 internal class TilesetLocalConfig
 {
-    // - パブリック・メソッド
+    // - インターナル静的プロパティ
 
+    #region プロパティ（空オブジェクト）
     /// <summary>
-    ///     拡張子
+    ///     空オブジェクト
     /// </summary>
-    public FileExtension ExtensionObj { get; set; } = FileExtension.Empty;
+    internal static TilesetLocalConfig Empty = new TilesetLocalConfig();
+    #endregion
 
-    /// <summary>
-    ///     ファイル・ステム
-    ///     
-    ///     <list type="bullet">
-    ///         <item><see cref="UUIDObj"/>が分かっているときは、ファイル・ステムは使わない</item>
-    ///     </list>
-    /// </summary>
-    public FileStem FileStemObj { get; set; } = FileStem.Empty;
+    // - インターナル・プロパティ
 
+    #region プロパティ（タイルセット・タイトル）
     /// <summary>
-    ///     公開日
+    ///     タイルセット・タイトル
     /// </summary>
-    public DateTime PublishDate { get; set; } = DateTime.MinValue;
+    internal TilesetTitle TilesetTitleObj { get; set; } = TilesetTitle.Empty;
+    #endregion
 
+    #region プロパティ（著者）
     /// <summary>
-    ///     UUID
+    ///     著者
     /// </summary>
-    public UUID UUIDObj { get; set; } = UUID.Empty;
+    internal Author AuthorObj { get; set; } = Author.Empty;
+    #endregion
 }
