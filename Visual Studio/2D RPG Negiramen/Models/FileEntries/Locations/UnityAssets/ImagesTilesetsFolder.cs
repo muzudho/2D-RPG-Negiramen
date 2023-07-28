@@ -34,9 +34,9 @@
         }
         #endregion
 
-        // - インターナル・プロパティ
+        // - インターナル・メソッド
 
-        #region プロパティ（Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.png` ファイルの場所）
+        #region メソッド（Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.png` ファイルの場所）
         /// <summary>
         ///     Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.png` ファイルの場所
         /// </summary>
@@ -45,6 +45,20 @@
             return new ImagesTilesetPng(
                 pathSource: FileEntryPathSource.FromString(
                     System.IO.Path.Combine(Path.AsStr, $"{fileStem}.png")),
+                convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                            replaceSeparators: true));
+        }
+        #endregion
+
+        #region メソッド（Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.toml` ファイルの場所）
+        /// <summary>
+        ///     Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.toml` ファイルの場所
+        /// </summary>
+        internal ImagesTilesetToml CreateTilesetToml(string fileStem)
+        {
+            return new ImagesTilesetToml(
+                pathSource: FileEntryPathSource.FromString(
+                    System.IO.Path.Combine(Path.AsStr, $"{fileStem}.toml")),
                 convert: (pathSource) => FileEntryPath.From(pathSource,
                                                             replaceSeparators: true));
         }

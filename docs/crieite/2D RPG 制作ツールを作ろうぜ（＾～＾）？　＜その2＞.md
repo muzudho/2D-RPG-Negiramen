@@ -1443,4 +1443,24 @@ author = "Muzudho"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　じゃあ　`fileStem`　というフィールドも増やすかだぜ」  
 
+# 📅 （2023-07-29 sat）TOMLファイルを読めるようにしようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　打ち込むか」  
+
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、循環参照した。空間が成立してない」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　サークル名と、作品名は　アプリケーションが始まる最初に入力しておかないと、  
+構成ファイルの場所を取得するために　構成ファイルを見る、という循環参照が起こるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　トップ・ページは　構成ファイルを読まなくても　表示できるようにしておかないといけないのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　**構成ファイルの場所**　が先に在って、　**構成ファイルそれ自体**　は後に在るのか」  
+
 ＜書きかけ＞

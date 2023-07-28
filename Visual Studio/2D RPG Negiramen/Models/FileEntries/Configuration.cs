@@ -25,7 +25,7 @@
         /// </summary>
         /// <param name="configuration">構成</param>
         /// <returns>TOMLテーブルまたはヌル</returns>
-        internal static bool LoadTOML(out Configuration configuration)
+        internal static bool TryLoadTOML(out Configuration configuration)
         {
             try
             {

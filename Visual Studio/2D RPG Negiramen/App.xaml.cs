@@ -191,7 +191,7 @@ public partial class App : Application
         if (App.Configuration == null)
         {
             // 構成ファイルの読込
-            if (Models.FileEntries.Configuration.LoadTOML(out Models.FileEntries.Configuration configuration))
+            if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))
             {
                 App.Configuration = configuration;
             }
