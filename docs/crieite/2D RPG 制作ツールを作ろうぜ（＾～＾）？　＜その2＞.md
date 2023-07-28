@@ -1259,4 +1259,182 @@ be6c25e9-2bca-40ba-84b4-b9f24bef6df3
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　丁寧にいくなら　それねえ」  
 
+# 📅 （2023-07-28 fri）タイルセットのロケールの仕組みを作れだぜ
+
+```plaintext
+　　C:\Users\むずでょ\Documents\Unity Projects
+　　└── 📂 Negiramen Practice
+　　　　└── 📂 Assets
+　　　　　　└── 📂 Doujin Circle Negiramen
+　　　　　　　　└── 📂 Negiramen Quest
+　　　　　　　　　　└── 📂 Auto Generated
+　　　　　　　　　　　　└── 📂 Images
+　　　　　　　　　　　　　　└── 📂 Tilesets
+　　　　　　　　　　　　　　　　├── 📄 86A25699-E391-4D61-85A5-356BA8049881.png
+　　　　　　　　　　　　　　　　└── 📄 86A25699-E391-4D61-85A5-356BA8049881.toml
+```
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　今　こうなっているが……」  
+
+```plaintext
+　　C:\Users\むずでょ\Documents\Unity Projects
+　　└── 📂 Negiramen Practice
+　　　　└── 📂 Assets
+　　　　　　└── 📂 Doujin Circle Negiramen
+　　　　　　　　└── 📂 Negiramen Quest
+　　　　　　　　　　└── 📂 Auto Generated
+　　　　　　　　　　　　└── 📂 Images
+　　　　　　　　　　　　　　└── 📂 Tilesets
+　　　　　　　　　　　　　　　　├── 📂 Locales
+　　　　　　　　　　　　　　　　│ 　├── 📂 ja-JP
+👉 　　　　　　　　　　　　　　│ 　│ 　├── 📄 86A25699-E391-4D61-85A5-356BA8049881.toml
+　　　　　　　　　　　　　　　　│ 　└── 📂 en-US
+👉 　　　　　　　　　　　　　　│ 　　　└── 📄 86A25699-E391-4D61-85A5-356BA8049881.toml
+　　　　　　　　　　　　　　　　└── 📄 86A25699-E391-4D61-85A5-356BA8049881.png
+```
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　こうなる想定かだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そうだな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　どの言語にも差が無い共通の設定は　`ja-JP`　に入れるの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　デフォルトが　`ja-JP`　だからな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`en-US`　で編集したら　`ja-JP`　に保存されるみたいなことがあるの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　編集したのなら、すべての言語ファイルに更新を掛けないと　おかしくないか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　英語版にあって　日本語版にないと　おかしな感じだしな」  
+
+```plaintext
+　　C:\Users\むずでょ\Documents\Unity Projects
+　　└── 📂 Negiramen Practice
+　　　　└── 📂 Assets
+　　　　　　└── 📂 Doujin Circle Negiramen
+　　　　　　　　└── 📂 Negiramen Quest
+　　　　　　　　　　└── 📂 Auto Generated
+　　　　　　　　　　　　└── 📂 Images
+　　　　　　　　　　　　　　└── 📂 Tilesets
+　　　　　　　　　　　　　　　　├── 📂 Locales
+　　　　　　　　　　　　　　　　│ 　├── 📂 ja-JP
+　　　　　　　　　　　　　　　　│ 　│ 　├── 📄 86A25699-E391-4D61-85A5-356BA8049881.toml
+　　　　　　　　　　　　　　　　│ 　└── 📂 en-US
+　　　　　　　　　　　　　　　　│ 　　　└── 📄 86A25699-E391-4D61-85A5-356BA8049881.toml
+　　　　　　　　　　　　　　　　├── 📄 86A25699-E391-4D61-85A5-356BA8049881.png
+👉 　　　　　　　　　　　　　　└── 📄 86A25699-E391-4D61-85A5-356BA8049881.toml
+```
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　ベースとしての設定ファイルは、ロケールとは別に　要るのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`Author`　とか　どうすんだぜ？  
+Michael さんは　`ja-JP` では ミカエルさんになるのかだぜ？  
+ベースの設定ファイルには　どっちが入ってる？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　最後に見たロケールで上書きしたらどう？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`ja-JP` から `en-US` に切り替えてから保存したら、  
+`en-US` の設定ファイルが　日本語で上書きされるのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　設定されていなければ　上書きしたらいいんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　要らんデータで　上書きされたくないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　全ての翻訳可能なプロパティは　個別にロケールを記憶しておけばどうだぜ？」  
+
+```toml
+title = "冒険の荒野"
+title_locale = "ja-JP"
+
+author = "むずでょ"
+author_locale = "ja-JP"
+```
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　こんな感じで」  
+
+```toml
+[title]
+value = "冒険の荒野"
+locale = "ja-JP"
+
+[author]
+value = "むずでょ"
+locale = "ja-JP"
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　TOML なら　こうするかな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面を　英語で表示して、日本語入力したい人は　どうすんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そんなことは　するなと　言いたい」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　素直に　設定されてないロケールで見たら　空欄が楽かなあ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　プレースホルダーに出すとかかな」  
+
+ベース：  
+
+```toml
+[global]
+
+uuid = "86A25699-E391-4D61-85A5-356BA8049881"
+extension = ".png"
+publish_date = 2023-06-26T00:00:00+09:00
+
+[user_defined]
+```
+
+ロケールが `ja-JP`：  
+
+```toml
+[local]
+
+title = "冒険の荒野"
+author = "むずでょ"
+
+[user_defined]
+
+# 自由に使える欄
+```
+
+ロケールが `en-US`：  
+
+```toml
+[local]
+
+title = "adventure field"
+author = "Muzudho"
+
+[user_defined]
+
+# Please feel free to use here.
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな感じで　どうだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　試しにやってみないと　分かんないわねぇ」  
+
 ＜書きかけ＞
