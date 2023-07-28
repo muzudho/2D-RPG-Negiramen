@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen;
 
-using _2D_RPG_Negiramen.Models;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;

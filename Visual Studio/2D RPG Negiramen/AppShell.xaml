@@ -12,6 +12,13 @@
         ContentTemplate="{DataTemplate views:MainPage}"
         Route="MainPage" />
 
+    <!--
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate views:ConfigurationPage}"
+        Route="MainPage" />
+    -->
+    
     <ShellContent
         Title="Select a map"
         ContentTemplate="{DataTemplate views:MapExplorerPage}"

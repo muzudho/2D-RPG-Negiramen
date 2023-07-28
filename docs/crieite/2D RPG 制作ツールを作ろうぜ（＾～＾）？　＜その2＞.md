@@ -1527,4 +1527,19 @@ work = "Furi Bisha"
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　今の構成ページを、ログイン・ページに変えたらいいんじゃない？」  
 
+## メインページより先にログインページを出すには？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　メインページより先にログインページを出すには　どうやったらいいんだぜ？」  
+
+![202307_maui_29-0750--AppShellXaml-o2o0.png](https://crieit.now.sh/upload_images/dad58c47b9af35c15301fa9e9c9c494c64c446876b1e4.png)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👆　試しに　AppShell.xaml　を　いじったったらどうだぜ？」  
+
+![202307_maui_29-0753--Startup-o2o0.png](https://crieit.now.sh/upload_images/311eda52978d65ddeb7e9ea655b824cb64c447187a638.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　Ｏｋ！　これでいける！」  
+
 ＜書きかけ＞
