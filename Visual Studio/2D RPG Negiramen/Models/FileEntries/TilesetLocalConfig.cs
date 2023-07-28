@@ -10,16 +10,16 @@ internal class TilesetLocalConfig
     /// <summary>
     ///     拡張子
     /// </summary>
-    public string Extension { get; set; } = string.Empty;
+    public FileExtension ExtensionObj { get; set; } = FileExtension.Empty;
 
     /// <summary>
     ///     ファイル・ステム
     ///     
     ///     <list type="bullet">
-    ///         <item><see cref="UUID"/>が分かっているときは、ファイル・ステムは使わない</item>
+    ///         <item><see cref="UUIDObj"/>が分かっているときは、ファイル・ステムは使わない</item>
     ///     </list>
     /// </summary>
-    public string FileStem { get; set; } = string.Empty;
+    public FileStem FileStemObj { get; set; } = FileStem.Empty;
 
     /// <summary>
     ///     公開日
@@ -29,5 +29,5 @@ internal class TilesetLocalConfig
     /// <summary>
     ///     UUID
     /// </summary>
-    public string UUID { get; set; } = string.Empty;
+    public UUID UUIDObj { get; set; } = UUID.Empty;
 }

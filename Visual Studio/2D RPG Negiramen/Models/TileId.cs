@@ -172,10 +172,12 @@
 
         // - インターナル静的プロパティー
 
+        #region プロパティ（ゼロ・オブジェクト）
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
         internal static TileId Empty = new TileId(0);
+        #endregion
 
         // - プライベート静的プロパティー
 
