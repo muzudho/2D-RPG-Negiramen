@@ -87,6 +87,28 @@ public partial class App : Application
     /// </summary>
     static internal double WidthForCollectionView { get; set; }
 
+    #region プロパティ（アプリケーション・フォルダ）
+    /// <summary>
+    ///		アプリケーション・フォルダ
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    internal static TheFileEntryLocations.AppData.ItsFolder ApplicationFolder
+    {
+        get
+        {
+            if (applicationFolder == null)
+            {
+                applicationFolder = new TheFileEntryLocations.AppData.ItsFolder();
+            }
+
+            return applicationFolder;
+        }
+    }
+    #endregion
+
     #region プロパティ（キャッシュ・フォルダ）
     /// <summary>
     ///		キャッシュ・フォルダ
@@ -101,10 +123,7 @@ public partial class App : Application
         {
             if (cacheFolder == null)
             {
-                cacheFolder = new TheFileEntryLocations.Cache.ItsFolder(
-                    pathSource: FileEntryPathSource.FromString(FileSystem.CacheDirectory),
-                    convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                replaceSeparators: true));
+                cacheFolder = new TheFileEntryLocations.Cache.ItsFolder();
             }
 
             return cacheFolder;
@@ -132,6 +151,17 @@ public partial class App : Application
     //}
 
     // - プライベート静的フィールド
+
+    #region プロパティ（アプリケーション・フォルダ）
+    /// <summary>
+    ///		アプリケーション・フォルダ
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    static TheFileEntryLocations.AppData.ItsFolder? applicationFolder;
+    #endregion
 
     #region プロパティ（キャッシュ・フォルダ）
     /// <summary>
@@ -185,13 +215,45 @@ public partial class App : Application
     /// <summary>
     /// 構成ファイルの取得、またはファイル読込
     /// </summary>
+    /// <param name="yourCircleName">サークル名</param>
+    /// <param name="yourWorkName">作品名</param>
+    /// <returns>構成ファイル</returns>
+    static internal Models.FileEntries.Configuration LoadConfiguration(string yourCircleName, string yourWorkName)
+    {
+        // 読取たいファイルへのパス
+        string configurationFilePath = App.ApplicationFolder.CreateAndOverwriteYourCircleNameFolder(yourCircleName).CreateAndOverwriteYourWorkNameFolder(yourWorkName).ConfigurationToml.Path.AsStr;
+
+        // 構成ファイルの読込
+        if (Models.FileEntries.Configuration.TryLoadTOML(configurationFilePath, out Models.FileEntries.Configuration configuration))
+        {
+            App.Configuration = configuration;
+        }
+        else
+        {
+            // TODO 構成ファイルが無かったら、エラー対応したい
+            throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
+        }
+
+        return App.Configuration;
+    }
+
+    /// <summary>
+    /// 構成ファイルの取得、またはファイル読込
+    /// </summary>
     /// <returns>構成ファイル</returns>
     static internal Models.FileEntries.Configuration GetOrLoadConfiguration()
     {
         if (App.Configuration == null)
         {
+            // フォルダ名は自動的に与えられているので、これを使う
+            string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
+            // Example: `C:/Users/むずでょ/AppData/Local/Packages/1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm/LocalState`
+
+            // 読取たいファイルへのパス
+            string configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
+
             // 構成ファイルの読込
-            if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))
+            if (Models.FileEntries.Configuration.TryLoadTOML(configurationFilePath, out Models.FileEntries.Configuration configuration))
             {
                 App.Configuration = configuration;
             }

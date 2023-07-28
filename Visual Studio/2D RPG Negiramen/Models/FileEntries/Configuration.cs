@@ -25,17 +25,10 @@
         /// </summary>
         /// <param name="configuration">構成</param>
         /// <returns>TOMLテーブルまたはヌル</returns>
-        internal static bool TryLoadTOML(out Configuration configuration)
+        internal static bool TryLoadTOML(string configurationFilePath, out Configuration configuration)
         {
             try
             {
-                // フォルダ名は自動的に与えられているので、これを使う
-                string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
-                // Example: `C:/Users/むずでょ/AppData/Local/Packages/1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm/LocalState`
-
-                // 読取たいファイルへのパス
-                var configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
-
                 // 設定ファイルの読取
                 var configurationText = System.IO.File.ReadAllText(configurationFilePath);
 

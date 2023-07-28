@@ -27,6 +27,8 @@
         /// </summary>
         public ConfigurationPageViewModel()
         {
+            // TODO ★ 構成ファイルを読込済みか、または、そうではないか？
+
             // 構成ファイル取得
             var configuration = App.GetOrLoadConfiguration();
 

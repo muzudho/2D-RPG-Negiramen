@@ -24,15 +24,10 @@
         ///     生成
         /// </summary>
         internal ItsFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal ItsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
+            : base(
+                  pathSource: new FileEntryPathSource(FileSystem.Current.AppDataDirectory),
+                  convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                              replaceSeparators: true))
         {
         }
         #endregion
@@ -42,6 +37,10 @@
         #region プロパティ（OSの 📂 キャッシュ・フォルダ の `{あたなのサークル名}` フォルダの場所）
         /// <summary>
         ///     OSの 📂 キャッシュ・フォルダ の `{あたなのサークル名}` フォルダの場所
+        ///     
+        ///     <list type="bullet">
+        ///         <item>構成ファイルを作る前に　このプロパティを使うと、循環参照します</item>
+        ///     </list>
         /// </summary>
         internal YourCircleNameFolder YourCircleNameFolder
         {

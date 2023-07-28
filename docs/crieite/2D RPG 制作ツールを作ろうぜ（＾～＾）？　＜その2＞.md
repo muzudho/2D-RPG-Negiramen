@@ -1463,4 +1463,68 @@ author = "Muzudho"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　**構成ファイルの場所**　が先に在って、　**構成ファイルそれ自体**　は後に在るのか」  
 
+![202307_maui_29-0708--config.png](https://crieit.now.sh/upload_images/aebe5d82ced43ab6a6a6b4c92f674bb464c43c873c169.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　今こんな感じだが、内部的に改修しよう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あれっ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　すると構成画面に入る前に　毎回、サークル名と　作品名を　入力する必要が出てくるぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ユーザー名と　パスワードみたいだな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　構成ファイルは　サークル名とパスワードのペアを　覚えておけばいいのよ」  
+
+```toml
+[[entry]]
+circle = "Doujin Circle Grayscale"
+work = "Negiramen Quest"
+
+[[entry]]
+circle = "Apple Banana Cherry"
+work = "Dragon Fruits"
+
+[[entry]]
+circle = "Shogi Club"
+work = "Furi Bisha"
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな感じか」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　現在の　`configuration.toml`　ファイルは、　`Doujin Circle Grayscale/Negiramen Quest/project.toml`　みたいな名前に変えるべきでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ　まず　ログイン画面から作るか」  
+
+## ログイン画面を作ろうぜ？
+
+![202307_maui_29-0729--loginPageIdea.png](https://crieit.now.sh/upload_images/802359e2cc176acbe3e4b1d55210f99a64c4424c2bab5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな感じかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　同じのを何度も入力したくは　ないんじゃない？」  
+
+![202307_maui_29-0735--loginPageIdea2.png](https://crieit.now.sh/upload_images/808d7b1349da9af2d7640d07d9eaa6d764c44493746a6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　リストから選べるように工夫だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　試しに作ってみてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ！　だったら　Unity の Assets フォルダーの場所も　入力しておいてほしいぜ！」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　今の構成ページを、ログイン・ページに変えたらいいんじゃない？」  
+
 ＜書きかけ＞

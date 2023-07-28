@@ -42,6 +42,10 @@
         #region プロパティ（OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダの場所）
         /// <summary>
         ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダの場所
+        ///     
+        ///     <list type="bullet">
+        ///         <item>構成ファイルを作る前に　このプロパティを使うと、循環参照します</item>
+        ///     </list>
         /// </summary>
         internal YourWorkNameFolder YourWorkNameFolder
         {
