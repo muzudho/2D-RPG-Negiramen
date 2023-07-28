@@ -1,3 +1,15 @@
+[global]
+
+uuid = "86A25699-E391-4D61-85A5-356BA8049881"
+extension = ".png"
+publish_date = 2023-06-26T00:00:00+09:00
+
+[user_defined]
+
+# 自由に使える欄
+
+# 以下、旧仕様
+
 [introduction]
 
 uuid = "86A25699-E391-4D61-85A5-356BA8049881"
