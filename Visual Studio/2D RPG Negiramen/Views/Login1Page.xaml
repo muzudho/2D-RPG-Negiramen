@@ -69,6 +69,18 @@
 
         <Entry Text="いいい"/>
 
+        <Label Text="リストから選ぶ"/>
+        
+        <Picker 
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"/>
+
+        <Label Text="文字数"/>
+        <Entry Text="999" IsReadOnly="True" BackgroundColor="Transparent"/>
+
+        <Label Text="使える文字"/>
+        <Entry Text="Abc..." IsReadOnly="True" BackgroundColor="Transparent"/>
+
         <Button Text="新しく作る／続きから"/>
         
     </VerticalStackLayout>

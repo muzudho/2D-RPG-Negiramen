@@ -1619,5 +1619,9 @@ your_work_name = "Negiramen Quest"
 「　`LoginPage1` にすると `LoginPage1ViewModel` になるのが　カッコ悪いから、  
 `Login1Page` にして `Login1PageViewModel` になるようにする」  
 
+![202307_maui_29-1255--login1page.png](https://crieit.now.sh/upload_images/8e6e6fcd4e2f4b5fd06bfca97840d9ba64c48dc4077f9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これを整形したり　動きを付けたりしないといけない　大変だ……」  
 
 ＜書きかけ＞
