@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
+    using System.Text;
     using Tomlyn;
     using Tomlyn.Model;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
@@ -20,7 +21,8 @@
             TheFileEntryLocations.UnityAssets.ItsFolder.Empty,
             // Locations.StarterKit.UserConfigurationFile.Empty,
             YourCircleName.Empty,
-            YourWorkName.Empty)
+            YourWorkName.Empty,
+            new List<ConfigurationEntry>())
         {
         }
 
@@ -29,21 +31,24 @@
         /// </summary>
         /// <param name="negiramenStarterKitFolderPath">ネギラーメン 📂 `Starter Kit` フォルダへのパス</param>
         /// <param name="unityAssetsFolderPath">Unity の Assets フォルダへのパス</param>
-        /// <param name="yourCircleName">あなたのサークル名</param>
-        /// <param name="yourWorkName">あなたの作品名</param>
+        /// <param name="rememberYourCircleName">（選択中の）あなたのサークル名</param>
+        /// <param name="rememberYourWorkName">（選択中の）あなたの作品名</param>
+        /// <param name="entryList">エントリー・リスト</param>
         internal Configuration(
             Locations.StarterKit.ItsFolder negiramenStarterKitFolderPath,
             TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderPath,
             // <param name="userConfigurationFilePath">ユーザー構成ファイルへのパス</param>
             // Locations.StarterKit.UserConfigurationFile userConfigurationFilePath,
-            YourCircleName yourCircleName,
-            YourWorkName yourWorkName)
+            YourCircleName rememberYourCircleName,
+            YourWorkName rememberYourWorkName,
+            List<ConfigurationEntry> entryList)
         {
             this.NegiramenStarterKitFolder = negiramenStarterKitFolderPath;
             this.UnityAssetsFolder = unityAssetsFolderPath;
             // this.UserConfigurationFile = userConfigurationFilePath;
-            this.YourCircleName = yourCircleName;
-            this.YourWorkName = yourWorkName;
+            this.RememberYourCircleName = rememberYourCircleName;
+            this.RememberYourWorkName = rememberYourWorkName;
+            this.EntryList = entryList;
         }
         #endregion
 
@@ -148,6 +153,34 @@
                     //}
 
                     //
+                    // [remember]
+                    // ==========
+                    //
+                    if (document.TryGetValue("remember", out object rememberTomlObj))
+                    {
+                        if (rememberTomlObj != null && rememberTomlObj is TomlTable rememberTomlTable)
+                        {
+                            // あなたのサークル名
+                            if (rememberTomlTable.TryGetValue("your_circle_name", out object yourCircleNameObj))
+                            {
+                                if (yourCircleNameObj != null && yourCircleNameObj is string yourCircleNameAsStr)
+                                {
+                                    yourCircleName = YourCircleName.FromString(yourCircleNameAsStr);
+                                }
+                            }
+
+                            // あなたの作品名
+                            if (rememberTomlTable.TryGetValue("your_work_name", out object yourWorkNameObj))
+                            {
+                                if (yourWorkNameObj != null && yourWorkNameObj is string yourWorkNameAsStr)
+                                {
+                                    yourWorkName = YourWorkName.FromString(yourWorkNameAsStr);
+                                }
+                            }
+                        }
+                    }
+
+                    //
                     // [[entry]]
                     // =========
                     //
@@ -182,34 +215,6 @@
                             }
                         }
                     }
-
-                    //
-                    // [profile]
-                    // =========
-                    //
-                    if (document.TryGetValue("profile", out object profileObj))
-                    {
-                        if (profileObj != null && profileObj is TomlTable profile)
-                        {
-                            // あなたのサークル名
-                            if (profile.TryGetValue("your_circle_name", out object yourCircleNameObj))
-                            {
-                                if (yourCircleNameObj != null && yourCircleNameObj is string yourCircleNameAsStr)
-                                {
-                                    yourCircleName = YourCircleName.FromString(yourCircleNameAsStr);
-                                }
-                            }
-
-                            // あなたの作品名
-                            if (profile.TryGetValue("your_work_name", out object yourWorkNameObj))
-                            {
-                                if (yourWorkNameObj != null && yourWorkNameObj is string yourWorkNameAsStr)
-                                {
-                                    yourWorkName = YourWorkName.FromString(yourWorkNameAsStr);
-                                }
-                            }
-                        }
-                    }
                 }
 
                 configuration = new Configuration(
@@ -217,7 +222,8 @@
                     unityAssetsFolder,
                     // userConfiguration,
                     yourCircleName,
-                    yourWorkName);
+                    yourWorkName,
+                    entryList);
 
                 // 変数展開のためのもの（その２）
                 configuration.Variables = new Dictionary<string, string>()
@@ -281,10 +287,12 @@
             configurationBuffer.NegiramenStarterKitFolder = difference.NegiramenStarterKitFolder == null ? current.NegiramenStarterKitFolder : difference.NegiramenStarterKitFolder;
             configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder == null ? current.UnityAssetsFolder : difference.UnityAssetsFolder;
             // configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile == null ? current.UserConfigurationFile : difference.UserConfigurationFile;
-            configurationBuffer.YourCircleName = difference.YourCircleName == null ? current.YourCircleName : difference.YourCircleName;
-            configurationBuffer.YourWorkName = difference.YourWorkName == null ? current.YourWorkName : difference.YourWorkName;
+            configurationBuffer.RememberYourCircleName = difference.RememberYourCircleName == null ? current.RememberYourCircleName : difference.RememberYourCircleName;
+            configurationBuffer.RememberYourWorkName = difference.RememberYourWorkName == null ? current.RememberYourWorkName : difference.RememberYourWorkName;
+            configurationBuffer.EntryList = difference.EntryList == null ? current.EntryList : difference.EntryList;
 
-            var text = $@"[paths]
+            StringBuilder strBuilder = new StringBuilder();
+            strBuilder.AppendLine($@"[paths]
 
 # ネギラーメンの 📂 `Starter Kit` フォルダ―へのパス
 negiramen_starter_kit_folder = ""{configurationBuffer.NegiramenStarterKitFolder.Path.AsStr}""
@@ -292,24 +300,14 @@ negiramen_starter_kit_folder = ""{configurationBuffer.NegiramenStarterKitFolder.
 # Unity の 📂 `Assets` フォルダ―へのパス
 unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
 
-[[entry]]
+[remember]
 
 # あなたのサークル名
-your_circle_name = ""{configurationBuffer.YourCircleName.AsStr}""
+your_circle_name = ""{configurationBuffer.RememberYourCircleName.AsStr}""
 
 # あなたの作品名
-your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
-
-# 以下は、旧仕様
-
-[profile]
-
-# あなたのサークル名
-your_circle_name = ""{configurationBuffer.YourCircleName.AsStr}""
-
-# あなたの作品名
-your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
-";
+your_work_name = ""{configurationBuffer.RememberYourWorkName.AsStr}""
+");
             /*
 [paths_2nd]
 
@@ -317,16 +315,29 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 user_configuration_file = ""{{negiramen_starter_kit_folder}}/user_configuration.toml""
              */
 
+            foreach (var entry in configurationBuffer.EntryList)
+            {
+                strBuilder.AppendLine($@"[[entry]]
+
+# あなたのサークル名
+your_circle_name = ""{entry.YourCircleName.AsStr}""
+
+# あなたの作品名
+your_work_name = ""{entry.YourWorkName.AsStr}""
+");
+            }
+
             // 上書き
-            System.IO.File.WriteAllText(configurationFilePath, text);
+            System.IO.File.WriteAllText(configurationFilePath, strBuilder.ToString());
 
             // イミュータブル・オブジェクトを生成
             newConfiguration = new Configuration(
                 configurationBuffer.NegiramenStarterKitFolder,
                 configurationBuffer.UnityAssetsFolder,
                 // configurationBuffer.UserConfigurationFile,
-                configurationBuffer.YourCircleName,
-                configurationBuffer.YourWorkName);
+                configurationBuffer.RememberYourCircleName,
+                configurationBuffer.RememberYourWorkName,
+                configurationBuffer.EntryList);
             return true;
         }
         #endregion
@@ -357,25 +368,25 @@ user_configuration_file = ""{{negiramen_starter_kit_folder}}/user_configuration.
         //internal Locations.StarterKit.UserConfigurationFile UserConfigurationFile { get; }
         //#endregion
 
+        #region プロパティ（選択中のあなたのサークル名）
+        /// <summary>
+        ///     選択中のあなたのサークル名
+        /// </summary>
+        internal YourCircleName RememberYourCircleName { get; }
+        #endregion
+
+        #region プロパティ（選択中のあなたの作品名）
+        /// <summary>
+        ///     選択中のあなたの作品名
+        /// </summary>
+        internal YourWorkName RememberYourWorkName { get; }
+        #endregion
+
         #region プロパティ（エントリー・リスト）
         /// <summary>
         ///     エントリー・リスト
         /// </summary>
         internal List<ConfigurationEntry> EntryList { get; } = new List<ConfigurationEntry>();
-        #endregion
-
-        #region プロパティ（あなたのサークル名）
-        /// <summary>
-        ///     あなたのサークル名
-        /// </summary>
-        internal YourCircleName YourCircleName { get; }
-        #endregion
-
-        #region プロパティ（あなたの作品名）
-        /// <summary>
-        ///     あなたの作品名
-        /// </summary>
-        internal YourWorkName YourWorkName { get; }
         #endregion
 
         // - インターナル・プロパティ

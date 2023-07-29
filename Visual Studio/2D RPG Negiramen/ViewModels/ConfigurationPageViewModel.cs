@@ -37,8 +37,8 @@
             this.UnityAssetsFolder = configuration.UnityAssetsFolder;
             UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
 
-            YourCircleNameAsStr = configuration.YourCircleName.AsStr;
-            YourWorkNameAsStr = configuration.YourWorkName.AsStr;
+            YourCircleNameAsStr = configuration.RememberYourCircleName.AsStr;
+            YourWorkNameAsStr = configuration.RememberYourWorkName.AsStr;
 
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
             PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
@@ -239,8 +239,8 @@
                 {
                     NegiramenStarterKitFolder = this.negiramenStarterKitFolder,
                     UnityAssetsFolder = this._unityAssetsFolder,
-                    YourCircleName = _yourCircleName,
-                    YourWorkName = _yourWorkName,
+                    RememberYourCircleName = _yourCircleName,
+                    RememberYourWorkName = _yourWorkName,
                 };
 
                 // 設定ファイルの保存
