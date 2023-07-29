@@ -30,12 +30,6 @@
                         Text="{app:Translate Home}"
                         SemanticProperties.Hint="Back to the home"
                         Clicked="HomeBtn_Clicked">
-                    <!--
-                    <Button.GestureRecognizers>
-                        <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
-                                                  PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
-                    </Button.GestureRecognizers>
-                    -->
                 </Button>
 
                 <Label VerticalTextAlignment="Center"
@@ -45,7 +39,7 @@
                 <!--    ページ・タイトル
                         ================
                 -->
-                <Label Text="{app:Translate TileCrop}"
+                <Label Text="{app:Translate Login1Page}"
                        VerticalOptions="Center"
                        HorizontalOptions="Center"
                        FontSize="Large"/>

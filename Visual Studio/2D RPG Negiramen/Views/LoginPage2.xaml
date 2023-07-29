@@ -11,6 +11,50 @@
         <viewModels:Login2PageViewModel />
     </ContentPage.BindingContext>
 
+    <!--    画面内タイトルバー
+            ==================
+    -->
+    <Shell.TitleView>
+        <Grid ColumnDefinitions="*,*"
+              BackgroundColor="SkyBlue">
+            <!--    パンくずリスト
+                    ==============
+            -->
+            <HorizontalStackLayout Grid.Column="0"
+                                   HorizontalOptions="Start">
+
+                <!--    ［ホーム］ボタン
+                        ================
+                -->
+                <Button Margin="16,2,2,2"
+                        Text="{app:Translate Home}"
+                        SemanticProperties.Hint="Back to the home"
+                        Clicked="HomeBtn_Clicked">
+                </Button>
+
+                <Label VerticalTextAlignment="Center"
+                       Text="＞"
+                       SemanticProperties.Hint="Separator"/>
+
+                <!--    ページ・タイトル
+                        ================
+                -->
+                <Label Text="{app:Translate Login2Page}"
+                       VerticalOptions="Center"
+                       HorizontalOptions="Center"
+                       FontSize="Large"/>
+            </HorizontalStackLayout>
+
+            <!-- ロケール選択 -->
+            <Picker Grid.Column="1"
+                    VerticalOptions="Center"
+                    HorizontalOptions="End"
+                    ItemsSource="{Binding LocaleIdCollection}"
+                    SelectedItem="{Binding CultureInfoAsStr}"
+                    SelectedIndexChanged="LocalePicker_SelectedIndexChanged"/>
+        </Grid>
+    </Shell.TitleView>
+
     <VerticalStackLayout>
         <Label 
             Text="Welcome to .NET MAUI!"
