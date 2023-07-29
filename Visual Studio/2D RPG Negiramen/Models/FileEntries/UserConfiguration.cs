@@ -28,19 +28,20 @@
         {
             try
             {
+                var userConfigurationFilePath = App.GetOrLoadConfiguration().NegiramenStarterKitFolder.UserConfigurationFile.Path.AsStr;
                 // ユーザー構成ファイルへのパスは構成ファイルに与えられているので、これを使う
-                var userConfigurationFilePath = App.GetOrLoadConfiguration().UserConfigurationFile.Path.AsStr;
-                // Example: `"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/user_configuration.toml"`
+                // var userConfigurationFilePath = App.GetOrLoadConfiguration().UserConfigurationFile.Path.AsStr;
+                // Example: `"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit/user_configuration.toml"`
 
                 // 設定ファイルの読取
                 var userConfigurationText = System.IO.File.ReadAllText(userConfigurationFilePath);
 
 
-                Locations.Negiramen.WorkingTilesetImageFile workingTilesetImageFile = new Models.FileEntries.Locations.Negiramen.WorkingTilesetImageFile();
+                Locations.StarterKit.WorkingTilesetImageFile workingTilesetImageFile = new Models.FileEntries.Locations.StarterKit.WorkingTilesetImageFile();
 
                 TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder();
 
-                Locations.Negiramen.UserConfigurationFile userConfiguration = new Models.FileEntries.Locations.Negiramen.UserConfigurationFile();
+                // Locations.StarterKit.UserConfigurationFile userConfiguration = Models.FileEntries.Locations.StarterKit.UserConfigurationFile.Empty;
                 YourCircleName yourCircleName = new YourCircleName();
                 YourWorkName yourWorkName = new YourWorkName();
 
@@ -83,7 +84,7 @@
             // 上書き
             System.IO.File.WriteAllText(
                 // 保存したいファイルへのパス
-                path: App.GetOrLoadConfiguration().UserConfigurationFile.Path.AsStr,
+                path: App.GetOrLoadConfiguration().NegiramenStarterKitFolder.UserConfigurationFile.Path.AsStr,
                 contents: text);
 
             // イミュータブル・オブジェクトを生成

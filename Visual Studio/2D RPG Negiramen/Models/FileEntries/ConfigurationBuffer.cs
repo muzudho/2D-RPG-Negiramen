@@ -8,19 +8,19 @@
     internal class ConfigurationBuffer
     {
         /// <summary>
-        ///     ネギラーメンのワークスペース・フォルダへのパス
+        ///     ネギラーメンの 📂 `Starter Kit` フォルダへのパス
         /// </summary>
-        internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolder { get; set; }
+        internal Locations.StarterKit.ItsFolder NegiramenStarterKitFolder { get; set; }
 
         /// <summary>
         ///     Unity の 📂 `Assets` フォルダへのパス
         /// </summary>
         internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; set; }
 
-        /// <summary>
-        ///     ユーザー構成ファイルへのパス
-        /// </summary>
-        internal Locations.Negiramen.UserConfigurationFile UserConfigurationFile { get; set; }
+        ///// <summary>
+        /////     ユーザー構成ファイルへのパス
+        ///// </summary>
+        //internal Locations.StarterKit.UserConfigurationFile UserConfigurationFile { get; set; }
 
         /// <summary>
         ///     あなたのサークル名

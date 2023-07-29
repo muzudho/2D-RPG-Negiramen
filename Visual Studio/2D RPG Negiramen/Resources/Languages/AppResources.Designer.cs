@@ -124,7 +124,7 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Workspace フォルダへのパス に類似しているローカライズされた文字列を検索します。
+        ///   あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ConfigurationPageWorkspaceFolderDescription {
             get {

@@ -9,11 +9,11 @@ public interface IConfigurationPageViewModel
 {
     // - パブリック変更通知プロパティ
 
-    #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダ）
+    #region 変更通知プロパティ（ネギラーメン 📂 `Starter Kit` フォルダ）
     /// <summary>
-    ///     ネギラーメン・ワークスペース・フォルダへのパス。文字列形式
+    ///     ネギラーメン 📂 `Starter Kit` フォルダへのパス。文字列形式
     /// </summary>
-    string NegiramenWorkspaceFolderPathAsStr { get; }
+    string NegiramenStarterKitFolderPathAsStr { get; }
     #endregion
 
     // - パブリック・メソッド

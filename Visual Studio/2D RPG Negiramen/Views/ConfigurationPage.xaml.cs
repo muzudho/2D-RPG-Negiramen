@@ -50,12 +50,12 @@ public partial class ConfigurationPage : ContentPage
     ///// </summary>
     ///// <param name="sender">このイベントを呼び出したコントロール</param>
     ///// <param name="e">この発生イベントの制御変数</param>
-    //private void NegiramenWorkspaceDirectoryButton_Clicked(object sender, EventArgs e)
+    //private void NegiramenStarterKitDirectoryButton_Clicked(object sender, EventArgs e)
     //{
     //    var context = this.ConfigurationPageVM;
 
     //    // ディレクトリーを開く場合、末尾はセパレーターにする必要がある
-    //    string path = context.NegiramenWorkspaceFolderPathAsStr;
+    //    string path = context.NegiramenStarterKitFolderPathAsStr;
     //    if (!path.EndsWith(System.IO.Path.DirectorySeparatorChar))
     //    {
     //        path += System.IO.Path.DirectorySeparatorChar;
@@ -64,14 +64,14 @@ public partial class ConfigurationPage : ContentPage
     //    try
     //    {
     //        // 隠しフォルダにはアクセスできない
-    //        Trace.WriteLine($"[ConfigurationPage.xaml.cs NegiramenWorkspaceDirectoryButton_Clicked] path: [{path}]");
+    //        Trace.WriteLine($"[ConfigurationPage.xaml.cs NegiramenStarterKitDirectoryButton_Clicked] path: [{path}]");
     //        Process.Start(path,);
     //    }
     //    catch (Win32Exception win32Exception)
     //    {
     //        // TODO エラー処理どうするかまだ決めてない（＾～＾）
     //        // The system cannot find the file specified...
-    //        Trace.WriteLine($"[ConfigurationPage.xaml.cs NegiramenWorkspaceDirectoryButton_Clicked] e: {win32Exception.Message}");
+    //        Trace.WriteLine($"[ConfigurationPage.xaml.cs NegiramenStarterKitDirectoryButton_Clicked] e: {win32Exception.Message}");
     //    }
     //}
     //#endregion

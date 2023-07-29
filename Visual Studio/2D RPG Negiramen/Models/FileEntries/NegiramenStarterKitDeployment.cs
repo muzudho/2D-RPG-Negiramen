@@ -4,13 +4,13 @@
 
     /// <summary>
     ///     <pre>
-    ///         😁 ネギラーメンのワークスペース・フォルダの内容を確認します
+    ///         😁 ネギラーメンの 📂 `Starter Kit` フォルダの内容を確認します
     ///         
     ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
-    ///         👉　└─ 📂 Workspace
+    ///         👉　└─ 📂 Starter Kit
     ///     </pre>
     /// </summary>
-    internal class NegiramenWorkspaceDeployment
+    internal class NegiramenStarterKitDeployment
 
     {
         /// <summary>
@@ -19,19 +19,19 @@
         ///         ネギラーメンのワークスペース・フォルダの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
-        ///         👉　└─ 📂 Workspace
+        ///         👉　└─ 📂 Starter Kit
         ///         　　　　　└─ 📂 For Unity Assets
         ///     </pre>
         /// </summary>
         internal static bool CheckForUnityAssets()
         {
-            var workspaceFolder = App.GetOrLoadConfiguration().NegiramenWorkspaceFolder;
-            var workspaceInfo = new DirectoryInfo(workspaceFolder.Path.AsStr);
+            var starterKitFolder = App.GetOrLoadConfiguration().NegiramenStarterKitFolder;
+            var starterKitInfo = new DirectoryInfo(starterKitFolder.Path.AsStr);
 
             // 📂 `For Unity Assets` が含まれていれば OK
             DirectoryInfo assetsInfo = null;
 
-            foreach (var dirInfo in workspaceInfo.EnumerateDirectories())
+            foreach (var dirInfo in starterKitInfo.EnumerateDirectories())
             {
                 if (dirInfo.Name == "For Unity Assets")
                 {
@@ -57,7 +57,7 @@
         ///         `For Unity Assets` フォルダの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
-        ///         　　└─ 📂 Workspace
+        ///         　　└─ 📂 Starter Kit
         ///         👉 　　　└─ 📂 For Unity Assets
         ///         　　　　　　　└─ 📂 Images
         ///     </pre>
@@ -95,7 +95,7 @@
         ///         Images フォルダの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
-        ///         　　└─ 📂 Workspace
+        ///         　　└─ 📂 Starter Kit
         ///         　　　　└─ 📂 For Unity Assets
         ///         👉 　　　　└─ 📂 Images
         ///         　　　　　　　　└─ 📂 Tilesets
@@ -134,7 +134,7 @@
         ///         Tileset フォルダの内容を確認します
         ///         
         ///             📂 例: C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/
-        ///         　　└─ 📂 Workspace
+        ///         　　└─ 📂 Starter Kit
         ///         　　　　└─ 📂 For Unity Assets
         ///         　　　　　　└─ 📂 Images
         ///         👉 　　　　　　└─ 📂 Tilesets

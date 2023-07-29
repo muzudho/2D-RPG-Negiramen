@@ -54,11 +54,11 @@
     -->
     <VerticalStackLayout Margin="10,10,10,10">
         <Grid RowDefinitions="*,*" ColumnDefinitions="20,*" Margin="10,10,10,10">
-            <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Workspace フォルダへのパス」 -->
+            <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス」 -->
             <Label Grid.Row="0" Grid.Column="1"
-                   Text="{app:Translate ConfigurationPageWorkspaceFolderDescription}"
+                   Text="{app:Translate ConfigurationPageStarterKitFolderDescription}"
                    VerticalTextAlignment="Center"
-                   SemanticProperties.Hint="2D RPG Negiramen Workspace folder description"/>
+                   SemanticProperties.Hint="2D RPG Negiramen Starter Kit folder description"/>
 
             <Label Grid.Row="1" Grid.Column="0"
                    HorizontalTextAlignment="Center"
@@ -67,8 +67,8 @@
                    SemanticProperties.Hint="Folder emoji"/>
 
             <Entry Grid.Row="1" Grid.Column="1"
-                   Placeholder="C:\Users/むずでょ/Documents/GitHub\2D-RPG-Negiramen/Workspace"
-                   Text="{Binding NegiramenWorkspaceFolderPathAsStr}"/>
+                   Placeholder="C:\Users/むずでょ/Documents/GitHub\2D-RPG-Negiramen/Starter Kit"
+                   Text="{Binding NegiramenStarterKitFolderPathAsStr}"/>
         </Grid>
 
         <!-- 「Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。」 -->

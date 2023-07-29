@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Negiramen
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.StarterKit
 {
     using _2D_RPG_Negiramen.Coding;
 

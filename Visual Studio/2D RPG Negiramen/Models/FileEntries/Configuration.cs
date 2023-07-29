@@ -2,7 +2,7 @@
 {
     using Tomlyn;
     using Tomlyn.Model;
-    using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
+    using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
     ///     😁 構成
@@ -33,11 +33,11 @@
                 var configurationText = System.IO.File.ReadAllText(configurationFilePath);
 
 
-                Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolder = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder();
+                TheFileEntryLocations.StarterKit.ItsFolder negiramenStarterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder();
 
-                TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder();
+                TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder();
 
-                Locations.Negiramen.UserConfigurationFile userConfiguration = new Models.FileEntries.Locations.Negiramen.UserConfigurationFile();
+                // TheFileEntryLocations.StarterKit.UserConfigurationFile userConfiguration = TheFileEntryLocations.StarterKit.UserConfigurationFile.Empty;
                 YourCircleName yourCircleName = new YourCircleName();
                 YourWorkName yourWorkName = new YourWorkName();
 
@@ -54,13 +54,13 @@
                     {
                         if (pathsObj != null && pathsObj is TomlTable paths)
                         {
-                            // ネギラーメンの 📂 `Workspace` フォルダ―へのパス
-                            if (paths.TryGetValue("negiramen_workspace_folder", out object negiramenWorkspaceFolderPathObj))
+                            // ネギラーメンの 📂 `Starter Kit` フォルダ―へのパス
+                            if (paths.TryGetValue("negiramen_starter_kit_folder", out object negiramenStarterKitFolderPathObj))
                             {
-                                if (negiramenWorkspaceFolderPathObj is string negiramenWorkspaceFolderPathAsStr)
+                                if (negiramenStarterKitFolderPathObj is string negiramenStarterKitFolderPathAsStr)
                                 {
-                                    negiramenWorkspaceFolder = new Locations.Negiramen.WorkspaceFolder(
-                                        pathSource: FileEntryPathSource.FromString(negiramenWorkspaceFolderPathAsStr),
+                                    negiramenStarterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder(
+                                        pathSource: FileEntryPathSource.FromString(negiramenStarterKitFolderPathAsStr),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true));
                                 }
@@ -71,7 +71,7 @@
                             {
                                 if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
                                 {
-                                    unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder(
+                                    unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder(
                                         pathSource: FileEntryPathSource.FromString(unityAssetsFolderPathAsStr),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true));
@@ -80,33 +80,33 @@
                         }
                     }
 
-                    //
-                    // [paths_2nd]
-                    // ===========
-                    //
-                    if (document.TryGetValue("paths_2nd", out object paths2ndObj))
-                    {
-                        if (paths2ndObj != null && paths2ndObj is TomlTable paths2nd)
-                        {
-                            // ネギラーメン・ワークスペースの 📄 `user_configuration.toml` ファイルへのパス
-                            if (paths2nd.TryGetValue("user_configuration_file", out object userConfigurationFileObj))
-                            {
-                                if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
-                                {
-                                    userConfiguration = new Locations.Negiramen.UserConfigurationFile(
-                                        pathSource: FileEntryPathSource.FromString(userConfigurationFilePathAsStr),
-                                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                                    replaceSeparators: true,
-                                                                                    // 変数展開のためのもの（その１）
-                                                                                    expandVariables: new Dictionary<string, string>()
-                                                                                    {
-                                                                                        { "{negiramen_workspace_folder}", negiramenWorkspaceFolder.Path.AsStr },
-                                                                                        { "{unity_assets_folder}", unityAssetsFolder.Path.AsStr},
-                                                                                    }));
-                                }
-                            }
-                        }
-                    }
+                    ////
+                    //// [paths_2nd]
+                    //// ===========
+                    ////
+                    //if (document.TryGetValue("paths_2nd", out object paths2ndObj))
+                    //{
+                    //    if (paths2ndObj != null && paths2ndObj is TomlTable paths2nd)
+                    //    {
+                    //        // ネギラーメン・ワークスペースの 📄 `user_configuration.toml` ファイルへのパス
+                    //        if (paths2nd.TryGetValue("user_configuration_file", out object userConfigurationFileObj))
+                    //        {
+                    //            if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
+                    //            {
+                    //                userConfiguration = new Locations.StarterKit.UserConfigurationFile(
+                    //                    pathSource: FileEntryPathSource.FromString(userConfigurationFilePathAsStr),
+                    //                    convert: (pathSource) => FileEntryPath.From(pathSource,
+                    //                                                                replaceSeparators: true,
+                    //                                                                // 変数展開のためのもの（その１）
+                    //                                                                expandVariables: new Dictionary<string, string>()
+                    //                                                                {
+                    //                                                                    { "{negiramen_starter_kit_folder}", negiramenStarterKitFolder.Path.AsStr },
+                    //                                                                    { "{unity_assets_folder}", unityAssetsFolder.Path.AsStr},
+                    //                                                                }));
+                    //            }
+                    //        }
+                    //    }
+                    //}
 
                     //
                     // [profile]
@@ -138,16 +138,16 @@
                 }
 
                 configuration = new Configuration(
-                    negiramenWorkspaceFolder,
+                    negiramenStarterKitFolder,
                     unityAssetsFolder,
-                    userConfiguration,
+                    // userConfiguration,
                     yourCircleName,
                     yourWorkName);
 
                 // 変数展開のためのもの（その２）
                 configuration.Variables = new Dictionary<string, string>()
                     {
-                        { "{negiramen_workspace_folder}", configuration.NegiramenWorkspaceFolder.Path.AsStr },
+                        { "{negiramen_starter_kit_folder}", configuration.NegiramenStarterKitFolder.Path.AsStr },
                         { "{unity_assets_folder}", configuration.UnityAssetsFolder.Path.AsStr},
                     };
 
@@ -203,24 +203,19 @@
             var configurationBuffer = new ConfigurationBuffer();
 
             // 差分適用
-            configurationBuffer.NegiramenWorkspaceFolder = difference.NegiramenWorkspaceFolder == null ? current.NegiramenWorkspaceFolder : difference.NegiramenWorkspaceFolder;
+            configurationBuffer.NegiramenStarterKitFolder = difference.NegiramenStarterKitFolder == null ? current.NegiramenStarterKitFolder : difference.NegiramenStarterKitFolder;
             configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder == null ? current.UnityAssetsFolder : difference.UnityAssetsFolder;
-            configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile == null ? current.UserConfigurationFile : difference.UserConfigurationFile;
+            // configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile == null ? current.UserConfigurationFile : difference.UserConfigurationFile;
             configurationBuffer.YourCircleName = difference.YourCircleName == null ? current.YourCircleName : difference.YourCircleName;
             configurationBuffer.YourWorkName = difference.YourWorkName == null ? current.YourWorkName : difference.YourWorkName;
 
             var text = $@"[paths]
 
-# ネギラーメンの 📂 `Workspace` フォルダ―へのパス
-negiramen_workspace_folder = ""{configurationBuffer.NegiramenWorkspaceFolder.Path.AsStr}""
+# ネギラーメンの 📂 `Starter Kit` フォルダ―へのパス
+negiramen_starter_kit_folder = ""{configurationBuffer.NegiramenStarterKitFolder.Path.AsStr}""
 
 # Unity の Assets フォルダ―へのパス
 unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
-
-[paths_2nd]
-
-# ユーザー構成ファイルへのパス
-user_configuration_file = ""{{negiramen_workspace_folder}}/user_configuration.toml""
 
 [profile]
 
@@ -230,15 +225,21 @@ your_circle_name = ""{configurationBuffer.YourCircleName.AsStr}""
 # あなたの作品名
 your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 ";
+            /*
+[paths_2nd]
+
+# ユーザー構成ファイルへのパス
+user_configuration_file = ""{{negiramen_starter_kit_folder}}/user_configuration.toml""
+             */
 
             // 上書き
             System.IO.File.WriteAllText(configurationFilePath, text);
 
             // イミュータブル・オブジェクトを生成
             newConfiguration = new Configuration(
-                configurationBuffer.NegiramenWorkspaceFolder,
+                configurationBuffer.NegiramenStarterKitFolder,
                 configurationBuffer.UnityAssetsFolder,
-                configurationBuffer.UserConfigurationFile,
+                // configurationBuffer.UserConfigurationFile,
                 configurationBuffer.YourCircleName,
                 configurationBuffer.YourWorkName);
             return true;
@@ -247,12 +248,12 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
 
         // - インターナル・プロパティー
 
-        #region プロパティ（ネギラーメン・ワークスペース・フォルダの場所）
+        #region プロパティ（ネギラーメン 📂 `Starter Kit` フォルダの場所）
         /// <summary>
-        ///     ネギラーメン・ワークスペース・フォルダの場所
+        ///     ネギラーメン 📂 `Starter Kit` フォルダの場所
         /// </summary>
-        /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace"</example>
-        internal Locations.Negiramen.WorkspaceFolder NegiramenWorkspaceFolder { get; }
+        /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"</example>
+        internal Locations.StarterKit.ItsFolder NegiramenStarterKitFolder { get; }
         #endregion
 
         #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
@@ -260,16 +261,16 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     Unity の 📂 `Assets` フォルダの場所
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
-        internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; }
+        internal TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder { get; }
         #endregion
 
-        #region プロパティ（ユーザー構成ファイルの場所）
-        /// <summary>
-        ///     ユーザー構成ファイルの場所
-        /// </summary>
-        /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Workspace/configuration_2nd.toml"</example>
-        internal Locations.Negiramen.UserConfigurationFile UserConfigurationFile { get; }
-        #endregion
+        //#region プロパティ（ユーザー構成ファイルの場所）
+        ///// <summary>
+        /////     ユーザー構成ファイルの場所
+        ///// </summary>
+        ///// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit/configuration_2nd.toml"</example>
+        //internal Locations.StarterKit.UserConfigurationFile UserConfigurationFile { get; }
+        //#endregion
 
         #region プロパティ（あなたのサークル名）
         /// <summary>
@@ -292,9 +293,9 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         ///     生成
         /// </summary>
         internal Configuration() : this(
-            Locations.Negiramen.WorkspaceFolder.Empty,
-            TheLocationOfUnityAssets.ItsFolder.Empty,
-            Locations.Negiramen.UserConfigurationFile.Empty,
+            Locations.StarterKit.ItsFolder.Empty,
+            TheFileEntryLocations.UnityAssets.ItsFolder.Empty,
+            // Locations.StarterKit.UserConfigurationFile.Empty,
             YourCircleName.Empty,
             YourWorkName.Empty)
         {
@@ -303,21 +304,21 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="negiramenWorkspaceFolderPath">ネギラーメン・ワークスペース・フォルダへのパス</param>
+        /// <param name="negiramenStarterKitFolderPath">ネギラーメン 📂 `Starter Kit` フォルダへのパス</param>
         /// <param name="unityAssetsFolderPath">Unity の Assets フォルダへのパス</param>
-        /// <param name="userConfigurationFilePath">ユーザー構成ファイルへのパス</param>
         /// <param name="yourCircleName">あなたのサークル名</param>
         /// <param name="yourWorkName">あなたの作品名</param>
         internal Configuration(
-            Locations.Negiramen.WorkspaceFolder negiramenWorkspaceFolderPath,
-            TheLocationOfUnityAssets.ItsFolder unityAssetsFolderPath,
-            Locations.Negiramen.UserConfigurationFile userConfigurationFilePath,
+            Locations.StarterKit.ItsFolder negiramenStarterKitFolderPath,
+            TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderPath,
+            // <param name="userConfigurationFilePath">ユーザー構成ファイルへのパス</param>
+            // Locations.StarterKit.UserConfigurationFile userConfigurationFilePath,
             YourCircleName yourCircleName,
             YourWorkName yourWorkName)
         {
-            this.NegiramenWorkspaceFolder = negiramenWorkspaceFolderPath;
+            this.NegiramenStarterKitFolder = negiramenStarterKitFolderPath;
             this.UnityAssetsFolder = unityAssetsFolderPath;
-            this.UserConfigurationFile = userConfigurationFilePath;
+            // this.UserConfigurationFile = userConfigurationFilePath;
             this.YourCircleName = yourCircleName;
             this.YourWorkName = yourWorkName;
         }
@@ -341,20 +342,20 @@ your_work_name = ""{configurationBuffer.YourWorkName.AsStr}""
         /// <returns>そうだ</returns>
         internal bool IsReady()
         {
-            return this.ExistsNegiramenWorkspaceFolder() && this.UnityAssetsFolder.YourCircleNameFolder.YourWorkNameFolder.AutoGeneratedFolder.IsExists();
+            return this.ExistsNegiramenStarterKitFolder() && this.UnityAssetsFolder.YourCircleNameFolder.YourWorkNameFolder.AutoGeneratedFolder.IsExists();
         }
         #endregion
 
         // - プライベート・メソッド
 
-        #region メソッド（ネギラーメンの 📂 `Workspace` フォルダ―は存在するか？）
+        #region メソッド（ネギラーメンの 📂 `Starter Kit` フォルダ―は存在するか？）
         /// <summary>
-        ///     ネギラーメンの 📂 `Workspace` フォルダ―は存在するか？
+        ///     ネギラーメンの 📂 `Starter Kit` フォルダ―は存在するか？
         /// </summary>
         /// <returns>そうだ</returns>
-        bool ExistsNegiramenWorkspaceFolder()
+        bool ExistsNegiramenStarterKitFolder()
         {
-            return System.IO.Directory.Exists(this.NegiramenWorkspaceFolder.Path.AsStr);
+            return System.IO.Directory.Exists(this.NegiramenStarterKitFolder.Path.AsStr);
         }
         #endregion
     }

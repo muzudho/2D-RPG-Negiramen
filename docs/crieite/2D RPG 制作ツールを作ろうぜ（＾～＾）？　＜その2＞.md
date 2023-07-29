@@ -1542,4 +1542,29 @@ work = "Furi Bisha"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　Ｏｋ！　これでいける！」  
 
+## Workspace フォルダーの名前を変えたい
+
+![202307_maui_29-0810--Workspace.png](https://crieit.now.sh/upload_images/35512c41ecbd758940ffb7f1451e0b0a64c44b01002fc.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　この Workspace フォルダーへのパスを入力させるの、難しいな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　インストール時に勝手に設定してくれないの？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ユーザーを想定して　開発者がパスの設定をするのは大変だから　ユーザーが設定してほしい」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　このフォルダーの中で作業するのではなく、開始時にデプロイする初期ファイルが入ってるだけだから  
+フォルダーの名前も　`Starter Kit`　とかに変えたいぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ログイン後は　２度と使わないんじゃないの？　このディレクトリー・パス」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`Starter Kit`　という名前にリネームしていくぜ」  
+
+（カタ　カタ　カタ　カタ）  
+
 ＜書きかけ＞

@@ -241,8 +241,8 @@
   <data name="TilesetList" xml:space="preserve">
     <value>タイルセット一覧</value>
   </data>
-  <data name="ConfigurationPageWorkspaceFolderDescription" xml:space="preserve">
-    <value>あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Workspace フォルダへのパス</value>
+  <data name="ConfigurationPageStarterKitFolderDescription" xml:space="preserve">
+    <value>あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス</value>
   </data>
   <data name="ConfigurationPageUnityProjectDescription" xml:space="preserve">
     <value>Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。</value>

@@ -32,7 +32,7 @@
             // 構成ファイル取得
             var configuration = App.GetOrLoadConfiguration();
 
-            NegiramenWorkspaceFolderPathAsStr = configuration.NegiramenWorkspaceFolder.Path.AsStr;
+            NegiramenStarterKitFolderPathAsStr = configuration.NegiramenStarterKitFolder.Path.AsStr;
 
             this.UnityAssetsFolder = configuration.UnityAssetsFolder;
             UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
@@ -82,18 +82,18 @@
         public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
         #endregion
 
-        #region 変更通知プロパティ（ネギラーメン・ワークスペース・フォルダ）
+        #region 変更通知プロパティ（ネギラーメン 📂 `Starter Kit` フォルダ）
         /// <summary>
-        ///     ネギラーメン・ワークスペース・フォルダへのパス。文字列形式
+        ///     ネギラーメン 📂 `Starter Kit` フォルダへのパス。文字列形式
         /// </summary>
-        public string NegiramenWorkspaceFolderPathAsStr
+        public string NegiramenStarterKitFolderPathAsStr
         {
-            get => _negiramenWorkspaceFolder.Path.AsStr;
+            get => negiramenStarterKitFolder.Path.AsStr;
             set
             {
-                if (_negiramenWorkspaceFolder.Path.AsStr != value)
+                if (negiramenStarterKitFolder.Path.AsStr != value)
                 {
-                    _negiramenWorkspaceFolder = new Models.FileEntries.Locations.Negiramen.WorkspaceFolder(
+                    negiramenStarterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder(
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
@@ -195,11 +195,11 @@
 
         // - プライベート・フィールド
 
-        #region フィールド（ネギラーメンの 📂 `Workspace` フォルダへのパス）
+        #region フィールド（ネギラーメンの 📂 `Starter Kit` フォルダへのパス）
         /// <summary>
-        ///     ネギラーメンの 📂 `Workspace` フォルダへのパス
+        ///     ネギラーメンの 📂 `Starter Kit` フォルダへのパス
         /// </summary>
-        TheFileEntryLocations.Negiramen.WorkspaceFolder _negiramenWorkspaceFolder = TheFileEntryLocations.Negiramen.WorkspaceFolder.Empty;
+        TheFileEntryLocations.StarterKit.ItsFolder negiramenStarterKitFolder = TheFileEntryLocations.StarterKit.ItsFolder.Empty;
         #endregion
 
         #region フィールド（Unity の Assets フォルダへのパス）
@@ -237,7 +237,7 @@
                 // 構成ファイルの更新差分
                 var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
                 {
-                    NegiramenWorkspaceFolder = this._negiramenWorkspaceFolder,
+                    NegiramenStarterKitFolder = this.negiramenStarterKitFolder,
                     UnityAssetsFolder = this._unityAssetsFolder,
                     YourCircleName = _yourCircleName,
                     YourWorkName = _yourWorkName,
@@ -250,7 +250,7 @@
                     App.SetConfiguration(newConfiguration);
 
                     // ネギラーメンのワークスペース・フォルダの内容を確認
-                    var isOk = Models.FileEntries.NegiramenWorkspaceDeployment.CheckForUnityAssets();
+                    var isOk = Models.FileEntries.NegiramenStarterKitDeployment.CheckForUnityAssets();
                     if (!isOk)
                     {
                         // TODO 異常時の処理
