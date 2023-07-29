@@ -18,7 +18,17 @@
         ContentTemplate="{DataTemplate views:ConfigurationPage}"
         Route="MainPage" />
     -->
-    
+
+    <ShellContent
+        Title="Login page 1"
+        ContentTemplate="{DataTemplate views:LoginPage1}"
+        Route="LoginPage1" />
+
+    <ShellContent
+        Title="Login page 2"
+        ContentTemplate="{DataTemplate views:LoginPage2}"
+        Route="LoginPage2" />
+
     <ShellContent
         Title="Select a map"
         ContentTemplate="{DataTemplate views:MapExplorerPage}"

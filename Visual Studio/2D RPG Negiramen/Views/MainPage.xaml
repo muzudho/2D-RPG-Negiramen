@@ -237,7 +237,7 @@
                    SemanticProperties.Hint="System"
                    FontSize="32"/>
 
-                <Grid RowDefinitions="*,*,*" ColumnDefinitions="*,*">
+                <Grid RowDefinitions="*,*,*,*" ColumnDefinitions="*,*">
 
                     <!-- 「構成」 -->
                     <Button Grid.Row="0" Grid.Column="0"
@@ -304,6 +304,28 @@
                         Text="{app:Translate TileCrop}"
                         SemanticProperties.Hint="Tile crop page"
                         Clicked="TileCropButton_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
+
+                    <!-- 「ログイン（１）」 -->
+                    <Button Grid.Row="3" Grid.Column="0"
+                        Text="{app:Translate LoginPage1}"
+                        Clicked="LoginPage1Button_Clicked">
+
+                        <Button.GestureRecognizers>
+                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
+                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
+                        </Button.GestureRecognizers>
+                    </Button>
+
+                    <!-- 「ログイン（２）」 -->
+                    <Button Grid.Row="3" Grid.Column="1"
+                        Text="{app:Translate LoginPage2}"
+                        Clicked="LoginPage2Button_Clicked">
 
                         <Button.GestureRecognizers>
                             <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"

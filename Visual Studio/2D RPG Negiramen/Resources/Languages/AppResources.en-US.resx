@@ -261,4 +261,10 @@
   <data name="ConfigurationPageUnityAssetsFolderDescription" xml:space="preserve">
     <value>Path to the Assets folder in your Unity project</value>
   </data>
+  <data name="LoginPage2" xml:space="preserve">
+    <value>Login (2)</value>
+  </data>
+  <data name="LoginPage1" xml:space="preserve">
+    <value>Login (1)</value>
+  </data>
 </root>

@@ -340,6 +340,24 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   ログイン（１） に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LoginPage1 {
+            get {
+                return ResourceManager.GetString("LoginPage1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ログイン（２） に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string LoginPage2 {
+            get {
+                return ResourceManager.GetString("LoginPage2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   マップ描画ページ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string MapDrawingPage {
