@@ -20,14 +20,14 @@
     -->
 
     <ShellContent
-        Title="Login page 1"
-        ContentTemplate="{DataTemplate views:LoginPage1}"
-        Route="LoginPage1" />
+        Title="Login 1 page"
+        ContentTemplate="{DataTemplate views:Login1Page}"
+        Route="Login1Page" />
 
     <ShellContent
-        Title="Login page 2"
-        ContentTemplate="{DataTemplate views:LoginPage2}"
-        Route="LoginPage2" />
+        Title="Login 2 page"
+        ContentTemplate="{DataTemplate views:Login2Page}"
+        Route="Login2Page" />
 
     <ShellContent
         Title="Select a map"

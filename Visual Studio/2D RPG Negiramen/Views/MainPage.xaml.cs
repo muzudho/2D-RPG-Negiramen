@@ -477,7 +477,7 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void LoginPage1Button_Clicked(object sender, EventArgs e)
     {
-        var shellNavigationState = new ShellNavigationState("//LoginPage1");
+        var shellNavigationState = new ShellNavigationState("//Login1Page");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
         await CodeBehindHelper.ReadyGoToNext(
@@ -500,7 +500,7 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void LoginPage2Button_Clicked(object sender, EventArgs e)
     {
-        var shellNavigationState = new ShellNavigationState("//LoginPage2");
+        var shellNavigationState = new ShellNavigationState("//Login2Page");
 
         // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
         await CodeBehindHelper.ReadyGoToNext(

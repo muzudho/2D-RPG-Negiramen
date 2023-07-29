@@ -269,10 +269,10 @@
     <value>開く</value>
     <comment>ファイルなどを開く</comment>
   </data>
-  <data name="LoginPage1" xml:space="preserve">
+  <data name="Login1Page" xml:space="preserve">
     <value>ログイン（１）</value>
   </data>
-  <data name="LoginPage2" xml:space="preserve">
+  <data name="Login2Page" xml:space="preserve">
     <value>ログイン（２）</value>
   </data>
 </root>

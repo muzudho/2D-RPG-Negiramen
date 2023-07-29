@@ -313,7 +313,7 @@
 
                     <!-- 「ログイン（１）」 -->
                     <Button Grid.Row="3" Grid.Column="0"
-                        Text="{app:Translate LoginPage1}"
+                        Text="{app:Translate Login1Page}"
                         Clicked="LoginPage1Button_Clicked">
 
                         <Button.GestureRecognizers>
@@ -324,7 +324,7 @@
 
                     <!-- 「ログイン（２）」 -->
                     <Button Grid.Row="3" Grid.Column="1"
-                        Text="{app:Translate LoginPage2}"
+                        Text="{app:Translate Login2Page}"
                         Clicked="LoginPage2Button_Clicked">
 
                         <Button.GestureRecognizers>

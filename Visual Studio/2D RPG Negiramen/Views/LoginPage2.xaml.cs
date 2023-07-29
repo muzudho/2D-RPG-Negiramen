@@ -1,8 +1,8 @@
 namespace _2D_RPG_Negiramen.Views;
 
-public partial class LoginPage2 : ContentPage
+public partial class Login2Page : ContentPage
 {
-	public LoginPage2()
+	public Login2Page()
 	{
 		InitializeComponent();
 	}

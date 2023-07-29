@@ -1607,4 +1607,17 @@ your_work_name = "Negiramen Quest"
 
 ## やっぱりログイン画面は作ろうぜ？
 
+![202307_maui_29-1108--starterKit.png](https://crieit.now.sh/upload_images/65c485094d9599b373e91a9b6eb792fa64c475144d237.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　構成ページではなく、　別途　ログイン・ページが要ると思う。それも２ページ構成で」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　変更じゃなくて　機能追加だったのね」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`LoginPage1` にすると `LoginPage1ViewModel` になるのが　カッコ悪いから、  
+`Login1Page` にして `Login1PageViewModel` になるようにする」  
+
+
 ＜書きかけ＞
