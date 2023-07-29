@@ -36,9 +36,6 @@
                 // 設定ファイルの読取
                 var userConfigurationText = System.IO.File.ReadAllText(userConfigurationFilePath);
 
-
-                Locations.StarterKit.WorkingTilesetImageFile workingTilesetImageFile = new Models.FileEntries.Locations.StarterKit.WorkingTilesetImageFile();
-
                 TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder();
 
                 // Locations.StarterKit.UserConfigurationFile userConfiguration = Models.FileEntries.Locations.StarterKit.UserConfigurationFile.Empty;
