@@ -60,5 +60,16 @@
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Label Text="サークル名"/>
+
+        <Entry Text="あああ"/>
+
+        <Label Text="作品名"/>
+
+        <Entry Text="いいい"/>
+
+        <Button Text="新しく作る／続きから"/>
+        
     </VerticalStackLayout>
 </ContentPage>

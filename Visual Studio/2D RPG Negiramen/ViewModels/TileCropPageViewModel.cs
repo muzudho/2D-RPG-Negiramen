@@ -28,7 +28,6 @@
         /// </summary>
         public TileCropPageViewModel()
         {
-            // this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
         }
@@ -329,10 +328,7 @@
         /// </summary>
         public string CultureInfoAsStr
         {
-            get
-            {
-                return LocalizationResourceManager.Instance.CultureInfo.Name;
-            }
+            get => LocalizationResourceManager.Instance.CultureInfo.Name;
             set
             {
                 if (LocalizationResourceManager.Instance.CultureInfo.Name != value)

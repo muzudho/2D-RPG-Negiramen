@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
 using CommunityToolkit.Mvvm.ComponentModel;
+using System.Collections.ObjectModel;
 using System.Globalization;
 
 /// <summary>
@@ -16,10 +17,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// </summary>
     public string CultureInfoAsStr
     {
-        get
-        {
-            return LocalizationResourceManager.Instance.CultureInfo.Name;
-        }
+        get => LocalizationResourceManager.Instance.CultureInfo.Name;
         set
         {
             if (LocalizationResourceManager.Instance.CultureInfo.Name != value)
@@ -29,6 +27,11 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             }
         }
     }
+
+    /// <summary>
+    ///     ロケールＩｄのリスト
+    /// </summary>
+    public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
     #endregion
 
     // - パブリック・メソッド
