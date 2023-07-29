@@ -229,30 +229,6 @@ public partial class TilesetListPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（ボタンにマウスカーソル進入時）
-    /// <summary>
-    ///     ボタンにマウスカーソル進入時
-    /// </summary>
-    /// <param name="sender">このイベントを呼び出したコントロール</param>
-    /// <param name="e">この発生イベントの制御変数</param>
-    void Button_PointerGestureRecognizer_PointerEntered(object sender, PointerEventArgs e)
-    {
-        PolicyOfView.ReactOnMouseEntered((Button)sender);
-    }
-    #endregion
-
-    #region イベントハンドラ（ボタンからマウスカーソル退出時）
-    /// <summary>
-    ///     ボタンからマウスカーソル退出時
-    /// </summary>
-    /// <param name="sender">このイベントを呼び出したコントロール</param>
-    /// <param name="e">この発生イベントの制御変数</param>
-    void Button_PointerGestureRecognizer_PointerExited(object sender, PointerEventArgs e)
-    {
-        PolicyOfView.ReactOnMouseLeaved((Button)sender);
-    }
-    #endregion
-
     #region イベントハンドラ（ロケール変更時）
     /// <summary>
     ///     ロケール変更時

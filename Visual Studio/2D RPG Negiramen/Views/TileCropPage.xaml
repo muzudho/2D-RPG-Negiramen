@@ -49,12 +49,7 @@
                 <Button Margin="16,2,2,2"
                         Text="{app:Translate Home}"
                         SemanticProperties.Hint="Back to the home"
-                        Clicked="HomeBtn_Clicked">
-                    <Button.GestureRecognizers>
-                        <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
-                                                  PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
-                    </Button.GestureRecognizers>
-                </Button>
+                        Clicked="HomeBtn_Clicked"/>
 
                 <Label VerticalTextAlignment="Center"
                        Text="＞"
@@ -471,23 +466,13 @@
                     <Button IsEnabled="{Binding AddsButtonIsEnabled}"
                             Text="{Binding AddsButtonText}"
                             ToolTipProperties.Text="{Binding AddsButtonHint}"
-                            Clicked="AddsButton_Clicked">
-                        <Button.GestureRecognizers>
-                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
-                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
-                        </Button.GestureRecognizers>
-                    </Button>
+                            Clicked="AddsButton_Clicked"/>
 
                     <!-- ［削除］ボタン -->
                     <Button Margin="0,40,0,0"
                             IsEnabled="{Binding DeletesButtonIsEnabled}"
                             Text="{app:Translate Delete}"
-                            Clicked="DeletesButton_Clicked">
-                        <Button.GestureRecognizers>
-                            <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
-                                                      PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
-                        </Button.GestureRecognizers>
-                    </Button>
+                            Clicked="DeletesButton_Clicked"/>
 
                 </VerticalStackLayout>
             </Grid>

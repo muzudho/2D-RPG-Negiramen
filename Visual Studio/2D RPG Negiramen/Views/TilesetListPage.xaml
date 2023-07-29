@@ -28,12 +28,7 @@
                 <Button Margin="16,2,2,2"
                         Text="{app:Translate Home}"
                         SemanticProperties.Hint="Back to the home"
-                        Clicked="HomeBtn_Clicked">
-                    <Button.GestureRecognizers>
-                        <PointerGestureRecognizer PointerEntered="Button_PointerGestureRecognizer_PointerEntered"
-                                                  PointerExited="Button_PointerGestureRecognizer_PointerExited"/>
-                    </Button.GestureRecognizers>
-                </Button>
+                        Clicked="HomeBtn_Clicked"/>
 
                 <Label VerticalTextAlignment="Center"
                        Text="＞"
