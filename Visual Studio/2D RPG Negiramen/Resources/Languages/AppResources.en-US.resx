@@ -237,9 +237,6 @@
   <data name="ConfigurationPageStarterKitFolderDescription" xml:space="preserve">
     <value>The path to the Starter Kit folder included in the 2D RPG Negiramen you downloaded to your local PC</value>
   </data>
-  <data name="ConfigurationPageUnityProjectDescription" xml:space="preserve">
-    <value>Please create a Unity project with a 2D template and then configure the following:</value>
-  </data>
   <data name="YourCircleName" xml:space="preserve">
     <value>Your circle name</value>
   </data>
@@ -249,9 +246,6 @@
   <data name="ConfigurationPageDeployButtonDescription" xml:space="preserve">
     <value>Transfer missing files to Unity's Assets folder</value>
   </data>
-  <data name="ConfigurationPageUnityAssetsFolderDescription" xml:space="preserve">
-    <value>Below this folder, it will be automatically edited</value>
-  </data>
   <data name="YourWorkName" xml:space="preserve">
     <value>Your title</value>
   </data>
@@ -260,5 +254,11 @@
   </data>
   <data name="Open" xml:space="preserve">
     <value>Open</value>
+  </data>
+  <data name="ConfigurationPageUnityProjectDescription" xml:space="preserve">
+    <value>Please create a Unity project with a 2D template and then configure the following:</value>
+  </data>
+  <data name="ConfigurationPageUnityAssetsFolderDescription" xml:space="preserve">
+    <value>Path to the Assets folder in your Unity project</value>
   </data>
 </root>

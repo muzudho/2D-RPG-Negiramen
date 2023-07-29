@@ -248,7 +248,7 @@
     <value>Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。</value>
   </data>
   <data name="ConfigurationPageUnityAssetsFolderDescription" xml:space="preserve">
-    <value>このフォルダの下は自動編集されます</value>
+    <value>Unity プロジェクトの中の Assets フォルダへのパス</value>
   </data>
   <data name="YourCircleName" xml:space="preserve">
     <value>あなたのサークル名</value>

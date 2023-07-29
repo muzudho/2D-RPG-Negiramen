@@ -106,7 +106,16 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   このフォルダの下は自動編集されます に類似しているローカライズされた文字列を検索します。
+        ///   あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ConfigurationPageStarterKitFolderDescription {
+            get {
+                return ResourceManager.GetString("ConfigurationPageStarterKitFolderDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Unity プロジェクトの中の Assets フォルダへのパス に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string ConfigurationPageUnityAssetsFolderDescription {
             get {
@@ -120,15 +129,6 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string ConfigurationPageUnityProjectDescription {
             get {
                 return ResourceManager.GetString("ConfigurationPageUnityProjectDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string ConfigurationPageWorkspaceFolderDescription {
-            get {
-                return ResourceManager.GetString("ConfigurationPageWorkspaceFolderDescription", resourceCulture);
             }
         }
         

@@ -1567,4 +1567,44 @@ work = "Furi Bisha"
 
 （カタ　カタ　カタ　カタ）  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　じゃあ、　`user_configuration.toml`　というファイルは　現状、　`configuration.toml`　で置き場所を設定できるようにしていたが、  
+大変なので　`Starter Kit`　フォルダーの直下に置くように　固定していい？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　設定できることは少ない方が　ユーザー・サポートが楽になるぜ」  
+
+## configuration.toml を改造したい
+
+![202307_maui_29-0949--ConfigurationToml.png](https://crieit.now.sh/upload_images/c6fd35f76d71fbfbf5793ca248becd8564c46227bc603.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　今　こんな感じだが、　`[profile]`　テーブルを、　`[[entry]]`　テーブル配列に変えるぜ」  
+
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、　次回　どの設定で　再開するか　覚えておく必要があるぜ！」  
+
+```toml
+[remember]
+
+# あたなのサークル名
+your_circle_name = "Doujin Circle Negiramen"
+
+# あなたの作品名
+your_work_name = "Negiramen Quest"
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　こんな感じのデータは　やっぱり要るか？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　変えたり　戻したり　だな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　エントリーは　ドロップ・ダウン・リストでいいかな。 50 件も 100 件もあるようなデータじゃないだろ」  
+
+## やっぱりログイン画面は作ろうぜ？
+
 ＜書きかけ＞
