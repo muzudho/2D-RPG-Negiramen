@@ -243,7 +243,7 @@
                     RememberYourWorkFolderName = _yourWorkFolderName,
                 };
 
-                // 設定ファイルの保存
+                // 構成ファイルの保存
                 if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
                 {
                     // グローバル変数を更新
@@ -263,6 +263,10 @@
                         // TODO 異常時の処理
                         return;
                     }
+                }
+                else
+                {
+                    // TODO 異常時の処理
                 }
             });
 

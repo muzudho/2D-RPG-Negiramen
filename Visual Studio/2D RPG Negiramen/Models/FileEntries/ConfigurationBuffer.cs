@@ -14,33 +14,33 @@
         /// <summary>
         ///     ネギラーメンの 📂 `Starter Kit` フォルダへのパス
         /// </summary>
-        internal Locations.StarterKit.ItsFolder NegiramenStarterKitFolder { get; set; } = Locations.StarterKit.ItsFolder.Empty;
+        internal Locations.StarterKit.ItsFolder? NegiramenStarterKitFolder { get; set; }
 
         /// <summary>
         ///     Unity の 📂 `Assets` フォルダへのパス
         /// </summary>
-        internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; set; } = TheLocationOfUnityAssets.ItsFolder.Empty;
+        internal TheLocationOfUnityAssets.ItsFolder? UnityAssetsFolder { get; set; }
 
         ///// <summary>
         /////     ユーザー構成ファイルへのパス
         ///// </summary>
-        //internal Locations.StarterKit.UserConfigurationFile UserConfigurationFile { get; set; }
+        //internal Locations.StarterKit.UserConfigurationFile? UserConfigurationFile { get; set; }
 
         /// <summary>
         ///     あなたのサークル・フォルダ名
         /// </summary>
-        internal YourCircleFolderName RememberYourCircleFolderName { get; set; } = YourCircleFolderName.Empty;
+        internal YourCircleFolderName? RememberYourCircleFolderName { get; set; }
 
         /// <summary>
         ///     あなたの作品フォルダ名
         /// </summary>
-        internal YourWorkFolderName RememberYourWorkFolderName { get; set; } = YourWorkFolderName.Empty;
+        internal YourWorkFolderName? RememberYourWorkFolderName { get; set; }
 
         #region プロパティ（エントリー・リスト）
         /// <summary>
         ///     エントリー・リスト
         /// </summary>
-        internal List<ConfigurationEntry> EntryList { get; set; } = new List<ConfigurationEntry>();
+        internal List<ConfigurationEntry>? EntryList { get; set; }
         #endregion
     }
 }

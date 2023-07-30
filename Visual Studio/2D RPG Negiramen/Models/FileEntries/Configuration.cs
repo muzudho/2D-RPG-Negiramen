@@ -285,12 +285,12 @@
             var configurationBuffer = new ConfigurationBuffer();
 
             // 差分適用
-            configurationBuffer.NegiramenStarterKitFolder = difference.NegiramenStarterKitFolder == null ? current.StarterKitFolder : difference.NegiramenStarterKitFolder;
-            configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder == null ? current.UnityAssetsFolder : difference.UnityAssetsFolder;
-            // configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile == null ? current.UserConfigurationFile : difference.UserConfigurationFile;
-            configurationBuffer.RememberYourCircleFolderName = difference.RememberYourCircleFolderName == null ? current.RememberYourCircleFolderName : difference.RememberYourCircleFolderName;
-            configurationBuffer.RememberYourWorkFolderName = difference.RememberYourWorkFolderName == null ? current.RememberYourWorkFolderName : difference.RememberYourWorkFolderName;
-            configurationBuffer.EntryList = difference.EntryList == null ? current.EntryList : difference.EntryList;
+            configurationBuffer.NegiramenStarterKitFolder = difference.NegiramenStarterKitFolder ?? current.StarterKitFolder;
+            configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder ?? current.UnityAssetsFolder;
+            // configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile ?? current.UserConfigurationFile;
+            configurationBuffer.RememberYourCircleFolderName = difference.RememberYourCircleFolderName?? current.RememberYourCircleFolderName;
+            configurationBuffer.RememberYourWorkFolderName = difference.RememberYourWorkFolderName?? current.RememberYourWorkFolderName;
+            configurationBuffer.EntryList = difference.EntryList ?? current.EntryList;
 
             StringBuilder strBuilder = new StringBuilder();
             strBuilder.AppendLine($@"[paths]

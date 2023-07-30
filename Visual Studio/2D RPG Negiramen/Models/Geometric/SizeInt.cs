@@ -82,10 +82,7 @@
         ///     Equalsがtrueを返すときに同じ値を返す
         /// </summary>
         /// <returns>ハッシュ値</returns>
-        public override int GetHashCode()
-        {
-            return (Width, Height).GetHashCode();
-        }
+        public override int GetHashCode() => (Width, Height).GetHashCode();
         #endregion
 
         // - インターナル静的プロパティー

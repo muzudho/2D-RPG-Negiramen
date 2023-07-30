@@ -82,10 +82,7 @@ namespace _2D_RPG_Negiramen.Coding
         ///     Equalsがtrueを返すときに同じ値を返す
         /// </summary>
         /// <returns>ハッシュ値</returns>
-        public override int GetHashCode()
-        {
-            return this.Some.GetHashCode();
-        }
+        public override int GetHashCode() => this.Some.GetHashCode();
         #endregion
 
         // - その他

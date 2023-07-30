@@ -477,20 +477,8 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void LoginPage1Button_Clicked(object sender, EventArgs e)
     {
-        var shellNavigationState = new ShellNavigationState("//Login1Page");
-
-        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await CodeBehindHelper.ReadyGoToNext(
-            onOk: async () =>
-            {
-                await Shell.Current.GoToAsync(shellNavigationState);
-                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
-            },
-            onNotYetConfiguration: async () =>
-            {
-                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
-                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
-            });
+        await Shell.Current.GoToAsync(new ShellNavigationState("//Login1Page"));
+        // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
 
     /// <summary>
@@ -500,19 +488,7 @@ public partial class MainPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void LoginPage2Button_Clicked(object sender, EventArgs e)
     {
-        var shellNavigationState = new ShellNavigationState("//Login2Page");
-
-        // 次のページへ遷移する。ただし、構成ファイルが設定されていないなら、その設定を要求する
-        await CodeBehindHelper.ReadyGoToNext(
-            onOk: async () =>
-            {
-                await Shell.Current.GoToAsync(shellNavigationState);
-                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
-            },
-            onNotYetConfiguration: async () =>
-            {
-                await CodeBehindHelper.GoToConfigurationPage(this, shellNavigationState);
-                // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
-            });
+        await Shell.Current.GoToAsync(new ShellNavigationState("//Login2Page"));
+        // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
 }

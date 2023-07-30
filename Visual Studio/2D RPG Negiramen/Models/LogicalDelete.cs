@@ -81,10 +81,7 @@
         ///     Equalsがtrueを返すときに同じ値を返す
         /// </summary>
         /// <returns>ハッシュ値</returns>
-        public override int GetHashCode()
-        {
-            return this.source;
-        }
+        public override int GetHashCode() => this.source;
         #endregion
 
         #region 演算子のオーバーロード（大小比較）

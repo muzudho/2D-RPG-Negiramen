@@ -83,10 +83,7 @@
         ///     Equalsがtrueを返すときに同じ値を返す
         /// </summary>
         /// <returns>ハッシュ値</returns>
-        public override int GetHashCode()
-        {
-            return (Location, Size).GetHashCode();
-        }
+        public override int GetHashCode() => (Location, Size).GetHashCode();
         #endregion
 
         // - その他
