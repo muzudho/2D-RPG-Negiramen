@@ -126,6 +126,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             this.IsExistsEntryInList = this.GetExistsEntryInList();
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
+            OnPropertyChanged(nameof(IsEnabledOfNextButton));
         }
     }
     #endregion
@@ -149,6 +150,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             this.IsExistsEntryInList = this.GetExistsEntryInList();
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
+            OnPropertyChanged(nameof(IsEnabledOfNextButton));
         }
     }
     #endregion
@@ -172,22 +174,6 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     {
         get => !this.IsVisibleOfNextButton;
     }
-
-    /// <summary>
-    ///     ［続きから］ボタンの活性性
-    /// </summary>
-    public bool IsEnabledOfContinueButton
-    {
-        get => this.isEnabledOfContinueButton;
-        set
-        {
-            if (this.isEnabledOfContinueButton == value)
-                return;
-
-            this.isEnabledOfContinueButton = value;
-            OnPropertyChanged(nameof(IsEnabledOfContinueButton));
-        }
-    }
     #endregion
 
     #region 変更通知プロパティ（［次へ］ボタン　関連）
@@ -202,19 +188,12 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
     /// <summary>
     ///     ［次へ］ボタンの活性性
+    ///     
+    ///     <list type="bullet">
+    ///         <item>サークル名と作品名が入力されているか？</item>
+    ///     </list>
     /// </summary>
-    public bool IsEnabledOfNextButton
-    {
-        get => this.isEnabledOfNextButton;
-        set
-        {
-            if (this.isEnabledOfNextButton == value)
-                return;
-
-            this.isEnabledOfNextButton = value;
-            OnPropertyChanged(nameof(IsEnabledOfNextButton));
-        }
-    }
+    public bool IsEnabledOfNextButton => this.YourCircleName != YourCircleName.Empty && this.YourWorkName != YourWorkName.Empty;
     #endregion
 
     #region 変更通知プロパティ（エントリー・リスト　関連）
@@ -265,10 +244,6 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     int yourWorkNameLength;
 
     bool isExistsEntryInList;
-
-    bool isEnabledOfContinueButton;
-
-    bool isEnabledOfNextButton;
 
     ConfigurationEntry? selectedEntry;
 

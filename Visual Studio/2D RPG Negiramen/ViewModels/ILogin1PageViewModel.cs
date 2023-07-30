@@ -75,7 +75,7 @@ internal interface ILogin1PageViewModel
     /// <summary>
     ///     ［次へ］ボタンの活性性
     /// </summary>
-    bool IsEnabledOfNextButton { get; set; }
+    bool IsEnabledOfNextButton { get; }
     #endregion
 
     // - パブリック・メソッド
