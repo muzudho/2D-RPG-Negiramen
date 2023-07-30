@@ -56,6 +56,12 @@
     </Shell.TitleView>
 
     <VerticalStackLayout>
+        <Label Text="Starter Kit フォルダーへのパス"/>
+
+        <Entry Text="あああ"/>
+
+        <Button Text="新しく作る"/>
+
         <Label 
             Text="Welcome to .NET MAUI!"
             VerticalOptions="Center" 
