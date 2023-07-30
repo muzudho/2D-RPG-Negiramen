@@ -1,4 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.ViewModels;
+﻿using _2D_RPG_Negiramen.Models;
+
+namespace _2D_RPG_Negiramen.ViewModels;
 
 /// <summary>
 ///     😁 ［ログイン１］ページ・ビューモデル
@@ -6,6 +8,30 @@
 internal interface ILogin1PageViewModel
 {
     // - パブリック・プロパティ
+
+    #region プロパティ（あなたのサークル名　関連）
+    /// <summary>
+    ///     あなたのサークル名
+    /// </summary>
+    YourCircleName YourCircleName { get; set; }
+
+    /// <summary>
+    ///     あなたのサークル名
+    /// </summary>
+    string YourCircleNameAsStr { get; set; }
+    #endregion
+
+    #region プロパティ（あなたの作品名　関連）
+    /// <summary>
+    ///     あなたの作品名
+    /// </summary>
+    YourWorkName YourWorkName { get; set; }
+
+    /// <summary>
+    ///     あなたの作品名
+    /// </summary>
+    string YourWorkNameAsStr { get; set; }
+    #endregion
 
     #region プロパティ（［サークル名］の文字数）
     /// <summary>
@@ -28,25 +54,25 @@ internal interface ILogin1PageViewModel
     int NumberOfCharacters { get; }
     #endregion
 
-    #region 変更通知プロパティ（［続きから］ボタンの可視性）
+    #region プロパティ（［続きから］ボタンの可視性）
     /// <summary>
     ///     ［続きから］ボタンの可視性
     /// </summary>
-    public bool IsVisibleOfContinueButton { get; set; }
+    bool IsVisibleOfContinueButton { get; set; }
     #endregion
 
-    #region 変更通知プロパティ（［次へ］ボタンの可視性）
+    #region プロパティ（［次へ］ボタンの可視性）
     /// <summary>
     ///     ［次へ］ボタンの可視性
     /// </summary>
-    public bool IsVisibleOfNextButton { get; set; }
+    bool IsVisibleOfNextButton { get; set; }
     #endregion
 
-    #region 変更通知プロパティ（［次へ］ボタンの活性性）
+    #region プロパティ（［次へ］ボタンの活性性）
     /// <summary>
     ///     ［次へ］ボタンの活性性
     /// </summary>
-    public bool IsEnabledOfNextButton { get; set; }
+    bool IsEnabledOfNextButton { get; set; }
     #endregion
 
     // - パブリック・メソッド

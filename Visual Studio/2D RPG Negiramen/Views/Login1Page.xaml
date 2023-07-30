@@ -85,11 +85,11 @@
                 -->
                 <Entry Grid.Row="1" Grid.Column="0"
                        Placeholder="Doujin Circle Grayscale"
-                       Text=""
+                       Text="{Binding YourCircleNameAsStr}"
                        TextChanged="YourCircleNameEntry_TextChanged"/>
                 <Entry Grid.Row="1" Grid.Column="1"
                        Placeholder="Negiramen Quest"
-                       Text=""
+                       Text="{Binding YourWorkNameAsStr}"
                        TextChanged="YourWorkNameEntry_TextChanged"/>
                 <Picker Grid.Row="1" Grid.Column="2"
                         VerticalOptions="Center"
@@ -97,7 +97,8 @@
                         WidthRequest="300"
                         ItemsSource="{Binding EntryList}"
                         SelectedItem="{Binding SelectedEntry}"
-                        ItemDisplayBinding="{Binding PresentableTextAsStr}"/>
+                        ItemDisplayBinding="{Binding PresentableTextAsStr}"
+                        SelectedIndexChanged="EntryListPicker_SelectedIndexChanged"/>
 
                 <!--    ３行目
                         ======

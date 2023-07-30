@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
+using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.ViewModels;
 using System.Diagnostics;
 
@@ -31,12 +32,29 @@ public partial class Login1Page : ContentPage
 
     // - プライベート・イベントハンドラ
 
+    #region イベントハンドラ（ページ読込完了時）
+    /// <summary>
+    ///     ページ読込完了時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void ContentPage_Loaded(object sender, EventArgs e)
+    {
+        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了");
+
+        foreach (var entry in App.GetOrLoadConfiguration().EntryList)
+        {
+            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleName}, Work: {entry.YourWorkName}");
+        }
+    }
+    #endregion
+
     #region イベントハンドラ（［ホーム］ボタン・クリック時）
     /// <summary>
     ///     ［ホーム］ボタン・クリック時
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
@@ -87,13 +105,20 @@ public partial class Login1Page : ContentPage
     }
     #endregion
 
-    private void ContentPage_Loaded(object sender, EventArgs e)
+    #region イベントハンドラ（［エントリー・リスト］選択変更時）
+    /// <summary>
+    ///     ［エントリー・リスト］選択変更時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void EntryListPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
-        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了");
+        Picker picker = (Picker)sender;
 
-        foreach (var entry in App.GetOrLoadConfiguration().EntryList)
-        {
-            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleName}, Work: {entry.YourWorkName}");
-        }
+        ConfigurationEntry entry = (ConfigurationEntry)picker.SelectedItem;
+
+        this.Login1PageVM.YourCircleName = entry.YourCircleName;
+        this.Login1PageVM.YourWorkName = entry.YourWorkName;
     }
+    #endregion
 }

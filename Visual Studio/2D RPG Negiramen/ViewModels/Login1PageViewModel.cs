@@ -12,6 +12,40 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 {
     // - パブリック・プロパティ
 
+    #region プロパティ（あなたのサークル名）
+    /// <summary>
+    ///     あなたのサークル名
+    /// </summary>
+    public YourCircleName YourCircleName
+    {
+        get => this.yourCircleName;
+        set
+        {
+            if (this.yourCircleName == value)
+                return;
+
+            this.YourCircleNameAsStr = value.AsStr;
+        }
+    }
+    #endregion
+
+    #region プロパティ（あなたの作品名）
+    /// <summary>
+    ///     あなたの作品名
+    /// </summary>
+    public YourWorkName YourWorkName
+    {
+        get => this.yourWorkName;
+        set
+        {
+            if (this.yourWorkName == value)
+                return;
+
+            this.YourWorkNameAsStr = value.AsStr;
+        }
+    }
+    #endregion
+
     #region プロパティ（［サークル名］の文字数）
     /// <summary>
     ///     ［サークル名］の文字数
@@ -71,6 +105,42 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     ///     ロケールＩｄのリスト
     /// </summary>
     public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
+    #endregion
+
+    #region 変更通知プロパティ（あなたのサークル名）
+    /// <summary>
+    ///     あなたのサークル名
+    /// </summary>
+    public string YourCircleNameAsStr
+    {
+        get => this.yourCircleName.AsStr;
+        set
+        {
+            if (this.yourCircleName.AsStr == value)
+                return;
+
+            this.yourCircleName = new YourCircleName(value);
+            OnPropertyChanged(nameof(YourCircleNameAsStr));
+        }
+    }
+    #endregion
+
+    #region 変更通知プロパティ（あなたの作品名）
+    /// <summary>
+    ///     あなたの作品名
+    /// </summary>
+    public string YourWorkNameAsStr
+    {
+        get => this.yourWorkName.AsStr;
+        set
+        {
+            if (this.yourWorkName.AsStr == value)
+                return;
+
+            this.yourWorkName = new YourWorkName(value);
+            OnPropertyChanged(nameof(YourWorkNameAsStr));
+        }
+    }
     #endregion
 
     #region 変更通知プロパティ（［文字数］）
@@ -174,6 +244,9 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     #endregion
 
     // - プライベート・プロパティ
+
+    YourCircleName yourCircleName = YourCircleName.Empty;
+    YourWorkName yourWorkName = YourWorkName.Empty;
 
     int yourCircleNameLength;
     int yourWorkNameLength;
