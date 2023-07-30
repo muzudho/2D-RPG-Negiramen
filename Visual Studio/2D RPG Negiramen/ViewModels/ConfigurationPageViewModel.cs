@@ -137,7 +137,7 @@
                 if (_yourCircleName.AsStr == value)
                     return;
 
-                _yourCircleName = Models.YourCircleName.FromString(value);
+                _yourCircleName = Models.YourCircleFolderName.FromString(value);
                 OnPropertyChanged();
             }
         }
@@ -155,7 +155,7 @@
                 if (_yourWorkName.AsStr == value)
                     return;
 
-                _yourWorkName = Models.YourWorkName.FromString(value);
+                _yourWorkName = Models.YourWorkFolderName.FromString(value);
                 OnPropertyChanged();
             }
         }
@@ -213,14 +213,14 @@
         /// <summary>
         ///     あなたのサークル名
         /// </summary>
-        YourCircleName _yourCircleName = YourCircleName.Empty;
+        YourCircleFolderName _yourCircleName = YourCircleFolderName.Empty;
         #endregion
 
         #region フィールド（あなたの作品名）
         /// <summary>
         ///     あなたの作品名
         /// </summary>
-        YourWorkName _yourWorkName = YourWorkName.Empty;
+        YourWorkFolderName _yourWorkName = YourWorkFolderName.Empty;
         #endregion
 
         // - プライベート・メソッド

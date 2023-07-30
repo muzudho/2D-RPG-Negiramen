@@ -29,12 +29,12 @@
         /// <summary>
         ///     あなたのサークル名
         /// </summary>
-        internal YourCircleName RememberYourCircleName { get; set; } = YourCircleName.Empty;
+        internal YourCircleFolderName RememberYourCircleName { get; set; } = YourCircleFolderName.Empty;
 
         /// <summary>
         ///     あなたの作品名
         /// </summary>
-        internal YourWorkName RememberYourWorkName { get; set; } = YourWorkName.Empty;
+        internal YourWorkFolderName RememberYourWorkName { get; set; } = YourWorkFolderName.Empty;
 
         #region プロパティ（エントリー・リスト）
         /// <summary>

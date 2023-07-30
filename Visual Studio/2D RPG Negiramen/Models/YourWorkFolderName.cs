@@ -1,9 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 あなたのサークル名
+    ///     😁 あなたの作品フォルダ名
     /// </summary>
-    class YourCircleName
+    class YourWorkFolderName
     {
         // - 演算子のオーバーロード
 
@@ -19,7 +19,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(YourCircleName c1, YourCircleName c2)
+        public static bool operator ==(YourWorkFolderName c1, YourWorkFolderName c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -45,7 +45,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(YourCircleName c1, YourCircleName c2)
+        public static bool operator !=(YourWorkFolderName c1, YourWorkFolderName c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -67,7 +67,7 @@
             //if (!(obj is X))
 
             // 要素で比較する
-            YourCircleName c = (YourCircleName)obj;
+            YourWorkFolderName c = (YourWorkFolderName)obj;
             return source == c.source;
             //または、
             //return (this.Number.Equals(c.Number));
@@ -85,24 +85,26 @@
 
         // - その他
 
-        #region その他（生成　関連）
+        #region プロパティ（その他）
         /// <summary>
         ///     文字列を与えて初期化
         /// </summary>
-        /// <param name="yourCircleName">あなたのサークル名</param>
+        /// <param name="yourWorkName">あなたの作品名</param>
         /// <returns>実例</returns>
-        internal static YourCircleName FromString(string yourCircleName)
+        internal static YourWorkFolderName FromString(string yourWorkName)
         {
-            if (yourCircleName == null)
-                throw new ArgumentNullException(nameof(yourCircleName));
+            if (yourWorkName == null)
+            {
+                throw new ArgumentNullException(nameof(yourWorkName));
+            }
 
-            return new YourCircleName(yourCircleName);
+            return new YourWorkFolderName(yourWorkName);
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourCircleName()
+        internal YourWorkFolderName()
         {
             this.source = string.Empty;
         }
@@ -110,15 +112,15 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourCircleName(string source)
+        internal YourWorkFolderName(string source)
         {
             this.source = source;
         }
         #endregion
 
-        // - パブリック・プロパティ
+        // - パブリック・メソッド
 
-        #region プロパティ（暗黙的な文字列形式）
+        #region メソッド（暗黙的な文字列形式）
         /// <summary>
         ///     暗黙的な文字列形式
         /// </summary>
@@ -131,7 +133,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static YourCircleName Empty { get; } = new YourCircleName();
+        internal static YourWorkFolderName Empty { get; } = new YourWorkFolderName();
         #endregion
 
         // - インターナル・プロパティ
@@ -149,7 +151,7 @@
         /// <summary>
         ///     入力値
         /// </summary>
-        string source { get; }
+        string source;
         #endregion
     }
 }

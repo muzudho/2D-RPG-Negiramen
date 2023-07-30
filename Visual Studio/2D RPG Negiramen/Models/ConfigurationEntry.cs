@@ -16,11 +16,11 @@
         ///     生成
         /// </summary>
         internal ConfigurationEntry(
-            YourCircleName yourCircleName,
-            YourWorkName yourWorkName)
+            YourCircleFolderName yourCircleName,
+            YourWorkFolderName yourWorkName)
         {
-            this.YourCircleName = yourCircleName;
-            this.YourWorkName = yourWorkName;
+            this.YourCircleFolderName = yourCircleName;
+            this.YourWorkFolderName = yourWorkName;
         }
         #endregion
 
@@ -30,23 +30,23 @@
         /// <summary>
         ///     表示用文字列
         /// </summary>
-        public string PresentableTextAsStr => $"{this.YourCircleName.AsStr}/{this.YourWorkName.AsStr}";
+        public string PresentableTextAsStr => $"{this.YourCircleFolderName.AsStr}/{this.YourWorkFolderName.AsStr}";
         #endregion
 
         // - インターナル・プロパティ
 
-        #region プロパティ（あなたのサークル名）
+        #region プロパティ（あなたのサークル・フォルダ名）
         /// <summary>
-        ///     あなたのサークル名
+        ///     あなたのサークル・フォルダ名
         /// </summary>
-        internal YourCircleName YourCircleName { get; }
+        internal YourCircleFolderName YourCircleFolderName { get; }
         #endregion
 
         #region プロパティ（あなたの作品名）
         /// <summary>
         ///     あなたの作品名
         /// </summary>
-        internal YourWorkName YourWorkName { get; }
+        internal YourWorkFolderName YourWorkFolderName { get; }
         #endregion
     }
 }

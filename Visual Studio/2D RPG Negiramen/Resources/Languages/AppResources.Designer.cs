@@ -538,20 +538,20 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   あなたのサークル名 に類似しているローカライズされた文字列を検索します。
+        ///   あなたのサークル・フォルダ名 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string YourCircleName {
+        internal static string YourCircleFolderName {
             get {
-                return ResourceManager.GetString("YourCircleName", resourceCulture);
+                return ResourceManager.GetString("YourCircleFolderName", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   あなたの作品名 に類似しているローカライズされた文字列を検索します。
+        ///   あなたの作品フォルダ名 に類似しているローカライズされた文字列を検索します。
         /// </summary>
-        internal static string YourWorkName {
+        internal static string YourWorkFolderName {
             get {
-                return ResourceManager.GetString("YourWorkName", resourceCulture);
+                return ResourceManager.GetString("YourWorkFolderName", resourceCulture);
             }
         }
         

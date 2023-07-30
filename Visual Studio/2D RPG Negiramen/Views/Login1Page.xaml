@@ -62,36 +62,48 @@
     <Grid RowDefinitions="*,64">
         <ScrollView>
             <Grid Grid.Row="0"
-              RowDefinitions="20,48,*" ColumnDefinitions="1*,1*,2*"
+              RowDefinitions="20,48,*" ColumnDefinitions="20, 1*, 20, 1*, 2*"
               Padding="8,8,8,8">
 
                 <!--    １行目
                         ======
                 -->
-                <!-- 「あなたのサークル名」 -->
-                <Label Grid.Row="0" Grid.Column="0"
-                       Text="{app:Translate YourCircleName}"/>
-
-                <!-- 「あなたの作品名」 -->
+                <!-- 「あなたのサークル・フォルダ名」 -->
                 <Label Grid.Row="0" Grid.Column="1"
-                       Text="{app:Translate YourWorkName}"/>
+                       Text="{app:Translate YourCircleFolderName}"/>
+
+                <!-- 「あなたの作品フォルダ名」 -->
+                <Label Grid.Row="0" Grid.Column="3"
+                       Text="{app:Translate YourWorkFolderName}"/>
 
                 <!-- 「リストから選ぶ」 -->
-                <Label Grid.Row="0" Grid.Column="2"
+                <Label Grid.Row="0" Grid.Column="4"
                        Text="{app:Translate ChooseFromList}"/>
 
                 <!--    ２行目
                         ======
                 -->
-                <Entry Grid.Row="1" Grid.Column="0"
+                <!-- 「📂」 -->
+                <Label Grid.Row="1" Grid.Column="0"
+                       VerticalOptions="Center"
+                       Text="📂"/>
+                
+                <Entry Grid.Row="1" Grid.Column="1"
                        Placeholder="Doujin Circle Grayscale"
                        Text="{Binding YourCircleNameAsStr}"
                        TextChanged="YourCircleNameEntry_TextChanged"/>
-                <Entry Grid.Row="1" Grid.Column="1"
+
+                <!-- 「📂」 -->
+                <Label Grid.Row="1" Grid.Column="2"
+                       VerticalOptions="Center"
+                       Text="📂"/>
+
+                <Entry Grid.Row="1" Grid.Column="3"
                        Placeholder="Negiramen Quest"
                        Text="{Binding YourWorkNameAsStr}"
                        TextChanged="YourWorkNameEntry_TextChanged"/>
-                <Picker Grid.Row="1" Grid.Column="2"
+                
+                <Picker Grid.Row="1" Grid.Column="4"
                         VerticalOptions="Center"
                         HorizontalOptions="StartAndExpand"
                         WidthRequest="300"
@@ -103,7 +115,7 @@
                 <!--    ３行目
                         ======
                 -->
-                <HorizontalStackLayout Grid.Row="2"
+                <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="4"
                                        Padding="40,8,8,8">
                     <Grid RowDefinitions="32,20"
                           Padding="0,0,0,16">

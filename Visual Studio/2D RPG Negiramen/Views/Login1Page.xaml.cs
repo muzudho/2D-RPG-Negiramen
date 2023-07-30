@@ -44,7 +44,7 @@ public partial class Login1Page : ContentPage
 
         foreach (var entry in App.GetOrLoadConfiguration().EntryList)
         {
-            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleName}, Work: {entry.YourWorkName}");
+            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleFolderName}, Work: {entry.YourWorkFolderName}");
         }
     }
     #endregion
@@ -87,7 +87,7 @@ public partial class Login1Page : ContentPage
     {
         Entry entry = (Entry)sender;
 
-        this.Login1PageVM.YourCircleNameLength = entry.Text.Length;
+        this.Login1PageVM.YourCircleFolderNameLength = entry.Text.Length;
     }
     #endregion
 
@@ -101,7 +101,7 @@ public partial class Login1Page : ContentPage
     {
         Entry entry = (Entry)sender;
 
-        this.Login1PageVM.YourWorkNameLength = entry.Text.Length;
+        this.Login1PageVM.YourWorkFolderNameLength = entry.Text.Length;
     }
     #endregion
 
@@ -120,8 +120,8 @@ public partial class Login1Page : ContentPage
         // 永久ループ防止
         if (entry != null)
         {
-            this.Login1PageVM.YourCircleName = entry.YourCircleName;
-            this.Login1PageVM.YourWorkName = entry.YourWorkName;
+            this.Login1PageVM.YourCircleFolderName = entry.YourCircleFolderName;
+            this.Login1PageVM.YourWorkFolderName = entry.YourWorkFolderName;
 
             // 永久ループしないよう工夫すること
             this.Login1PageVM.SelectedEntry = null;

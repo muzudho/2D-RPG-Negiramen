@@ -9,38 +9,38 @@ internal interface ILogin1PageViewModel
 {
     // - パブリック・プロパティ
 
-    #region プロパティ（あなたのサークル名　関連）
+    #region プロパティ（あなたのサークル・フォルダ名　関連）
     /// <summary>
-    ///     あなたのサークル名
+    ///     あなたのサークル・フォルダ名
     /// </summary>
-    YourCircleName YourCircleName { get; set; }
+    YourCircleFolderName YourCircleFolderName { get; set; }
 
     /// <summary>
-    ///     あなたのサークル名
+    ///     あなたのサークル・フォルダ名
     /// </summary>
-    string YourCircleNameAsStr { get; set; }
+    string YourCircleFolderNameAsStr { get; set; }
 
     /// <summary>
-    ///     ［あなたのサークル名］の文字数
+    ///     ［あなたのサークル・フォルダ名］の文字数
     /// </summary>
-    int YourCircleNameLength { get; set; }
+    int YourCircleFolderNameLength { get; set; }
     #endregion
 
-    #region プロパティ（あなたの作品名　関連）
+    #region プロパティ（あなたの作品フォルダ名　関連）
     /// <summary>
-    ///     あなたの作品名
+    ///     あなたの作品フォルダ名
     /// </summary>
-    YourWorkName YourWorkName { get; set; }
+    YourWorkFolderName YourWorkFolderName { get; set; }
 
     /// <summary>
-    ///     あなたの作品名
+    ///     あなたの作品フォルダ名
     /// </summary>
-    string YourWorkNameAsStr { get; set; }
+    string YourWorkFolderNameAsStr { get; set; }
 
     /// <summary>
-    ///     ［あなたの作品名］の文字数
+    ///     ［あなたの作品フォルダ名］の文字数
     /// </summary>
-    int YourWorkNameLength { get; set; }
+    int YourWorkFolderNameLength { get; set; }
     #endregion
 
     #region 変更通知プロパティ（エントリー・リスト　関連）
