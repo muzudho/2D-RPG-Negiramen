@@ -55,16 +55,67 @@
         </Grid>
     </Shell.TitleView>
 
-    <VerticalStackLayout>
-        <Label Text="Starter Kit フォルダーへのパス"/>
+    <Grid RowDefinitions="*,64">
+        <ScrollView>
+            <Grid Grid.Row="0"
+              RowDefinitions="20,48,48,20,48" ColumnDefinitions="20,*"
+              Padding="8,8,8,8">
 
-        <Entry Text="あああ"/>
+                <!--    １行目
+                        ======
+                -->
+                <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス」 -->
+                <Label Grid.Row="0" Grid.Column="1"
+                   Text="{app:Translate ConfigurationPageStarterKitFolderDescription}"/>
 
-        <Button Text="新しく作る"/>
+                <!--    ２行目
+                        ======
+                -->
+                <Label Grid.Row="1" Grid.Column="0"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Text="📂"
+                   SemanticProperties.Hint="Folder emoji"/>
+                <Entry Grid.Row="1" Grid.Column="1"
+                   Placeholder="C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"
+                   Text=""/>
 
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+                <!--    ３行目
+                        ======
+                -->
+                <!-- 「Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。」 -->
+                <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
+                   VerticalTextAlignment="Center"
+                   Text="{app:Translate ConfigurationPageUnityProjectDescription}"
+                   SemanticProperties.Hint="Separator"/>
+
+                <!--    ４行目
+                        ======
+                -->
+                <!-- 「Unity プロジェクトの中の Assets フォルダへのパス」 -->
+                <Label Grid.Row="3" Grid.Column="1"
+                       Text="{app:Translate ConfigurationPageUnityAssetsFolderDescription}"/>
+
+                <!--    ５行目
+                        ======
+                -->
+                <Label Grid.Row="4" Grid.Column="0"
+                   HorizontalTextAlignment="Center"
+                   VerticalTextAlignment="Center"
+                   Text="📂"
+                   SemanticProperties.Hint="Folder emoji"/>
+                <Entry Grid.Row="4" Grid.Column="1"
+                   Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"
+                   Text="{Binding UnityAssetsFolderPathAsStr}"/>
+            </Grid>
+        </ScrollView>
+
+        <Grid Grid.Row="1"
+              RowDefinitions="48" ColumnDefinitions="*"
+              Padding="8,8,8,8"
+              BackgroundColor="SkyBlue">
+            <Button WidthRequest="300"
+                    Text="新しく作る"/>
+        </Grid>
+    </Grid>
 </ContentPage>

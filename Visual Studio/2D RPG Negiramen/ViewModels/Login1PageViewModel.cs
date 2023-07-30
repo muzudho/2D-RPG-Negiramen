@@ -9,6 +9,44 @@ using System.Globalization;
 /// </summary>
 internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 {
+    // - パブリック・プロパティ
+
+    #region プロパティ（［サークル名］の文字数）
+    /// <summary>
+    ///     ［サークル名］の文字数
+    /// </summary>
+    public int YourCircleNameLength
+    {
+        get => this.yourCircleNameLength;
+        set
+        {
+            if (this.yourCircleNameLength == value)
+                return;
+            
+            this.yourCircleNameLength = value;
+            OnPropertyChanged(nameof(CharacterLength));
+        }
+    }
+    #endregion
+
+    #region プロパティ（［作品名］の文字数）
+    /// <summary>
+    ///     ［作品名］の文字数
+    /// </summary>
+    public int YourWorkNameLength
+    {
+        get => this.yourWorkNameLength;
+        set
+        {
+            if (this.yourWorkNameLength == value)
+                return;
+
+            this.yourWorkNameLength = value;
+            OnPropertyChanged(nameof(CharacterLength));
+        }
+    }
+    #endregion
+
     // - パブリック変更通知プロパティ
 
     #region 変更通知プロパティ（ロケール　関連）
@@ -34,6 +72,13 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
     #endregion
 
+    #region 変更通知プロパティ（［文字数］）
+    /// <summary>
+    ///     ［文字数］
+    /// </summary>
+    public int CharacterLength => this.yourCircleNameLength + this.yourWorkNameLength;
+    #endregion
+
     // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）
@@ -49,4 +94,9 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
         // this.InvalidateAddsButton();
     }
     #endregion
+
+    // - プライベート・プロパティ
+
+    int yourCircleNameLength;
+    int yourWorkNameLength;
 }

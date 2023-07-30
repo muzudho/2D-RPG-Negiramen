@@ -5,6 +5,22 @@
 /// </summary>
 internal interface ILogin1PageViewModel
 {
+    // - パブリック・プロパティ
+
+    #region プロパティ（［サークル名］の文字数）
+    /// <summary>
+    ///     ［サークル名］の文字数
+    /// </summary>
+    int YourCircleNameLength { get; set; }
+    #endregion
+
+    #region プロパティ（［作品名］の文字数）
+    /// <summary>
+    ///     ［作品名］の文字数
+    /// </summary>
+    int YourWorkNameLength { get; set; }
+    #endregion
+
     // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）
