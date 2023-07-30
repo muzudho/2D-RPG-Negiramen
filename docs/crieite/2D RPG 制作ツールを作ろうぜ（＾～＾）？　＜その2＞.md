@@ -1624,4 +1624,45 @@ your_work_name = "Negiramen Quest"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　これを整形したり　動きを付けたりしないといけない　大変だ……」  
 
+## 『君たちはどう生きるか？』
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　観てきた～」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　続きをしろだぜ」  
+
+## ログイン画面の作成の続き
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　つら……」  
+
+# 📅 （2023-07-30 sun）ログイン画面　はよ作れだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ログイン画面　はよ作れだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画面制作は　つらい」  
+
+（カタ　カタ　カタ　カタ）  
+
+![202307_maui_30-1204--login1page.png](https://crieit.now.sh/upload_images/df368437d4455bddbee75dc104609db264c5d37631e82.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆👇　まず　レイアウトから。 MAUI はバグ放置があって　思ったように　レイアウトできない」
+
+📖 [Picker width on Windows not filling container #6391](https://github.com/dotnet/maui/issues/6391)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　大企業でも　進捗は　こんなものなのね」  
+
+![202307_maui_30-1228--login2page.png](https://crieit.now.sh/upload_images/06c41b70489dc99f9ed864dc425b0fed64c5d8d4d48a2.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　２ページ目のレイアウトは　こんな感じで」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　動きを付けろだぜ」  
+
 ＜書きかけ＞

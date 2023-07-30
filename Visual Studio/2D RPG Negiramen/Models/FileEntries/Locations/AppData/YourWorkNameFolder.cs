@@ -5,7 +5,7 @@
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
-    ///     😁 OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダの場所
+    ///     😁 OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダ―の場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -39,30 +39,30 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（Unity の 📄 `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen\Negiramen Quest\configuration.toml` ファイルの場所）
+        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の 📄 `{あたなのサークル名}/{あなたの作品名}/project.toml` ファイルの場所）
         /// <summary>
-        ///     Unity の 📄 `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen\Negiramen Quest\configuration.toml` ファイルの場所
+        ///     OSの 📂 アプリケーション・ディレクトリー の 📄 `{あたなのサークル名}/{あなたの作品名}/project.toml` ファイルの場所
         /// </summary>
-        internal ConfigurationToml ConfigurationToml
+        internal ProjectToml ProjectToml
         {
             get
             {
-                if (this.configurationToml == null)
+                if (this.projectToml == null)
                 {
-                    this.configurationToml = new ConfigurationToml(
+                    this.projectToml = new ProjectToml(
                         pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, $"configuration.toml")),
+                            System.IO.Path.Combine(Path.AsStr, $"project.toml")),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return this.configurationToml;
+                return this.projectToml;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        ConfigurationToml? configurationToml;
+        ProjectToml? projectToml;
     }
 }

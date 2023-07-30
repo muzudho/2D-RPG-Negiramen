@@ -64,12 +64,17 @@
                 <!--    １行目
                         ======
                 -->
+                <!-- 「あなたのサークル名」 -->
                 <Label Grid.Row="0" Grid.Column="0"
-                       Text="サークル名"/>
+                       Text="{app:Translate YourCircleName}"/>
+
+                <!-- 「あなたの作品名」 -->
                 <Label Grid.Row="0" Grid.Column="1"
-                       Text="作品名"/>
+                       Text="{app:Translate YourWorkName}"/>
+
+                <!-- 「リストから選ぶ」 -->
                 <Label Grid.Row="0" Grid.Column="2"
-                       Text="リストから選ぶ"/>
+                       Text="{app:Translate ChooseFromList}"/>
 
                 <!--    ２行目
                         ======
@@ -90,28 +95,42 @@
                 <!--    ３行目
                         ======
                 -->
+                <!-- 「文字数」 -->
                 <Label Grid.Row="2" Grid.Column="0"
-               Text="文字数"/>
+                       Text="{app:Translate NumberOfCharacters}"/>
+                <!-- 「推奨する使う文字」 -->
                 <Label Grid.Row="2" Grid.Column="1"
-               Text="推奨する使用文字"/>
+                       Text="{app:Translate RecommendedCharactersToUse}"/>
 
                 <!--    ４行目
                         ======
                 -->
+                <!-- 文字数 -->
                 <Label Grid.Row="3" Grid.Column="0"
-                       Text="{Binding CharacterLength}"
+                       Text="{Binding NumberOfCharacters}"
                        FontSize="24"/>
+                <!-- 「全て半角 A-Z a-z 0-9 _ 両端を除き半角スペース」 -->
                 <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
-                       Text="全て半角 A-Z a-z 0-9 _ 両端を除き半角スペース"/>
+                       Text="{app:Translate RecommendedCharactersToUseDescription}"/>
             </Grid>
         </ScrollView>
 
         <Grid Grid.Row="1"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
-            <Button HorizontalOptions="Center"
-                WidthRequest="300"
-                Text="続きから／次へ"/>
+            
+            <!-- 「続きから」 -->
+            <Button IsVisible="{Binding IsVisibleOfContinueButton}"
+                    HorizontalOptions="Center"
+                    WidthRequest="300"
+                    Text="{app:Translate Continue}"/>
+
+            <!-- 「次へ」 -->
+            <Button IsVisible="{Binding IsVisibleOfNextButton}"
+                    IsEnabled="{Binding IsEnabledOfNextButton}"
+                    HorizontalOptions="Center"
+                    WidthRequest="300"
+                    Text="{app:Translate Next}"/>
         </Grid>
     </Grid>
     

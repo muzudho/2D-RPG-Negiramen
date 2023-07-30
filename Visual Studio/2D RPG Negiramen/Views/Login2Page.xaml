@@ -58,36 +58,36 @@
     <Grid RowDefinitions="*,64">
         <ScrollView>
             <Grid Grid.Row="0"
-              RowDefinitions="20,48,48,20,48" ColumnDefinitions="20,*"
-              Padding="8,8,8,8">
+                  RowDefinitions="20,48,48,20,48" ColumnDefinitions="20,*"
+                  Padding="8,8,8,8">
 
                 <!--    １行目
                         ======
                 -->
                 <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス」 -->
                 <Label Grid.Row="0" Grid.Column="1"
-                   Text="{app:Translate ConfigurationPageStarterKitFolderDescription}"/>
+                       Text="{app:Translate ConfigurationPageStarterKitFolderDescription}"/>
 
                 <!--    ２行目
                         ======
                 -->
                 <Label Grid.Row="1" Grid.Column="0"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Center"
-                   Text="📂"
-                   SemanticProperties.Hint="Folder emoji"/>
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="📂"
+                       SemanticProperties.Hint="Folder emoji"/>
                 <Entry Grid.Row="1" Grid.Column="1"
-                   Placeholder="C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"
-                   Text=""/>
+                       Placeholder="C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"
+                       Text=""/>
 
                 <!--    ３行目
                         ======
                 -->
                 <!-- 「Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。」 -->
                 <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                   VerticalTextAlignment="Center"
-                   Text="{app:Translate ConfigurationPageUnityProjectDescription}"
-                   SemanticProperties.Hint="Separator"/>
+                       VerticalTextAlignment="Center"
+                       Text="{app:Translate ConfigurationPageUnityProjectDescription}"
+                       SemanticProperties.Hint="Separator"/>
 
                 <!--    ４行目
                         ======
@@ -100,13 +100,13 @@
                         ======
                 -->
                 <Label Grid.Row="4" Grid.Column="0"
-                   HorizontalTextAlignment="Center"
-                   VerticalTextAlignment="Center"
-                   Text="📂"
-                   SemanticProperties.Hint="Folder emoji"/>
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="📂"
+                       SemanticProperties.Hint="Folder emoji"/>
                 <Entry Grid.Row="4" Grid.Column="1"
-                   Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"
-                   Text="{Binding UnityAssetsFolderPathAsStr}"/>
+                       Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"
+                       Text="{Binding UnityAssetsFolderPathAsStr}"/>
             </Grid>
         </ScrollView>
 

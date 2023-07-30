@@ -24,7 +24,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
                 return;
             
             this.yourCircleNameLength = value;
-            OnPropertyChanged(nameof(CharacterLength));
+            OnPropertyChanged(nameof(NumberOfCharacters));
         }
     }
     #endregion
@@ -42,7 +42,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
                 return;
 
             this.yourWorkNameLength = value;
-            OnPropertyChanged(nameof(CharacterLength));
+            OnPropertyChanged(nameof(NumberOfCharacters));
         }
     }
     #endregion
@@ -76,7 +76,61 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// <summary>
     ///     ［文字数］
     /// </summary>
-    public int CharacterLength => this.yourCircleNameLength + this.yourWorkNameLength;
+    public int NumberOfCharacters => this.yourCircleNameLength + this.yourWorkNameLength;
+    #endregion
+
+    #region 変更通知プロパティ（［続きから］ボタンの可視性）
+    /// <summary>
+    ///     ［次へ］ボタンの可視性
+    /// </summary>
+    public bool IsVisibleOfContinueButton
+    {
+        get => this.isVisibleOfContinueButton;
+        set
+        {
+            if (this.isVisibleOfContinueButton == value)
+                return;
+
+            this.isVisibleOfContinueButton = value;
+            OnPropertyChanged(nameof(IsVisibleOfContinueButton));
+        }
+    }
+    #endregion
+
+    #region 変更通知プロパティ（［次へ］ボタンの可視性）
+    /// <summary>
+    ///     ［次へ］ボタンの可視性
+    /// </summary>
+    public bool IsVisibleOfNextButton
+    {
+        get => this.isVisibleOfNextButton;
+        set
+        {
+            if(this.isVisibleOfNextButton == value)
+                return;
+
+            this.isVisibleOfNextButton = value;
+            OnPropertyChanged(nameof(IsVisibleOfNextButton));
+        }
+    }
+    #endregion
+
+    #region 変更通知プロパティ（［次へ］ボタンの活性性）
+    /// <summary>
+    ///     ［次へ］ボタンの活性性
+    /// </summary>
+    public bool IsEnabledOfNextButton
+    {
+        get => this.isEnabledOfNextButton;
+        set
+        {
+            if (this.isEnabledOfNextButton == value)
+                return;
+
+            this.isEnabledOfNextButton = value;
+            OnPropertyChanged(nameof(IsEnabledOfNextButton));
+        }
+    }
     #endregion
 
     // - パブリック・メソッド
@@ -99,4 +153,8 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
     int yourCircleNameLength;
     int yourWorkNameLength;
+
+    bool isVisibleOfContinueButton;
+    bool isVisibleOfNextButton = true;
+    bool isEnabledOfNextButton;
 }

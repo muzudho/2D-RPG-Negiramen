@@ -1,11 +1,10 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.AppData
 {
     using _2D_RPG_Negiramen;
-    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
-    ///     😁 OSの 📂 キャッシュ・フォルダの場所
+    ///     😁 OSの 📂 アプリケーション・フォルダの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -62,9 +61,9 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（Unity の 📄 `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen` ファイルの場所）
+        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル名}` フォルダ―の場所）
         /// <summary>
-        ///     Unity の 📄 `C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen` ファイルの場所
+        ///     OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル名}` フォルダ―の場所
         /// </summary>
         /// <param name="yourCircleName">サークル名</param>
         internal YourCircleNameFolder CreateAndOverwriteYourCircleNameFolder(string yourCircleName)

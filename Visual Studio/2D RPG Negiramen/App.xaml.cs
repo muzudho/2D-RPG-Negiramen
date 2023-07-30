@@ -219,11 +219,8 @@ public partial class App : Application
     /// <returns>構成ファイル</returns>
     static internal Models.FileEntries.Configuration LoadConfiguration(string yourCircleName, string yourWorkName)
     {
-        // 読取たいファイルへのパス
-        string configurationFilePath = App.ApplicationFolder.CreateAndOverwriteYourCircleNameFolder(yourCircleName).CreateAndOverwriteYourWorkNameFolder(yourWorkName).ConfigurationToml.Path.AsStr;
-
         // 構成ファイルの読込
-        if (Models.FileEntries.Configuration.TryLoadTOML(configurationFilePath, out Models.FileEntries.Configuration configuration))
+        if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))
         {
             App.Configuration = configuration;
         }
@@ -244,15 +241,8 @@ public partial class App : Application
     {
         if (App.Configuration == null)
         {
-            // フォルダ名は自動的に与えられているので、これを使う
-            string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
-            // Example: `C:/Users/むずでょ/AppData/Local/Packages/1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm/LocalState`
-
-            // 読取たいファイルへのパス
-            string configurationFilePath = System.IO.Path.Combine(appDataDirAsStr, "configuration.toml");
-
             // 構成ファイルの読込
-            if (Models.FileEntries.Configuration.TryLoadTOML(configurationFilePath, out Models.FileEntries.Configuration configuration))
+            if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))
             {
                 App.Configuration = configuration;
             }

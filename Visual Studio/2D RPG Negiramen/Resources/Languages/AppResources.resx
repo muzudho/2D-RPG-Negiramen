@@ -275,4 +275,23 @@
   <data name="Login2Page" xml:space="preserve">
     <value>ログイン（２）</value>
   </data>
+  <data name="ChooseFromList" xml:space="preserve">
+    <value>リストから選ぶ</value>
+  </data>
+  <data name="NumberOfCharacters" xml:space="preserve">
+    <value>文字数</value>
+  </data>
+  <data name="RecommendedCharactersToUse" xml:space="preserve">
+    <value>推奨する使う文字</value>
+  </data>
+  <data name="RecommendedCharactersToUseDescription" xml:space="preserve">
+    <value>全て半角 A-Z a-z 0-9 _ 両端を除き半角スペース</value>
+    <comment>直訳しても意味ない</comment>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>次へ</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>続きから</value>
+  </data>
 </root>

@@ -21,6 +21,34 @@ internal interface ILogin1PageViewModel
     int YourWorkNameLength { get; set; }
     #endregion
 
+    #region プロパティ（［文字数］）
+    /// <summary>
+    ///     ［文字数］
+    /// </summary>
+    int NumberOfCharacters { get; }
+    #endregion
+
+    #region 変更通知プロパティ（［続きから］ボタンの可視性）
+    /// <summary>
+    ///     ［続きから］ボタンの可視性
+    /// </summary>
+    public bool IsVisibleOfContinueButton { get; set; }
+    #endregion
+
+    #region 変更通知プロパティ（［次へ］ボタンの可視性）
+    /// <summary>
+    ///     ［次へ］ボタンの可視性
+    /// </summary>
+    public bool IsVisibleOfNextButton { get; set; }
+    #endregion
+
+    #region 変更通知プロパティ（［次へ］ボタンの活性性）
+    /// <summary>
+    ///     ［次へ］ボタンの活性性
+    /// </summary>
+    public bool IsEnabledOfNextButton { get; set; }
+    #endregion
+
     // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）

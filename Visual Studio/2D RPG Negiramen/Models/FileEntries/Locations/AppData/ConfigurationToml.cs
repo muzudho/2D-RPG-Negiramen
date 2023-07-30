@@ -1,11 +1,10 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.AppData
 {
     using _2D_RPG_Negiramen;
-    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
-    ///     😁 OSの 📂 キャッシュ・ディレクトリー の `configuration.toml` ファイルの場所
+    ///     😁 OSの 📂 アプリケーション・ディレクトリー の `configuration.toml` ファイルの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -13,7 +12,7 @@
     ///     </list>
     /// </summary>
     /// <example>
-    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen\Negiramen Quest\configuration.toml"
+    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\configuration.toml"
     /// </example>
     internal class ConfigurationToml : Its
     {
@@ -23,27 +22,22 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ConfigurationToml()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal ConfigurationToml(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
+        ConfigurationToml()
+            : base(
+                  pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(FileSystem.Current.AppDataDirectory, "configuration.toml")),
+                  convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                              replaceSeparators: true))
         {
         }
         #endregion
 
         // - インターナル静的プロパティ
 
-        #region プロパティ（空オブジェクト）
+        #region プロパティ（インスタンス）
         /// <summary>
-        ///     空オブジェクト
+        ///     インスタンス
         /// </summary>
-        internal static ConfigurationToml Empty { get; } = new ConfigurationToml();
+        internal static ConfigurationToml Instance { get; } = new ConfigurationToml();
         #endregion
     }
 }

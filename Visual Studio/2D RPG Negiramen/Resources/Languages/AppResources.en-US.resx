@@ -256,7 +256,7 @@
     <value>Open</value>
   </data>
   <data name="ConfigurationPageUnityProjectDescription" xml:space="preserve">
-    <value>Please create a Unity project with a 2D template and then configure the following:</value>
+    <value>Please create a Unity project with a 2D template and then configure the following</value>
   </data>
   <data name="ConfigurationPageUnityAssetsFolderDescription" xml:space="preserve">
     <value>Path to the Assets folder in your Unity project</value>
@@ -266,5 +266,23 @@
   </data>
   <data name="Login1Page" xml:space="preserve">
     <value>Login (1)</value>
+  </data>
+  <data name="ChooseFromList" xml:space="preserve">
+    <value>Choose from list</value>
+  </data>
+  <data name="NumberOfCharacters" xml:space="preserve">
+    <value>Number of characters</value>
+  </data>
+  <data name="RecommendedCharactersToUse" xml:space="preserve">
+    <value>Recommended characters to use</value>
+  </data>
+  <data name="RecommendedCharactersToUseDescription" xml:space="preserve">
+    <value>A-Z a-z 0-9 _ and space</value>
+  </data>
+  <data name="Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="Continue" xml:space="preserve">
+    <value>From the continuation</value>
   </data>
 </root>
