@@ -3,6 +3,7 @@
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 
 /// <summary>
@@ -57,7 +58,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
         {
             if (this.yourCircleNameLength == value)
                 return;
-            
+
             this.yourCircleNameLength = value;
             OnPropertyChanged(nameof(NumberOfCharacters));
         }
@@ -121,6 +122,10 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
             this.yourCircleName = new YourCircleName(value);
             OnPropertyChanged(nameof(YourCircleNameAsStr));
+
+            var isExists = this.IsExistsEntryInList(this.yourCircleName, this.yourWorkName);
+            Trace.WriteLine($"[Login1PageViewModel YourCircleNameAsStr set] isExists: {isExists}, this.YourCircleNameAsStr: {this.YourCircleNameAsStr}, this.YourWorkNameAsStr: {this.YourWorkNameAsStr}");
+            this.IsVisibleOfNextButton = isExists;
         }
     }
     #endregion
@@ -139,6 +144,10 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
             this.yourWorkName = new YourWorkName(value);
             OnPropertyChanged(nameof(YourWorkNameAsStr));
+
+            var isExists = this.IsExistsEntryInList(this.yourCircleName, this.yourWorkName);
+            Trace.WriteLine($"[Login1PageViewModel YourWorkNameAsStr set] isExists: {isExists}, this.YourCircleNameAsStr: {this.YourCircleNameAsStr}, this.YourWorkNameAsStr: {this.YourWorkNameAsStr}");
+            this.IsVisibleOfNextButton = isExists;
         }
     }
     #endregion
@@ -171,13 +180,17 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     #region 変更通知プロパティ（［次へ］ボタンの可視性）
     /// <summary>
     ///     ［次へ］ボタンの可視性
+    ///     
+    ///     <list type="bullet">
+    ///         <item>サークル名と作品名が、エントリー・リストに既存なら偽</item>
+    ///     </list>
     /// </summary>
     public bool IsVisibleOfNextButton
     {
         get => this.isVisibleOfNextButton;
         set
         {
-            if(this.isVisibleOfNextButton == value)
+            if (this.isVisibleOfNextButton == value)
                 return;
 
             this.isVisibleOfNextButton = value;
@@ -251,9 +264,21 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     int yourCircleNameLength;
     int yourWorkNameLength;
 
+    bool isVisibleOfNextButton;
     bool isVisibleOfContinueButton;
-    bool isVisibleOfNextButton = true;
     bool isEnabledOfNextButton;
 
     ConfigurationEntry? selectedEntry;
+
+    // - プライベート・メソッド
+
+    /// <summary>
+    ///     入力したサークル名と作品名は、エントリー・リストに既存か？
+    /// </summary>
+    /// <returns>そうだ</returns>
+    bool IsExistsEntryInList(YourCircleName yourCircle, YourWorkName yourWorkName) => this.EntryList.Exists(
+        (entry) =>
+            entry.YourCircleName == yourCircleName && entry.YourWorkName == yourWorkName
+        );
+
 }
