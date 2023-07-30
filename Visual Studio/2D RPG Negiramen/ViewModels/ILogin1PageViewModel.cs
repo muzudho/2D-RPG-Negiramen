@@ -19,6 +19,11 @@ internal interface ILogin1PageViewModel
     ///     あなたのサークル名
     /// </summary>
     string YourCircleNameAsStr { get; set; }
+
+    /// <summary>
+    ///     ［あなたのサークル名］の文字数
+    /// </summary>
+    int YourCircleNameLength { get; set; }
     #endregion
 
     #region プロパティ（あなたの作品名　関連）
@@ -31,20 +36,18 @@ internal interface ILogin1PageViewModel
     ///     あなたの作品名
     /// </summary>
     string YourWorkNameAsStr { get; set; }
-    #endregion
 
-    #region プロパティ（［サークル名］の文字数）
     /// <summary>
-    ///     ［サークル名］の文字数
-    /// </summary>
-    int YourCircleNameLength { get; set; }
-    #endregion
-
-    #region プロパティ（［作品名］の文字数）
-    /// <summary>
-    ///     ［作品名］の文字数
+    ///     ［あなたの作品名］の文字数
     /// </summary>
     int YourWorkNameLength { get; set; }
+    #endregion
+
+    #region 変更通知プロパティ（エントリー・リスト　関連）
+    /// <summary>
+    ///     選択エントリー
+    /// </summary>
+    public ConfigurationEntry? SelectedEntry { get; set; }
     #endregion
 
     #region プロパティ（［文字数］）

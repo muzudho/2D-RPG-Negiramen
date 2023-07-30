@@ -115,10 +115,17 @@ public partial class Login1Page : ContentPage
     {
         Picker picker = (Picker)sender;
 
-        ConfigurationEntry entry = (ConfigurationEntry)picker.SelectedItem;
+        ConfigurationEntry? entry = (ConfigurationEntry)picker.SelectedItem;
 
-        this.Login1PageVM.YourCircleName = entry.YourCircleName;
-        this.Login1PageVM.YourWorkName = entry.YourWorkName;
+        // 永久ループ防止
+        if (entry!=null)
+        {
+            this.Login1PageVM.YourCircleName = entry.YourCircleName;
+            this.Login1PageVM.YourWorkName = entry.YourWorkName;
+
+            // 永久ループしないよう工夫すること
+            this.Login1PageVM.SelectedEntry = null;
+        }
     }
     #endregion
 }

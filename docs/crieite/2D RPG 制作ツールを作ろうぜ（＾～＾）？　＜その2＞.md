@@ -1695,4 +1695,9 @@ your_work_name = "Negiramen Quest"
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　それを選んだたら　隣のテキストボックスへ入れろだぜ」  
 
+![202307_maui_30-1641--choicePicker.png](https://crieit.now.sh/upload_images/8776c3152dbe70b4f87111772be0bc5164c614520ab22.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　隣のテキストボックスに入るようにしたぜ」  
+
 ＜書きかけ＞
