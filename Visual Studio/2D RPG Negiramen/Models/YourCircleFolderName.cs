@@ -89,14 +89,14 @@
         /// <summary>
         ///     文字列を与えて初期化
         /// </summary>
-        /// <param name="yourCircleName">あなたのサークル名</param>
+        /// <param name="source">あなたのサークル・フォルダ名</param>
         /// <returns>実例</returns>
-        internal static YourCircleFolderName FromString(string yourCircleName)
+        internal static YourCircleFolderName FromString(string source)
         {
-            if (yourCircleName == null)
-                throw new ArgumentNullException(nameof(yourCircleName));
+            if (source == null)
+                throw new ArgumentNullException(nameof(source));
 
-            return new YourCircleFolderName(yourCircleName);
+            return new YourCircleFolderName(source);
         }
 
         /// <summary>

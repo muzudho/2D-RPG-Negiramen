@@ -27,14 +27,14 @@
         //internal Locations.StarterKit.UserConfigurationFile UserConfigurationFile { get; set; }
 
         /// <summary>
-        ///     あなたのサークル名
+        ///     あなたのサークル・フォルダ名
         /// </summary>
-        internal YourCircleFolderName RememberYourCircleName { get; set; } = YourCircleFolderName.Empty;
+        internal YourCircleFolderName RememberYourCircleFolderName { get; set; } = YourCircleFolderName.Empty;
 
         /// <summary>
-        ///     あなたの作品名
+        ///     あなたの作品フォルダ名
         /// </summary>
-        internal YourWorkFolderName RememberYourWorkName { get; set; } = YourWorkFolderName.Empty;
+        internal YourWorkFolderName RememberYourWorkFolderName { get; set; } = YourWorkFolderName.Empty;
 
         #region プロパティ（エントリー・リスト）
         /// <summary>

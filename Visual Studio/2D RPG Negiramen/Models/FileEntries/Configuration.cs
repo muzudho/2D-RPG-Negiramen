@@ -19,23 +19,23 @@
         /// </summary>
         /// <param name="negiramenStarterKitFolderPath">ネギラーメン 📂 `Starter Kit` フォルダへのパス</param>
         /// <param name="unityAssetsFolderPath">Unity の Assets フォルダへのパス</param>
-        /// <param name="rememberYourCircleName">（選択中の）あなたのサークル名</param>
-        /// <param name="rememberYourWorkName">（選択中の）あなたの作品名</param>
+        /// <param name="rememberYourCircleFolderName">（選択中の）あなたのサークル・フォルダ名</param>
+        /// <param name="rememberYourWorkFolderName">（選択中の）あなたの作品フォルダ名</param>
         /// <param name="entryList">エントリー・リスト</param>
         internal Configuration(
             Locations.StarterKit.ItsFolder negiramenStarterKitFolderPath,
             TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderPath,
             // <param name="userConfigurationFilePath">ユーザー構成ファイルへのパス</param>
             // Locations.StarterKit.UserConfigurationFile userConfigurationFilePath,
-            YourCircleFolderName rememberYourCircleName,
-            YourWorkFolderName rememberYourWorkName,
+            YourCircleFolderName rememberYourCircleFolderName,
+            YourWorkFolderName rememberYourWorkFolderName,
             List<ConfigurationEntry> entryList)
         {
             this.NegiramenStarterKitFolder = negiramenStarterKitFolderPath;
             this.UnityAssetsFolder = unityAssetsFolderPath;
             // this.UserConfigurationFile = userConfigurationFilePath;
-            this.RememberYourCircleName = rememberYourCircleName;
-            this.RememberYourWorkName = rememberYourWorkName;
+            this.RememberYourCircleFolderName = rememberYourCircleFolderName;
+            this.RememberYourWorkFolderName = rememberYourWorkFolderName;
             this.EntryList = entryList;
         }
         #endregion
@@ -50,8 +50,8 @@
             negiramenStarterKitFolderPath: Locations.StarterKit.ItsFolder.Empty,
             unityAssetsFolderPath: TheFileEntryLocations.UnityAssets.ItsFolder.Empty,
             // Locations.StarterKit.UserConfigurationFile.Empty,
-            rememberYourCircleName: YourCircleFolderName.Empty,
-            rememberYourWorkName: YourWorkFolderName.Empty,
+            rememberYourCircleFolderName: YourCircleFolderName.Empty,
+            rememberYourWorkFolderName: YourWorkFolderName.Empty,
             entryList: new List<ConfigurationEntry>());
         #endregion
 
@@ -83,8 +83,8 @@
 
                 // TheFileEntryLocations.StarterKit.UserConfigurationFile userConfiguration = TheFileEntryLocations.StarterKit.UserConfigurationFile.Empty;
                 List<ConfigurationEntry> entryList = new List<ConfigurationEntry>();
-                YourCircleFolderName yourCircleName = new YourCircleFolderName();
-                YourWorkFolderName yourWorkName = new YourWorkFolderName();
+                YourCircleFolderName yourCircleFolderName = new YourCircleFolderName();
+                YourWorkFolderName yourWorkFolderName = new YourWorkFolderName();
 
                 // TOML
                 TomlTable document = Toml.ToModel(configurationText);
@@ -162,20 +162,20 @@
                         if (rememberTomlObj != null && rememberTomlObj is TomlTable rememberTomlTable)
                         {
                             // あなたのサークル名
-                            if (rememberTomlTable.TryGetValue("your_circle_name", out object yourCircleNameObj))
+                            if (rememberTomlTable.TryGetValue("your_circle_folder_name", out object yourCircleFolderNameObj))
                             {
-                                if (yourCircleNameObj != null && yourCircleNameObj is string yourCircleNameAsStr)
+                                if (yourCircleFolderNameObj != null && yourCircleFolderNameObj is string yourCircleFolderNameAsStr)
                                 {
-                                    yourCircleName = YourCircleFolderName.FromString(yourCircleNameAsStr);
+                                    yourCircleFolderName = YourCircleFolderName.FromString(yourCircleFolderNameAsStr);
                                 }
                             }
 
                             // あなたの作品名
-                            if (rememberTomlTable.TryGetValue("your_work_name", out object yourWorkNameObj))
+                            if (rememberTomlTable.TryGetValue("your_work_folder_name", out object yourWorkFolderNameObj))
                             {
-                                if (yourWorkNameObj != null && yourWorkNameObj is string yourWorkNameAsStr)
+                                if (yourWorkFolderNameObj != null && yourWorkFolderNameObj is string yourWorkFolderNameAsStr)
                                 {
-                                    yourWorkName = YourWorkFolderName.FromString(yourWorkNameAsStr);
+                                    yourWorkFolderName = YourWorkFolderName.FromString(yourWorkFolderNameAsStr);
                                 }
                             }
                         }
@@ -191,28 +191,28 @@
                         {
                             foreach (var entryTable in entryTableArray)
                             {
-                                YourCircleFolderName yourCircleName2 = YourCircleFolderName.Empty;
-                                YourWorkFolderName yourWorkName2 = YourWorkFolderName.Empty;
+                                YourCircleFolderName yourCircleFolderName2 = YourCircleFolderName.Empty;
+                                YourWorkFolderName yourWorkFolderName2 = YourWorkFolderName.Empty;
 
                                 // あなたのサークル名
-                                if (entryTable.TryGetValue("your_circle_name", out object yourCircleNameObj))
+                                if (entryTable.TryGetValue("your_circle_folder_name", out object yourCircleFolderNameObj))
                                 {
-                                    if (yourCircleNameObj != null && yourCircleNameObj is string yourCircleNameAsStr)
+                                    if (yourCircleFolderNameObj != null && yourCircleFolderNameObj is string yourCircleFolderNameAsStr)
                                     {
-                                        yourCircleName2 = YourCircleFolderName.FromString(yourCircleNameAsStr);
+                                        yourCircleFolderName2 = YourCircleFolderName.FromString(yourCircleFolderNameAsStr);
                                     }
                                 }
 
                                 // あなたの作品名
-                                if (entryTable.TryGetValue("your_work_name", out object yourWorkNameObj))
+                                if (entryTable.TryGetValue("your_work_folder_name", out object yourWorkFolderNameObj))
                                 {
-                                    if (yourWorkNameObj != null && yourWorkNameObj is string yourWorkNameAsStr)
+                                    if (yourWorkFolderNameObj != null && yourWorkFolderNameObj is string yourWorkFolderNameAsStr)
                                     {
-                                        yourWorkName2 = YourWorkFolderName.FromString(yourWorkNameAsStr);
+                                        yourWorkFolderName2 = YourWorkFolderName.FromString(yourWorkFolderNameAsStr);
                                     }
                                 }
 
-                                entryList.Add(new ConfigurationEntry(yourCircleName2, yourWorkName2));
+                                entryList.Add(new ConfigurationEntry(yourCircleFolderName2, yourWorkFolderName2));
                             }
                         }
                     }
@@ -223,8 +223,8 @@
                     negiramenStarterKitFolder,
                     unityAssetsFolder,
                     // userConfiguration,
-                    yourCircleName,
-                    yourWorkName,
+                    yourCircleFolderName,
+                    yourWorkFolderName,
                     entryList);
 
                 // 変数展開のためのもの（その２）
@@ -289,8 +289,8 @@
             configurationBuffer.NegiramenStarterKitFolder = difference.NegiramenStarterKitFolder == null ? current.NegiramenStarterKitFolder : difference.NegiramenStarterKitFolder;
             configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder == null ? current.UnityAssetsFolder : difference.UnityAssetsFolder;
             // configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile == null ? current.UserConfigurationFile : difference.UserConfigurationFile;
-            configurationBuffer.RememberYourCircleName = difference.RememberYourCircleName == null ? current.RememberYourCircleName : difference.RememberYourCircleName;
-            configurationBuffer.RememberYourWorkName = difference.RememberYourWorkName == null ? current.RememberYourWorkName : difference.RememberYourWorkName;
+            configurationBuffer.RememberYourCircleFolderName = difference.RememberYourCircleFolderName == null ? current.RememberYourCircleFolderName : difference.RememberYourCircleFolderName;
+            configurationBuffer.RememberYourWorkFolderName = difference.RememberYourWorkFolderName == null ? current.RememberYourWorkFolderName : difference.RememberYourWorkFolderName;
             configurationBuffer.EntryList = difference.EntryList == null ? current.EntryList : difference.EntryList;
 
             StringBuilder strBuilder = new StringBuilder();
@@ -304,11 +304,11 @@ unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
 
 [remember]
 
-# あなたのサークル名
-your_circle_name = ""{configurationBuffer.RememberYourCircleName.AsStr}""
+# あなたのサークル・フォルダ名
+your_circle_folder_name = ""{configurationBuffer.RememberYourCircleFolderName.AsStr}""
 
-# あなたの作品名
-your_work_name = ""{configurationBuffer.RememberYourWorkName.AsStr}""
+# あなたの作品フォルダ名
+your_work_folder_name = ""{configurationBuffer.RememberYourWorkFolderName.AsStr}""
 ");
             /*
 [paths_2nd]
@@ -321,11 +321,11 @@ user_configuration_file = ""{{negiramen_starter_kit_folder}}/user_configuration.
             {
                 strBuilder.AppendLine($@"[[entry]]
 
-# あなたのサークル名
-your_circle_name = ""{entry.YourCircleFolderName.AsStr}""
+# あなたのサークル・フォルダ名
+your_circle_folder_name = ""{entry.YourCircleFolderName.AsStr}""
 
-# あなたの作品名
-your_work_name = ""{entry.YourWorkFolderName.AsStr}""
+# あなたの作品フォルダ名
+your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
 ");
             }
 
@@ -337,8 +337,8 @@ your_work_name = ""{entry.YourWorkFolderName.AsStr}""
                 configurationBuffer.NegiramenStarterKitFolder,
                 configurationBuffer.UnityAssetsFolder,
                 // configurationBuffer.UserConfigurationFile,
-                configurationBuffer.RememberYourCircleName,
-                configurationBuffer.RememberYourWorkName,
+                configurationBuffer.RememberYourCircleFolderName,
+                configurationBuffer.RememberYourWorkFolderName,
                 configurationBuffer.EntryList);
             return true;
         }
@@ -370,18 +370,18 @@ your_work_name = ""{entry.YourWorkFolderName.AsStr}""
         //internal Locations.StarterKit.UserConfigurationFile UserConfigurationFile { get; }
         //#endregion
 
-        #region プロパティ（選択中のあなたのサークル名）
+        #region プロパティ（選択中のあなたのサークル・フォルダ名）
         /// <summary>
-        ///     選択中のあなたのサークル名
+        ///     選択中のあなたのサークル・フォルダ・名
         /// </summary>
-        internal YourCircleFolderName RememberYourCircleName { get; }
+        internal YourCircleFolderName RememberYourCircleFolderName { get; }
         #endregion
 
-        #region プロパティ（選択中のあなたの作品名）
+        #region プロパティ（選択中のあなたの作品フォルダ名）
         /// <summary>
-        ///     選択中のあなたの作品名
+        ///     選択中のあなたの作品フォルダ名
         /// </summary>
-        internal YourWorkFolderName RememberYourWorkName { get; }
+        internal YourWorkFolderName RememberYourWorkFolderName { get; }
         #endregion
 
         #region プロパティ（エントリー・リスト）
@@ -409,7 +409,7 @@ your_work_name = ""{entry.YourWorkFolderName.AsStr}""
         /// <returns>そうだ</returns>
         internal bool IsReady()
         {
-            return this.ExistsNegiramenStarterKitFolder() && this.UnityAssetsFolder.YourCircleNameFolder.YourWorkNameFolder.AutoGeneratedFolder.IsExists();
+            return this.ExistsNegiramenStarterKitFolder() && this.UnityAssetsFolder.YourCircleFolderNameFolder.YourWorkFolderNameFolder.AutoGeneratedFolder.IsExists();
         }
         #endregion
 

@@ -214,10 +214,10 @@ public partial class App : Application
     /// <summary>
     /// 構成ファイルの取得、またはファイル読込
     /// </summary>
-    /// <param name="yourCircleName">サークル名</param>
-    /// <param name="yourWorkName">作品名</param>
+    /// <param name="yourCircleFolderName">サークル・フォルダ名</param>
+    /// <param name="yourWorkFolderName">作品フォルダ名</param>
     /// <returns>構成ファイル</returns>
-    static internal Models.FileEntries.Configuration LoadConfiguration(string yourCircleName, string yourWorkName)
+    static internal Models.FileEntries.Configuration LoadConfiguration(string yourCircleFolderName, string yourWorkFolderName)
     {
         // 構成ファイルの読込
         if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))

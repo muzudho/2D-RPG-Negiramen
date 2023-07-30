@@ -200,7 +200,7 @@ public partial class TileCropPage : ContentPage
                     if (image != null)
                     {
                         // ディレクトリーが無ければ作成する
-                        var folder = App.CacheFolder.YourCircleNameFolder.YourWorkNameFolder.ImagesFolder;
+                        var folder = App.CacheFolder.YourCircleFolderNameFolder.YourWorkFolderNameFolder.ImagesFolder;
                         folder.CreateThisDirectoryIfItDoesNotExist();
 
                         // 書出先（ウィンドウズ・ローカルＰＣ）

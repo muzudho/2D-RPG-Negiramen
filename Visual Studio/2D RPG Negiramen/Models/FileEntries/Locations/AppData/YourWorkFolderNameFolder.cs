@@ -5,7 +5,7 @@
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
-    ///     😁 OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダ―の場所
+    ///     😁 OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}` フォルダ―の場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -15,7 +15,7 @@
     /// <example>
     ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen\Negiramen Quest"
     /// </example>
-    internal class YourWorkNameFolder : Its
+    internal class YourWorkFolderNameFolder : Its
     {
         // - その他
 
@@ -23,7 +23,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourWorkNameFolder()
+        internal YourWorkFolderNameFolder()
             : base()
         {
         }
@@ -31,7 +31,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourWorkNameFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal YourWorkFolderNameFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }
@@ -39,9 +39,9 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の 📄 `{あたなのサークル名}/{あなたの作品名}/project.toml` ファイルの場所）
+        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の 📄 `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}/project.toml` ファイルの場所）
         /// <summary>
-        ///     OSの 📂 アプリケーション・ディレクトリー の 📄 `{あたなのサークル名}/{あなたの作品名}/project.toml` ファイルの場所
+        ///     OSの 📂 アプリケーション・ディレクトリー の 📄 `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}/project.toml` ファイルの場所
         /// </summary>
         internal ProjectToml ProjectToml
         {

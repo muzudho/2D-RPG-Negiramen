@@ -18,10 +18,10 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// </summary>
     public YourCircleFolderName YourCircleFolderName
     {
-        get => this.yourCircleName;
+        get => this.yourCircleFolderName;
         set
         {
-            if (this.yourCircleName == value)
+            if (this.yourCircleFolderName == value)
                 return;
 
             this.YourCircleFolderNameAsStr = value.AsStr;
@@ -35,10 +35,10 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// </summary>
     public YourWorkFolderName YourWorkFolderName
     {
-        get => this.yourWorkName;
+        get => this.yourWorkFolderName;
         set
         {
-            if (this.yourWorkName == value)
+            if (this.yourWorkFolderName == value)
                 return;
 
             this.YourWorkFolderNameAsStr = value.AsStr;
@@ -52,13 +52,13 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// </summary>
     public int YourCircleFolderNameLength
     {
-        get => this.yourCircleNameLength;
+        get => this.yourCircleFolderNameLength;
         set
         {
-            if (this.yourCircleNameLength == value)
+            if (this.yourCircleFolderNameLength == value)
                 return;
 
-            this.yourCircleNameLength = value;
+            this.yourCircleFolderNameLength = value;
             OnPropertyChanged(nameof(NumberOfCharacters));
         }
     }
@@ -70,13 +70,13 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// </summary>
     public int YourWorkFolderNameLength
     {
-        get => this.yourWorkNameLength;
+        get => this.yourWorkFolderNameLength;
         set
         {
-            if (this.yourWorkNameLength == value)
+            if (this.yourWorkFolderNameLength == value)
                 return;
 
-            this.yourWorkNameLength = value;
+            this.yourWorkFolderNameLength = value;
             OnPropertyChanged(nameof(NumberOfCharacters));
         }
     }
@@ -107,19 +107,19 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
     #endregion
 
-    #region 変更通知プロパティ（あなたのサークル名）
+    #region 変更通知プロパティ（あなたのサークル・フォルダ名）
     /// <summary>
-    ///     あなたのサークル名
+    ///     あなたのサークル・フォルダ名
     /// </summary>
     public string YourCircleFolderNameAsStr
     {
-        get => this.yourCircleName.AsStr;
+        get => this.yourCircleFolderName.AsStr;
         set
         {
-            if (this.yourCircleName.AsStr == value)
+            if (this.yourCircleFolderName.AsStr == value)
                 return;
 
-            this.yourCircleName = new YourCircleFolderName(value);
+            this.yourCircleFolderName = new YourCircleFolderName(value);
             OnPropertyChanged(nameof(YourCircleFolderNameAsStr));
 
             // 重たい処理
@@ -131,19 +131,19 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     }
     #endregion
 
-    #region 変更通知プロパティ（あなたの作品名）
+    #region 変更通知プロパティ（あなたの作品フォルダ名）
     /// <summary>
-    ///     あなたの作品名
+    ///     あなたの作品フォルダ名
     /// </summary>
     public string YourWorkFolderNameAsStr
     {
-        get => this.yourWorkName.AsStr;
+        get => this.yourWorkFolderName.AsStr;
         set
         {
-            if (this.yourWorkName.AsStr == value)
+            if (this.yourWorkFolderName.AsStr == value)
                 return;
 
-            this.yourWorkName = new YourWorkFolderName(value);
+            this.yourWorkFolderName = new YourWorkFolderName(value);
             OnPropertyChanged(nameof(YourWorkFolderNameAsStr));
 
             // 重たい処理
@@ -159,7 +159,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// <summary>
     ///     ［文字数］
     /// </summary>
-    public int NumberOfCharacters => this.yourCircleNameLength + this.yourWorkNameLength;
+    public int NumberOfCharacters => this.yourCircleFolderNameLength + this.yourWorkFolderNameLength;
     #endregion
 
     #region 変更通知プロパティ（［続きから］ボタン　関連）
@@ -237,11 +237,11 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
     // - プライベート・フィールド
 
-    YourCircleFolderName yourCircleName = YourCircleFolderName.Empty;
-    YourWorkFolderName yourWorkName = YourWorkFolderName.Empty;
+    YourCircleFolderName yourCircleFolderName = YourCircleFolderName.Empty;
+    YourWorkFolderName yourWorkFolderName = YourWorkFolderName.Empty;
 
-    int yourCircleNameLength;
-    int yourWorkNameLength;
+    int yourCircleFolderNameLength;
+    int yourWorkFolderNameLength;
 
     bool isExistsEntryInList;
 
@@ -276,6 +276,6 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     ///     入力したサークル名と作品名は、エントリー・リストに既存か？
     /// </summary>
     /// <returns>そうだ</returns>
-    bool GetExistsEntryInList() => this.EntryList.Exists((entry) => entry.YourCircleFolderName == this.yourCircleName && entry.YourWorkFolderName == this.yourWorkName);
+    bool GetExistsEntryInList() => this.EntryList.Exists((entry) => entry.YourCircleFolderName == this.yourCircleFolderName && entry.YourWorkFolderName == this.yourWorkFolderName);
     #endregion
 }

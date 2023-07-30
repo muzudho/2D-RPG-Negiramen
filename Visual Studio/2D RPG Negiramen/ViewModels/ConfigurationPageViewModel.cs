@@ -37,8 +37,8 @@
             this.UnityAssetsFolder = configuration.UnityAssetsFolder;
             UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
 
-            YourCircleNameAsStr = configuration.RememberYourCircleName.AsStr;
-            YourWorkNameAsStr = configuration.RememberYourWorkName.AsStr;
+            YourCircleFolderNameAsStr = configuration.RememberYourCircleFolderName.AsStr;
+            YourWorkFolderNameAsStr = configuration.RememberYourWorkFolderName.AsStr;
 
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
             PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
@@ -125,37 +125,37 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（あなたのサークル名）
+        #region 変更通知プロパティ（あなたのサークル・フォルダ名）
         /// <summary>
-        ///     あなたのサークル名
+        ///     あなたのサークル・フォルダ名
         /// </summary>
-        public string YourCircleNameAsStr
+        public string YourCircleFolderNameAsStr
         {
-            get => _yourCircleName.AsStr;
+            get => _yourCircleFolderName.AsStr;
             set
             {
-                if (_yourCircleName.AsStr == value)
+                if (_yourCircleFolderName.AsStr == value)
                     return;
 
-                _yourCircleName = Models.YourCircleFolderName.FromString(value);
+                _yourCircleFolderName = Models.YourCircleFolderName.FromString(value);
                 OnPropertyChanged();
             }
         }
         #endregion
 
-        #region 変更通知プロパティ（あなたの作品名）
+        #region 変更通知プロパティ（あなたの作品フォルダ名）
         /// <summary>
-        ///     あなたの作品名
+        ///     あなたの作品フォルダ名
         /// </summary>
-        public string YourWorkNameAsStr
+        public string YourWorkFolderNameAsStr
         {
-            get => _yourWorkName.AsStr;
+            get => _yourWorkFolderName.AsStr;
             set
             {
-                if (_yourWorkName.AsStr == value)
+                if (_yourWorkFolderName.AsStr == value)
                     return;
 
-                _yourWorkName = Models.YourWorkFolderName.FromString(value);
+                _yourWorkFolderName = Models.YourWorkFolderName.FromString(value);
                 OnPropertyChanged();
             }
         }
@@ -209,18 +209,18 @@
         TheLocationOfUnityAssets.ItsFolder _unityAssetsFolder = TheLocationOfUnityAssets.ItsFolder.Empty;
         #endregion
 
-        #region フィールド（あなたのサークル名）
+        #region フィールド（あなたのサークル・フォルダ名）
         /// <summary>
-        ///     あなたのサークル名
+        ///     あなたのサークル・フォルダ名
         /// </summary>
-        YourCircleFolderName _yourCircleName = YourCircleFolderName.Empty;
+        YourCircleFolderName _yourCircleFolderName = YourCircleFolderName.Empty;
         #endregion
 
-        #region フィールド（あなたの作品名）
+        #region フィールド（あなたの作品フォルダ名）
         /// <summary>
-        ///     あなたの作品名
+        ///     あなたの作品フォルダ名
         /// </summary>
-        YourWorkFolderName _yourWorkName = YourWorkFolderName.Empty;
+        YourWorkFolderName _yourWorkFolderName = YourWorkFolderName.Empty;
         #endregion
 
         // - プライベート・メソッド
@@ -239,8 +239,8 @@
                 {
                     NegiramenStarterKitFolder = this.negiramenStarterKitFolder,
                     UnityAssetsFolder = this._unityAssetsFolder,
-                    RememberYourCircleName = _yourCircleName,
-                    RememberYourWorkName = _yourWorkName,
+                    RememberYourCircleFolderName = _yourCircleFolderName,
+                    RememberYourWorkFolderName = _yourWorkFolderName,
                 };
 
                 // 設定ファイルの保存

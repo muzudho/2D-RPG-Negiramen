@@ -127,7 +127,7 @@
 
             <Entry Grid.Row="1" Grid.Column="3"
                    Placeholder="Doujin Circle Negiramen"
-                   Text="{Binding YourCircleNameAsStr}"/>
+                   Text="{Binding YourCircleFolderNameAsStr}"/>
 
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="Center"
@@ -137,7 +137,7 @@
 
             <Entry Grid.Row="1" Grid.Column="5"
                    Placeholder="Negiramen Quest"
-                   Text="{Binding YourWorkNameAsStr}"/>
+                   Text="{Binding YourWorkFolderNameAsStr}"/>
 
             <Label Grid.Row="1" Grid.Column="6"
                    HorizontalTextAlignment="Center"

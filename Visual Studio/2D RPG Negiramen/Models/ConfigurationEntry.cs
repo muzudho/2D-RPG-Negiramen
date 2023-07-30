@@ -15,12 +15,14 @@
         /// <summary>
         ///     生成
         /// </summary>
+        /// <param name="yourCircleFolderName">あなたのサークル・フォルダ名</param>
+        /// <param name="yourWorkFolderName">あなたの作品フォルダ名</param>
         internal ConfigurationEntry(
-            YourCircleFolderName yourCircleName,
-            YourWorkFolderName yourWorkName)
+            YourCircleFolderName yourCircleFolderName,
+            YourWorkFolderName yourWorkFolderName)
         {
-            this.YourCircleFolderName = yourCircleName;
-            this.YourWorkFolderName = yourWorkName;
+            this.YourCircleFolderName = yourCircleFolderName;
+            this.YourWorkFolderName = yourWorkFolderName;
         }
         #endregion
 

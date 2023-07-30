@@ -35,51 +35,51 @@
 
         #region プロパティ（OSの 📂 キャッシュ・フォルダ の `{あたなのサークル名}` フォルダの場所）
         /// <summary>
-        ///     OSの 📂 キャッシュ・フォルダ の `{あたなのサークル名}` フォルダの場所
+        ///     OSの 📂 キャッシュ・フォルダ の `{あたなのサークル・フォルダ名}` フォルダの場所
         ///     
         ///     <list type="bullet">
         ///         <item>構成ファイルを作る前に　このプロパティを使うと、循環参照します</item>
         ///     </list>
         /// </summary>
-        internal YourCircleNameFolder YourCircleNameFolder
+        internal YourCircleFolderNameFolder YourCircleFolderNameFolder
         {
             get
             {
-                if (yourCircleNameFolder == null)
+                if (yourCircleFolderNameFolder == null)
                 {
-                    yourCircleNameFolder = new YourCircleNameFolder(
+                    yourCircleFolderNameFolder = new YourCircleFolderNameFolder(
                         pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleName.AsStr)),
+                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return yourCircleNameFolder;
+                return yourCircleFolderNameFolder;
             }
         }
         #endregion
 
         // - インターナル・メソッド
 
-        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル名}` フォルダ―の場所）
+        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル・フォルダ名}` フォルダ―の場所）
         /// <summary>
-        ///     OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル名}` フォルダ―の場所
+        ///     OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル・フォルダ名}` フォルダ―の場所
         /// </summary>
-        /// <param name="yourCircleName">サークル名</param>
-        internal YourCircleNameFolder CreateAndOverwriteYourCircleNameFolder(string yourCircleName)
+        /// <param name="yourCircleFolderName">サークル・フォルダ名</param>
+        internal YourCircleFolderNameFolder CreateAndOverwriteYourCircleFolderNameFolder(string yourCircleFolderName)
         {
-            this.yourCircleNameFolder = new YourCircleNameFolder(
+            this.yourCircleFolderNameFolder = new YourCircleFolderNameFolder(
                 pathSource: FileEntryPathSource.FromString(
-                    System.IO.Path.Combine(Path.AsStr, yourCircleName)),
+                    System.IO.Path.Combine(Path.AsStr, yourCircleFolderName)),
                 convert: (pathSource) => FileEntryPath.From(pathSource,
                                                             replaceSeparators: true));
 
-            return this.yourCircleNameFolder;
+            return this.yourCircleFolderNameFolder;
         }
         #endregion
 
         // - プライベート・フィールド
 
-        YourCircleNameFolder? yourCircleNameFolder;
+        YourCircleFolderNameFolder? yourCircleFolderNameFolder;
     }
 }

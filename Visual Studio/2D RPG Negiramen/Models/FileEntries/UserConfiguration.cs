@@ -39,8 +39,8 @@
                 TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder();
 
                 // Locations.StarterKit.UserConfigurationFile userConfiguration = Models.FileEntries.Locations.StarterKit.UserConfigurationFile.Empty;
-                YourCircleFolderName yourCircleName = new YourCircleFolderName();
-                YourWorkFolderName yourWorkName = new YourWorkFolderName();
+                // YourCircleFolderName yourCircleFolderName = new YourCircleFolderName();
+                // YourWorkFolderName yourWorkFolderName = new YourWorkFolderName();
 
                 // TOML
                 TomlTable document = Toml.ToModel(userConfigurationText);

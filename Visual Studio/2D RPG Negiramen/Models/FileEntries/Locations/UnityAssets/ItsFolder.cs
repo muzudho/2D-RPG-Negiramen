@@ -46,30 +46,30 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（Unityの 📂 `Assets/{Your Circle Name}` フォルダの場所）
+        #region プロパティ（Unityの 📂 `Assets/{あなたのサークル・フォルダ名}` フォルダの場所）
         /// <summary>
-        ///     Unityの 📂 `Assets/{Your Circle Name}` フォルダの場所
+        ///     Unityの 📂 `Assets/{あなたのサークル・フォルダ名}` フォルダの場所
         /// </summary>
-        internal YourCircleNameFolder YourCircleNameFolder
+        internal YourCircleFolderNameFolder YourCircleFolderNameFolder
         {
             get
             {
-                if (yourCircleNameFolder == null)
+                if (yourCircleFolderNameFolder == null)
                 {
-                    yourCircleNameFolder = new YourCircleNameFolder(
+                    yourCircleFolderNameFolder = new YourCircleFolderNameFolder(
                         pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleName.AsStr)),
+                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return yourCircleNameFolder;
+                return yourCircleFolderNameFolder;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        YourCircleNameFolder? yourCircleNameFolder;
+        YourCircleFolderNameFolder? yourCircleFolderNameFolder;
     }
 }

@@ -42,6 +42,9 @@ public partial class Login1Page : ContentPage
     {
         Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了");
 
+        this.Login1PageVM.YourCircleFolderName = App.GetOrLoadConfiguration().RememberYourCircleFolderName;
+        this.Login1PageVM.YourWorkFolderName = App.GetOrLoadConfiguration().RememberYourWorkFolderName;
+
         foreach (var entry in App.GetOrLoadConfiguration().EntryList)
         {
             Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleFolderName}, Work: {entry.YourWorkFolderName}");
@@ -77,13 +80,13 @@ public partial class Login1Page : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（［サークル名］変更時）
+    #region イベントハンドラ（［サークル・フォルダ名］変更時）
     /// <summary>
-    ///     ［サークル名］変更時
+    ///     ［サークル・フォルダ名］変更時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    void YourCircleNameEntry_TextChanged(object sender, TextChangedEventArgs e)
+    void YourCircleFolderNameEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;
 
@@ -91,13 +94,13 @@ public partial class Login1Page : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（［作品名］変更時）
+    #region イベントハンドラ（［作品フォルダ名］変更時）
     /// <summary>
-    ///     ［作品名］変更時
+    ///     ［作品フォルダ名］変更時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    void YourWorkNameEntry_TextChanged(object sender, TextChangedEventArgs e)
+    void YourWorkFolderNameEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;
 

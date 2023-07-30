@@ -1736,4 +1736,56 @@ your_work_name = "Negiramen Quest"
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　次は　**次へ**　ボタンを作れだぜ」  
 
+![202307_maui_30-1836--nextButton.png](https://crieit.now.sh/upload_images/3504451a8e7954d7cb04a38da2bc06d964c631377f586.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　作ったぜ」  
+
+## サークル名、作品名に使える文字
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　サークル名、作品名は　フォルダ―名に使うのに、  
+このままだと　長い名前を入力されるんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　フォルダー名に使うサークル名　という日本語で２回　名　が出てくるのが煩わしいぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　サークル名　じゃなくて　サークル・フォルダー　だろ」  
+
+![202307_maui_30-1904--folderName.png](https://crieit.now.sh/upload_images/f2b24ac134d26c15a916fae15c6d5f1e64c635dc7ffdb.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　フォルダー名を入れろ、という主張を強めたぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　推奨する使える文字じゃなくて、アスキー・コードで縛った方がいいんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　別に　うまく使ってくれりゃ　いいんだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　あとで困る使い方を　自由にする人が　ほとんどなのに」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　バリデーション・チェックは無しで」  
+
+## テキストボックスへ、前回使った値を入れましょう
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　何度も　サークル・フォルダ名、作品フォルダ名を入力するのが　手間だから  
+前回使った値を　最初から入れておくようにしましょう」  
+
+![202307_maui_30-2013--remember.png](https://crieit.now.sh/upload_images/cea0b1b8e1aa4e88ac6174d469e92d9f64c645f2c0bbf.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　構成ファイルから　初期値を読み取るのは作ったぜ。  
+構成ファイルに保存する方は　まだだけど」  
+
+## 新規作成のケースを作ってくれだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　新規作成のケースを作ってくれだぜ」  
+
+
 ＜書きかけ＞

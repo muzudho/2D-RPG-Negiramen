@@ -33,30 +33,30 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（OSの 📂 キャッシュ・フォルダ の `{あたなのサークル名}` フォルダの場所）
+        #region プロパティ（OSの 📂 キャッシュ・フォルダ の `{あたなのサークル・フォルダ名}` フォルダの場所）
         /// <summary>
-        ///     OSの 📂 キャッシュ・フォルダ の `{あたなのサークル名}` フォルダの場所
+        ///     OSの 📂 キャッシュ・フォルダ の `{あたなのサークル・フォルダ名}` フォルダの場所
         /// </summary>
-        internal YourCircleNameFolder YourCircleNameFolder
+        internal YourCircleFolderNameFolder YourCircleFolderNameFolder
         {
             get
             {
-                if (yourCircleNameFolder == null)
+                if (yourCircleFolderNameFolder == null)
                 {
-                    yourCircleNameFolder = new YourCircleNameFolder(
+                    yourCircleFolderNameFolder = new YourCircleFolderNameFolder(
                         pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleName.AsStr)),
+                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return yourCircleNameFolder;
+                return yourCircleFolderNameFolder;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        YourCircleNameFolder? yourCircleNameFolder;
+        YourCircleFolderNameFolder? yourCircleFolderNameFolder;
     }
 }

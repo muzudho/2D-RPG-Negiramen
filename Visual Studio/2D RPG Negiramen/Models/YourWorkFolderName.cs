@@ -89,16 +89,16 @@
         /// <summary>
         ///     文字列を与えて初期化
         /// </summary>
-        /// <param name="yourWorkName">あなたの作品名</param>
+        /// <param name="yourWorkFolderName">あなたの作品フォルダ名</param>
         /// <returns>実例</returns>
-        internal static YourWorkFolderName FromString(string yourWorkName)
+        internal static YourWorkFolderName FromString(string yourWorkFolderName)
         {
-            if (yourWorkName == null)
+            if (yourWorkFolderName == null)
             {
-                throw new ArgumentNullException(nameof(yourWorkName));
+                throw new ArgumentNullException(nameof(yourWorkFolderName));
             }
 
-            return new YourWorkFolderName(yourWorkName);
+            return new YourWorkFolderName(yourWorkFolderName);
         }
 
         /// <summary>

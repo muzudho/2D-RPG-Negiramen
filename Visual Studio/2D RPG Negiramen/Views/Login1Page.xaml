@@ -90,8 +90,8 @@
                 
                 <Entry Grid.Row="1" Grid.Column="1"
                        Placeholder="Doujin Circle Grayscale"
-                       Text="{Binding YourCircleNameAsStr}"
-                       TextChanged="YourCircleNameEntry_TextChanged"/>
+                       Text="{Binding YourCircleFolderNameAsStr}"
+                       TextChanged="YourCircleFolderNameEntry_TextChanged"/>
 
                 <!-- 「📂」 -->
                 <Label Grid.Row="1" Grid.Column="2"
@@ -100,8 +100,8 @@
 
                 <Entry Grid.Row="1" Grid.Column="3"
                        Placeholder="Negiramen Quest"
-                       Text="{Binding YourWorkNameAsStr}"
-                       TextChanged="YourWorkNameEntry_TextChanged"/>
+                       Text="{Binding YourWorkFolderNameAsStr}"
+                       TextChanged="YourWorkFolderNameEntry_TextChanged"/>
                 
                 <Picker Grid.Row="1" Grid.Column="4"
                         VerticalOptions="Center"
