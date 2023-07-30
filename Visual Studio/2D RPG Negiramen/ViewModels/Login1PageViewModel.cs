@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
+using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -133,6 +134,29 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     }
     #endregion
 
+    #region 変更通知プロパティ（エントリー・リスト　関連）
+    /// <summary>
+    ///     エントリー・リスト
+    /// </summary>
+    public List<ConfigurationEntry> EntryList => App.GetOrLoadConfiguration().EntryList;
+
+    /// <summary>
+    ///     選択エントリー
+    /// </summary>
+    public ConfigurationEntry? SelectedEntry
+    {
+        get => this.selectedEntry;
+        set
+        {
+            if (this.selectedEntry == value)
+                return;
+
+            this.selectedEntry = value;
+            OnPropertyChanged(nameof(SelectedEntry));
+        }
+    }
+    #endregion
+
     // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）
@@ -157,4 +181,6 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     bool isVisibleOfContinueButton;
     bool isVisibleOfNextButton = true;
     bool isEnabledOfNextButton;
+
+    ConfigurationEntry? selectedEntry;
 }

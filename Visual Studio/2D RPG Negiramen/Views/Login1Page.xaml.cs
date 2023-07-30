@@ -1,15 +1,18 @@
-namespace _2D_RPG_Negiramen.Views;
+ï»¿namespace _2D_RPG_Negiramen.Views;
 
 using _2D_RPG_Negiramen.ViewModels;
 using System.Diagnostics;
 
+/// <summary>
+///     ğŸ˜ ï¼»ãƒ­ã‚°ã‚¤ãƒ³ï¼‘ï¼½ãƒšãƒ¼ã‚¸
+/// </summary>
 public partial class Login1Page : ContentPage
 {
-    // - ‚»‚Ì‘¼
+    // - ãã®ä»–
 
-    #region ‚»‚Ì‘¼i¶¬j
+    #region ãã®ä»–ï¼ˆç”Ÿæˆï¼‰
     /// <summary>
-    ///     ¶¬
+    ///     ç”Ÿæˆ
     /// </summary>
     public Login1Page()
     {
@@ -17,20 +20,20 @@ public partial class Login1Page : ContentPage
     }
     #endregion
 
-    // - ƒpƒuƒŠƒbƒNEƒvƒƒpƒeƒB
+    // - ã‚¤ãƒ³ã‚¿ãƒ¼ãƒŠãƒ«ãƒ»ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
-    #region ƒvƒƒpƒeƒBiƒrƒ…[ƒ‚ƒfƒ‹j
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ï¼ˆãƒ“ãƒ¥ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼‰
     /// <summary>
-    ///     ƒrƒ…[ƒ‚ƒfƒ‹
+    ///     ãƒ“ãƒ¥ãƒ¼ãƒ¢ãƒ‡ãƒ«
     /// </summary>
     internal ILogin1PageViewModel Login1PageVM => (ILogin1PageViewModel)this.BindingContext;
     #endregion
 
-    // - ƒvƒ‰ƒCƒx[ƒgEƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰
+    // - ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ»ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©
 
-    #region ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰imƒz[ƒ€nƒ{ƒ^ƒ“EƒNƒŠƒbƒNj
+    #region ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ï¼ˆï¼»ãƒ›ãƒ¼ãƒ ï¼½ãƒœã‚¿ãƒ³ãƒ»ã‚¯ãƒªãƒƒã‚¯æ™‚ï¼‰
     /// <summary>
-    ///     mƒz[ƒ€nƒ{ƒ^ƒ“EƒNƒŠƒbƒN
+    ///     ï¼»ãƒ›ãƒ¼ãƒ ï¼½ãƒœã‚¿ãƒ³ãƒ»ã‚¯ãƒªãƒƒã‚¯æ™‚
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
@@ -42,26 +45,26 @@ public partial class Login1Page : ContentPage
     }
     #endregion
 
-    #region ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰iƒƒP[ƒ‹•ÏXj
+    #region ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ï¼ˆãƒ­ã‚±ãƒ¼ãƒ«å¤‰æ›´æ™‚ï¼‰
     /// <summary>
-    ///     ƒƒP[ƒ‹•ÏX
+    ///     ãƒ­ã‚±ãƒ¼ãƒ«å¤‰æ›´æ™‚
     /// </summary>
-    /// <param name="sender">‚±‚ÌƒCƒxƒ“ƒg‚ğŒÄ‚Ño‚µ‚½ƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="e">‚±‚Ì”­¶ƒCƒxƒ“ƒg‚Ì§Œä•Ï”</param>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
     private void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
     {
-        // ‚w‚`‚l‚k‚Å‚Í‚È‚­A‚b”‚Å“®“I‚É–|–ó‚ğs‚Á‚Ä‚¢‚éê‡‚Ì‚½‚ß‚Ì•ÏX’Ê’m
+        // ï¼¸ï¼¡ï¼­ï¼¬ã§ã¯ãªãã€ï¼£ï¼ƒã§å‹•çš„ã«ç¿»è¨³ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã®ãŸã‚ã®å¤‰æ›´é€šçŸ¥
         //var context = this.TileCropPageVM;
         //context.InvalidateLocale();
     }
     #endregion
 
-    #region ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰imƒT[ƒNƒ‹–¼n•ÏXj
+    #region ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ï¼ˆï¼»ã‚µãƒ¼ã‚¯ãƒ«åï¼½å¤‰æ›´æ™‚ï¼‰
     /// <summary>
-    ///     mƒT[ƒNƒ‹–¼n•ÏX
+    ///     ï¼»ã‚µãƒ¼ã‚¯ãƒ«åï¼½å¤‰æ›´æ™‚
     /// </summary>
-    /// <param name="sender">‚±‚ÌƒCƒxƒ“ƒg‚ğŒÄ‚Ño‚µ‚½ƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="e">‚±‚Ì”­¶ƒCƒxƒ“ƒg‚Ì§Œä•Ï”</param>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
     void YourCircleNameEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;
@@ -70,12 +73,12 @@ public partial class Login1Page : ContentPage
     }
     #endregion
 
-    #region ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰imì•i–¼n•ÏXj
+    #region ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ï¼ˆï¼»ä½œå“åï¼½å¤‰æ›´æ™‚ï¼‰
     /// <summary>
-    ///     mì•i–¼n•ÏX
+    ///     ï¼»ä½œå“åï¼½å¤‰æ›´æ™‚
     /// </summary>
-    /// <param name="sender">‚±‚ÌƒCƒxƒ“ƒg‚ğŒÄ‚Ño‚µ‚½ƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="e">‚±‚Ì”­¶ƒCƒxƒ“ƒg‚Ì§Œä•Ï”</param>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
     void YourWorkNameEntry_TextChanged(object sender, TextChangedEventArgs e)
     {
         Entry entry = (Entry)sender;
@@ -86,7 +89,7 @@ public partial class Login1Page : ContentPage
 
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
-        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ƒy[ƒW“ÇŠ®—¹");
+        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ãƒšãƒ¼ã‚¸èª­è¾¼å®Œäº†");
 
         foreach (var entry in App.GetOrLoadConfiguration().EntryList)
         {

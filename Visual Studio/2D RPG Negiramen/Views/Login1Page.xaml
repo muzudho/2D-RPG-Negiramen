@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
+<!--
+    😁 ［ログイン１］ページ
+-->
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:app="clr-namespace:_2D_RPG_Negiramen"
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
@@ -91,7 +94,10 @@
                 <Picker Grid.Row="1" Grid.Column="2"
                         VerticalOptions="Center"
                         HorizontalOptions="StartAndExpand"
-                        WidthRequest="300"/>
+                        WidthRequest="300"
+                        ItemsSource="{Binding EntryList}"
+                        SelectedItem="{Binding SelectedEntry}"
+                        ItemDisplayBinding="{Binding PresentableTextAsStr}"/>
 
                 <!--    ３行目
                         ======

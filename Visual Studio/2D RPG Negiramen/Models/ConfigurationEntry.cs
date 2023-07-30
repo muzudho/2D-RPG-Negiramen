@@ -24,6 +24,15 @@
         }
         #endregion
 
+        // - パブリック・プロパティ
+
+        #region プロパティ（表示用文字列）
+        /// <summary>
+        ///     表示用文字列
+        /// </summary>
+        public string PresentableTextAsStr => $"{this.YourCircleName.AsStr}/{this.YourWorkName.AsStr}";
+        #endregion
+
         // - インターナル・プロパティ
 
         #region プロパティ（あなたのサークル名）
