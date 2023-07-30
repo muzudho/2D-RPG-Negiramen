@@ -125,6 +125,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             // 重たい処理
             this.IsExistsEntryInList = this.GetExistsEntryInList();
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
+            OnPropertyChanged(nameof(IsVisibleOfContinueButton));
         }
     }
     #endregion
@@ -147,6 +148,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             // 重たい処理
             this.IsExistsEntryInList = this.GetExistsEntryInList();
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
+            OnPropertyChanged(nameof(IsVisibleOfContinueButton));
         }
     }
     #endregion
