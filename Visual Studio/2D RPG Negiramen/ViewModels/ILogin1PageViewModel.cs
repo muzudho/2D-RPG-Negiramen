@@ -61,7 +61,7 @@ internal interface ILogin1PageViewModel
     /// <summary>
     ///     ［続きから］ボタンの可視性
     /// </summary>
-    bool IsVisibleOfContinueButton { get; set; }
+    bool IsVisibleOfContinueButton { get; }
     #endregion
 
     #region プロパティ（［次へ］ボタンの可視性）
