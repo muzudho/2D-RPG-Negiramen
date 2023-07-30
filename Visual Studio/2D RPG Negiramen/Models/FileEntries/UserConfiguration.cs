@@ -28,7 +28,7 @@
         {
             try
             {
-                var userConfigurationFilePath = App.GetOrLoadConfiguration().NegiramenStarterKitFolder.UserConfigurationFile.Path.AsStr;
+                var userConfigurationFilePath = App.GetOrLoadConfiguration().StarterKitFolder.UserConfigurationFile.Path.AsStr;
                 // ユーザー構成ファイルへのパスは構成ファイルに与えられているので、これを使う
                 // var userConfigurationFilePath = App.GetOrLoadConfiguration().UserConfigurationFile.Path.AsStr;
                 // Example: `"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit/user_configuration.toml"`
@@ -81,7 +81,7 @@
             // 上書き
             System.IO.File.WriteAllText(
                 // 保存したいファイルへのパス
-                path: App.GetOrLoadConfiguration().NegiramenStarterKitFolder.UserConfigurationFile.Path.AsStr,
+                path: App.GetOrLoadConfiguration().StarterKitFolder.UserConfigurationFile.Path.AsStr,
                 contents: text);
 
             // イミュータブル・オブジェクトを生成

@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries
 {
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations.AppData;
     using System.Text;
     using Tomlyn;
     using Tomlyn.Model;
@@ -23,15 +22,15 @@
         /// <param name="rememberYourWorkFolderName">（選択中の）あなたの作品フォルダ名</param>
         /// <param name="entryList">エントリー・リスト</param>
         internal Configuration(
-            Locations.StarterKit.ItsFolder negiramenStarterKitFolderPath,
+            TheFileEntryLocations.StarterKit.ItsFolder negiramenStarterKitFolderPath,
             TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderPath,
             // <param name="userConfigurationFilePath">ユーザー構成ファイルへのパス</param>
-            // Locations.StarterKit.UserConfigurationFile userConfigurationFilePath,
+            // TheFileEntryLocations.StarterKit.UserConfigurationFile userConfigurationFilePath,
             YourCircleFolderName rememberYourCircleFolderName,
             YourWorkFolderName rememberYourWorkFolderName,
             List<ConfigurationEntry> entryList)
         {
-            this.NegiramenStarterKitFolder = negiramenStarterKitFolderPath;
+            this.StarterKitFolder = negiramenStarterKitFolderPath;
             this.UnityAssetsFolder = unityAssetsFolderPath;
             // this.UserConfigurationFile = userConfigurationFilePath;
             this.RememberYourCircleFolderName = rememberYourCircleFolderName;
@@ -47,9 +46,9 @@
         ///     空オブジェクト
         /// </summary>
         internal static Configuration Empty = new Configuration(
-            negiramenStarterKitFolderPath: Locations.StarterKit.ItsFolder.Empty,
+            negiramenStarterKitFolderPath: TheFileEntryLocations.StarterKit.ItsFolder.Empty,
             unityAssetsFolderPath: TheFileEntryLocations.UnityAssets.ItsFolder.Empty,
-            // Locations.StarterKit.UserConfigurationFile.Empty,
+            // TheFileEntryLocations.StarterKit.UserConfigurationFile.Empty,
             rememberYourCircleFolderName: YourCircleFolderName.Empty,
             rememberYourWorkFolderName: YourWorkFolderName.Empty,
             entryList: new List<ConfigurationEntry>());
@@ -74,7 +73,7 @@
             try
             {
                 // 設定ファイルの読取
-                var configurationText = System.IO.File.ReadAllText(ConfigurationToml.Instance.Path.AsStr);
+                var configurationText = System.IO.File.ReadAllText(TheFileEntryLocations.AppData.ConfigurationToml.Instance.Path.AsStr);
 
 
                 TheFileEntryLocations.StarterKit.ItsFolder negiramenStarterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder();
@@ -138,7 +137,7 @@
                     //        {
                     //            if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
                     //            {
-                    //                userConfiguration = new Locations.StarterKit.UserConfigurationFile(
+                    //                userConfiguration = new TheFileEntryLocations.StarterKit.UserConfigurationFile(
                     //                    pathSource: FileEntryPathSource.FromString(userConfigurationFilePathAsStr),
                     //                    convert: (pathSource) => FileEntryPath.From(pathSource,
                     //                                                                replaceSeparators: true,
@@ -230,7 +229,7 @@
                 // 変数展開のためのもの（その２）
                 configuration.Variables = new Dictionary<string, string>()
                     {
-                        { "{negiramen_starter_kit_folder}", configuration.NegiramenStarterKitFolder.Path.AsStr },
+                        { "{negiramen_starter_kit_folder}", configuration.StarterKitFolder.Path.AsStr },
                         { "{unity_assets_folder}", configuration.UnityAssetsFolder.Path.AsStr},
                     };
 
@@ -286,7 +285,7 @@
             var configurationBuffer = new ConfigurationBuffer();
 
             // 差分適用
-            configurationBuffer.NegiramenStarterKitFolder = difference.NegiramenStarterKitFolder == null ? current.NegiramenStarterKitFolder : difference.NegiramenStarterKitFolder;
+            configurationBuffer.NegiramenStarterKitFolder = difference.NegiramenStarterKitFolder == null ? current.StarterKitFolder : difference.NegiramenStarterKitFolder;
             configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder == null ? current.UnityAssetsFolder : difference.UnityAssetsFolder;
             // configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile == null ? current.UserConfigurationFile : difference.UserConfigurationFile;
             configurationBuffer.RememberYourCircleFolderName = difference.RememberYourCircleFolderName == null ? current.RememberYourCircleFolderName : difference.RememberYourCircleFolderName;
@@ -346,12 +345,12 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
 
         // - インターナル・プロパティー
 
-        #region プロパティ（ネギラーメン 📂 `Starter Kit` フォルダの場所）
+        #region プロパティ（ネギラーメンに添付の 📂 `Starter Kit` フォルダの場所）
         /// <summary>
-        ///     ネギラーメン 📂 `Starter Kit` フォルダの場所
+        ///     ネギラーメンに添付の 📂 `Starter Kit` フォルダの場所
         /// </summary>
         /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"</example>
-        internal Locations.StarterKit.ItsFolder NegiramenStarterKitFolder { get; }
+        internal TheFileEntryLocations.StarterKit.ItsFolder StarterKitFolder { get; }
         #endregion
 
         #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
@@ -367,7 +366,7 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
         /////     ユーザー構成ファイルの場所
         ///// </summary>
         ///// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit/configuration_2nd.toml"</example>
-        //internal Locations.StarterKit.UserConfigurationFile UserConfigurationFile { get; }
+        //internal TheFileEntryLocations.StarterKit.UserConfigurationFile UserConfigurationFile { get; }
         //#endregion
 
         #region プロパティ（選択中のあなたのサークル・フォルダ名）
@@ -422,7 +421,7 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
         /// <returns>そうだ</returns>
         bool ExistsNegiramenStarterKitFolder()
         {
-            return System.IO.Directory.Exists(this.NegiramenStarterKitFolder.Path.AsStr);
+            return System.IO.Directory.Exists(this.StarterKitFolder.Path.AsStr);
         }
         #endregion
     }

@@ -4,7 +4,8 @@
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="_2D_RPG_Negiramen.Views.Login2Page"
-             Title="Login2Page">
+             Title="Login2Page"
+             Loaded="ContentPage_Loaded">
 
     <!-- 束縛しているビューモデル -->
     <ContentPage.BindingContext>
@@ -76,9 +77,10 @@
                        VerticalTextAlignment="Center"
                        Text="📂"
                        SemanticProperties.Hint="Folder emoji"/>
+                
                 <Entry Grid.Row="1" Grid.Column="1"
                        Placeholder="C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"
-                       Text=""/>
+                       Text="{Binding StarterKitFolderPathAsStr}"/>
 
                 <!--    ３行目
                         ======

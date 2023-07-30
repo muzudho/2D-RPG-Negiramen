@@ -161,7 +161,7 @@
 
             // 画像ファイルのコピー
             {
-                var source = Path.Combine(configuration.NegiramenStarterKitFolder.Path.AsStr, "For Unity Assets", "Images", "Tilesets", fileName);
+                var source = Path.Combine(configuration.StarterKitFolder.Path.AsStr, "For Unity Assets", "Images", "Tilesets", fileName);
                 var destination = Path.Combine(tilesetFolder.Path.AsStr, fileName);
 
                 if (!File.Exists(destination))
@@ -176,7 +176,7 @@
             // 添付の TOML ファイルのコピー
             {
                 var fileStem = Path.GetFileNameWithoutExtension(fileName);
-                var source = Path.Combine(configuration.NegiramenStarterKitFolder.Path.AsStr, "For Unity Assets", "Images", "Tilesets", $"{fileStem}.toml");
+                var source = Path.Combine(configuration.StarterKitFolder.Path.AsStr, "For Unity Assets", "Images", "Tilesets", $"{fileStem}.toml");
                 var destination = Path.Combine(tilesetFolder.Path.AsStr, $"{fileStem}.toml");
 
                 if (!File.Exists(destination))

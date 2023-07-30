@@ -1,8 +1,10 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
+using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
 using System.Globalization;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 ［ログイン２］ページ・ビューモデル
@@ -34,6 +36,92 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
     #endregion
 
+    #region 変更通知プロパティ（ネギラーメンの 📂 `Starter Kit` フォルダの場所）
+    /// <summary>
+    ///     ネギラーメンの 📂 `Starter Kit` フォルダの場所
+    /// </summary>
+    /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"</example>
+    public string StarterKitFolderPathAsStr
+    {
+        get => this.starterKitFolder.Path.AsStr;
+        set
+        {
+            if (this.starterKitFolder.Path.AsStr == value)
+                return;
+
+            // 循環参照しないようにフィールドにセットします
+            this.starterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder(
+                                        pathSource: FileEntryPathSource.FromString(value),
+                                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                                    replaceSeparators: true));
+            OnPropertyChanged(nameof(StarterKitFolderPathAsStr));
+        }
+    }
+    #endregion
+
+    #region 変更通知プロパティ（Unity の 📂 `Assets` フォルダの場所）
+    /// <summary>
+    ///     Unity の 📂 `Assets` フォルダの場所
+    /// </summary>
+    /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
+    public string UnityAssetsFolderPathAsStr
+    {
+        get => this.unityAssetsFolder.Path.AsStr;
+        set
+        {
+            if (this.unityAssetsFolder.Path.AsStr == value)
+                return;
+
+            // 循環参照しないようにフィールドにセットします
+            this.unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder(
+                                        pathSource: FileEntryPathSource.FromString(value),
+                                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                                    replaceSeparators: true));
+            OnPropertyChanged(nameof(UnityAssetsFolderPathAsStr));
+        }
+    }
+    #endregion
+
+    // - パブリック・プロパティ
+
+    #region プロパティ（ネギラーメンの 📂 `Starter Kit` フォルダの場所）
+    /// <summary>
+    ///     ネギラーメンの 📂 `Starter Kit` フォルダの場所
+    /// </summary>
+    /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"</example>
+    public TheFileEntryLocations.StarterKit.ItsFolder StarterKitFolder
+    {
+        get => this.starterKitFolder;
+        set
+        {
+            if (this.starterKitFolder == value)
+                return;
+
+            this.starterKitFolder = value;
+            OnPropertyChanged(nameof(StarterKitFolderPathAsStr));
+        }
+    }
+    #endregion
+
+    #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
+    /// <summary>
+    ///     Unity の 📂 `Assets` フォルダの場所
+    /// </summary>
+    /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
+    public TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder
+    {
+        get => this.unityAssetsFolder;
+        set
+        {
+            if (this.unityAssetsFolder == value)
+                return;
+
+            this.unityAssetsFolder = value;
+            OnPropertyChanged(nameof(UnityAssetsFolderPathAsStr));
+        }
+    }
+    #endregion
+
     // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）
@@ -49,4 +137,9 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
         // this.InvalidateAddsButton();
     }
     #endregion
+
+    // - インターナル・プロパティ
+
+    TheFileEntryLocations.StarterKit.ItsFolder starterKitFolder = TheFileEntryLocations.StarterKit.ItsFolder.Empty;
+    TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder = TheFileEntryLocations.UnityAssets.ItsFolder.Empty;
 }

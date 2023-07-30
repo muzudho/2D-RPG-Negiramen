@@ -25,7 +25,7 @@
         /// </summary>
         internal static bool CheckForUnityAssets()
         {
-            var starterKitFolder = App.GetOrLoadConfiguration().NegiramenStarterKitFolder;
+            var starterKitFolder = App.GetOrLoadConfiguration().StarterKitFolder;
             var starterKitInfo = new DirectoryInfo(starterKitFolder.Path.AsStr);
 
             // 📂 `For Unity Assets` が含まれていれば OK

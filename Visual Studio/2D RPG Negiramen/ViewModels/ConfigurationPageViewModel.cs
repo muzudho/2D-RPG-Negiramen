@@ -32,7 +32,7 @@
             // 構成ファイル取得
             var configuration = App.GetOrLoadConfiguration();
 
-            NegiramenStarterKitFolderPathAsStr = configuration.NegiramenStarterKitFolder.Path.AsStr;
+            NegiramenStarterKitFolderPathAsStr = configuration.StarterKitFolder.Path.AsStr;
 
             this.UnityAssetsFolder = configuration.UnityAssetsFolder;
             UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
