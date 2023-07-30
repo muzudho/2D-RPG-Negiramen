@@ -55,55 +55,60 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="20,48,20,48,48" ColumnDefinitions="1*,1*,2*">
-        
-        <!--    １行目
+    <Grid RowDefinitions="*,64">
+        <Grid Grid.Row="0"
+              RowDefinitions="20,48,20,48" ColumnDefinitions="1*,1*,2*"
+              Padding="8,8,8,8">
+
+            <!--    １行目
                 ======
-        -->        
-        <Label Grid.Row="0" Grid.Column="0"
+        -->
+            <Label Grid.Row="0" Grid.Column="0"
                Text="サークル名"/>
-        <Label Grid.Row="0" Grid.Column="1"
+            <Label Grid.Row="0" Grid.Column="1"
                Text="作品名"/>
-        <Label Grid.Row="0" Grid.Column="2"
+            <Label Grid.Row="0" Grid.Column="2"
                Text="リストから選ぶ"/>
 
-        <!--    ２行目
+            <!--    ２行目
                 ======
         -->
-        <Entry Grid.Row="1" Grid.Column="0"
+            <Entry Grid.Row="1" Grid.Column="0"
                Placeholder="Doujin Circle Grayscale"
-               Text="あああ"/>
-        <Entry Grid.Row="1" Grid.Column="1"
+               Text=""/>
+            <Entry Grid.Row="1" Grid.Column="1"
                Placeholder="Negiramen Quest"
-               Text="いいい"/>
-        <Picker  Grid.Row="1" Grid.Column="2"
-                 VerticalOptions="Center"
-                 HorizontalOptions="End"/>
+               Text=""/>
+            <Picker  Grid.Row="1" Grid.Column="2"
+                     VerticalOptions="Center"
+                     HorizontalOptions="StartAndExpand"
+                     WidthRequest="300"/>
 
-        <!--    ３行目
+            <!--    ３行目
                 ======
         -->
-        <Label Grid.Row="2" Grid.Column="0"
+            <Label Grid.Row="2" Grid.Column="0"
                Text="文字数"/>
-        <Label Grid.Row="2" Grid.Column="1"
-               Text="使える文字"/>
+            <Label Grid.Row="2" Grid.Column="1"
+               Text="推奨する文字"/>
 
-        <!--    ４行目
+            <!--    ４行目
                 ======
         -->
-        <Entry Grid.Row="3" Grid.Column="0"
+            <Label Grid.Row="3" Grid.Column="0"
                Text="999"
-               IsReadOnly="True"
-               BackgroundColor="Transparent"/>
-        <Entry Grid.Row="3" Grid.Column="1"
-               Text="Abc..." IsReadOnly="True" BackgroundColor="Transparent"/>
+               FontSize="24"/>
+            <Label Grid.Row="3" Grid.Column="1"
+               Text="A-Z a-z 0-9 _"/>
+        </Grid>
 
-        <!--    ５行目
-                ======
-        -->
-        <Button Grid.Row="4" Grid.ColumnSpan="3"
-                HorizontalOptions="Center"
+        <Grid Grid.Row="1"
+              Padding="8,8,8,8"
+              BackgroundColor="SkyBlue">
+            <Button HorizontalOptions="Center"
                 WidthRequest="300"
                 Text="新しく作る／続きから"/>
+        </Grid>
     </Grid>
+    
 </ContentPage>
