@@ -123,7 +123,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             OnPropertyChanged(nameof(YourCircleFolderNameAsStr));
 
             // 重たい処理
-            this.IsExistsEntryInList = this.GetExistsEntryInList();
+            this.IsExistsEntryInList = this.EntryList.Contains(new ConfigurationEntry(this.YourCircleFolderName, this.YourWorkFolderName));
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
             OnPropertyChanged(nameof(IsEnabledOfNextButton));
@@ -147,7 +147,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             OnPropertyChanged(nameof(YourWorkFolderNameAsStr));
 
             // 重たい処理
-            this.IsExistsEntryInList = this.GetExistsEntryInList();
+            this.IsExistsEntryInList = this.EntryList.Contains(new ConfigurationEntry(this.YourCircleFolderName, this.YourWorkFolderName));
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
             OnPropertyChanged(nameof(IsEnabledOfNextButton));
@@ -267,15 +267,5 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
         }
     }
-    #endregion
-
-    // - プライベート・メソッド
-
-    #region メソッド（入力したサークル名と作品名は、エントリー・リストに既存か？）
-    /// <summary>
-    ///     入力したサークル名と作品名は、エントリー・リストに既存か？
-    /// </summary>
-    /// <returns>そうだ</returns>
-    bool GetExistsEntryInList() => this.EntryList.Exists((entry) => entry.YourCircleFolderName == this.yourCircleFolderName && entry.YourWorkFolderName == this.yourWorkFolderName);
     #endregion
 }
