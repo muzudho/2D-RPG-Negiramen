@@ -41,6 +41,13 @@ public partial class Login1Page : ContentPage
             yourCircleFolderName: this.Login1PageVM.YourCircleFolderName,
             yourWorkFolderName: this.Login1PageVM.YourWorkFolderName);
 
+        // 構成ファイルの更新差分
+        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+        {
+            RememberYourCircleFolderName = this.Login1PageVM.YourCircleFolderName,
+            RememberYourWorkFolderName = this.Login1PageVM.YourWorkFolderName,
+        };
+
         if (App.GetOrLoadConfiguration().EntryList.Contains(newEntry))
         {
             Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは既存");
@@ -48,14 +55,10 @@ public partial class Login1Page : ContentPage
         else
         {
             Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは新規");
+            // FIXME こうしなくても直接追加できてしまうような
+            configurationDifference.EntryList = App.GetOrLoadConfiguration().EntryList.ToList();
+            configurationDifference.EntryList.Add(newEntry);
         }
-
-        // 構成ファイルの更新差分
-        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
-        {
-            RememberYourCircleFolderName = this.Login1PageVM.YourCircleFolderName,
-            RememberYourWorkFolderName = this.Login1PageVM.YourWorkFolderName,
-        };
 
         // 構成ファイルの保存
         if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
