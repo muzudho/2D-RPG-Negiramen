@@ -235,6 +235,16 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     }
     #endregion
 
+    #region メソッド（ページの再読込）
+    /// <summary>
+    ///     ページの再読込
+    /// </summary>
+    public void InvalidatePage()
+    {
+        OnPropertyChanged(nameof(EntryList));
+    }
+    #endregion
+
     // - プライベート・フィールド
 
     YourCircleFolderName yourCircleFolderName = YourCircleFolderName.Empty;

@@ -210,14 +210,12 @@ public partial class App : Application
 
     // - プライベート静的メソッド
 
-    #region メソッド（構成）
+    #region メソッド（構成ファイル　関連）
     /// <summary>
     /// 構成ファイルの取得、またはファイル読込
     /// </summary>
-    /// <param name="yourCircleFolderName">サークル・フォルダ名</param>
-    /// <param name="yourWorkFolderName">作品フォルダ名</param>
     /// <returns>構成ファイル</returns>
-    static internal Models.FileEntries.Configuration LoadConfiguration(string yourCircleFolderName, string yourWorkFolderName)
+    static internal Models.FileEntries.Configuration ReloadConfiguration()
     {
         // 構成ファイルの読込
         if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))

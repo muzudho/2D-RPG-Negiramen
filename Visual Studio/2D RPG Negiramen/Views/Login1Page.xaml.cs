@@ -84,15 +84,22 @@ public partial class Login1Page : ContentPage
     {
         // Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了");
 
+        // 構成ファイルを再読込
+        App.ReloadConfiguration();
+
         this.Login1PageVM.YourCircleFolderName = App.GetOrLoadConfiguration().RememberYourCircleFolderName;
         this.Login1PageVM.YourWorkFolderName = App.GetOrLoadConfiguration().RememberYourWorkFolderName;
 
-        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了 Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, EntryList.Count: {App.GetOrLoadConfiguration().EntryList.Count}");
+        // TODO ページ読込完了（★２回来訪しても呼び出されないから注意）
+        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了（★２回来訪しても呼び出されないから注意） Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, EntryList.Count: {App.GetOrLoadConfiguration().EntryList.Count}");
 
         foreach (var entry in App.GetOrLoadConfiguration().EntryList)
         {
             Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleFolderName}, Work: {entry.YourWorkFolderName}");
         }
+
+        // ページの再読込
+        this.Login1PageVM.InvalidatePage();
     }
     #endregion
 

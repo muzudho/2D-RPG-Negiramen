@@ -90,4 +90,11 @@ internal interface ILogin1PageViewModel
     /// </summary>
     void InvalidateLocale();
     #endregion
+    
+    #region メソッド（ページの再読込）
+    /// <summary>
+    ///     ページの再読込
+    /// </summary>
+    void InvalidatePage();
+    #endregion
 }
