@@ -118,7 +118,7 @@ public partial class Login1Page : ContentPage
         ConfigurationEntry? entry = (ConfigurationEntry)picker.SelectedItem;
 
         // 永久ループ防止
-        if (entry!=null)
+        if (entry != null)
         {
             this.Login1PageVM.YourCircleName = entry.YourCircleName;
             this.Login1PageVM.YourWorkName = entry.YourWorkName;
@@ -126,6 +126,34 @@ public partial class Login1Page : ContentPage
             // 永久ループしないよう工夫すること
             this.Login1PageVM.SelectedEntry = null;
         }
+    }
+    #endregion
+
+    #region イベントハンドラ（［続きから］ボタン・クリック時）
+    /// <summary>
+    ///     ［続きから］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void ContinueButton_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(
+            state: new ShellNavigationState("//MainPage"));
+        // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+    }
+    #endregion
+
+    #region イベントハンドラ（［次へ］ボタン・クリック時）
+    /// <summary>
+    ///     ［次へ］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void NextButton_Clicked(object sender, EventArgs e)
+    {
+        await Shell.Current.GoToAsync(
+            state: new ShellNavigationState("//Login2Page"));
+        // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
     #endregion
 }

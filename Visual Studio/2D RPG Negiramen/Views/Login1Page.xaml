@@ -145,14 +145,16 @@
             <Button IsVisible="{Binding IsVisibleOfContinueButton}"
                     HorizontalOptions="Center"
                     WidthRequest="300"
-                    Text="{app:Translate Continue}"/>
+                    Text="{app:Translate Continue}"
+                    Clicked="ContinueButton_Clicked"/>
 
             <!-- 「次へ」 -->
             <Button IsVisible="{Binding IsVisibleOfNextButton}"
                     IsEnabled="{Binding IsEnabledOfNextButton}"
                     HorizontalOptions="Center"
                     WidthRequest="300"
-                    Text="{app:Translate Next}"/>
+                    Text="{app:Translate Next}"
+                    Clicked="NextButton_Clicked"/>
         </Grid>
     </Grid>
     

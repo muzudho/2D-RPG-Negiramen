@@ -1716,5 +1716,12 @@ your_work_name = "Negiramen Quest"
 「　入力したサークル名と　作品名が　既存のときは　次へボタンではなく、  
 続きから始めるボタンが出ろだぜ」  
 
+![202307_maui_30-1827--continue.png](https://crieit.now.sh/upload_images/e9f80b56e63c770543b30af5eddfb6db64c62cfb5730f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　**続きから** ボタンは　出るようにしたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　次は　**次へ**　ボタンを作れだぜ」  
 
 ＜書きかけ＞
