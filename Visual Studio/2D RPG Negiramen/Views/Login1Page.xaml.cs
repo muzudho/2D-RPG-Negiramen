@@ -1,6 +1,7 @@
-using _2D_RPG_Negiramen.ViewModels;
-
 namespace _2D_RPG_Negiramen.Views;
+
+using _2D_RPG_Negiramen.ViewModels;
+using System.Diagnostics;
 
 public partial class Login1Page : ContentPage
 {
@@ -82,4 +83,14 @@ public partial class Login1Page : ContentPage
         this.Login1PageVM.YourWorkNameLength = entry.Text.Length;
     }
     #endregion
+
+    private void ContentPage_Loaded(object sender, EventArgs e)
+    {
+        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ÉyÅ[ÉWì«çûäÆóπ");
+
+        foreach (var entry in App.GetOrLoadConfiguration().EntryList)
+        {
+            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleName}, Work: {entry.YourWorkName}");
+        }
+    }
 }
