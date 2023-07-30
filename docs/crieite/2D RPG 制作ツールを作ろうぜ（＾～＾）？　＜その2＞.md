@@ -1700,4 +1700,21 @@ your_work_name = "Negiramen Quest"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　隣のテキストボックスに入るようにしたぜ」  
 
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　文字数がサークル名を、　使える文字が作品名を指しているように　誤解を与えるんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　レイアウトの設計は　本当に大変」  
+
+![202307_maui_30-1712--table.png](https://crieit.now.sh/upload_images/3b96e66d6869be4a488e3576cd3db1ed64c61bd39c446.png)  
+![202307_maui_30-1713--table-en.png](https://crieit.now.sh/upload_images/22a068adb7e8fb90473f5f963cbde1f664c61bdc2563a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　翻訳時に　伸縮変わるんで」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　入力したサークル名と　作品名が　既存のときは　次へボタンではなく、  
+続きから始めるボタンが出ろだぜ」  
+
+
 ＜書きかけ＞
