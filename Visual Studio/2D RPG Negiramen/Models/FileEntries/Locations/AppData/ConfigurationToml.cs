@@ -4,7 +4,7 @@
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
-    ///     😁 OSの 📂 アプリケーション・ディレクトリー の `configuration.toml` ファイルの場所
+    ///     😁 OSの 📂 アプリケーション・データ・フォルダ の `configuration.toml` ファイルの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
