@@ -1,6 +1,6 @@
-﻿using _2D_RPG_Negiramen.Models;
+﻿namespace _2D_RPG_Negiramen.ViewModels;
 
-namespace _2D_RPG_Negiramen.ViewModels;
+using _2D_RPG_Negiramen.Models;
 
 /// <summary>
 ///     😁 ［構成］ページ・ビューモデル
@@ -14,6 +14,15 @@ public interface IConfigurationPageViewModel
     ///     ネギラーメン 📂 `Starter Kit` フォルダへのパス。文字列形式
     /// </summary>
     string NegiramenStarterKitFolderPathAsStr { get; }
+    #endregion
+
+    // - パブリック・プロパティ
+
+    #region 変更通知プロパティ（キャッシュ・ディレクトリー）
+    /// <summary>
+    ///     キャッシュ・ディレクトリー
+    /// </summary>
+    string CacheDirectoryAsStr { get; }
     #endregion
 
     // - パブリック・メソッド

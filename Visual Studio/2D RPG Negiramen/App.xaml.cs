@@ -77,6 +77,7 @@ public partial class App : Application
     static internal Stack<ShellNavigationState> NextPage { get; set; } = new Stack<ShellNavigationState>();
     #endregion
 
+    #region プロパティ（コレクション・ビューのための横幅）
     /// <summary>
     ///     コレクション・ビューのための横幅
     ///     
@@ -85,6 +86,7 @@ public partial class App : Application
     ///     </list>
     /// </summary>
     static internal double WidthForCollectionView { get; set; }
+    #endregion
 
     #region プロパティ（アプリケーション・データ・フォルダ）
     /// <summary>
@@ -183,7 +185,18 @@ public partial class App : Application
     ///			<item>ミュータブル</item>
     ///		</list>
     /// </summary>
-    static Models.FileEntries.Configuration Configuration { get; set; }
+    static Models.FileEntries.Configuration? Configuration { get; set; }
+    #endregion
+
+    #region プロパティ（現在のプロジェクト構成）
+    /// <summary>
+    ///		現在のプロジェクト構成
+    /// 
+    ///		<list type="bullet">
+    ///			<item>ミュータブル</item>
+    ///		</list>
+    /// </summary>
+    static Models.FileEntries.ProjectConfiguration? ProjectConfiguration { get; set; }
     #endregion
 
     #region プロパティ（現在のスターターキット構成）
@@ -212,38 +225,34 @@ public partial class App : Application
 
     #region メソッド（構成ファイル　関連）
     /// <summary>
-    /// 構成ファイルの取得、またはファイル読込
+    ///     構成ファイルの取得、またはファイル読込
     /// </summary>
     /// <returns>構成ファイル</returns>
     static internal Models.FileEntries.Configuration LoadConfiguration()
     {
         // 構成ファイルの読込
-        if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))
+        if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration? configuration))
         {
             App.Configuration = configuration;
         }
         else
         {
             // 初回時は、構成ファイルが無いので、新規作成する
-            if(Models.FileEntries.Configuration.SaveTOML(
+            if (Models.FileEntries.Configuration.SaveTOML(
                 current: Models.FileEntries.Configuration.Empty,
                 difference: new Models.FileEntries.ConfigurationBuffer(),
                 out var newConfiguration))
             {
                 App.Configuration = newConfiguration;
             }
-            else
-            {
-                // TODO 構成ファイルを作れなかったら、エラー対応したい
-                throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
-            }
         }
 
-        return App.Configuration;
+        // TODO 構成ファイルが無ければ、エラー対応したい
+        return App.Configuration ?? throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
     }
 
     /// <summary>
-    /// 構成ファイルの取得、またはファイル読込
+    ///     構成ファイルの取得、またはファイル読込
     /// </summary>
     /// <returns>構成ファイル</returns>
     static internal Models.FileEntries.Configuration GetOrLoadConfiguration()
@@ -258,12 +267,65 @@ public partial class App : Application
     }
 
     /// <summary>
-    /// 構成ファイルをセット
+    ///     構成ファイルをセット
     /// </summary>
     /// <param name="configuration">構成ファイル</param>
     static internal void SetConfiguration(Models.FileEntries.Configuration configuration)
     {
         App.Configuration = configuration;
+    }
+    #endregion
+
+    #region メソッド（プロジェクト構成ファイル　関連）
+    /// <summary>
+    ///     プロジェクト構成ファイルの取得、またはファイル読込
+    /// </summary>
+    /// <returns>プロジェクト構成ファイル</returns>
+    static internal Models.FileEntries.ProjectConfiguration LoadProjectConfiguration()
+    {
+        // プロジェクト構成ファイルの読込
+        if (Models.FileEntries.ProjectConfiguration.TryLoadTOML(out Models.FileEntries.ProjectConfiguration? projectConfiguration))
+        {
+            App.ProjectConfiguration = projectConfiguration;
+        }
+        else
+        {
+            // 初回時は、構成ファイルが無いので、新規作成する
+            if (Models.FileEntries.Configuration.SaveTOML(
+                current: Models.FileEntries.Configuration.Empty,
+                difference: new Models.FileEntries.ConfigurationBuffer(),
+                out var newConfiguration))
+            {
+                App.Configuration = newConfiguration;
+            }
+        }
+
+        // TODO 構成ファイルが無ければ、エラー対応したい
+        return App.ProjectConfiguration ?? throw new Exception("[App.xaml.cs GetOrLoadProjectConfiguration] 構成取得失敗");
+    }
+
+    /// <summary>
+    ///     プロジェクト構成ファイルの取得、またはファイル読込
+    /// </summary>
+    /// <returns>プロジェクト構成ファイル</returns>
+    static internal Models.FileEntries.ProjectConfiguration GetOrLoadProjectConfiguration()
+    {
+        if (App.ProjectConfiguration == null)
+        {
+            // 構成ファイルの読込
+            LoadConfiguration();
+        }
+
+        return App.ProjectConfiguration ?? throw new Exception();
+    }
+
+    /// <summary>
+    ///     プロジェクト構成ファイルをセット
+    /// </summary>
+    /// <param name="projectConfiguration">プロジェクト構成ファイル</param>
+    static internal void SetProjectConfiguration(Models.FileEntries.ProjectConfiguration projectConfiguration)
+    {
+        App.ProjectConfiguration = projectConfiguration;
     }
     #endregion
 

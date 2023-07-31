@@ -116,9 +116,10 @@
               RowDefinitions="48" ColumnDefinitions="*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
+            
             <!-- 「新しく作る」 -->
             <Button WidthRequest="300"
-                    Text="{Binding CreateANewProject}"
+                    Text="{app:Translate CreateANewProject}"
                     Clicked="CreateANewProjectButton_Clicked"/>
         </Grid>
     </Grid>
