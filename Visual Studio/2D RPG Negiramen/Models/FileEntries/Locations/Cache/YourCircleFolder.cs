@@ -15,7 +15,7 @@
     /// <example>
     ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache\Doujin Circle Negiramen"
     /// </example>
-    internal class YourCircleFolderNameFolder : Its
+    internal class YourCircleFolder : Its
     {
         // - その他
 
@@ -23,7 +23,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourCircleFolderNameFolder()
+        internal YourCircleFolder()
             : base()
         {
         }
@@ -31,7 +31,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourCircleFolderNameFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal YourCircleFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }
@@ -43,26 +43,26 @@
         /// <summary>
         ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}` フォルダの場所
         /// </summary>
-        internal YourWorkFolderNameFolder YourWorkFolderNameFolder
+        internal YourWorkFolder YourWorkFolder
         {
             get
             {
-                if (yourWorkFolderNameFolder == null)
+                if (yourWorkFolder == null)
                 {
-                    yourWorkFolderNameFolder = new YourWorkFolderNameFolder(
+                    yourWorkFolder = new YourWorkFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourWorkFolderName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return yourWorkFolderNameFolder;
+                return yourWorkFolder;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        YourWorkFolderNameFolder? yourWorkFolderNameFolder;
+        YourWorkFolder? yourWorkFolder;
     }
 }

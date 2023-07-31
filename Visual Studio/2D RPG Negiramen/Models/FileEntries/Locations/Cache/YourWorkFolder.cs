@@ -15,7 +15,7 @@
     /// <example>
     ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache\Doujin Circle Negiramen\Negiramen Quest"
     /// </example>
-    internal class YourWorkFolderNameFolder : Its
+    internal class YourWorkFolder : Its
     {
         // - その他
 
@@ -23,7 +23,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourWorkFolderNameFolder()
+        internal YourWorkFolder()
             : base()
         {
         }
@@ -31,7 +31,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourWorkFolderNameFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal YourWorkFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }

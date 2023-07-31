@@ -41,20 +41,20 @@
         ///         <item>構成ファイルを作る前に　このプロパティを使うと、循環参照します</item>
         ///     </list>
         /// </summary>
-        internal YourCircleFolderNameFolder YourCircleFolderNameFolder
+        internal YourCircleFolder YourCircleFolder
         {
             get
             {
-                if (yourCircleFolderNameFolder == null)
+                if (yourCircleFolder == null)
                 {
-                    yourCircleFolderNameFolder = new YourCircleFolderNameFolder(
+                    yourCircleFolder = new YourCircleFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return yourCircleFolderNameFolder;
+                return yourCircleFolder;
             }
         }
         #endregion
@@ -66,20 +66,20 @@
         ///     OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル・フォルダ名}` フォルダ―の場所
         /// </summary>
         /// <param name="yourCircleFolderName">サークル・フォルダ名</param>
-        internal YourCircleFolderNameFolder CreateAndOverwriteYourCircleFolderNameFolder(string yourCircleFolderName)
+        internal YourCircleFolder CreateAndOverwriteYourCircleFolder(string yourCircleFolderName)
         {
-            this.yourCircleFolderNameFolder = new YourCircleFolderNameFolder(
+            this.yourCircleFolder = new YourCircleFolder(
                 pathSource: FileEntryPathSource.FromString(
                     System.IO.Path.Combine(Path.AsStr, yourCircleFolderName)),
                 convert: (pathSource) => FileEntryPath.From(pathSource,
                                                             replaceSeparators: true));
 
-            return this.yourCircleFolderNameFolder;
+            return this.yourCircleFolder;
         }
         #endregion
 
         // - プライベート・フィールド
 
-        YourCircleFolderNameFolder? yourCircleFolderNameFolder;
+        YourCircleFolder? yourCircleFolder;
     }
 }

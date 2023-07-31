@@ -37,26 +37,26 @@
         /// <summary>
         ///     OSの 📂 キャッシュ・フォルダ の `{あたなのサークル・フォルダ名}` フォルダの場所
         /// </summary>
-        internal YourCircleFolderNameFolder YourCircleFolderNameFolder
+        internal YourCircleFolder YourCircleFolder
         {
             get
             {
-                if (yourCircleFolderNameFolder == null)
+                if (yourCircleFolder == null)
                 {
-                    yourCircleFolderNameFolder = new YourCircleFolderNameFolder(
+                    yourCircleFolder = new YourCircleFolder(
                         pathSource: FileEntryPathSource.FromString(
                             System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return yourCircleFolderNameFolder;
+                return yourCircleFolder;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        YourCircleFolderNameFolder? yourCircleFolderNameFolder;
+        YourCircleFolder? yourCircleFolder;
     }
 }
