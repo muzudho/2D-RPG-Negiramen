@@ -22,14 +22,6 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ForUnityAssetsFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
         internal ForUnityAssetsFolder(FileEntryPath parentPath)
             : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "For Unity Assets")),
                    convert: (pathSource) => FileEntryPath.From(pathSource,
@@ -37,5 +29,29 @@
         {
         }
         #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（ネギラーメンの 📂 `Starter Kit/For Unity Assets/Images` フォルダ―の場所）
+        /// <summary>
+        ///     ネギラーメンの 📂 `Starter Kit/For Unity Assets/Images` フォルダ―の場所
+        /// </summary>
+        internal ImagesFolder ImagesFolder
+        {
+            get
+            {
+                if (imagesFolder == null)
+                {
+                    imagesFolder = new ImagesFolder(Path);
+                }
+
+                return imagesFolder;
+            }
+        }
+        #endregion
+
+        // - プライベート・フィールド
+
+        ImagesFolder? imagesFolder;
     }
 }
