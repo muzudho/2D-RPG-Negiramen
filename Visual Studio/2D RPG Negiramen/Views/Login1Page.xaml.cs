@@ -66,11 +66,11 @@ public partial class Login1Page : ContentPage
         this.Login1PageVM.YourWorkFolderName = App.GetOrLoadConfiguration().RememberYourWorkFolderName;
 
         // TODO ページ読込完了（★２回来訪しても呼び出されないから注意）
-        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了（★２回来訪しても呼び出されないから注意） Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, EntryList.Count: {App.GetOrLoadConfiguration().EntryList.Count}");
+        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了（★２回来訪しても呼び出されないから注意） Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, ProjectIdList.Count: {App.GetOrLoadConfiguration().ProjectIdList.Count}");
 
-        foreach (var entry in App.GetOrLoadConfiguration().EntryList)
+        foreach (var projectId in App.GetOrLoadConfiguration().ProjectIdList)
         {
-            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleFolderName}, Work: {entry.YourWorkFolderName}");
+            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {projectId.YourCircleFolderName}, Work: {projectId.YourWorkFolderName}");
         }
     }
     #endregion
@@ -167,26 +167,26 @@ public partial class Login1Page : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（［エントリー・リスト］選択変更時）
+    #region イベントハンドラ（［プロジェクトＩｄリスト］選択変更時）
     /// <summary>
-    ///     ［エントリー・リスト］選択変更時
+    ///     ［プロジェクトＩｄリスト］選択変更時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void EntryListPicker_SelectedIndexChanged(object sender, EventArgs e)
+    private void ProjectIdListPicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         Picker picker = (Picker)sender;
 
-        ConfigurationEntry? entry = (ConfigurationEntry)picker.SelectedItem;
+        ProjectId? projectId = (ProjectId)picker.SelectedItem;
 
         // 永久ループ防止
-        if (entry != null)
+        if (projectId != null)
         {
-            this.Login1PageVM.YourCircleFolderName = entry.YourCircleFolderName;
-            this.Login1PageVM.YourWorkFolderName = entry.YourWorkFolderName;
+            this.Login1PageVM.YourCircleFolderName = projectId.YourCircleFolderName;
+            this.Login1PageVM.YourWorkFolderName = projectId.YourWorkFolderName;
 
             // 永久ループしないよう工夫すること
-            this.Login1PageVM.SelectedEntry = null;
+            this.Login1PageVM.SelectedProjectId = null;
         }
     }
     #endregion

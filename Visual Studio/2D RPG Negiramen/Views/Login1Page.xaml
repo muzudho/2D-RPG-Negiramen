@@ -108,10 +108,10 @@
                         VerticalOptions="Center"
                         HorizontalOptions="StartAndExpand"
                         WidthRequest="300"
-                        ItemsSource="{Binding EntryList}"
-                        SelectedItem="{Binding SelectedEntry}"
+                        ItemsSource="{Binding ProjectIdList}"
+                        SelectedItem="{Binding SelectedProjectId}"
                         ItemDisplayBinding="{Binding PresentableTextAsStr}"
-                        SelectedIndexChanged="EntryListPicker_SelectedIndexChanged"/>
+                        SelectedIndexChanged="ProjectIdListPicker_SelectedIndexChanged"/>
 
                 <!--    ３行目
                         ======

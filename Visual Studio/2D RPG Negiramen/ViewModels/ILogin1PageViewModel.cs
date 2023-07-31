@@ -43,11 +43,11 @@ internal interface ILogin1PageViewModel
     int YourWorkFolderNameLength { get; set; }
     #endregion
 
-    #region 変更通知プロパティ（エントリー・リスト　関連）
+    #region 変更通知プロパティ（プロジェクトＩｄリスト　関連）
     /// <summary>
-    ///     選択エントリー
+    ///     選択プロジェクトＩｄ
     /// </summary>
-    public ConfigurationEntry? SelectedEntry { get; set; }
+    public ProjectId? SelectedProjectId { get; set; }
     #endregion
 
     #region プロパティ（［文字数］）

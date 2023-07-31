@@ -106,6 +106,7 @@
                        VerticalTextAlignment="Center"
                        Text="📂"
                        SemanticProperties.Hint="Folder emoji"/>
+                
                 <Entry Grid.Row="4" Grid.Column="1"
                        Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"
                        Text="{Binding UnityAssetsFolderPathAsStr}"/>

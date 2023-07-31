@@ -42,7 +42,7 @@ public partial class Login2Page : ContentPage
         // 構成の保存
         // ==========
         //
-        var newEntry = new ConfigurationEntry(
+        var newProjectId = new ProjectId(
             yourCircleFolderName: this.Login2PageVM.YourCircleFolderName,
             yourWorkFolderName: this.Login2PageVM.YourWorkFolderName);
 
@@ -51,7 +51,7 @@ public partial class Login2Page : ContentPage
         {
         };
 
-        if (App.GetOrLoadConfiguration().EntryList.Contains(newEntry))
+        if (App.GetOrLoadConfiguration().ProjectIdList.Contains(newProjectId))
         {
             Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは既存");
         }
@@ -59,8 +59,8 @@ public partial class Login2Page : ContentPage
         {
             Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは新規");
             // FIXME こうしなくても直接追加できてしまうような
-            configurationDifference.EntryList = App.GetOrLoadConfiguration().EntryList.ToList();
-            configurationDifference.EntryList.Add(newEntry);
+            configurationDifference.ProjectIdList = App.GetOrLoadConfiguration().ProjectIdList.ToList();
+            configurationDifference.ProjectIdList.Add(newProjectId);
         }
 
         if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))

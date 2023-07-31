@@ -51,7 +51,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             OnPropertyChanged(nameof(YourCircleFolderNameAsStr));
 
             // 重たい処理
-            this.IsExistsEntryInList = this.EntryList.Contains(new ConfigurationEntry(this.YourCircleFolderName, this.YourWorkFolderName));
+            this.IsExistsProjectIdInList = this.ProjectIdList.Contains(new ProjectId(this.YourCircleFolderName, this.YourWorkFolderName));
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
             OnPropertyChanged(nameof(IsEnabledOfNextButton));
@@ -75,7 +75,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             OnPropertyChanged(nameof(YourWorkFolderNameAsStr));
 
             // 重たい処理
-            this.IsExistsEntryInList = this.EntryList.Contains(new ConfigurationEntry(this.YourCircleFolderName, this.YourWorkFolderName));
+            this.IsExistsProjectIdInList = this.ProjectIdList.Contains(new ProjectId(this.YourCircleFolderName, this.YourWorkFolderName));
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
             OnPropertyChanged(nameof(IsEnabledOfNextButton));
@@ -112,7 +112,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     ///         <item>サークル名と作品名が、エントリー・リストに既存なら偽</item>
     ///     </list>
     /// </summary>
-    public bool IsVisibleOfNextButton => !this.IsExistsEntryInList;
+    public bool IsVisibleOfNextButton => !this.IsExistsProjectIdInList;
 
     /// <summary>
     ///     ［次へ］ボタンの活性性
@@ -124,25 +124,25 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     public bool IsEnabledOfNextButton => this.YourCircleFolderName != YourCircleFolderName.Empty && this.YourWorkFolderName != YourWorkFolderName.Empty;
     #endregion
 
-    #region 変更通知プロパティ（エントリー・リスト　関連）
+    #region 変更通知プロパティ（プロジェクトＩｄリスト　関連）
     /// <summary>
-    ///     エントリー・リスト
+    ///     プロジェクトＩｄリスト
     /// </summary>
-    public List<ConfigurationEntry> EntryList => App.GetOrLoadConfiguration().EntryList;
+    public List<ProjectId> ProjectIdList => App.GetOrLoadConfiguration().ProjectIdList;
 
     /// <summary>
-    ///     選択エントリー
+    ///     選択プロジェクトＩｄ
     /// </summary>
-    public ConfigurationEntry? SelectedEntry
+    public ProjectId? SelectedProjectId
     {
-        get => this.selectedEntry;
+        get => this.selectedProjectId;
         set
         {
-            if (this.selectedEntry == value)
+            if (this.selectedProjectId == value)
                 return;
 
-            this.selectedEntry = value;
-            OnPropertyChanged(nameof(SelectedEntry));
+            this.selectedProjectId = value;
+            OnPropertyChanged(nameof(SelectedProjectId));
         }
     }
     #endregion
@@ -241,7 +241,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// </summary>
     public void InvalidatePage()
     {
-        OnPropertyChanged(nameof(EntryList));
+        OnPropertyChanged(nameof(ProjectIdList));
     }
     #endregion
 
@@ -253,9 +253,9 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     int yourCircleFolderNameLength;
     int yourWorkFolderNameLength;
 
-    bool isExistsEntryInList;
+    bool isExistsProjectIdInList;
 
-    ConfigurationEntry? selectedEntry;
+    ProjectId? selectedProjectId;
 
     // - プライベート・プロパティ
 
@@ -263,15 +263,15 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// <summary>
     ///     入力したサークル名と作品名は、エントリー・リストに既存か？
     /// </summary>
-    bool IsExistsEntryInList
+    bool IsExistsProjectIdInList
     {
-        get => this.isExistsEntryInList;
+        get => this.isExistsProjectIdInList;
         set
         {
-            if (this.isExistsEntryInList == value)
+            if (this.isExistsProjectIdInList == value)
                 return;
 
-            this.isExistsEntryInList = value;
+            this.isExistsProjectIdInList = value;
 
             // ボタンの可視性
             OnPropertyChanged(nameof(IsVisibleOfNextButton));

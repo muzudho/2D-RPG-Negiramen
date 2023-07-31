@@ -1,15 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models;
 
-using _2D_RPG_Negiramen.Models.Geometric;
-
 /// <summary>
-///     構成ファイルの entry 配列の要素
+///     構成ファイルの projectId 配列の要素
 ///     
 ///     <list type="bullet">
 ///         <item>イミュータブル</item>
 ///     </list>
 /// </summary>
-internal class ConfigurationEntry
+internal class ProjectId
 {
     // - 演算子のオーバーロード
 
@@ -25,7 +23,7 @@ internal class ConfigurationEntry
     /// <param name="c1">左項</param>
     /// <param name="c2">右項</param>
     /// <returns>そうだ</returns>
-    public static bool operator ==(ConfigurationEntry c1, ConfigurationEntry c2)
+    public static bool operator ==(ProjectId c1, ProjectId c2)
     {
         // nullの確認（構造体のようにNULLにならない型では不要）
         // 両方nullか（参照元が同じか）
@@ -52,7 +50,7 @@ internal class ConfigurationEntry
     /// <param name="c1">左項</param>
     /// <param name="c2">右項</param>
     /// <returns>そうだ</returns>
-    public static bool operator !=(ConfigurationEntry c1, ConfigurationEntry c2)
+    public static bool operator !=(ProjectId c1, ProjectId c2)
     {
         // (c1 != c2)とすると、無限ループ
         return !(c1 == c2);
@@ -74,7 +72,7 @@ internal class ConfigurationEntry
         //if (!(obj is Y))
 
         // 要素で比較する
-        ConfigurationEntry c = (ConfigurationEntry)obj;
+        ProjectId c = (ProjectId)obj;
         return this.YourCircleFolderName == c.YourCircleFolderName &&
                this.YourWorkFolderName == c.YourWorkFolderName;
         //または、
@@ -96,7 +94,7 @@ internal class ConfigurationEntry
     /// </summary>
     /// <param name="yourCircleFolderName">あなたのサークル・フォルダ名</param>
     /// <param name="yourWorkFolderName">あなたの作品フォルダ名</param>
-    internal ConfigurationEntry(
+    internal ProjectId(
         YourCircleFolderName yourCircleFolderName,
         YourWorkFolderName yourWorkFolderName)
     {

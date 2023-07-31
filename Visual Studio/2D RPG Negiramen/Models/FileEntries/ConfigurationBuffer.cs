@@ -27,10 +27,10 @@ internal class ConfigurationBuffer
     internal YourWorkFolderName? RememberYourWorkFolderName { get; set; }
     #endregion
 
-    #region プロパティ（エントリー・リスト）
+    #region プロパティ（プロジェクトＩｄリスト）
     /// <summary>
-    ///     エントリー・リスト
+    ///     プロジェクトＩｄリスト
     /// </summary>
-    internal List<ConfigurationEntry>? EntryList { get; set; }
+    internal List<ProjectId>? ProjectIdList { get; set; }
     #endregion
 }
