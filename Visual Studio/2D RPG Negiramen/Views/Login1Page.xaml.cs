@@ -37,28 +37,12 @@ public partial class Login1Page : ContentPage
     /// </summary>
     void SaveConfigurationToml()
     {
-        //ConfigurationEntry newEntry = new ConfigurationEntry(
-        //    yourCircleFolderName: this.Login1PageVM.YourCircleFolderName,
-        //    yourWorkFolderName: this.Login1PageVM.YourWorkFolderName);
-
         // 構成ファイルの更新差分
         var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
         {
             RememberYourCircleFolderName = this.Login1PageVM.YourCircleFolderName,
             RememberYourWorkFolderName = this.Login1PageVM.YourWorkFolderName,
         };
-
-        //if (App.GetOrLoadConfiguration().EntryList.Contains(newEntry))
-        //{
-        //    Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは既存");
-        //}
-        //else
-        //{
-        //    Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは新規");
-        //    // FIXME こうしなくても直接追加できてしまうような
-        //    configurationDifference.EntryList = App.GetOrLoadConfiguration().EntryList.ToList();
-        //    configurationDifference.EntryList.Add(newEntry);
-        //}
 
         // 構成ファイルの保存
         if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
@@ -236,7 +220,12 @@ public partial class Login1Page : ContentPage
         this.SaveConfigurationToml();
 
         await Shell.Current.GoToAsync(
-            state: new ShellNavigationState("//Login2Page"));
+            state: new ShellNavigationState("//Login2Page"),
+            parameters: new Dictionary<string, object>
+            {
+                [key: "YourCircleFolderName"] = this.Login1PageVM.YourCircleFolderName,
+                [key: "YourWorkFolderName"] = this.Login1PageVM.YourWorkFolderName,
+            });
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
     #endregion

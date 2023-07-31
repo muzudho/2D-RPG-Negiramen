@@ -43,8 +43,8 @@ public partial class Login2Page : ContentPage
         // ==========
         //
         var newEntry = new ConfigurationEntry(
-            yourCircleFolderName: App.GetOrLoadConfiguration().RememberYourCircleFolderName,
-            yourWorkFolderName: App.GetOrLoadConfiguration().RememberYourWorkFolderName);
+            yourCircleFolderName: this.Login2PageVM.YourCircleFolderName,
+            yourWorkFolderName: this.Login2PageVM.YourWorkFolderName);
 
         // 構成ファイルの更新差分
         var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
@@ -81,8 +81,8 @@ public partial class Login2Page : ContentPage
         // プロジェクト構成ファイルの更新差分
         var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
         {
-            StarterKitFolder = App.GetOrLoadConfiguration().StarterKitFolder,
-            UnityAssetsFolder = App.GetOrLoadConfiguration().UnityAssetsFolder,
+            StarterKitFolder = this.Login2PageVM.StarterKitFolder,
+            UnityAssetsFolder = this.Login2PageVM.UnityAssetsFolder,
         };
 
         if (Models.FileEntries.ProjectConfiguration.SaveTOML(App.GetOrLoadProjectConfiguration(), projectConfigurationDifference, out Models.FileEntries.ProjectConfiguration newProjectConfiguration))

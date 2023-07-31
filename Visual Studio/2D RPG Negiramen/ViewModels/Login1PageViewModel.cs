@@ -10,78 +10,6 @@ using System.Globalization;
 /// </summary>
 internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 {
-    // - パブリック・プロパティ
-
-    #region プロパティ（あなたのサークル名）
-    /// <summary>
-    ///     あなたのサークル名
-    /// </summary>
-    public YourCircleFolderName YourCircleFolderName
-    {
-        get => this.yourCircleFolderName;
-        set
-        {
-            if (this.yourCircleFolderName == value)
-                return;
-
-            this.YourCircleFolderNameAsStr = value.AsStr;
-        }
-    }
-    #endregion
-
-    #region プロパティ（あなたの作品名）
-    /// <summary>
-    ///     あなたの作品名
-    /// </summary>
-    public YourWorkFolderName YourWorkFolderName
-    {
-        get => this.yourWorkFolderName;
-        set
-        {
-            if (this.yourWorkFolderName == value)
-                return;
-
-            this.YourWorkFolderNameAsStr = value.AsStr;
-        }
-    }
-    #endregion
-
-    #region プロパティ（［サークル名］の文字数）
-    /// <summary>
-    ///     ［サークル名］の文字数
-    /// </summary>
-    public int YourCircleFolderNameLength
-    {
-        get => this.yourCircleFolderNameLength;
-        set
-        {
-            if (this.yourCircleFolderNameLength == value)
-                return;
-
-            this.yourCircleFolderNameLength = value;
-            OnPropertyChanged(nameof(NumberOfCharacters));
-        }
-    }
-    #endregion
-
-    #region プロパティ（［作品名］の文字数）
-    /// <summary>
-    ///     ［作品名］の文字数
-    /// </summary>
-    public int YourWorkFolderNameLength
-    {
-        get => this.yourWorkFolderNameLength;
-        set
-        {
-            if (this.yourWorkFolderNameLength == value)
-                return;
-
-            this.yourWorkFolderNameLength = value;
-            OnPropertyChanged(nameof(NumberOfCharacters));
-        }
-    }
-    #endregion
-
     // - パブリック変更通知プロパティ
 
     #region 変更通知プロパティ（ロケール　関連）
@@ -215,6 +143,78 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
             this.selectedEntry = value;
             OnPropertyChanged(nameof(SelectedEntry));
+        }
+    }
+    #endregion
+
+    // - パブリック・プロパティ
+
+    #region プロパティ（あなたのサークル・フォルダ名）
+    /// <summary>
+    ///     あなたのサークル・フォルダ名
+    /// </summary>
+    public YourCircleFolderName YourCircleFolderName
+    {
+        get => this.yourCircleFolderName;
+        set
+        {
+            if (this.yourCircleFolderName == value)
+                return;
+
+            this.YourCircleFolderNameAsStr = value.AsStr;
+        }
+    }
+    #endregion
+
+    #region プロパティ（あなたの作品フォルダ名）
+    /// <summary>
+    ///     あなたの作品フォルダ名
+    /// </summary>
+    public YourWorkFolderName YourWorkFolderName
+    {
+        get => this.yourWorkFolderName;
+        set
+        {
+            if (this.yourWorkFolderName == value)
+                return;
+
+            this.YourWorkFolderNameAsStr = value.AsStr;
+        }
+    }
+    #endregion
+
+    #region プロパティ（［サークル名］の文字数）
+    /// <summary>
+    ///     ［サークル名］の文字数
+    /// </summary>
+    public int YourCircleFolderNameLength
+    {
+        get => this.yourCircleFolderNameLength;
+        set
+        {
+            if (this.yourCircleFolderNameLength == value)
+                return;
+
+            this.yourCircleFolderNameLength = value;
+            OnPropertyChanged(nameof(NumberOfCharacters));
+        }
+    }
+    #endregion
+
+    #region プロパティ（［作品名］の文字数）
+    /// <summary>
+    ///     ［作品名］の文字数
+    /// </summary>
+    public int YourWorkFolderNameLength
+    {
+        get => this.yourWorkFolderNameLength;
+        set
+        {
+            if (this.yourWorkFolderNameLength == value)
+                return;
+
+            this.yourWorkFolderNameLength = value;
+            OnPropertyChanged(nameof(NumberOfCharacters));
         }
     }
     #endregion

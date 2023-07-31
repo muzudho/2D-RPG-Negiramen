@@ -9,6 +9,8 @@ using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 /// <summary>
 ///     😁 ［ログイン２］ページ・ビューモデル
 /// </summary>
+[QueryProperty(nameof(YourCircleFolderName), queryId: "YourCircleFolderName")]
+[QueryProperty(nameof(YourWorkFolderName), queryId: "YourWorkFolderName")]
 internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
 {
     // - パブリック変更通知プロパティ
@@ -83,6 +85,20 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     #endregion
 
     // - パブリック・プロパティ
+
+    #region プロパティ（あなたのサークル・フォルダ名）
+    /// <summary>
+    ///     あなたのサークル・フォルダ名
+    /// </summary>
+    public YourCircleFolderName YourCircleFolderName { get; set; } = YourCircleFolderName.Empty;
+    #endregion
+
+    #region プロパティ（あなたの作品フォルダ名）
+    /// <summary>
+    ///     あなたの作品フォルダ名
+    /// </summary>
+    public YourWorkFolderName YourWorkFolderName { get; set; } = YourWorkFolderName.Empty;
+    #endregion
 
     #region プロパティ（ネギラーメンの 📂 `Starter Kit` フォルダの場所）
     /// <summary>
