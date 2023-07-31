@@ -13,18 +13,18 @@ internal class ConfigurationBuffer
 {
     // - インターナル・プロパティ
 
-    #region プロパティ（あなたのサークル・フォルダ名）
+    #region プロパティ（現在のサークル・フォルダ名）
     /// <summary>
-    ///     あなたのサークル・フォルダ名
+    ///     現在のサークル・フォルダ名
     /// </summary>
-    internal YourCircleFolderName? RememberYourCircleFolderName { get; set; }
+    internal YourCircleFolderName? CurrentYourCircleFolderName { get; set; }
     #endregion
 
-    #region プロパティ（あなたの作品フォルダ名）
+    #region プロパティ（現在のあなたの作品フォルダ名）
     /// <summary>
-    ///     あなたの作品フォルダ名
+    ///     現在のあなたの作品フォルダ名
     /// </summary>
-    internal YourWorkFolderName? RememberYourWorkFolderName { get; set; }
+    internal YourWorkFolderName? CurrentYourWorkFolderName { get; set; }
     #endregion
 
     #region プロパティ（プロジェクトＩｄリスト）

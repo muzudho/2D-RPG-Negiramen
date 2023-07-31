@@ -17,16 +17,16 @@ class Configuration
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="rememberYourCircleFolderName">（選択中の）あなたのサークル・フォルダ名</param>
-    /// <param name="rememberYourWorkFolderName">（選択中の）あなたの作品フォルダ名</param>
+    /// <param name="currentYourCircleFolderName">現在のあなたのサークル・フォルダ名</param>
+    /// <param name="currentYourWorkFolderName">現在のあなたの作品フォルダ名</param>
     /// <param name="projectIdList">プロジェクトＩｄリスト</param>
     internal Configuration(
-        YourCircleFolderName rememberYourCircleFolderName,
-        YourWorkFolderName rememberYourWorkFolderName,
+        YourCircleFolderName currentYourCircleFolderName,
+        YourWorkFolderName currentYourWorkFolderName,
         List<ProjectId> projectIdList)
     {
-        this.RememberYourCircleFolderName = rememberYourCircleFolderName;
-        this.RememberYourWorkFolderName = rememberYourWorkFolderName;
+        this.CurrentYourCircleFolderName = currentYourCircleFolderName;
+        this.CurrentYourWorkFolderName = currentYourWorkFolderName;
         this.ProjectIdList = projectIdList;
     }
     #endregion
@@ -38,8 +38,8 @@ class Configuration
     ///     空オブジェクト
     /// </summary>
     internal static Configuration Empty = new(
-        rememberYourCircleFolderName: YourCircleFolderName.Empty,
-        rememberYourWorkFolderName: YourWorkFolderName.Empty,
+        currentYourCircleFolderName: YourCircleFolderName.Empty,
+        currentYourWorkFolderName: YourWorkFolderName.Empty,
         projectIdList: new List<ProjectId>());
     #endregion
 
@@ -72,15 +72,15 @@ class Configuration
             if (document != null)
             {
                 //
-                // [remember]
-                // ==========
+                // [current_project_id]
+                // ====================
                 //
-                if (document.TryGetValue("remember", out object rememberTomlObj))
+                if (document.TryGetValue("current_project_id", out object currentProjectIdTomlObj))
                 {
-                    if (rememberTomlObj != null && rememberTomlObj is TomlTable rememberTomlTable)
+                    if (currentProjectIdTomlObj != null && currentProjectIdTomlObj is TomlTable currentProjectIdTomlTable)
                     {
                         // あなたのサークル名
-                        if (rememberTomlTable.TryGetValue("your_circle_folder_name", out object yourCircleFolderNameObj))
+                        if (currentProjectIdTomlTable.TryGetValue("your_circle_folder_name", out object yourCircleFolderNameObj))
                         {
                             if (yourCircleFolderNameObj != null && yourCircleFolderNameObj is string yourCircleFolderNameAsStr)
                             {
@@ -89,7 +89,7 @@ class Configuration
                         }
 
                         // あなたの作品名
-                        if (rememberTomlTable.TryGetValue("your_work_folder_name", out object yourWorkFolderNameObj))
+                        if (currentProjectIdTomlTable.TryGetValue("your_work_folder_name", out object yourWorkFolderNameObj))
                         {
                             if (yourWorkFolderNameObj != null && yourWorkFolderNameObj is string yourWorkFolderNameAsStr)
                             {
@@ -187,18 +187,18 @@ class Configuration
         var configurationBuffer = new ConfigurationBuffer();
 
         // 差分適用
-        configurationBuffer.RememberYourCircleFolderName = difference.RememberYourCircleFolderName?? current.RememberYourCircleFolderName;
-        configurationBuffer.RememberYourWorkFolderName = difference.RememberYourWorkFolderName?? current.RememberYourWorkFolderName;
+        configurationBuffer.CurrentYourCircleFolderName = difference.CurrentYourCircleFolderName?? current.CurrentYourCircleFolderName;
+        configurationBuffer.CurrentYourWorkFolderName = difference.CurrentYourWorkFolderName?? current.CurrentYourWorkFolderName;
         configurationBuffer.ProjectIdList = difference.ProjectIdList ?? current.ProjectIdList;
 
         var strBuilder = new StringBuilder();
-        strBuilder.AppendLine($@"[remember]
+        strBuilder.AppendLine($@"[current_project_id]
 
 # あなたのサークル・フォルダ名
-your_circle_folder_name = ""{configurationBuffer.RememberYourCircleFolderName.AsStr}""
+your_circle_folder_name = ""{configurationBuffer.CurrentYourCircleFolderName.AsStr}""
 
 # あなたの作品フォルダ名
-your_work_folder_name = ""{configurationBuffer.RememberYourWorkFolderName.AsStr}""
+your_work_folder_name = ""{configurationBuffer.CurrentYourWorkFolderName.AsStr}""
 ");
 
         foreach (var projectId in configurationBuffer.ProjectIdList)
@@ -220,8 +220,8 @@ your_work_folder_name = ""{projectId.YourWorkFolderName.AsStr}""
 
         // 差分をマージして、イミュータブルに変換
         newConfiguration = new Configuration(
-            configurationBuffer.RememberYourCircleFolderName,
-            configurationBuffer.RememberYourWorkFolderName,
+            configurationBuffer.CurrentYourCircleFolderName,
+            configurationBuffer.CurrentYourWorkFolderName,
             configurationBuffer.ProjectIdList);
 
         return true;
@@ -230,18 +230,18 @@ your_work_folder_name = ""{projectId.YourWorkFolderName.AsStr}""
 
     // - インターナル・プロパティー
 
-    #region プロパティ（選択中のあなたのサークル・フォルダ名）
+    #region プロパティ（現在のあなたのサークル・フォルダ名）
     /// <summary>
-    ///     選択中のあなたのサークル・フォルダ・名
+    ///     現在のあなたのサークル・フォルダ・名
     /// </summary>
-    internal YourCircleFolderName RememberYourCircleFolderName { get; }
+    internal YourCircleFolderName CurrentYourCircleFolderName { get; }
     #endregion
 
-    #region プロパティ（選択中のあなたの作品フォルダ名）
+    #region プロパティ（現在のあなたの作品フォルダ名）
     /// <summary>
-    ///     選択中のあなたの作品フォルダ名
+    ///     現在のあなたの作品フォルダ名
     /// </summary>
-    internal YourWorkFolderName RememberYourWorkFolderName { get; }
+    internal YourWorkFolderName CurrentYourWorkFolderName { get; }
     #endregion
 
     #region プロパティ（プロジェクトＩｄリスト）

@@ -38,8 +38,8 @@
             this.UnityAssetsFolder = projectConfiguration.UnityAssetsFolder;
             this.UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
 
-            this.YourCircleFolderNameAsStr = configuration.RememberYourCircleFolderName.AsStr;
-            this.YourWorkFolderNameAsStr = configuration.RememberYourWorkFolderName.AsStr;
+            this.YourCircleFolderNameAsStr = configuration.CurrentYourCircleFolderName.AsStr;
+            this.YourWorkFolderNameAsStr = configuration.CurrentYourWorkFolderName.AsStr;
 
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
             this.MakeUnityAssetsFolderCommand = new AsyncRelayCommand(MakeUnityAssetsFolder);
@@ -244,8 +244,8 @@
                 // 構成ファイルの更新差分
                 var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
                 {
-                    RememberYourCircleFolderName = _yourCircleFolderName,
-                    RememberYourWorkFolderName = _yourWorkFolderName,
+                    CurrentYourCircleFolderName = _yourCircleFolderName,
+                    CurrentYourWorkFolderName = _yourWorkFolderName,
                 };
 
                 // 構成ファイルの保存

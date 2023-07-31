@@ -22,7 +22,7 @@ internal class YourCircleFolder
     ///     生成
     /// </summary>
     internal YourCircleFolder(FileEntryPath parentPath)
-        : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
+        : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().CurrentYourCircleFolderName.AsStr)),
                convert: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {

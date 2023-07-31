@@ -43,8 +43,8 @@ public partial class Login2Page : ContentPage
         // ==========
         //
         var newProjectId = new ProjectId(
-            yourCircleFolderName: this.Login2PageVM.YourCircleFolderName,
-            yourWorkFolderName: this.Login2PageVM.YourWorkFolderName);
+            yourCircleFolderName: App.GetOrLoadConfiguration().CurrentYourCircleFolderName,
+            yourWorkFolderName: App.GetOrLoadConfiguration().CurrentYourWorkFolderName);
 
         // 構成ファイルの更新差分
         var configurationDifference = new Models.FileEntries.ConfigurationBuffer()

@@ -40,8 +40,8 @@ public partial class Login1Page : ContentPage
         // 構成ファイルの更新差分
         var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
         {
-            RememberYourCircleFolderName = this.Login1PageVM.YourCircleFolderName,
-            RememberYourWorkFolderName = this.Login1PageVM.YourWorkFolderName,
+            CurrentYourCircleFolderName = this.Login1PageVM.YourCircleFolderName,
+            CurrentYourWorkFolderName = this.Login1PageVM.YourWorkFolderName,
         };
 
         // 構成ファイルの保存
@@ -62,8 +62,8 @@ public partial class Login1Page : ContentPage
     /// </summary>
     void Setup()
     {
-        this.Login1PageVM.YourCircleFolderName = App.GetOrLoadConfiguration().RememberYourCircleFolderName;
-        this.Login1PageVM.YourWorkFolderName = App.GetOrLoadConfiguration().RememberYourWorkFolderName;
+        this.Login1PageVM.YourCircleFolderName = App.GetOrLoadConfiguration().CurrentYourCircleFolderName;
+        this.Login1PageVM.YourWorkFolderName = App.GetOrLoadConfiguration().CurrentYourWorkFolderName;
 
         // TODO ページ読込完了（★２回来訪しても呼び出されないから注意）
         Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了（★２回来訪しても呼び出されないから注意） Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, ProjectIdList.Count: {App.GetOrLoadConfiguration().ProjectIdList.Count}");
@@ -220,12 +220,7 @@ public partial class Login1Page : ContentPage
         this.SaveConfigurationToml();
 
         await Shell.Current.GoToAsync(
-            state: new ShellNavigationState("//Login2Page"),
-            parameters: new Dictionary<string, object>
-            {
-                [key: "YourCircleFolderName"] = this.Login1PageVM.YourCircleFolderName,
-                [key: "YourWorkFolderName"] = this.Login1PageVM.YourWorkFolderName,
-            });
+            state: new ShellNavigationState("//Login2Page"));
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
     #endregion

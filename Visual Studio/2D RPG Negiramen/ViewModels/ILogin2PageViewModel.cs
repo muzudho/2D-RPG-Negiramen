@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
-using _2D_RPG_Negiramen.Models;
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
@@ -24,20 +23,6 @@ internal interface ILogin2PageViewModel
     /// </summary>
     /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
     TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder { get; set; }
-    #endregion
-
-    #region プロパティ（あなたのサークル・フォルダ名）
-    /// <summary>
-    ///     あなたのサークル・フォルダ名
-    /// </summary>
-    YourCircleFolderName YourCircleFolderName { get; set; }
-    #endregion
-
-    #region プロパティ（あなたの作品フォルダ名）
-    /// <summary>
-    ///     あなたの作品フォルダ名
-    /// </summary>
-    YourWorkFolderName YourWorkFolderName { get; set; }
     #endregion
 
     // - パブリック・メソッド

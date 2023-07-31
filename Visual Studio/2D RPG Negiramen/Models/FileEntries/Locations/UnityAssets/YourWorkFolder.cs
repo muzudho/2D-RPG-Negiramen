@@ -20,7 +20,7 @@ internal class YourWorkFolder : Its
     ///     生成
     /// </summary>
     internal YourWorkFolder(FileEntryPath parentPath)
-        : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().RememberYourWorkFolderName.AsStr)),
+        : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().CurrentYourWorkFolderName.AsStr)),
                convert: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {
