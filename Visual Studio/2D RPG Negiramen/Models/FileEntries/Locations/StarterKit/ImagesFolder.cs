@@ -37,5 +37,29 @@
         {
         }
         #endregion
+
+        // - インターナル・プロパティ
+
+        #region プロパティ（ネギラーメンの 📂 `Starter Kit/For Unity Assets/Images/Tilesets` フォルダ―の場所）
+        /// <summary>
+        ///     ネギラーメンの 📂 `Starter Kit/For Unity Assets/Images/Tilesets` フォルダ―の場所
+        /// </summary>
+        internal ImagesTilesetsFolder TilesetsFolder
+        {
+            get
+            {
+                if (tilesetsFolder == null)
+                {
+                    tilesetsFolder = new ImagesTilesetsFolder(Path);
+                }
+
+                return tilesetsFolder;
+            }
+        }
+        #endregion
+
+        // - プライベート・フィールド
+
+        ImagesTilesetsFolder? tilesetsFolder;
     }
 }
