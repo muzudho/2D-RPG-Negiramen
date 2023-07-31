@@ -43,11 +43,7 @@
             {
                 if (yourCircleFolder == null)
                 {
-                    yourCircleFolder = new YourCircleFolder(
-                        pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
+                    yourCircleFolder = new YourCircleFolder(Path);
                 }
 
                 return yourCircleFolder;

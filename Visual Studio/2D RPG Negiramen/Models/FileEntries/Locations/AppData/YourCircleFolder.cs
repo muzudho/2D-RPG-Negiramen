@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.AppData
 {
     using _2D_RPG_Negiramen;
-    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
@@ -23,16 +22,10 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourCircleFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal YourCircleFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
+        internal YourCircleFolder(FileEntryPath parentPath)
+            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
+                   convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                               replaceSeparators: true))
         {
         }
         #endregion

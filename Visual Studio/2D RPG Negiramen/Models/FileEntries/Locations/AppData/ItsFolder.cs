@@ -47,34 +47,11 @@
             {
                 if (yourCircleFolder == null)
                 {
-                    yourCircleFolder = new YourCircleFolder(
-                        pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourCircleFolderName.AsStr)),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
+                    yourCircleFolder = new YourCircleFolder(Path);
                 }
 
                 return yourCircleFolder;
             }
-        }
-        #endregion
-
-        // - インターナル・メソッド
-
-        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル・フォルダ名}` フォルダ―の場所）
-        /// <summary>
-        ///     OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル・フォルダ名}` フォルダ―の場所
-        /// </summary>
-        /// <param name="yourCircleFolderName">サークル・フォルダ名</param>
-        internal YourCircleFolder CreateAndOverwriteYourCircleFolder(string yourCircleFolderName)
-        {
-            this.yourCircleFolder = new YourCircleFolder(
-                pathSource: FileEntryPathSource.FromString(
-                    System.IO.Path.Combine(Path.AsStr, yourCircleFolderName)),
-                convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                            replaceSeparators: true));
-
-            return this.yourCircleFolder;
         }
         #endregion
 

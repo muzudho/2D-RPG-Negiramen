@@ -42,11 +42,7 @@
             {
                 if (tilesetsFolder == null)
                 {
-                    tilesetsFolder = new ImagesTilesetsFolder(
-                        pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, "Tilesets")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
+                    tilesetsFolder = new ImagesTilesetsFolder(Path);
                 }
 
                 return tilesetsFolder;

@@ -22,14 +22,6 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal YourWorkFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
         internal YourWorkFolder(FileEntryPath parentPath)
             : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().RememberYourWorkFolderName.AsStr)),
                    convert: (pathSource) => FileEntryPath.From(pathSource,

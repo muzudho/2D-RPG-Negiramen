@@ -1,9 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Cache
 {
     using _2D_RPG_Negiramen;
-    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
     /// <summary>
     ///     😁 OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tilesets/Thumbnails` フォルダの場所
@@ -24,16 +22,10 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ImagesTilesetsThumbnailsFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal ImagesTilesetsThumbnailsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
+        internal ImagesTilesetsThumbnailsFolder(FileEntryPath parentPath)
+            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Thumbnails")),
+                   convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                               replaceSeparators: true))
         {
         }
         #endregion
