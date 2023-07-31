@@ -175,7 +175,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static YFloat Empty = new YFloat(0);
+        internal static YFloat Empty = new(0);
         #endregion
 
         // - その他

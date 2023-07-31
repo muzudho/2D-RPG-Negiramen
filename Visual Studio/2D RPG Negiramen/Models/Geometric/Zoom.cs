@@ -174,7 +174,7 @@
         /// <summary>
         ///     単位元オブジェクト
         /// </summary>
-        internal static Zoom IdentityElement = new Zoom(1.0f);
+        internal static Zoom IdentityElement = new(1.0f);
         #endregion
 
         // - その他

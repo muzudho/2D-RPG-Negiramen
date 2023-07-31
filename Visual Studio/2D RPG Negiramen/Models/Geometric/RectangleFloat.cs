@@ -92,7 +92,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static RectangleFloat Empty = new RectangleFloat(PointFloat.Empty, SizeFloat.Empty);
+        internal static RectangleFloat Empty = new(PointFloat.Empty, SizeFloat.Empty);
         #endregion
 
         // - その他

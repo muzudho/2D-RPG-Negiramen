@@ -17,7 +17,7 @@
         /// <param name="array"></param>
         public static void FisherYatesShuffle<T>(T[] array)
         {
-            System.Random random = new System.Random();
+            var random = new System.Random();
             for (int i = 0; i < array.Length; i++)
             {
                 int j = random.Next(i, array.Length); // Don't select from the entire array on subsequent loops

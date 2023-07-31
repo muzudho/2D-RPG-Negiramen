@@ -83,7 +83,7 @@ public partial class TileCropPage : ContentPage
             gridTile: context.WorkingGridUnit);
 
         // ズームを除去
-        RectangleInt sourceRect = new RectangleInt(
+        var sourceRect = new RectangleInt(
             location: new PointInt(
                 x: new XInt((int)(workingRect.Location.X.AsFloat / context.ZoomAsFloat)),
                 y: new YInt((int)(workingRect.Location.Y.AsFloat / context.ZoomAsFloat))),
@@ -226,7 +226,7 @@ public partial class TileCropPage : ContentPage
                 using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
                 {
                     // ↓ １つのストリームが使えるのは、１回切り
-                    using (MemoryStream memStream = new MemoryStream())
+                    using (var memStream = new MemoryStream())
                     {
                         await inputFileStream.CopyToAsync(memStream);
                         memStream.Seek(0, SeekOrigin.Begin);

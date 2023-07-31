@@ -27,7 +27,7 @@ internal class TilesetGlobalConfig
     /// <summary>
     ///     空オブジェクト
     /// </summary>
-    internal static TilesetGlobalConfig Empty = new TilesetGlobalConfig();
+    internal static TilesetGlobalConfig Empty = new();
     #endregion
 
     // - インターナル・プロパティ

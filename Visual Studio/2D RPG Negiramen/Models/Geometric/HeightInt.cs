@@ -186,7 +186,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static HeightInt Empty = new HeightInt(0);
+        internal static HeightInt Empty = new(0);
         #endregion
 
         // - インターナル・プロパティー

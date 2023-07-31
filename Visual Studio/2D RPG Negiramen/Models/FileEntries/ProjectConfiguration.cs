@@ -24,12 +24,12 @@ class ProjectConfiguration
     {
         try
         {
-            var configurationFilePathAsStr = App.ApplicationFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr;
+            var configurationFilePathAsStr = App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr;
 
             // 設定ファイルの読取
             var configurationText = System.IO.File.ReadAllText(configurationFilePathAsStr);
 
-            TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder();
+            var unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder();
 
             // TOML
             TomlTable document = Toml.ToModel(configurationText);

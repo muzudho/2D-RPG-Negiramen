@@ -172,14 +172,14 @@
         /// <summary>
         ///     偽オブジェクト
         /// </summary>
-        internal static LogicalDelete False = new LogicalDelete(0);
+        internal static LogicalDelete False = new(0);
         #endregion
 
         #region プロパティ（真オブジェクト）
         /// <summary>
         ///     真オブジェクト
         /// </summary>
-        internal static LogicalDelete True = new LogicalDelete(1);
+        internal static LogicalDelete True = new(1);
         #endregion
 
         // - その他

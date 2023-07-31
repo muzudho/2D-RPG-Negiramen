@@ -173,7 +173,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static TileId Empty = new TileId(0);
+        internal static TileId Empty = new(0);
         #endregion
 
         // - プライベート静的プロパティー
@@ -183,7 +183,7 @@
         ///         BASE64 を、オーラル・コミュニケーションがしやすいように英単語に変換するもの
         ///     </pre>
         /// </summary>
-        static Dictionary<char, string> PhoneticAlphabet = new Dictionary<char, string>()
+        static Dictionary<char, string> PhoneticAlphabet = new()
         {
             {'A', "Alice"},
             {'B', "Boart"},
@@ -304,7 +304,7 @@
         {
             get
             {
-                List<string> list = new List<string>();
+                var list = new List<string>();
 
                 foreach (char c in AsBASE64)
                 {

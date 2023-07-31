@@ -91,14 +91,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal static SizeInt Empty = new SizeInt(Models.WidthInt.Empty, Models.HeightInt.Empty);
-        後:
-                internal static SizeInt Empty = new SizeInt(Models.WidthInt.Empty, HeightInt.Empty);
-        */
-        internal static SizeInt Empty = new SizeInt(WidthInt.Empty, HeightInt.Empty);
+        internal static SizeInt Empty = new(WidthInt.Empty, HeightInt.Empty);
         #endregion
 
         // - その他

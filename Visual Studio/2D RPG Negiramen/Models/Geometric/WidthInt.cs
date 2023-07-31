@@ -186,7 +186,7 @@
         /// <summary>
         /// ゼロ・オブジェクト
         /// </summary>
-        internal static WidthInt Empty = new WidthInt(0);
+        internal static WidthInt Empty = new(0);
         #endregion
 
         // - インターナル・プロパティー

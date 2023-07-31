@@ -91,7 +91,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static PointInt Empty = new PointInt(XInt.Empty, YInt.Empty);
+        internal static PointInt Empty = new(XInt.Empty, YInt.Empty);
         #endregion
 
         // - その他

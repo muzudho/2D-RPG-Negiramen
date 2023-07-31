@@ -36,6 +36,6 @@ internal static class UUIDHelper
     ///         <item>大文字と小文字を区別し、大文字を使うものとする</item>
     ///     </list>
     /// </summary>
-    static Regex uuidPattern = new Regex("([0-9A-F]{8})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{12})");
+    static Regex uuidPattern = new("([0-9A-F]{8})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{4})-([0-9A-F]{12})");
     #endregion
 }

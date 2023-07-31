@@ -51,14 +51,14 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static TileRecord Empty = new TileRecord();
+        internal static TileRecord Empty = new();
         #endregion
 
         #region プロパティ（空オブジェクト）
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static Option<TileRecord> EmptyOption = new Option<TileRecord>(TileRecord.Empty);
+        internal static Option<TileRecord> EmptyOption = new(TileRecord.Empty);
         #endregion
 
         // - インターナル・プロパティ

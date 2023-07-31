@@ -110,7 +110,7 @@
         }
 
         // タイルセット元画像
-        SKBitmap tilesetSourceBitmap = new SKBitmap();
+        var tilesetSourceBitmap = new SKBitmap();
 
         /// <summary>
         ///     タイルセット元画像
@@ -470,7 +470,7 @@
         /// </summary>
         public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
 
-        ThicknessOfLine halfThicknessOfGridLine = new Models.ThicknessOfLine(1);
+        ThicknessOfLine halfThicknessOfGridLine = new(1);
 
         /// <summary>
         ///     グリッド線の半分の太さ
@@ -1384,10 +1384,10 @@
         /// </summary>
         public Thickness WorkingCroppedCursorPointAsMargin
         {
-            get => new Thickness(left: this.WorkingCroppedCursorLeftAsFloat,
-                                 top: this.WorkingCroppedCursorTopAsFloat,
-                                 right: 0,
-                                 bottom: 0);
+            get => new(left: this.WorkingCroppedCursorLeftAsFloat,
+                       top: this.WorkingCroppedCursorTopAsFloat,
+                       right: 0,
+                       bottom: 0);
         }
 
         /// <summary>
@@ -1952,7 +1952,7 @@
         /// <summary>
         ///     タイルセット設定ビューモデル
         /// </summary>
-        TilesetSettingsViewModel _tilesetSettingsVM = new TilesetSettingsViewModel();
+        TilesetSettingsViewModel _tilesetSettingsVM = new();
         #endregion
 
         #region フィールド（タイルセット元画像　関連）
@@ -1997,7 +1997,7 @@
         /// <summary>
         ///     グリッド単位。元画像ベース
         /// </summary>
-        Models.Geometric.SizeInt sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
+        Models.Geometric.SizeInt sourceGridUnit = new(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
         /// <summary>
         ///     グリッド位相の左上表示位置。ズーム後
@@ -2007,7 +2007,7 @@
         /// <summary>
         ///     グリッド単位。ズーム後
         /// </summary>
-        Models.Geometric.SizeFloat workingGridUnit = new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32.0f), new Models.Geometric.HeightFloat(32.0f));
+        Models.Geometric.SizeFloat workingGridUnit = new(new Models.Geometric.WidthFloat(32.0f), new Models.Geometric.HeightFloat(32.0f));
         #endregion
 
         #region フィールド（矩形カーソル。元画像ベース　関連）
@@ -2018,7 +2018,7 @@
         ///         <item>タイル・カーソルが有るときと、無いときを分ける</item>
         ///     </list>
         /// </summary>
-        Option<TileRecordViewModel> selectedTileVMOption = new Option<TileRecordViewModel>(new TileRecordViewModel());
+        Option<TileRecordViewModel> selectedTileVMOption = new(new TileRecordViewModel());
         #endregion
 
         #region フィールド（矩形カーソル。ズーム済み　関連）
@@ -2045,12 +2045,12 @@
         /// <summary>
         ///     ズーム最大
         /// </summary>
-        Models.Geometric.Zoom zoomMax = new Models.Geometric.Zoom(4.0f);
+        Models.Geometric.Zoom zoomMax = new(4.0f);
 
         /// <summary>
         ///     ズーム最小
         /// </summary>
-        Models.Geometric.Zoom zoomMin = new Models.Geometric.Zoom(0.5f);
+        Models.Geometric.Zoom zoomMin = new(0.5f);
 
         /// <summary>
         ///     ズーム

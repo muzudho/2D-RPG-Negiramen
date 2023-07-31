@@ -45,7 +45,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static Configuration Empty = new Configuration(
+        internal static Configuration Empty = new(
             negiramenStarterKitFolderPath: TheFileEntryLocations.StarterKit.ItsFolder.Empty,
             unityAssetsFolderPath: TheFileEntryLocations.UnityAssets.ItsFolder.Empty,
             // TheFileEntryLocations.StarterKit.StarterKitConfigurationFile.Empty,
@@ -76,14 +76,14 @@
                 var configurationText = System.IO.File.ReadAllText(TheFileEntryLocations.AppData.ConfigurationToml.Instance.Path.AsStr);
 
 
-                TheFileEntryLocations.StarterKit.ItsFolder starterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder();
+                var starterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder();
 
-                TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder();
+                var unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder();
 
                 // TheFileEntryLocations.StarterKit.StarterKitConfigurationFile starterKitConfiguration = TheFileEntryLocations.StarterKit.StarterKitConfigurationFile.Empty;
-                List<ConfigurationEntry> entryList = new List<ConfigurationEntry>();
-                YourCircleFolderName yourCircleFolderName = new YourCircleFolderName();
-                YourWorkFolderName yourWorkFolderName = new YourWorkFolderName();
+                var entryList = new List<ConfigurationEntry>();
+                var yourCircleFolderName = new YourCircleFolderName();
+                var yourWorkFolderName = new YourWorkFolderName();
 
                 // TOML
                 TomlTable document = Toml.ToModel(configurationText);
@@ -292,7 +292,7 @@
             configurationBuffer.RememberYourWorkFolderName = difference.RememberYourWorkFolderName?? current.RememberYourWorkFolderName;
             configurationBuffer.EntryList = difference.EntryList ?? current.EntryList;
 
-            StringBuilder strBuilder = new StringBuilder();
+            var strBuilder = new StringBuilder();
             strBuilder.AppendLine($@"[paths]
 
 # ネギラーメンの 📂 `Starter Kit` フォルダ―へのパス

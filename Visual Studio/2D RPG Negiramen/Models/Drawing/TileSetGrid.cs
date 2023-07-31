@@ -142,7 +142,7 @@
             int halfThicknessOfLineAsInt = this.HalfThicknessOfGridLineAsInt;
 
             // グリッドの線の太さ
-            Models.ThicknessOfLine lineThickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
+            var lineThickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = lineThickness.AsInt;
 
             //

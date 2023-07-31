@@ -26,7 +26,7 @@ internal static class ReduceBrightness
                 for (int col = 0; col < width; col++)
                 {
                     // ビッグ・エンディアンか、リトル・エンディアンかの違いを吸収してくれることを期待して
-                    SKColor color = new SKColor(*ptr);
+                    var color = new SKColor(*ptr);
 
                     // RGB値が減れば、暗くなるだろ
                     *ptr++ = (uint)new SKColor(

@@ -30,7 +30,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// <summary>
     ///     タイルセット・レコード・ビューモデルのリスト
     /// </summary>
-    public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection => new ObservableCollection<TilesetRecordViewModel>(this.TilesetRecordVMQueue.ToList());
+    public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection => new(this.TilesetRecordVMQueue.ToList());
     #endregion
 
     // - パブリック変更通知プロパティ

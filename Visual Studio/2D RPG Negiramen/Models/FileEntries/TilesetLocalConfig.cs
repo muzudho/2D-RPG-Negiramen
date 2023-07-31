@@ -11,7 +11,7 @@ internal class TilesetLocalConfig
     /// <summary>
     ///     空オブジェクト
     /// </summary>
-    internal static TilesetLocalConfig Empty = new TilesetLocalConfig();
+    internal static TilesetLocalConfig Empty = new();
     #endregion
 
     // - インターナル・プロパティ

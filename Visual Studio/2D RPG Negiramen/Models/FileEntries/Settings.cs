@@ -43,7 +43,7 @@
             // ======
             //
             // 全部ヌルなので、既定値を入れていきます
-            SettingsBuffer buffer = new SettingsBuffer()
+            var buffer = new SettingsBuffer()
             {
                 // 一辺が 2048 ピクセルのキャンバスを想定し、両端に太さが 2px のグリッドの線があって 1px ずつ食み出るから 2px 引いて 2046
                 TileMaxSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(2046), new Models.Geometric.HeightInt(2046)),

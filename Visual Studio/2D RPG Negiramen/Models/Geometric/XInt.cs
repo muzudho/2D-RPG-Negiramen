@@ -173,7 +173,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static XInt Empty = new XInt(0);
+        internal static XInt Empty = new(0);
         #endregion
 
         // - その他

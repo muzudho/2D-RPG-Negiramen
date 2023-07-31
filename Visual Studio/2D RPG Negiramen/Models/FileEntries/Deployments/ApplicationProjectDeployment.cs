@@ -21,15 +21,15 @@
         /// <returns>完了した</returns>
         internal static bool MakeFolder()
         {
-            if (!App.ApplicationFolder.IsDirectoryExists())
+            if (!App.DataFolder.IsDirectoryExists())
             {
                 // 存在しなければ失敗
                 return false;
             }
 
             // 無ければ作成
-            App.ApplicationFolder.YourCircleFolder.CreateThisDirectoryIfItDoesNotExist();
-            MakeYourCircleFolder(App.ApplicationFolder.YourCircleFolder);
+            App.DataFolder.YourCircleFolder.CreateThisDirectoryIfItDoesNotExist();
+            MakeYourCircleFolder(App.DataFolder.YourCircleFolder);
 
             return true;
         }
@@ -52,8 +52,19 @@
             // 無ければ作成
             yourCircleFolder.YourWorkFolder.CreateThisDirectoryIfItDoesNotExist();
 
-            // TODO ★ プロジェクト構成ファイルの作成
+            // プロジェクト構成ファイルの作成
+            MakeProjectConfigurationToml(yourCircleFolder.YourWorkFolder);
         }
         #endregion
+
+        /// <summary>
+        ///     TODO ★ プロジェクト構成ファイルの作成
+        /// </summary>
+        /// <param name="yourWorkFolder"></param>
+        static void MakeProjectConfigurationToml(TheFileEntryLocations.AppData.YourWorkFolder yourWorkFolder)
+        {
+            // App.DataFolder.YourCircleFolder.YourWorkFolder
+
+        }
     }
 }

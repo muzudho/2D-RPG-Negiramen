@@ -174,7 +174,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static YInt Empty = new YInt(0);
+        internal static YInt Empty = new(0);
         #endregion
 
         // - その他

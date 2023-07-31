@@ -86,24 +86,24 @@ public partial class App : Application
     /// </summary>
     static internal double WidthForCollectionView { get; set; }
 
-    #region プロパティ（アプリケーション・フォルダ）
+    #region プロパティ（アプリケーション・データ・フォルダ）
     /// <summary>
-    ///		アプリケーション・フォルダ
+    ///		アプリケーション・データ・フォルダ
     /// 
     ///		<list type="bullet">
     ///			<item>ミュータブル</item>
     ///		</list>
     /// </summary>
-    internal static TheFileEntryLocations.AppData.ItsFolder ApplicationFolder
+    internal static TheFileEntryLocations.AppData.ItsFolder DataFolder
     {
         get
         {
-            if (applicationFolder == null)
+            if (dataFolder == null)
             {
-                applicationFolder = new TheFileEntryLocations.AppData.ItsFolder();
+                dataFolder = new TheFileEntryLocations.AppData.ItsFolder();
             }
 
-            return applicationFolder;
+            return dataFolder;
         }
     }
     #endregion
@@ -151,15 +151,15 @@ public partial class App : Application
 
     // - プライベート静的フィールド
 
-    #region プロパティ（アプリケーション・フォルダ）
+    #region プロパティ（アプリケーション・データ・フォルダ）
     /// <summary>
-    ///		アプリケーション・フォルダ
+    ///		アプリケーション・データ・フォルダ
     /// 
     ///		<list type="bullet">
     ///			<item>ミュータブル</item>
     ///		</list>
     /// </summary>
-    static TheFileEntryLocations.AppData.ItsFolder? applicationFolder;
+    static TheFileEntryLocations.AppData.ItsFolder? dataFolder;
     #endregion
 
     #region プロパティ（キャッシュ・フォルダ）

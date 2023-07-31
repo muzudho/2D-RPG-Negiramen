@@ -134,7 +134,7 @@
             int halfThicknessOfLineAsInt = this.HalfThicknessOfTileCursorLine.AsInt;
 
             // タイル・カーソルの線の太さ
-            Models.ThicknessOfLine thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
+            var thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);
             canvas.StrokeSize = thickness.AsInt;
 
             // キャンバス・サイズいっぱいにタイル・カーソルを描画

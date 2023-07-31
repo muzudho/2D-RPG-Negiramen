@@ -38,7 +38,7 @@ public partial class Login2Page : ContentPage
     /// </summary>
     void SaveConfigurationToml()
     {
-        ConfigurationEntry newEntry = new ConfigurationEntry(
+        var newEntry = new ConfigurationEntry(
             yourCircleFolderName: App.GetOrLoadConfiguration().RememberYourCircleFolderName,
             yourWorkFolderName: App.GetOrLoadConfiguration().RememberYourWorkFolderName);
 

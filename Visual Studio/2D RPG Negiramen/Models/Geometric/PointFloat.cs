@@ -92,7 +92,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static PointFloat Empty = new PointFloat(XFloat.Empty, YFloat.Empty);
+        internal static PointFloat Empty = new(XFloat.Empty, YFloat.Empty);
         #endregion
 
         // - その他

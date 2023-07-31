@@ -187,7 +187,7 @@
         /// <summary>
         /// ゼロ・オブジェクト
         /// </summary>
-        internal static WidthFloat Empty = new WidthFloat(0);
+        internal static WidthFloat Empty = new(0);
         #endregion
 
         // - インターナル・プロパティー

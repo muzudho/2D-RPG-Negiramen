@@ -107,14 +107,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal static RectangleInt Empty = new RectangleInt(Models.PointInt.Empty, Models.SizeInt.Empty);
-        後:
-                internal static RectangleInt Empty = new RectangleInt(PointInt.Empty, Models.SizeInt.Empty);
-        */
-        internal static RectangleInt Empty = new RectangleInt(PointInt.Empty, SizeInt.Empty);
+        internal static RectangleInt Empty = new(PointInt.Empty, SizeInt.Empty);
         #endregion
 
         // - インターナル・プロパティー

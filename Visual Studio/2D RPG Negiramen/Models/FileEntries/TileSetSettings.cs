@@ -467,7 +467,7 @@
         /// <returns>タイルレコード一覧</returns>
         List<TileRecord> CreateTileRecordList(bool includeLogicalDelete = false)
         {
-            List<TileRecord> list = new List<TileRecord>();
+            var list = new List<TileRecord>();
 
             foreach (var record in this.RecordList)
             {

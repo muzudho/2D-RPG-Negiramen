@@ -171,7 +171,7 @@
         ///         <item>0 にすると、for文の増分に使われているとき、 0 はいくら足しても 0 なので、無限ループする恐れがある。だから最小を 1 とする</item>
         ///     </list>
         /// </summary>
-        internal static ThicknessOfLine Min = new ThicknessOfLine(1);
+        internal static ThicknessOfLine Min = new(1);
 
         // - その他
 
