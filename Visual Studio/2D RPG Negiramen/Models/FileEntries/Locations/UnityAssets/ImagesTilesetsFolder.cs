@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets
 {
-    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
@@ -20,16 +19,10 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ImagesTilesetsFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal ImagesTilesetsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
+        internal ImagesTilesetsFolder(FileEntryPath parentPath)
+            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Tilesets")),
+                   convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                               replaceSeparators: true))
         {
         }
         #endregion

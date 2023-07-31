@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets
 {
-    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
@@ -58,9 +57,7 @@
             {
                 if (jsonFolder == null)
                 {
-                    jsonFolder = new DataJsonFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "JSON")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    jsonFolder = new DataJsonFolder(Path);
                 }
 
                 return jsonFolder;

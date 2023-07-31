@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.Cache
 {
     using _2D_RPG_Negiramen;
-    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>

@@ -57,9 +57,7 @@
             {
                 if (editorFolder == null)
                 {
-                    editorFolder = new EditorFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Editor")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    editorFolder = new EditorFolder(Path);
                 }
 
                 return editorFolder;
@@ -77,9 +75,7 @@
             {
                 if (imagesFolder == null)
                 {
-                    imagesFolder = new ImagesFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Images")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    imagesFolder = new ImagesFolder(Path);
                 }
 
                 return imagesFolder;
@@ -97,9 +93,7 @@
             {
                 if (materialsFolder == null)
                 {
-                    materialsFolder = new MaterialsFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Materials")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    materialsFolder = new MaterialsFolder(Path);
                 }
 
                 return materialsFolder;
@@ -117,9 +111,7 @@
             {
                 if (moviesFolder == null)
                 {
-                    moviesFolder = new MoviesFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Movies")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    moviesFolder = new MoviesFolder(Path);
                 }
 
                 return moviesFolder;
@@ -137,9 +129,7 @@
             {
                 if (prefabsFolder == null)
                 {
-                    prefabsFolder = new PrefabsFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Prefabs")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    prefabsFolder = new PrefabsFolder(Path);
                 }
 
                 return prefabsFolder;
@@ -157,9 +147,7 @@
             {
                 if (scenesFolder == null)
                 {
-                    scenesFolder = new ScenesFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Scenes")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    scenesFolder = new ScenesFolder(Path);
                 }
 
                 return scenesFolder;
@@ -177,9 +165,7 @@
             {
                 if (scriptsFolder == null)
                 {
-                    scriptsFolder = new ScriptsFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Scripts")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    scriptsFolder = new ScriptsFolder(Path);
                 }
 
                 return scriptsFolder;
@@ -197,9 +183,7 @@
             {
                 if (scriptingObjectsFolder == null)
                 {
-                    scriptingObjectsFolder = new ScriptingObjectsFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Scripting Objects")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    scriptingObjectsFolder = new ScriptingObjectsFolder(Path);
                 }
 
                 return scriptingObjectsFolder;
@@ -217,9 +201,7 @@
             {
                 if (soundsFolder == null)
                 {
-                    soundsFolder = new SoundsFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Sounds")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    soundsFolder = new SoundsFolder(Path);
                 }
 
                 return soundsFolder;
@@ -237,9 +219,7 @@
             {
                 if (systemFolder == null)
                 {
-                    systemFolder = new SystemFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "System")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    systemFolder = new SystemFolder(Path);
                 }
 
                 return systemFolder;
@@ -257,9 +237,7 @@
             {
                 if (textsFolder == null)
                 {
-                    textsFolder = new TextsFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "Texts")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    textsFolder = new TextsFolder(Path);
                 }
 
                 return textsFolder;
