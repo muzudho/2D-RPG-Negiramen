@@ -22,9 +22,9 @@
         internal TheLocationOfUnityAssets.ItsFolder? UnityAssetsFolder { get; set; }
 
         ///// <summary>
-        /////     ユーザー構成ファイルへのパス
+        /////     スターターキット構成ファイルへのパス
         ///// </summary>
-        //internal Locations.StarterKit.UserConfigurationFile? UserConfigurationFile { get; set; }
+        //internal Locations.StarterKit.StarterKitConfigurationFile? StarterKitConfigurationFile { get; set; }
 
         /// <summary>
         ///     あなたのサークル・フォルダ名

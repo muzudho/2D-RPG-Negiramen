@@ -10,7 +10,7 @@
     ///         <item>配置場所は、構成ファイルで変更可能。既定ではネギラーメン 📂 `Starter Kit` の直下に置く想定</item>
     ///     </list>
     /// </summary>
-    class UserConfigurationFile : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
+    class StarterKitConfigurationFile : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
     {
         // - その他
 
@@ -18,7 +18,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UserConfigurationFile()
+        internal StarterKitConfigurationFile()
             : base()
         {
         }
@@ -33,7 +33,7 @@
         ///         <item>構成ファイル読込時</item>
         ///     </list>
         /// </summary>
-        internal UserConfigurationFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        internal StarterKitConfigurationFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
             : base(pathSource, convert)
         {
         }
@@ -45,7 +45,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static UserConfigurationFile Empty { get; } = new UserConfigurationFile();
+        internal static StarterKitConfigurationFile Empty { get; } = new StarterKitConfigurationFile();
         #endregion
     }
 }

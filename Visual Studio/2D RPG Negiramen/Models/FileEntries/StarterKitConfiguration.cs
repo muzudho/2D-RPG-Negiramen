@@ -7,7 +7,7 @@
     /// <summary>
     ///     😁 構成
     /// </summary>
-    class UserConfiguration
+    class StarterKitConfiguration
     {
         // - 静的プロパティー
 
@@ -24,33 +24,33 @@
         /// </summary>
         /// <param name="configuration">構成</param>
         /// <returns>TOMLテーブルまたはヌル</returns>
-        internal static bool LoadTOML(out UserConfiguration configuration)
+        internal static bool LoadTOML(out StarterKitConfiguration configuration)
         {
             try
             {
-                var userConfigurationFilePath = App.GetOrLoadConfiguration().StarterKitFolder.UserConfigurationFile.Path.AsStr;
-                // ユーザー構成ファイルへのパスは構成ファイルに与えられているので、これを使う
-                // var userConfigurationFilePath = App.GetOrLoadConfiguration().UserConfigurationFile.Path.AsStr;
-                // Example: `"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit/user_configuration.toml"`
+                var starterKitConfigurationFilePath = App.GetOrLoadConfiguration().StarterKitFolder.StarterKitConfigurationFile.Path.AsStr;
+                // スターターキット構成ファイルへのパスは構成ファイルに与えられているので、これを使う
+                // var starterKitConfigurationFilePath = App.GetOrLoadConfiguration().StarterKitConfigurationFile.Path.AsStr;
+                // Example: `"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit/starter_kit_configuration.toml"`
 
                 // 設定ファイルの読取
-                var userConfigurationText = System.IO.File.ReadAllText(userConfigurationFilePath);
+                var starterKitConfigurationText = System.IO.File.ReadAllText(starterKitConfigurationFilePath);
 
                 TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder();
 
-                // Locations.StarterKit.UserConfigurationFile userConfiguration = Models.FileEntries.Locations.StarterKit.UserConfigurationFile.Empty;
+                // Locations.StarterKit.StarterKitConfigurationFile starterKitConfiguration = Models.FileEntries.Locations.StarterKit.StarterKitConfigurationFile.Empty;
                 // YourCircleFolderName yourCircleFolderName = new YourCircleFolderName();
                 // YourWorkFolderName yourWorkFolderName = new YourWorkFolderName();
 
                 // TOML
-                TomlTable document = Toml.ToModel(userConfigurationText);
+                TomlTable document = Toml.ToModel(starterKitConfigurationText);
 
                 if (document != null)
                 {
                     // 準備
                 }
 
-                configuration = new UserConfiguration();
+                configuration = new StarterKitConfiguration();
                 return true;
             }
             catch (Exception ex)
@@ -68,9 +68,9 @@
         /// <param name="difference">現在の構成から更新した差分</param>
         /// <param name="newConfiguration">差分を反映した構成</param>
         /// <returns>完了した</returns>
-        internal static bool SaveTOML(UserConfiguration current, UserConfigurationBuffer difference, out UserConfiguration newConfiguration)
+        internal static bool SaveTOML(StarterKitConfiguration current, StarterKitConfigurationBuffer difference, out StarterKitConfiguration newConfiguration)
         {
-            var configurationBuffer = new UserConfigurationBuffer();
+            var configurationBuffer = new StarterKitConfigurationBuffer();
 
             //
             // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
@@ -81,11 +81,11 @@
             // 上書き
             System.IO.File.WriteAllText(
                 // 保存したいファイルへのパス
-                path: App.GetOrLoadConfiguration().StarterKitFolder.UserConfigurationFile.Path.AsStr,
+                path: App.GetOrLoadConfiguration().StarterKitFolder.StarterKitConfigurationFile.Path.AsStr,
                 contents: text);
 
             // イミュータブル・オブジェクトを生成
-            newConfiguration = new UserConfiguration();
+            newConfiguration = new StarterKitConfiguration();
             return true;
         }
 
@@ -94,7 +94,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal UserConfiguration()
+        internal StarterKitConfiguration()
         {
         }
     }

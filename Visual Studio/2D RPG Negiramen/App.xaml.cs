@@ -186,15 +186,15 @@ public partial class App : Application
     static Models.FileEntries.Configuration Configuration { get; set; }
     #endregion
 
-    #region プロパティ（現在のユーザー構成）
+    #region プロパティ（現在のスターターキット構成）
     /// <summary>
-    ///		現在のユーザー構成
+    ///		現在のスターターキット構成
     /// 
     ///		<list type="bullet">
     ///			<item>ミュータブル</item>
     ///		</list>
     /// </summary>
-    static Models.FileEntries.UserConfiguration UserConfiguration { get; set; }
+    static Models.FileEntries.StarterKitConfiguration StarterKitConfiguration { get; set; }
     #endregion
 
     #region プロパティ（現在の設定）
@@ -264,34 +264,34 @@ public partial class App : Application
     }
     #endregion
 
-    #region メソッド（ユーザー構成）
+    #region メソッド（スターターキット構成）
     /// <summary>
-    /// ユーザー構成ファイルの取得、またはファイル読込
+    /// スターターキット構成ファイルの取得、またはファイル読込
     /// </summary>
-    /// <returns>ユーザー構成ファイル</returns>
-    static internal Models.FileEntries.UserConfiguration GetOrLoadUserConfiguration()
+    /// <returns>スターターキット構成ファイル</returns>
+    static internal Models.FileEntries.StarterKitConfiguration GetOrLoadStarterKitConfiguration()
     {
-        if (App.UserConfiguration == null)
+        if (App.StarterKitConfiguration == null)
         {
-            // 構成ファイルの読込
-            if (Models.FileEntries.UserConfiguration.LoadTOML(out Models.FileEntries.UserConfiguration userConfiguration))
+            // スターターキット構成ファイルの読込
+            if (Models.FileEntries.StarterKitConfiguration.LoadTOML(out Models.FileEntries.StarterKitConfiguration starterKitConfiguration))
             {
-                App.UserConfiguration = userConfiguration;
+                App.StarterKitConfiguration = starterKitConfiguration;
             }
 
-            // TODO 構成ファイルが無かったら、エラー対応したい
+            // TODO スターターキット構成ファイルが無かったら、エラー対応したい
         }
 
-        return App.UserConfiguration;
+        return App.StarterKitConfiguration;
     }
 
     /// <summary>
-    /// ユーザー構成ファイルをセット
+    /// スターターキット構成ファイルをセット
     /// </summary>
-    /// <param name="userConfiguration">構成ファイル</param>
-    static internal void SetUserConfiguration(Models.FileEntries.UserConfiguration userConfiguration)
+    /// <param name="starterKitConfiguration">スターターキット構成ファイル</param>
+    static internal void SetStarterKitConfiguration(Models.FileEntries.StarterKitConfiguration starterKitConfiguration)
     {
-        App.UserConfiguration = userConfiguration;
+        App.StarterKitConfiguration = starterKitConfiguration;
     }
     #endregion
 

@@ -24,15 +24,15 @@
         internal Configuration(
             TheFileEntryLocations.StarterKit.ItsFolder negiramenStarterKitFolderPath,
             TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderPath,
-            // <param name="userConfigurationFilePath">ユーザー構成ファイルへのパス</param>
-            // TheFileEntryLocations.StarterKit.UserConfigurationFile userConfigurationFilePath,
+            // <param name="starterKitConfigurationFilePath">ユーザー構成ファイルへのパス</param>
+            // TheFileEntryLocations.StarterKit.StarterKitConfigurationFile starterKitConfigurationFilePath,
             YourCircleFolderName rememberYourCircleFolderName,
             YourWorkFolderName rememberYourWorkFolderName,
             List<ConfigurationEntry> entryList)
         {
             this.StarterKitFolder = negiramenStarterKitFolderPath;
             this.UnityAssetsFolder = unityAssetsFolderPath;
-            // this.UserConfigurationFile = userConfigurationFilePath;
+            // this.StarterKitConfigurationFile = starterKitConfigurationFilePath;
             this.RememberYourCircleFolderName = rememberYourCircleFolderName;
             this.RememberYourWorkFolderName = rememberYourWorkFolderName;
             this.EntryList = entryList;
@@ -48,7 +48,7 @@
         internal static Configuration Empty = new Configuration(
             negiramenStarterKitFolderPath: TheFileEntryLocations.StarterKit.ItsFolder.Empty,
             unityAssetsFolderPath: TheFileEntryLocations.UnityAssets.ItsFolder.Empty,
-            // TheFileEntryLocations.StarterKit.UserConfigurationFile.Empty,
+            // TheFileEntryLocations.StarterKit.StarterKitConfigurationFile.Empty,
             rememberYourCircleFolderName: YourCircleFolderName.Empty,
             rememberYourWorkFolderName: YourWorkFolderName.Empty,
             entryList: new List<ConfigurationEntry>());
@@ -80,7 +80,7 @@
 
                 TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder();
 
-                // TheFileEntryLocations.StarterKit.UserConfigurationFile userConfiguration = TheFileEntryLocations.StarterKit.UserConfigurationFile.Empty;
+                // TheFileEntryLocations.StarterKit.StarterKitConfigurationFile starterKitConfiguration = TheFileEntryLocations.StarterKit.StarterKitConfigurationFile.Empty;
                 List<ConfigurationEntry> entryList = new List<ConfigurationEntry>();
                 YourCircleFolderName yourCircleFolderName = new YourCircleFolderName();
                 YourWorkFolderName yourWorkFolderName = new YourWorkFolderName();
@@ -132,13 +132,13 @@
                     //{
                     //    if (paths2ndObj != null && paths2ndObj is TomlTable paths2nd)
                     //    {
-                    //        // ネギラーメン・ワークスペースの 📄 `user_configuration.toml` ファイルへのパス
-                    //        if (paths2nd.TryGetValue("user_configuration_file", out object userConfigurationFileObj))
+                    //        // ネギラーメン・ワークスペースの 📄 `starter_kit_configuration.toml` ファイルへのパス
+                    //        if (paths2nd.TryGetValue("user_configuration_file", out object starterKitConfigurationFileObj))
                     //        {
-                    //            if (userConfigurationFileObj is string userConfigurationFilePathAsStr)
+                    //            if (starterKitConfigurationFileObj is string starterKitConfigurationFilePathAsStr)
                     //            {
-                    //                userConfiguration = new TheFileEntryLocations.StarterKit.UserConfigurationFile(
-                    //                    pathSource: FileEntryPathSource.FromString(userConfigurationFilePathAsStr),
+                    //                starterKitConfiguration = new TheFileEntryLocations.StarterKit.StarterKitConfigurationFile(
+                    //                    pathSource: FileEntryPathSource.FromString(starterKitConfigurationFilePathAsStr),
                     //                    convert: (pathSource) => FileEntryPath.From(pathSource,
                     //                                                                replaceSeparators: true,
                     //                                                                // 変数展開のためのもの（その１）
@@ -221,7 +221,7 @@
                 configuration = new Configuration(
                     starterKitFolder,
                     unityAssetsFolder,
-                    // userConfiguration,
+                    // StarterKitConfiguration,
                     yourCircleFolderName,
                     yourWorkFolderName,
                     entryList);
@@ -287,7 +287,7 @@
             // 差分適用
             configurationBuffer.StarterKitFolder = difference.StarterKitFolder ?? current.StarterKitFolder;
             configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder ?? current.UnityAssetsFolder;
-            // configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile ?? current.UserConfigurationFile;
+            // configurationBuffer.StarterKitConfigurationFile = difference.StarterKitConfigurationFile ?? current.StarterKitConfigurationFile;
             configurationBuffer.RememberYourCircleFolderName = difference.RememberYourCircleFolderName?? current.RememberYourCircleFolderName;
             configurationBuffer.RememberYourWorkFolderName = difference.RememberYourWorkFolderName?? current.RememberYourWorkFolderName;
             configurationBuffer.EntryList = difference.EntryList ?? current.EntryList;
@@ -312,8 +312,8 @@ your_work_folder_name = ""{configurationBuffer.RememberYourWorkFolderName.AsStr}
             /*
 [paths_2nd]
 
-# ユーザー構成ファイルへのパス
-user_configuration_file = ""{{starter_kit_folder}}/user_configuration.toml""
+# スターターキット構成ファイルへのパス
+user_configuration_file = ""{{starter_kit_folder}}/starter_kit_configuration.toml""
              */
 
             foreach (var entry in configurationBuffer.EntryList)
@@ -335,7 +335,7 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
             newConfiguration = new Configuration(
                 configurationBuffer.StarterKitFolder,
                 configurationBuffer.UnityAssetsFolder,
-                // configurationBuffer.UserConfigurationFile,
+                // configurationBuffer.StarterKitConfigurationFile,
                 configurationBuffer.RememberYourCircleFolderName,
                 configurationBuffer.RememberYourWorkFolderName,
                 configurationBuffer.EntryList);
@@ -366,7 +366,7 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
         /////     ユーザー構成ファイルの場所
         ///// </summary>
         ///// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit/configuration_2nd.toml"</example>
-        //internal TheFileEntryLocations.StarterKit.UserConfigurationFile UserConfigurationFile { get; }
+        //internal TheFileEntryLocations.StarterKit.StarterKitConfigurationFile StarterKitConfigurationFile { get; }
         //#endregion
 
         #region プロパティ（選択中のあなたのサークル・フォルダ名）

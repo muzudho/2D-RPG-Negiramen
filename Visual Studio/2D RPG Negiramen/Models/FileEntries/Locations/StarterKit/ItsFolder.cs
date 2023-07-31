@@ -44,30 +44,30 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（ネギラーメンの 📂 `Starter Kit` フォルダ下の 📄 `user_configuration.toml` ファイルの場所）
+        #region プロパティ（ネギラーメンの 📂 `Starter Kit` フォルダ下の 📄 `starter_kit_configuration.toml` ファイルの場所）
         /// <summary>
-        ///     ネギラーメンの 📂 `Starter Kit` フォルダ下の 📄 `user_configuration.toml` ファイルの場所
+        ///     ネギラーメンの 📂 `Starter Kit` フォルダ下の 📄 `starter_kit_configuration.toml` ファイルの場所
         /// </summary>
-        internal UserConfigurationFile UserConfigurationFile
+        internal StarterKitConfigurationFile StarterKitConfigurationFile
         {
             get
             {
-                if (userConfigurationFile == null)
+                if (starterKitConfigurationFile == null)
                 {
-                    userConfigurationFile = new UserConfigurationFile(
+                    starterKitConfigurationFile = new StarterKitConfigurationFile(
                         pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, "user_configuration.toml")),
+                            System.IO.Path.Combine(Path.AsStr, "starter_kit_configuration.toml")),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
                 }
 
-                return userConfigurationFile;
+                return starterKitConfigurationFile;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        UserConfigurationFile? userConfigurationFile;
+        StarterKitConfigurationFile? starterKitConfigurationFile;
     }
 }

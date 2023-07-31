@@ -131,11 +131,11 @@ public partial class TileCropPage : ContentPage
     /// <param name="e">イベント</param>
     void ContentPage_Loaded(object sender, EventArgs e)
     {
-        //
-        // ユーザー設定の読込
-        // ==========================
-        //
-        UserConfiguration userConfiguration = App.GetOrLoadUserConfiguration();
+        ////
+        //// ユーザー設定の読込
+        //// ==========================
+        ////
+        //StarterKitConfiguration starterKitConfiguration = App.GetOrLoadStarterKitConfiguration();
 
         //
         // ビューモデルの取得
