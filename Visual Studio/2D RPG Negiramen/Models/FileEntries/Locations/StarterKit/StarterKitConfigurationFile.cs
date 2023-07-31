@@ -3,11 +3,10 @@
     using _2D_RPG_Negiramen.Coding;
 
     /// <summary>
-    ///     😁 ユーザー構成ファイルの場所
+    ///     😁 ネギラーメンの 📂 `Starter Kit/For Unity Assets` フォルダの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
-    ///         <item>配置場所は、構成ファイルで変更可能。既定ではネギラーメン 📂 `Starter Kit` の直下に置く想定</item>
     ///     </list>
     /// </summary>
     class StarterKitConfigurationFile : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its

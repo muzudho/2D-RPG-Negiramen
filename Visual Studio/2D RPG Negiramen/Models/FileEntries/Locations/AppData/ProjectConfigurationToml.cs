@@ -31,8 +31,8 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ProjectConfigurationToml(FileEntryPath path)
-            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(path.AsStr, $"project_configuration.toml")),
+        internal ProjectConfigurationToml(FileEntryPath parentPath)
+            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, $"project_configuration.toml")),
                    convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                replaceSeparators: true))
         {

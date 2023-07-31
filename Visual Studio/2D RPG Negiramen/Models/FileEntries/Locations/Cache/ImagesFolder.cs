@@ -23,16 +23,10 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ImagesFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal ImagesFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
+        internal ImagesFolder(FileEntryPath parentPath)
+            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Images")),
+                   convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                               replaceSeparators: true))
         {
         }
         #endregion

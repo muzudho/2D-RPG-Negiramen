@@ -49,11 +49,7 @@
             {
                 if (imagesFolder == null)
                 {
-                    imagesFolder = new ImagesFolder(
-                        pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, "Images")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
+                    imagesFolder = new ImagesFolder(Path);
                 }
 
                 return imagesFolder;

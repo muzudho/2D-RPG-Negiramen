@@ -53,34 +53,11 @@
             {
                 if (yourWorkFolder == null)
                 {
-                    yourWorkFolder = new YourWorkFolder(
-                        pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, App.GetOrLoadConfiguration().RememberYourWorkFolderName.AsStr)),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
+                    yourWorkFolder = new YourWorkFolder(Path);
                 }
 
                 return yourWorkFolder;
             }
-        }
-        #endregion
-
-        // - インターナル・メソッド
-
-        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダ―の場所）
-        /// <summary>
-        ///     OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}` フォルダ―の場所
-        /// </summary>
-        /// <param name="yourWorkFolderName">作品名</param>
-        internal YourWorkFolder CreateAndOverwriteYourWorkFolder(string yourWorkFolderName)
-        {
-            this.yourWorkFolder = new YourWorkFolder(
-                pathSource: FileEntryPathSource.FromString(
-                    System.IO.Path.Combine(Path.AsStr, yourWorkFolderName)),
-                convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                            replaceSeparators: true));
-
-            return this.yourWorkFolder;
         }
         #endregion
 

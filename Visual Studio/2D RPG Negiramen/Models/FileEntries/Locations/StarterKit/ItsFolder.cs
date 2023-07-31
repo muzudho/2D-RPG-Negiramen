@@ -3,7 +3,7 @@
     using _2D_RPG_Negiramen.Coding;
 
     /// <summary>
-    ///     😁 ネギラーメンの 📂 `Starter Kit` フォルダのパス
+    ///     😁 ネギラーメンの 📂 `Starter Kit` フォルダの場所
     /// </summary>
     class ItsFolder : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
     {
@@ -37,10 +37,12 @@
 
         // - インターナル静的プロパティ
 
+        #region プロパティ（空オブジェクト）
         /// <summary>
         ///     空オブジェクト
         /// </summary>
         internal static ItsFolder Empty { get; } = new ItsFolder();
+        #endregion
 
         // - インターナル・プロパティ
 
@@ -66,8 +68,29 @@
         }
         #endregion
 
+        // - インターナル・プロパティ
+
+        #region プロパティ（OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}/Images` フォルダの場所）
+        /// <summary>
+        ///     OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}/Images` フォルダの場所
+        /// </summary>
+        internal ForUnityAssetsFolder ForUnityAssetsFolder
+        {
+            get
+            {
+                if (forUnityAssetsFolder == null)
+                {
+                    forUnityAssetsFolder = new ForUnityAssetsFolder(Path);
+                }
+
+                return forUnityAssetsFolder;
+            }
+        }
+        #endregion
+
         // - プライベート・フィールド
 
         StarterKitConfigurationFile? starterKitConfigurationFile;
+        ForUnityAssetsFolder? forUnityAssetsFolder;
     }
 }
