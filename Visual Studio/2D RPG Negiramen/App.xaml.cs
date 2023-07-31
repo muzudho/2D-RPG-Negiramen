@@ -274,15 +274,15 @@ public partial class App : Application
         if (App.StarterKitConfiguration == null)
         {
             // スターターキット構成ファイルの読込
-            if (Models.FileEntries.StarterKitConfiguration.LoadTOML(out Models.FileEntries.StarterKitConfiguration starterKitConfiguration))
+            if (Models.FileEntries.StarterKitConfiguration.TryLoadTOML(out Models.FileEntries.StarterKitConfiguration? starterKitConfiguration))
             {
-                App.StarterKitConfiguration = starterKitConfiguration;
+                App.StarterKitConfiguration = starterKitConfiguration ?? throw new Exception();
             }
 
             // TODO スターターキット構成ファイルが無かったら、エラー対応したい
         }
 
-        return App.StarterKitConfiguration;
+        return App.StarterKitConfiguration ?? throw new Exception();
     }
 
     /// <summary>

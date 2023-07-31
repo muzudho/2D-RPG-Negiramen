@@ -56,6 +56,13 @@
 
         // - インターナル・メソッド
 
+        #region メソッド（このディレクトリーは存在するか？）
+        /// <summary>
+        ///     このディレクトリーは存在するか？
+        /// </summary>
+        internal bool IsDirectoryExists() => Directory.Exists(this.Path.AsStr);
+        #endregion
+
         #region メソッド（このディレクトリーが存在しないなら、作成する）
         /// <summary>
         ///     このディレクトリーが存在しないなら、作成する
