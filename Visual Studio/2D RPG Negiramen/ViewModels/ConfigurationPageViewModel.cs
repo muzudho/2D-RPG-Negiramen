@@ -31,8 +31,9 @@
 
             // 構成ファイル取得
             var configuration = App.GetOrLoadConfiguration();
+            var projectConfiguration = App.GetOrLoadProjectConfiguration();
 
-            NegiramenStarterKitFolderPathAsStr = configuration.StarterKitFolder.Path.AsStr;
+            StarterKitFolderPathAsStr = projectConfiguration.StarterKitFolder.Path.AsStr;
 
             this.UnityAssetsFolder = configuration.UnityAssetsFolder;
             UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
@@ -86,14 +87,14 @@
         /// <summary>
         ///     ネギラーメン 📂 `Starter Kit` フォルダへのパス。文字列形式
         /// </summary>
-        public string NegiramenStarterKitFolderPathAsStr
+        public string StarterKitFolderPathAsStr
         {
-            get => negiramenStarterKitFolder.Path.AsStr;
+            get => starterKitFolder.Path.AsStr;
             set
             {
-                if (negiramenStarterKitFolder.Path.AsStr != value)
+                if (starterKitFolder.Path.AsStr != value)
                 {
-                    negiramenStarterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder(
+                    starterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder(
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
@@ -199,7 +200,7 @@
         /// <summary>
         ///     ネギラーメンの 📂 `Starter Kit` フォルダへのパス
         /// </summary>
-        TheFileEntryLocations.StarterKit.ItsFolder negiramenStarterKitFolder = TheFileEntryLocations.StarterKit.ItsFolder.Empty;
+        TheFileEntryLocations.StarterKit.ItsFolder starterKitFolder = TheFileEntryLocations.StarterKit.ItsFolder.Empty;
         #endregion
 
         #region フィールド（Unity の Assets フォルダへのパス）
@@ -234,10 +235,15 @@
         {
             await Task.Run(() =>
             {
+                //
+                // 構成の保存
+                // ==========
+                //
+                //
+
                 // 構成ファイルの更新差分
                 var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
                 {
-                    StarterKitFolder = this.negiramenStarterKitFolder,
                     UnityAssetsFolder = this._unityAssetsFolder,
                     RememberYourCircleFolderName = _yourCircleFolderName,
                     RememberYourWorkFolderName = _yourWorkFolderName,
@@ -249,14 +255,6 @@
                     // グローバル変数を更新
                     App.SetConfiguration(newConfiguration);
 
-                    // ネギラーメンのスターターキット・フォルダの内容を確認
-                    var isOk = Models.FileEntries.Deployments.StarterKitDeployment.CheckForUnityAssets();
-                    if (!isOk)
-                    {
-                        // TODO 異常時の処理
-                        return;
-                    }
-
                     // アプリケーション・フォルダへ初期設定をコピー
                     if (!Models.FileEntries.Deployments.ApplicationProjectDeployment.MakeFolder())
                     {
@@ -266,6 +264,37 @@
 
                     // Unity の Assets フォルダへ初期設定をコピー
                     if (!Models.FileEntries.Deployments.UnityAssetsDeployment.MakeFolder(this.UnityAssetsFolder))
+                    {
+                        // TODO 異常時の処理
+                        return;
+                    }
+                }
+                else
+                {
+                    // TODO 異常時の処理
+                }
+
+                //
+                // プロジェクト構成の保存
+                // ======================
+                //
+                //
+
+                // プロジェクト構成ファイルの更新差分
+                var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
+                {
+                    StarterKitFolder = this.starterKitFolder,
+                };
+
+                // プロジェクト構成ファイルの保存
+                if (Models.FileEntries.ProjectConfiguration.SaveTOML(App.GetOrLoadProjectConfiguration(), projectConfigurationDifference, out Models.FileEntries.ProjectConfiguration newProjectConfiguration))
+                {
+                    // グローバル変数を更新
+                    App.SetProjectConfiguration(newProjectConfiguration);
+
+                    // ネギラーメンのスターターキット・フォルダの内容を確認
+                    var isOk = Models.FileEntries.Deployments.StarterKitDeployment.CheckForUnityAssets();
+                    if (!isOk)
                     {
                         // TODO 異常時の処理
                         return;

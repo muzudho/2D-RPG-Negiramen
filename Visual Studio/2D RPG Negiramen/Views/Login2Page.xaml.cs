@@ -109,8 +109,8 @@ public partial class Login2Page : ContentPage
     {
         Trace.WriteLine($"[Login2Page ContentPage_Loaded] ページ読込完了");
 
-        this.Login2PageVM.StarterKitFolder = App.GetOrLoadConfiguration().StarterKitFolder;
-        this.Login2PageVM.UnityAssetsFolder = App.GetOrLoadConfiguration().UnityAssetsFolder;
+        this.Login2PageVM.StarterKitFolder = this.Login2PageVM.StarterKitFolder;
+        this.Login2PageVM.UnityAssetsFolder = this.Login2PageVM.UnityAssetsFolder;
     }
     #endregion
 

@@ -25,7 +25,7 @@ internal class StarterKitDeployment
     /// </summary>
     internal static bool CheckForUnityAssets()
     {
-        var starterKitFolder = App.GetOrLoadConfiguration().StarterKitFolder;
+        var starterKitFolder = App.GetOrLoadProjectConfiguration().StarterKitFolder;
         var starterKitInfo = new DirectoryInfo(starterKitFolder.Path.AsStr);
 
         // 📂 `For Unity Assets` が含まれていれば OK

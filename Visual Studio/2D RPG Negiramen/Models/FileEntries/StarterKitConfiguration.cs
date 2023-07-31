@@ -28,7 +28,7 @@ class StarterKitConfiguration
     {
         try
         {
-            var configurationFilePathAsStr = App.GetOrLoadConfiguration().StarterKitFolder.StarterKitConfigurationFile.Path.AsStr;
+            var configurationFilePathAsStr = App.GetOrLoadProjectConfiguration().StarterKitFolder.StarterKitConfigurationFile.Path.AsStr;
 
             // 設定ファイルの読取
             var configurationText = System.IO.File.ReadAllText(configurationFilePathAsStr);
@@ -74,7 +74,7 @@ class StarterKitConfiguration
         // 上書き
         System.IO.File.WriteAllText(
             // 保存したいファイルへのパス
-            path: App.GetOrLoadConfiguration().StarterKitFolder.StarterKitConfigurationFile.Path.AsStr,
+            path: App.GetOrLoadProjectConfiguration().StarterKitFolder.StarterKitConfigurationFile.Path.AsStr,
             contents: text);
 
         // イミュータブル・オブジェクトを生成

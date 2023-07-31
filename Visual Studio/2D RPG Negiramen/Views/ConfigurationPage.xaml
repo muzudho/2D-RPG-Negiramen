@@ -68,7 +68,7 @@
 
             <Entry Grid.Row="1" Grid.Column="1"
                    Placeholder="C:\Users/むずでょ/Documents/GitHub\2D-RPG-Negiramen/Starter Kit"
-                   Text="{Binding NegiramenStarterKitFolderPathAsStr}"/>
+                   Text="{Binding StarterKitFolderPathAsStr}"/>
         </Grid>
 
         <!-- 「Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。」 -->

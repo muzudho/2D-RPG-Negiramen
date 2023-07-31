@@ -55,7 +55,7 @@ public partial class ConfigurationPage : ContentPage
     //    var context = this.ConfigurationPageVM;
 
     //    // ディレクトリーを開く場合、末尾はセパレーターにする必要がある
-    //    string path = context.NegiramenStarterKitFolderPathAsStr;
+    //    string path = context.StarterKitFolderPathAsStr;
     //    if (!path.EndsWith(System.IO.Path.DirectorySeparatorChar))
     //    {
     //        path += System.IO.Path.DirectorySeparatorChar;

@@ -15,12 +15,6 @@ internal class ConfigurationBuffer
 
     // TODO ★ 廃止予定
     /// <summary>
-    ///     ネギラーメンの 📂 `Starter Kit` フォルダへのパス
-    /// </summary>
-    internal Locations.StarterKit.ItsFolder? StarterKitFolder { get; set; }
-
-    // TODO ★ 廃止予定
-    /// <summary>
     ///     Unity の 📂 `Assets` フォルダへのパス
     /// </summary>
     internal TheFileEntryLocations.UnityAssets.ItsFolder? UnityAssetsFolder { get; set; }

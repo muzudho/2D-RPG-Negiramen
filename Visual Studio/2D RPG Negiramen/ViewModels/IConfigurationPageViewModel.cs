@@ -13,7 +13,7 @@ public interface IConfigurationPageViewModel
     /// <summary>
     ///     ネギラーメン 📂 `Starter Kit` フォルダへのパス。文字列形式
     /// </summary>
-    string NegiramenStarterKitFolderPathAsStr { get; }
+    string StarterKitFolderPathAsStr { get; }
     #endregion
 
     // - パブリック・プロパティ

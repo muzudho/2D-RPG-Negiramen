@@ -167,11 +167,11 @@ internal class UnityAssetsDeployment
     /// <param name="fileName">ファイル名</param>
     static void CopyTileset(TheFileEntryLocations.UnityAssets.ImagesTilesetsFolder tilesetFolder, string fileName)
     {
-        var configuration = App.GetOrLoadConfiguration();
+        var projectConfiguration = App.GetOrLoadProjectConfiguration();
 
         // 画像ファイルのコピー
         {
-            var source = Path.Combine(configuration.StarterKitFolder.ForUnityAssetsFolder.ImagesFolder.TilesetsFolder.Path.AsStr, fileName);
+            var source = Path.Combine(projectConfiguration.StarterKitFolder.ForUnityAssetsFolder.ImagesFolder.TilesetsFolder.Path.AsStr, fileName);
             var destination = Path.Combine(tilesetFolder.Path.AsStr, fileName);
 
             if (!File.Exists(destination))
@@ -186,7 +186,7 @@ internal class UnityAssetsDeployment
         // 添付の TOML ファイルのコピー
         {
             var fileStem = Path.GetFileNameWithoutExtension(fileName);
-            var source = Path.Combine(configuration.StarterKitFolder.ForUnityAssetsFolder.ImagesFolder.TilesetsFolder.Path.AsStr, $"{fileStem}.toml");
+            var source = Path.Combine(projectConfiguration.StarterKitFolder.ForUnityAssetsFolder.ImagesFolder.TilesetsFolder.Path.AsStr, $"{fileStem}.toml");
             var destination = Path.Combine(tilesetFolder.Path.AsStr, $"{fileStem}.toml");
 
             if (!File.Exists(destination))
