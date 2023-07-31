@@ -33,16 +33,16 @@
             var configuration = App.GetOrLoadConfiguration();
             var projectConfiguration = App.GetOrLoadProjectConfiguration();
 
-            StarterKitFolderPathAsStr = projectConfiguration.StarterKitFolder.Path.AsStr;
+            this.StarterKitFolderPathAsStr = projectConfiguration.StarterKitFolder.Path.AsStr;
 
-            this.UnityAssetsFolder = configuration.UnityAssetsFolder;
-            UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
+            this.UnityAssetsFolder = projectConfiguration.UnityAssetsFolder;
+            this.UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
 
-            YourCircleFolderNameAsStr = configuration.RememberYourCircleFolderName.AsStr;
-            YourWorkFolderNameAsStr = configuration.RememberYourWorkFolderName.AsStr;
+            this.YourCircleFolderNameAsStr = configuration.RememberYourCircleFolderName.AsStr;
+            this.YourWorkFolderNameAsStr = configuration.RememberYourWorkFolderName.AsStr;
 
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
-            PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
+            this.PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
         }
         #endregion
 
@@ -111,13 +111,13 @@
         /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
         public string UnityAssetsFolderPathAsStr
         {
-            get => _unityAssetsFolder.Path.AsStr;
+            get => unityAssetsFolder.Path.AsStr;
             set
             {
-                if (_unityAssetsFolder.Path.AsStr == value)
+                if (unityAssetsFolder.Path.AsStr == value)
                     return;
 
-                _unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder(
+                unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder(
                     pathSource: FileEntryPathSource.FromString(value),
                     convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                 replaceSeparators: true));
@@ -207,7 +207,7 @@
         /// <summary>
         ///     Unity の Assets フォルダへのパス
         /// </summary>
-        TheLocationOfUnityAssets.ItsFolder _unityAssetsFolder = TheLocationOfUnityAssets.ItsFolder.Empty;
+        TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = TheLocationOfUnityAssets.ItsFolder.Empty;
         #endregion
 
         #region フィールド（あなたのサークル・フォルダ名）
@@ -244,7 +244,6 @@
                 // 構成ファイルの更新差分
                 var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
                 {
-                    UnityAssetsFolder = this._unityAssetsFolder,
                     RememberYourCircleFolderName = _yourCircleFolderName,
                     RememberYourWorkFolderName = _yourWorkFolderName,
                 };
@@ -284,6 +283,7 @@
                 var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
                 {
                     StarterKitFolder = this.starterKitFolder,
+                    UnityAssetsFolder = this.unityAssetsFolder,
                 };
 
                 // プロジェクト構成ファイルの保存

@@ -17,17 +17,14 @@ class Configuration
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="unityAssetsFolderPath">Unity の Assets フォルダへのパス</param>
     /// <param name="rememberYourCircleFolderName">（選択中の）あなたのサークル・フォルダ名</param>
     /// <param name="rememberYourWorkFolderName">（選択中の）あなたの作品フォルダ名</param>
     /// <param name="entryList">エントリー・リスト</param>
     internal Configuration(
-        TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderPath,
         YourCircleFolderName rememberYourCircleFolderName,
         YourWorkFolderName rememberYourWorkFolderName,
         List<ConfigurationEntry> entryList)
     {
-        this.UnityAssetsFolder = unityAssetsFolderPath;
         this.RememberYourCircleFolderName = rememberYourCircleFolderName;
         this.RememberYourWorkFolderName = rememberYourWorkFolderName;
         this.EntryList = entryList;
@@ -41,7 +38,6 @@ class Configuration
     ///     空オブジェクト
     /// </summary>
     internal static Configuration Empty = new(
-        unityAssetsFolderPath: TheFileEntryLocations.UnityAssets.ItsFolder.Empty,
         rememberYourCircleFolderName: YourCircleFolderName.Empty,
         rememberYourWorkFolderName: YourWorkFolderName.Empty,
         entryList: new List<ConfigurationEntry>());
@@ -66,8 +62,6 @@ class Configuration
             // 設定ファイルの読取
             var configurationText = System.IO.File.ReadAllText(TheFileEntryLocations.AppData.ConfigurationToml.Instance.Path.AsStr);
 
-            var unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder();
-
             var entryList = new List<ConfigurationEntry>();
             var yourCircleFolderName = new YourCircleFolderName();
             var yourWorkFolderName = new YourWorkFolderName();
@@ -77,28 +71,6 @@ class Configuration
 
             if (document != null)
             {
-                //
-                // [paths]
-                // =======
-                //
-                if (document.TryGetValue("paths", out object pathsObj))
-                {
-                    if (pathsObj != null && pathsObj is TomlTable paths)
-                    {
-                        // Unity の Assets フォルダ―へのパス
-                        if (paths.TryGetValue("unity_assets_folder", out object unityAssetsFolderPathObj))
-                        {
-                            if (unityAssetsFolderPathObj is string unityAssetsFolderPathAsStr)
-                            {
-                                unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder(
-                                    pathSource: FileEntryPathSource.FromString(unityAssetsFolderPathAsStr),
-                                    convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                                replaceSeparators: true));
-                            }
-                        }
-                    }
-                }
-
                 //
                 // [remember]
                 // ==========
@@ -166,16 +138,9 @@ class Configuration
 
             // ファイルを元に新規作成
             configuration = new Configuration(
-                unityAssetsFolder,
                 yourCircleFolderName,
                 yourWorkFolderName,
                 entryList);
-
-            // 変数展開のためのもの（その２）
-            configuration.Variables = new Dictionary<string, string>()
-                {
-                    { "{unity_assets_folder}", configuration.UnityAssetsFolder.Path.AsStr},
-                };
 
             return true;
         }
@@ -222,18 +187,12 @@ class Configuration
         var configurationBuffer = new ConfigurationBuffer();
 
         // 差分適用
-        configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder ?? current.UnityAssetsFolder;
         configurationBuffer.RememberYourCircleFolderName = difference.RememberYourCircleFolderName?? current.RememberYourCircleFolderName;
         configurationBuffer.RememberYourWorkFolderName = difference.RememberYourWorkFolderName?? current.RememberYourWorkFolderName;
         configurationBuffer.EntryList = difference.EntryList ?? current.EntryList;
 
         var strBuilder = new StringBuilder();
-        strBuilder.AppendLine($@"[paths]
-
-# Unity の 📂 `Assets` フォルダ―へのパス
-unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
-
-[remember]
+        strBuilder.AppendLine($@"[remember]
 
 # あなたのサークル・フォルダ名
 your_circle_folder_name = ""{configurationBuffer.RememberYourCircleFolderName.AsStr}""
@@ -261,7 +220,6 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
 
         // 差分をマージして、イミュータブルに変換
         newConfiguration = new Configuration(
-            configurationBuffer.UnityAssetsFolder,
             configurationBuffer.RememberYourCircleFolderName,
             configurationBuffer.RememberYourWorkFolderName,
             configurationBuffer.EntryList);
@@ -271,15 +229,6 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
     #endregion
 
     // - インターナル・プロパティー
-
-    #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
-    /// <summary>
-    ///     TODO ★ 廃止予定
-    ///     Unity の 📂 `Assets` フォルダの場所
-    /// </summary>
-    /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
-    internal TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder { get; }
-    #endregion
 
     #region プロパティ（選択中のあなたのサークル・フォルダ名）
     /// <summary>
@@ -302,13 +251,6 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
     internal List<ConfigurationEntry> EntryList { get; } = new List<ConfigurationEntry>();
     #endregion
 
-    #region プロパティ（変数）
-    /// <summary>
-    ///     変数展開のためのもの
-    /// </summary>
-    internal Dictionary<string, string> Variables { get; private set; } = new();
-    #endregion
-
     // - インターナル・メソッド
 
     #region メソッド（構成ファイルは有効か？）
@@ -319,7 +261,7 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
     /// <returns>そうだ</returns>
     internal bool IsReady()
     {
-        return App.GetOrLoadProjectConfiguration().StarterKitFolder.IsDirectoryExists() && this.UnityAssetsFolder.YourCircleFolder.YourWorkFolder.AutoGeneratedFolder.IsExists();
+        return App.GetOrLoadProjectConfiguration().StarterKitFolder.IsDirectoryExists() && App.GetOrLoadProjectConfiguration().UnityAssetsFolder.YourCircleFolder.YourWorkFolder.AutoGeneratedFolder.IsExists();
     }
     #endregion
 }

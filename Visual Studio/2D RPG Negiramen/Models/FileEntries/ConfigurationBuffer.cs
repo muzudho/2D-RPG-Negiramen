@@ -13,12 +13,6 @@ internal class ConfigurationBuffer
 {
     // - インターナル・プロパティ
 
-    // TODO ★ 廃止予定
-    /// <summary>
-    ///     Unity の 📂 `Assets` フォルダへのパス
-    /// </summary>
-    internal TheFileEntryLocations.UnityAssets.ItsFolder? UnityAssetsFolder { get; set; }
-
     #region プロパティ（あなたのサークル・フォルダ名）
     /// <summary>
     ///     あなたのサークル・フォルダ名
