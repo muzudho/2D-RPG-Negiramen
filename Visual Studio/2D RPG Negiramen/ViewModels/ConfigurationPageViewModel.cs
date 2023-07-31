@@ -313,8 +313,7 @@
             var shellNavigationState = App.NextPage.Pop();
 
             // 全ての入力が準備できているなら、画面遷移する
-            var newConfiguration = App.GetOrLoadConfiguration();
-            if (newConfiguration.IsReady())
+            if (ProjectHelper.IsReady())
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
             }

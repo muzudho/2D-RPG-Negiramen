@@ -32,7 +32,7 @@ static internal class CodeBehindHelper
         var configuration = App.GetOrLoadConfiguration();
 
         // 構成通り準備できているなら、そのまま画面遷移する
-        if (configuration.IsReady())
+        if (ProjectHelper.IsReady())
         {
             await onOk();
         }
