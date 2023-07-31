@@ -63,7 +63,6 @@ internal class ItsFolder : Its
     /// </summary>
     internal void ClearCache()
     {
-        this.YourCircleFolder.ClearCache();
         this.yourCircleFolder = null;
     }
     #endregion

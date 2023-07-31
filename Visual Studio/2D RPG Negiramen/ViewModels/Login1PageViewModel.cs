@@ -66,6 +66,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
                 // この画面では、サークル・フォルダ名、作品フォルダ名が変わることを考慮して、キャッシュのクリアー
                 Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] キャッシュのクリアー");
+                App.CacheFolder.ClearCache();
                 App.DataFolder.ClearCache();
                 App.GetOrLoadProjectConfiguration().UnityAssetsFolder.ClearCache();
 
@@ -111,6 +112,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
                 // この画面では、サークル・フォルダ名、作品フォルダ名が変わることを考慮して、キャッシュのクリアー
                 Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] キャッシュのクリアー");
+                App.CacheFolder.ClearCache();
                 App.DataFolder.ClearCache();
                 App.GetOrLoadProjectConfiguration().UnityAssetsFolder.ClearCache();
 
@@ -284,7 +286,13 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// </summary>
     public void InvalidatePage()
     {
+        // ピッカーの項目の更新
         OnPropertyChanged(nameof(ProjectIdList));
+
+        // この画面では、サークル・フォルダ名、作品フォルダ名が変わることを考慮して、キャッシュのクリアー
+        Trace.WriteLine($"[Login1PageViewModel.cs InvalidatePage] キャッシュのクリアー");
+        App.DataFolder.ClearCache();
+        App.GetOrLoadProjectConfiguration().UnityAssetsFolder.ClearCache();
     }
     #endregion
 

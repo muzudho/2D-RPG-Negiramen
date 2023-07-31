@@ -1830,4 +1830,57 @@ your_work_name = "Negiramen Quest"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　預かりもの屋も　作らないといけないしな。　いったん保留かな」  
 
+## ConfigurationEntry を ProjectIdentifier へ名称変更
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あのピッカーの項目は、構成のエントリーというより、プロジェクトの識別子だよな」  
+
+```toml
+[[project]]
+
+# あなたのサークル・フォルダ名
+id.your_circle_folder_name = ""
+
+# あなたの作品フォルダ名
+id.your_work_folder_name = ""
+
+# Unity の 📂 `Assets` フォルダ―へのパス
+unity_assets_folder = ""
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　意味を強調するなら　こうしたいところ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　構造的にネストしなくても、コメントで十分では？」  
+
+```toml
+[[project]]
+
+# （Ｉｄ）あなたのサークル・フォルダ名
+your_circle_folder_name = ""
+
+# （Ｉｄ）あなたの作品フォルダ名
+your_work_folder_name = ""
+
+# Unity の 📂 `Assets` フォルダ―へのパス
+unity_assets_folder = ""
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　じゃあ　こう」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`unity_assets_folder` は　プロジェクトの構成ファイルが　持つべきで、  
+ネギラーメンの構成ファイルが持っては　いけないのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　それもそう。じゃあ　プロジェクト構成ファイルを作るか～」  
+
+## remember を current に変えたい
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　変数の整合性を　きつくしたいので、  
+テキスト・ボックスに入れた値が　現在の設定だ、という風にするぜ」  
+
 ＜書きかけ＞
