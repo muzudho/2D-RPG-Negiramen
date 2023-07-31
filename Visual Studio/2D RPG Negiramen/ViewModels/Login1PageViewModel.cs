@@ -55,12 +55,20 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             // 入力したサークル名と作品名は、エントリー・リストに既存か？
             this.IsExistsProjectIdInList = this.ProjectIdList.Contains(new ProjectId(this.YourCircleFolderName, this.YourWorkFolderName));
 
-            // 構成ファイルの再読込
-            // App.SetConfiguration(App.LoadConfiguration());
-            App.SetProjectConfiguration(App.LoadProjectConfiguration());
-            Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] ProjectHelper.IsReady(): {App.GetOrLoadProjectConfiguration().IsReady()}");
-            Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] StarterKitFolder: {App.GetOrLoadProjectConfiguration().StarterKitFolder.Path.AsStr}");
-            Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] UnityAssetsFolder: {App.GetOrLoadProjectConfiguration().UnityAssetsFolder.Path.AsStr}");
+            {
+                // App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.IsFileExists();
+                // 構成ファイルの再読込
+                // App.SetConfiguration(App.LoadConfiguration());
+                App.SetProjectConfiguration(App.LoadProjectConfiguration());
+
+                // この画面では、サークル・フォルダ名、作品フォルダ名が変わることを考慮して、キャッシュのクリアー
+                App.DataFolder.ClearCache();
+
+                // Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] ProjectHelper.IsReady(): {App.GetOrLoadProjectConfiguration().IsReady()}");
+                Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] ProjectConfigurationToml.Path: {App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr}");
+                // Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] StarterKitFolder: {App.GetOrLoadProjectConfiguration().StarterKitFolder.Path.AsStr}");
+                // Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] UnityAssetsFolder: {App.GetOrLoadProjectConfiguration().UnityAssetsFolder.Path.AsStr}");
+            }
 
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
@@ -88,10 +96,17 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             // 入力したサークル名と作品名は、エントリー・リストに既存か？
             this.IsExistsProjectIdInList = this.ProjectIdList.Contains(new ProjectId(this.YourCircleFolderName, this.YourWorkFolderName));
 
-            // 構成ファイルの再読込
-            // App.SetConfiguration(App.LoadConfiguration());
-            App.SetProjectConfiguration(App.LoadProjectConfiguration());
-            Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] ProjectHelper.IsReady(): {App.GetOrLoadProjectConfiguration().IsReady()}");
+            {
+                // 構成ファイルの再読込
+                // App.SetConfiguration(App.LoadConfiguration());
+                App.SetProjectConfiguration(App.LoadProjectConfiguration());
+
+                // この画面では、サークル・フォルダ名、作品フォルダ名が変わることを考慮して、キャッシュのクリアー
+                App.DataFolder.ClearCache();
+
+                Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] ProjectConfigurationToml.Path: {App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr}");
+                // Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] ProjectHelper.IsReady(): {App.GetOrLoadProjectConfiguration().IsReady()}");
+            }
 
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));

@@ -55,6 +55,19 @@ internal class ItsFolder : Its
     }
     #endregion
 
+    // - インターナル・メソッド
+
+    #region プロパティ（キャッシュのクリアー）
+    /// <summary>
+    ///     キャッシュのクリアー
+    /// </summary>
+    internal void ClearCache()
+    {
+        this.YourCircleFolder.ClearCache();
+        this.yourCircleFolder = null;
+    }
+    #endregion
+
     // - プライベート・フィールド
 
     YourCircleFolder? yourCircleFolder;
