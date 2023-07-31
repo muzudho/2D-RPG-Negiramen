@@ -76,7 +76,7 @@
                 var configurationText = System.IO.File.ReadAllText(TheFileEntryLocations.AppData.ConfigurationToml.Instance.Path.AsStr);
 
 
-                TheFileEntryLocations.StarterKit.ItsFolder negiramenStarterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder();
+                TheFileEntryLocations.StarterKit.ItsFolder starterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder();
 
                 TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder();
 
@@ -99,12 +99,12 @@
                         if (pathsObj != null && pathsObj is TomlTable paths)
                         {
                             // ネギラーメンの 📂 `Starter Kit` フォルダ―へのパス
-                            if (paths.TryGetValue("negiramen_starter_kit_folder", out object negiramenStarterKitFolderPathObj))
+                            if (paths.TryGetValue("starter_kit_folder", out object starterKitFolderPathObj))
                             {
-                                if (negiramenStarterKitFolderPathObj is string negiramenStarterKitFolderPathAsStr)
+                                if (starterKitFolderPathObj is string starterKitFolderPathAsStr)
                                 {
-                                    negiramenStarterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder(
-                                        pathSource: FileEntryPathSource.FromString(negiramenStarterKitFolderPathAsStr),
+                                    starterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder(
+                                        pathSource: FileEntryPathSource.FromString(starterKitFolderPathAsStr),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true));
                                 }
@@ -144,7 +144,7 @@
                     //                                                                // 変数展開のためのもの（その１）
                     //                                                                expandVariables: new Dictionary<string, string>()
                     //                                                                {
-                    //                                                                    { "{negiramen_starter_kit_folder}", negiramenStarterKitFolder.Path.AsStr },
+                    //                                                                    { "{starter_kit_folder}", starterKitFolder.Path.AsStr },
                     //                                                                    { "{unity_assets_folder}", unityAssetsFolder.Path.AsStr},
                     //                                                                }));
                     //            }
@@ -219,7 +219,7 @@
 
                 // ファイルを元に新規作成
                 configuration = new Configuration(
-                    negiramenStarterKitFolder,
+                    starterKitFolder,
                     unityAssetsFolder,
                     // userConfiguration,
                     yourCircleFolderName,
@@ -229,7 +229,7 @@
                 // 変数展開のためのもの（その２）
                 configuration.Variables = new Dictionary<string, string>()
                     {
-                        { "{negiramen_starter_kit_folder}", configuration.StarterKitFolder.Path.AsStr },
+                        { "{starter_kit_folder}", configuration.StarterKitFolder.Path.AsStr },
                         { "{unity_assets_folder}", configuration.UnityAssetsFolder.Path.AsStr},
                     };
 
@@ -285,7 +285,7 @@
             var configurationBuffer = new ConfigurationBuffer();
 
             // 差分適用
-            configurationBuffer.NegiramenStarterKitFolder = difference.NegiramenStarterKitFolder ?? current.StarterKitFolder;
+            configurationBuffer.StarterKitFolder = difference.StarterKitFolder ?? current.StarterKitFolder;
             configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder ?? current.UnityAssetsFolder;
             // configurationBuffer.UserConfigurationFile = difference.UserConfigurationFile ?? current.UserConfigurationFile;
             configurationBuffer.RememberYourCircleFolderName = difference.RememberYourCircleFolderName?? current.RememberYourCircleFolderName;
@@ -296,7 +296,7 @@
             strBuilder.AppendLine($@"[paths]
 
 # ネギラーメンの 📂 `Starter Kit` フォルダ―へのパス
-negiramen_starter_kit_folder = ""{configurationBuffer.NegiramenStarterKitFolder.Path.AsStr}""
+starter_kit_folder = ""{configurationBuffer.StarterKitFolder.Path.AsStr}""
 
 # Unity の 📂 `Assets` フォルダ―へのパス
 unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
@@ -313,7 +313,7 @@ your_work_folder_name = ""{configurationBuffer.RememberYourWorkFolderName.AsStr}
 [paths_2nd]
 
 # ユーザー構成ファイルへのパス
-user_configuration_file = ""{{negiramen_starter_kit_folder}}/user_configuration.toml""
+user_configuration_file = ""{{starter_kit_folder}}/user_configuration.toml""
              */
 
             foreach (var entry in configurationBuffer.EntryList)
@@ -333,7 +333,7 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
 
             // 差分をマージして、イミュータブルに変換
             newConfiguration = new Configuration(
-                configurationBuffer.NegiramenStarterKitFolder,
+                configurationBuffer.StarterKitFolder,
                 configurationBuffer.UnityAssetsFolder,
                 // configurationBuffer.UserConfigurationFile,
                 configurationBuffer.RememberYourCircleFolderName,

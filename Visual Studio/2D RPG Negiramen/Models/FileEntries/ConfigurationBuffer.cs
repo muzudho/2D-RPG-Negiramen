@@ -14,7 +14,7 @@
         /// <summary>
         ///     ネギラーメンの 📂 `Starter Kit` フォルダへのパス
         /// </summary>
-        internal Locations.StarterKit.ItsFolder? NegiramenStarterKitFolder { get; set; }
+        internal Locations.StarterKit.ItsFolder? StarterKitFolder { get; set; }
 
         /// <summary>
         ///     Unity の 📂 `Assets` フォルダへのパス

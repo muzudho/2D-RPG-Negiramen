@@ -237,7 +237,7 @@
                 // 構成ファイルの更新差分
                 var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
                 {
-                    NegiramenStarterKitFolder = this.negiramenStarterKitFolder,
+                    StarterKitFolder = this.negiramenStarterKitFolder,
                     UnityAssetsFolder = this._unityAssetsFolder,
                     RememberYourCircleFolderName = _yourCircleFolderName,
                     RememberYourWorkFolderName = _yourWorkFolderName,

@@ -32,6 +32,7 @@ public partial class Login2Page : ContentPage
 
     // - プライベート・メソッド
 
+    #region メソッド（構成ファイルの保存）
     /// <summary>
     ///     構成ファイルの保存
     /// </summary>
@@ -69,6 +70,7 @@ public partial class Login2Page : ContentPage
             // TODO 異常時の処理
         }
     }
+    #endregion
 
     // - プライベート・イベントハンドラ
 
