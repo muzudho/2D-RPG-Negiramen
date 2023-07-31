@@ -5,7 +5,7 @@
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
-    ///     😁 OSの 📂 キャッシュ・ディレクトリー の `project.toml` ファイルの場所
+    ///     😁 OSの 📂 キャッシュ・ディレクトリー の `project_configuration.toml` ファイルの場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -13,9 +13,9 @@
     ///     </list>
     /// </summary>
     /// <example>
-    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen\Negiramen Quest\project.toml"
+    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen\Negiramen Quest\project_configuration.toml"
     /// </example>
-    internal class ProjectToml : Its
+    internal class ProjectConfigurationToml : Its
     {
         // - その他
 
@@ -23,7 +23,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ProjectToml()
+        internal ProjectConfigurationToml()
             : base()
         {
         }
@@ -31,8 +31,10 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal ProjectToml(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
+        internal ProjectConfigurationToml(FileEntryPath path)
+            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(path.AsStr, $"project_configuration.toml")),
+                   convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                               replaceSeparators: true))
         {
         }
         #endregion
@@ -43,7 +45,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static ProjectToml Empty { get; } = new ProjectToml();
+        internal static ProjectConfigurationToml Empty { get; } = new ProjectConfigurationToml();
         #endregion
     }
 }

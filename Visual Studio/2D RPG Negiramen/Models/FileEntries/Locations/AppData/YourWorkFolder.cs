@@ -39,30 +39,26 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（OSの 📂 アプリケーション・ディレクトリー の 📄 `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}/project.toml` ファイルの場所）
+        #region メソッド（プロジェクト構成ファイルの場所）
         /// <summary>
-        ///     OSの 📂 アプリケーション・ディレクトリー の 📄 `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}/project.toml` ファイルの場所
+        ///     プロジェクト構成ファイルの場所
         /// </summary>
-        internal ProjectToml ProjectToml
+        internal ProjectConfigurationToml ProjectConfigurationToml
         {
             get
             {
-                if (this.projectToml == null)
+                if (this.projectConfigurationToml == null)
                 {
-                    this.projectToml = new ProjectToml(
-                        pathSource: FileEntryPathSource.FromString(
-                            System.IO.Path.Combine(Path.AsStr, $"project.toml")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
+                    this.projectConfigurationToml = new ProjectConfigurationToml(Path);
                 }
 
-                return this.projectToml;
+                return this.projectConfigurationToml;
             }
         }
         #endregion
 
         // - プライベート・フィールド
 
-        ProjectToml? projectToml;
+        ProjectConfigurationToml? projectConfigurationToml;
     }
 }
