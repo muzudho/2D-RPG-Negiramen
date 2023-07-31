@@ -205,6 +205,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   新しく作る に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string CreateANewProject {
+            get {
+                return ResourceManager.GetString("CreateANewProject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   カーソル に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string Cursor {

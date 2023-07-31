@@ -285,4 +285,7 @@
   <data name="Continue" xml:space="preserve">
     <value>From the continuation</value>
   </data>
+  <data name="CreateANewProject" xml:space="preserve">
+    <value>Create a new project</value>
+  </data>
 </root>

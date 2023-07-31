@@ -1791,4 +1791,43 @@ your_work_name = "Negiramen Quest"
 「　ページの　`Loaded`　イベント・ハンドラーって　１回実行されたら　ページは破棄されていないのか、  
 ２回来訪しても　呼び出されないんだな」  
 
+# 📅 （2023-07-31 mon）ログイン画面　はよ作れだぜ（２日目）
+
+![202307_maui_31-1734--setup-o2o0.png](https://crieit.now.sh/upload_images/84a93c3c96194ae2608eff9897f6ba7d64c772ab45cf6.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ページを最初に読みこんだときと、ページに再び訪れたタイミングで  
+ピッカーの中身を入れ替えればいいんだぜ」  
+
+## ピッカーの項目に削除ボタンを置けないの？
+
+![202307_maui_31-1740--picker-o2o0.png](https://crieit.now.sh/upload_images/cdc442a3a7f5548a3e615648d01057a364c773f922d06.png)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　項目多くなったら　ウザいわよね。  
+リストの項目に　削除ボタンを付けれないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　その削除ボタンは、リストから項目を削除するボタンなのか、  
+それとも　プロジェクトを丸ごと消すボタンなのか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　リスト上から消すボタンよ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　非表示の意味で　眼玉マークの方がいいのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　一度　非表示にしたものは、どこから　再表示できるんだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　昔のＲＰＧの皮袋みたいに　要らない道具は　皮袋に詰め込めば  
+預かりもの屋に　テレポーテーションすればいいのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　その意図を　アイコン１つで説明するのは　難しいな……」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　預かりもの屋も　作らないといけないしな。　いったん保留かな」  
+
 ＜書きかけ＞

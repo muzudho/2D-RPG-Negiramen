@@ -24,11 +24,11 @@
             <HorizontalStackLayout Grid.Column="0"
                                    HorizontalOptions="Start">
 
-                <!--    ［ホーム］ボタン
-                        ================
+                <!--    ［ログイン（１）］ボタン
+                        ========================
                 -->
                 <Button Margin="16,2,2,2"
-                        Text="{app:Translate Home}"
+                        Text="{app:Translate Login1Page}"
                         SemanticProperties.Hint="Back to the home"
                         Clicked="HomeBtn_Clicked">
                 </Button>
@@ -116,8 +116,10 @@
               RowDefinitions="48" ColumnDefinitions="*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
+            <!-- 「新しく作る」 -->
             <Button WidthRequest="300"
-                    Text="新しく作る"/>
+                    Text="{Binding CreateANewProject}"
+                    Clicked="CreateANewProjectButton_Clicked"/>
         </Grid>
     </Grid>
 </ContentPage>

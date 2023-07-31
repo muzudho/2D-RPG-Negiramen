@@ -37,9 +37,9 @@ public partial class Login1Page : ContentPage
     /// </summary>
     void SaveConfigurationToml()
     {
-        ConfigurationEntry newEntry = new ConfigurationEntry(
-            yourCircleFolderName: this.Login1PageVM.YourCircleFolderName,
-            yourWorkFolderName: this.Login1PageVM.YourWorkFolderName);
+        //ConfigurationEntry newEntry = new ConfigurationEntry(
+        //    yourCircleFolderName: this.Login1PageVM.YourCircleFolderName,
+        //    yourWorkFolderName: this.Login1PageVM.YourWorkFolderName);
 
         // 構成ファイルの更新差分
         var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
@@ -48,17 +48,17 @@ public partial class Login1Page : ContentPage
             RememberYourWorkFolderName = this.Login1PageVM.YourWorkFolderName,
         };
 
-        if (App.GetOrLoadConfiguration().EntryList.Contains(newEntry))
-        {
-            Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは既存");
-        }
-        else
-        {
-            Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは新規");
-            // FIXME こうしなくても直接追加できてしまうような
-            configurationDifference.EntryList = App.GetOrLoadConfiguration().EntryList.ToList();
-            configurationDifference.EntryList.Add(newEntry);
-        }
+        //if (App.GetOrLoadConfiguration().EntryList.Contains(newEntry))
+        //{
+        //    Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは既存");
+        //}
+        //else
+        //{
+        //    Trace.WriteLine($"[Login1Page SaveConfigurationToml] 構成ファイルの保存　エントリーは新規");
+        //    // FIXME こうしなくても直接追加できてしまうような
+        //    configurationDifference.EntryList = App.GetOrLoadConfiguration().EntryList.ToList();
+        //    configurationDifference.EntryList.Add(newEntry);
+        //}
 
         // 構成ファイルの保存
         if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
@@ -72,6 +72,25 @@ public partial class Login1Page : ContentPage
         }
     }
 
+    #region メソッド（画面の再設定）
+    /// <summary>
+    ///     画面の再設定
+    /// </summary>
+    void Setup()
+    {
+        this.Login1PageVM.YourCircleFolderName = App.GetOrLoadConfiguration().RememberYourCircleFolderName;
+        this.Login1PageVM.YourWorkFolderName = App.GetOrLoadConfiguration().RememberYourWorkFolderName;
+
+        // TODO ページ読込完了（★２回来訪しても呼び出されないから注意）
+        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了（★２回来訪しても呼び出されないから注意） Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, EntryList.Count: {App.GetOrLoadConfiguration().EntryList.Count}");
+
+        foreach (var entry in App.GetOrLoadConfiguration().EntryList)
+        {
+            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleFolderName}, Work: {entry.YourWorkFolderName}");
+        }
+    }
+    #endregion
+
     // - プライベート・イベントハンドラ
 
     #region イベントハンドラ（ページ読込完了時）
@@ -84,21 +103,26 @@ public partial class Login1Page : ContentPage
     {
         // Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了");
 
+        // 画面の再設定
+        this.Setup();
+    }
+    #endregion
+
+    #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
+    /// <summary>
+    ///     別ページから、このページに訪れたときに呼び出される
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
         // 構成ファイルを再読込
         App.ReloadConfiguration();
 
-        this.Login1PageVM.YourCircleFolderName = App.GetOrLoadConfiguration().RememberYourCircleFolderName;
-        this.Login1PageVM.YourWorkFolderName = App.GetOrLoadConfiguration().RememberYourWorkFolderName;
+        // 画面の再設定
+        this.Setup();
 
-        // TODO ページ読込完了（★２回来訪しても呼び出されないから注意）
-        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了（★２回来訪しても呼び出されないから注意） Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, EntryList.Count: {App.GetOrLoadConfiguration().EntryList.Count}");
-
-        foreach (var entry in App.GetOrLoadConfiguration().EntryList)
-        {
-            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {entry.YourCircleFolderName}, Work: {entry.YourWorkFolderName}");
-        }
-
-        // ページの再読込
+        // ページの再読込（ピッカーのアイテムソースを更新するのに必要）
         this.Login1PageVM.InvalidatePage();
     }
     #endregion

@@ -294,4 +294,7 @@
   <data name="Continue" xml:space="preserve">
     <value>続きから</value>
   </data>
+  <data name="CreateANewProject" xml:space="preserve">
+    <value>新しく作る</value>
+  </data>
 </root>

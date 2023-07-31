@@ -1,15 +1,19 @@
-namespace _2D_RPG_Negiramen.Views;
+ï»¿namespace _2D_RPG_Negiramen.Views;
 
+using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.ViewModels;
 using System.Diagnostics;
 
+/// <summary>
+///     ğŸ˜ ï¼»ãƒ­ã‚°ã‚¤ãƒ³ï¼’ï¼½ãƒšãƒ¼ã‚¸
+/// </summary>
 public partial class Login2Page : ContentPage
 {
-    // - ‚»‚Ì‘¼
+    // - ãã®ä»–
 
-    #region ‚»‚Ì‘¼i¶¬j
+    #region ãã®ä»–ï¼ˆç”Ÿæˆï¼‰
     /// <summary>
-    ///     ¶¬
+    ///     ç”Ÿæˆ
     /// </summary>
 	public Login2Page()
 	{
@@ -17,57 +21,114 @@ public partial class Login2Page : ContentPage
 	}
     #endregion
 
-    // - ƒCƒ“ƒ^[ƒiƒ‹EƒvƒƒpƒeƒB
+    // - ã‚¤ãƒ³ã‚¿ãƒ¼ãƒŠãƒ«ãƒ»ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£
 
-    #region ƒvƒƒpƒeƒBiƒrƒ…[ƒ‚ƒfƒ‹j
+    #region ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ï¼ˆãƒ“ãƒ¥ãƒ¼ãƒ¢ãƒ‡ãƒ«ï¼‰
     /// <summary>
-    ///     ƒrƒ…[ƒ‚ƒfƒ‹
+    ///     ãƒ“ãƒ¥ãƒ¼ãƒ¢ãƒ‡ãƒ«
     /// </summary>
     internal ILogin2PageViewModel Login2PageVM => (ILogin2PageViewModel)this.BindingContext;
     #endregion
 
-    // - ƒvƒ‰ƒCƒx[ƒgEƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰
+    // - ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ»ãƒ¡ã‚½ãƒƒãƒ‰
 
-    #region ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰iƒy[ƒW“ÇŠ®—¹j
     /// <summary>
-    ///     ƒy[ƒW“ÇŠ®—¹
+    ///     æ§‹æˆãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜
     /// </summary>
-    /// <param name="sender">‚±‚ÌƒCƒxƒ“ƒg‚ğŒÄ‚Ño‚µ‚½ƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="e">‚±‚Ì”­¶ƒCƒxƒ“ƒg‚Ì§Œä•Ï”</param>
+    void SaveConfigurationToml()
+    {
+        ConfigurationEntry newEntry = new ConfigurationEntry(
+            yourCircleFolderName: App.GetOrLoadConfiguration().RememberYourCircleFolderName,
+            yourWorkFolderName: App.GetOrLoadConfiguration().RememberYourWorkFolderName);
+
+        // æ§‹æˆãƒ•ã‚¡ã‚¤ãƒ«ã®æ›´æ–°å·®åˆ†
+        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+        {
+        };
+
+        if (App.GetOrLoadConfiguration().EntryList.Contains(newEntry))
+        {
+            Trace.WriteLine($"[Login1Page SaveConfigurationToml] æ§‹æˆãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜ã€€ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã¯æ—¢å­˜");
+        }
+        else
+        {
+            Trace.WriteLine($"[Login1Page SaveConfigurationToml] æ§‹æˆãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜ã€€ã‚¨ãƒ³ãƒˆãƒªãƒ¼ã¯æ–°è¦");
+            // FIXME ã“ã†ã—ãªãã¦ã‚‚ç›´æ¥è¿½åŠ ã§ãã¦ã—ã¾ã†ã‚ˆã†ãª
+            configurationDifference.EntryList = App.GetOrLoadConfiguration().EntryList.ToList();
+            configurationDifference.EntryList.Add(newEntry);
+        }
+
+        // æ§‹æˆãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜
+        if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
+        {
+            // ã‚°ãƒ­ãƒ¼ãƒãƒ«å¤‰æ•°ã‚’æ›´æ–°
+            App.SetConfiguration(newConfiguration);
+        }
+        else
+        {
+            // TODO ç•°å¸¸æ™‚ã®å‡¦ç†
+        }
+    }
+
+    // - ãƒ—ãƒ©ã‚¤ãƒ™ãƒ¼ãƒˆãƒ»ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©
+
+    #region ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ï¼ˆãƒšãƒ¼ã‚¸èª­è¾¼å®Œäº†æ™‚ï¼‰
+    /// <summary>
+    ///     ãƒšãƒ¼ã‚¸èª­è¾¼å®Œäº†æ™‚
+    /// </summary>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
-        Trace.WriteLine($"[Login2Page ContentPage_Loaded] ƒy[ƒW“ÇŠ®—¹");
+        Trace.WriteLine($"[Login2Page ContentPage_Loaded] ãƒšãƒ¼ã‚¸èª­è¾¼å®Œäº†");
 
         this.Login2PageVM.StarterKitFolder = App.GetOrLoadConfiguration().StarterKitFolder;
         this.Login2PageVM.UnityAssetsFolder = App.GetOrLoadConfiguration().UnityAssetsFolder;
     }
     #endregion
 
-    #region ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰iƒƒP[ƒ‹•ÏXj
+    #region ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ï¼ˆãƒ­ã‚±ãƒ¼ãƒ«å¤‰æ›´æ™‚ï¼‰
     /// <summary>
-    ///     ƒƒP[ƒ‹•ÏX
+    ///     ãƒ­ã‚±ãƒ¼ãƒ«å¤‰æ›´æ™‚
     /// </summary>
-    /// <param name="sender">‚±‚ÌƒCƒxƒ“ƒg‚ğŒÄ‚Ño‚µ‚½ƒRƒ“ƒgƒ[ƒ‹</param>
-    /// <param name="e">‚±‚Ì”­¶ƒCƒxƒ“ƒg‚Ì§Œä•Ï”</param>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
     void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
     {
-        // ‚w‚`‚l‚k‚Å‚Í‚È‚­A‚b”‚Å“®“I‚É–|–ó‚ğs‚Á‚Ä‚¢‚éê‡‚Ì‚½‚ß‚Ì•ÏX’Ê’m
+        // ï¼¸ï¼¡ï¼­ï¼¬ã§ã¯ãªãã€ï¼£ï¼ƒã§å‹•çš„ã«ç¿»è¨³ã‚’è¡Œã£ã¦ã„ã‚‹å ´åˆã®ãŸã‚ã®å¤‰æ›´é€šçŸ¥
         //var context = this.TileCropPageVM;
         //context.InvalidateLocale();
     }
     #endregion
 
-    #region ƒCƒxƒ“ƒgƒnƒ“ƒhƒ‰imƒz[ƒ€nƒ{ƒ^ƒ“EƒNƒŠƒbƒNj
+    #region ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ï¼ˆï¼»ãƒ›ãƒ¼ãƒ ï¼½ãƒœã‚¿ãƒ³ãƒ»ã‚¯ãƒªãƒƒã‚¯æ™‚ï¼‰
     /// <summary>
-    ///     mƒz[ƒ€nƒ{ƒ^ƒ“EƒNƒŠƒbƒN
+    ///     ï¼»ãƒ›ãƒ¼ãƒ ï¼½ãƒœã‚¿ãƒ³ãƒ»ã‚¯ãƒªãƒƒã‚¯æ™‚
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        await Shell.Current.GoToAsync("//MainPage");
+        await Shell.Current.GoToAsync("//Login1Page");
+    }
+    #endregion
+
+    #region ã‚¤ãƒ™ãƒ³ãƒˆãƒãƒ³ãƒ‰ãƒ©ï¼ˆï¼»æ–°ã—ãä½œã‚‹ï¼½ãƒœã‚¿ãƒ³ãƒ»ã‚¯ãƒªãƒƒã‚¯æ™‚ï¼‰
+    /// <summary>
+    ///     ï¼»æ–°ã—ãä½œã‚‹ï¼½ãƒœã‚¿ãƒ³ãƒ»ã‚¯ãƒªãƒƒã‚¯æ™‚
+    /// </summary>
+    /// <param name="sender">ã“ã®ã‚¤ãƒ™ãƒ³ãƒˆã‚’å‘¼ã³å‡ºã—ãŸã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ«</param>
+    /// <param name="e">ã“ã®ç™ºç”Ÿã‚¤ãƒ™ãƒ³ãƒˆã®åˆ¶å¾¡å¤‰æ•°</param>
+    async void CreateANewProjectButton_Clicked(object sender, EventArgs e)
+    {
+        // æ§‹æˆãƒ•ã‚¡ã‚¤ãƒ«ã®ä¿å­˜
+        this.SaveConfigurationToml();
+
+        await Shell.Current.GoToAsync(
+            state: new ShellNavigationState("//MainPage"));
+        // ã“ã“ã¯é€šã‚ŠæŠœã‘ã‚‹ã€‚æã‚‰ãã€UIã‚¹ãƒ¬ãƒƒãƒ‰ã‚’æŠœã‘ãŸå¾Œã«ç”»é¢é·ç§»ã™ã‚‹
     }
     #endregion
 }
