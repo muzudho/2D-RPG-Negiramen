@@ -55,13 +55,17 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             // 入力したサークル名と作品名は、エントリー・リストに既存か？
             this.IsExistsProjectIdInList = this.ProjectIdList.Contains(new ProjectId(this.YourCircleFolderName, this.YourWorkFolderName));
 
+            // 現在のサークル・フォルダ名の保存
+            this.SaveCurrentYourCircleFolderName();
+
             {
                 // App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.IsFileExists();
                 // 構成ファイルの再読込
                 // App.SetConfiguration(App.LoadConfiguration());
-                App.SetProjectConfiguration(App.LoadProjectConfiguration());
+                // App.SetProjectConfiguration(App.LoadProjectConfiguration());
 
                 // この画面では、サークル・フォルダ名、作品フォルダ名が変わることを考慮して、キャッシュのクリアー
+                Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] キャッシュのクリアー");
                 App.DataFolder.ClearCache();
 
                 // Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] ProjectHelper.IsReady(): {App.GetOrLoadProjectConfiguration().IsReady()}");
@@ -96,12 +100,16 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             // 入力したサークル名と作品名は、エントリー・リストに既存か？
             this.IsExistsProjectIdInList = this.ProjectIdList.Contains(new ProjectId(this.YourCircleFolderName, this.YourWorkFolderName));
 
+            // 現在の作品フォルダ名の保存
+            this.SaveCurrentYourWorkFolderName();
+
             {
                 // 構成ファイルの再読込
                 // App.SetConfiguration(App.LoadConfiguration());
-                App.SetProjectConfiguration(App.LoadProjectConfiguration());
+                // App.SetProjectConfiguration(App.LoadProjectConfiguration());
 
                 // この画面では、サークル・フォルダ名、作品フォルダ名が変わることを考慮して、キャッシュのクリアー
+                Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] キャッシュのクリアー");
                 App.DataFolder.ClearCache();
 
                 Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] ProjectConfigurationToml.Path: {App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr}");
@@ -308,6 +316,58 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
 
             // ボタンの可視性
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
+        }
+    }
+    #endregion
+
+    // - プライベート・メソッド
+
+    #region メソッド（現在のサークル・フォルダ名の保存）
+    /// <summary>
+    ///     現在のサークル・フォルダ名の保存
+    /// </summary>
+    void SaveCurrentYourCircleFolderName()
+    {
+        // 構成ファイルの更新差分
+        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+        {
+            CurrentYourCircleFolderName = this.YourCircleFolderName,
+        };
+
+        // 構成ファイルの保存
+        if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
+        {
+            // グローバル変数を更新
+            App.SetConfiguration(newConfiguration);
+        }
+        else
+        {
+            // TODO 異常時の処理
+        }
+    }
+    #endregion
+
+    #region メソッド（現在の作品フォルダ名の保存）
+    /// <summary>
+    ///     現在の作品フォルダ名の保存
+    /// </summary>
+    void SaveCurrentYourWorkFolderName()
+    {
+        // 構成ファイルの更新差分
+        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+        {
+            CurrentYourWorkFolderName = this.YourWorkFolderName,
+        };
+
+        // 構成ファイルの保存
+        if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
+        {
+            // グローバル変数を更新
+            App.SetConfiguration(newConfiguration);
+        }
+        else
+        {
+            // TODO 異常時の処理
         }
     }
     #endregion
