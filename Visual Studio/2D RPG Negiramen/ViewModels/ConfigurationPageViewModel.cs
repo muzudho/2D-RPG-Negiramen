@@ -249,14 +249,7 @@
                     // グローバル変数を更新
                     App.SetConfiguration(newConfiguration);
 
-                    // ネギラーメンのワークスペース・フォルダの内容を確認
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                    var isOk = Models.FileEntries.NegiramenStarterKitDeployment.CheckForUnityAssets();
-後:
-                    var isOk = NegiramenStarterKitDeployment.CheckForUnityAssets();
-*/
+                    // ネギラーメンのスターターキット・フォルダの内容を確認
                     var isOk = Models.FileEntries.Deployments.StarterKitDeployment.CheckForUnityAssets();
                     if (!isOk)
                     {
@@ -264,15 +257,15 @@
                         return;
                     }
 
-                    // Unity の Assets フォルダ―へ初期設定をコピー
+                    // アプリケーション・フォルダへ初期設定をコピー
+                    if (!Models.FileEntries.Deployments.ApplicationProjectDeployment.MakeFolder())
+                    {
+                        // TODO 異常時の処理
+                        return;
+                    }
 
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-                    if (!Models.FileEntries.UnityAssetsDeployment.PushStartupMemberToUnityAssetsFolder(this.UnityAssetsFolder))
-後:
-                    if (!UnityAssetsDeployment.PushStartupMemberToUnityAssetsFolder(this.UnityAssetsFolder))
-*/
-                    if (!Models.FileEntries.Deployments.UnityAssetsDeployment.PushStartupMemberToUnityAssetsFolder(this.UnityAssetsFolder))
+                    // Unity の Assets フォルダへ初期設定をコピー
+                    if (!Models.FileEntries.Deployments.UnityAssetsDeployment.MakeFolder(this.UnityAssetsFolder))
                     {
                         // TODO 異常時の処理
                         return;
