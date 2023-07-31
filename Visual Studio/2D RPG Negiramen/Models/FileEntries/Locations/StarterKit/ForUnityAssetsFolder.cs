@@ -5,7 +5,7 @@
     using _2D_RPG_Negiramen.Models;
 
     /// <summary>
-    ///     😁 OSの 📂 アプリケーション・ディレクトリー の `{あたなのサークル・フォルダ名}/{あなたの作品フォルダ名}` フォルダ―の場所
+    ///     😁 ネギラーメンの 📂 `Starter Kit/For Unity Assets` フォルダ―の場所
     ///     
     ///     <list type="bullet">
     ///         <item>イミュータブル</item>
@@ -13,7 +13,7 @@
     ///     </list>
     /// </summary>
     /// <example>
-    ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState\Doujin Circle Negiramen\Negiramen Quest"
+    ///     "C:\Users\むずでょ\Documents\GitHub\2D-RPG-Negiramen\Starter Kit\For Unity Assets"
     /// </example>
     internal class ForUnityAssetsFolder : Its
     {
@@ -32,7 +32,7 @@
         ///     生成
         /// </summary>
         internal ForUnityAssetsFolder(FileEntryPath parentPath)
-            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().StarterKitFolder.ForUnityAssetsFolder.PathSource.AsStr)),
+            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "For Unity Assets")),
                    convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                replaceSeparators: true))
         {

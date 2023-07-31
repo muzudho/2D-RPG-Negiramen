@@ -20,16 +20,10 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal DataFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal DataFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
+        internal DataFolder(FileEntryPath parentPath)
+            : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Data")),
+                   convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                               replaceSeparators: true))
         {
         }
         #endregion
@@ -46,9 +40,7 @@
             {
                 if (csvFolder == null)
                 {
-                    csvFolder = new DataCsvFolder(
-                        pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(Path.AsStr, "CSV")),
-                        convert: (pathSource) => FileEntryPath.From(pathSource, replaceSeparators: true));
+                    csvFolder = new DataCsvFolder(Path);
                 }
 
                 return csvFolder;
