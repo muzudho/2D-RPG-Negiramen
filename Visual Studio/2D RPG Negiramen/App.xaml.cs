@@ -215,7 +215,7 @@ public partial class App : Application
     /// 構成ファイルの取得、またはファイル読込
     /// </summary>
     /// <returns>構成ファイル</returns>
-    static internal Models.FileEntries.Configuration ReloadConfiguration()
+    static internal Models.FileEntries.Configuration LoadConfiguration()
     {
         // 構成ファイルの読込
         if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))
@@ -224,8 +224,19 @@ public partial class App : Application
         }
         else
         {
-            // TODO 構成ファイルが無かったら、エラー対応したい
-            throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
+            // 初回時は、構成ファイルが無いので、新規作成する
+            if(Models.FileEntries.Configuration.SaveTOML(
+                current: Models.FileEntries.Configuration.Empty,
+                difference: new Models.FileEntries.ConfigurationBuffer(),
+                out var newConfiguration))
+            {
+                App.Configuration = newConfiguration;
+            }
+            else
+            {
+                // TODO 構成ファイルを作れなかったら、エラー対応したい
+                throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
+            }
         }
 
         return App.Configuration;
@@ -240,18 +251,10 @@ public partial class App : Application
         if (App.Configuration == null)
         {
             // 構成ファイルの読込
-            if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration configuration))
-            {
-                App.Configuration = configuration;
-            }
-            else
-            {
-                // TODO 構成ファイルが無かったら、エラー対応したい
-                throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
-            }
+            LoadConfiguration();
         }
 
-        return App.Configuration;
+        return App.Configuration ?? throw new Exception();
     }
 
     /// <summary>

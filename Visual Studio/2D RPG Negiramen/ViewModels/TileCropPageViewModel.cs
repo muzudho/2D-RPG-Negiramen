@@ -110,7 +110,7 @@
         }
 
         // タイルセット元画像
-        var tilesetSourceBitmap = new SKBitmap();
+        SKBitmap tilesetSourceBitmap = new ();
 
         /// <summary>
         ///     タイルセット元画像

@@ -396,7 +396,7 @@ your_work_folder_name = ""{entry.YourWorkFolderName.AsStr}""
         /// <summary>
         ///     変数展開のためのもの
         /// </summary>
-        internal Dictionary<string, string> Variables { get; private set; }
+        internal Dictionary<string, string> Variables { get; private set; } = new();
         #endregion
 
         // - インターナル・メソッド

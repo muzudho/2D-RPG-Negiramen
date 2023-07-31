@@ -117,7 +117,7 @@ public partial class Login1Page : ContentPage
     private void ContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
         // 構成ファイルを再読込
-        App.ReloadConfiguration();
+        App.LoadConfiguration();
 
         // 画面の再設定
         this.Setup();
