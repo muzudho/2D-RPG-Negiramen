@@ -3,6 +3,7 @@
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 
 /// <summary>
@@ -51,7 +52,16 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             OnPropertyChanged(nameof(YourCircleFolderNameAsStr));
 
             // 重たい処理
+            // 入力したサークル名と作品名は、エントリー・リストに既存か？
             this.IsExistsProjectIdInList = this.ProjectIdList.Contains(new ProjectId(this.YourCircleFolderName, this.YourWorkFolderName));
+
+            // 構成ファイルの再読込
+            // App.SetConfiguration(App.LoadConfiguration());
+            App.SetProjectConfiguration(App.LoadProjectConfiguration());
+            Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] ProjectHelper.IsReady(): {App.GetOrLoadProjectConfiguration().IsReady()}");
+            Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] StarterKitFolder: {App.GetOrLoadProjectConfiguration().StarterKitFolder.Path.AsStr}");
+            Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] UnityAssetsFolder: {App.GetOrLoadProjectConfiguration().UnityAssetsFolder.Path.AsStr}");
+
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
             OnPropertyChanged(nameof(IsEnabledOfNextButton));
@@ -75,7 +85,14 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
             OnPropertyChanged(nameof(YourWorkFolderNameAsStr));
 
             // 重たい処理
+            // 入力したサークル名と作品名は、エントリー・リストに既存か？
             this.IsExistsProjectIdInList = this.ProjectIdList.Contains(new ProjectId(this.YourCircleFolderName, this.YourWorkFolderName));
+
+            // 構成ファイルの再読込
+            // App.SetConfiguration(App.LoadConfiguration());
+            App.SetProjectConfiguration(App.LoadProjectConfiguration());
+            Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] ProjectHelper.IsReady(): {App.GetOrLoadProjectConfiguration().IsReady()}");
+
             OnPropertyChanged(nameof(IsVisibleOfNextButton));
             OnPropertyChanged(nameof(IsVisibleOfContinueButton));
             OnPropertyChanged(nameof(IsEnabledOfNextButton));
@@ -110,9 +127,10 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     ///     
     ///     <list type="bullet">
     ///         <item>サークル名と作品名が、エントリー・リストに既存なら偽</item>
+    ///         <item>または、プロジェクトが準備できていれば偽</item>
     ///     </list>
     /// </summary>
-    public bool IsVisibleOfNextButton => !this.IsExistsProjectIdInList;
+    public bool IsVisibleOfNextButton => !this.IsExistsProjectIdInList || !App.GetOrLoadProjectConfiguration().IsReady();
 
     /// <summary>
     ///     ［次へ］ボタンの活性性

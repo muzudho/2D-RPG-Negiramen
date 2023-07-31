@@ -42,7 +42,7 @@
             this.YourWorkFolderNameAsStr = configuration.RememberYourWorkFolderName.AsStr;
 
             // Unity の Assets フォルダ―へ初期設定をコピーするコマンド
-            this.PushStartupToUnityAssetsFolderCommand = new AsyncRelayCommand(PushStartupToUnityAssetsFolder);
+            this.MakeUnityAssetsFolderCommand = new AsyncRelayCommand(MakeUnityAssetsFolder);
         }
         #endregion
 
@@ -52,7 +52,7 @@
         /// <summary>
         ///     Unity の Assets フォルダ―へ初期設定をコピーするコマンド
         /// </summary>
-        public ICommand PushStartupToUnityAssetsFolderCommand { get; }
+        public ICommand MakeUnityAssetsFolderCommand { get; }
         #endregion
 
         // - パブリック変更通知プロパティ
@@ -231,7 +231,7 @@
         ///     ［Unity の Assets フォルダ―へ初期設定をコピーする］コマンドを実行
         /// </summary>
         /// <returns>なし</returns>
-        async Task PushStartupToUnityAssetsFolder()
+        async Task MakeUnityAssetsFolder()
         {
             await Task.Run(() =>
             {
@@ -312,8 +312,8 @@
             // 履歴は戻しておく
             var shellNavigationState = App.NextPage.Pop();
 
-            // 全ての入力が準備できているなら、画面遷移する
-            if (ProjectHelper.IsReady())
+            // 全ての入力が準備できているなら、さらに画面遷移する
+            if (App.GetOrLoadProjectConfiguration().IsReady())
             {
                 await Shell.Current.GoToAsync(shellNavigationState);
             }

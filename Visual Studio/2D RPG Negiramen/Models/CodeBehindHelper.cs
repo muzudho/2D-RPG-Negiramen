@@ -28,11 +28,11 @@ static internal class CodeBehindHelper
         Func<Task> onOk,
         Func<Task> onNotYetConfiguration)
     {
-        // 構成を取得
-        var configuration = App.GetOrLoadConfiguration();
+        // プロジェクト構成を取得
+        var projectConfiguration = App.GetOrLoadProjectConfiguration();
 
         // 構成通り準備できているなら、そのまま画面遷移する
-        if (ProjectHelper.IsReady())
+        if (projectConfiguration.IsReady())
         {
             await onOk();
         }

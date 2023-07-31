@@ -156,7 +156,7 @@
         <Button Margin="10,10,10,10" WidthRequest="400"
                 Text="{app:Translate ConfigurationPageDeployButtonDescription}"
                 SemanticProperties.Hint="Overwrite project to Unity"
-                Command="{Binding PushStartupToUnityAssetsFolderCommand}"/>
+                Command="{Binding MakeUnityAssetsFolderCommand}"/>
 
         <Grid RowDefinitions="*,*" ColumnDefinitions="20,*" Margin="10,10,10,10">
             <!-- 「キャッシュ・ディレクトリー」 -->

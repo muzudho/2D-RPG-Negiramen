@@ -230,10 +230,12 @@ public partial class App : Application
     /// <returns>構成ファイル</returns>
     static internal Models.FileEntries.Configuration LoadConfiguration()
     {
+        Models.FileEntries.Configuration? configuration;
+
         // 構成ファイルの読込
-        if (Models.FileEntries.Configuration.TryLoadTOML(out Models.FileEntries.Configuration? configuration))
+        if (Models.FileEntries.Configuration.TryLoadTOML(out configuration))
         {
-            App.Configuration = configuration;
+            // Ok
         }
         else
         {
@@ -241,14 +243,14 @@ public partial class App : Application
             if (Models.FileEntries.Configuration.SaveTOML(
                 current: Models.FileEntries.Configuration.Empty,
                 difference: new Models.FileEntries.ConfigurationBuffer(),
-                out var newConfiguration))
+                out configuration))
             {
-                App.Configuration = newConfiguration;
+                // Ok
             }
         }
 
         // TODO 構成ファイルが無ければ、エラー対応したい
-        return App.Configuration ?? throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
+        return configuration ?? throw new Exception("[App.xaml.cs GetOrLoadConfiguration] 構成取得失敗");
     }
 
     /// <summary>
@@ -260,7 +262,7 @@ public partial class App : Application
         if (App.Configuration == null)
         {
             // 構成ファイルの読込
-            LoadConfiguration();
+            App.SetConfiguration(LoadConfiguration());
         }
 
         return App.Configuration ?? throw new Exception();
@@ -283,14 +285,16 @@ public partial class App : Application
     /// <returns>プロジェクト構成ファイル</returns>
     static internal Models.FileEntries.ProjectConfiguration LoadProjectConfiguration()
     {
+        Models.FileEntries.ProjectConfiguration? projectConfiguration;
+
         //
         // プロジェクト構成の読込
         // ======================
         //
         App.DataFolder.YourCircleFolder.YourWorkFolder.CreateThisDirectoryIfItDoesNotExist();
-        if (Models.FileEntries.ProjectConfiguration.TryLoadTOML(out Models.FileEntries.ProjectConfiguration? projectConfiguration))
+        if (Models.FileEntries.ProjectConfiguration.TryLoadTOML(out projectConfiguration))
         {
-            App.ProjectConfiguration = projectConfiguration;
+            // Ok
         }
         else
         {
@@ -298,14 +302,14 @@ public partial class App : Application
             if (Models.FileEntries.ProjectConfiguration.SaveTOML(
                 current: Models.FileEntries.ProjectConfiguration.Empty,
                 difference: new Models.FileEntries.ProjectConfigurationBuffer(),
-                out var newProjectConfiguration))
+                out projectConfiguration))
             {
-                App.ProjectConfiguration = newProjectConfiguration;
+                // Ok
             }
         }
 
         // TODO 構成ファイルが無ければ、エラー対応したい
-        return App.ProjectConfiguration ?? throw new Exception("[App.xaml.cs GetOrLoadProjectConfiguration] 構成取得失敗");
+        return projectConfiguration ?? throw new Exception("[App.xaml.cs GetOrLoadProjectConfiguration] 構成取得失敗");
     }
 
     /// <summary>
@@ -317,7 +321,7 @@ public partial class App : Application
         if (App.ProjectConfiguration == null)
         {
             // プロジェクト構成ファイルの読込
-            LoadProjectConfiguration();
+            App.SetProjectConfiguration(LoadProjectConfiguration());
         }
 
         return App.ProjectConfiguration ?? throw new Exception();
