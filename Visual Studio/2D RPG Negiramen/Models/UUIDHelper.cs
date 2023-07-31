@@ -20,7 +20,7 @@ internal static class UUIDHelper
     {
         bool isUUID = uuidPattern.IsMatch(text);
 
-        Trace.WriteLine($"[UUIDHelper.cs IsMatch] isUUID: {isUUID}, text: [{text}]");
+        // Trace.WriteLine($"[UUIDHelper.cs IsMatch] isUUID: {isUUID}, text: [{text}]");
 
         return isUUID;
     }

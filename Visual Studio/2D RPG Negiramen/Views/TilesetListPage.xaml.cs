@@ -291,7 +291,7 @@ public partial class TilesetListPage : ContentPage
 
         CollectionView view = (CollectionView)sender;
 
-        Trace.WriteLine($"[TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: {e.PreviousSelection.GetType().FullName} e.CurrentSelection: {e.CurrentSelection.GetType().FullName}");
+        // Trace.WriteLine($"[TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: {e.PreviousSelection.GetType().FullName} e.CurrentSelection: {e.CurrentSelection.GetType().FullName}");
         // [TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] e.CurrentSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
 
         TilesetRecordViewModel record = (TilesetRecordViewModel)view.SelectedItem;
