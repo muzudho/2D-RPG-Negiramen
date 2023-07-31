@@ -1,71 +1,70 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
+
+using _2D_RPG_Negiramen;
+using _2D_RPG_Negiramen.Coding;
+using _2D_RPG_Negiramen.Models;
+using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+
+/// <summary>
+///     😁 Unityの 📂 `Assets` フォルダへのパス
+///     
+///     <list type="bullet">
+///         <item>イミュータブル</item>
+///         <item><see cref="App.Configuration"/></item>
+///     </list>
+/// </summary>
+class ItsFolder : TheFileEntryLocation.Its
 {
-    using _2D_RPG_Negiramen;
-    using _2D_RPG_Negiramen.Coding;
-    using _2D_RPG_Negiramen.Models;
-    using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+    // - その他
+
+    #region その他（生成　関連）
+    /// <summary>
+    ///     生成
+    /// </summary>
+    internal ItsFolder()
+        : base()
+    {
+    }
 
     /// <summary>
-    ///     😁 Unityの 📂 `Assets` フォルダへのパス
-    ///     
-    ///     <list type="bullet">
-    ///         <item>イミュータブル</item>
-    ///         <item><see cref="App.Configuration"/></item>
-    ///     </list>
+    ///     生成
     /// </summary>
-    class ItsFolder : TheFileEntryLocation.Its
+    internal ItsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+        : base(pathSource, convert)
     {
-        // - その他
-
-        #region その他（生成　関連）
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal ItsFolder()
-            : base()
-        {
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal ItsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
-            : base(pathSource, convert)
-        {
-        }
-        #endregion
-
-        // - インターナル静的プロパティ
-
-        #region プロパティ（空オブジェクト）
-        /// <summary>
-        ///     空オブジェクト
-        /// </summary>
-        internal static ItsFolder Empty { get; } = new ItsFolder();
-        #endregion
-
-        // - インターナル・プロパティ
-
-        #region プロパティ（Unityの 📂 `Assets/{あなたのサークル・フォルダ名}` フォルダの場所）
-        /// <summary>
-        ///     Unityの 📂 `Assets/{あなたのサークル・フォルダ名}` フォルダの場所
-        /// </summary>
-        internal YourCircleFolder YourCircleFolder
-        {
-            get
-            {
-                if (yourCircleFolder == null)
-                {
-                    yourCircleFolder = new YourCircleFolder(Path);
-                }
-
-                return yourCircleFolder;
-            }
-        }
-        #endregion
-
-        // - プライベート・フィールド
-
-        YourCircleFolder? yourCircleFolder;
     }
+    #endregion
+
+    // - インターナル静的プロパティ
+
+    #region プロパティ（空オブジェクト）
+    /// <summary>
+    ///     空オブジェクト
+    /// </summary>
+    internal static ItsFolder Empty { get; } = new ItsFolder();
+    #endregion
+
+    // - インターナル・プロパティ
+
+    #region プロパティ（Unityの 📂 `Assets/{あなたのサークル・フォルダ名}` フォルダの場所）
+    /// <summary>
+    ///     Unityの 📂 `Assets/{あなたのサークル・フォルダ名}` フォルダの場所
+    /// </summary>
+    internal YourCircleFolder YourCircleFolder
+    {
+        get
+        {
+            if (yourCircleFolder == null)
+            {
+                yourCircleFolder = new YourCircleFolder(Path);
+            }
+
+            return yourCircleFolder;
+        }
+    }
+    #endregion
+
+    // - プライベート・フィールド
+
+    YourCircleFolder? yourCircleFolder;
 }
