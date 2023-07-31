@@ -7,6 +7,6 @@
 ///         <item>ミュータブル</item>
 ///     </list>
 /// </summary>
-internal class ProjectConfigurationBuffer
+internal class StarterKitConfigurationBuffer
 {
 }

@@ -283,7 +283,11 @@ public partial class App : Application
     /// <returns>プロジェクト構成ファイル</returns>
     static internal Models.FileEntries.ProjectConfiguration LoadProjectConfiguration()
     {
-        // プロジェクト構成ファイルの読込
+        //
+        // プロジェクト構成の読込
+        // ======================
+        //
+        App.DataFolder.YourCircleFolder.YourWorkFolder.CreateThisDirectoryIfItDoesNotExist();
         if (Models.FileEntries.ProjectConfiguration.TryLoadTOML(out Models.FileEntries.ProjectConfiguration? projectConfiguration))
         {
             App.ProjectConfiguration = projectConfiguration;
@@ -291,12 +295,12 @@ public partial class App : Application
         else
         {
             // 初回時は、構成ファイルが無いので、新規作成する
-            if (Models.FileEntries.Configuration.SaveTOML(
-                current: Models.FileEntries.Configuration.Empty,
-                difference: new Models.FileEntries.ConfigurationBuffer(),
-                out var newConfiguration))
+            if (Models.FileEntries.ProjectConfiguration.SaveTOML(
+                current: Models.FileEntries.ProjectConfiguration.Empty,
+                difference: new Models.FileEntries.ProjectConfigurationBuffer(),
+                out var newProjectConfiguration))
             {
-                App.Configuration = newConfiguration;
+                App.ProjectConfiguration = newProjectConfiguration;
             }
         }
 
@@ -312,8 +316,8 @@ public partial class App : Application
     {
         if (App.ProjectConfiguration == null)
         {
-            // 構成ファイルの読込
-            LoadConfiguration();
+            // プロジェクト構成ファイルの読込
+            LoadProjectConfiguration();
         }
 
         return App.ProjectConfiguration ?? throw new Exception();

@@ -38,6 +38,10 @@ public partial class Login2Page : ContentPage
     /// </summary>
     void SaveConfigurationToml()
     {
+        //
+        // 構成の保存
+        // ==========
+        //
         var newEntry = new ConfigurationEntry(
             yourCircleFolderName: App.GetOrLoadConfiguration().RememberYourCircleFolderName,
             yourWorkFolderName: App.GetOrLoadConfiguration().RememberYourWorkFolderName);
@@ -59,11 +63,32 @@ public partial class Login2Page : ContentPage
             configurationDifference.EntryList.Add(newEntry);
         }
 
-        // 構成ファイルの保存
         if (Models.FileEntries.Configuration.SaveTOML(App.GetOrLoadConfiguration(), configurationDifference, out Models.FileEntries.Configuration newConfiguration))
         {
             // グローバル変数を更新
             App.SetConfiguration(newConfiguration);
+        }
+        else
+        {
+            // TODO 異常時の処理
+        }
+
+        //
+        // プロジェクト構成の保存
+        // ======================
+        //
+
+        // プロジェクト構成ファイルの更新差分
+        var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
+        {
+            StarterKitFolder = App.GetOrLoadConfiguration().StarterKitFolder,
+            UnityAssetsFolder = App.GetOrLoadConfiguration().UnityAssetsFolder,
+        };
+
+        if (Models.FileEntries.ProjectConfiguration.SaveTOML(App.GetOrLoadProjectConfiguration(), projectConfigurationDifference, out Models.FileEntries.ProjectConfiguration newProjectConfiguration))
+        {
+            // グローバル変数を更新
+            App.SetProjectConfiguration(newProjectConfiguration);
         }
         else
         {

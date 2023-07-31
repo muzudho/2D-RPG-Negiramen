@@ -1,6 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries;
 
-using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 構成ファイルの差分
@@ -11,30 +11,33 @@ using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.
 /// </summary>
 internal class ConfigurationBuffer
 {
+    // - インターナル・プロパティ
+
+    // TODO ★ 廃止予定
     /// <summary>
     ///     ネギラーメンの 📂 `Starter Kit` フォルダへのパス
     /// </summary>
     internal Locations.StarterKit.ItsFolder? StarterKitFolder { get; set; }
 
+    // TODO ★ 廃止予定
     /// <summary>
     ///     Unity の 📂 `Assets` フォルダへのパス
     /// </summary>
-    internal TheLocationOfUnityAssets.ItsFolder? UnityAssetsFolder { get; set; }
+    internal TheFileEntryLocations.UnityAssets.ItsFolder? UnityAssetsFolder { get; set; }
 
-    ///// <summary>
-    /////     スターターキット構成ファイルへのパス
-    ///// </summary>
-    //internal Locations.StarterKit.StarterKitConfigurationFile? StarterKitConfigurationFile { get; set; }
-
+    #region プロパティ（あなたのサークル・フォルダ名）
     /// <summary>
     ///     あなたのサークル・フォルダ名
     /// </summary>
     internal YourCircleFolderName? RememberYourCircleFolderName { get; set; }
+    #endregion
 
+    #region プロパティ（あなたの作品フォルダ名）
     /// <summary>
     ///     あなたの作品フォルダ名
     /// </summary>
     internal YourWorkFolderName? RememberYourWorkFolderName { get; set; }
+    #endregion
 
     #region プロパティ（エントリー・リスト）
     /// <summary>
