@@ -11,7 +11,7 @@ using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item><see cref="ItsFolder"/></item>
 ///     </list>
 /// </summary>
-internal class ImagesFolder : Its
+internal class ImagesFolder : ItsFolder
 {
     // - その他
 

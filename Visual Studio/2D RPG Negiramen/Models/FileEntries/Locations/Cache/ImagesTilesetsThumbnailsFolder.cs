@@ -2,6 +2,7 @@
 
 using _2D_RPG_Negiramen;
 using _2D_RPG_Negiramen.Models;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 OSの 📂 キャッシュ・ディレクトリー の `{あたなのサークル名}/{あなたの作品名}/Images/Tilesets/Thumbnails` フォルダの場所
@@ -14,7 +15,7 @@ using _2D_RPG_Negiramen.Models;
 /// <example>
 ///     "C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalCache\Doujin Circle Negiramen\Negiramen Quest\Images\Tileset\Thumbnails"
 /// </example>
-internal class ImagesTilesetsThumbnailsFolder : Its
+internal class ImagesTilesetsThumbnailsFolder : TheFileEntryLocations.ItsFolder
 {
     // - その他
 

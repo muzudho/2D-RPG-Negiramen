@@ -11,7 +11,7 @@ using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item><see cref="_2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets.ItsFolder"/></item>
 ///     </list>
 /// </summary>
-internal class MoviesFolder : Its
+internal class MoviesFolder : ItsFolder
 {
     // - その他
 

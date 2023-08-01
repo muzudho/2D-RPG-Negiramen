@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.StarterKit;
 
 using _2D_RPG_Negiramen.Coding;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 ネギラーメンの 📂 `Starter Kit/For Unity Assets` フォルダの場所
@@ -9,7 +10,7 @@ using _2D_RPG_Negiramen.Coding;
 ///         <item>イミュータブル</item>
 ///     </list>
 /// </summary>
-class StarterKitConfigurationFile : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
+class StarterKitConfigurationFile : TheFileEntryLocations.ItsFile
 {
     // - その他
 

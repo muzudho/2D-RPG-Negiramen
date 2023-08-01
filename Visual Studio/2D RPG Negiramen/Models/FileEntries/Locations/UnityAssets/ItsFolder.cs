@@ -13,7 +13,7 @@ using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item><see cref="App.Configuration"/></item>
 ///     </list>
 /// </summary>
-class ItsFolder : TheFileEntryLocation.Its
+class ItsFolder : TheFileEntryLocation.ItsFolder
 {
     // - その他
 

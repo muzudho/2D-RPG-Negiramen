@@ -13,7 +13,7 @@ using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///     </list>
 /// </summary>
 internal class YourCircleFolder
-    : Its
+    : ItsFolder
 {
     // - その他
 

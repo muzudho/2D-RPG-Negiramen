@@ -12,7 +12,7 @@ using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item><see cref="ItsFolder"/></item>
 ///     </list>
 /// </summary>
-internal class ImagesTilesetsThumbnailsPng : Its
+internal class ImagesTilesetsThumbnailsPng : ItsFile
 {
     // - その他
 

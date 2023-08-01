@@ -11,7 +11,7 @@ using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item><see cref="_2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets.ItsFolder"/></item>
 ///     </list>
 /// </summary>
-internal class SoundsFolder : Its
+internal class SoundsFolder : ItsFolder
 {
     // - その他
 

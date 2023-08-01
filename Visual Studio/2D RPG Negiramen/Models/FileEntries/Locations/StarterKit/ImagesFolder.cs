@@ -14,7 +14,7 @@ using _2D_RPG_Negiramen.Models;
 /// <example>
 ///     "C:\Users\むずでょ\Documents\GitHub\2D-RPG-Negiramen\Starter Kit\For Unity Assets\Images"
 /// </example>
-internal class ImagesFolder : Its
+internal class ImagesFolder : ItsFolder
 {
     // - その他
 

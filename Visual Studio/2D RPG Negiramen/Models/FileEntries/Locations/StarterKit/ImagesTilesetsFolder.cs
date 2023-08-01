@@ -14,7 +14,7 @@ using _2D_RPG_Negiramen.Models;
 /// <example>
 ///     "C:\Users\むずでょ\Documents\GitHub\2D-RPG-Negiramen\Starter Kit\For Unity Assets\Images\Tilesets"
 /// </example>
-internal class ImagesTilesetsFolder : Its
+internal class ImagesTilesetsFolder : ItsFolder
 {
     // - その他
 

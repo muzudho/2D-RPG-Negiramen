@@ -1,11 +1,12 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.StarterKit;
 
 using _2D_RPG_Negiramen.Coding;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 ネギラーメンの 📂 `Starter Kit` フォルダの場所
 /// </summary>
-class ItsFolder : _2D_RPG_Negiramen.Models.FileEntries.Locations.Its
+class ItsFolder : TheFileEntryLocations.ItsFolder
 {
     // - その他
 

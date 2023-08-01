@@ -11,7 +11,7 @@ using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item><see cref="ItsFolder"/></item>
 ///     </list>
 /// </summary>
-class DataCsvTilesetsFolder : Its
+class DataCsvTilesetsFolder : ItsFolder
 {
     // - その他
 
