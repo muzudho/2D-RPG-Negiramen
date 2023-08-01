@@ -96,6 +96,9 @@
 	  <Compile Update="Views\Login2Page.xaml.cs">
 	    <DependentUpon>Login2Page.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Views\HomePage.xaml.cs">
+	    <DependentUpon>HomePage.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="Views\TilesetListPage.xaml.cs">
 	    <DependentUpon>TilesetListPage.xaml</DependentUpon>
 	  </Compile>

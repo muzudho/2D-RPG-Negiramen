@@ -4,7 +4,7 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              xmlns:viewModels="clr-namespace:_2D_RPG_Negiramen.ViewModels"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="_2D_RPG_Negiramen.Views.MainPage"
+             x:Class="_2D_RPG_Negiramen.Views.HomePage"
              NavigatedTo="ContentPage_NavigatedTo"
              NavigatingFrom="ContentPage_NavigatingFrom">
     <!--
