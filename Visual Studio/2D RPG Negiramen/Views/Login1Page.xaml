@@ -30,7 +30,6 @@
 
                 <!--    ［ホーム］ボタン
                         ================
-                -->
                 <Button Margin="16,2,2,2"
                         Text="{app:Translate Home}"
                         SemanticProperties.Hint="Back to the home"
@@ -40,6 +39,7 @@
                 <Label VerticalTextAlignment="Center"
                        Text="＞"
                        SemanticProperties.Hint="Separator"/>
+                -->
 
                 <!--    ページ・タイトル
                         ================

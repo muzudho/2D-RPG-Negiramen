@@ -1912,4 +1912,18 @@ unity_assets_folder = ""
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ほっとくと　都合の悪い入力を通してしまうしな」  
 
+![202308_maui_01-2026--login1page.png](https://crieit.now.sh/upload_images/a3c910fbc32430d8d3cf1df171b956b864c8ebe2c40d0.png)  
+
+![202308_maui_01-2027--login2page.png](https://crieit.now.sh/upload_images/43ad2ddb768cc867561e61b1ce00772164c8ec4e139ff.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　こんなもんで勘弁しろだぜ。  
+入力チェックは　パス」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　入力欄は　縦に並んでいる方が　ふつうじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　もっともだぜ」  
+
 ＜書きかけ＞
