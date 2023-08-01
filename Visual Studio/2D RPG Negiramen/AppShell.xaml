@@ -8,20 +8,14 @@
     Shell.FlyoutBehavior="Disabled">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:HomePage}"
+        Title="Login 1"
+        ContentTemplate="{DataTemplate views:Login1Page}"
         Route="MainPage" />
+    
     <ShellContent
         Title="Home"
         ContentTemplate="{DataTemplate views:HomePage}"
         Route="HomePage" />
-
-    <!--
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate views:ConfigurationPage}"
-        Route="MainPage" />
-    -->
 
     <ShellContent
         Title="Login 1 page"
