@@ -56,6 +56,8 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true));
             OnPropertyChanged(nameof(StarterKitFolderPathAsStr));
+
+            OnPropertyChanged(nameof(IsEnabledOfNewProjectButton));
         }
     }
     #endregion
@@ -79,6 +81,8 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true));
             OnPropertyChanged(nameof(UnityAssetsFolderPathAsStr));
+
+            OnPropertyChanged(nameof(IsEnabledOfNewProjectButton));
         }
     }
     #endregion

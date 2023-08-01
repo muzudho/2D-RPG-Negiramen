@@ -1883,4 +1883,33 @@ unity_assets_folder = ""
 「　変数の整合性を　きつくしたいので、  
 テキスト・ボックスに入れた値が　現在の設定だ、という風にするぜ」  
 
+# 📅 （2023-08-01 tue）まだログイン画面　できてないのかだぜ？（３日目）
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　まだログイン画面　できてないのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　もう　つらい」  
+
+![202308_maui_01-1839--projectIdList.png](https://crieit.now.sh/upload_images/8b61f17a4b865228dc973fb216663b0a64c8d31e0c1e8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　このリストは　構成ファイルに記憶するのではなく、  
+ディレクトリ階層を　探索するだけで良かったのでは？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ディレクトリを探索できない権限のケースもあるから、  
+構成ファイルに記録するプログラムは　有るっちゃ有るぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面作りの何に時間がかかんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　作ってみたあとに気づく設計が成立してない矛盾と、  
+押されたくないボタンが押せてしまう状態の管理漏れ、
+そしてバリデーション・チェックが通らなかったときの表示だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ほっとくと　都合の悪い入力を通してしまうしな」  
+
 ＜書きかけ＞
