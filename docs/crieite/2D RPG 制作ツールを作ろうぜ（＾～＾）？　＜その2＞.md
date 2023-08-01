@@ -1951,4 +1951,18 @@ unity_assets_folder = ""
 
 ## ログインページから始まるように、 MainPage をログインページにしようぜ？
 
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ログインページから始まるように、 MainPage をログインページにしようぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　なんで　最初のページの名前が　`MainPage`　なんだぜ　やめてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　まあ　プログラムは昔から　`main`　から始まるけど」  
+
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　差替えたぜ。これで　ひとまず　ログイン・ページは終わりだぜ」  
+
 ＜書きかけ＞
