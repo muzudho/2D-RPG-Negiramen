@@ -60,7 +60,7 @@
         <ScrollView>
             <Grid Grid.Row="0"
                   RowDefinitions="190,20,48,48,20,48" ColumnDefinitions="20,*"
-                  Padding="8,8,8,8">
+                  Padding="8,8,8,0">
 
                 <!--    １行目
                         ======

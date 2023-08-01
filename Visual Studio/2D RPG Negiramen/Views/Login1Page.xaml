@@ -63,8 +63,8 @@
     <Grid RowDefinitions="*,64">
         <ScrollView>
             <Grid Grid.Row="0"
-              RowDefinitions="190, 20, 48, 20, 48, 20, 48, *" ColumnDefinitions="1*, 20, 250, 50, 1*"
-              Padding="8,8,8,8">
+              RowDefinitions="190, 20, 48, 28, 48, 28, 48, *" ColumnDefinitions="1*, 20, 250, 50, 1*"
+              Padding="8,8,8,0">
 
                 <!--    １行目
                         ======
@@ -73,8 +73,8 @@
 
                     <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
                     <Label HorizontalOptions="Center"
-                       Text="{app:Translate _2dRpgNegiramen}"
-                       FontSize="48"/>
+                           Text="{app:Translate _2dRpgNegiramen}"
+                           FontSize="48"/>
 
                     <Image HorizontalOptions="Center"
                            HeightRequest="100"
@@ -110,6 +110,7 @@
                 -->
                 <!-- 「あなたの作品フォルダ名」 -->
                 <Label Grid.Row="3" Grid.Column="2"
+                       Margin="0,8,0,0"
                        Text="{app:Translate YourWorkFolderName}"/>
 
                 <!--    ５行目
@@ -131,6 +132,7 @@
                 -->
                 <!-- 「リストから選ぶ」 -->
                 <Label Grid.Row="5" Grid.Column="2"
+                       Margin="0,8,0,0"
                        Text="{app:Translate ChooseFromList}"/>
 
                 <!--    ７行目
@@ -153,7 +155,7 @@
                         ======
                 -->
                 <HorizontalStackLayout Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3"
-                                       Padding="0,8,0,8">
+                                       Padding="0,8,0,0">
                     <Grid RowDefinitions="32,20"
                           Padding="0,0,0,16">
                         <!-- 「文字数」 -->

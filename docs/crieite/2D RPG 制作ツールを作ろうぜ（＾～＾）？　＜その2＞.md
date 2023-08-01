@@ -1926,4 +1926,18 @@ unity_assets_folder = ""
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　もっともだぜ」  
 
+![202308_maui_01-2104--login1page.png](https://crieit.now.sh/upload_images/bf0de710521fee7f29f6cbfce556c68f64c8f508747e5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　これでどうだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　良くなったわね」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　しかし、　あなたのサークル・フォルダ名って何だろな？　と、ユーザーは思わないかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　思うぜ」  
+
 ＜書きかけ＞
