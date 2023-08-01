@@ -1940,4 +1940,15 @@ unity_assets_folder = ""
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　思うぜ」  
 
+![202308_maui_01-2116--login1page.png](https://crieit.now.sh/upload_images/77476cbcedfd2289699cdab49cb94b2864c8f7c37a2bb.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　あなたのサークル・フォルダ名のテキストボックスの右端に　×ボタンが付いているんだが、  
+わたしが付けたわけじゃないし、取り除く方法も分からないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　仕方ない。ほっといて　次へ進めだぜ」  
+
+## ログインページから始まるように、 MainPage をログインページにしようぜ？
+
 ＜書きかけ＞

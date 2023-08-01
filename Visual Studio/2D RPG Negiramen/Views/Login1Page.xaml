@@ -99,7 +99,7 @@
                        Text="📂"/>
                 
                 <Entry Grid.Row="2" Grid.Column="2"
-                       Placeholder="Doujin Circle Grayscale"
+                       Placeholder="Ramen Shop"
                        Text="{Binding YourCircleFolderNameAsStr}"
                        TextChanged="YourCircleFolderNameEntry_TextChanged"/>
 
@@ -142,6 +142,8 @@
                 <Label Grid.Row="6" Grid.Column="1"
                        VerticalOptions="Center"
                        Text="📂"/>
+                
+                <!-- 選択中のパス -->
                 <Picker Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2"
                         VerticalOptions="Center"
                         HorizontalOptions="StartAndExpand"
