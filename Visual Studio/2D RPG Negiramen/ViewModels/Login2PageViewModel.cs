@@ -3,6 +3,7 @@
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Globalization;
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
@@ -82,6 +83,31 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     }
     #endregion
 
+    #region 変更通知プロパティ（［新しく作る］ボタンの活性性）
+    /// <summary>
+    ///     <pre>
+    ///         ［新しく作る］ボタンの活性性
+    ///         
+    ///         以下の条件を満たしたとき活性にする
+    ///     </pre>
+    ///     <list type="bullet">
+    ///         <item>スターターキット・フォルダへのパスが入力されており、フォルダーが実在する</item>
+    ///         <item>Unity の Assets フォルダへのパスが入力されており、フォルダーが実在する</item>
+    ///     </list>
+    /// </summary>
+    public bool IsEnabledOfNewProjectButton
+    {
+        get
+        {
+            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolder.Path.AsStr}");
+            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] UnityAssets: {this.UnityAssetsFolder.Path.AsStr}");
+            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolder.IsDirectoryExists()}, UnityAssets: {this.UnityAssetsFolder.IsDirectoryExists()}");
+
+            return this.StarterKitFolder.IsDirectoryExists() && this.UnityAssetsFolder.IsDirectoryExists();
+        }
+    }
+    #endregion
+
     // - パブリック・プロパティ
 
     #region プロパティ（ネギラーメンの 📂 `Starter Kit` フォルダの場所）
@@ -99,6 +125,8 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
 
             this.starterKitFolder = value;
             OnPropertyChanged(nameof(StarterKitFolderPathAsStr));
+
+            OnPropertyChanged(nameof(IsEnabledOfNewProjectButton));
         }
     }
     #endregion
@@ -118,6 +146,8 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
 
             this.unityAssetsFolder = value;
             OnPropertyChanged(nameof(UnityAssetsFolderPathAsStr));
+
+            OnPropertyChanged(nameof(IsEnabledOfNewProjectButton));
         }
     }
     #endregion

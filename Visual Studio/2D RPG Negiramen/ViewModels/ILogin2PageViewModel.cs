@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
+using System.Diagnostics;
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
@@ -23,6 +24,21 @@ internal interface ILogin2PageViewModel
     /// </summary>
     /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
     TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder { get; set; }
+    #endregion
+
+    #region プロパティ（［新しく作る］ボタンの活性性）
+    /// <summary>
+    ///     <pre>
+    ///         ［新しく作る］ボタンの活性性
+    ///         
+    ///         以下の条件を満たしたとき活性にする
+    ///     </pre>
+    ///     <list type="bullet">
+    ///         <item>スターターキット・フォルダへのパスが入力されており、フォルダーが実在する</item>
+    ///         <item>Unity の Assets フォルダへのパスが入力されており、フォルダーが実在する</item>
+    ///     </list>
+    /// </summary>
+    bool IsEnabledOfNewProjectButton { get; }
     #endregion
 
     // - パブリック・メソッド
