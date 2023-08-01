@@ -332,7 +332,7 @@ public partial class HomePage : ContentPage
     {
         // 必ず、初期設定を要求
         // 戻り先はホーム
-        App.NextPage.Push(new ShellNavigationState("//MainPage"));
+        App.NextPage.Push(new ShellNavigationState("//HomePage"));
         await Navigation.PushAsync(new ConfigurationPage());
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }

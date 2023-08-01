@@ -154,7 +154,7 @@ public partial class Login2Page : ContentPage
         this.SaveConfigurationToml();
 
         await Shell.Current.GoToAsync(
-            state: new ShellNavigationState("//MainPage"));
+            state: new ShellNavigationState("//HomePage"));
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
     #endregion

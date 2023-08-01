@@ -17,7 +17,7 @@ public partial class CreateMapViewPage : ContentPage
     /// <param name="e"></param>
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//MainPage");
+        await Shell.Current.GoToAsync("//HomePage");
     }
 
     /// <summary>

@@ -12,6 +12,6 @@ public partial class CreateTalkingViewPage : ContentPage
 
     async void HomeBtn_Clicked(object sender, EventArgs e)
     {
-        await Shell.Current.GoToAsync("//MainPage");
+        await Shell.Current.GoToAsync("//HomePage");
     }
 }

@@ -121,7 +121,7 @@ public partial class Login1Page : ContentPage
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        await Shell.Current.GoToAsync("//MainPage");
+        await Shell.Current.GoToAsync("//HomePage");
     }
     #endregion
 
@@ -203,7 +203,7 @@ public partial class Login1Page : ContentPage
         this.SaveConfigurationToml();
 
         await Shell.Current.GoToAsync(
-            state: new ShellNavigationState("//MainPage"));
+            state: new ShellNavigationState("//HomePage"));
         // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
     }
     #endregion

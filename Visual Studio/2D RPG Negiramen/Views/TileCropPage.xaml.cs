@@ -293,7 +293,7 @@ public partial class TileCropPage : ContentPage
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        await Shell.Current.GoToAsync("//MainPage");
+        await Shell.Current.GoToAsync("//HomePage");
     }
     #endregion
 
