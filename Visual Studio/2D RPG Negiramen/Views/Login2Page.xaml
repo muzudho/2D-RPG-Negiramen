@@ -59,55 +59,73 @@
     <Grid RowDefinitions="*,64">
         <ScrollView>
             <Grid Grid.Row="0"
-                  RowDefinitions="20,48,48,20,48" ColumnDefinitions="20,*"
+                  RowDefinitions="200,20,48,48,20,48" ColumnDefinitions="20,*"
                   Padding="8,8,8,8">
 
                 <!--    １行目
                         ======
                 -->
-                <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス」 -->
-                <Label Grid.Row="0" Grid.Column="1"
-                       Text="{app:Translate ConfigurationPageStarterKitFolderDescription}"/>
+                <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="2">
+
+                    <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
+                    <Label HorizontalOptions="Center"
+                       Text="{app:Translate _2dRpgNegiramen}"
+                       FontSize="48"/>
+
+                    <Image HorizontalOptions="Center"
+                       Margin="0,10,0,0"
+                       HeightRequest="100"
+                        Source="title_header.png"
+                        SemanticProperties.Description="title header"/>
+
+                </VerticalStackLayout>
 
                 <!--    ２行目
                         ======
                 -->
-                <Label Grid.Row="1" Grid.Column="0"
-                       HorizontalTextAlignment="Center"
-                       VerticalTextAlignment="Center"
-                       Text="📂"
-                       SemanticProperties.Hint="Folder emoji"/>
-                
-                <Entry Grid.Row="1" Grid.Column="1"
-                       Placeholder="C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"
-                       Text="{Binding StarterKitFolderPathAsStr}"/>
+                <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス」 -->
+                <Label Grid.Row="1" Grid.Column="1"
+                       Text="{app:Translate ConfigurationPageStarterKitFolderDescription}"/>
 
                 <!--    ３行目
                         ======
                 -->
-                <!-- 「Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。」 -->
-                <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
-                       VerticalTextAlignment="Center"
-                       Text="{app:Translate ConfigurationPageUnityProjectDescription}"
-                       SemanticProperties.Hint="Separator"/>
-
-                <!--    ４行目
-                        ======
-                -->
-                <!-- 「Unity プロジェクトの中の Assets フォルダへのパス」 -->
-                <Label Grid.Row="3" Grid.Column="1"
-                       Text="{app:Translate ConfigurationPageUnityAssetsFolderDescription}"/>
-
-                <!--    ５行目
-                        ======
-                -->
-                <Label Grid.Row="4" Grid.Column="0"
+                <Label Grid.Row="2" Grid.Column="0"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        Text="📂"
                        SemanticProperties.Hint="Folder emoji"/>
-                
-                <Entry Grid.Row="4" Grid.Column="1"
+
+                <Entry Grid.Row="2" Grid.Column="1"
+                       Placeholder="C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"
+                       Text="{Binding StarterKitFolderPathAsStr}"/>
+
+                <!--    ４行目
+                        ======
+                -->
+                <!-- 「Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。」 -->
+                <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                       VerticalTextAlignment="Center"
+                       Text="{app:Translate ConfigurationPageUnityProjectDescription}"
+                       SemanticProperties.Hint="Separator"/>
+
+                <!--    ５行目
+                        ======
+                -->
+                <!-- 「Unity プロジェクトの中の Assets フォルダへのパス」 -->
+                <Label Grid.Row="4" Grid.Column="1"
+                       Text="{app:Translate ConfigurationPageUnityAssetsFolderDescription}"/>
+
+                <!--    ６行目
+                        ======
+                -->
+                <Label Grid.Row="5" Grid.Column="0"
+                       HorizontalTextAlignment="Center"
+                       VerticalTextAlignment="Center"
+                       Text="📂"
+                       SemanticProperties.Hint="Folder emoji"/>
+
+                <Entry Grid.Row="5" Grid.Column="1"
                        Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"
                        Text="{Binding UnityAssetsFolderPathAsStr}"/>
             </Grid>
@@ -117,7 +135,7 @@
               RowDefinitions="48" ColumnDefinitions="*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
-            
+
             <!-- 「新しく作る」 -->
             <Button WidthRequest="300"
                     Text="{app:Translate CreateANewProject}"
