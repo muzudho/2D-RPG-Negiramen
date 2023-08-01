@@ -105,9 +105,9 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
         {
             Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolder.Path.AsStr}");
             Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] UnityAssets: {this.UnityAssetsFolder.Path.AsStr}");
-            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolder.IsDirectoryExists()}, UnityAssets: {this.UnityAssetsFolder.IsDirectoryExists()}");
+            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolder.IsExists()}, UnityAssets: {this.UnityAssetsFolder.IsExists()}");
 
-            return this.StarterKitFolder.IsDirectoryExists() && this.UnityAssetsFolder.IsDirectoryExists();
+            return this.StarterKitFolder.IsExists() && this.UnityAssetsFolder.IsExists();
         }
     }
     #endregion

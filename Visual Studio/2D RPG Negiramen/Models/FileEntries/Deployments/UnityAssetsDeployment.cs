@@ -22,7 +22,7 @@ internal class UnityAssetsDeployment
     /// <returns>完了した</returns>
     internal static bool MakeFolder(TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder)
     {
-        if (!unityAssetsFolder.IsDirectoryExists())
+        if (!unityAssetsFolder.IsExists())
         {
             // TODO Unity の Assets フォルダ―へのパスでなければ失敗
             return false;

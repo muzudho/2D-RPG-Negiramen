@@ -33,6 +33,6 @@ abstract class ItsFile : Its
     /// <summary>
     ///     このファイルは存在するか？
     /// </summary>
-    internal bool IsFileExists() => File.Exists(this.Path.AsStr);
+    internal bool IsExists() => File.Exists(this.Path.AsStr);
     #endregion
 }

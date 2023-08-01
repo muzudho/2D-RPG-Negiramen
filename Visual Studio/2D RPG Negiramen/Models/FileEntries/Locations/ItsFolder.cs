@@ -33,7 +33,7 @@ abstract class ItsFolder : Its
     /// <summary>
     ///     このディレクトリーは存在するか？
     /// </summary>
-    internal bool IsDirectoryExists() => Directory.Exists(this.Path.AsStr);
+    internal bool IsExists() => Directory.Exists(this.Path.AsStr);
     #endregion
 
     #region メソッド（このディレクトリーが存在しないなら、作成する）

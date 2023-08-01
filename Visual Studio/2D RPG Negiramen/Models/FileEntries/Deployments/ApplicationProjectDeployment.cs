@@ -21,7 +21,7 @@ internal class ApplicationProjectDeployment
     /// <returns>完了した</returns>
     internal static bool MakeFolder()
     {
-        if (!App.DataFolder.IsDirectoryExists())
+        if (!App.DataFolder.IsExists())
         {
             // 存在しなければ失敗
             return false;
