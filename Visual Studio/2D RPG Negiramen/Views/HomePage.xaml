@@ -46,7 +46,7 @@
     <ScrollView>
         <!-- BackgroundColor="Gainsboro"
         -->
-        <Grid RowDefinitions="200,*">
+        <Grid RowDefinitions="190,*">
 
             <VerticalStackLayout Grid.Row="0">
 
@@ -56,10 +56,9 @@
                        FontSize="48"/>
 
                 <Image HorizontalOptions="Center"
-                       Margin="0,10,0,0"
                        HeightRequest="100"
-                        Source="title_header.png"
-                        SemanticProperties.Description="title header"/>
+                       Source="title_header.png"
+                       SemanticProperties.Description="title header"/>
 
             </VerticalStackLayout>
 
@@ -88,6 +87,7 @@
                     <Button Grid.Row="0" Grid.Column="0"
                         x:Name="CreateMapViewBtn"
                         Text="{app:Translate CreateAMapScreen}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Create the map view"
                         Clicked="CreateMapViewBtn_Clicked"/>
 
@@ -95,6 +95,7 @@
                     <Button Grid.Row="0" Grid.Column="1"
                         x:Name="CreateBattleViewBtn"
                         Text="{app:Translate CreateABattleScreen}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Create the battle view"
                         Clicked="CreateBattleBtn_Clicked"/>
 
@@ -102,6 +103,7 @@
                     <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateMenuViewBtn"
                         Text="{app:Translate CreateAMenuScreen}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Create the menu view"
                         Clicked="CreateMenuViewBtn_Clicked"/>
 
@@ -109,6 +111,7 @@
                     <Button Grid.Row="1" Grid.Column="1"
                         x:Name="CreateTalkingBtn"
                         Text="{app:Translate CreateAConversationScreen}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Create the talking view"
                         Clicked="CreateTalkingBtn_Clicked"/>
                 </Grid>
@@ -125,6 +128,7 @@
                     <Button Grid.Row="0" Grid.Column="0"
                         x:Name="EditPlayerCharacterBtn"
                         Text="{app:Translate EditPlayerCharacter}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Edit the player character"
                         Clicked="EditPlayerCharacterBtn_Clicked"/>
 
@@ -132,6 +136,7 @@
                     <Button Grid.Row="1" Grid.Column="0"
                         x:Name="CreateMonsterBtn"
                         Text="{app:Translate EditTheMonster}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Edit the monster"
                         Clicked="CreateMonsterBtn_Clicked"/>
 
@@ -139,6 +144,7 @@
                     <Button Grid.Row="1" Grid.Column="1"
                         x:Name="EditMonsterGroupBtn"
                         Text="{app:Translate EditAMonsterGroup}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Edit the monster group"
                         Clicked="EditMonsterGroupBtn_Clicked"/>
 
@@ -146,6 +152,7 @@
                     <Button Grid.Row="2" Grid.Column="0"
                         x:Name="CreateItemBtn"
                         Text="{app:Translate EditItem}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Edit the item"
                         Clicked="EditItemBtn_Clicked"/>
 
@@ -153,6 +160,7 @@
                     <Button Grid.Row="2" Grid.Column="1"
                         x:Name="EditorStoryBtn"
                         Text="{app:Translate EditTheTalk}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Edit the story"
                         Clicked="EditorStoryBtn_Clicked"/>
 
@@ -174,30 +182,35 @@
                     <!-- 「構成」 -->
                     <Button Grid.Row="0" Grid.Column="0"
                         Text="{app:Translate Configure}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Startup configuration"
                         Clicked="StartupConfigurationBtn_Clicked"/>
 
                     <!-- 「ウィンドウ表示テスト」 -->
                     <Button Grid.Row="0" Grid.Column="1"
                         Text="{app:Translate WindowDisplayTest}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Test show window"
                         Clicked="TestShowWindowButton_Clicked"/>
 
                     <!-- 「ポップアップ練習」 -->
                     <Button Grid.Row="1" Grid.Column="0"
                         Text="{app:Translate PopupExercises}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Popup tile pallette"
                         Clicked="PopupPracticeButton_Clicked"/>
 
                     <!-- 「タイル・パレット表示」 -->
                     <Button Grid.Row="1" Grid.Column="1"
                         Text="{app:Translate TilePaletteDisplay}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Show tile pallette"
                         Clicked="ShowTilePalette_Clicked"/>
 
                     <!-- 「マップ描画ページ」 -->
                     <Button Grid.Row="2" Grid.Column="0"
                         Text="{app:Translate MapDrawingPage}"
+                        IsEnabled="False"
                         SemanticProperties.Hint="Map drawing page"
                         Clicked="MapDrawingButton_Clicked"/>
 
@@ -210,11 +223,13 @@
                     <!-- 「ログイン（１）」 -->
                     <Button Grid.Row="3" Grid.Column="0"
                         Text="{app:Translate Login1Page}"
+                        IsEnabled="False"
                         Clicked="LoginPage1Button_Clicked"/>
 
                     <!-- 「ログイン（２）」 -->
                     <Button Grid.Row="3" Grid.Column="1"
                         Text="{app:Translate Login2Page}"
+                        IsEnabled="False"
                         Clicked="LoginPage2Button_Clicked"/>
                 </Grid>
 
