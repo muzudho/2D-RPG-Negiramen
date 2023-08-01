@@ -63,48 +63,66 @@
     <Grid RowDefinitions="*,64">
         <ScrollView>
             <Grid Grid.Row="0"
-              RowDefinitions="20,48,*" ColumnDefinitions="20, 1*, 20, 1*, 2*"
+              RowDefinitions="200, 20,48,*" ColumnDefinitions="20, 1*, 20, 1*, 2*"
               Padding="8,8,8,8">
 
                 <!--    １行目
                         ======
                 -->
-                <!-- 「あなたのサークル・フォルダ名」 -->
-                <Label Grid.Row="0" Grid.Column="1"
-                       Text="{app:Translate YourCircleFolderName}"/>
+                <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="5">
 
-                <!-- 「あなたの作品フォルダ名」 -->
-                <Label Grid.Row="0" Grid.Column="3"
-                       Text="{app:Translate YourWorkFolderName}"/>
+                    <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
+                    <Label HorizontalOptions="Center"
+                       Text="{app:Translate _2dRpgNegiramen}"
+                       FontSize="48"/>
 
-                <!-- 「リストから選ぶ」 -->
-                <Label Grid.Row="0" Grid.Column="4"
-                       Text="{app:Translate ChooseFromList}"/>
+                    <Image HorizontalOptions="Center"
+                       Margin="0,10,0,0"
+                       HeightRequest="100"
+                        Source="title_header.png"
+                        SemanticProperties.Description="title header"/>
+
+                </VerticalStackLayout>
 
                 <!--    ２行目
                         ======
                 -->
+                <!-- 「あなたのサークル・フォルダ名」 -->
+                <Label Grid.Row="1" Grid.Column="1"
+                       Text="{app:Translate YourCircleFolderName}"/>
+
+                <!-- 「あなたの作品フォルダ名」 -->
+                <Label Grid.Row="1" Grid.Column="3"
+                       Text="{app:Translate YourWorkFolderName}"/>
+
+                <!-- 「リストから選ぶ」 -->
+                <Label Grid.Row="1" Grid.Column="4"
+                       Text="{app:Translate ChooseFromList}"/>
+
+                <!--    ３行目
+                        ======
+                -->
                 <!-- 「📂」 -->
-                <Label Grid.Row="1" Grid.Column="0"
+                <Label Grid.Row="2" Grid.Column="0"
                        VerticalOptions="Center"
                        Text="📂"/>
                 
-                <Entry Grid.Row="1" Grid.Column="1"
+                <Entry Grid.Row="2" Grid.Column="1"
                        Placeholder="Doujin Circle Grayscale"
                        Text="{Binding YourCircleFolderNameAsStr}"
                        TextChanged="YourCircleFolderNameEntry_TextChanged"/>
 
                 <!-- 「📂」 -->
-                <Label Grid.Row="1" Grid.Column="2"
+                <Label Grid.Row="2" Grid.Column="2"
                        VerticalOptions="Center"
                        Text="📂"/>
 
-                <Entry Grid.Row="1" Grid.Column="3"
+                <Entry Grid.Row="2" Grid.Column="3"
                        Placeholder="Negiramen Quest"
                        Text="{Binding YourWorkFolderNameAsStr}"
                        TextChanged="YourWorkFolderNameEntry_TextChanged"/>
                 
-                <Picker Grid.Row="1" Grid.Column="4"
+                <Picker Grid.Row="2" Grid.Column="4"
                         VerticalOptions="Center"
                         HorizontalOptions="StartAndExpand"
                         WidthRequest="300"
@@ -113,10 +131,10 @@
                         ItemDisplayBinding="{Binding PresentableTextAsStr}"
                         SelectedIndexChanged="ProjectIdListPicker_SelectedIndexChanged"/>
 
-                <!--    ３行目
+                <!--    ４行目
                         ======
                 -->
-                <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="4"
+                <HorizontalStackLayout Grid.Row="3" Grid.ColumnSpan="4"
                                        Padding="40,8,8,8">
                     <Grid RowDefinitions="32,20"
                           Padding="0,0,0,16">
