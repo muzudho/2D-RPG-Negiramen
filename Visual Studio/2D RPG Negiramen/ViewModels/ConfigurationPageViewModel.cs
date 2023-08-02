@@ -255,7 +255,7 @@
                     App.SetConfiguration(newConfiguration);
 
                     // アプリケーション・フォルダへ初期設定をコピー
-                    if (!Models.FileEntries.Deployments.ApplicationProjectDeployment.MakeFolder())
+                    if (!Models.FileEntries.Deployments.AppDataProjectDeployment.MakeFolder())
                     {
                         // TODO 異常時の処理
                         return;

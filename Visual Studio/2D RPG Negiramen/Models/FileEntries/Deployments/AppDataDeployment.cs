@@ -3,13 +3,13 @@
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
-///     😁 アプリケーション・フォルダ内のプロジェクト別のフォルダを想定したもの
+///     😁 アプリケーション・データ・フォルダ内のプロジェクト別のフォルダを想定したもの
 /// </summary>
-internal class ApplicationProjectDeployment
+internal class AppDataProjectDeployment
 {
     // - インターナル静的メソッド
 
-    #region メソッド（アプリケーション・フォルダにファイルを送り込みます）
+    #region メソッド（アプリケーション・データ・フォルダにファイルを送り込みます）
     /// <summary>
     ///     <pre>
     ///         アプリケーション・フォルダにファイルを送り込みます
@@ -37,10 +37,10 @@ internal class ApplicationProjectDeployment
 
     // - プライベート静的メソッド
 
-    #region メソッド（アプリケーション・フォルダ の 📂 `｛あなたのサークル・フォルダ名｝` フォルダにファイルを送り込みます）
+    #region メソッド（アプリケーション・データ・フォルダ の 📂 `｛あなたのサークル・フォルダ名｝` フォルダにファイルを送り込みます）
     /// <summary>
     ///     <pre>
-    ///          アプリケーション・フォルダ の 📂 `｛あなたのサークル・フォルダ名｝` フォルダにファイルを送り込みます
+    ///          アプリケーション・データ・フォルダ の 📂 `｛あなたのサークル・フォルダ名｝` フォルダにファイルを送り込みます
     ///     
     ///             📂 アプリケーション・フォルダ
     ///         👉　└─ 📂 {あなたのサークル・フォルダ名}
@@ -58,12 +58,16 @@ internal class ApplicationProjectDeployment
     #endregion
 
     /// <summary>
-    ///     TODO ★ プロジェクト構成ファイルの作成
+    ///     （無ければ）プロジェクト構成ファイルの作成
     /// </summary>
     /// <param name="yourWorkFolder"></param>
     static void MakeProjectConfigurationToml(TheFileEntryLocations.AppData.YourWorkFolder yourWorkFolder)
     {
-        // App.DataFolder.YourCircleFolder.YourWorkFolder
-
+        // 存在しなければ
+        if (!yourWorkFolder.ProjectConfigurationToml.IsExists())
+        {
+            // ロードすれば、無ければ　ダミー・ファイルを作ってくれる
+            var _emptyConfiguration = App.GetOrLoadProjectConfiguration();
+        }
     }
 }

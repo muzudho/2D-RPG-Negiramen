@@ -15,13 +15,13 @@ class ProjectConfiguration
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="negiramenStarterKitFolderPath">ネギラーメン 📂 `Starter Kit` フォルダへのパス</param>
+    /// <param name="starterKitFolderPath">ネギラーメン 📂 `Starter Kit` フォルダへのパス</param>
     /// <param name="unityAssetsFolderPath">Unity の Assets フォルダへのパス</param>
     internal ProjectConfiguration(
-        TheFileEntryLocations.StarterKit.ItsFolder negiramenStarterKitFolderPath,
+        TheFileEntryLocations.StarterKit.ItsFolder starterKitFolderPath,
         TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderPath)
     {
-        this.StarterKitFolder = negiramenStarterKitFolderPath;
+        this.StarterKitFolder = starterKitFolderPath;
         this.UnityAssetsFolder = unityAssetsFolderPath;
     }
     #endregion
@@ -33,7 +33,7 @@ class ProjectConfiguration
     ///     空オブジェクト
     /// </summary>
     internal static ProjectConfiguration Empty = new(
-        negiramenStarterKitFolderPath: TheFileEntryLocations.StarterKit.ItsFolder.Empty,
+        starterKitFolderPath: TheFileEntryLocations.StarterKit.ItsFolder.Empty,
         unityAssetsFolderPath: TheFileEntryLocations.UnityAssets.ItsFolder.Empty);
     #endregion
 
