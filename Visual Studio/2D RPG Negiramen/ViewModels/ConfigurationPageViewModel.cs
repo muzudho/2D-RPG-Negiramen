@@ -46,7 +46,7 @@
         }
         #endregion
 
-        // - パブリック・プロパティ
+        // - パブリック・コマンド・プロパティ
 
         #region プロパティ（Unity の Assets フォルダ―へ初期設定をコピーするコマンド）
         /// <summary>
@@ -253,20 +253,6 @@
                 {
                     // グローバル変数を更新
                     App.SetConfiguration(newConfiguration);
-
-                    // アプリケーション・フォルダへ初期設定をコピー
-                    if (!Models.FileEntries.Deployments.AppDataProjectDeployment.MakeFolder())
-                    {
-                        // TODO 異常時の処理
-                        return;
-                    }
-
-                    // Unity の Assets フォルダへ初期設定をコピー
-                    if (!Models.FileEntries.Deployments.UnityAssetsDeployment.MakeFolder(this.UnityAssetsFolder))
-                    {
-                        // TODO 異常時の処理
-                        return;
-                    }
                 }
                 else
                 {
@@ -304,6 +290,9 @@
                 {
                     // TODO 異常時の処理
                 }
+
+                // フォルダー作成
+                LoginHelper.MakeFolders();
             });
 
             // 画面遷移、戻る

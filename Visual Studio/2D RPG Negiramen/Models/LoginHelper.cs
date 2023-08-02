@@ -10,7 +10,19 @@
         /// </summary>
         internal static void MakeFolders()
         {
+            // アプリケーション・フォルダへ初期設定をコピー
+            if (!Models.FileEntries.Deployments.AppDataProjectDeployment.MakeFolder())
+            {
+                // TODO 異常時の処理
+                return;
+            }
 
+            // Unity の Assets フォルダへ初期設定をコピー
+            if (!Models.FileEntries.Deployments.UnityAssetsDeployment.MakeFolder(App.GetOrLoadProjectConfiguration().UnityAssetsFolder))
+            {
+                // TODO 異常時の処理
+                return;
+            }
         }
     }
 }

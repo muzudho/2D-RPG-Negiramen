@@ -139,7 +139,10 @@
             <Button WidthRequest="300"
                     Text="{app:Translate CreateANewProject}"
                     IsEnabled="{Binding IsEnabledOfNewProjectButton}"
-                    Clicked="CreateANewProjectButton_Clicked"/>
+                    Command="{Binding MakeNewProjectAndGoNextCommand}"/>
+            <!--
+                Clicked="CreateANewProjectButton_Clicked"
+            -->
         </Grid>
     </Grid>
 </ContentPage>

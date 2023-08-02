@@ -2,9 +2,11 @@
 
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using System.Windows.Input;
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
@@ -12,6 +14,31 @@ using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 /// </summary>
 internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
 {
+    // - その他
+
+    #region その他（生成）
+    /// <summary>
+    ///     生成
+    ///     
+    ///     <list type="bullet">
+    ///         <item>XAMLに記述するので、パブリック修飾である必要があります</item>
+    ///     </list>
+    /// </summary>
+    public Login2PageViewModel()
+    {
+        this.MakeNewProjectAndGoNextCommand = new AsyncRelayCommand(MakeNewProjectAndGoNext);
+    }
+    #endregion
+
+    // - パブリック・コマンド・プロパティ
+
+    #region コマンド（新プロジェクト作成と画面遷移のコマンド）
+    /// <summary>
+    ///     新プロジェクト作成と画面遷移のコマンド
+    /// </summary>
+    public ICommand MakeNewProjectAndGoNextCommand { get; }
+    #endregion
+
     // - パブリック変更通知プロパティ
 
     #region 変更通知プロパティ（ロケール　関連）
@@ -176,4 +203,21 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
 
     TheFileEntryLocations.StarterKit.ItsFolder starterKitFolder = TheFileEntryLocations.StarterKit.ItsFolder.Empty;
     TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder = TheFileEntryLocations.UnityAssets.ItsFolder.Empty;
+
+    // - プライベート・メソッド
+
+    #region メソッド（新プロジェクト作成）
+    /// <summary>
+    ///     新プロジェクト作成と画面遷移
+    /// </summary>
+    async Task MakeNewProjectAndGoNext()
+    {
+        // フォルダー作成
+        LoginHelper.MakeFolders();
+
+        await Shell.Current.GoToAsync(
+            state: new ShellNavigationState("//HomePage"));
+        // ここは通り抜ける。恐らく、UIスレッドを抜けた後に画面遷移する
+    }
+    #endregion
 }

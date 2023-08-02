@@ -182,7 +182,6 @@
                     <!-- 「構成」 -->
                     <Button Grid.Row="0" Grid.Column="0"
                         Text="{app:Translate Configure}"
-                        IsEnabled="False"
                         SemanticProperties.Hint="Startup configuration"
                         Clicked="StartupConfigurationBtn_Clicked"/>
 
