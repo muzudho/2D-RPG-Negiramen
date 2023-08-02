@@ -54,12 +54,22 @@
     </Shell.TitleView>
 
     <!--
-                       ====================
-            １段目     コレクション・ビュー
-            ２段目     ボタン・エリア
+            ======     ====================
+            １段目     上段メニュー
+            ２段目     コレクション・ビュー
+            ３段目     ボタン・エリア
     -->
-    <Grid RowDefinitions="*,152">
+    <Grid RowDefinitions="52, *, 152">
 
+        <HorizontalStackLayout Grid.Row="0"
+                               Padding="16,4,0,4"
+                               BackgroundColor="SkyBlue">
+
+            <Button WidthRequest="150"
+                    HeightRequest="44"
+                    Text="インポート"/>
+        </HorizontalStackLayout>
+        
         <!--
                         ok
                         ItemsLayout="VerticalGrid, 2"
@@ -76,7 +86,7 @@
                         ２段目　タイトル
                          LineBreakMode="TailTruncation"
         -->
-        <CollectionView Grid.Row="0"
+        <CollectionView Grid.Row="1"
                         ItemsSource="{Binding TilesetRecordVMCollection}"
                         ItemsLayout="{Binding ItemsLayout}"
                         SelectionMode="Single"
@@ -101,7 +111,7 @@
             </CollectionView.ItemTemplate>
         </CollectionView>
 
-        <Grid Grid.Row="1"
+        <Grid Grid.Row="2"
               RowDefinitions="20,48,20,48" ColumnDefinitions="100,320,100,300,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">

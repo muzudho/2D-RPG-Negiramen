@@ -1976,5 +1976,24 @@ unity_assets_folder = ""
 
 （カタ　カタ　カタ　カタ）  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　とりあえず　実装した。不具合があるかどうかは知らん」  
+
+## タイルセット一覧画面にインポート・ボタンを付けようぜ？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　タイルセット一覧画面にインポート・ボタンを付けようぜ？？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ドラッグ＆ドロップの方がいいかも知れないが、  
+とりあえず　インポートボタンは要るかだぜ」  
+
+![202308_maui_02-2007--importBtn-o2o0.png](https://crieit.now.sh/upload_images/4a9c7dc3b1dc99d31684432d9cf7532664ca3998e40ae.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　インポート・ボタンは　こんなんでいいかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　こんなでかいボタン、噴飯ものだが　MAUI　だから仕方ない。良いんじゃないか？」  
 
 ＜書きかけ＞
