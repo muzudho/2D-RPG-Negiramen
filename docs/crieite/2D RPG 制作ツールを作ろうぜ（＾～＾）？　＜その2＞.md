@@ -2096,4 +2096,26 @@ unity_assets_folder = ""
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　ファイル・ピッカーで　しのぎましょう」  
 
+## アラート
+
+![202308_maui_04-2157--choice-file.png](https://crieit.now.sh/upload_images/ed05e90ff9b34e53412b6c2a18e715f364ccf6b320f46.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　うーん、ファイルのフル・パスは取れるのか。  
+この　ダイアログボックスみたいなの　現代では　アラートと呼ぶらしいが、  
+キャンセル・ボタンも出せるだろうか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ポップアップはなぜ　XAML　じゃないのか……」  
+
+📖 [ポップアップの表示](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/pop-ups)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　いろいろ　あるっちゃ　あるのか」  
+
+![202308_maui_04-2306--alert.png](https://crieit.now.sh/upload_images/1d7e3fa65de92cd9d8407590be14c50a64cd06316e53b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　とりあえず　こんなんでいいか……」  
+
 ＜書きかけ＞

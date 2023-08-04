@@ -431,10 +431,24 @@ public partial class TilesetListPage : ContentPage
             }
             else
             {
+                // UUID を発行
+                var uuid = new UUID();
+                var newBasename = $"{uuid.AsStr}.png";
+
                 // ファイル名を変更していいか、確認する
                 string title = "You picked...";
-                string message = $"ネギラーメンに画像ファイル［{result.FullPath}］を読込むには、ファイル名を UUID に変更する必要があります。";
-                await DisplayAlert(title, message, "OK", "Cancel");
+                string message = $"画像ファイル［{result.FullPath}］は、ネギラーメンの中では［{newBasename}］というファイル名にします。";
+
+                bool isOk = await DisplayAlert(title, message, "OK", "Cancel");
+
+                if (isOk)
+                {
+                    Trace.WriteLine($"[TilesetListPage ImportButton_Clicked] result.FullPath:［{result.FullPath}］");
+                }
+                else
+                {
+
+                }
             }
         }
     }

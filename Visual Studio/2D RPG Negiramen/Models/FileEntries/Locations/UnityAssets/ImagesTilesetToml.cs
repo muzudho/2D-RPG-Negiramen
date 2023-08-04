@@ -28,7 +28,7 @@ class ImagesTilesetToml : ItsFile
     /// <summary>
     ///     生成
     /// </summary>
-    internal ImagesTilesetToml(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal ImagesTilesetToml(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }

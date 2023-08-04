@@ -21,7 +21,7 @@ abstract class ItsFile : Its
     /// <summary>
     ///     生成
     /// </summary>
-    internal ItsFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal ItsFile(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }

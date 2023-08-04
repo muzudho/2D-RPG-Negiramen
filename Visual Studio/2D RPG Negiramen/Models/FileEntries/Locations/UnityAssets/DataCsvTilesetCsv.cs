@@ -28,7 +28,7 @@ class DataCsvTilesetCsv : ItsFile
     /// <summary>
     ///     生成
     /// </summary>
-    internal DataCsvTilesetCsv(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal DataCsvTilesetCsv(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }

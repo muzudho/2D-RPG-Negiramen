@@ -29,7 +29,7 @@ class ItsFolder : TheFileEntryLocation.ItsFolder
     /// <summary>
     ///     生成
     /// </summary>
-    internal ItsFolder(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal ItsFolder(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }

@@ -28,7 +28,7 @@ internal class ImagesTilesetsThumbnailsPng : ItsFile
     /// <summary>
     ///     生成
     /// </summary>
-    internal ImagesTilesetsThumbnailsPng(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal ImagesTilesetsThumbnailsPng(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }

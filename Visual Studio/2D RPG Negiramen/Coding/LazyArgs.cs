@@ -1,6 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Coding
 {
-    internal class Lazy
+    /// <summary>
+    ///     😁 引数に使える様々な関数
+    /// </summary>
+    internal class LazyArgs
     {
         /// <summary>
         ///     セット

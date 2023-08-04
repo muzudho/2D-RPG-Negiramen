@@ -31,7 +31,7 @@ public partial class App : Application
             // [App.xaml.cs App] FileSystem.AppDataDirectory: C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState
 
             // UUID を作るテスト
-            String uuid = Guid.NewGuid().ToString().ToUpper();
+            string uuid = Guid.NewGuid().ToString().ToUpper();
             Trace.WriteLine($"[App.xaml.cs App] uuid: {uuid}");
         }
 

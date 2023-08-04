@@ -29,7 +29,7 @@ internal class ImagesWorkingTilesetPng : ItsFile
     /// <summary>
     ///     生成
     /// </summary>
-    internal ImagesWorkingTilesetPng(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal ImagesWorkingTilesetPng(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }

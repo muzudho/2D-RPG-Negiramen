@@ -33,7 +33,7 @@ class StarterKitConfigurationFile : TheFileEntryLocations.ItsFile
     ///         <item>構成ファイル読込時</item>
     ///     </list>
     /// </summary>
-    internal StarterKitConfigurationFile(FileEntryPathSource pathSource, Lazy.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal StarterKitConfigurationFile(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }
