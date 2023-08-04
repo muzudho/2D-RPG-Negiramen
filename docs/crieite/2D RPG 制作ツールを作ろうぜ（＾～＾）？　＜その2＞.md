@@ -2159,4 +2159,34 @@ unity_assets_folder = ""
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　要らんもの　放り込まれたら　削除したいんだけど」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　削除ボタンを　どこに置くかという　レイアウトも困るよな」  
+
+![202308_maui_05-0110--removeBtn.png](https://crieit.now.sh/upload_images/8106e54b9e16de45156a05abf67eeb2a64cd231c5ac49.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　左下に赤いボタンを置くというのは　どうだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　危ないから間違って押したくないボタンなのに、主張が激しくて　むしろ目が　そっちに行くんじゃない？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　頻繁に　マウスカーソルが近づくとこに　削除ボタンを置いては　いけないのでは？」  
+
+![202308_maui_05-0127--paleViolotRed.png](https://crieit.now.sh/upload_images/2d78f572b5d9e3bfb488ece8341d0ac964cd27221c3d7.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　右上に　ペール・バイオレット・レッド　のボタンを置くというのは　どうだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ロケールのピッカーの真下なのが気になるけど、ちょっと　ずらしたら　どう？」  
+
+![202308_maui_05-0132--deleteBtn.png](https://crieit.now.sh/upload_images/09910719b4f8821d67ed55e5e21ea26864cd28214eebd.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　おかしくないか？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　誤クリック防止よ」  
+
 ＜書きかけ＞

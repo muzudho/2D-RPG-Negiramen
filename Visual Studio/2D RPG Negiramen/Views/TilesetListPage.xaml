@@ -45,6 +45,7 @@
 
             <!-- ロケール選択 -->
             <Picker Grid.Column="1"
+                    Margin="0,0,16,0"
                     VerticalOptions="Center"
                     HorizontalOptions="End"
                     ItemsSource="{Binding LocaleIdCollection}"
@@ -61,15 +62,29 @@
     -->
     <Grid RowDefinitions="52, *, 152">
 
-        <HorizontalStackLayout Grid.Row="0"
-                               Padding="16,4,0,4"
-                               BackgroundColor="SkyBlue">
+        <Grid Grid.Row="0"
+              ColumnDefinitions="*, 262"
+              BackgroundColor="SkyBlue">
+            
+            <HorizontalStackLayout Grid.Column="0"
+                                   Padding="16,4,0,4">
 
-            <Button WidthRequest="150"
-                    HeightRequest="44"
-                    Text="インポート"
-                    Clicked="ImportButton_Clicked"/>
-        </HorizontalStackLayout>
+                <Button WidthRequest="150"
+                        HeightRequest="44"
+                        Text="インポート"
+                        Clicked="ImportButton_Clicked"/>
+                
+            </HorizontalStackLayout>
+
+            <!-- 「タイルセット削除」 -->
+            <Button Grid.Column="1"
+                    Margin="16,0,96,0"
+                    WidthRequest="150"
+                    HeightRequest="20"
+                    Text="タイルセット削除"
+                    BackgroundColor="PaleVioletRed"/>
+
+        </Grid>
         
         <!--
                         ok
@@ -139,14 +154,6 @@
                         Text="タイル切抜き"
                         IsEnabled="{Binding IsEnabledTileCropButton}"
                         Clicked="TileCropButton_Clicked"/>
-
-                <!-- 「タイルセット削除」 -->
-                <Button Margin="0,16,0,0"
-                        WidthRequest="150"
-                        HeightRequest="20"
-                        Text="タイルセット削除"
-                        TextColor="{DynamicResource GentleWhite}"
-                        BackgroundColor="Crimson"/>
 
             </VerticalStackLayout>
 
