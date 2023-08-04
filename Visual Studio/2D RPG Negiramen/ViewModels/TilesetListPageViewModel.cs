@@ -186,7 +186,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     }
     #endregion
 
-    #region メソッド（タイルセット・レコード・ビューモデル追加）
+    #region メソッド（タイルセット・レコード・ビューモデル・キュー　関連）
     /// <summary>
     ///     タイルセット・レコード・ビューモデル追加
     /// </summary>
@@ -194,6 +194,16 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     public void EnqueueTilesetRecordVM(TilesetRecordViewModel element)
     {
         this.TilesetRecordVMQueue.Enqueue(element);
+        OnPropertyChanged(nameof(TilesetRecordVMCollection));
+    }
+
+    /// <summary>
+    ///     TODO ★ タイルセット・レコード・ビューモデル削除
+    /// </summary>
+    /// <param name="element"></param>
+    public void DeleteTilesetRecordVM(TilesetRecordViewModel element)
+    {
+        //this.TilesetRecordVMQueue.Dele.Enqueue(element);
         OnPropertyChanged(nameof(TilesetRecordVMCollection));
     }
     #endregion

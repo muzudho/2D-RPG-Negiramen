@@ -513,6 +513,8 @@ public partial class TilesetListPage : ContentPage
                 // TODO エラー処理
                 Trace.WriteLine(ex);
             }
+
+            context.DequeueTilesetRecordVM();
         }
         else
         {
