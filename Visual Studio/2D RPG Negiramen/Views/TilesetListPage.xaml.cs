@@ -62,7 +62,7 @@ public partial class TilesetListPage : ContentPage
     ///         <item>画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーする</item>
     ///     </list>
     /// </summary>
-    async void FollowAutomaticallyAsync(
+    async Task FollowAutomaticallyAsync(
         string originalPngPathAsStr)
     {
         ITilesetListPageViewModel context = this.TilesetListPageVM;
@@ -470,8 +470,8 @@ public partial class TilesetListPage : ContentPage
                         this.TilesetReocrdBag.Clear();
 
                         // バッグ詰め込み
-                        await Task.Run(() => this.FollowAutomaticallyAsync(
-                            originalPngPathAsStr: tilesetPngLocation.Path.AsStr));
+                        await this.FollowAutomaticallyAsync(
+                            originalPngPathAsStr: tilesetPngLocation.Path.AsStr);
                     }
                     finally
                     {

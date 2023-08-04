@@ -12,8 +12,12 @@ public interface ITilesetListPageViewModel
     #region プロパティ（CollectionView の ItemsLayout プロパティ）
     /// <summary>
     ///     CollectionView の ItemsLayout プロパティ
+    ///     
+    ///     <list type="bullet">
+    ///         <item>１回値をセットすると、上書きしても無視されるという不可解な振る舞いをする</item>
+    ///     </list>
     /// </summary>
-    GridItemsLayout ItemsLayout { get; set; }
+    GridItemsLayout? ItemsLayout { get; set; }
     #endregion
 
     #region プロパティ（［タイル切抜き］ボタン　関連）

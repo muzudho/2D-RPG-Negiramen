@@ -2189,4 +2189,63 @@ unity_assets_folder = ""
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　誤クリック防止よ」  
 
+## ボタンのスタイル
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、この　ペール・バイオレット・レッド　のボタン、  
+不活性にしても　グレーにならねーっ！」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　背景色を指定しているからな」  
+
+![202308_maui_05-0147--buttonStyle-o2o0.png](https://crieit.now.sh/upload_images/2856912165bb029c019bf201eed2a7ef64cd2bd005eb8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　このボタンのスタイル、　削除ボタンだけ　別のを使うようにできないのかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`x:Name` 属性を使って　なんとかならないかしらねえ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇 `x:Key` というのが　あるそうだぜ」  
+
+📖 [XAML を使用してアプリのスタイルを設定する](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/styles/xaml)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　でけた」  
+
+## キュー構造だから、任意の場所の要素を削除できねー
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　キュー構造だから、任意の場所の要素を削除できねー」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　前から入れて、後ろから出すしか　できないぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　なんで　キューなんかにしたのよ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　コンカレント処理に強ければ　なんでもいいと思ったんだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　`ConcurrentBag` にしよかな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　`ConcurrentBag` も要素を削除できないのか」  
+
+📖 [How to remove a single, specific object from a ConcurrentBag<>?](https://stackoverflow.com/questions/3029818/how-to-remove-a-single-specific-object-from-a-concurrentbag)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　非同期処理をしているときには　どんなコレクションが使えるんだぜ？」  
+
+![202308_maui_05-0302--importAndDelete.png](https://crieit.now.sh/upload_images/faaed6043ec972dcd9a68adad366e9bf64cd3d8b28804.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　連続読込は　ConcurrentBag、　UI は同期のコレクションに変えた。  
+インポートと　タイルセット削除は　でけたぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　疲れたので　今日は　ここまで」  
+
 ＜書きかけ＞
