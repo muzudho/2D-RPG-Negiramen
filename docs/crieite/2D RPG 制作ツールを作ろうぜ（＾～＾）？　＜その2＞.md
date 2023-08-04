@@ -2012,8 +2012,21 @@ unity_assets_folder = ""
 
 # 📅 （2023-08-04 fri）インポート画面の練習をしよう
 
+![202308_maui_04-1917--filePickerSample.png](https://crieit.now.sh/upload_images/d237db0b43f7a893373fcf780203440764ccd07270013.png)  
+
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　ファイル・ピッカーの色々なことが分からないので　本番に組み込む前に　練習したいぜ」  
+「　👆　前述のサンプルは　動くぜ」  
+
+![202308_maui_04-1920--filePickerCode-o2o0.png](https://crieit.now.sh/upload_images/1d22f3ffbaf75490d2f1db9276bffaf664ccd120a2adb.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コードはこれを真似すれば　良さそうだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイル・ピッカーは　コントロールではなく、ただの関数なんだな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイル・ピッカーに取り掛かる前に　コントロールの色々なことが分からないので　本番に組み込む前に　練習したいぜ」  
 
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　👇　リポジトリ―を作っておいたぜ」  
