@@ -456,4 +456,31 @@ public partial class TilesetListPage : ContentPage
             }
         }
     }
+
+    /// <summary>
+    ///     ［タイルセット削除］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    async void TilesetDeleteButton_Clicked(object sender, EventArgs e)
+    {
+        var context = this.TilesetListPageVM;
+
+        var basename = $"{context.SelectedFileStem}{context.SelectedFileExtension}";
+
+        var keyword = Random.Shared.Next(1000, 9999).ToString();
+
+        // キャンセルすると空文字列になる？
+        string result = await DisplayPromptAsync("タイルセット削除", $"［{basename}］を削除したいなら、［{keyword}］と打鍵してください。");
+
+        if(result == keyword)
+        {
+            // TODO ファイルの削除
+            Trace.WriteLine("TODO ファイルの削除  result: " + result);
+        }
+        else
+        {
+            Trace.WriteLine("キーワードが違います。 result: " + result);
+        }
+    }
 }
