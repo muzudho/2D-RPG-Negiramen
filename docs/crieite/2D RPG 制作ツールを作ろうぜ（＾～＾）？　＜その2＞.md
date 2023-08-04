@@ -2025,6 +2025,8 @@ unity_assets_folder = ""
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　ファイル・ピッカーは　コントロールではなく、ただの関数なんだな」  
 
+## ドラッグ＆ドロップ
+
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　ファイル・ピッカーに取り掛かる前に　コントロールの色々なことが分からないので　本番に組み込む前に　練習したいぜ」  
 
@@ -2068,5 +2070,30 @@ unity_assets_folder = ""
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　コード・ビハインドは　こう書けば良さそうだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　Windowsのファイル・エクスプローラー上の画像ファイルを　ＭＡＵＩへドラッグ＆ドロップできるの？」  
+
+![202308_maui_04-2024--DragImageFile.png](https://crieit.now.sh/upload_images/ccf87c1cadcdb67a48666b16634d77bb64ccdff39ecd0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　できそうな見た目をしているが、ドロップすると　強制終了するぜ」  
+
+![202308_maui_04-2027--error.png](https://crieit.now.sh/upload_images/6bbab9883f9f6738c26f8dfc0ef704e164cce0b7899d8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　エラーの理由は　ヌルにできないパラメーターに　ヌルを入れたかららしいが、  
+分けわからん」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　MAUI にデスクトップ・アプリケーションの機能が無いのは　鉄板の話題らしい」  
+
+📖 [Does MAUI support file drag and drop to other application (Windows, Linux, macOS)? #7508](https://github.com/dotnet/maui/discussions/7508)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　MAUI　は　WPF　より先に廃止するかもしれないな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ファイル・ピッカーで　しのぎましょう」  
 
 ＜書きかけ＞
