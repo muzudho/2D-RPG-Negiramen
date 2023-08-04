@@ -1996,4 +1996,29 @@ unity_assets_folder = ""
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　こんなでかいボタン、噴飯ものだが　MAUI　だから仕方ない。良いんじゃないか？」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　ファイル・ピッカーの説明が　何言ってるか分からないな」  
+
+📖 [Microsoft　＞　ファイル ピッカー](https://learn.microsoft.com/ja-jp/dotnet/maui/platform-integration/storage/file-picker?tabs=windows)
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　サンプル・プログラムに　ファイル・ピッカーがないか　調べてみるか」  
+
+📖 [jfversluis　＞　MauiFilePickerSample](https://github.com/jfversluis/MauiFilePickerSample)  
+
+# 📅 （2023-08-03 thu）疲れたので寝た
+
+ Zzz  
+
+# 📅 （2023-08-04 fri）インポート画面の練習をしよう
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイル・ピッカーの色々なことが分からないので　本番に組み込む前に　練習したいぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　リポジトリ―を作っておいたぜ」  
+
+📖 [Muzudho　＞　MAUI-Control-Practice](https://github.com/muzudho/MAUI-Control-Practice)  
+
+
 ＜書きかけ＞
