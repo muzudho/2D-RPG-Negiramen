@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
+    using System;
+
     /// <summary>
     ///     😁 UUID
     /// </summary>
@@ -8,44 +10,6 @@
         // - その他
 
         #region その他（生成　関連）
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal UUID()
-        {
-            this.AsStr = string.Empty;
-        }
-
-        /// <summary>
-        ///     生成
-        /// </summary>
-        internal UUID(string asStr)
-        {
-            this.AsStr = asStr;
-        }
-        #endregion
-
-        // - パブリック・メソッド
-
-        #region メソッド（暗黙的な文字列形式）
-        /// <summary>
-        ///     暗黙的な文字列形式
-        /// </summary>
-        public override string ToString() => AsStr;
-        #endregion
-
-        // - インターナル静的プロパティ
-
-        #region プロパティ（空オブジェクト）
-        /// <summary>
-        ///     空オブジェクト
-        /// </summary>
-        internal static UUID Empty { get; } = new UUID();
-        #endregion
-
-        // - インターナル静的メソッド
-
-        #region メソッド（文字列を与えて初期化）
         /// <summary>
         ///     文字列を与えて初期化
         /// </summary>
@@ -60,6 +24,40 @@
 
             return new UUID(source);
         }
+
+        /// <summary>
+        ///     生成
+        /// </summary>
+        internal UUID()
+        {
+            this.Source = Guid.NewGuid().ToString().ToUpper();
+        }
+
+        /// <summary>
+        ///     生成
+        /// </summary>
+        UUID(string source)
+        {
+            this.Source = source;
+        }
+        #endregion
+
+        // - パブリック・メソッド
+
+        #region メソッド（暗黙的な文字列形式）
+        /// <summary>
+        ///     暗黙的な文字列形式
+        /// </summary>
+        public override string ToString() => Source;
+        #endregion
+
+        // - インターナル静的プロパティ
+
+        #region プロパティ（空オブジェクト）
+        /// <summary>
+        ///     空オブジェクト
+        /// </summary>
+        internal static UUID Empty { get; } = new UUID(string.Empty);
         #endregion
 
         // - インターナル・プロパティ
@@ -68,7 +66,16 @@
         /// <summary>
         ///     文字列形式
         /// </summary>
-        internal string AsStr { get; }
+        internal string AsStr => this.Source;
+        #endregion
+
+        // - プライベート・プロパティ
+
+        #region プロパティ（入力まま）
+        /// <summary>
+        ///     入力まま
+        /// </summary>
+        string Source { get; }
         #endregion
     }
 }
