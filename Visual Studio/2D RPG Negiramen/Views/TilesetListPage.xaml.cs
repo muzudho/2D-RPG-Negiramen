@@ -4,6 +4,7 @@ using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.FileEntries;
 using _2D_RPG_Negiramen.ViewModels;
 using SkiaSharp;
+using System;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -52,6 +53,95 @@ public partial class TilesetListPage : ContentPage
     public ITilesetListPageViewModel TilesetListPageVM => (ITilesetListPageViewModel)this.BindingContext;
     #endregion
 
+    // - プライベート静的メソッド
+
+    /// <summary>
+    ///     タイルセット画像をネギラーメンに取り込んだ後の処理を自動で行う
+    ///     
+    ///     <list type="bullet">
+    ///         <item>画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーする</item>
+    ///     </list>
+    /// </summary>
+    async void FollowAutomaticallyAsync(
+        string originalPngPathAsStr)
+    {
+        ITilesetListPageViewModel context = this.TilesetListPageVM;
+
+        // 画像ファイルの名前は UUID という想定
+        var uuid = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
+
+        // TODO TOML があれば読込む。無ければ新規作成
+        string tomlPathAsStr = System.IO.Path.Join(
+            System.IO.Path.GetDirectoryName(originalPngPathAsStr),
+            $"{uuid}.toml");
+        if (System.IO.File.Exists(tomlPathAsStr))
+        {
+            // TODO ★ Tileset 設定 TOML ファイル読込
+        }
+        else
+        {
+            // TODO TOML 新規作成
+        }
+
+        try
+        {
+            // サムネイル画像出力先ディレクトリー
+            var thumbnailOutputFolder = App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.TilesetFolder.ImagesTilesetsThumbnailsFolder;
+            // ディレクトリーが無ければ作成する
+            thumbnailOutputFolder.CreateThisDirectoryIfItDoesNotExist();
+
+            // タイルセット元画像のプロパティーズ
+            var tilesetImageProperties = await TilesetImageProperties.ReadAsync(
+                originalPngPathAsStr: originalPngPathAsStr);
+
+            // サムネイル画像のプロパティーズ
+            var tilesetThumbnailImageProperties = TilesetThumbnailImageProperties.Create(
+                originalPngPathAsStr: originalPngPathAsStr,
+                originalWidth: tilesetImageProperties.Width,
+                originalHeight: tilesetImageProperties.Height,
+                outputFolder: thumbnailOutputFolder);
+
+            //
+            // サムネイル書出し
+            // ================
+            //
+            {
+                // ビットマップ作成
+                SKBitmap thumbnailBitmap = TilesetThumbnailImageHelper.CreateBitmap(
+                    originalBitmap: tilesetImageProperties.Bitmap,
+                    tilesetThumbnailImageProperties: tilesetThumbnailImageProperties);
+
+                // 画像書出し
+                TilesetThumbnailImageHelper.WriteImage(
+                    thumbnailPathAsStr: tilesetThumbnailImageProperties.PathAsStr,
+                    thumbnailBitmap: thumbnailBitmap);
+            }
+
+            context.EnqueueTilesetRecordVM(new TilesetRecordViewModel(
+            // UUID文字列
+                uuidAsStr: uuid,
+                // PNG元画像のファイルパス文字列
+                filePathAsStr: originalPngPathAsStr,
+                // PNG元画像の横幅
+                widthAsInt: tilesetImageProperties.Width,
+                // PNG元画像の縦幅
+                heightAsInt: tilesetImageProperties.Height,
+                // サムネイル画像へのファイルパス文字列
+                thumbnailFilePathAsStr: tilesetThumbnailImageProperties.PathAsStr,
+                // サムネイル画像の横幅
+                thumbnailWidthAsInt: tilesetThumbnailImageProperties.Width,
+                // サムネイル画像の縦幅
+                thumbnailHeightAsInt: tilesetThumbnailImageProperties.Height,
+                // 画面に表示する画像タイトル
+                title: "たいとる１"));
+        }
+        catch (Exception ex)
+        {
+            // TODO エラー対応どうする？
+            Trace.WriteLine(ex);
+        }
+    }
+
     // - プライベート・イベントハンドラ
 
     #region イベントハンドラ（ページ読込完了時）
@@ -60,13 +150,13 @@ public partial class TilesetListPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    private void ContentPage_Loaded(object sender, EventArgs e)
+    void ContentPage_Loaded(object sender, EventArgs e)
     {
         //
         // ビューモデルの取得
         // ==================
         //
-        TilesetListPageViewModel context = (TilesetListPageViewModel)this.BindingContext;
+        ITilesetListPageViewModel context = this.TilesetListPageVM;
 
         {
             TilesetListPage page = (TilesetListPage)sender;
@@ -94,85 +184,9 @@ public partial class TilesetListPage : ContentPage
         {
             Trace.WriteLine($"[TilesetListPage.xaml.cs ContentPage_Loaded] path: [{originalPngPathAsStr}]");
 
-            // 画像ファイルの名前は UUID という想定
-            var uuid = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
-
-            // TODO TOML があれば読込む。無ければ新規作成
-            string tomlPathAsStr = System.IO.Path.Join(
-                System.IO.Path.GetDirectoryName(originalPngPathAsStr),
-                $"{uuid}.toml");
-            if (System.IO.File.Exists(tomlPathAsStr))
-            {
-                // TODO ★ Tileset 設定 TOML ファイル読込
-            }
-            else
-            {
-                // TODO TOML 新規作成
-            }
-
-            //
-            // TODO 画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーしたい
-            //
-            var task = Task.Run(async () =>
-            {
-                try
-                {
-                    // サムネイル画像出力先ディレクトリー
-                    var thumbnailOutputFolder = App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.TilesetFolder.ImagesTilesetsThumbnailsFolder;
-                    // ディレクトリーが無ければ作成する
-                    thumbnailOutputFolder.CreateThisDirectoryIfItDoesNotExist();
-
-                    // タイルセット元画像のプロパティーズ
-                    var tilesetImageProperties = await TilesetImageProperties.ReadAsync(
-                        originalPngPathAsStr: originalPngPathAsStr);
-
-                    // サムネイル画像のプロパティーズ
-                    var tilesetThumbnailImageProperties = TilesetThumbnailImageProperties.Create(
-                        originalPngPathAsStr: originalPngPathAsStr,
-                        originalWidth: tilesetImageProperties.Width,
-                        originalHeight: tilesetImageProperties.Height,
-                        outputFolder: thumbnailOutputFolder);
-
-                    //
-                    // サムネイル書出し
-                    // ================
-                    //
-                    {
-                        // ビットマップ作成
-                        SKBitmap thumbnailBitmap = TilesetThumbnailImageHelper.CreateBitmap(
-                            originalBitmap: tilesetImageProperties.Bitmap,
-                            tilesetThumbnailImageProperties: tilesetThumbnailImageProperties);
-
-                        // 画像書出し
-                        TilesetThumbnailImageHelper.WriteImage(
-                            thumbnailPathAsStr: tilesetThumbnailImageProperties.PathAsStr,
-                            thumbnailBitmap: thumbnailBitmap);
-                    }
-
-                    context.EnqueueTilesetRecordVM(new TilesetRecordViewModel(
-                        // UUID文字列
-                        uuidAsStr: uuid,
-                        // PNG元画像のファイルパス文字列
-                        filePathAsStr: originalPngPathAsStr,
-                        // PNG元画像の横幅
-                        widthAsInt: tilesetImageProperties.Width,
-                        // PNG元画像の縦幅
-                        heightAsInt: tilesetImageProperties.Height,
-                        // サムネイル画像へのファイルパス文字列
-                        thumbnailFilePathAsStr: tilesetThumbnailImageProperties.PathAsStr,
-                        // サムネイル画像の横幅
-                        thumbnailWidthAsInt: tilesetThumbnailImageProperties.Width,
-                        // サムネイル画像の縦幅
-                        thumbnailHeightAsInt: tilesetThumbnailImageProperties.Height,
-                        // 画面に表示する画像タイトル
-                        title: "たいとる１"));
-                }
-                catch (Exception ex)
-                {
-                    // TODO エラー対応どうする？
-                    Trace.WriteLine(ex);
-                }
-            });
+            // 画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーしたい
+            var task = Task.Run(() => this.FollowAutomaticallyAsync(
+                originalPngPathAsStr: originalPngPathAsStr));
 
             taskList.Add(task);
         }
@@ -419,26 +433,9 @@ public partial class TilesetListPage : ContentPage
                         sourceFileName: result.FullPath,
                         destFileName: tilesetPngLocation.Path.AsStr);
 
-                    /*
-                    // TODO コレクション・ビューへの追加
-                    context.EnqueueTilesetRecordVM(new TilesetRecordViewModel(
-                        // UUID文字列
-                        uuidAsStr: uuid.AsStr,
-                        // PNG元画像のファイルパス文字列
-                        filePathAsStr: tilesetPngLocation.Path.AsStr,
-                        // PNG元画像の横幅
-                        widthAsInt: originalWidth,
-                        // PNG元画像の縦幅
-                        heightAsInt: originalHeight,
-                        // サムネイル画像へのファイルパス文字列
-                        thumbnailFilePathAsStr: thumbnailPathAsStr,
-                        // サムネイル画像の横幅
-                        thumbnailWidthAsInt: thumbnailWidth,
-                        // サムネイル画像の縦幅
-                        thumbnailHeightAsInt: thumbnailHeight,
-                        // 画面に表示する画像タイトル
-                        title: "たいとる１"));
-                    */
+                    // 画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーしたい
+                    await Task.Run(() => this.FollowAutomaticallyAsync(
+                        originalPngPathAsStr: tilesetPngLocation.Path.AsStr));
                 }
                 else
                 {
