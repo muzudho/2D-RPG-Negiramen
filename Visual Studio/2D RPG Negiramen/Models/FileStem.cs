@@ -3,7 +3,7 @@
     /// <summary>
     ///     😁 ファイル・ステム
     /// </summary>
-    class FileStem
+    public class FileStem
     {
         // - その他
 

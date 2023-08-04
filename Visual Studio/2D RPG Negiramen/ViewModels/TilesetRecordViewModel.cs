@@ -16,7 +16,7 @@
         ///     生成
         /// </summary>
         /// <param name="uuidAsStr"></param>
-        /// <param name="filePathAsStr"></param>
+        /// <param name="pngFilePathAsStr">PNG元画像のファイルパス文字列</param>
         /// <param name="widthAsInt"></param>
         /// <param name="heightAsInt"></param>
         /// <param name="thumbnailFilePathAsStr"></param>
@@ -25,7 +25,7 @@
         /// <param name="title"></param>
         internal TilesetRecordViewModel(
             string uuidAsStr,
-            string filePathAsStr,
+            string pngFilePathAsStr,
             int widthAsInt,
             int heightAsInt,
             string thumbnailFilePathAsStr,
@@ -34,7 +34,7 @@
             string title)
         {
             this.UuidAsStr = uuidAsStr;
-            this.FilePathAsStr = filePathAsStr;
+            this.PngFilePathAsStr = pngFilePathAsStr;
             this.WidthAsInt = widthAsInt;
             this.HeightAsInt = heightAsInt;
             this.ThumbnailFilePathAsStr = thumbnailFilePathAsStr;
@@ -52,9 +52,9 @@
         public string UuidAsStr { get; }
 
         /// <summary>
-        ///     ファイルパス
+        ///     PNG元画像のファイルパス文字列
         /// </summary>
-        public string FilePathAsStr { get; }
+        public string PngFilePathAsStr { get; }
 
         /// <summary>
         ///     横幅

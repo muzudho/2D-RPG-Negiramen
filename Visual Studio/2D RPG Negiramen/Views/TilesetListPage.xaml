@@ -166,7 +166,7 @@
                     XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
             -->
             <Entry Grid.Row="1" Grid.Column="1"
-                   Text="{Binding SelectedFileStem}"
+                   Text="{Binding SelectedFileStemAsStr}"
                    IsReadOnly="True"
                    BackgroundColor="Transparent"/>
 

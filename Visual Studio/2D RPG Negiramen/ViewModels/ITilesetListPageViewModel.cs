@@ -30,7 +30,6 @@ public interface ITilesetListPageViewModel
     bool IsEnabledRenameFileNameToUUIDButton { get; set; }
     #endregion
 
-
     #region 変更通知プロパティ（［タイルセット削除］ボタン　関連）
     /// <summary>
     ///     ［タイルセット削除］ボタンの活性性
@@ -42,7 +41,7 @@ public interface ITilesetListPageViewModel
     /// <summary>
     ///     選択ファイル・ステム
     /// </summary>
-    string SelectedFileStem { get; set; }
+    string SelectedFileStemAsStr { get; set; }
     #endregion
 
     #region 変更通知プロパティ（選択ファイル拡張子）
@@ -65,11 +64,17 @@ public interface ITilesetListPageViewModel
     void InvalidateLocale();
     #endregion
 
-    #region メソッド（タイルセット・レコード・ビューモデル追加）
+    #region メソッド（タイルセット・レコード・ビューモデル　関連）
     /// <summary>
     ///     タイルセット・レコード・ビューモデル追加
     /// </summary>
     /// <param name="element"></param>
-    void EnqueueTilesetRecordVM(TilesetRecordViewModel element);
+    void AddTilesetRecord(TilesetRecordViewModel element);
+
+    /// <summary>
+    ///     タイルセット・レコード・ビューモデル削除
+    /// </summary>
+    /// <param name="fileStem">ファイル・ステム</param>
+    void DeleteTilesetRecordByFileStem(FileStem fileStem);
     #endregion
 }

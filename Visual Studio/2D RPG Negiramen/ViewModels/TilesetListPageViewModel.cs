@@ -2,6 +2,7 @@
 
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Maui.Controls;
 using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Globalization;
@@ -19,7 +20,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// </summary>
     public TilesetListPageViewModel(GridItemsLayout itemsLayout)
     {
-        this.TilesetRecordVMQueue = new ConcurrentQueue<TilesetRecordViewModel>();
+        this.TilesetRecordList = new List<TilesetRecordViewModel>();
         this.ItemsLayout = itemsLayout;
     }
     #endregion
@@ -30,7 +31,8 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// <summary>
     ///     タイルセット・レコード・ビューモデルのリスト
     /// </summary>
-    public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection => new(this.TilesetRecordVMQueue.ToList());
+    public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection => new(this.TilesetRecordList);
+    // public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection => new(this.TilesetRecordList.ToList());
     #endregion
 
     // - パブリック変更通知プロパティ
@@ -138,7 +140,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// <summary>
     ///     選択ファイル・ステム
     /// </summary>
-    public string SelectedFileStem
+    public string SelectedFileStemAsStr
     {
         get => this.selectedFileStem;
         set
@@ -147,7 +149,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
                 return;
 
             this.selectedFileStem = value;
-            OnPropertyChanged(nameof(SelectedFileStem));
+            OnPropertyChanged(nameof(SelectedFileStemAsStr));
         }
     }
     #endregion
@@ -191,9 +193,9 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     ///     タイルセット・レコード・ビューモデル追加
     /// </summary>
     /// <param name="element"></param>
-    public void EnqueueTilesetRecordVM(TilesetRecordViewModel element)
+    public void AddTilesetRecord(TilesetRecordViewModel element)
     {
-        this.TilesetRecordVMQueue.Enqueue(element);
+        this.TilesetRecordList.Add(element);
         OnPropertyChanged(nameof(TilesetRecordVMCollection));
     }
 
@@ -201,20 +203,37 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     ///     TODO ★ タイルセット・レコード・ビューモデル削除
     /// </summary>
     /// <param name="element"></param>
-    public void DeleteTilesetRecordVM(TilesetRecordViewModel element)
+    public void DeleteTilesetRecordByFileStem(FileStem fileStem)
     {
-        //this.TilesetRecordVMQueue.Dele.Enqueue(element);
-        OnPropertyChanged(nameof(TilesetRecordVMCollection));
+        var hitIndex = -1;
+
+        for (int i = 0; i < this.TilesetRecordList.Count; i++)
+        {
+            var record = this.TilesetRecordList[i];
+
+            if (System.IO.Path.GetFileNameWithoutExtension(record.PngFilePathAsStr)==fileStem.AsStr)
+            {
+                hitIndex = i;
+                break;
+            }
+        }
+
+        // 任意の位置の要素を削除
+        if (0 <= hitIndex)
+        {
+            this.TilesetRecordList.RemoveAt(hitIndex);
+            OnPropertyChanged(nameof(TilesetRecordVMCollection));
+        }
     }
     #endregion
 
     // - プライベート・プロパティ
 
-    #region プロパティ（タイルセット・レコード・ビューモデルのリスト）
+    #region プロパティ（タイルセット・レコードのリスト）
     /// <summary>
-    ///     タイルセット・レコード・ビューモデルのリスト
+    ///     タイルセット・レコードのリスト
     /// </summary>
-    ConcurrentQueue<TilesetRecordViewModel> TilesetRecordVMQueue { get; set; } = new ConcurrentQueue<TilesetRecordViewModel>();
+    List<TilesetRecordViewModel> TilesetRecordList { get; set; } = new List<TilesetRecordViewModel>();
     #endregion
 
     GridItemsLayout itemsLayout;
