@@ -2033,5 +2033,40 @@ unity_assets_folder = ""
 
 📖 [Muzudho　＞　MAUI-Control-Practice](https://github.com/muzudho/MAUI-Control-Practice)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　画像ファイルを　ネギラーメンに　ドラッグ　アンド　ドロップ　できるかな？」  
+
+📖 [Microsoft　＞　ドラッグ アンド ドロップ ジェスチャを認識する](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/gestures/drag-and-drop)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　`Square` クラスなんか　どこにあるのか？」  
+
+📖 [Microsoft　＞　Microsoft.Maui.Controls.Shapes Namespace](https://learn.microsoft.com/en-us/dotnet/api/microsoft.maui.controls.shapes?view=net-maui-7.0)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　Rectangle で十分じゃないか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI の Rectangle は、 XAML の Rectangle 要素なんだぜ」  
+
+![202308_maui_04-1955--DragAndDrop.png](https://crieit.now.sh/upload_images/85d26164aba5067202145c1a1d738c3664ccd943ebcad.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　矩形を　ドラッグ＆ドロップ　しようとしたら　こんな見た目になるのか」  
+
+![202308_maui_04-2010--Drag.png](https://crieit.now.sh/upload_images/1551bf606ba0383840c72b08edfe8c7e64ccdce80cbd5.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ドラッグ・イベントの仕事は、　禁止マークとか　コピー・マークとか　表示するところにありそうだぜ」  
+
+![202308_maui_04-2015--Xaml-o2o0.png](https://crieit.now.sh/upload_images/7aceafb63df49c40ed115ae3b5fda20064ccde26b1960.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　XAML は　こう書いて」  
+
+![202308_maui_04-2017--CodeBehind-o2o0.png](https://crieit.now.sh/upload_images/4b3d8fb879b19214cf2b22e19c104d2964ccdec9a63d1.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コード・ビハインドは　こう書けば良さそうだぜ」  
 
 ＜書きかけ＞
