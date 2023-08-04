@@ -1,10 +1,10 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.FileEntries;
 using _2D_RPG_Negiramen.ViewModels;
 using SkiaSharp;
 using System;
+using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Threading.Tasks;
 
@@ -117,7 +117,7 @@ public partial class TilesetListPage : ContentPage
                     thumbnailBitmap: thumbnailBitmap);
             }
 
-            context.AddTilesetRecord(new TilesetRecordViewModel(
+            this.TilesetReocrdBag.Add(new TilesetRecordViewModel(
             // UUID文字列
                 uuidAsStr: uuid,
                 // PNG元画像のファイルパス文字列
@@ -141,6 +141,10 @@ public partial class TilesetListPage : ContentPage
             Trace.WriteLine(ex);
         }
     }
+
+    // - プライベート・プロパティ
+
+    ConcurrentBag<TilesetRecordViewModel> TilesetReocrdBag = new ConcurrentBag<TilesetRecordViewModel>();
 
     // - プライベート・イベントハンドラ
 
@@ -191,7 +195,22 @@ public partial class TilesetListPage : ContentPage
             taskList.Add(task);
         }
 
-        Task.WaitAll(taskList.ToArray());
+        try
+        {
+            // バッグ用意
+            this.TilesetReocrdBag.Clear();
+
+            // バッグ詰め込み
+            Task.WaitAll(taskList.ToArray());
+        }
+        finally
+        {
+            // バッグ移し替え
+            foreach (TilesetRecordViewModel record in this.TilesetReocrdBag)
+            {
+                context.AddTilesetRecord(record);
+            }
+        }
     }
     #endregion
 
@@ -394,9 +413,9 @@ public partial class TilesetListPage : ContentPage
                  //{ DevicePlatform.iOS, new[] { "com.adobe.pdf" } }, // or general UTType values
                  //{ DevicePlatform.Android, new[] { "application/pdf" } },
                  { DevicePlatform.WinUI, new[] { ".png" } },
-                 //{ DevicePlatform.Tizen, new[] { "*/*" } },
-                 //{ DevicePlatform.macOS, new[] { "pdf"} }, // or general UTType values
-        	});
+                //{ DevicePlatform.Tizen, new[] { "*/*" } },
+                //{ DevicePlatform.macOS, new[] { "pdf"} }, // or general UTType values
+            });
 
         var results = await FilePicker.PickMultipleAsync(new PickOptions
         {
@@ -445,9 +464,24 @@ public partial class TilesetListPage : ContentPage
                         sourceFileName: result.FullPath,
                         destFileName: tilesetPngLocation.Path.AsStr);
 
-                    // 画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーしたい
-                    await Task.Run(() => this.FollowAutomaticallyAsync(
-                        originalPngPathAsStr: tilesetPngLocation.Path.AsStr));
+                    try
+                    {
+                        // バッグ用意
+                        this.TilesetReocrdBag.Clear();
+
+                        // バッグ詰め込み
+                        await Task.Run(() => this.FollowAutomaticallyAsync(
+                            originalPngPathAsStr: tilesetPngLocation.Path.AsStr));
+                    }
+                    finally
+                    {
+                        // バッグ移し替え
+                        foreach (TilesetRecordViewModel record in this.TilesetReocrdBag)
+                        {
+                            context.AddTilesetRecord(record);
+                        }
+                    }
+
                 }
                 else
                 {
@@ -455,6 +489,7 @@ public partial class TilesetListPage : ContentPage
                 }
             }
         }
+
     }
 
     /// <summary>
