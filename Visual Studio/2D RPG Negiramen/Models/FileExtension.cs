@@ -1,9 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 ファイル・ステム
+    ///     😁 ファイル拡張子
     /// </summary>
-    class FileStem
+    class FileExtension
     {
         // - その他
 
@@ -11,17 +11,17 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal FileStem()
+        internal FileExtension()
         {
-            this.AsStr = string.Empty;
+            this.Source = string.Empty;
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal FileStem(string asStr)
+        internal FileExtension(string source)
         {
-            this.AsStr = asStr;
+            this.Source = source;
         }
         #endregion
 
@@ -31,7 +31,7 @@
         /// <summary>
         ///     暗黙的な文字列形式
         /// </summary>
-        public override string ToString() => AsStr;
+        public override string ToString() => Source;
         #endregion
 
         // - インターナル静的プロパティ
@@ -40,7 +40,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static FileStem Empty { get; } = new FileStem();
+        internal static FileExtension Empty { get; } = new FileExtension();
         #endregion
 
         // - インターナル静的メソッド
@@ -51,14 +51,14 @@
         /// </summary>
         /// <param name="source">ソース</param>
         /// <returns>実例</returns>
-        internal static FileStem FromString(string source)
+        internal static FileExtension FromString(string source)
         {
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return new FileStem(source);
+            return new FileExtension(source);
         }
         #endregion
 
@@ -68,7 +68,16 @@
         /// <summary>
         ///     文字列形式
         /// </summary>
-        internal string AsStr { get; }
+        string AsStr => this.Source;
+        #endregion
+
+        // - プライベート・プロパティ
+
+        #region プロパティ（文字列形式）
+        /// <summary>
+        ///     文字列形式
+        /// </summary>
+        string Source { get; }
         #endregion
     }
 }

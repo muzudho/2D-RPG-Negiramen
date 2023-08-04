@@ -1,9 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
-    ///     😁 ファイル拡張子
+    ///     😁 ファイル・ステム
     /// </summary>
-    class FileExtension
+    class FileStem
     {
         // - その他
 
@@ -11,17 +11,17 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal FileExtension()
+        internal FileStem()
         {
-            this.AsStr = string.Empty;
+            this.source = string.Empty;
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        internal FileExtension(string asStr)
+        internal FileStem(string source)
         {
-            this.AsStr = asStr;
+            this.source = source;
         }
         #endregion
 
@@ -31,7 +31,7 @@
         /// <summary>
         ///     暗黙的な文字列形式
         /// </summary>
-        public override string ToString() => AsStr;
+        public override string ToString() => source;
         #endregion
 
         // - インターナル静的プロパティ
@@ -40,7 +40,7 @@
         /// <summary>
         ///     空オブジェクト
         /// </summary>
-        internal static FileExtension Empty { get; } = new FileExtension();
+        internal static FileStem Empty { get; } = new FileStem();
         #endregion
 
         // - インターナル静的メソッド
@@ -51,14 +51,14 @@
         /// </summary>
         /// <param name="source">ソース</param>
         /// <returns>実例</returns>
-        internal static FileExtension FromString(string source)
+        internal static FileStem FromString(string source)
         {
             if (source == null)
             {
                 throw new ArgumentNullException(nameof(source));
             }
 
-            return new FileExtension(source);
+            return new FileStem(source);
         }
         #endregion
 
@@ -68,7 +68,16 @@
         /// <summary>
         ///     文字列形式
         /// </summary>
-        internal string AsStr { get; }
+        internal string AsStr => this.source;
+        #endregion
+
+        // - プライベート・プロパティ
+
+        #region プロパティ（入力まま）
+        /// <summary>
+        ///     入力まま
+        /// </summary>
+        string source { get; }
         #endregion
     }
 }
