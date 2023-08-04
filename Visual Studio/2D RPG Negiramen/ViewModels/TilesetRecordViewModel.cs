@@ -7,7 +7,7 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class TilesetRecordViewModel
+    public class TilesetRecordViewModel
     {
         // - その他
 

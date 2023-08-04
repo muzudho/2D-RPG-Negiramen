@@ -124,82 +124,60 @@ public partial class TilesetListPage : ContentPage
                     // サムネイル画像のファイルパス
                     string thumbnailPathAsStr;
 
-                    // サイズ
-                    int originalWidth;
-                    int originalHeight;
-                    int thumbnailWidth;
-                    int thumbnailHeight;
+                    var tilesetImageProperties = await TilesetImageProperties.ReadAsync(
+                        originalPngPathAsStr: originalPngPathAsStr);
 
-                    // タイルセット画像読込
-                    using (Stream inputFileStream = System.IO.File.OpenRead(originalPngPathAsStr))
+                    //
+                    // サムネイル書出し
+                    // ================
+                    //
                     {
-                        // ↓ １つのストリームが使えるのは、１回切り
-                        using (var memStream = new MemoryStream())
+                        // 作業画像のリサイズ
+                        SKBitmap thumbnailBitmap = tilesetImageProperties.OriginalBitmap.Resize(
+                            size: new SKSizeI(
+                                width: tilesetImageProperties.ThumbnailWidth,
+                                height: tilesetImageProperties.ThumbnailHeight),
+                            quality: SKFilterQuality.Medium);
+
+                        //
+                        // 書出先（ウィンドウズ・ローカルＰＣ）
+                        //
+                        // 📖 [Using SkiaSharp, how to save a SKBitmap ?](https://social.msdn.microsoft.com/Forums/en-US/25fe8438-8afb-4acf-9d68-09acc6846918/using-skiasharp-how-to-save-a-skbitmap-?forum=xamarinforms)  
+                        //
+                        var fileStem = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
+                        thumbnailPathAsStr = outputFolder.CreateTilesetThumbnailPng(fileStem).Path.AsStr;
+                        using (Stream outputFileStream = System.IO.File.Open(
+                            path: thumbnailPathAsStr,
+                            mode: FileMode.OpenOrCreate))
                         {
-                            await inputFileStream.CopyToAsync(memStream);
-                            memStream.Seek(0, SeekOrigin.Begin);
+                            // 画像にする
+                            SKImage skImage = SkiaSharp.SKImage.FromBitmap(thumbnailBitmap);
 
-                            // 元画像
-                            var bitmap = SkiaSharp.SKBitmap.Decode(memStream);
+                            // PNG画像にする
+                            SKData pngImage = skImage.Encode(SKEncodedImageFormat.Png, 100);
 
-                            originalWidth = bitmap.Width;
-                            originalHeight = bitmap.Height;
-                            int longLength = Math.Max(originalWidth, originalHeight);
-                            int shortLength = Math.Min(originalWidth, originalHeight);
-                            // 長い方が 128 より大きければ縮める
-                            if (128 < longLength)
-                            {
-                                float rate = (float)longLength / 128.0f;
-                                thumbnailWidth = (int)(originalWidth / rate);
-                                thumbnailHeight = (int)(originalHeight / rate);
-                            }
-                            else
-                            {
-                                thumbnailWidth = originalWidth;
-                                thumbnailHeight = originalHeight;
-                            }
-
-                            // 作業画像のリサイズ
-                            bitmap = bitmap.Resize(
-                                size: new SKSizeI(
-                                    width: thumbnailWidth,
-                                    height: thumbnailHeight),
-                                quality: SKFilterQuality.Medium);
-
-                            //
-                            // 書出先（ウィンドウズ・ローカルＰＣ）
-                            //
-                            // 📖 [Using SkiaSharp, how to save a SKBitmap ?](https://social.msdn.microsoft.com/Forums/en-US/25fe8438-8afb-4acf-9d68-09acc6846918/using-skiasharp-how-to-save-a-skbitmap-?forum=xamarinforms)  
-                            //
-                            var fileStem = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
-                            thumbnailPathAsStr = outputFolder.CreateTilesetThumbnailPng(fileStem).Path.AsStr;
-                            using (Stream outputFileStream = System.IO.File.Open(
-                                path: thumbnailPathAsStr,
-                                mode: FileMode.OpenOrCreate))
-                            {
-                                // 画像にする
-                                SKImage skImage = SkiaSharp.SKImage.FromBitmap(bitmap);
-
-                                // PNG画像にする
-                                SKData pngImage = skImage.Encode(SKEncodedImageFormat.Png, 100);
-
-                                // 出力
-                                pngImage.SaveTo(outputFileStream);
-                            }
-                        };
+                            // 出力
+                            pngImage.SaveTo(outputFileStream);
+                        }
                     }
 
                     context.EnqueueTilesetRecordVM(new TilesetRecordViewModel(
-                            uuidAsStr: uuid,
-                            filePathAsStr: originalPngPathAsStr,
-                            widthAsInt: originalWidth,
-                            heightAsInt: originalHeight,
-                            thumbnailFilePathAsStr: thumbnailPathAsStr,
-                            thumbnailWidthAsInt: thumbnailWidth,
-                            thumbnailHeightAsInt: thumbnailHeight,
-                            title: "たいとる１"));
-
-
+                        // UUID文字列
+                        uuidAsStr: uuid,
+                        // PNG元画像のファイルパス文字列
+                        filePathAsStr: originalPngPathAsStr,
+                        // PNG元画像の横幅
+                        widthAsInt: tilesetImageProperties.OriginalWidth,
+                        // PNG元画像の縦幅
+                        heightAsInt: tilesetImageProperties.OriginalHeight,
+                        // サムネイル画像へのファイルパス文字列
+                        thumbnailFilePathAsStr: thumbnailPathAsStr,
+                        // サムネイル画像の横幅
+                        thumbnailWidthAsInt: tilesetImageProperties.ThumbnailWidth,
+                        // サムネイル画像の縦幅
+                        thumbnailHeightAsInt: tilesetImageProperties.ThumbnailHeight,
+                        // 画面に表示する画像タイトル
+                        title: "たいとる１"));
                 }
                 catch (Exception ex)
                 {
@@ -274,7 +252,7 @@ public partial class TilesetListPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     private void CollectionView_SizeChanged(object sender, EventArgs e)
     {
-        ITilesetListPageViewModel context = (ITilesetListPageViewModel)this.BindingContext;
+        var context = this.TilesetListPageVM;
 
         CollectionView view = (CollectionView)sender;
 
@@ -393,6 +371,8 @@ public partial class TilesetListPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     async void ImportButton_Clicked(object sender, EventArgs e)
     {
+        var context = this.TilesetListPageVM;
+
         // For custom file types            
         var customFileType =
             new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
@@ -451,7 +431,26 @@ public partial class TilesetListPage : ContentPage
                         sourceFileName: result.FullPath,
                         destFileName: tilesetPngLocation.Path.AsStr);
 
+                    /*
                     // TODO コレクション・ビューへの追加
+                    context.EnqueueTilesetRecordVM(new TilesetRecordViewModel(
+                        // UUID文字列
+                        uuidAsStr: uuid.AsStr,
+                        // PNG元画像のファイルパス文字列
+                        filePathAsStr: tilesetPngLocation.Path.AsStr,
+                        // PNG元画像の横幅
+                        widthAsInt: originalWidth,
+                        // PNG元画像の縦幅
+                        heightAsInt: originalHeight,
+                        // サムネイル画像へのファイルパス文字列
+                        thumbnailFilePathAsStr: thumbnailPathAsStr,
+                        // サムネイル画像の横幅
+                        thumbnailWidthAsInt: thumbnailWidth,
+                        // サムネイル画像の縦幅
+                        thumbnailHeightAsInt: thumbnailHeight,
+                        // 画面に表示する画像タイトル
+                        title: "たいとる１"));
+                    */
                 }
                 else
                 {

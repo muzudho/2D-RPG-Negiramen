@@ -1,11 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
+using _2D_RPG_Negiramen.Models;
+
 /// <summary>
 ///     😁 ［タイルセット一覧］ページ・ビューモデル
 /// </summary>
 public interface ITilesetListPageViewModel
 {
-    // - プロパティ
+    // - パブリック・プロパティ
 
     #region プロパティ（CollectionView の ItemsLayout プロパティ）
     /// <summary>
@@ -42,7 +44,7 @@ public interface ITilesetListPageViewModel
     string SelectedFileExtension { get; set; }
     #endregion
 
-    // - メソッド
+    // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）
     /// <summary>
@@ -53,5 +55,13 @@ public interface ITilesetListPageViewModel
     ///     </list>
     /// </summary>
     void InvalidateLocale();
+    #endregion
+
+    #region メソッド（タイルセット・レコード・ビューモデル追加）
+    /// <summary>
+    ///     タイルセット・レコード・ビューモデル追加
+    /// </summary>
+    /// <param name="element"></param>
+    void EnqueueTilesetRecordVM(TilesetRecordViewModel element);
     #endregion
 }
