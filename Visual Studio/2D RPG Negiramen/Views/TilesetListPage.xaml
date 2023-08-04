@@ -113,28 +113,42 @@
         </CollectionView>
 
         <Grid Grid.Row="2"
-              RowDefinitions="20,48,20,48" ColumnDefinitions="100,320,100,300,*"
+              RowDefinitions="20,48,20,48" ColumnDefinitions="166,320,100,300,*"
               Padding="8,8,8,8"
               BackgroundColor="SkyBlue">
 
             <!--    １段目
                     ======
             -->
+            <!-- 「ファイル・ステム。 UUID 形式」 -->
             <Label Grid.Row="0" Grid.Column="1"
                    Text="ファイル・ステム。 UUID 形式"/>
 
+            <!-- 「拡張子」 -->
             <Label Grid.Row="0" Grid.Column="2"
                    Text="拡張子"/>
 
             <!--    ２段目
                     ======
             -->
-            <Button Grid.Row="1" Grid.Column="0"
-                    WidthRequest="100"
-                    HeightRequest="20"
-                    Text="タイル切抜き"
-                    IsEnabled="{Binding IsEnabledTileCropButton}"
-                    Clicked="TileCropButton_Clicked"/>
+            <VerticalStackLayout Grid.Row="1" Grid.RowSpan="3" Grid.Column="0"
+                                 Padding="0,0,16,0">
+                <!-- 「タイル切抜き」 -->
+                <Button WidthRequest="150"
+                        HeightRequest="20"
+                        Text="タイル切抜き"
+                        IsEnabled="{Binding IsEnabledTileCropButton}"
+                        Clicked="TileCropButton_Clicked"/>
+
+                <!-- 「タイルセット削除」 -->
+                <Button Margin="0,16,0,0"
+                        WidthRequest="150"
+                        HeightRequest="20"
+                        Text="タイルセット削除"
+                        TextColor="{DynamicResource GentleWhite}"
+                        BackgroundColor="Crimson"/>
+
+            </VerticalStackLayout>
 
             <!--    選択ファイル・ステム。 UUID形式
                     ===============================
