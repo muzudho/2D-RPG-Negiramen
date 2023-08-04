@@ -127,6 +127,10 @@ public partial class TilesetListPage : ContentPage
                     var tilesetImageProperties = await TilesetImageProperties.ReadAsync(
                         originalPngPathAsStr: originalPngPathAsStr);
 
+                    var tilesetThumbnailImageProperties = TilesetThumbnailImageProperties.Create(
+                        originalWidth: tilesetImageProperties.OriginalWidth,
+                        originalHeight: tilesetImageProperties.OriginalHeight);
+
                     //
                     // サムネイル書出し
                     // ================
@@ -135,8 +139,8 @@ public partial class TilesetListPage : ContentPage
                         // 作業画像のリサイズ
                         SKBitmap thumbnailBitmap = tilesetImageProperties.OriginalBitmap.Resize(
                             size: new SKSizeI(
-                                width: tilesetImageProperties.ThumbnailWidth,
-                                height: tilesetImageProperties.ThumbnailHeight),
+                                width: tilesetThumbnailImageProperties.ThumbnailWidth,
+                                height: tilesetThumbnailImageProperties.ThumbnailHeight),
                             quality: SKFilterQuality.Medium);
 
                         //
@@ -173,9 +177,9 @@ public partial class TilesetListPage : ContentPage
                         // サムネイル画像へのファイルパス文字列
                         thumbnailFilePathAsStr: thumbnailPathAsStr,
                         // サムネイル画像の横幅
-                        thumbnailWidthAsInt: tilesetImageProperties.ThumbnailWidth,
+                        thumbnailWidthAsInt: tilesetThumbnailImageProperties.ThumbnailWidth,
                         // サムネイル画像の縦幅
-                        thumbnailHeightAsInt: tilesetImageProperties.ThumbnailHeight,
+                        thumbnailHeightAsInt: tilesetThumbnailImageProperties.ThumbnailHeight,
                         // 画面に表示する画像タイトル
                         title: "たいとる１"));
                 }

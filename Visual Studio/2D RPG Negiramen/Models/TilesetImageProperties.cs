@@ -21,8 +21,6 @@ class TilesetImageProperties
         // サイズ
         int originalWidth;
         int originalHeight;
-        int thumbnailWidth;
-        int thumbnailHeight;
 
         // タイルセット画像読込
         using (Stream inputFileStream = System.IO.File.OpenRead(originalPngPathAsStr))
@@ -38,31 +36,13 @@ class TilesetImageProperties
 
                 originalWidth = originalBitmap.Width;
                 originalHeight = originalBitmap.Height;
-
-                // TODO サムネイル画像のサイズをここで決めるのはおかしい
-                int longLength = Math.Max(originalWidth, originalHeight);
-                int shortLength = Math.Min(originalWidth, originalHeight);
-                // 長い方が 128 より大きければ縮める
-                if (128 < longLength)
-                {
-                    float rate = (float)longLength / 128.0f;
-                    thumbnailWidth = (int)(originalWidth / rate);
-                    thumbnailHeight = (int)(originalHeight / rate);
-                }
-                else
-                {
-                    thumbnailWidth = originalWidth;
-                    thumbnailHeight = originalHeight;
-                }
             };
         }
 
         return new TilesetImageProperties(
             originalBitmap: originalBitmap,
             originalWidth: originalWidth,
-            originalHeight: originalHeight,
-            thumbnailWidth: thumbnailWidth,
-            thumbnailHeight: thumbnailHeight);
+            originalHeight: originalHeight);
     }
 
     /// <summary>
@@ -72,15 +52,11 @@ class TilesetImageProperties
     TilesetImageProperties(
         SKBitmap originalBitmap,
         int originalWidth,
-        int originalHeight,
-        int thumbnailWidth,
-        int thumbnailHeight)
+        int originalHeight)
     {
         this.OriginalBitmap = originalBitmap;
         this.OriginalWidth = originalWidth;
         this.OriginalHeight = originalHeight;
-        this.ThumbnailWidth = thumbnailWidth;
-        this.ThumbnailHeight = thumbnailHeight;
     }
     #endregion
 
@@ -100,15 +76,4 @@ class TilesetImageProperties
     ///     元画像の縦幅
     /// </summary>
     internal int OriginalHeight;
-
-    /// <summary>
-    ///     サムネイル画像の横幅
-    /// </summary>
-    internal int ThumbnailWidth;
-
-    /// <summary>
-    ///     サムネイル画像の縦幅
-    /// </summary>
-    internal int ThumbnailHeight;
-
 }
