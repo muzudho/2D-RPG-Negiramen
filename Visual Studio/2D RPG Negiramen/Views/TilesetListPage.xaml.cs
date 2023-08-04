@@ -422,7 +422,20 @@ public partial class TilesetListPage : ContentPage
             // ダイアログボックスのようなものを表示する
             // なんか初回は　ボタンがしばらくフリーズしていて押せない？
             // await DisplayAlert("You picked...", result.FileName, "OK");
-            await DisplayAlert("You picked...", result.FullPath, "OK");
+
+            // ファイル・ステムが UUID かどうか区別したい
+            if (UUIDHelper.IsMatch(System.IO.Path.GetFileNameWithoutExtension(result.FileName)))
+            {
+                // TOOD 読込む
+                Trace.WriteLine($"[TilesetListPage ImportButton_Clicked] 画像ファイル［{result.FileName}］を読込む");
+            }
+            else
+            {
+                // ファイル名を変更していいか、確認する
+                string title = "You picked...";
+                string message = $"ネギラーメンに画像ファイル［{result.FullPath}］を読込むには、ファイル名を UUID に変更する必要があります。";
+                await DisplayAlert(title, message, "OK", "Cancel");
+            }
         }
     }
 }
