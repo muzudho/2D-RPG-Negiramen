@@ -2118,4 +2118,45 @@ unity_assets_folder = ""
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　とりあえず　こんなんでいいか……」  
 
+## ファイルのコピー
+
+![202308_maui_04-2316--copyFile-o2o0.png](https://crieit.now.sh/upload_images/d95a6b674a68191818fccc10f13975e664cd086427e07.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ひとまず　上図のような　ファイル・コピーをやってみるかだぜ」  
+
+```csharp
+                    System.IO.File.Copy(
+                        sourceFileName: result.FullPath,
+                        destFileName: tilesetPngLocation.Path.AsStr);
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ファイルのコピーだけなら　これでいけるはず」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　Windows の API 使ってるの、いいのか知らんけど」  
+
+![202308_maui_04-2326--copyFile-o2o0.png](https://crieit.now.sh/upload_images/298abbe4c24c155db1eeca239c712c1d64cd0aa236fe4.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ファイルのコピーはでけたけど、コレクション・ビューにも追加しないと　画面に出てこないな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　コレクション・ビューに入れるのではなく、  
+アイテム・ソースに入れるんじゃないか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そうか」  
+
+![202308_maui_05-0051--import-o2o0.png](https://crieit.now.sh/upload_images/c4373428cc0cffd29db3f157725e6a2364cd1e8cbace3.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　インポートで　画像を放り込んだった」  
+
+## ファイルの削除
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　要らんもの　放り込まれたら　削除したいんだけど」  
+
 ＜書きかけ＞
