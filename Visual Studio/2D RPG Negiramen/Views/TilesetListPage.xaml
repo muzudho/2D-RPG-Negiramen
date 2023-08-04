@@ -84,7 +84,7 @@
                     HeightRequest="20"
                     Text="タイルセット削除"
                     IsEnabled="{Binding IsEnabledTilesetRemoveButton}"
-                    BackgroundColor="PaleVioletRed"/>
+                    Style="{DynamicResource dangerButton}"/>
 
         </Grid>
         

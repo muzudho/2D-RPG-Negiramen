@@ -9,6 +9,8 @@
     <Color x:Key="SecondaryDark">#606060</Color>
     <Color x:Key="Tertiary">SkyBlue</Color>
     <Color x:Key="TertiaryStroke">SteelBlue</Color>
+    <Color x:Key="DangerLight">Violet</Color>
+    <Color x:Key="Danger">PaleVioletRed</Color>
     <Color x:Key="GentleWhite">FloralWhite</Color>
     <Color x:Key="GentleBlack">#141414</Color>
     <Color x:Key="White">White</Color>
@@ -25,6 +27,8 @@
     <SolidColorBrush x:Key="SecondaryBrush" Color="{StaticResource Secondary}"/>
     <SolidColorBrush x:Key="TertiaryBrush" Color="{StaticResource Tertiary}"/>
     <SolidColorBrush x:Key="TertiaryStrokeBrush" Color="{StaticResource TertiaryStroke}"/>
+    <SolidColorBrush x:Key="DangerLightBrush" Color="{StaticResource DangerLight}"/>
+    <SolidColorBrush x:Key="DangerBrush" Color="{StaticResource Danger}"/>
     <SolidColorBrush x:Key="WhiteBrush" Color="{StaticResource White}"/>
     <SolidColorBrush x:Key="BlackBrush" Color="{StaticResource Black}"/>
     <SolidColorBrush x:Key="Gray100Brush" Color="{StaticResource Gray100}"/>
