@@ -69,6 +69,7 @@
             <HorizontalStackLayout Grid.Column="0"
                                    Padding="16,4,0,4">
 
+                <!-- 「インポート」 -->
                 <Button WidthRequest="150"
                         HeightRequest="44"
                         Text="インポート"
@@ -82,6 +83,7 @@
                     WidthRequest="150"
                     HeightRequest="20"
                     Text="タイルセット削除"
+                    IsEnabled="{Binding IsEnabledTilesetRemoveButton}"
                     BackgroundColor="PaleVioletRed"/>
 
         </Grid>

@@ -80,7 +80,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     }
     #endregion
 
-    #region 変更通知プロパティ（［タイル切抜き］ボタンの活性性）
+    #region 変更通知プロパティ（［タイル切抜き］ボタン　関連）
     /// <summary>
     ///     ［タイル切抜き］ボタンの活性性
     /// </summary>
@@ -98,7 +98,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     }
     #endregion
 
-    #region 変更通知プロパティ（［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性）
+    #region 変更通知プロパティ（［ファイル・ステムをＵＵＩＤに変更する］ボタン　関連）
     /// <summary>
     ///     ［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性
     /// </summary>
@@ -112,6 +112,24 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
             this.isEnabledRenameFileNameToUUIDButton = value;
             OnPropertyChanged(nameof(IsEnabledRenameFileNameToUUIDButton));
+        }
+    }
+    #endregion
+
+    #region 変更通知プロパティ（［タイルセット削除］ボタン　関連）
+    /// <summary>
+    ///     ［タイルセット削除］ボタンの活性性
+    /// </summary>
+    public bool IsEnabledTilesetRemoveButton
+    {
+        get => this.isEnabledTilesetRemoveButton;
+        set
+        {
+            if (this.isEnabledTilesetRemoveButton == value)
+                return;
+
+            this.isEnabledTilesetRemoveButton = value;
+            OnPropertyChanged(nameof(IsEnabledTilesetRemoveButton));
         }
     }
     #endregion
@@ -193,6 +211,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
     bool isEnabledTileCropButton;
     bool isEnabledRenameFileNameToUUIDButton;
+    bool isEnabledTilesetRemoveButton;
 
     string selectedFileStem;
     string selectedFileExtension;

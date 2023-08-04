@@ -282,14 +282,24 @@ public partial class TilesetListPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        ITilesetListPageViewModel context = (ITilesetListPageViewModel)this.BindingContext;
+        ITilesetListPageViewModel context = this.TilesetListPageVM;
 
         CollectionView view = (CollectionView)sender;
 
         // Trace.WriteLine($"[TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: {e.PreviousSelection.GetType().FullName} e.CurrentSelection: {e.CurrentSelection.GetType().FullName}");
         // [TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] e.CurrentSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
 
-        TilesetRecordViewModel record = (TilesetRecordViewModel)view.SelectedItem;
+        TilesetRecordViewModel? record = (TilesetRecordViewModel)view.SelectedItem;
+
+        // 未選択なら
+        if (record == null)
+        {
+            context.IsEnabledTileCropButton = false;
+            context.IsEnabledRenameFileNameToUUIDButton = false;
+            context.IsEnabledTilesetRemoveButton = false;
+
+            return;
+        }
 
         // 選択ファイル・ステム
         context.SelectedFileStem = System.IO.Path.GetFileNameWithoutExtension(record.FilePathAsStr);
@@ -306,6 +316,8 @@ public partial class TilesetListPage : ContentPage
             context.IsEnabledTileCropButton = false;
             context.IsEnabledRenameFileNameToUUIDButton = true;
         }
+
+        context.IsEnabledTilesetRemoveButton = true;
 
         // 選択ファイル拡張子
         context.SelectedFileExtension = System.IO.Path.GetExtension(record.FilePathAsStr);

@@ -16,18 +16,26 @@ public interface ITilesetListPageViewModel
     GridItemsLayout ItemsLayout { get; set; }
     #endregion
 
-    #region 変更通知プロパティ（［タイル切抜き］ボタンの活性性）
+    #region プロパティ（［タイル切抜き］ボタン　関連）
     /// <summary>
     ///     ［タイル切抜き］ボタンの活性性
     /// </summary>
     bool IsEnabledTileCropButton { get; set; }
     #endregion
 
-    #region プロパティ（［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性）
+    #region プロパティ（［ファイル・ステムをＵＵＩＤに変更する］ボタン　関連）
     /// <summary>
     ///     ［ファイル・ステムをＵＵＩＤに変更する］ボタンの活性性
     /// </summary>
     bool IsEnabledRenameFileNameToUUIDButton { get; set; }
+    #endregion
+
+
+    #region 変更通知プロパティ（［タイルセット削除］ボタン　関連）
+    /// <summary>
+    ///     ［タイルセット削除］ボタンの活性性
+    /// </summary>
+    bool IsEnabledTilesetRemoveButton { get; set; }
     #endregion
 
     #region 変更通知プロパティ（選択ファイル・ステム）
