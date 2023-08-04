@@ -243,6 +243,11 @@ public partial class TilesetListPage : ContentPage
     }
     #endregion
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
     private void ContentPage_SizeChanged(object sender, EventArgs e)
     {
         //ITilesetListPageViewModel context = (ITilesetListPageViewModel)this.BindingContext;
@@ -262,6 +267,11 @@ public partial class TilesetListPage : ContentPage
         //// this.TilesetListPageVM.ItemsLayout = new GridItemsLayout(cellColumns, ItemsLayoutOrientation.Vertical);
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
     private void CollectionView_SizeChanged(object sender, EventArgs e)
     {
         ITilesetListPageViewModel context = (ITilesetListPageViewModel)this.BindingContext;
@@ -285,6 +295,11 @@ public partial class TilesetListPage : ContentPage
         //Trace.WriteLine($"コレクション・ビュー・サイズ変更 sender: {sender.GetType().FullName}, cellColumns: {cellColumns}, Width: {view.Width}, Height: {view.Height} layout.Span: {layout.Span}");
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
     void CollectionView_SelectionChanged(object sender, SelectionChangedEventArgs e)
     {
         ITilesetListPageViewModel context = (ITilesetListPageViewModel)this.BindingContext;
@@ -319,8 +334,8 @@ public partial class TilesetListPage : ContentPage
     /// <summary>
     ///     ［タイル切抜き］ボタン・クリック時
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
     async void TileCropButton_Clicked(object sender, EventArgs e)
     {
         var shellNavigationState = new ShellNavigationState("//TileCropPage");
@@ -360,10 +375,54 @@ public partial class TilesetListPage : ContentPage
     /// <summary>
     ///     ［ファイル・ステムをＵＵＩＤに変更する］ボタン・クリック時
     /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
     private void RenameFileNameToUUIDButton_Clicked(object sender, EventArgs e)
     {
 
+    }
+
+    /// <summary>
+    ///     ［インポート］ボタン・クリック時
+    ///     
+    ///     <list type="bullet">
+    ///         <item>📖 [jfversluis　＞　MauiFilePickerSample](https://github.com/jfversluis/MauiFilePickerSample)</item>
+    ///     </list>
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    async void ImportButton_Clicked(object sender, EventArgs e)
+    {
+        // For custom file types            
+        var customFileType =
+            new FilePickerFileType(new Dictionary<DevicePlatform, IEnumerable<string>>
+            {
+                 //{ DevicePlatform.iOS, new[] { "com.adobe.pdf" } }, // or general UTType values
+                 //{ DevicePlatform.Android, new[] { "application/pdf" } },
+                 { DevicePlatform.WinUI, new[] { ".png" } },
+                 //{ DevicePlatform.Tizen, new[] { "*/*" } },
+                 //{ DevicePlatform.macOS, new[] { "pdf"} }, // or general UTType values
+        	});
+
+        var results = await FilePicker.PickMultipleAsync(new PickOptions
+        {
+            FileTypes = customFileType,
+            // ↓ Picker Tilte is not working
+            // PickerTitle = "タイルセット画像を開く",
+        });
+
+        foreach (var result in results)
+        {
+            // ファイルの読取ストリームを開くところまでしてくれる
+            // var stream = await result.OpenReadAsync();
+
+            // 画像コントロールへ、画像データをセット
+            // myImage.Source = ImageSource.FromStream(() => stream);
+
+            // ダイアログボックスのようなものを表示する
+            // なんか初回は　ボタンがしばらくフリーズしていて押せない？
+            // await DisplayAlert("You picked...", result.FileName, "OK");
+            await DisplayAlert("You picked...", result.FullPath, "OK");
+        }
     }
 }

@@ -67,7 +67,8 @@
 
             <Button WidthRequest="150"
                     HeightRequest="44"
-                    Text="インポート"/>
+                    Text="インポート"
+                    Clicked="ImportButton_Clicked"/>
         </HorizontalStackLayout>
         
         <!--
