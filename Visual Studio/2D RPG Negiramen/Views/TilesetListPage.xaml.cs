@@ -117,52 +117,36 @@ public partial class TilesetListPage : ContentPage
             {
                 try
                 {
-                    // 出力先ディレクトリーが無ければ作成する
-                    var outputFolder = App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.TilesetFolder.ImagesTilesetsThumbnailsFolder;
-                    outputFolder.CreateThisDirectoryIfItDoesNotExist();
+                    // サムネイル画像出力先ディレクトリー
+                    var thumbnailOutputFolder = App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.TilesetFolder.ImagesTilesetsThumbnailsFolder;
+                    // ディレクトリーが無ければ作成する
+                    thumbnailOutputFolder.CreateThisDirectoryIfItDoesNotExist();
 
-                    // サムネイル画像のファイルパス
-                    string thumbnailPathAsStr;
-
+                    // タイルセット元画像のプロパティーズ
                     var tilesetImageProperties = await TilesetImageProperties.ReadAsync(
                         originalPngPathAsStr: originalPngPathAsStr);
 
+                    // サムネイル画像のプロパティーズ
                     var tilesetThumbnailImageProperties = TilesetThumbnailImageProperties.Create(
-                        originalWidth: tilesetImageProperties.OriginalWidth,
-                        originalHeight: tilesetImageProperties.OriginalHeight);
+                        originalPngPathAsStr: originalPngPathAsStr,
+                        originalWidth: tilesetImageProperties.Width,
+                        originalHeight: tilesetImageProperties.Height,
+                        outputFolder: thumbnailOutputFolder);
 
                     //
                     // サムネイル書出し
                     // ================
                     //
                     {
-                        // 作業画像のリサイズ
-                        SKBitmap thumbnailBitmap = tilesetImageProperties.OriginalBitmap.Resize(
-                            size: new SKSizeI(
-                                width: tilesetThumbnailImageProperties.ThumbnailWidth,
-                                height: tilesetThumbnailImageProperties.ThumbnailHeight),
-                            quality: SKFilterQuality.Medium);
+                        // ビットマップ作成
+                        SKBitmap thumbnailBitmap = TilesetThumbnailImageHelper.CreateBitmap(
+                            originalBitmap: tilesetImageProperties.Bitmap,
+                            tilesetThumbnailImageProperties: tilesetThumbnailImageProperties);
 
-                        //
-                        // 書出先（ウィンドウズ・ローカルＰＣ）
-                        //
-                        // 📖 [Using SkiaSharp, how to save a SKBitmap ?](https://social.msdn.microsoft.com/Forums/en-US/25fe8438-8afb-4acf-9d68-09acc6846918/using-skiasharp-how-to-save-a-skbitmap-?forum=xamarinforms)  
-                        //
-                        var fileStem = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
-                        thumbnailPathAsStr = outputFolder.CreateTilesetThumbnailPng(fileStem).Path.AsStr;
-                        using (Stream outputFileStream = System.IO.File.Open(
-                            path: thumbnailPathAsStr,
-                            mode: FileMode.OpenOrCreate))
-                        {
-                            // 画像にする
-                            SKImage skImage = SkiaSharp.SKImage.FromBitmap(thumbnailBitmap);
-
-                            // PNG画像にする
-                            SKData pngImage = skImage.Encode(SKEncodedImageFormat.Png, 100);
-
-                            // 出力
-                            pngImage.SaveTo(outputFileStream);
-                        }
+                        // 画像書出し
+                        TilesetThumbnailImageHelper.WriteImage(
+                            thumbnailPathAsStr: tilesetThumbnailImageProperties.PathAsStr,
+                            thumbnailBitmap: thumbnailBitmap);
                     }
 
                     context.EnqueueTilesetRecordVM(new TilesetRecordViewModel(
@@ -171,15 +155,15 @@ public partial class TilesetListPage : ContentPage
                         // PNG元画像のファイルパス文字列
                         filePathAsStr: originalPngPathAsStr,
                         // PNG元画像の横幅
-                        widthAsInt: tilesetImageProperties.OriginalWidth,
+                        widthAsInt: tilesetImageProperties.Width,
                         // PNG元画像の縦幅
-                        heightAsInt: tilesetImageProperties.OriginalHeight,
+                        heightAsInt: tilesetImageProperties.Height,
                         // サムネイル画像へのファイルパス文字列
-                        thumbnailFilePathAsStr: thumbnailPathAsStr,
+                        thumbnailFilePathAsStr: tilesetThumbnailImageProperties.PathAsStr,
                         // サムネイル画像の横幅
-                        thumbnailWidthAsInt: tilesetThumbnailImageProperties.ThumbnailWidth,
+                        thumbnailWidthAsInt: tilesetThumbnailImageProperties.Width,
                         // サムネイル画像の縦幅
-                        thumbnailHeightAsInt: tilesetThumbnailImageProperties.ThumbnailHeight,
+                        thumbnailHeightAsInt: tilesetThumbnailImageProperties.Height,
                         // 画面に表示する画像タイトル
                         title: "たいとる１"));
                 }

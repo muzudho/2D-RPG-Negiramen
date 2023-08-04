@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
+    using _2D_RPG_Negiramen.Models.FileEntries.Locations.Cache;
+
     /// <summary>
     ///     😁 タイルセット・サムネイル画像プロパティーズ
     /// </summary>
@@ -8,12 +10,22 @@
         // - その他
 
         #region その他（生成　関連）
+        /// <summary>
+        ///     作成
+        /// </summary>
+        /// <param name="originalPngPathAsStr">元画像のファイルパス文字列</param>
+        /// <param name="originalWidth">元画像の横幅</param>
+        /// <param name="originalHeight">元画像の縦幅</param>
+        /// <param name="outputFolder">サムネイル画像出力先フォルダ</param>
+        /// <returns></returns>
         internal static TilesetThumbnailImageProperties Create(
+            string originalPngPathAsStr,
             int originalWidth,
-            int originalHeight)
+            int originalHeight,
+            ImagesTilesetsThumbnailsFolder outputFolder)
         {
-            int thumbnailWidth;
-            int thumbnailHeight;
+            int width;
+            int height;
 
             // TODO サムネイル画像のサイズをここで決めるのはおかしい
             int longLength = Math.Max(originalWidth, originalHeight);
@@ -22,42 +34,52 @@
             if (128 < longLength)
             {
                 float rate = (float)longLength / 128.0f;
-                thumbnailWidth = (int)(originalWidth / rate);
-                thumbnailHeight = (int)(originalHeight / rate);
+                width = (int)(originalWidth / rate);
+                height = (int)(originalHeight / rate);
             }
             else
             {
-                thumbnailWidth = originalWidth;
-                thumbnailHeight = originalHeight;
+                width = originalWidth;
+                height = originalHeight;
             }
 
+            var originalFileStem = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
+
             return new TilesetThumbnailImageProperties(
-                thumbnailWidth: thumbnailWidth,
-                thumbnailHeight: thumbnailHeight);
+                pathAsStr: outputFolder.CreateTilesetThumbnailPng(originalFileStem).Path.AsStr,
+                width: width,
+                height: height);
         }
 
         /// <summary>
         ///     生成
         /// </summary>
         TilesetThumbnailImageProperties(
-            int thumbnailWidth,
-            int thumbnailHeight)
+            string pathAsStr,
+            int width,
+            int height)
         {
-            this.ThumbnailWidth = thumbnailWidth;
-            this.ThumbnailHeight = thumbnailHeight;
+            this.PathAsStr = pathAsStr;
+            this.Width = width;
+            this.Height = height;
         }
         #endregion
 
         // - インターナル・プロパティ
 
         /// <summary>
-        ///     サムネイル画像の横幅
+        ///     ファイルパス文字列
         /// </summary>
-        internal int ThumbnailWidth;
+        internal string PathAsStr { get; }
 
         /// <summary>
-        ///     サムネイル画像の縦幅
+        ///     横幅
         /// </summary>
-        internal int ThumbnailHeight;
+        internal int Width { get; }
+
+        /// <summary>
+        ///     縦幅
+        /// </summary>
+        internal int Height { get; }
     }
 }

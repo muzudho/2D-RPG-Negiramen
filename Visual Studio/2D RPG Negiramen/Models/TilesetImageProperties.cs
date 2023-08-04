@@ -16,11 +16,11 @@ class TilesetImageProperties
     internal static async Task<TilesetImageProperties> ReadAsync(
         string originalPngPathAsStr)
     {
-        SKBitmap originalBitmap;
+        SKBitmap bitmap;
 
         // サイズ
-        int originalWidth;
-        int originalHeight;
+        int width;
+        int height;
 
         // タイルセット画像読込
         using (Stream inputFileStream = System.IO.File.OpenRead(originalPngPathAsStr))
@@ -32,48 +32,48 @@ class TilesetImageProperties
                 memStream.Seek(0, SeekOrigin.Begin);
 
                 // 元画像
-                originalBitmap = SkiaSharp.SKBitmap.Decode(memStream);
+                bitmap = SkiaSharp.SKBitmap.Decode(memStream);
 
-                originalWidth = originalBitmap.Width;
-                originalHeight = originalBitmap.Height;
+                width = bitmap.Width;
+                height = bitmap.Height;
             };
         }
 
         return new TilesetImageProperties(
-            originalBitmap: originalBitmap,
-            originalWidth: originalWidth,
-            originalHeight: originalHeight);
+            bitmap: bitmap,
+            width: width,
+            height: height);
     }
 
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="originalBitmap"></param>
+    /// <param name="bitmap"></param>
     TilesetImageProperties(
-        SKBitmap originalBitmap,
-        int originalWidth,
-        int originalHeight)
+        SKBitmap bitmap,
+        int width,
+        int height)
     {
-        this.OriginalBitmap = originalBitmap;
-        this.OriginalWidth = originalWidth;
-        this.OriginalHeight = originalHeight;
+        this.Bitmap = bitmap;
+        this.Width = width;
+        this.Height = height;
     }
     #endregion
 
     // - インターナル・プロパティ
 
     /// <summary>
-    ///     元画像のビットマップ
+    ///     ビットマップ
     /// </summary>
-    internal SKBitmap OriginalBitmap { get; }
+    internal SKBitmap Bitmap { get; }
 
     /// <summary>
-    ///     元画像の横幅
+    ///     横幅
     /// </summary>
-    internal int OriginalWidth;
+    internal int Width;
 
     /// <summary>
-    ///     元画像の縦幅
+    ///     縦幅
     /// </summary>
-    internal int OriginalHeight;
+    internal int Height;
 }
