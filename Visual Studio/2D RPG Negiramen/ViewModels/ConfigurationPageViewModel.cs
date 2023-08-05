@@ -6,8 +6,8 @@
     using System.Collections.ObjectModel;
     using System.Globalization;
     using System.Windows.Input;
-    using TheFileEntryLocations = Models.FileEntries.Locations;
-    using TheLocationOfUnityAssets = _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
+    using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+    using TheFileEntryDeployments = _2D_RPG_Negiramen.Models.FileEntries.Deployments;
 
     /// <summary>
     ///     😁 ［構成］ページ用のビューモデル
@@ -117,7 +117,7 @@
                 if (unityAssetsFolder.Path.AsStr == value)
                     return;
 
-                unityAssetsFolder = new TheLocationOfUnityAssets.ItsFolder(
+                unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder(
                     pathSource: FileEntryPathSource.FromString(value),
                     convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                 replaceSeparators: true));
@@ -191,7 +191,7 @@
         /// <summary>
         ///     Unity の 📂 `Assets` フォルダの場所
         /// </summary>
-        internal TheLocationOfUnityAssets.ItsFolder UnityAssetsFolder { get; private set; }
+        internal TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder { get; private set; }
         #endregion
 
         // - プライベート・フィールド
@@ -207,7 +207,7 @@
         /// <summary>
         ///     Unity の Assets フォルダへのパス
         /// </summary>
-        TheLocationOfUnityAssets.ItsFolder unityAssetsFolder = TheLocationOfUnityAssets.ItsFolder.Empty;
+        TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder = TheFileEntryLocations.UnityAssets.ItsFolder.Empty;
         #endregion
 
         #region フィールド（あなたのサークル・フォルダ名）
@@ -279,7 +279,7 @@
                     App.SetProjectConfiguration(newProjectConfiguration);
 
                     // ネギラーメンのスターターキット・フォルダの内容を確認
-                    var isOk = Models.FileEntries.Deployments.StarterKitDeployment.CheckForUnityAssets();
+                    var isOk = TheFileEntryDeployments.StarterKit.ItsDeployment.CheckForUnityAssets();
                     if (!isOk)
                     {
                         // TODO 異常時の処理

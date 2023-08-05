@@ -27,6 +27,26 @@ class TilesetsFolder : TheFileEntryLocations.ItsFolder
     }
     #endregion
 
+    // - インターナル・プロパティ
+
+    #region プロパティ（Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets` フォルダの場所）
+    /// <summary>
+    ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダの場所
+    /// </summary>
+    internal LocalesFolder LocalesFolder
+    {
+        get
+        {
+            if (localesFolder == null)
+            {
+                localesFolder = new LocalesFolder(Path);
+            }
+
+            return localesFolder;
+        }
+    }
+    #endregion
+
     // - インターナル・メソッド
 
     #region メソッド（Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.png` ファイルの場所）
@@ -56,4 +76,8 @@ class TilesetsFolder : TheFileEntryLocations.ItsFolder
                                                         replaceSeparators: true));
     }
     #endregion
+
+    // - プライベート・フィールド
+
+    LocalesFolder? localesFolder;
 }

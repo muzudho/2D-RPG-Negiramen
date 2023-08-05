@@ -1,11 +1,11 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Deployments;
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Deployments.UnityAssets;
 
-using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+using TheFileEntryLocations = Locations;
 
 /// <summary>
 ///     😁 Unity の Assets フォルダを想定したもの
 /// </summary>
-internal class UnityAssetsDeployment
+internal class ItsDeployment
 {
     // - インターナル静的メソッド
 
@@ -150,13 +150,6 @@ internal class UnityAssetsDeployment
     ///     </pre>
     /// </summary>
     /// <param name="imagesFolder">画像フォルダ―の場所</param>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    static void MakeImagesFolder(TheFileEntryLocations.UnityAssets.ImagesFolder imagesFolder)
-後:
-    static void MakeImagesFolder(ImagesFolder imagesFolder)
-*/
     static void MakeImagesFolder(TheFileEntryLocations.UnityAssets.Images.ItsFolder imagesFolder)
     {
         // 📂 `Tileset` フォルダ
@@ -172,13 +165,6 @@ internal class UnityAssetsDeployment
     ///     タイルセットをコピー
     /// </summary>
     /// <param name="fileName">ファイル名</param>
-
-/* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-前:
-    static void CopyTileset(TheFileEntryLocations.UnityAssets.ImagesTilesetsFolder tilesetFolder, string fileName)
-後:
-    static void CopyTileset(ImagesTilesetsFolder tilesetFolder, string fileName)
-*/
     static void CopyTileset(TheFileEntryLocations.UnityAssets.Images.TilesetsFolder tilesetFolder, string fileName)
     {
         var projectConfiguration = App.GetOrLoadProjectConfiguration();

@@ -1,6 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Deployments;
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Deployments.AppData;
 
-using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+using TheFileEntryLocations = Locations;
 
 /// <summary>
 ///     😁 アプリケーション・データ・フォルダ内のプロジェクト別のフォルダを想定したもの

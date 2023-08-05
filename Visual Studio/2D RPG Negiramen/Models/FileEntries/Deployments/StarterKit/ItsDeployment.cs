@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Deployments;
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Deployments.StarterKit;
 
 using System.IO;
 
@@ -10,7 +10,7 @@ using System.IO;
 ///         👉　└─ 📂 Starter Kit
 ///     </pre>
 /// </summary>
-internal class StarterKitDeployment
+internal class ItsDeployment
 
 {
     /// <summary>
