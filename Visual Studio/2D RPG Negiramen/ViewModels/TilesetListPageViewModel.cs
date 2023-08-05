@@ -200,7 +200,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     }
 
     /// <summary>
-    ///     TODO ★ タイルセット・レコード・ビューモデル削除
+    ///     タイルセット・レコード・ビューモデル削除
     /// </summary>
     /// <param name="element"></param>
     public void DeleteTilesetRecordByFileStem(FileStem fileStem)

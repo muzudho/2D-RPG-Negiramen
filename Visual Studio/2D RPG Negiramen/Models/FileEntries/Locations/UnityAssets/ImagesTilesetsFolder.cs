@@ -47,11 +47,11 @@ class ImagesTilesetsFolder : ItsFolder
     /// <summary>
     ///     Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.toml` ファイルの場所
     /// </summary>
-    internal ImagesTilesetToml CreateTilesetToml(string fileStem)
+    internal ImagesTilesetToml CreateTilesetToml(FileStem fileStem)
     {
         return new ImagesTilesetToml(
             pathSource: FileEntryPathSource.FromString(
-                System.IO.Path.Combine(Path.AsStr, $"{fileStem}.toml")),
+                System.IO.Path.Combine(Path.AsStr, $"{fileStem.AsStr}.toml")),
             convert: (pathSource) => FileEntryPath.From(pathSource,
                                                         replaceSeparators: true));
     }

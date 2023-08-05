@@ -3,6 +3,7 @@
 using Tomlyn.Model;
 using Tomlyn;
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
 /// <summary>
 ///     😁 タイルセット・グローバル構成
@@ -20,13 +21,13 @@ internal class TilesetGlobalConfiguration
     ///     読込。なければ作成
     /// </summary>
     /// <param name="location">タイルセット・グローバル構成ファイルの場所</param>
-    internal TilesetGlobalConfiguration LoadOrAdd(
+    internal static TilesetGlobalConfiguration LoadOrAdd(
         TheFileEntryLocations.UnityAssets.ImagesTilesetToml location)
     {
         // ファイルの存在確認
         if (location.IsExists())
         {
-            // TODO あれば読込
+            // あれば読込
 
             // 設定ファイルのテキスト読取
             var configurationText = System.IO.File.ReadAllText(location.Path.AsStr);
@@ -81,7 +82,9 @@ internal class TilesetGlobalConfiguration
                 extension: FileExtension.FromString(location.GetExtension().AsStr));
 
             // ファイル書出し
-            WriteTOML(config);
+            WriteTOML(
+                tilesetGlobalConfigurationLocation: location,
+                config);
 
             return config;
         }
@@ -110,7 +113,7 @@ internal class TilesetGlobalConfiguration
     /// <param name="difference">現在の構成から更新した差分</param>
     /// <param name="newConfiguration">差分を反映した構成</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(TilesetGlobalConfiguration current, TilesetGlobalConfigurationBuffer difference, out TilesetGlobalConfiguration newConfiguration)
+    internal static bool SaveTOML(ImagesTilesetToml tilesetGlobalConfigurationLocation, TilesetGlobalConfiguration current, TilesetGlobalConfigurationBuffer difference, out TilesetGlobalConfiguration newConfiguration)
     {
         var configurationBuffer = new TilesetGlobalConfigurationBuffer();
 
@@ -123,7 +126,9 @@ internal class TilesetGlobalConfiguration
             uuid: configurationBuffer.Uuid,
             extension: configurationBuffer.Extension);
 
-        WriteTOML(newConfiguration);
+        WriteTOML(
+            tilesetGlobalConfigurationLocation: tilesetGlobalConfigurationLocation,
+            configuration: newConfiguration);
 
         return true;
     }
@@ -132,7 +137,7 @@ internal class TilesetGlobalConfiguration
     ///     テキストファイル書出し
     /// </summary>
     /// <param name="configuration"></param>
-    internal static void WriteTOML(TilesetGlobalConfiguration configuration)
+    internal static void WriteTOML(ImagesTilesetToml tilesetGlobalConfigurationLocation, TilesetGlobalConfiguration configuration)
     {
         //
         // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
@@ -149,7 +154,7 @@ extension = ""{configuration.Extension}""
 
         // 上書き
         System.IO.File.WriteAllText(
-            path: App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr,
+            path: tilesetGlobalConfigurationLocation.Path.AsStr,
             contents: text);
     }
     #endregion
