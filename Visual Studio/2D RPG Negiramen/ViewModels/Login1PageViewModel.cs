@@ -17,23 +17,23 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     /// <summary>
     ///     現在選択中の文化情報。文字列形式
     /// </summary>
-    public string CultureInfoAsStr
+    public CultureInfo SelectedCultureInfo
     {
-        get => LocalizationResourceManager.Instance.CultureInfo.Name;
+        get => LocalizationResourceManager.Instance.CultureInfo;
         set
         {
-            if (LocalizationResourceManager.Instance.CultureInfo.Name != value)
+            if (LocalizationResourceManager.Instance.CultureInfo != value)
             {
-                LocalizationResourceManager.Instance.SetCulture(new CultureInfo(value));
-                OnPropertyChanged(nameof(CultureInfoAsStr));
+                LocalizationResourceManager.Instance.SetCulture(value);
+                OnPropertyChanged(nameof(SelectedCultureInfo));
             }
         }
     }
 
     /// <summary>
-    ///     ロケールＩｄのリスト
+    ///     文化情報のリスト
     /// </summary>
-    public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
+    public ObservableCollection<CultureInfo> CultureInfoCollection => App.CultureInfoCollection;
     #endregion
 
     #region 変更通知プロパティ（あなたのサークル・フォルダ名）

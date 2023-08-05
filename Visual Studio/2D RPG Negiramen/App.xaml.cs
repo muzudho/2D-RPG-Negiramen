@@ -29,10 +29,23 @@ public partial class App : Application
 
             Trace.WriteLine($"[App.xaml.cs App] FileSystem.AppDataDirectory : {FileSystem.AppDataDirectory}");
             // [App.xaml.cs App] FileSystem.AppDataDirectory: C:\Users\むずでょ\AppData\Local\Packages\1802ca7b-559d-489e-8a13-f02ac4d27fcc_9zz4h110yvjzm\LocalState
+            //// UUID を作るテスト
+            //string uuid = Guid.NewGuid().ToString().ToUpper();
+            //Trace.WriteLine($"[App.xaml.cs App] uuid: {uuid}");
 
-            // UUID を作るテスト
-            string uuid = Guid.NewGuid().ToString().ToUpper();
-            Trace.WriteLine($"[App.xaml.cs App] uuid: {uuid}");
+            // カルチャー・インフォの使い方
+            {
+                CultureInfo cultureInfo = new CultureInfo("ja-JP");
+                Trace.WriteLine($"[App.xaml.cs App] cultureInfo: DisplayName: {cultureInfo.DisplayName}, EnglishName: {cultureInfo.EnglishName}, Name: {cultureInfo.Name}, NativeName: {cultureInfo.NativeName}, IetfLanguageTag: {cultureInfo.IetfLanguageTag}, TwoLetterISOLanguageName: {cultureInfo.TwoLetterISOLanguageName}, ToString(): {cultureInfo.ToString()}");
+            }
+            {
+                CultureInfo cultureInfo = new CultureInfo("en-US");
+                Trace.WriteLine($"[App.xaml.cs App] cultureInfo: DisplayName: {cultureInfo.DisplayName}, EnglishName: {cultureInfo.EnglishName}, Name: {cultureInfo.Name}, NativeName: {cultureInfo.NativeName}, IetfLanguageTag: {cultureInfo.IetfLanguageTag}, TwoLetterISOLanguageName: {cultureInfo.TwoLetterISOLanguageName}, ToString(): {cultureInfo.ToString()}");
+            }
+            {
+                CultureInfo cultureInfo = new CultureInfo("zh-Hans");
+                Trace.WriteLine($"[App.xaml.cs App] cultureInfo: DisplayName: {cultureInfo.DisplayName}, EnglishName: {cultureInfo.EnglishName}, Name: {cultureInfo.Name}, NativeName: {cultureInfo.NativeName}, IetfLanguageTag: {cultureInfo.IetfLanguageTag}, TwoLetterISOLanguageName: {cultureInfo.TwoLetterISOLanguageName}, ToString(): {cultureInfo.ToString()}");
+            }
         }
 
         /*
@@ -59,14 +72,14 @@ public partial class App : Application
 
     // - インターナル静的プロパティ
 
-    #region プロパティ（ロケールＩｄのリスト）
+    #region プロパティ（文化情報のリスト）
     /// <summary>
-    ///     ロケールＩｄのリスト
+    ///     文化情報のリスト
     /// </summary>
-    internal static ObservableCollection<string> LocaleIdCollection { get; } = new ObservableCollection<string>(new List<string>()
+    internal static ObservableCollection<CultureInfo> CultureInfoCollection { get; } = new ObservableCollection<CultureInfo>(new List<CultureInfo>()
         {
-            "ja-JP",
-            "en-US",
+            new CultureInfo("ja-JP"),
+            new CultureInfo("en-US"),
         });
     #endregion
 

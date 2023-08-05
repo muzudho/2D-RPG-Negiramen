@@ -70,8 +70,9 @@
                 <!-- ロケール選択 -->
                 <Picker x:Name="picker"
                     HorizontalOptions="Center"
-                    ItemsSource="{Binding LocaleIdCollection}"
-                    SelectedItem="{Binding CultureInfoAsStr}"
+                    ItemsSource="{Binding CultureInfoCollection}"
+                    ItemDisplayBinding="{Binding NativeName}"
+                    SelectedItem="{Binding SelectedCultureInfo}"
                     Title="{app:Translate SelectLanguage}">
                 </Picker>
 

@@ -50,8 +50,9 @@
             <Picker Grid.Column="1"
                     VerticalOptions="Center"
                     HorizontalOptions="End"
-                    ItemsSource="{Binding LocaleIdCollection}"
-                    SelectedItem="{Binding CultureInfoAsStr}"
+                    ItemsSource="{Binding CultureInfoCollection}"
+                    ItemDisplayBinding="{Binding NativeName}"
+                    SelectedItem="{Binding SelectedCultureInfo}"
                     SelectedIndexChanged="LocalePicker_SelectedIndexChanged"/>
         </Grid>
     </Shell.TitleView>

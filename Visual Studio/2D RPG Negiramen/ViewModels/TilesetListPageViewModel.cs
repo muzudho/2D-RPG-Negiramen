@@ -41,26 +41,26 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// <summary>
     ///     現在選択中の文化情報。文字列形式
     /// </summary>
-    public string CultureInfoAsStr
+    public CultureInfo SelectedCultureInfo
     {
         get
         {
-            return LocalizationResourceManager.Instance.CultureInfo.Name;
+            return LocalizationResourceManager.Instance.CultureInfo;
         }
         set
         {
-            if (LocalizationResourceManager.Instance.CultureInfo.Name != value)
+            if (LocalizationResourceManager.Instance.CultureInfo != value)
             {
-                LocalizationResourceManager.Instance.SetCulture(new CultureInfo(value));
-                OnPropertyChanged(nameof(CultureInfoAsStr));
+                LocalizationResourceManager.Instance.SetCulture(value);
+                OnPropertyChanged(nameof(SelectedCultureInfo));
             }
         }
     }
 
     /// <summary>
-    ///     ロケールＩｄのリスト
+    ///     文化情報のリスト
     /// </summary>
-    public ObservableCollection<string> LocaleIdCollection => App.LocaleIdCollection;
+    public ObservableCollection<CultureInfo> CultureInfoCollection => App.CultureInfoCollection;
     #endregion
 
     #region 変更通知プロパティ（CollectionView の ItemsLayout プロパティ）

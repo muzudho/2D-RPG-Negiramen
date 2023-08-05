@@ -2280,4 +2280,43 @@ TOMLファイルを自動生成する機能が要るぜ」
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ロケール別の構成ファイルも　早よ作れだぜ」  
 
+## ロケール用のフォルダーを作ろうぜ？
+
+```plaintext
+cultureInfo:
+    DisplayName: 日本語 (日本),
+    EnglishName: Japanese (Japan),
+    Name: ja-JP,
+    NativeName: 日本語 (日本),
+    IetfLanguageTag: ja-JP,
+    TwoLetterISOLanguageName: ja,
+    ToString(): ja-JP
+
+cultureInfo:
+    DisplayName: 英語 (アメリカ合衆国),
+    EnglishName: English (United States),
+    Name: en-US,
+    NativeName: English (United States),
+    IetfLanguageTag: en-US,
+    TwoLetterISOLanguageName: en,
+    ToString(): en-US
+
+cultureInfo:
+    DisplayName: 中国語 (簡体字),
+    EnglishName: Chinese (Simplified),
+    Name: zh-Hans,
+    NativeName: 中文（简体）,
+    IetfLanguageTag: zh-Hans,
+    TwoLetterISOLanguageName: zh,
+    ToString(): zh-Hans
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　画面のピッカーには `NativeName` で表示した方がいいのかな……？」  
+
+![202308_maui_05-1558--NativeName.png](https://crieit.now.sh/upload_images/e48e6444c8902db407fb272a348880d764cdf32fc8618.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`NativeName` の方が　かっこいいな　こっちにしよ」  
+
 ＜書きかけ＞
