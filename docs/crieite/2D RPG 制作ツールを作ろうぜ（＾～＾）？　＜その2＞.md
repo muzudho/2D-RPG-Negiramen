@@ -2452,4 +2452,37 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　付けた」  
 
+## アンドゥとリドゥ
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そろそろ　アンドゥと　リドゥができないことに　突っ込まれそうだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　Command Pattern を自力実装するのか、それとも　MAUI　に何か便利なフレームワークがあるのかだぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　他人が作ってくれてるけど、自力実装すりゃ　いーんじゃねーの？」  
+
+📖 [C#でUndo/Redoを実装した](https://qiita.com/nossey/items/c59910558d5501f03ad0)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　ＭＶＶＭは　アンドゥに従ってくれんの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　全ての操作には、逆向きの操作も用意しておく必要があるな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　テキストボックスの文字を１つ消したのも戻せるレベルで　ヒストリーを作んの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　エントリー（テキストボックス）には　アンドゥ・リドゥ機能がもう付いていたぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　MAUI　に元から付いている　アンドゥ・リドゥ機能と、  
+お父んが作る　アンドゥ・リドゥ機能は　ぶつからないか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　そこらへん　どうすんだろな？」  
+
+
 ＜書きかけ＞
