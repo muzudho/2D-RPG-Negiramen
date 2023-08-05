@@ -67,9 +67,9 @@ class TilesetsFolder : TheFileEntryLocations.ItsFolder
     /// <summary>
     ///     Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.toml` ファイルの場所
     /// </summary>
-    internal TilesetToml CreateTilesetToml(FileStem fileStem)
+    internal TilesetGlobalToml CreateTilesetGlobalToml(FileStem fileStem)
     {
-        return new TilesetToml(
+        return new TilesetGlobalToml(
             pathSource: FileEntryPathSource.FromString(
                 System.IO.Path.Combine(Path.AsStr, $"{fileStem.AsStr}.toml")),
             convert: (pathSource) => FileEntryPath.From(pathSource,

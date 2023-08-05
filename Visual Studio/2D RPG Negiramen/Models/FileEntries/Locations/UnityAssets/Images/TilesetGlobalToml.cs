@@ -12,7 +12,7 @@ using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item><see cref="ItsFolder"/></item>
 ///     </list>
 /// </summary>
-class TilesetToml : ItsFile
+class TilesetGlobalToml : ItsFile
 {
     // - その他
 
@@ -20,7 +20,7 @@ class TilesetToml : ItsFile
     /// <summary>
     ///     生成
     /// </summary>
-    internal TilesetToml()
+    internal TilesetGlobalToml()
         : base()
     {
     }
@@ -28,7 +28,7 @@ class TilesetToml : ItsFile
     /// <summary>
     ///     生成
     /// </summary>
-    internal TilesetToml(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal TilesetGlobalToml(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }
@@ -40,6 +40,6 @@ class TilesetToml : ItsFile
     /// <summary>
     ///     空オブジェクト
     /// </summary>
-    internal static TilesetToml Empty { get; } = new TilesetToml();
+    internal static TilesetGlobalToml Empty { get; } = new TilesetGlobalToml();
     #endregion
 }

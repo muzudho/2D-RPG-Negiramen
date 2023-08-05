@@ -26,6 +26,22 @@ internal class SelectedLocaleFolder : TheFileEntryLocations.ItsFolder
 
     }
 
+    // - インターナル・メソッド
+
+    #region メソッド（Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/Locales/{選択中のロケール}/{名前}.toml` ファイルの場所）
+    /// <summary>
+    ///     Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/Locales/{選択中のロケール}/{名前}.toml` ファイルの場所
+    /// </summary>
+    internal TilesetLocalToml CreateTilesetLocalToml(FileStem fileStem)
+    {
+        return new TilesetLocalToml(
+            pathSource: FileEntryPathSource.FromString(
+                System.IO.Path.Combine(Path.AsStr, $"{fileStem.AsStr}.toml")),
+            convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                        replaceSeparators: true));
+    }
+    #endregion
+
     // - プライベート・プロパティ
 
     ///// <summary>
