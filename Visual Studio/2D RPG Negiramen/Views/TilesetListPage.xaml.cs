@@ -673,7 +673,11 @@ public partial class TilesetListPage : ContentPage
     /// <param name="e"></param>
     private void TilesetTitleEntry_Completed(object sender, EventArgs e)
     {
+        var context = this.TilesetListPageVM;
 
+        var entry = (Entry)sender;
+
+        context.SetSelectedTilesetTitleAsStr(entry.Text);
     }
     #endregion
 }

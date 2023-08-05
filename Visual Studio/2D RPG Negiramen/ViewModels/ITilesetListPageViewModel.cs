@@ -96,4 +96,11 @@ public interface ITilesetListPageViewModel
     /// <param name="selectedTilesetRecord"></param>
     void SetSelectedTileset(TilesetRecordViewModel? selectedTilesetRecord);
     #endregion
+
+    #region メソッド（選択タイルセットのタイトル設定）
+    /// <summary>
+    ///     選択タイルセットのタイトル設定
+    /// </summary>
+    void SetSelectedTilesetTitleAsStr(string title);
+    #endregion
 }

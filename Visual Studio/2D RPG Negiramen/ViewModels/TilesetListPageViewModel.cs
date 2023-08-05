@@ -183,19 +183,6 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
             this.selectedTilesetTitleAsStr = value;
             OnPropertyChanged(nameof(SelectedTilesetTitleAsStr));
-
-            // 選択要素の更新
-            {
-                if (this.SelectedTilesetRecord!=null)
-                {
-                    this.SelectedTilesetRecord.TitleAsStr = value;
-
-                    // TODO ファイルへ保存したい
-
-                    // コレクション・ビューの更新
-                    OnPropertyChanged(nameof(TilesetRecordVMCollection));
-                }
-            }
         }
     }
     #endregion
@@ -299,6 +286,25 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
         // 選択タイルセット・タイトル
         this.SelectedTilesetTitleAsStr = selectedTilesetRecord.TitleAsStr;
+    }
+    #endregion
+
+    #region メソッド（選択タイルセットのタイトル設定）
+    /// <summary>
+    ///     選択タイルセットのタイトル設定
+    /// </summary>
+    public void SetSelectedTilesetTitleAsStr(string title)
+    {
+        // 選択要素の更新
+        if (this.SelectedTilesetRecord != null)
+        {
+            this.SelectedTilesetRecord.TitleAsStr = title;
+
+            // TODO ファイルへ保存したい
+
+            // コレクション・ビューの更新
+            OnPropertyChanged(nameof(TilesetRecordVMCollection));
+        }
     }
     #endregion
 
