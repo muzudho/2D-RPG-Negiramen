@@ -202,7 +202,8 @@
             -->
             <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"
                    Placeholder="冒険の荒野"
-                   Text="{Binding SelectedTilesetTitleAsStr}"/>
+                   Text="{Binding SelectedTilesetTitleAsStr}"
+                   Completed="TilesetTitleEntry_Completed"/>
         </Grid>
     </Grid>
 </ContentPage>
