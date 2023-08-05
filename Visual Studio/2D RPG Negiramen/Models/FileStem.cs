@@ -11,6 +11,21 @@
         /// <summary>
         ///     生成
         /// </summary>
+        /// <param name="source">ヌル不可</param>
+        /// <returns></returns>
+        internal static FileStem FromString(string source)
+        {
+            if (source == null)
+            {
+                throw new ArgumentNullException(nameof(source));
+            }
+
+            return new FileStem(source);
+        }
+
+        /// <summary>
+        ///     生成
+        /// </summary>
         internal FileStem()
         {
             this.source = string.Empty;
@@ -19,7 +34,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        internal FileStem(string source)
+        FileStem(string source)
         {
             this.source = source;
         }
@@ -41,25 +56,6 @@
         ///     空オブジェクト
         /// </summary>
         internal static FileStem Empty { get; } = new FileStem();
-        #endregion
-
-        // - インターナル静的メソッド
-
-        #region メソッド（文字列を与えて初期化）
-        /// <summary>
-        ///     文字列を与えて初期化
-        /// </summary>
-        /// <param name="source">ソース</param>
-        /// <returns>実例</returns>
-        internal static FileStem FromString(string source)
-        {
-            if (source == null)
-            {
-                throw new ArgumentNullException(nameof(source));
-            }
-
-            return new FileStem(source);
-        }
         #endregion
 
         // - インターナル・プロパティ

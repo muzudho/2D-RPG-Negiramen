@@ -27,8 +27,11 @@ internal class TilesetLocalConfiguration
     /// <param name="newConfiguration">新ファイル</param>
     internal static bool LoadOrAdd(
         TheFileEntryLocations.UnityAssets.Images.TilesetPng tilesetPngLocation,
-        out TilesetLocalConfiguration? newConfiguration)
+        out TilesetLocalConfiguration? newConfiguration,
+        out bool isNew)
     {
+        isNew = false;
+
         // 画像ファイルの名前は UUID という想定（UUIDじゃないかもしれない）
         var fileStem = tilesetPngLocation.GetStem();
 
@@ -89,6 +92,8 @@ internal class TilesetLocalConfiguration
         }
         else
         {
+            isNew = true;
+
             // ファイル・ステムが UUID かどうか確認
             if (UUIDHelper.IsMatch(tilesetPngLocation.GetStem().AsStr))
             {

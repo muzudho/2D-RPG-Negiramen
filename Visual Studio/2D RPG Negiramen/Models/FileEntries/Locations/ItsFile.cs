@@ -41,7 +41,7 @@ abstract class ItsFile : Its
     ///     ファイル・ステム取得
     /// </summary>
     /// <returns></returns>
-    internal FileStem GetStem() => new FileStem(System.IO.Path.GetFileNameWithoutExtension(this.Path.AsStr));
+    internal FileStem GetStem() => FileStem.FromString(System.IO.Path.GetFileNameWithoutExtension(this.Path.AsStr));
     #endregion
 
     #region メソッド（拡張子取得）
