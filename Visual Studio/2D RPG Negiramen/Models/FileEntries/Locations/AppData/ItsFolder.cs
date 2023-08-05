@@ -26,7 +26,7 @@ internal class ItsFolder : TheFileEntryLocations.ItsFolder
     internal ItsFolder()
         : base(
               pathSource: new FileEntryPathSource(FileSystem.Current.AppDataDirectory),
-              convert: (pathSource) => FileEntryPath.From(pathSource,
+              evaluate: (pathSource) => FileEntryPath.From(pathSource,
                                                           replaceSeparators: true))
     {
     }

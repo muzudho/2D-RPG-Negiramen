@@ -25,7 +25,7 @@ internal class ImagesTilesetsThumbnailsFolder : TheFileEntryLocations.ItsFolder
     /// </summary>
     internal ImagesTilesetsThumbnailsFolder(FileEntryPath parentPath)
         : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Thumbnails")),
-               convert: (pathSource) => FileEntryPath.From(pathSource,
+               evaluate: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {
     }

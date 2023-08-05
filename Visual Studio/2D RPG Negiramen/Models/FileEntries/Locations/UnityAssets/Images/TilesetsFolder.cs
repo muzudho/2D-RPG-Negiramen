@@ -21,7 +21,7 @@ class TilesetsFolder : TheFileEntryLocations.ItsFolder
     /// </summary>
     internal TilesetsFolder(FileEntryPath parentPath)
         : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Tilesets")),
-               convert: (pathSource) => FileEntryPath.From(pathSource,
+               evaluate: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {
     }

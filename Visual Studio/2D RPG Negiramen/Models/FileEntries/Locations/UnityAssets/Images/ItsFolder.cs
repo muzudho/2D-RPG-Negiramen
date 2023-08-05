@@ -21,7 +21,7 @@ internal class ItsFolder : TheFileEntryLocations.ItsFolder
     /// </summary>
     internal ItsFolder(FileEntryPath parentPath)
         : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Images")),
-               convert: (pathSource) => FileEntryPath.From(pathSource,
+               evaluate: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {
     }

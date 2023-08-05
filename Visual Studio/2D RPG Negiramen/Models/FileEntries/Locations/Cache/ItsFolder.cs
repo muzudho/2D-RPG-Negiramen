@@ -25,7 +25,7 @@ internal class ItsFolder : TheFileEntryLocations.ItsFolder
     /// </summary>
     internal ItsFolder()
         : base(pathSource: FileEntryPathSource.FromString(FileSystem.CacheDirectory),
-               convert: (pathSource) => FileEntryPath.From(pathSource,
+               evaluate: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {
     }

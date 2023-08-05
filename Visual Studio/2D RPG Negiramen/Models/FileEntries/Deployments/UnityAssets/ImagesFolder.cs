@@ -36,11 +36,18 @@ internal static class ImagesFolder
     {
         // 📂 `Locales` フォルダ
         tilesetsFolder.LocalesFolder.CreateThisDirectoryIfItDoesNotExist();
-
+        MakeLocalesFolder(tilesetsFolder.LocalesFolder);
 
         // スターターキットのタイルセットをコピー
         ImagesFolder.CopyStarterKitTileset(tilesetsFolder, "86A25699-E391-4D61-85A5-356BA8049881.png");
         ImagesFolder.CopyStarterKitTileset(tilesetsFolder, "E7911DAD-15AC-44F4-A95D-74AB940A19FB.png");
+    }
+
+    internal static void MakeLocalesFolder(TheFileEntryLocations.UnityAssets.Images.LocalesFolder localesFolder)
+    {
+        // 選択中のロケールのフォルダ
+        var selectedLocaleFolder = localesFolder.CreateSelectedLocaleFolder();
+        selectedLocaleFolder.CreateThisDirectoryIfItDoesNotExist();
     }
 
     #region メソッド（タイルセットをコピー）

@@ -21,8 +21,8 @@ abstract class ItsFolder : Its
     /// <summary>
     ///     生成
     /// </summary>
-    internal ItsFolder(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
-        : base(pathSource, convert)
+    internal ItsFolder(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> evaluate)
+        : base(pathSource, evaluate)
     {
     }
     #endregion

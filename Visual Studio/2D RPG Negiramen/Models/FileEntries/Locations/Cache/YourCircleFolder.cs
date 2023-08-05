@@ -25,7 +25,7 @@ internal class YourCircleFolder : TheFileEntryLocations.ItsFolder
     /// </summary>
     internal YourCircleFolder(FileEntryPath parentPath)
         : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().CurrentYourCircleFolderName.AsStr)),
-               convert: (pathSource) => FileEntryPath.From(pathSource,
+               evaluate: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {
     }

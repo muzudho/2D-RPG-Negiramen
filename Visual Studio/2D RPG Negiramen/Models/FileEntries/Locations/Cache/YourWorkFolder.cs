@@ -25,7 +25,7 @@ internal class YourWorkFolder : TheFileEntryLocations.ItsFolder
     /// </summary>
     internal YourWorkFolder(FileEntryPath parentPath)
         : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, App.GetOrLoadConfiguration().CurrentYourWorkFolderName.AsStr)),
-               convert: (pathSource) => FileEntryPath.From(pathSource,
+               evaluate: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {
     }

@@ -3,7 +3,6 @@
 using _2D_RPG_Negiramen.Models;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Controls;
-using System.Collections.Concurrent;
 using System.Collections.ObjectModel;
 using System.Globalization;
 
@@ -43,10 +42,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// </summary>
     public CultureInfo SelectedCultureInfo
     {
-        get
-        {
-            return LocalizationResourceManager.Instance.CultureInfo;
-        }
+        get => LocalizationResourceManager.Instance.CultureInfo;
         set
         {
             if (LocalizationResourceManager.Instance.CultureInfo != value)
@@ -69,8 +65,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// </summary>
     public GridItemsLayout ItemsLayout
     {
-        get =>
-            this.itemsLayout;
+        get => this.itemsLayout;
         set
         {
             if (this.itemsLayout == value)
@@ -211,7 +206,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
         {
             var record = this.TilesetRecordList[i];
 
-            if (System.IO.Path.GetFileNameWithoutExtension(record.PngFilePathAsStr)==fileStem.AsStr)
+            if (System.IO.Path.GetFileNameWithoutExtension(record.PngFilePathAsStr) == fileStem.AsStr)
             {
                 hitIndex = i;
                 break;

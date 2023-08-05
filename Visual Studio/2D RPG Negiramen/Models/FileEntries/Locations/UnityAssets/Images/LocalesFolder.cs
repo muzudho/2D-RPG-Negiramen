@@ -22,10 +22,22 @@ internal class LocalesFolder : TheFileEntryLocations.ItsFolder
     /// </summary>
     internal LocalesFolder(FileEntryPath parentPath)
         : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Locales")),
-               convert: (pathSource) => FileEntryPath.From(pathSource,
+               evaluate: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
     {
     }
     #endregion
 
+    // - インターナル・メソッド
+
+    /// <summary>
+    ///     選択中のロケールに対応するフォルダ
+    /// </summary>
+    /// <returns></returns>
+    internal SelectedLocaleFolder CreateSelectedLocaleFolder()
+    {
+        return new SelectedLocaleFolder(
+            parentPath: this.Path,
+            cultureInfo: LocalizationResourceManager.Instance.CultureInfo);
+    }
 }
