@@ -1,6 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries;
 
-using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 タイルセット・グローバル構成バッファー
@@ -9,7 +9,7 @@ using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item>ミュータブル</item>
 ///     </list>
 /// </summary>
-internal class TilesetGlobalConfigBuffer
+internal class TilesetGlobalConfigurationBuffer
 {
     // - インターナル・プロパティ
 
@@ -18,6 +18,6 @@ internal class TilesetGlobalConfigBuffer
     ///     タイルセット・グローバル構成ファイルの場所
     /// </summary>
     /// <example>"C:\Users\むずでょ\Documents\Unity Projects\Negiramen Practice\Assets\Doujin Circle Negiramen\Negiramen Quest\Auto Generated\Images\Tilesets\86A25699-E391-4D61-85A5-356BA8049881.toml"</example>
-    internal TheFileEntryLocation.UnityAssets.ImagesTilesetToml? Location { get; set; }
+    internal TheFileEntryLocations.UnityAssets.ImagesTilesetToml? Location { get; set; }
     #endregion
 }

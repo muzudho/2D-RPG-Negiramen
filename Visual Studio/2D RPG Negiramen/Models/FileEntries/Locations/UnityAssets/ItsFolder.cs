@@ -3,7 +3,7 @@
 using _2D_RPG_Negiramen;
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
-using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 Unityの 📂 `Assets` フォルダへのパス
@@ -13,7 +13,7 @@ using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item><see cref="App.Configuration"/></item>
 ///     </list>
 /// </summary>
-class ItsFolder : TheFileEntryLocation.ItsFolder
+class ItsFolder : TheFileEntryLocations.ItsFolder
 {
     // - その他
 

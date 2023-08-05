@@ -1,6 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries;
 
-using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 タイルセット・グローバル構成
@@ -9,7 +9,7 @@ using TheFileEntryLocation = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item>イミュータブル</item>
 ///     </list>
 /// </summary>
-internal class TilesetGlobalConfig
+internal class TilesetGlobalConfiguration
 {
     // - その他
 
@@ -18,19 +18,25 @@ internal class TilesetGlobalConfig
     ///     読込。なければ作成
     /// </summary>
     /// <param name="location">タイルセット・グローバル構成ファイルの場所</param>
-    internal TilesetGlobalConfig LoadOrAdd(
-        TheFileEntryLocation.UnityAssets.ImagesTilesetToml location)
+    internal TilesetGlobalConfiguration LoadOrAdd(
+        TheFileEntryLocations.UnityAssets.ImagesTilesetToml location)
     {
         // ファイルの存在確認
         if (location.IsExists())
         {
             // TODO あれば読込
-            return new TilesetGlobalConfig(location);
+            return new TilesetGlobalConfiguration(location);
         }
         else
         {
-            // TODO なければ新規作成
-            return new TilesetGlobalConfig(location);
+            // なければ新規作成
+            var config = new TilesetGlobalConfiguration(
+                location: location);
+
+            // ファイル書出し
+            WriteTOML(config);
+
+            return config;
         }
     }
 
@@ -38,20 +44,11 @@ internal class TilesetGlobalConfig
     ///     生成
     /// </summary>
     /// <param name="location">タイルセット・グローバル構成ファイルの場所</param>
-    TilesetGlobalConfig(TheFileEntryLocation.UnityAssets.ImagesTilesetToml location)
+    TilesetGlobalConfiguration(TheFileEntryLocations.UnityAssets.ImagesTilesetToml location)
     {
         this.Location = location;
     }
     #endregion
-
-    // - インターナル静的プロパティ
-
-    //#region プロパティ（空オブジェクト）
-    ///// <summary>
-    /////     空オブジェクト
-    ///// </summary>
-    //internal static TilesetGlobalConfig Empty = new();
-    //#endregion
 
     // - インターナル静的メソッド
 
@@ -63,13 +60,24 @@ internal class TilesetGlobalConfig
     /// <param name="difference">現在の構成から更新した差分</param>
     /// <param name="newConfiguration">差分を反映した構成</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(TilesetGlobalConfig current, TilesetGlobalConfigBuffer difference, out TilesetGlobalConfig newConfiguration)
+    internal static bool SaveTOML(TilesetGlobalConfiguration current, TilesetGlobalConfigurationBuffer difference, out TilesetGlobalConfiguration newConfiguration)
     {
-        var configurationBuffer = new TilesetGlobalConfigBuffer();
+        var configurationBuffer = new TilesetGlobalConfigurationBuffer();
 
         // 差分適用
         configurationBuffer.Location = difference.Location ?? current.Location;
 
+        // 差分をマージして、イミュータブルに変換
+        newConfiguration = new TilesetGlobalConfiguration(
+            location: configurationBuffer.Location);
+
+        WriteTOML(newConfiguration);
+
+        return true;
+    }
+
+    internal static void WriteTOML(TilesetGlobalConfiguration configuration)
+    {
         //
         // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
         //
@@ -80,12 +88,6 @@ internal class TilesetGlobalConfig
         System.IO.File.WriteAllText(
             path: App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr,
             contents: text);
-
-        // 差分をマージして、イミュータブルに変換
-        newConfiguration = new TilesetGlobalConfig(
-            location: configurationBuffer.Location);
-
-        return true;
     }
     #endregion
 
@@ -96,7 +98,7 @@ internal class TilesetGlobalConfig
     ///     タイルセット・グローバル構成ファイルの場所
     /// </summary>
     /// <example>"C:\Users\むずでょ\Documents\Unity Projects\Negiramen Practice\Assets\Doujin Circle Negiramen\Negiramen Quest\Auto Generated\Images\Tilesets\86A25699-E391-4D61-85A5-356BA8049881.toml"</example>
-    internal TheFileEntryLocation.UnityAssets.ImagesTilesetToml Location { get; }
+    internal TheFileEntryLocations.UnityAssets.ImagesTilesetToml Location { get; }
     #endregion
 
     #region プロパティ（拡張子）
