@@ -297,6 +297,20 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
+    #region イベントハンドラ（［タイルセット一覧］ボタン・クリック時）
+    /// <summary>
+    ///     ［タイルセット一覧］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    async void TilesetListButton_Clicked(object sender, EventArgs e)
+    {
+        await PolicyOfView.ReactOnPushed((Button)sender);
+
+        await Shell.Current.GoToAsync("//TilesetListPage");
+    }
+    #endregion
+
     #region イベントハンドラ（タップ時）
     /// <summary>
     ///     タップ時

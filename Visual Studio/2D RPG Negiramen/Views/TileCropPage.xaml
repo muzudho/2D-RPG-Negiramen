@@ -55,6 +55,17 @@
                        Text="＞"
                        SemanticProperties.Hint="Separator"/>
 
+                <!--    ［タイルセット一覧］ボタン
+                        ==========================
+                -->
+                <Button Margin="2,2,2,2"
+                        Text="{app:Translate TilesetList}"
+                        Clicked="TilesetListButton_Clicked"/>
+
+                <Label VerticalTextAlignment="Center"
+                       Text="＞"
+                       SemanticProperties.Hint="Separator"/>
+
                 <!--    ページ・タイトル
                         ================
                 -->
