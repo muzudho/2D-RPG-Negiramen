@@ -88,6 +88,6 @@
         ///         <item>実質、コメントのようなもの</item>
         ///     </list>
         /// </summary>
-        public string TitleAsStr { get; }
+        public string TitleAsStr { get; set; }
     }
 }

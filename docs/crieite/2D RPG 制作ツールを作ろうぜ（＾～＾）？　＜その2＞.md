@@ -2381,4 +2381,25 @@ author = "むずでょ"
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　じゃあ　画面から　タイトルを変更できるようにしてくれだぜ」  
 
+## エントリー（テキストボックス）で１文字入力するたびにビュー・モデルが更新されるのつらい
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　エントリー（テキストボックス）で１文字入力するたびにビュー・モデルが更新されるのつらい」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　それが　MVVM　なんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　このサイトは　細かく書いてるが　知りたい情報はあるかな？」  
+
+📖 [TextEditBase.Text Property](https://docs.devexpress.com/MAUI/DevExpress.Maui.Editors.TextEditBase.Text)  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　👇　`Completed`　というイベントハンドラがあるのでは？」  
+
+📖 [Microsoft　＞　入力](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/controls/entry)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　それを使うように変えていくか～」  
+
 ＜書きかけ＞

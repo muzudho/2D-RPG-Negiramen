@@ -26,9 +26,9 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
     // - パブリック・プロパティ
 
-    #region プロパティ（タイルセット・レコード・ビューモデルのリスト）
+    #region プロパティ（コレクション・ビューのアイテム・ソース）
     /// <summary>
-    ///     タイルセット・レコード・ビューモデルのリスト
+    ///     コレクション・ビューのアイテム・ソース
     /// </summary>
     // public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection => new(this.TilesetRecordList);
     public ObservableCollection<TilesetRecordViewModel> TilesetRecordVMCollection => new(this.TilesetRecordList.ToList());
@@ -183,6 +183,19 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
             this.selectedTilesetTitleAsStr = value;
             OnPropertyChanged(nameof(SelectedTilesetTitleAsStr));
+
+            // 選択要素の更新
+            {
+                if (this.SelectedTilesetRecord!=null)
+                {
+                    this.SelectedTilesetRecord.TitleAsStr = value;
+
+                    // TODO ファイルへ保存したい
+
+                    // コレクション・ビューの更新
+                    OnPropertyChanged(nameof(TilesetRecordVMCollection));
+                }
+            }
         }
     }
     #endregion
