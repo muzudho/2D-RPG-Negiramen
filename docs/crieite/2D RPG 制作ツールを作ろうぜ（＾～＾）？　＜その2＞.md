@@ -2412,4 +2412,44 @@ author = "むずでょ"
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　MAUI の不具合なんだから、**エンター・キーを押せ** という運用でやるしかなくない？」  
 
+## 画面を移動するボタンと、それ以外の機能があるボタン
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画面の移動も、　データの編集も　同じボタンの形状なの　分かりづらいんだが」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そんなもんだろ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　画面遷移も　スライドするトランジションが入るやつと、  
+トランジションが無いやつもあるし」  
+
+```csharp
+        //
+        await contentPage.Navigation.PushAsync(new ConfigurationPage());
+
+        //
+        var shellNavigationState = new ShellNavigationState("//MapExplorerPage");
+        await Shell.Current.GoToAsync(shellNavigationState);
+```
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👆　やり方が２つあるのも　分けわかんないわねえ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`Navigation` を使うやつは、戻るボタンが勝手に付くのでは？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　わざわざ　`ShellNavigationState`　を使うやり方って　メリット無いの？」  
+
+## 日本語と　英語で　別々にタイトルを付けれる機能
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　日本語と　英語で　別々にタイトルを付けれる機能の実装を進めるぜ」  
+
+![202308__maui__06-0034--localization-downsize2.gif](https://crieit.now.sh/upload_images/fbced500be8f0555a4b00072d6dd459f64ce6e9d18385.gif)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　付けた」  
+
 ＜書きかけ＞
