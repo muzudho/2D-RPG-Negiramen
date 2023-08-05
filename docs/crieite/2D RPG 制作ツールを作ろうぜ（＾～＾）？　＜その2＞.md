@@ -2339,4 +2339,46 @@ cultureInfo:
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　タイルセット削除ボタンの位置を　左下に戻したった」  
 
+## プレースホルダ―のロケール設定を分けたいぜ
+
+```toml
+[global]
+
+uuid = "6FBD83F1-D2A3-45EE-AFC5-411CD6E50144"
+extension = ".toml"
+
+[local_placeholder]
+
+title = "適当に作った画像"
+author = "むずでょ"
+
+[user_defined]
+```
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　タイルセット・グローバル構成ファイルに　`local_placeholder`　という項目が欲しいぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　最初に思っていなかった　いろんなものを　盛り込むなあ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　英語で設定されていて、日本語で設定されていないとき、  
+英語の設定を　プレースホルダーで表示してくれてもいいじゃないか、というものだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　第１言語、第２言語を選べるようにすりゃいいんじゃない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　フーム、大改造は嫌なんで　後回しにするか」  
+
+## タイルセットのタイトル
+
+![202308_maui_05-1859--TilesetTitle.png](https://crieit.now.sh/upload_images/abd33f51c5e1433c223b48cdff5c5eb364ce1dcc4439d.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　まず　日本語で対応を進めていこう」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　画面から　タイトルを変更できるようにしてくれだぜ」  
+
 ＜書きかけ＞

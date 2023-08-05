@@ -76,7 +76,9 @@
         </HorizontalStackLayout>
 
         
-        <!--
+        <!--    コレクション・ビュー
+                ====================
+        
                         ok
                         ItemsLayout="VerticalGrid, 2"
                         ItemsLayout="VerticalGrid, 4"
@@ -103,11 +105,15 @@
                     <Grid RowDefinitions="128,20"
                           WidthRequest="128"
                           HeightRequest="148">
+                        
+                        <!-- サムネイル画像 -->
                         <Image Grid.Row="0"
                                Aspect="AspectFill"
                                WidthRequest="{Binding ThumbnailWidthAsInt}"
                                HeightRequest="{Binding ThumbnailHeightAsInt}" 
                                Source="{Binding ThumbnailFilePathAsStr}"/>
+                        
+                        <!-- タイトル -->
                         <Label Grid.Row="1"
                                HorizontalOptions="Center"
                                Text="{Binding TitleAsStr}" 

@@ -75,10 +75,13 @@ public partial class TilesetListPage : ContentPage
         // 画像ファイルの名前は UUID という想定（UUIDじゃないかもしれない）
         var fileStem = tilesetOriginalPngLocation.GetStem();
 
+        // タイルセット・ローカル構成ファイルは、無いこともある
+        TilesetLocalConfiguration? tilesetLocalConfiguration;
+
         // タイルセット・ローカル構成ファイル作成
         if (TilesetLocalConfiguration.LoadOrAdd(
             tilesetPngLocation: tilesetOriginalPngLocation,
-            newConfiguration: out var tilesetLocalConfiguration,
+            newConfiguration: out tilesetLocalConfiguration,
             isNew: out bool isNew))
         {
             var config = tilesetLocalConfiguration ?? throw new Exception();
@@ -178,7 +181,7 @@ public partial class TilesetListPage : ContentPage
                 // サムネイル画像の縦幅
                 thumbnailHeightAsInt: tilesetThumbnailImageProperties.Height,
                 // 画面に表示する画像タイトル
-                title: "たいとる１"));
+                title: tilesetLocalConfiguration != null ? tilesetLocalConfiguration.Title.AsStr : "no title"));
         }
         catch (Exception ex)
         {

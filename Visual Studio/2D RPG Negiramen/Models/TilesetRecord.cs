@@ -22,7 +22,7 @@
         /// <param name="thumbnailFilePathAsStr"></param>
         /// <param name="thumbnailWidthAsInt"></param>
         /// <param name="thumbnailHeightAsInt"></param>
-        /// <param name="title"></param>
+        /// <param name="title">タイトル</param>
         internal TilesetRecord(
             string uuidAsStr,
             string filePathAsStr,
