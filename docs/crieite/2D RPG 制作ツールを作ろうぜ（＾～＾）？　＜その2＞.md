@@ -2402,4 +2402,14 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　それを使うように変えていくか～」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　なんだこれ　エンター・キー　押さないと　`Completed` しないじゃないか。  
+エンター・キー押さなかったら　どうする？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　エントリーで　タブ・キー押したら　タブが入るし」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI の不具合なんだから、**エンター・キーを押せ** という運用でやるしかなくない？」  
+
 ＜書きかけ＞
