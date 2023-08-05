@@ -520,6 +520,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   画像ファイル［{0}］は、ネギラーメンの中では［{1}］というファイル名にします。 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TheImageFileAlphaIsNamedBetaInNegiramen {
+            get {
+                return ResourceManager.GetString("TheImageFileAlphaIsNamedBetaInNegiramen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   タイル切抜き に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string TileCrop {
@@ -561,6 +570,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string TileTitle {
             get {
                 return ResourceManager.GetString("TileTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ファイルをインポートするために に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ToImportAFile {
+            get {
+                return ResourceManager.GetString("ToImportAFile", resourceCulture);
             }
         }
         

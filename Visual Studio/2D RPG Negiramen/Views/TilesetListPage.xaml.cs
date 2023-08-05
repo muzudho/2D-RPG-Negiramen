@@ -558,8 +558,29 @@ public partial class TilesetListPage : ContentPage
                 var newBasename = System.IO.Path.GetFileName(tilesetPngLocation.Path.AsStr);
 
                 // ファイル名を変更していいか、確認する
-                string title = "You picked...";
-                string message = $"画像ファイル［{result.FullPath}］は、ネギラーメンの中では［{newBasename}］というファイル名にします。";
+                string title;
+                try
+                {
+                    title = (string)LocalizationResourceManager.Instance["ToImportAFile"];
+                }
+                catch
+                {
+                    // エラー時の代替
+                    title = "To import files";
+                }
+
+                string message;
+                try
+                {
+                    string formatAsStr = (string)LocalizationResourceManager.Instance["TheImageFileAlphaIsNamedBetaInNegiramen"];
+                    message = string.Format(formatAsStr, result.FullPath, newBasename);
+                    // message = $"画像ファイル［{result.FullPath}］は、ネギラーメンの中では［{newBasename}］というファイル名にします。";
+                }
+                catch
+                {
+                    // エラー時の代替
+                    message = $"The image file \"{result.FullPath}\" is named \"{newBasename}\" in Negiramen";
+                }
 
                 bool isOk = await DisplayAlert(title, message, "OK", "Cancel");
 

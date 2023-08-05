@@ -315,4 +315,10 @@
   <data name="TilesetTitle" xml:space="preserve">
     <value>タイルセット タイトル</value>
   </data>
+  <data name="TheImageFileAlphaIsNamedBetaInNegiramen" xml:space="preserve">
+    <value>画像ファイル［{0}］は、ネギラーメンの中では［{1}］というファイル名にします。</value>
+  </data>
+  <data name="ToImportAFile" xml:space="preserve">
+    <value>ファイルをインポートするために</value>
+  </data>
 </root>

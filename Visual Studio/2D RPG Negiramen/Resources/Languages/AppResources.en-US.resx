@@ -306,4 +306,10 @@
   <data name="TilesetTitle" xml:space="preserve">
     <value>Tileset Title</value>
   </data>
+  <data name="TheImageFileAlphaIsNamedBetaInNegiramen" xml:space="preserve">
+    <value>The image file [{0}] will be named [{1}] in the green onion ramen.</value>
+  </data>
+  <data name="ToImportAFile" xml:space="preserve">
+    <value>To import files</value>
+  </data>
 </root>
