@@ -25,7 +25,7 @@ internal class TilesetLocalConfiguration
     /// </summary>
     /// <param name="tilesetPngFileStem">タイルセットPNG画像ファイルのステム。UUID という想定（UUIDじゃないかもしれない）</param>
     /// <param name="newConfiguration">新ファイル</param>
-    internal static bool LoadOrAdd(
+    internal static bool TryLoadOrAdd(
         FileStem tilesetPngFileStem,
         out TilesetLocalConfiguration? newConfiguration,
         out bool isNew)

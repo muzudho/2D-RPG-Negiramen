@@ -80,7 +80,7 @@ public partial class TilesetListPage : ContentPage
         TilesetLocalConfiguration? tilesetLocalConfiguration;
 
         // タイルセット・ローカル構成ファイル作成
-        if (TilesetLocalConfiguration.LoadOrAdd(
+        if (TilesetLocalConfiguration.TryLoadOrAdd(
             tilesetPngFileStem: tilesetOriginalPngFileStem,
             newConfiguration: out tilesetLocalConfiguration,
             isNew: out bool isNew))
