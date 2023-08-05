@@ -35,4 +35,12 @@ abstract class ItsFile : Its
     /// </summary>
     internal bool IsExists() => File.Exists(this.Path.AsStr);
     #endregion
+
+    #region メソッド（ファイル・ステム取得）
+    /// <summary>
+    ///     ファイル・ステム取得
+    /// </summary>
+    /// <returns></returns>
+    internal FileStem GetStem() => new FileStem(System.IO.Path.GetFileNameWithoutExtension(this.Path.AsStr));
+    #endregion
 }
