@@ -72,12 +72,28 @@ public partial class TilesetListPage : ContentPage
         // 画像ファイルの名前は UUID という想定（UUIDじゃないかもしれない）
         var fileStem = originalTilesetPngLocation.GetStem();
 
-        // タイルセットPNG画像ファイル名が UUID でなければ、タイルセット・グローバル構成ファイルは作らない。
+        // タイルセット・ローカル構成ファイル作成
+        if (TilesetLocalConfiguration.LoadOrAdd(
+            tilesetPngLocation: originalTilesetPngLocation,
+            newConfiguration: out var _tilesetLocalConfiguration))
+        {
+            // TOML があれば読込んだ。無ければ新規作成した
+        }
+        else
+        {
+            // タイルセットPNG画像ファイル名が UUID でなければ、タイルセット・ローカル構成ファイルは作らない。
+        }
+
+        // タイルセット・グローバル構成ファイル作成
         if (TilesetGlobalConfiguration.LoadOrAdd(
             tilesetPngLocation: originalTilesetPngLocation,
             newConfiguration: out var _tilesetGlobalConfiguration))
         {
             // TOML があれば読込んだ。無ければ新規作成した
+        }
+        else
+        {
+            // タイルセットPNG画像ファイル名が UUID でなければ、タイルセット・グローバル構成ファイルは作らない。
         }
 
         try
