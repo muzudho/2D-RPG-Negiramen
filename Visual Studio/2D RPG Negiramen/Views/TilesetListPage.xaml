@@ -63,32 +63,18 @@
     -->
     <Grid RowDefinitions="52, *, 152">
 
-        <Grid Grid.Row="0"
-              ColumnDefinitions="*, 262"
-              BackgroundColor="SkyBlue">
-            
-            <HorizontalStackLayout Grid.Column="0"
-                                   Padding="16,4,0,4">
+        <HorizontalStackLayout Grid.Row="0"
+                                Padding="16,4,0,4"
+                                BackgroundColor="SkyBlue">
 
-                <!-- 「インポート」 -->
-                <Button WidthRequest="150"
-                        HeightRequest="44"
-                        Text="インポート"
-                        Clicked="ImportButton_Clicked"/>
+            <!-- 「インポート」 -->
+            <Button WidthRequest="150"
+                    HeightRequest="44"
+                    Text="インポート"
+                    Clicked="ImportButton_Clicked"/>
                 
-            </HorizontalStackLayout>
+        </HorizontalStackLayout>
 
-            <!-- 「タイルセット削除」 -->
-            <Button Grid.Column="1"
-                    Margin="16,0,96,0"
-                    WidthRequest="150"
-                    HeightRequest="20"
-                    Text="タイルセット削除"
-                    IsEnabled="{Binding IsEnabledTilesetRemoveButton}"
-                    Style="{DynamicResource dangerButton}"
-                    Clicked="TilesetDeleteButton_Clicked"/>
-
-        </Grid>
         
         <!--
                         ok
@@ -152,12 +138,22 @@
             -->
             <VerticalStackLayout Grid.Row="1" Grid.RowSpan="3" Grid.Column="0"
                                  Padding="0,0,16,0">
+
                 <!-- 「タイル切抜き」 -->
                 <Button WidthRequest="150"
                         HeightRequest="20"
                         Text="タイル切抜き"
                         IsEnabled="{Binding IsEnabledTileCropButton}"
                         Clicked="TileCropButton_Clicked"/>
+
+                <!-- 「タイルセット削除」 -->
+                <Button Margin="0,16,0,0"
+                        WidthRequest="150"
+                        HeightRequest="20"
+                        Text="タイルセット削除"
+                        IsEnabled="{Binding IsEnabledTilesetRemoveButton}"
+                        Style="{DynamicResource dangerButton}"
+                        Clicked="TilesetDeleteButton_Clicked"/>
 
             </VerticalStackLayout>
 

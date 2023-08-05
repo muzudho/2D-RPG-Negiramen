@@ -2322,9 +2322,21 @@ cultureInfo:
 ![202308_maui_05-1705--TilesetLocalConfig.png](https://crieit.now.sh/upload_images/15c750fce282f349c9f65edefb424e7264ce02e829524.png)  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
-「　👆　ひとまず　ロケール用のフォルダーとファイルを作成……」  
+「　👆　ひとまず　ロケール用のフォルダーと、空のファイルを作成……」  
+
+## コレクション・ビューの選択中の色
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　コレクション・ビューの選択中の色、グレーで見にくいな！」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　スタイル　見たけど　さっぱり分からん。後回し。ダークモード消したった」  
+
+## タイルセット削除ボタンの位置
+
+![202308_maui_05-1739--TilesetDeleteBtn.png](https://crieit.now.sh/upload_images/3db68693fbf1a13ab7592ef34e7de8d864ce0af39cc56.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　タイルセット削除ボタンの位置を　左下に戻したった」  
 
 ＜書きかけ＞
