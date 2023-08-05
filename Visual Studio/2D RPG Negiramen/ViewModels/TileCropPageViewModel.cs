@@ -2,11 +2,11 @@
 {
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
     using System.Globalization;
+    using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
     /// <summary>
@@ -51,7 +51,7 @@
 
                 if (_tilesetSettingsFile.Path.AsStr != value)
                 {
-                    _tilesetSettingsFile = new DataCsvTilesetCsv(
+                    _tilesetSettingsFile = new TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv(
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
@@ -62,7 +62,7 @@
         /// <summary>
         ///     タイルセット設定ファイルへのパス
         /// </summary>
-        public DataCsvTilesetCsv TilesetSettingsFile
+        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetSettingsFile
         {
             get => _tilesetSettingsFile;
             set
@@ -79,7 +79,7 @@
         /// <summary>
         ///     タイルセット元画像ファイルへのパス
         /// </summary>
-        public ImagesTilesetPng TilesetImageFile
+        public TheFileEntryLocations.UnityAssets.Images.TilesetPng TilesetImageFile
         {
             get => tilesetImageFile;
             set
@@ -101,7 +101,7 @@
             {
                 if (tilesetImageFile.Path.AsStr != value)
                 {
-                    tilesetImageFile = new ImagesTilesetPng(
+                    tilesetImageFile = new TheFileEntryLocations.UnityAssets.Images.TilesetPng(
                         pathSource: FileEntryPathSource.FromString(value),
                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                     replaceSeparators: true));
@@ -1947,7 +1947,7 @@
         /// <summary>
         ///     タイルセット設定のCSVファイル
         /// </summary>
-        DataCsvTilesetCsv _tilesetSettingsFile = DataCsvTilesetCsv.Empty;
+        TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv _tilesetSettingsFile = TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv.Empty;
 
         /// <summary>
         ///     タイルセット設定ビューモデル
@@ -1959,7 +1959,7 @@
         /// <summary>
         ///     タイルセット元画像ファイルへのパス
         /// </summary>
-        ImagesTilesetPng tilesetImageFile = ImagesTilesetPng.Empty;
+        TheFileEntryLocations.UnityAssets.Images.TilesetPng tilesetImageFile = TheFileEntryLocations.UnityAssets.Images.TilesetPng.Empty;
 
         /// <summary>
         ///     タイルセット元画像サイズ

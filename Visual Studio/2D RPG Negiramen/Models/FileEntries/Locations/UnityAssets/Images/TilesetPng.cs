@@ -1,18 +1,18 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets.Images;
 
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
-///     😁 Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.toml` ファイルの場所
+///     😁 Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.png` ファイルの場所
 ///     
 ///     <list type="bullet">
 ///         <item>イミュータブル</item>
 ///         <item><see cref="ItsFolder"/></item>
 ///     </list>
 /// </summary>
-class ImagesTilesetToml : ItsFile
+class TilesetPng : ItsFile
 {
     // - その他
 
@@ -20,7 +20,7 @@ class ImagesTilesetToml : ItsFile
     /// <summary>
     ///     生成
     /// </summary>
-    internal ImagesTilesetToml()
+    internal TilesetPng()
         : base()
     {
     }
@@ -28,7 +28,7 @@ class ImagesTilesetToml : ItsFile
     /// <summary>
     ///     生成
     /// </summary>
-    internal ImagesTilesetToml(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
+    internal TilesetPng(FileEntryPathSource pathSource, LazyArgs.Convert<FileEntryPathSource, FileEntryPath> convert)
         : base(pathSource, convert)
     {
     }
@@ -40,6 +40,6 @@ class ImagesTilesetToml : ItsFile
     /// <summary>
     ///     空オブジェクト
     /// </summary>
-    internal static ImagesTilesetToml Empty { get; } = new ImagesTilesetToml();
+    internal static TilesetPng Empty { get; } = new TilesetPng();
     #endregion
 }

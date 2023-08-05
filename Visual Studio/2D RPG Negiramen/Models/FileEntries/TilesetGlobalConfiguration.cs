@@ -3,7 +3,6 @@
 using Tomlyn.Model;
 using Tomlyn;
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
-using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
 /// <summary>
 ///     😁 タイルセット・グローバル構成
@@ -27,7 +26,7 @@ internal class TilesetGlobalConfiguration
     /// <param name="tilesetPngLocation">タイルセットPNG画像ファイルの場所</param>
     /// <param name="newConfiguration">新ファイル</param>
     internal static bool LoadOrAdd(
-        ImagesTilesetPng tilesetPngLocation,
+        TheFileEntryLocations.UnityAssets.Images.TilesetPng tilesetPngLocation,
         out TilesetGlobalConfiguration? newConfiguration)
     {
         // 画像ファイルの名前は UUID という想定（UUIDじゃないかもしれない）
@@ -138,7 +137,7 @@ internal class TilesetGlobalConfiguration
     /// <param name="difference">現在の構成から更新した差分</param>
     /// <param name="newConfiguration">差分を反映した構成</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(ImagesTilesetToml tilesetGlobalConfigurationLocation, TilesetGlobalConfiguration current, TilesetGlobalConfigurationBuffer difference, out TilesetGlobalConfiguration newConfiguration)
+    internal static bool SaveTOML(TheFileEntryLocations.UnityAssets.Images.TilesetToml tilesetGlobalConfigurationLocation, TilesetGlobalConfiguration current, TilesetGlobalConfigurationBuffer difference, out TilesetGlobalConfiguration newConfiguration)
     {
         var configurationBuffer = new TilesetGlobalConfigurationBuffer();
 
@@ -162,7 +161,7 @@ internal class TilesetGlobalConfiguration
     ///     テキストファイル書出し
     /// </summary>
     /// <param name="configuration"></param>
-    internal static void WriteTOML(ImagesTilesetToml tilesetGlobalConfigurationLocation, TilesetGlobalConfiguration configuration)
+    internal static void WriteTOML(TheFileEntryLocations.UnityAssets.Images.TilesetToml tilesetGlobalConfigurationLocation, TilesetGlobalConfiguration configuration)
     {
         //
         // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること

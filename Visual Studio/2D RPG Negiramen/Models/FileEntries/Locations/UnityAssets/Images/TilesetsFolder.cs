@@ -1,17 +1,17 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets.Images;
 
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.FileEntries.Locations;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets` フォルダの場所
 ///     
 ///     <list type="bullet">
 ///         <item>イミュータブル</item>
-///         <item><see cref="ItsFolder"/></item>
+///         <item><see cref="Locations.ItsFolder"/></item>
 ///     </list>
 /// </summary>
-class ImagesTilesetsFolder : ItsFolder
+class TilesetsFolder : TheFileEntryLocations.ItsFolder
 {
     // - その他
 
@@ -19,7 +19,7 @@ class ImagesTilesetsFolder : ItsFolder
     /// <summary>
     ///     生成
     /// </summary>
-    internal ImagesTilesetsFolder(FileEntryPath parentPath)
+    internal TilesetsFolder(FileEntryPath parentPath)
         : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Tilesets")),
                convert: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
@@ -33,9 +33,9 @@ class ImagesTilesetsFolder : ItsFolder
     /// <summary>
     ///     Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.png` ファイルの場所
     /// </summary>
-    internal ImagesTilesetPng CreateTilesetPng(string fileStem)
+    internal TilesetPng CreateTilesetPng(string fileStem)
     {
-        return new ImagesTilesetPng(
+        return new TilesetPng(
             pathSource: FileEntryPathSource.FromString(
                 System.IO.Path.Combine(Path.AsStr, $"{fileStem}.png")),
             convert: (pathSource) => FileEntryPath.From(pathSource,
@@ -47,9 +47,9 @@ class ImagesTilesetsFolder : ItsFolder
     /// <summary>
     ///     Unity の 📄 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tilesets/{名前}.toml` ファイルの場所
     /// </summary>
-    internal ImagesTilesetToml CreateTilesetToml(FileStem fileStem)
+    internal TilesetToml CreateTilesetToml(FileStem fileStem)
     {
-        return new ImagesTilesetToml(
+        return new TilesetToml(
             pathSource: FileEntryPathSource.FromString(
                 System.IO.Path.Combine(Path.AsStr, $"{fileStem.AsStr}.toml")),
             convert: (pathSource) => FileEntryPath.From(pathSource,

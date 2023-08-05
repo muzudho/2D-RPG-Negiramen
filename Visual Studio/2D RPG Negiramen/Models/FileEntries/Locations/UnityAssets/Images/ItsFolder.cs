@@ -1,17 +1,17 @@
-﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
+﻿namespace _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets.Images;
 
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.FileEntries.Locations;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images` フォルダの場所
 ///     
 ///     <list type="bullet">
 ///         <item>イミュータブル</item>
-///         <item><see cref="ItsFolder"/></item>
+///         <item><see cref="Locations.ItsFolder"/></item>
 ///     </list>
 /// </summary>
-internal class ImagesFolder : ItsFolder
+internal class ItsFolder : TheFileEntryLocations.ItsFolder
 {
     // - その他
 
@@ -19,7 +19,7 @@ internal class ImagesFolder : ItsFolder
     /// <summary>
     ///     生成
     /// </summary>
-    internal ImagesFolder(FileEntryPath parentPath)
+    internal ItsFolder(FileEntryPath parentPath)
         : base(pathSource: FileEntryPathSource.FromString(System.IO.Path.Combine(parentPath.AsStr, "Images")),
                convert: (pathSource) => FileEntryPath.From(pathSource,
                                                            replaceSeparators: true))
@@ -33,13 +33,13 @@ internal class ImagesFolder : ItsFolder
     /// <summary>
     ///     Unity の 📂 `Assets/｛あなたのサークル名｝/｛あなたの作品名｝/Auto Generated/Images/Tileset` フォルダの場所
     /// </summary>
-    internal ImagesTilesetsFolder TilesetsFolder
+    internal TilesetsFolder TilesetsFolder
     {
         get
         {
             if (tilesetFolder == null)
             {
-                tilesetFolder = new ImagesTilesetsFolder(Path);
+                tilesetFolder = new TilesetsFolder(Path);
             }
 
             return tilesetFolder;
@@ -49,5 +49,5 @@ internal class ImagesFolder : ItsFolder
 
     // - プライベート・フィールド
 
-    ImagesTilesetsFolder? tilesetFolder;
+    TilesetsFolder? tilesetFolder;
 }

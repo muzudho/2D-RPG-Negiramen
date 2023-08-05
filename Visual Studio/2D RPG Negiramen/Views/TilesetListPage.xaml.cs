@@ -2,13 +2,13 @@
 
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.FileEntries;
-using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 using _2D_RPG_Negiramen.ViewModels;
 using SkiaSharp;
 using System;
 using System.Collections.Concurrent;
 using System.Diagnostics;
 using System.Threading.Tasks;
+using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
 ///     😁 タイルセット一覧ページ
@@ -65,7 +65,7 @@ public partial class TilesetListPage : ContentPage
     ///     </list>
     /// </summary>
     async Task FollowAutomaticallyAsync(
-        ImagesTilesetPng originalTilesetPngLocation)
+        TheFileEntryLocations.UnityAssets.Images.TilesetPng originalTilesetPngLocation)
     {
         ITilesetListPageViewModel context = this.TilesetListPageVM;
 
