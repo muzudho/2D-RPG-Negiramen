@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries;
 
+using Tomlyn.Model;
+using Tomlyn;
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
@@ -25,13 +27,58 @@ internal class TilesetGlobalConfiguration
         if (location.IsExists())
         {
             // TODO あれば読込
-            return new TilesetGlobalConfiguration(location);
+
+            // 設定ファイルのテキスト読取
+            var configurationText = System.IO.File.ReadAllText(location.Path.AsStr);
+
+            UUID? globalUuid = null;
+            FileExtension? globalExtension = null;
+
+            // TOML
+            TomlTable document = Toml.ToModel(configurationText);
+
+            if (document != null)
+            {
+                //
+                // [global]
+                // ========
+                //
+                if (document.TryGetValue("global", out object globalTomlObj))
+                {
+                    if (globalTomlObj != null && globalTomlObj is TomlTable globalTomlTable)
+                    {
+                        // UUID文字列
+                        if (globalTomlTable.TryGetValue("uuid", out object uuidStringObj))
+                        {
+                            if (uuidStringObj is string uuidAsStr)
+                            {
+                                globalUuid = UUID.FromString(uuidAsStr);
+                            }
+                        }
+
+                        // 拡張子文字列
+                        if (globalTomlTable.TryGetValue("extension", out object extensionStringObj))
+                        {
+                            if (extensionStringObj is string extensionAsStr)
+                            {
+                                globalExtension = FileExtension.FromString(extensionAsStr);
+                            }
+                        }
+                    }
+                }
+            }
+
+            // ファイルを元に新規作成
+            return new TilesetGlobalConfiguration(
+                uuid: globalUuid ?? throw new Exception(),
+                extension: globalExtension ?? throw new Exception());
         }
         else
         {
             // なければ新規作成
             var config = new TilesetGlobalConfiguration(
-                location: location);
+                uuid: UUID.FromString(location.GetStem().AsStr),
+                extension: FileExtension.FromString(location.GetExtension().AsStr));
 
             // ファイル書出し
             WriteTOML(config);
@@ -44,9 +91,12 @@ internal class TilesetGlobalConfiguration
     ///     生成
     /// </summary>
     /// <param name="location">タイルセット・グローバル構成ファイルの場所</param>
-    TilesetGlobalConfiguration(TheFileEntryLocations.UnityAssets.ImagesTilesetToml location)
+    TilesetGlobalConfiguration(
+        UUID uuid,
+        FileExtension extension)
     {
-        this.Location = location;
+        this.Uuid = uuid;
+        this.Extension = extension;
     }
     #endregion
 
@@ -65,23 +115,36 @@ internal class TilesetGlobalConfiguration
         var configurationBuffer = new TilesetGlobalConfigurationBuffer();
 
         // 差分適用
-        configurationBuffer.Location = difference.Location ?? current.Location;
+        configurationBuffer.Uuid = difference.Uuid ?? current.Uuid;
+        configurationBuffer.Extension = difference.Extension ?? current.Extension;
 
         // 差分をマージして、イミュータブルに変換
         newConfiguration = new TilesetGlobalConfiguration(
-            location: configurationBuffer.Location);
+            uuid: configurationBuffer.Uuid,
+            extension: configurationBuffer.Extension);
 
         WriteTOML(newConfiguration);
 
         return true;
     }
 
+    /// <summary>
+    ///     テキストファイル書出し
+    /// </summary>
+    /// <param name="configuration"></param>
     internal static void WriteTOML(TilesetGlobalConfiguration configuration)
     {
         //
         // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
         //
-        var text = $@"# 準備中
+
+        // タイトルは、ローカル構成ファイルの方へ入れる
+        var text = $@"[global]
+
+uuid = ""{configuration.Uuid}""
+extension = ""{configuration.Extension}""
+
+[user_defined]
 ";
 
         // 上書き
@@ -93,19 +156,18 @@ internal class TilesetGlobalConfiguration
 
     // - インターナル・プロパティ
 
-    #region プロパティ（タイルセット・グローバル構成ファイルの場所）
+    #region プロパティ（UUID）
     /// <summary>
-    ///     タイルセット・グローバル構成ファイルの場所
+    ///     UUID
     /// </summary>
-    /// <example>"C:\Users\むずでょ\Documents\Unity Projects\Negiramen Practice\Assets\Doujin Circle Negiramen\Negiramen Quest\Auto Generated\Images\Tilesets\86A25699-E391-4D61-85A5-356BA8049881.toml"</example>
-    internal TheFileEntryLocations.UnityAssets.ImagesTilesetToml Location { get; }
+    internal UUID Uuid { get; }
     #endregion
 
     #region プロパティ（拡張子）
     /// <summary>
     ///     拡張子
     /// </summary>
-    internal FileExtension ExtensionObj { get; set; } = FileExtension.Empty;
+    internal FileExtension Extension { get; set; } = FileExtension.Empty;
     #endregion
 
     #region プロパティ（ファイル・ステム）
@@ -113,7 +175,7 @@ internal class TilesetGlobalConfiguration
     ///     ファイル・ステム
     ///     
     ///     <list type="bullet">
-    ///         <item><see cref="UUIDObj"/>が分かっているときは、ファイル・ステムは使わない</item>
+    ///         <item><see cref="UuidObj"/>が分かっているときは、ファイル・ステムは使わない</item>
     ///     </list>
     /// </summary>
     internal FileStem FileStemObj { get; set; } = FileStem.Empty;
@@ -130,6 +192,6 @@ internal class TilesetGlobalConfiguration
     /// <summary>
     ///     UUID
     /// </summary>
-    internal UUID UUIDObj { get; set; } = UUID.Empty;
+    internal UUID UuidObj { get; set; } = UUID.Empty;
     #endregion
 }

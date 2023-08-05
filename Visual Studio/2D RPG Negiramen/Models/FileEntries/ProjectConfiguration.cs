@@ -25,7 +25,7 @@ class ProjectConfiguration
     {
         try
         {
-            // 設定ファイルの読取
+            // 設定ファイルのテキスト読取
             var configurationText = System.IO.File.ReadAllText(App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr);
 
             var starterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder();

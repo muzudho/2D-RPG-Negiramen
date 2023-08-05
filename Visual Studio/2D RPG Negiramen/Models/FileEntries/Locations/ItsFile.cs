@@ -44,9 +44,17 @@ abstract class ItsFile : Its
     internal FileStem GetStem() => new FileStem(System.IO.Path.GetFileNameWithoutExtension(this.Path.AsStr));
     #endregion
 
-    #region メソッド（ファイル・ステム取得）
+    #region メソッド（拡張子取得）
     /// <summary>
-    ///     ファイル・ステム取得
+    ///     拡張子取得
+    /// </summary>
+    /// <returns></returns>
+    internal FileExtension GetExtension() => new FileExtension(System.IO.Path.GetExtension(this.Path.AsStr));
+    #endregion
+
+    #region メソッド（親ディレクトリー・パス取得）
+    /// <summary>
+    ///     親ディレクトリー・パス取得
     ///     
     ///     <list type="bullet">
     ///         <item>ルート要素は親が無いのでヌルを返す</item>

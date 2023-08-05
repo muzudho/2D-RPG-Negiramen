@@ -68,7 +68,7 @@
         /// <summary>
         ///     文字列形式
         /// </summary>
-        string AsStr => this.Source;
+        internal string AsStr => this.Source;
         #endregion
 
         // - プライベート・プロパティ
