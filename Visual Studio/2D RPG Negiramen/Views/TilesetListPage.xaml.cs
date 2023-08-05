@@ -78,9 +78,11 @@ public partial class TilesetListPage : ContentPage
         //    originalTilesetPngLocation.GetParentDirectoryAsStr() ?? throw new Exception("親要素が無い"),
         //    $"{fileStem.AsStr}.toml");
 
-
-        // TODO TOML があれば読込む。無ければ新規作成
-        var tilesetGlobalConfiguration = TilesetGlobalConfiguration.LoadOrAdd(tilesetGlobalConfigurationLocation);
+        // タイルセットPNG画像ファイル名が UUID でなければ、タイルセット・グローバル構成ファイルは作らない。
+        if (TilesetGlobalConfiguration.LoadOrAdd(tilesetGlobalConfigurationLocation, out var tilesetGlobalConfiguration))
+        {
+            // TOML があれば読込んだ。無ければ新規作成した
+        }
 
         try
         {

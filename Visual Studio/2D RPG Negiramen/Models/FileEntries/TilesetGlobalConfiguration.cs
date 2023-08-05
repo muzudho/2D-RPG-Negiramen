@@ -19,10 +19,15 @@ internal class TilesetGlobalConfiguration
     #region その他（生成　関連）
     /// <summary>
     ///     読込。なければ作成
+    ///     
+    ///     <list type="bullet">
+    ///         <item>ファイル・ステムが UUID ではないとき、タイルセット・グローバル構成ファイルは存在しないし、作成できない</item>
+    ///     </list>
     /// </summary>
     /// <param name="location">タイルセット・グローバル構成ファイルの場所</param>
-    internal static TilesetGlobalConfiguration LoadOrAdd(
-        TheFileEntryLocations.UnityAssets.ImagesTilesetToml location)
+    internal static bool LoadOrAdd(
+        TheFileEntryLocations.UnityAssets.ImagesTilesetToml location,
+        out TilesetGlobalConfiguration? newConfiguration)
     {
         // ファイルの存在確認
         if (location.IsExists())
@@ -70,23 +75,36 @@ internal class TilesetGlobalConfiguration
             }
 
             // ファイルを元に新規作成
-            return new TilesetGlobalConfiguration(
+            newConfiguration = new TilesetGlobalConfiguration(
                 uuid: globalUuid ?? throw new Exception(),
                 extension: globalExtension ?? throw new Exception());
+
+            return true;
         }
         else
         {
-            // なければ新規作成
-            var config = new TilesetGlobalConfiguration(
-                uuid: UUID.FromString(location.GetStem().AsStr),
-                extension: FileExtension.FromString(location.GetExtension().AsStr));
+            // ファイル・ステムが UUID かどうか確認
+            if (UUIDHelper.IsMatch(location.GetStem().AsStr))
+            {
+                var uuid = UUID.FromString(location.GetStem().AsStr);
 
-            // ファイル書出し
-            WriteTOML(
-                tilesetGlobalConfigurationLocation: location,
-                config);
+                // なければ新規作成
+                newConfiguration = new TilesetGlobalConfiguration(
+                    uuid: uuid,
+                    extension: location.GetExtension());
 
-            return config;
+                // ファイル書出し
+                WriteTOML(
+                    tilesetGlobalConfigurationLocation: location,
+                    configuration: newConfiguration);
+
+                return true;
+            }
+            else
+            {
+                newConfiguration = null;
+                return false;
+            }
         }
     }
 
