@@ -70,7 +70,7 @@
             <!-- 「インポート」 -->
             <Button WidthRequest="150"
                     HeightRequest="44"
-                    Text="インポート"
+                    Text="{app:Translate Import}"
                     Clicked="ImportButton_Clicked"/>
                 
         </HorizontalStackLayout>
@@ -131,13 +131,13 @@
             <!--    １段目
                     ======
             -->
-            <!-- 「ファイル・ステム。 UUID 形式」 -->
+            <!-- 「ファイル・ステム」（※UUID形式） -->
             <Label Grid.Row="0" Grid.Column="1"
-                   Text="ファイル・ステム。 UUID 形式"/>
+                   Text="{app:Translate FileStem}"/>
 
             <!-- 「拡張子」 -->
             <Label Grid.Row="0" Grid.Column="2"
-                   Text="拡張子"/>
+                   Text="{app:Translate FileExtension}"/>
 
             <!--    ２段目
                     ======
@@ -148,7 +148,7 @@
                 <!-- 「タイル切抜き」 -->
                 <Button WidthRequest="150"
                         HeightRequest="20"
-                        Text="タイル切抜き"
+                        Text="{app:Translate TileCrop}"
                         IsEnabled="{Binding IsEnabledTileCropButton}"
                         Clicked="TileCropButton_Clicked"/>
 
@@ -156,7 +156,7 @@
                 <Button Margin="0,16,0,0"
                         WidthRequest="150"
                         HeightRequest="20"
-                        Text="タイルセット削除"
+                        Text="{app:Translate DeleteTileset}"
                         IsEnabled="{Binding IsEnabledTilesetRemoveButton}"
                         Style="{DynamicResource dangerButton}"
                         Clicked="TilesetDeleteButton_Clicked"/>
@@ -188,14 +188,15 @@
                     WidthRequest="300"
                     HeightRequest="20"
                     IsEnabled="{Binding IsEnabledRenameFileNameToUUIDButton}"
-                    Text="ファイル・ステムをＵＵＩＤに変更する"
+                    Text="{app:Translate ChangeFileStemToUuid}"
                     Clicked="RenameFileNameToUUIDButton_Clicked"/>
 
             <!--    ３段目
                     ======
             -->
+            <!-- 「タイルセット タイトル」 -->
             <Label Grid.Row="2" Grid.Column="1"
-                   Text="タイルセット タイトル"/>
+                   Text="{app:Translate TilesetTitle}"/>
 
             <!--    ４段目
                     ======

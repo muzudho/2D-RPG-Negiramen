@@ -288,4 +288,22 @@
   <data name="CreateANewProject" xml:space="preserve">
     <value>Create a new project</value>
   </data>
+  <data name="Import" xml:space="preserve">
+    <value>Import</value>
+  </data>
+  <data name="FileStem" xml:space="preserve">
+    <value>File Stem</value>
+  </data>
+  <data name="FileExtension" xml:space="preserve">
+    <value>File extension(s)</value>
+  </data>
+  <data name="DeleteTileset" xml:space="preserve">
+    <value>Tileset Deleted</value>
+  </data>
+  <data name="ChangeFileStemToUuid" xml:space="preserve">
+    <value>Change the file stem to a UUID</value>
+  </data>
+  <data name="TilesetTitle" xml:space="preserve">
+    <value>Tileset Title</value>
+  </data>
 </root>

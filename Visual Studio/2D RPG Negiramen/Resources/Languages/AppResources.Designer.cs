@@ -79,11 +79,20 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   キャッシュ・ディレクトリー に類似しているローカライズされた文字列を検索します。
+        ///   キャッシュ ディレクトリー に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string CacheDirectory {
             get {
                 return ResourceManager.GetString("CacheDirectory", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ファイル ステムを UUID に変更する に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string ChangeFileStemToUuid {
+            get {
+                return ResourceManager.GetString("ChangeFileStemToUuid", resourceCulture);
             }
         }
         
@@ -232,7 +241,16 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   モンスター・グループを編集 に類似しているローカライズされた文字列を検索します。
+        ///   タイルセット削除 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string DeleteTileset {
+            get {
+                return ResourceManager.GetString("DeleteTileset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   モンスター グループを編集 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string EditAMonsterGroup {
             get {
@@ -250,7 +268,7 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   プレイヤー・キャラクターを編集 に類似しているローカライズされた文字列を検索します。
+        ///   プレイヤー キャラクターを編集 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string EditPlayerCharacter {
             get {
@@ -282,6 +300,24 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string EditYourData {
             get {
                 return ResourceManager.GetString("EditYourData", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   拡張子 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FileExtension {
+            get {
+                return ResourceManager.GetString("FileExtension", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   ファイル ステム に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string FileStem {
+            get {
+                return ResourceManager.GetString("FileStem", resourceCulture);
             }
         }
         
@@ -336,6 +372,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string Image {
             get {
                 return ResourceManager.GetString("Image", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   インポート に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Import {
+            get {
+                return ResourceManager.GetString("Import", resourceCulture);
             }
         }
         
@@ -484,7 +529,7 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   タイル・パレット表示 に類似しているローカライズされた文字列を検索します。
+        ///   タイル パレット表示 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string TilePaletteDisplay {
             get {
@@ -498,6 +543,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string TilesetList {
             get {
                 return ResourceManager.GetString("TilesetList", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   タイルセット タイトル に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string TilesetTitle {
+            get {
+                return ResourceManager.GetString("TilesetTitle", resourceCulture);
             }
         }
         
@@ -547,7 +601,7 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   あなたのサークル・フォルダ名 に類似しているローカライズされた文字列を検索します。
+        ///   あなたのサークル フォルダ名 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string YourCircleFolderName {
             get {

@@ -139,7 +139,7 @@
     <value>ポップアップ練習</value>
   </data>
   <data name="TilePaletteDisplay" xml:space="preserve">
-    <value>タイル・パレット表示</value>
+    <value>タイル パレット表示</value>
   </data>
   <data name="MapDrawingPage" xml:space="preserve">
     <value>マップ描画ページ</value>
@@ -160,10 +160,10 @@
     <value>データを編集する</value>
   </data>
   <data name="EditPlayerCharacter" xml:space="preserve">
-    <value>プレイヤー・キャラクターを編集</value>
+    <value>プレイヤー キャラクターを編集</value>
   </data>
   <data name="EditAMonsterGroup" xml:space="preserve">
-    <value>モンスター・グループを編集</value>
+    <value>モンスター グループを編集</value>
   </data>
   <data name="EditItem" xml:space="preserve">
     <value>アイテムを編集</value>
@@ -251,7 +251,7 @@
     <value>Unity プロジェクトの中の Assets フォルダへのパス</value>
   </data>
   <data name="YourCircleFolderName" xml:space="preserve">
-    <value>あなたのサークル・フォルダ名</value>
+    <value>あなたのサークル フォルダ名</value>
   </data>
   <data name="YourWorkFolderName" xml:space="preserve">
     <value>あなたの作品フォルダ名</value>
@@ -263,7 +263,7 @@
     <value>Unity の Assets フォルダへ足りてないファイルを転送</value>
   </data>
   <data name="CacheDirectory" xml:space="preserve">
-    <value>キャッシュ・ディレクトリー</value>
+    <value>キャッシュ ディレクトリー</value>
   </data>
   <data name="Open" xml:space="preserve">
     <value>開く</value>
@@ -296,5 +296,23 @@
   </data>
   <data name="CreateANewProject" xml:space="preserve">
     <value>新しく作る</value>
+  </data>
+  <data name="Import" xml:space="preserve">
+    <value>インポート</value>
+  </data>
+  <data name="FileStem" xml:space="preserve">
+    <value>ファイル ステム</value>
+  </data>
+  <data name="FileExtension" xml:space="preserve">
+    <value>拡張子</value>
+  </data>
+  <data name="DeleteTileset" xml:space="preserve">
+    <value>タイルセット削除</value>
+  </data>
+  <data name="ChangeFileStemToUuid" xml:space="preserve">
+    <value>ファイル ステムを UUID に変更する</value>
+  </data>
+  <data name="TilesetTitle" xml:space="preserve">
+    <value>タイルセット タイトル</value>
   </data>
 </root>
