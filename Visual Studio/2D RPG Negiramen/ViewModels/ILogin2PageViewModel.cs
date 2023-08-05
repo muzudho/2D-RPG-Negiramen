@@ -15,7 +15,7 @@ internal interface ILogin2PageViewModel
     ///     ネギラーメンの 📂 `Starter Kit` フォルダの場所
     /// </summary>
     /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"</example>
-    TheFileEntryLocations.StarterKit.ItsFolder StarterKitFolder { get; set; }
+    TheFileEntryLocations.StarterKit.ItsFolder StarterKitFolderLocation { get; set; }
     #endregion
 
     #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
@@ -23,7 +23,7 @@ internal interface ILogin2PageViewModel
     ///     Unity の 📂 `Assets` フォルダの場所
     /// </summary>
     /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
-    TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder { get; set; }
+    TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolderLocation { get; set; }
     #endregion
 
     #region プロパティ（［新しく作る］ボタンの活性性）

@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.Models.FileEntries;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using System.Collections.ObjectModel;
@@ -71,14 +72,14 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"</example>
     public string StarterKitFolderPathAsStr
     {
-        get => this.starterKitFolder.Path.AsStr;
+        get => this.starterKitFolderLocation.Path.AsStr;
         set
         {
-            if (this.starterKitFolder.Path.AsStr == value)
+            if (this.starterKitFolderLocation.Path.AsStr == value)
                 return;
 
             // 循環参照しないようにフィールドにセットします
-            this.starterKitFolder = new TheFileEntryLocations.StarterKit.ItsFolder(
+            this.starterKitFolderLocation = new TheFileEntryLocations.StarterKit.ItsFolder(
                                         pathSource: FileEntryPathSource.FromString(value),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true));
@@ -96,14 +97,14 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
     public string UnityAssetsFolderPathAsStr
     {
-        get => this.unityAssetsFolder.Path.AsStr;
+        get => this.unityAssetsFolderLocation.Path.AsStr;
         set
         {
-            if (this.unityAssetsFolder.Path.AsStr == value)
+            if (this.unityAssetsFolderLocation.Path.AsStr == value)
                 return;
 
             // 循環参照しないようにフィールドにセットします
-            this.unityAssetsFolder = new TheFileEntryLocations.UnityAssets.ItsFolder(
+            this.unityAssetsFolderLocation = new TheFileEntryLocations.UnityAssets.ItsFolder(
                                         pathSource: FileEntryPathSource.FromString(value),
                                         convert: (pathSource) => FileEntryPath.From(pathSource,
                                                                                     replaceSeparators: true));
@@ -130,11 +131,11 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     {
         get
         {
-            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolder.Path.AsStr}");
-            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] UnityAssets: {this.UnityAssetsFolder.Path.AsStr}");
-            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolder.IsExists()}, UnityAssets: {this.UnityAssetsFolder.IsExists()}");
+            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolderLocation.Path.AsStr}");
+            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] UnityAssets: {this.UnityAssetsFolderLocation.Path.AsStr}");
+            Trace.WriteLine($"[Login2PageViewModel IsEnabledOfNewProjectButton] StarterKit: {this.StarterKitFolderLocation.IsExists()}, UnityAssets: {this.UnityAssetsFolderLocation.IsExists()}");
 
-            return this.StarterKitFolder.IsExists() && this.UnityAssetsFolder.IsExists();
+            return this.StarterKitFolderLocation.IsExists() && this.UnityAssetsFolderLocation.IsExists();
         }
     }
     #endregion
@@ -146,15 +147,15 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     ///     ネギラーメンの 📂 `Starter Kit` フォルダの場所
     /// </summary>
     /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"</example>
-    public TheFileEntryLocations.StarterKit.ItsFolder StarterKitFolder
+    public TheFileEntryLocations.StarterKit.ItsFolder StarterKitFolderLocation
     {
-        get => this.starterKitFolder;
+        get => this.starterKitFolderLocation;
         set
         {
-            if (this.starterKitFolder == value)
+            if (this.starterKitFolderLocation == value)
                 return;
 
-            this.starterKitFolder = value;
+            this.starterKitFolderLocation = value;
             OnPropertyChanged(nameof(StarterKitFolderPathAsStr));
 
             OnPropertyChanged(nameof(IsEnabledOfNewProjectButton));
@@ -167,15 +168,15 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     ///     Unity の 📂 `Assets` フォルダの場所
     /// </summary>
     /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
-    public TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder
+    public TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolderLocation
     {
-        get => this.unityAssetsFolder;
+        get => this.unityAssetsFolderLocation;
         set
         {
-            if (this.unityAssetsFolder == value)
+            if (this.unityAssetsFolderLocation == value)
                 return;
 
-            this.unityAssetsFolder = value;
+            this.unityAssetsFolderLocation = value;
             OnPropertyChanged(nameof(UnityAssetsFolderPathAsStr));
 
             OnPropertyChanged(nameof(IsEnabledOfNewProjectButton));
@@ -201,8 +202,8 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
 
     // - インターナル・プロパティ
 
-    TheFileEntryLocations.StarterKit.ItsFolder starterKitFolder = TheFileEntryLocations.StarterKit.ItsFolder.Empty;
-    TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolder = TheFileEntryLocations.UnityAssets.ItsFolder.Empty;
+    TheFileEntryLocations.StarterKit.ItsFolder starterKitFolderLocation = TheFileEntryLocations.StarterKit.ItsFolder.Empty;
+    TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderLocation = TheFileEntryLocations.UnityAssets.ItsFolder.Empty;
 
     // - プライベート・メソッド
 
@@ -214,6 +215,20 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
     {
         // フォルダー作成
         LoginHelper.MakeFolders();
+
+        // プロジェクト構成ファイルの上書き更新
+        if(ProjectConfiguration.SaveTOML(
+            current: App.GetOrLoadProjectConfiguration(),
+            difference: new ProjectConfigurationBuffer()
+            {
+                StarterKitFolderLocation = this.StarterKitFolderLocation,
+                UnityAssetsFolderLocation = this.UnityAssetsFolderLocation,
+            },
+            out var newConfig))
+        {
+            App.SetProjectConfiguration(newConfig);
+        }
+
 
         await Shell.Current.GoToAsync(
             state: new ShellNavigationState("//HomePage"));

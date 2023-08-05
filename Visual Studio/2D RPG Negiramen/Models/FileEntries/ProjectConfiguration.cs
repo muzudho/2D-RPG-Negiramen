@@ -129,29 +129,35 @@ class ProjectConfiguration
         configurationBuffer.StarterKitFolderLocation = difference.StarterKitFolderLocation ?? current.StarterKitFolderLocation;
         configurationBuffer.UnityAssetsFolderLocation = difference.UnityAssetsFolderLocation ?? current.UnityAssetsFolderLocation;
 
+        // 差分をマージして、イミュータブルに変換
+        newConfiguration = new ProjectConfiguration(
+            configurationBuffer.StarterKitFolderLocation,
+            configurationBuffer.UnityAssetsFolderLocation);
+
+        // テキストファイル書出し
+        WriteToml(newConfiguration);
+
+        return true;
+    }
+
+    internal static void WriteToml(ProjectConfiguration configuration)
+    {
         //
         // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
         //
         var text = $@"[paths]
 
 # ネギラーメンの 📂 `Starter Kit` フォルダ―へのパス
-starter_kit_folder = ""{configurationBuffer.StarterKitFolderLocation.Path.AsStr}""
+starter_kit_folder = ""{configuration.StarterKitFolderLocation.Path.AsStr}""
 
 # Unity の 📂 `Assets` フォルダ―へのパス
-unity_assets_folder = ""{configurationBuffer.UnityAssetsFolderLocation.Path.AsStr}""
+unity_assets_folder = ""{configuration.UnityAssetsFolderLocation.Path.AsStr}""
 ";
 
         // 上書き
         System.IO.File.WriteAllText(
             path: App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr,
             contents: text);
-
-        // 差分をマージして、イミュータブルに変換
-        newConfiguration = new ProjectConfiguration(
-            configurationBuffer.StarterKitFolderLocation,
-            configurationBuffer.UnityAssetsFolderLocation);
-
-        return true;
     }
     #endregion
 

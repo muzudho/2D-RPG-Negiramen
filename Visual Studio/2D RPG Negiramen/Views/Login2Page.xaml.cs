@@ -81,8 +81,8 @@ public partial class Login2Page : ContentPage
         // プロジェクト構成ファイルの更新差分
         var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
         {
-            StarterKitFolderLocation = this.Login2PageVM.StarterKitFolder,
-            UnityAssetsFolderLocation = this.Login2PageVM.UnityAssetsFolder,
+            StarterKitFolderLocation = this.Login2PageVM.StarterKitFolderLocation,
+            UnityAssetsFolderLocation = this.Login2PageVM.UnityAssetsFolderLocation,
         };
 
         if (Models.FileEntries.ProjectConfiguration.SaveTOML(App.GetOrLoadProjectConfiguration(), projectConfigurationDifference, out Models.FileEntries.ProjectConfiguration newProjectConfiguration))
@@ -109,8 +109,8 @@ public partial class Login2Page : ContentPage
     {
         Trace.WriteLine($"[Login2Page ContentPage_Loaded] ページ読込完了");
 
-        this.Login2PageVM.StarterKitFolder = this.Login2PageVM.StarterKitFolder;
-        this.Login2PageVM.UnityAssetsFolder = this.Login2PageVM.UnityAssetsFolder;
+        this.Login2PageVM.StarterKitFolderLocation = this.Login2PageVM.StarterKitFolderLocation;
+        this.Login2PageVM.UnityAssetsFolderLocation = this.Login2PageVM.UnityAssetsFolderLocation;
     }
     #endregion
 
