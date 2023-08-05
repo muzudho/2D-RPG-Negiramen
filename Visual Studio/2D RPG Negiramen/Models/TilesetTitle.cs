@@ -13,7 +13,7 @@
         /// </summary>
         internal TilesetTitle()
         {
-            this.AsStr = string.Empty;
+            this.Source = string.Empty;
         }
 
         /// <summary>
@@ -21,7 +21,7 @@
         /// </summary>
         internal TilesetTitle(string asStr)
         {
-            this.AsStr = asStr;
+            this.Source = asStr;
         }
         #endregion
 
@@ -31,7 +31,7 @@
         /// <summary>
         ///     暗黙的な文字列形式
         /// </summary>
-        public override string ToString() => AsStr;
+        public override string ToString() => Source;
         #endregion
 
         // - インターナル静的プロパティ
@@ -62,11 +62,20 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（文字列形式）
+        #region プロパティ（値。文字列形式）
         /// <summary>
-        ///     文字列形式
+        ///     値。文字列形式
         /// </summary>
-        internal string AsStr { get; }
+        internal string AsStr => this.Source;
+        #endregion
+
+        // - プライベート・プロパティ
+
+        #region プロパティ（入力まま）
+        /// <summary>
+        ///     入力まま
+        /// </summary>
+        string Source { get; }
         #endregion
     }
 }
