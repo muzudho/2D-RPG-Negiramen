@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.Models.FileEntries;
 
 /// <summary>
 ///     😁 ［タイルセット一覧］ページ・ビューモデル
@@ -45,14 +46,14 @@ public interface ITilesetListPageViewModel
     /// <summary>
     ///     選択ファイル・ステム
     /// </summary>
-    string SelectedFileStemAsStr { get; set; }
+    string SelectedTilesetFileStemAsStr { get; set; }
     #endregion
 
     #region 変更通知プロパティ（選択ファイル拡張子）
     /// <summary>
     ///     選択ファイル拡張子
     /// </summary>
-    string SelectedFileExtensionAsStr { get; set; }
+    string SelectedTilesetFileExtensionAsStr { get; set; }
     #endregion
 
     #region 変更通知プロパティ（選択タイルセット・タイトル）
@@ -102,5 +103,12 @@ public interface ITilesetListPageViewModel
     ///     選択タイルセットのタイトル設定
     /// </summary>
     void SetSelectedTilesetTitleAsStr(string title);
+    #endregion
+
+    #region メソッド（選択中のタイルセットを保存）
+    /// <summary>
+    ///     選択中のタイルセットを保存
+    /// </summary>
+    void SaveSelectedTileset(TilesetLocalConfigurationBuffer difference);
     #endregion
 }

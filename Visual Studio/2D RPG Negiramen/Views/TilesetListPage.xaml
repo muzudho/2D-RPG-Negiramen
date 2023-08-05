@@ -169,7 +169,7 @@
                     XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
             -->
             <Entry Grid.Row="1" Grid.Column="1"
-                   Text="{Binding SelectedFileStemAsStr}"
+                   Text="{Binding SelectedTilesetFileStemAsStr}"
                    IsReadOnly="True"
                    BackgroundColor="Transparent"/>
 
@@ -179,7 +179,7 @@
                     .png
             -->
             <Entry Grid.Row="1" Grid.Column="2"
-                   Text="{Binding SelectedFileExtensionAsStr}"
+                   Text="{Binding SelectedTilesetFileExtensionAsStr}"
                    IsReadOnly="True"
                    BackgroundColor="Transparent"/>
 

@@ -7,7 +7,7 @@
 ///         <item>ミュータブル</item>
 ///     </list>
 /// </summary>
-internal class TilesetLocalConfigurationBuffer
+public class TilesetLocalConfigurationBuffer
 {
     // - インターナル・プロパティ
 
