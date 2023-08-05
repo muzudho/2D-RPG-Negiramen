@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 using _2D_RPG_Negiramen.ViewModels;
 using SkiaSharp;
 using System;
@@ -63,16 +64,16 @@ public partial class TilesetListPage : ContentPage
     ///     </list>
     /// </summary>
     async Task FollowAutomaticallyAsync(
-        string originalPngPathAsStr)
+        ImagesTilesetPng originalTilesetPngLocation)
     {
         ITilesetListPageViewModel context = this.TilesetListPageVM;
 
         // 画像ファイルの名前は UUID という想定
-        var uuid = System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr);
+        var uuid = System.IO.Path.GetFileNameWithoutExtension(originalTilesetPngLocation.Path.AsStr);
 
         // TODO TOML があれば読込む。無ければ新規作成
         string tomlPathAsStr = System.IO.Path.Join(
-            System.IO.Path.GetDirectoryName(originalPngPathAsStr),
+            System.IO.Path.GetDirectoryName(originalTilesetPngLocation.Path.AsStr),
             $"{uuid}.toml");
         if (System.IO.File.Exists(tomlPathAsStr))
         {
@@ -92,11 +93,11 @@ public partial class TilesetListPage : ContentPage
 
             // タイルセット元画像のプロパティーズ
             var tilesetImageProperties = await TilesetImageProperties.ReadAsync(
-                originalPngPathAsStr: originalPngPathAsStr);
+                originalPngPathAsStr: originalTilesetPngLocation.Path.AsStr);
 
             // サムネイル画像のプロパティーズ
             var tilesetThumbnailImageProperties = TilesetThumbnailImageProperties.Create(
-                originalPngPathAsStr: originalPngPathAsStr,
+                originalPngPathAsStr: originalTilesetPngLocation.Path.AsStr,
                 originalWidth: tilesetImageProperties.Width,
                 originalHeight: tilesetImageProperties.Height,
                 outputFolder: thumbnailOutputFolder);
@@ -121,7 +122,7 @@ public partial class TilesetListPage : ContentPage
             // UUID文字列
                 uuidAsStr: uuid,
                 // PNG元画像のファイルパス文字列
-                pngFilePathAsStr: originalPngPathAsStr,
+                pngFilePathAsStr: originalTilesetPngLocation.Path.AsStr,
                 // PNG元画像の横幅
                 widthAsInt: tilesetImageProperties.Width,
                 // PNG元画像の縦幅
@@ -186,11 +187,13 @@ public partial class TilesetListPage : ContentPage
         // フォルダの中の PNG画像ファイルを一覧
         foreach (var originalPngPathAsStr in System.IO.Directory.GetFiles(tilesetFolder.Path.AsStr, "*.png"))
         {
-            Trace.WriteLine($"[TilesetListPage.xaml.cs ContentPage_Loaded] path: [{originalPngPathAsStr}]");
+            var originalTilesetPngLocation = tilesetFolder.CreateTilesetPng(System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr));
 
-            // 画像ファイルを縮小して（サムネイル画像を作り）、キャッシュ・フォルダーへコピーしたい
+            Trace.WriteLine($"[TilesetListPage.xaml.cs ContentPage_Loaded] path: [{originalPngPathAsStr}], location: [{originalTilesetPngLocation.Path.AsStr}]");
+
+            // タスクだけリストに詰め込み、あとで、まとめて行う
             var task = Task.Run(() => this.FollowAutomaticallyAsync(
-                originalPngPathAsStr: originalPngPathAsStr));
+                originalTilesetPngLocation: originalTilesetPngLocation));
 
             taskList.Add(task);
         }
@@ -448,7 +451,7 @@ public partial class TilesetListPage : ContentPage
 
             // バッグ詰め込み
             await this.FollowAutomaticallyAsync(
-                originalPngPathAsStr: newTilesetPngLocation.Path.AsStr);
+                originalTilesetPngLocation: newTilesetPngLocation);
         }
         finally
         {
@@ -539,7 +542,7 @@ public partial class TilesetListPage : ContentPage
 
                         // バッグ詰め込み
                         await this.FollowAutomaticallyAsync(
-                            originalPngPathAsStr: tilesetPngLocation.Path.AsStr);
+                            originalTilesetPngLocation: tilesetPngLocation);
                     }
                     finally
                     {
