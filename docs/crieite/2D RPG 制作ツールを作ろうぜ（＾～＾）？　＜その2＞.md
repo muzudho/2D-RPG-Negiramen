@@ -2248,4 +2248,36 @@ unity_assets_folder = ""
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　疲れたので　今日は　ここまで」  
 
+# 📅 （2023-08-05 sat）たいとる１
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`たいとる１`  って何なの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイルセットのタイトルを入れたいところだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　入れなさいよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　PNG画像があって、TOMLファイルが無いといったペアがあるとき、  
+TOMLファイルを自動生成する機能が要るぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　その機能を付けなさいよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイミングとしては、インポート、タイルセット削除、ファイルのリネームの３か所だな」  
+
+（カタ　カタ　カタ　カタ）  
+
+![202308_maui_05-1428--tilesetGlobalConfig.png](https://crieit.now.sh/upload_images/fbb45c3876ab54aa62962c269d88f77264cdde1f5296b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　万国共通の構成ファイルの方は　自動生成するようにしたが、  
+画像のタイトルは　ロケール別の構成ファイルの方に入れる仕様だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ロケール別の構成ファイルも　早よ作れだぜ」  
+
 ＜書きかけ＞
