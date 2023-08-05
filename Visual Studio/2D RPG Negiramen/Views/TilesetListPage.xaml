@@ -179,7 +179,7 @@
                     .png
             -->
             <Entry Grid.Row="1" Grid.Column="2"
-                   Text="{Binding SelectedFileExtension}"
+                   Text="{Binding SelectedFileExtensionAsStr}"
                    IsReadOnly="True"
                    BackgroundColor="Transparent"/>
 
@@ -202,7 +202,7 @@
             -->
             <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"
                    Placeholder="冒険の荒野"
-                   Text=""/>
+                   Text="{Binding SelectedTilesetTitleAsStr}"/>
         </Grid>
     </Grid>
 </ContentPage>

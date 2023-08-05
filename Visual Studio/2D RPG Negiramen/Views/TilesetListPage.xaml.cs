@@ -359,38 +359,9 @@ public partial class TilesetListPage : ContentPage
         // Trace.WriteLine($"[TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: {e.PreviousSelection.GetType().FullName} e.CurrentSelection: {e.CurrentSelection.GetType().FullName}");
         // [TilesetListPage.xaml.cs CollectionView_SelectionChanged] 選択変更 e.PreviousSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]] e.CurrentSelection: System.Collections.Generic.List`1[[System.Object, System.Private.CoreLib, Version=7.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]
 
-        TilesetRecordViewModel? record = (TilesetRecordViewModel)view.SelectedItem;
+        TilesetRecordViewModel? selectedTilesetRecord = (TilesetRecordViewModel)view.SelectedItem;
 
-        // 未選択なら
-        if (record == null)
-        {
-            context.IsEnabledTileCropButton = false;
-            context.IsEnabledRenameFileNameToUUIDButton = false;
-            context.IsEnabledTilesetRemoveButton = false;
-
-            return;
-        }
-
-        // 選択ファイル・ステム
-        context.SelectedFileStemAsStr = System.IO.Path.GetFileNameWithoutExtension(record.PngFilePathAsStr);
-
-        if (UUIDHelper.IsMatch(context.SelectedFileStemAsStr))
-        {
-            // UUID だ
-            context.IsEnabledTileCropButton = true;
-            context.IsEnabledRenameFileNameToUUIDButton = false;
-        }
-        else
-        {
-            // UUID ではない
-            context.IsEnabledTileCropButton = false;
-            context.IsEnabledRenameFileNameToUUIDButton = true;
-        }
-
-        context.IsEnabledTilesetRemoveButton = true;
-
-        // 選択ファイル拡張子
-        context.SelectedFileExtension = System.IO.Path.GetExtension(record.PngFilePathAsStr);
+        context.SetSelectedTileset(selectedTilesetRecord);
     }
 
     /// <summary>
@@ -622,7 +593,7 @@ public partial class TilesetListPage : ContentPage
     {
         var context = this.TilesetListPageVM;
 
-        var basename = $"{context.SelectedFileStemAsStr}{context.SelectedFileExtension}";
+        var basename = $"{context.SelectedFileStemAsStr}{context.SelectedFileExtensionAsStr}";
 
         var keyword = Random.Shared.Next(1000, 9999).ToString();
 

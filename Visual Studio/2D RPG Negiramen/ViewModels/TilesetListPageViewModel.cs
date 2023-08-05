@@ -137,14 +137,16 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// </summary>
     public string SelectedFileStemAsStr
     {
-        get => this.selectedFileStem;
+        get => this.selectedFileStemAsStr;
         set
         {
-            if (this.selectedFileStem == value)
+            if (this.selectedFileStemAsStr == value)
                 return;
 
-            this.selectedFileStem = value;
+            this.selectedFileStemAsStr = value;
             OnPropertyChanged(nameof(SelectedFileStemAsStr));
+
+            // TODO ファイルへの書出し
         }
     }
     #endregion
@@ -153,16 +155,34 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// <summary>
     ///     選択ファイル拡張子
     /// </summary>
-    public string SelectedFileExtension
+    public string SelectedFileExtensionAsStr
     {
-        get => this.selectedFileExtension;
+        get => this.selectedFileExtensionAsStr;
         set
         {
-            if (this.selectedFileExtension == value)
+            if (this.selectedFileExtensionAsStr == value)
                 return;
 
-            this.selectedFileExtension = value;
-            OnPropertyChanged(nameof(SelectedFileExtension));
+            this.selectedFileExtensionAsStr = value;
+            OnPropertyChanged(nameof(SelectedFileExtensionAsStr));
+        }
+    }
+    #endregion
+
+    #region 変更通知プロパティ（選択タイルセット・タイトル）
+    /// <summary>
+    ///     選択タイルセット・タイトル
+    /// </summary>
+    public string SelectedTilesetTitleAsStr
+    {
+        get => this.selectedTilesetTitleAsStr;
+        set
+        {
+            if (this.selectedTilesetTitleAsStr == value)
+                return;
+
+            this.selectedTilesetTitleAsStr = value;
+            OnPropertyChanged(nameof(SelectedTilesetTitleAsStr));
         }
     }
     #endregion
@@ -222,6 +242,53 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     }
     #endregion
 
+    #region メソッド（選択タイルセット設定）
+    /// <summary>
+    ///     選択タイルセット設定
+    /// </summary>
+    /// <param name="selectedTilesetRecord"></param>
+    public void SetSelectedTileset(TilesetRecordViewModel? selectedTilesetRecord)
+    {
+        this.SelectedTilesetRecord = selectedTilesetRecord;
+
+        // 未選択なら
+        if (selectedTilesetRecord == null)
+        {
+            this.IsEnabledTileCropButton = false;
+            this.IsEnabledRenameFileNameToUUIDButton = false;
+            this.IsEnabledTilesetRemoveButton = false;
+
+            return;
+        }
+
+
+        // 選択ファイル・ステム
+        this.SelectedFileStemAsStr = System.IO.Path.GetFileNameWithoutExtension(selectedTilesetRecord.PngFilePathAsStr);
+
+        if (UUIDHelper.IsMatch(this.SelectedFileStemAsStr))
+        {
+            // UUID だ
+            this.IsEnabledTileCropButton = true;
+            this.IsEnabledRenameFileNameToUUIDButton = false;
+        }
+        else
+        {
+            // UUID ではない
+            this.IsEnabledTileCropButton = false;
+            this.IsEnabledRenameFileNameToUUIDButton = true;
+        }
+
+        // タイルセット削除ボタンの活性性
+        this.IsEnabledTilesetRemoveButton = true;
+
+        // 選択ファイル拡張子
+        this.SelectedFileExtensionAsStr = System.IO.Path.GetExtension(selectedTilesetRecord.PngFilePathAsStr);
+
+        // 選択タイルセット・タイトル
+        this.SelectedTilesetTitleAsStr = selectedTilesetRecord.TitleAsStr;
+    }
+    #endregion
+
     // - プライベート・プロパティ
 
     #region プロパティ（タイルセット・レコードのリスト）
@@ -231,12 +298,20 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     List<TilesetRecordViewModel> TilesetRecordList { get; set; } = new List<TilesetRecordViewModel>();
     #endregion
 
+    /// <summary>
+    ///     選択タイルセット
+    /// </summary>
+    TilesetRecordViewModel? SelectedTilesetRecord { get; set; }
+
+    // - プライベート・フィールド
+
     GridItemsLayout itemsLayout;
 
     bool isEnabledTileCropButton;
     bool isEnabledRenameFileNameToUUIDButton;
     bool isEnabledTilesetRemoveButton;
 
-    string selectedFileStem;
-    string selectedFileExtension;
+    string selectedFileStemAsStr;
+    string selectedFileExtensionAsStr;
+    string selectedTilesetTitleAsStr = string.Empty;
 }

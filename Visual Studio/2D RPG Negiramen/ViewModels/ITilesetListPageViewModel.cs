@@ -52,7 +52,14 @@ public interface ITilesetListPageViewModel
     /// <summary>
     ///     選択ファイル拡張子
     /// </summary>
-    string SelectedFileExtension { get; set; }
+    string SelectedFileExtensionAsStr { get; set; }
+    #endregion
+
+    #region 変更通知プロパティ（選択タイルセット・タイトル）
+    /// <summary>
+    ///     選択タイルセット・タイトル
+    /// </summary>
+    string SelectedTilesetTitleAsStr { get; set; }
     #endregion
 
     // - パブリック・メソッド
@@ -80,5 +87,13 @@ public interface ITilesetListPageViewModel
     /// </summary>
     /// <param name="fileStem">ファイル・ステム</param>
     void DeleteTilesetRecordByFileStem(FileStem fileStem);
+    #endregion
+
+    #region メソッド（選択タイルセット設定）
+    /// <summary>
+    ///     選択タイルセット設定
+    /// </summary>
+    /// <param name="selectedTilesetRecord"></param>
+    void SetSelectedTileset(TilesetRecordViewModel? selectedTilesetRecord);
     #endregion
 }
