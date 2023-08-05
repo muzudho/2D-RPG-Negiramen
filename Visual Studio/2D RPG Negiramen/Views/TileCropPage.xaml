@@ -43,13 +43,12 @@
             <HorizontalStackLayout Grid.Column="0"
                                    HorizontalOptions="Start">
                 
-                <!--    ［ホーム］ボタン
+                <!--    ［ホーム］ラベル
                         ================
                 -->
-                <Button Margin="16,2,2,2"
-                        Text="{app:Translate Home}"
-                        SemanticProperties.Hint="Back to the home"
-                        Clicked="HomeBtn_Clicked"/>
+                <Label Margin="16,2,2,2"
+                       VerticalTextAlignment="Center"
+                       Text="{app:Translate Home}"/>
 
                 <Label VerticalTextAlignment="Center"
                        Text="＞"

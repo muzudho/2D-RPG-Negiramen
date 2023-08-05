@@ -283,19 +283,19 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（［ホーム］ボタン・クリック時）
-    /// <summary>
-    ///     ［ホーム］ボタン・クリック時
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    async void HomeBtn_Clicked(object sender, EventArgs e)
-    {
-        await PolicyOfView.ReactOnPushed((Button)sender);
+    //#region イベントハンドラ（［ホーム］ボタン・クリック時）
+    ///// <summary>
+    /////     ［ホーム］ボタン・クリック時
+    ///// </summary>
+    ///// <param name="sender"></param>
+    ///// <param name="e"></param>
+    //async void HomeBtn_Clicked(object sender, EventArgs e)
+    //{
+    //    await PolicyOfView.ReactOnPushed((Button)sender);
 
-        await Shell.Current.GoToAsync("//HomePage");
-    }
-    #endregion
+    //    await Shell.Current.GoToAsync("//HomePage");
+    //}
+    //#endregion
 
     #region イベントハンドラ（［タイルセット一覧］ボタン・クリック時）
     /// <summary>
