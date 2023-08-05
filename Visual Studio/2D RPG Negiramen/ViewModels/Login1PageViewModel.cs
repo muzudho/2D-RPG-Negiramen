@@ -68,7 +68,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
                 Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] キャッシュのクリアー");
                 App.CacheFolder.ClearCache();
                 App.DataFolder.ClearCache();
-                App.GetOrLoadProjectConfiguration().UnityAssetsFolder.ClearCache();
+                App.GetOrLoadProjectConfiguration().UnityAssetsFolderLocation.ClearCache();
 
                 Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] ProjectConfigurationToml.Path: {App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr}");
                 // Trace.WriteLine($"[Login1PageViewModel.cs YourCircleFolderNameAsStr] StarterKitFolder: {App.GetOrLoadProjectConfiguration().StarterKitFolder.Path.AsStr}");
@@ -114,7 +114,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
                 Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] キャッシュのクリアー");
                 App.CacheFolder.ClearCache();
                 App.DataFolder.ClearCache();
-                App.GetOrLoadProjectConfiguration().UnityAssetsFolder.ClearCache();
+                App.GetOrLoadProjectConfiguration().UnityAssetsFolderLocation.ClearCache();
 
                 Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] ProjectConfigurationToml.Path: {App.DataFolder.YourCircleFolder.YourWorkFolder.ProjectConfigurationToml.Path.AsStr}");
                 Trace.WriteLine($"[Login1PageViewModel.cs YourWorkFolderNameAsStr] ProjectHelper.IsReady(): {App.GetOrLoadProjectConfiguration().IsReady()}");
@@ -292,7 +292,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
         // この画面では、サークル・フォルダ名、作品フォルダ名が変わることを考慮して、キャッシュのクリアー
         Trace.WriteLine($"[Login1PageViewModel.cs InvalidatePage] キャッシュのクリアー");
         App.DataFolder.ClearCache();
-        App.GetOrLoadProjectConfiguration().UnityAssetsFolder.ClearCache();
+        App.GetOrLoadProjectConfiguration().UnityAssetsFolderLocation.ClearCache();
     }
     #endregion
 

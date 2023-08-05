@@ -171,7 +171,7 @@ internal class UnityAssetsDeployment
 
         // 画像ファイルのコピー
         {
-            var source = Path.Combine(projectConfiguration.StarterKitFolder.ForUnityAssetsFolder.ImagesFolder.TilesetsFolder.Path.AsStr, fileName);
+            var source = Path.Combine(projectConfiguration.StarterKitFolderLocation.ForUnityAssetsFolder.ImagesFolder.TilesetsFolder.Path.AsStr, fileName);
             var destination = Path.Combine(tilesetFolder.Path.AsStr, fileName);
 
             if (!File.Exists(destination))
@@ -186,7 +186,7 @@ internal class UnityAssetsDeployment
         // 添付の TOML ファイルのコピー
         {
             var fileStem = Path.GetFileNameWithoutExtension(fileName);
-            var source = Path.Combine(projectConfiguration.StarterKitFolder.ForUnityAssetsFolder.ImagesFolder.TilesetsFolder.Path.AsStr, $"{fileStem}.toml");
+            var source = Path.Combine(projectConfiguration.StarterKitFolderLocation.ForUnityAssetsFolder.ImagesFolder.TilesetsFolder.Path.AsStr, $"{fileStem}.toml");
             var destination = Path.Combine(tilesetFolder.Path.AsStr, $"{fileStem}.toml");
 
             if (!File.Exists(destination))

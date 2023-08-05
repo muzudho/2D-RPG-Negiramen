@@ -13,17 +13,17 @@ internal class ProjectConfigurationBuffer
 {
     // - インターナル・プロパティ
 
-    #region プロパティ（ネギラーメンの 📂 `Starter Kit` フォルダへのパス）
+    #region プロパティ（ネギラーメンの 📂 `Starter Kit` フォルダの場所）
     /// <summary>
-    ///     ネギラーメンの 📂 `Starter Kit` フォルダへのパス
+    ///     ネギラーメンの 📂 `Starter Kit` フォルダの場所
     /// </summary>
-    internal Locations.StarterKit.ItsFolder? StarterKitFolder { get; set; }
+    internal Locations.StarterKit.ItsFolder? StarterKitFolderLocation { get; set; }
     #endregion
 
-    #region プロパティ（Unity の 📂 `Assets` フォルダへのパス）
+    #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
     /// <summary>
-    ///     Unity の 📂 `Assets` フォルダへのパス
+    ///     Unity の 📂 `Assets` フォルダの場所
     /// </summary>
-    internal TheFileEntryLocations.UnityAssets.ItsFolder? UnityAssetsFolder { get; set; }
+    internal TheFileEntryLocations.UnityAssets.ItsFolder? UnityAssetsFolderLocation { get; set; }
     #endregion
 }

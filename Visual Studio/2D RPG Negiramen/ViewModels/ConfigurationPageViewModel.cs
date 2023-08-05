@@ -33,9 +33,9 @@
             var configuration = App.GetOrLoadConfiguration();
             var projectConfiguration = App.GetOrLoadProjectConfiguration();
 
-            this.StarterKitFolderPathAsStr = projectConfiguration.StarterKitFolder.Path.AsStr;
+            this.StarterKitFolderPathAsStr = projectConfiguration.StarterKitFolderLocation.Path.AsStr;
 
-            this.UnityAssetsFolder = projectConfiguration.UnityAssetsFolder;
+            this.UnityAssetsFolder = projectConfiguration.UnityAssetsFolderLocation;
             this.UnityAssetsFolderPathAsStr = this.UnityAssetsFolder.Path.AsStr;
 
             this.YourCircleFolderNameAsStr = configuration.CurrentYourCircleFolderName.AsStr;
@@ -268,8 +268,8 @@
                 // プロジェクト構成ファイルの更新差分
                 var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
                 {
-                    StarterKitFolder = this.starterKitFolder,
-                    UnityAssetsFolder = this.unityAssetsFolder,
+                    StarterKitFolderLocation = this.starterKitFolder,
+                    UnityAssetsFolderLocation = this.unityAssetsFolder,
                 };
 
                 // プロジェクト構成ファイルの保存

@@ -18,7 +18,7 @@
             }
 
             // Unity の Assets フォルダへ初期設定をコピー
-            if (!Models.FileEntries.Deployments.UnityAssetsDeployment.MakeFolder(App.GetOrLoadProjectConfiguration().UnityAssetsFolder))
+            if (!Models.FileEntries.Deployments.UnityAssetsDeployment.MakeFolder(App.GetOrLoadProjectConfiguration().UnityAssetsFolderLocation))
             {
                 // TODO 異常時の処理
                 return;

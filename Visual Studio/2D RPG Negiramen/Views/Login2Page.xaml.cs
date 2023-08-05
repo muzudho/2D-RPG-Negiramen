@@ -81,8 +81,8 @@ public partial class Login2Page : ContentPage
         // プロジェクト構成ファイルの更新差分
         var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
         {
-            StarterKitFolder = this.Login2PageVM.StarterKitFolder,
-            UnityAssetsFolder = this.Login2PageVM.UnityAssetsFolder,
+            StarterKitFolderLocation = this.Login2PageVM.StarterKitFolder,
+            UnityAssetsFolderLocation = this.Login2PageVM.UnityAssetsFolder,
         };
 
         if (Models.FileEntries.ProjectConfiguration.SaveTOML(App.GetOrLoadProjectConfiguration(), projectConfigurationDifference, out Models.FileEntries.ProjectConfiguration newProjectConfiguration))

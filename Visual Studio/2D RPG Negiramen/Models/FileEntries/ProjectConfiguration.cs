@@ -13,33 +13,6 @@ class ProjectConfiguration
 
     #region その他（生成　関連）
     /// <summary>
-    ///     生成
-    /// </summary>
-    /// <param name="starterKitFolderPath">ネギラーメン 📂 `Starter Kit` フォルダへのパス</param>
-    /// <param name="unityAssetsFolderPath">Unity の Assets フォルダへのパス</param>
-    internal ProjectConfiguration(
-        TheFileEntryLocations.StarterKit.ItsFolder starterKitFolderPath,
-        TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderPath)
-    {
-        this.StarterKitFolder = starterKitFolderPath;
-        this.UnityAssetsFolder = unityAssetsFolderPath;
-    }
-    #endregion
-
-    // - インターナル静的プロパティー
-
-    #region プロパティ（空オブジェクト）
-    /// <summary>
-    ///     空オブジェクト
-    /// </summary>
-    internal static ProjectConfiguration Empty = new(
-        starterKitFolderPath: TheFileEntryLocations.StarterKit.ItsFolder.Empty,
-        unityAssetsFolderPath: TheFileEntryLocations.UnityAssets.ItsFolder.Empty);
-    #endregion
-
-    // - インターナル静的メソッド
-
-    /// <summary>
     ///     <pre>
     ///         TOML形式ファイルの読取
     ///     
@@ -114,6 +87,34 @@ class ProjectConfiguration
     }
 
     /// <summary>
+    ///     生成
+    /// </summary>
+    /// <param name="starterKitFolderLocation">ネギラーメン 📂 `Starter Kit` フォルダの場所</param>
+    /// <param name="unityAssetsFolderLocation">Unity の Assets フォルダの場所</param>
+    internal ProjectConfiguration(
+        TheFileEntryLocations.StarterKit.ItsFolder starterKitFolderLocation,
+        TheFileEntryLocations.UnityAssets.ItsFolder unityAssetsFolderLocation)
+    {
+        this.StarterKitFolderLocation = starterKitFolderLocation;
+        this.UnityAssetsFolderLocation = unityAssetsFolderLocation;
+    }
+    #endregion
+
+    // - インターナル静的プロパティー
+
+    #region プロパティ（空オブジェクト）
+    /// <summary>
+    ///     空オブジェクト
+    /// </summary>
+    internal static ProjectConfiguration Empty = new(
+        starterKitFolderLocation: TheFileEntryLocations.StarterKit.ItsFolder.Empty,
+        unityAssetsFolderLocation: TheFileEntryLocations.UnityAssets.ItsFolder.Empty);
+    #endregion
+
+    // - インターナル静的メソッド
+
+    #region メソッド（保存）
+    /// <summary>
     ///     保存
     /// </summary>
     /// <param name="current">現在の構成</param>
@@ -125,8 +126,8 @@ class ProjectConfiguration
         var configurationBuffer = new ProjectConfigurationBuffer();
 
         // 差分適用
-        configurationBuffer.StarterKitFolder = difference.StarterKitFolder ?? current.StarterKitFolder;
-        configurationBuffer.UnityAssetsFolder = difference.UnityAssetsFolder ?? current.UnityAssetsFolder;
+        configurationBuffer.StarterKitFolderLocation = difference.StarterKitFolderLocation ?? current.StarterKitFolderLocation;
+        configurationBuffer.UnityAssetsFolderLocation = difference.UnityAssetsFolderLocation ?? current.UnityAssetsFolderLocation;
 
         //
         // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
@@ -134,10 +135,10 @@ class ProjectConfiguration
         var text = $@"[paths]
 
 # ネギラーメンの 📂 `Starter Kit` フォルダ―へのパス
-starter_kit_folder = ""{configurationBuffer.StarterKitFolder.Path.AsStr}""
+starter_kit_folder = ""{configurationBuffer.StarterKitFolderLocation.Path.AsStr}""
 
 # Unity の 📂 `Assets` フォルダ―へのパス
-unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
+unity_assets_folder = ""{configurationBuffer.UnityAssetsFolderLocation.Path.AsStr}""
 ";
 
         // 上書き
@@ -147,30 +148,29 @@ unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
 
         // 差分をマージして、イミュータブルに変換
         newConfiguration = new ProjectConfiguration(
-            configurationBuffer.StarterKitFolder,
-            configurationBuffer.UnityAssetsFolder);
+            configurationBuffer.StarterKitFolderLocation,
+            configurationBuffer.UnityAssetsFolderLocation);
 
         return true;
     }
+    #endregion
 
     // - インターナル・プロパティー
 
     #region プロパティ（ネギラーメンに添付の 📂 `Starter Kit` フォルダの場所）
     /// <summary>
-    ///     TODO ★ 廃止予定
     ///     ネギラーメンに添付の 📂 `Starter Kit` フォルダの場所
     /// </summary>
     /// <example>"C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"</example>
-    internal TheFileEntryLocations.StarterKit.ItsFolder StarterKitFolder { get; }
+    internal TheFileEntryLocations.StarterKit.ItsFolder StarterKitFolderLocation { get; }
     #endregion
 
     #region プロパティ（Unity の 📂 `Assets` フォルダの場所）
     /// <summary>
-    ///     TODO ★ 廃止予定
     ///     Unity の 📂 `Assets` フォルダの場所
     /// </summary>
     /// <example>"C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"</example>
-    internal TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolder { get; }
+    internal TheFileEntryLocations.UnityAssets.ItsFolder UnityAssetsFolderLocation { get; }
     #endregion
 
     // - インターナル・メソッド
@@ -183,10 +183,10 @@ unity_assets_folder = ""{configurationBuffer.UnityAssetsFolder.Path.AsStr}""
     internal bool IsReady()
     {
         // スターターキットのディレクトリーが存在する
-        bool isStarterKitFolderExists = this.StarterKitFolder.IsExists();
+        bool isStarterKitFolderExists = this.StarterKitFolderLocation.IsExists();
 
         // Unity の Auto Generated フォルダーが存在する
-        bool isUnityAssetsAutoGeneratedFolderExists = this.UnityAssetsFolder.YourCircleFolder.YourWorkFolder.AutoGeneratedFolder.IsExists();
+        bool isUnityAssetsAutoGeneratedFolderExists = this.UnityAssetsFolderLocation.YourCircleFolder.YourWorkFolder.AutoGeneratedFolder.IsExists();
 
         return isStarterKitFolderExists && isUnityAssetsAutoGeneratedFolderExists;
     }
