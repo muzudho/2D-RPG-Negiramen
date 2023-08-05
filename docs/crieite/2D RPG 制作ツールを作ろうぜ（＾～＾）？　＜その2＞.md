@@ -2484,5 +2484,22 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　そこらへん　どうすんだろな？」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　いきなり　バイナリで作ると　バグ取りが難しいだろうから、  
+ヒストリーは　TOMLファイルで書き出すかな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　削除したリソースや、　上書きで加工してしまったリソースとか　出てくると思うが  
+復元する方法は？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ネギラーメンは　リソースは編集しないぜ。  
+リソースを組み立てるだけだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　インポートした素材は　削除も　上書きもされないという前提に立っているのね」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ネギラーメンから　素材を削除するときは、アンドゥもできません、ということにするんだぜ」  
 
 ＜書きかけ＞
