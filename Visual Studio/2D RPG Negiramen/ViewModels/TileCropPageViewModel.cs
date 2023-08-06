@@ -239,7 +239,7 @@
                 }
 
                 // 変更通知を送りたいので、構成要素ごとに設定
-                this.SelectedTileId = newTileRecordVM.Id;
+                this.SelectedTileIdOrEmpty = newTileRecordVM.Id;
                 this.SourceCroppedCursorLeftAsInt = newTileRecordVM.SourceRectangle.Location.X.AsInt;
                 this.SourceCroppedCursorTopAsInt = newTileRecordVM.SourceRectangle.Location.Y.AsInt;
                 this.SourceCroppedCursorWidthAsInt = newTileRecordVM.SourceRectangle.Size.Width.AsInt;
@@ -256,10 +256,8 @@
 
         /// <summary>
         ///     ［選択タイル］のＩｄ
-        ///     
-        ///     TODO ヌルを入れれるようにして、選択解除にも対応したい
         /// </summary>
-        public Models.TileId SelectedTileId
+        public Models.TileIdOrEmpty SelectedTileIdOrEmpty
         {
             get
             {
@@ -270,7 +268,7 @@
                 else
                 {
                     // タイル・カーソル無し時
-                    return Models.TileId.Empty;
+                    return Models.TileIdOrEmpty.Empty;
                 }
             }
             set
@@ -885,7 +883,7 @@
                                 size: Models.Geometric.SizeInt.Empty);
                     this.selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: Models.TileId.Empty,
+                            id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
@@ -951,7 +949,7 @@
                             size: Models.Geometric.SizeInt.Empty);
                     selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: Models.TileId.Empty,
+                            id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
@@ -1057,7 +1055,7 @@
                     var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty));
                     selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: Models.TileId.Empty,
+                            id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
@@ -1115,7 +1113,7 @@
                     var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value)));
                     selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: TileId.Empty,
+                            id: TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
@@ -1412,7 +1410,7 @@
         /// <summary>
         ///     ［選択タイル］のＩｄ。BASE64表現
         ///     
-        ///     <see cref="SelectedTileId"/>
+        ///     <see cref="SelectedTileIdOrEmpty"/>
         /// </summary>
         public string SelectedTileIdAsBASE64
         {
@@ -1433,7 +1431,7 @@
         /// <summary>
         ///     ［選択タイル］のＩｄ。フォネティックコード表現
         ///     
-        ///     <see cref="SelectedTileId"/>
+        ///     <see cref="SelectedTileIdOrEmpty"/>
         /// </summary>
         public string SelectedTileIdAsPhoneticCode
         {
@@ -1493,7 +1491,7 @@
                     var rect1 = Models.Geometric.RectangleInt.Empty;
                     selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: TileId.Empty,
+                            id: TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: new Models.TileTitle(value),
                             logicalDelete: Models.LogicalDelete.False),
@@ -1534,7 +1532,7 @@
             {
                 if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
                 {
-                    if (selectedTileVM.Id == Models.TileId.Empty)
+                    if (selectedTileVM.Id == Models.TileIdOrEmpty.Empty)
                     {
                         // 未選択時
                         return "選択タイルを、タイル一覧画面へ追加";
@@ -1645,16 +1643,26 @@
                 return;
             }
 
-            // 新しいタイルＩｄを発行
-            var newTileId = this.TilesetSettingsVM.UsableId;
-            this.TilesetSettingsVM.IncreaseUsableId();
+            TileIdOrEmpty tileIdOrEmpty;
+            if (this.SelectedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+            {
+                // Ｉｄが空欄ということは、新規作成だ
+
+                // 新しいタイルＩｄを発行
+                tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
+                this.TilesetSettingsVM.IncreaseUsableId();
+            }
+            else
+            {
+                tileIdOrEmpty = this.SelectedTileIdOrEmpty;
+            }
 
             // ［登録タイル追加］処理
             new AddRegisteredTileProcessing(
                 owner: this,
                 cropCursorVisualBuffer: cropCursorVisualBufferOrNull,
                 zoom: this.Zoom,
-                newTileId: newTileId).Do();
+                tileIdOrEmpty: tileIdOrEmpty).Do();
 
         }
         #endregion
@@ -1765,7 +1773,7 @@
                 // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
                 this.SelectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
                     tileRecord: new Models.TileRecord(
-                        id: Models.TileId.Empty,
+                        id: Models.TileIdOrEmpty.Empty,
                         rect: this.SourceCroppedCursorRect,
                         title: Models.TileTitle.Empty,
                         logicalDelete: Models.LogicalDelete.False),
@@ -1813,7 +1821,7 @@
             {
                 // 切抜きカーソル有り時
 
-                if (recordVM.Id == TileId.Empty)
+                if (recordVM.Id == TileIdOrEmpty.Empty)
                 {
                     // Ｉｄ未設定時
 
@@ -1849,7 +1857,7 @@
             {
                 // 切抜きカーソル有り時
 
-                if (recordVM.Id == TileId.Empty)
+                if (recordVM.Id == TileIdOrEmpty.Empty)
                 {
                     // Ｉｄ未設定時
                     this.DeletesButtonIsEnabled = false;
@@ -2297,17 +2305,17 @@
             /// <param name="owner"></param>
             /// <param name="cropCursorVisualBuffer"></param>
             /// <param name="zoom"></param>
-            /// <param name="newTileId"></param>
+            /// <param name="tileIdOrEmpty"></param>
             internal AddRegisteredTileProcessing(
                 TileCropPageViewModel owner,
                 TileRecordVisualBuffer cropCursorVisualBuffer,
                 Zoom zoom,
-                TileId newTileId)
+                TileIdOrEmpty tileIdOrEmpty)
             {
                 this.Owner = owner;
                 this.CropCursorVisualBuffer = cropCursorVisualBuffer;
                 this.Zoom = zoom;
-                this.NewTileId = newTileId;
+                this.TileIdOrEmpty = tileIdOrEmpty;
             }
 
             // - パブリック・メソッド
@@ -2318,45 +2326,44 @@
             /// <exception cref="NotImplementedException"></exception>
             public void Do()
             {
-                if (this.Owner.SelectedTileId == Models.TileId.Empty)
+                // ［タイル］のＩｄ変更
+                this.Owner.SelectedTileIdOrEmpty = this.TileIdOrEmpty; // this.Owner.TilesetSettingsVM.UsableId;
+
+                // ビューの再描画（タイルＩｄ更新）
+                this.Owner.NotifyTileIdChange();
+
+                // リストに登録済みか確認
+                if (!this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisualBuffer? tileRecordVisualBufferOrNull))
                 {
-                    // Ｉｄが無いということは、新規作成だ
-
-                    // 新しいＩｄを追加
-                    this.Owner.SelectedTileId = this.NewTileId; // this.Owner.TilesetSettingsVM.UsableId;
-
-                    // ビューの再描画（タイルＩｄ更新）
-                    this.Owner.NotifyTileIdChange();
-
-                    // タイルを新規登録（ダミー値。あとですぐ上書きする）
+                    // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
                     this.Owner.TilesetSettingsVM.AddTile(
-                        id: this.Owner.SelectedTileId,
-                        rect: RectangleInt.Empty,
-                        workingRect: RectangleFloat.Empty,
-                        title: Models.TileTitle.Empty,
-                        logicalDelete: Models.LogicalDelete.False);
+                    id: this.TileIdOrEmpty,
+                    rect: RectangleInt.Empty,
+                    workingRect: RectangleFloat.Empty,
+                    title: Models.TileTitle.Empty,
+                    logicalDelete: Models.LogicalDelete.False);
                 }
 
                 //
                 // この時点で、タイルは必ず登録されている
                 //
 
-                // 選択タイルＩｄと、レコードを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-                if (this.Owner.TilesetSettingsVM.TryGetTileById(this.Owner.SelectedTileId, out TileRecordVisualBuffer? tileRecordVMOrNull))
+                // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
+                if (this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out tileRecordVisualBufferOrNull))
                 {
-                    TileRecordVisualBuffer recordBuffer = tileRecordVMOrNull ?? throw new NullReferenceException(nameof(tileRecordVMOrNull));
+                    TileRecordVisualBuffer tileRecordVisualBuffer = tileRecordVisualBufferOrNull ?? throw new NullReferenceException(nameof(tileRecordVisualBufferOrNull));
 
                     // 新・元画像の位置とサイズ
-                    recordBuffer.SourceRectangle = this.CropCursorVisualBuffer.SourceRectangle; // this.Owner.SourceCroppedCursorRect;
+                    tileRecordVisualBuffer.SourceRectangle = this.CropCursorVisualBuffer.SourceRectangle; // this.Owner.SourceCroppedCursorRect;
 
                     // 新・作業画像の位置とサイズ
-                    recordBuffer.WorkingRectangle = this.CropCursorVisualBuffer.SourceRectangle.Do(this.Owner.Zoom);    // this.Owner.SourceCroppedCursorRect.Do(this.Owner.Zoom);
+                    tileRecordVisualBuffer.WorkingRectangle = this.CropCursorVisualBuffer.SourceRectangle.Do(this.Owner.Zoom);    // this.Owner.SourceCroppedCursorRect.Do(this.Owner.Zoom);
 
                     // 新・タイル・タイトル
-                    recordBuffer.Title = this.CropCursorVisualBuffer.Title; // new Models.TileTitle(this.Owner.SelectedTileTitleAsStr);
+                    tileRecordVisualBuffer.Title = this.CropCursorVisualBuffer.Title; // new Models.TileTitle(this.Owner.SelectedTileTitleAsStr);
 
                     // 新・論理削除
-                    recordBuffer.LogicalDelete = this.CropCursorVisualBuffer.LogicalDelete; // Models.LogicalDelete.False;
+                    tileRecordVisualBuffer.LogicalDelete = this.CropCursorVisualBuffer.LogicalDelete; // Models.LogicalDelete.False;
                 }
 
                 //
@@ -2403,9 +2410,9 @@
             Zoom Zoom { get; }
 
             /// <summary>
-            ///     新しいタイルＩｄ
+            ///     ［タイル］のＩｄ
             /// </summary>
-            TileId NewTileId { get; }
+            TileIdOrEmpty TileIdOrEmpty { get; }
         }
         #endregion
     }

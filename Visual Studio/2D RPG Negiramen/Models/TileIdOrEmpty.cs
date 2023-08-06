@@ -8,7 +8,7 @@
     ///         <item>0 を指定すると、空欄扱いとする（0 を扱うことはできない）</item>
     ///     </list>
     /// </summary>
-    internal class TileId
+    internal class TileIdOrEmpty
     {
         // - 演算子のオーバーロード
 
@@ -24,7 +24,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator ==(TileId c1, TileId c2)
+        public static bool operator ==(TileIdOrEmpty c1, TileIdOrEmpty c2)
         {
             // nullの確認（構造体のようにNULLにならない型では不要）
             // 両方nullか（参照元が同じか）
@@ -50,7 +50,7 @@
         /// <param name="c1">左項</param>
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
-        public static bool operator !=(TileId c1, TileId c2)
+        public static bool operator !=(TileIdOrEmpty c1, TileIdOrEmpty c2)
         {
             // (c1 != c2)とすると、無限ループ
             return !(c1 == c2);
@@ -72,7 +72,7 @@
             //if (!(obj is Id))
 
             // 要素で比較する
-            TileId c = (TileId)obj;
+            TileIdOrEmpty c = (TileIdOrEmpty)obj;
             return (this.source == c.source);
             //または、
             //return (this.Number.Equals(c.Number));
@@ -101,7 +101,7 @@
                 return 1;
             if (this.GetType() != other.GetType())
                 throw new ArgumentException();
-            return this.source.CompareTo(((TileId)other).source);
+            return this.source.CompareTo(((TileIdOrEmpty)other).source);
         }
 
         /// <summary>
@@ -111,7 +111,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <(TileId c1, TileId c2)
+        public static bool operator <(TileIdOrEmpty c1, TileIdOrEmpty c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -129,7 +129,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >(TileId c1, TileId c2)
+        public static bool operator >(TileIdOrEmpty c1, TileIdOrEmpty c2)
         {
             //逆にして"<"で比較
             return (c2 < c1);
@@ -142,7 +142,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator <=(TileId c1, TileId c2)
+        public static bool operator <=(TileIdOrEmpty c1, TileIdOrEmpty c2)
         {
             //nullの確認
             if ((object)c1 == null || (object)c2 == null)
@@ -160,7 +160,7 @@
         /// <param name="c2">右項</param>
         /// <returns>そうだ</returns>
         /// <exception cref="ArgumentNullException">左項と右項のいずれかがヌルだった</exception>
-        public static bool operator >=(TileId c1, TileId c2)
+        public static bool operator >=(TileIdOrEmpty c1, TileIdOrEmpty c2)
         {
             //逆にして"<="で比較
             return (c2 <= c1);
@@ -173,7 +173,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static TileId Empty = new(0);
+        internal static TileIdOrEmpty Empty = new(0);
         #endregion
 
         // - プライベート静的プロパティー
@@ -258,7 +258,7 @@
         ///     生成
         /// </summary>
         /// <param name="source">元の値</param>
-        internal TileId(int source)
+        internal TileIdOrEmpty(int source)
         {
             this.source = source;
         }

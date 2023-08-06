@@ -439,13 +439,13 @@ public partial class TileCropPage : ContentPage
         //
         if (context.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のタイルのＩｄ
-            id: context.SelectedTileId))
+            id: context.SelectedTileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
             context.InvalidateTilesetSettingsVM();
         }
 
-        Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 context.SelectedTileId: [{context.SelectedTileId.AsBASE64}]");
+        Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 context.SelectedTileId: [{context.SelectedTileIdOrEmpty.AsBASE64}]");
 
         //
         // 設定ファイルの保存

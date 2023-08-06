@@ -27,12 +27,12 @@ public class TilesetSettings
     internal static bool LoadCSV(
         DataCsvTilesetCsv tilesetSettingsFile,
         out TilesetSettings tilesetSettings,
-        out TileId usableId)
+        out TileIdOrEmpty usableId)
     {
         // 既定値の設定（空っぽ）
         tilesetSettings = new TilesetSettings();
 
-        usableId = new TileId(1);
+        usableId = new TileIdOrEmpty(1);
 
         try
         {
@@ -98,7 +98,7 @@ public class TilesetSettings
                     }
 
                     // TODO とりあえず、 Id, Left, Top, Width, Height, Title の順で並んでいるとする。ちゃんと列名を見て対応したい
-                    var tileId = new Models.TileId(tileIdAsInt);
+                    var tileId = new Models.TileIdOrEmpty(tileIdAsInt);
                     tilesetSettings.AddTile(
                         id: tileId,
                         rect: new Models.Geometric.RectangleInt(
@@ -268,7 +268,7 @@ public class TilesetSettings
     /// <summary>
     /// 次に採番できるＩｄ。１から始まる
     /// </summary>
-    internal Models.TileId UsableId { get; private set; } = new Models.TileId(1);
+    internal Models.TileIdOrEmpty UsableId { get; private set; } = new Models.TileIdOrEmpty(1);
     #endregion
 
     // - インターナル・メソッド
@@ -282,7 +282,7 @@ public class TilesetSettings
     /// <param name="tileTitle">タイル・タイトル</param>
     /// <param name="logicalDelete">論理削除</param>
     internal void AddTile(
-        Models.TileId id,
+        Models.TileIdOrEmpty id,
         Geometric.RectangleInt rect,
         Models.TileTitle tileTitle,
         Models.LogicalDelete logicalDelete)
@@ -302,7 +302,7 @@ public class TilesetSettings
     /// </summary>
     /// <param name="id">タイルＩｄ</param>
     internal void DeleteLogical(
-        Models.TileId id)
+        Models.TileIdOrEmpty id)
     {
         // 愚直な検索
         for (int i = 0; i < this.RecordList.Count; i++)
@@ -440,7 +440,7 @@ public class TilesetSettings
             throw new IndexOutOfRangeException($"Usable Id {nameof(this.UsableId.AsInt)} must not be max");
         }
 
-        this.UsableId = new TileId(this.UsableId.AsInt + 1);
+        this.UsableId = new TileIdOrEmpty(this.UsableId.AsInt + 1);
     }
     #endregion
 

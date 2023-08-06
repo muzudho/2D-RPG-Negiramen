@@ -18,7 +18,7 @@
         ///     生成
         /// </summary>
         public TileRecord()
-            : this(Models.TileId.Empty,
+            : this(Models.TileIdOrEmpty.Empty,
                    Geometric.RectangleInt.Empty,
                    Models.TileTitle.Empty,
                    Models.LogicalDelete.False)
@@ -33,7 +33,7 @@
         /// <param name="title">タイル・タイトル</param>
         /// <param name="logicalDelete">論理削除か？</param>
         internal TileRecord(
-            Models.TileId id,
+            Models.TileIdOrEmpty id,
             Geometric.RectangleInt rect,
             Models.TileTitle title,
             Models.LogicalDelete logicalDelete)
@@ -71,7 +71,7 @@
         ///         <item>0 は `MA==` だが、これは空文字として表示する</item>
         ///     </list>
         /// </summary>
-        internal Models.TileId Id { get; }
+        internal Models.TileIdOrEmpty Id { get; }
         #endregion
 
         #region プロパティ（矩形）

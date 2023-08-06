@@ -40,7 +40,7 @@
         /// </summary>
         public TileRecordVisualBuffer()
         {
-            Id = TileId.Empty;
+            Id = TileIdOrEmpty.Empty;
             SourceRectangle = TheGeometric.RectangleInt.Empty;
             WorkingRectangle = TheGeometric.RectangleFloat.Empty;
             Title = TileTitle.Empty;
@@ -58,7 +58,7 @@
         ///         <item>0 は `MA==` だが、これは空文字として表示する</item>
         ///     </list>
         /// </summary>
-        internal TileId Id { get; set; }
+        internal TileIdOrEmpty Id { get; set; }
         #endregion
 
         #region プロパティ（矩形　関連）

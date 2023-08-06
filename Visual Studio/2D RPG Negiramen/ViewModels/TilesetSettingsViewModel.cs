@@ -39,7 +39,7 @@
             // 既定値の設定（空っぽ）
             tilesetSettingsVM = new TilesetSettingsViewModel();
 
-            if (TilesetSettings.LoadCSV(tilesetSettingsFile, out TilesetSettings tilesetSettings, out TileId usableId))
+            if (TilesetSettings.LoadCSV(tilesetSettingsFile, out TilesetSettings tilesetSettings, out TileIdOrEmpty usableId))
             {
                 tilesetSettingsVM.UsableId = usableId;
 
@@ -88,7 +88,7 @@
         /// <summary>
         /// 次に採番できるＩｄ。１から始まる
         /// </summary>
-        internal Models.TileId UsableId { get; set; } = new Models.TileId(1);
+        internal Models.TileIdOrEmpty UsableId { get; set; } = new Models.TileIdOrEmpty(1);
         #endregion
 
         // - インターナル・メソッド
@@ -103,7 +103,7 @@
         /// <param name="title">タイトル</param>
         /// <param name="logicalDelete">論理削除</param>
         internal void AddTile(
-            Models.TileId id,
+            Models.TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
             TheGeometric.RectangleFloat workingRect,
             Models.TileTitle title,
@@ -127,7 +127,7 @@
         /// <param name="id">タイルＩｄ</param>
         /// <remarks>完了</remarks>
         internal bool DeleteLogical(
-            Models.TileId id)
+            Models.TileIdOrEmpty id)
         {
             // 愚直な検索
             for (int i = 0; i < this.RecordViewModelList.Count; i++)
@@ -162,7 +162,7 @@
         /// <param name="tileId">タイルＩｄ</param>
         /// <param name="resultVMOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetTileById(TileId tileId, out TileRecordVisualBuffer? resultVMOrNull)
+        internal bool TryGetTileById(TileIdOrEmpty tileId, out TileRecordVisualBuffer? resultVMOrNull)
         {
             foreach (var recordVM in this.RecordViewModelList)
             {
@@ -300,7 +300,7 @@
                 throw new IndexOutOfRangeException($"Usable Id {nameof(this.UsableId.AsInt)} must not be max");
             }
 
-            this.UsableId = new TileId(this.UsableId.AsInt + 1);
+            this.UsableId = new TileIdOrEmpty(this.UsableId.AsInt + 1);
         }
         #endregion
 
