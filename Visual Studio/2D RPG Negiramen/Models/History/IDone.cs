@@ -8,12 +8,12 @@ internal interface IDone
     // パブリック・メソッド
 
     /// <summary>
+    ///     ドゥ
+    /// </summary>
+    void Do();
+
+    /// <summary>
     ///     アンドゥ
     /// </summary>
     void Undo();
-
-    /// <summary>
-    ///     リドゥ
-    /// </summary>
-    void Redo();
 }

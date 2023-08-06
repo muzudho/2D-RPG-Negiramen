@@ -2,6 +2,8 @@
 {
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.Geometric;
+    using _2D_RPG_Negiramen.Models.History;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -401,29 +403,13 @@
                 {
                     if (this.ZoomMinAsFloat <= value && value <= this.ZoomMaxAsFloat)
                     {
-                        this.zoom = new Models.Geometric.Zoom(value);
+                        Zoom oldValue = this.zoom;
+                        Zoom newValue = new Models.Geometric.Zoom(value);
 
-                        // ズーム変更時の影響
-                        this.ReactOnZoomChanged();
+                        this.zoom = newValue;
 
-                        OnPropertyChanged(nameof(ZoomAsFloat));
-                        OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
-                        OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
-                        OnPropertyChanged(nameof(WorkingGridPhase));
-
-                        OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-                        OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-                        OnPropertyChanged(nameof(WorkingGridUnit));
-
-                        // 切抜きカーソル。ズーム後
-                        OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
-                        OnPropertyChanged(nameof(WorkingCroppedCursorCanvasWidthAsFloat));
-                        OnPropertyChanged(nameof(WorkingCroppedCursorCanvasHeightAsFloat));
-                        OnPropertyChanged(nameof(WorkingCroppedCursorSize));
-                        OnPropertyChanged(nameof(WorkingCroppedCursorLeftAsPresentableText));   // TODO これは要るか？
-                        OnPropertyChanged(nameof(WorkingCroppedCursorTopAsPresentableText));   // TODO これは要るか？
-                        OnPropertyChanged(nameof(WorkingCroppedCursorWidthAsPresentableText));   // TODO これは要るか？
-                        OnPropertyChanged(nameof(WorkingCroppedCursorHeightAsPresentableText));   // TODO これは要るか？
+                        // ズーム変更後の影響
+                        new Zoomed(this, oldValue, newValue).Do();
                     }
                 }
             }
@@ -2038,23 +2024,6 @@
         }
         #endregion
 
-        //#region メソッド（［ズーム］　関連）
-        ///// <summary>
-        /////     ズームする
-        ///// </summary>
-        //void DoZoom()
-        //{
-        //    // 拡大率
-        //    double zoomNum = this.ZoomAsFloat;
-
-        //    // 元画像の複製
-        //    var copySourceMap = new SKBitmap();
-        //    this.TilesetSourceBitmap.CopyTo(copySourceMap);
-
-        //    // TODO 出力先画像（ズーム）
-        //}
-        //#endregion
-
         #region メソッド（［元画像グリッド］　関連）
         /// <summary>
         ///     <pre>
@@ -2116,38 +2085,133 @@
         }
         #endregion
 
-        // FIXME 【特設】ズーム関連
+        // - プライベート・クラス
 
         /// <summary>
-        ///     ［ズーム］変更時の影響
+        ///     ズームしました
         /// </summary>
-        void ReactOnZoomChanged()
+        class Zoomed : IDone
         {
-            // ［タイルセット作業画像］を再作成
-            this.RemakeWorkingTilesetImage();
+            // - その他
 
-            // ［作業グリッド］タイル横幅の再計算
-            RefreshWorkingGridTileWidth();
-
-            // ［作業グリッド］タイル縦幅の再計算
-            RefreshWorkingGridTileHeight();
-
-            // ［グリッド］のキャンバス画像の再作成
-            this.RemakeGridCanvasImage();
-
-            // 全ての［登録タイル］のズーム時の位置とサイズを更新
-            foreach (var registeredTileVM in this.TilesetSettingsVM.RecordViewModelList)
+            /// <summary>
+            ///     生成
+            /// </summary>
+            /// <param name="oldValue">変更前の値</param>
+            /// <param name="newValue">変更後の値</param>
+            internal Zoomed(TileCropPageViewModel owner, Zoom oldValue, Zoom newValue)
             {
-                registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Zoom);
+                this.Owner = owner;
+                this.OldValue = oldValue;
+                this.NewValue = newValue;
             }
 
-            // ［切抜きカーソル］の位置とサイズを更新
-            this.WorkingCroppedCursorPoint = new TheGeometric.PointFloat(
-                x: new TheGeometric.XFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Location.X.AsInt),
-                y: new TheGeometric.YFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Location.Y.AsInt));
-            this.WorkingCroppedCursorSize = new TheGeometric.SizeFloat(
-                width: new TheGeometric.WidthFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Width.AsInt),
-                height: new TheGeometric.HeightFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Height.AsInt));
+            // - パブリック・メソッド
+
+            /// <summary>
+            ///     ドゥ
+            /// </summary>
+            public void Do()
+            {
+                this.Owner.Zoom = this.NewValue;
+
+                this.AfterChanged();
+            }
+
+            /// <summary>
+            ///     アンドゥ
+            /// </summary>
+            public void Undo()
+            {
+                this.Owner.Zoom = this.OldValue;
+
+                this.AfterChanged();
+            }
+
+            // - プライベート・プロパティ
+
+            /// <summary>
+            ///     外側のクラス
+            /// </summary>
+            TileCropPageViewModel Owner { get; }
+
+            /// <summary>
+            ///     変更前の値
+            /// </summary>
+            Zoom OldValue { get; }
+
+            /// <summary>
+            ///     変更後の値
+            /// </summary>
+            Zoom NewValue { get; }
+
+            // - プライベート・メソッド
+
+            /// <summary>
+            ///     ［ズーム］変更後の影響
+            /// </summary>
+            void AfterChanged()
+            {
+                // ［タイルセット作業画像］の更新
+                {
+                    // 画像の再作成
+                    this.Owner.RemakeWorkingTilesetImage();
+                }
+
+                // ［元画像グリッド］の更新
+                {
+                    // キャンバス画像の再作成
+                    this.Owner.RemakeGridCanvasImage();
+                }
+
+                // ［作業グリッド］の再計算
+                {
+                    // 横幅
+                    this.Owner.RefreshWorkingGridTileWidth();
+                    // 縦幅
+                    this.Owner.RefreshWorkingGridTileHeight();
+                }
+
+                // ［切抜きカーソル］更新
+                {
+                    // 位置
+                    this.Owner.WorkingCroppedCursorPoint = new TheGeometric.PointFloat(
+                        x: new TheGeometric.XFloat(this.Owner.ZoomAsFloat * this.Owner.SourceCroppedCursorRect.Location.X.AsInt),
+                        y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.SourceCroppedCursorRect.Location.Y.AsInt));
+
+                    // サイズ
+                    this.Owner.WorkingCroppedCursorSize = new TheGeometric.SizeFloat(
+                        width: new TheGeometric.WidthFloat(this.Owner.ZoomAsFloat * this.Owner.SourceCroppedCursorRect.Size.Width.AsInt),
+                        height: new TheGeometric.HeightFloat(this.Owner.ZoomAsFloat * this.Owner.SourceCroppedCursorRect.Size.Height.AsInt));
+                }
+
+                // 全ての［登録タイル］の更新
+                foreach (var registeredTileVM in this.Owner.TilesetSettingsVM.RecordViewModelList)
+                {
+                    // ズーム時の位置とサイズ
+                    registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Owner.Zoom);
+                }
+
+                this.Owner.OnPropertyChanged(nameof(ZoomAsFloat));
+
+                this.Owner.OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
+                this.Owner.OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
+                this.Owner.OnPropertyChanged(nameof(WorkingGridPhase));
+
+                this.Owner.OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
+                this.Owner.OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
+                this.Owner.OnPropertyChanged(nameof(WorkingGridUnit));
+
+                // 切抜きカーソル。ズーム後
+                this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
+                this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorCanvasWidthAsFloat));
+                this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorCanvasHeightAsFloat));
+                this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorSize));
+                this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorLeftAsPresentableText));   // TODO これは要るか？
+                this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorTopAsPresentableText));   // TODO これは要るか？
+                this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorWidthAsPresentableText));   // TODO これは要るか？
+                this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorHeightAsPresentableText));   // TODO これは要るか？
+            }
         }
     }
 }

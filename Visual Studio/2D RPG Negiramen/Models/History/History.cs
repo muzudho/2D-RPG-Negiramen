@@ -50,7 +50,7 @@ internal class History
         }
 
         var done = this.FuturedStack.Pop();
-        done.Redo();
+        done.Do();
 
         this.CompletionStack.Push(done);
     }
