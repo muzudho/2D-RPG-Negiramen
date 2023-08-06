@@ -178,6 +178,35 @@
         }
         #endregion
 
+        #region メソッド（Ｉｄを指定してレコードを削除）
+        /// <summary>
+        ///     Ｉｄを指定してレコードを削除
+        /// </summary>
+        /// <param name="tileId">タイルＩｄ</param>
+        /// <param name="resultOrNull">結果</param>
+        /// <returns>有った</returns>
+        internal bool TryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisualBuffer? resultOrNull)
+        {
+            resultOrNull = null;
+
+            foreach (var recordVM in this.RecordViewModelList)
+            {
+                if (recordVM.Id == tileId)
+                {
+                    resultOrNull = recordVM;
+                    break;
+                }
+            }
+
+            if (resultOrNull != null)
+            {
+                return this.RecordViewModelList.Remove(resultOrNull);
+            }
+
+            return false;
+        }
+        #endregion
+
         #region メソッド（指定の矩形と一致するレコードを返す）
         /// <summary>
         ///     指定の矩形と一致するレコードを返す

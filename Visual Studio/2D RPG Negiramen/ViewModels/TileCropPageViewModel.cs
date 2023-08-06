@@ -1658,12 +1658,13 @@
             }
 
             // ［登録タイル追加］処理
-            new AddRegisteredTileProcessing(
+            App.History.Do(new AddRegisteredTileProcessing(
                 owner: this,
                 cropCursorVisualBuffer: cropCursorVisualBufferOrNull,
-                zoom: this.Zoom,
-                tileIdOrEmpty: tileIdOrEmpty).Do();
-
+                tileIdOrEmpty: tileIdOrEmpty,
+                workingRectangle: cropCursorVisualBufferOrNull.SourceRectangle.Do(this.Zoom)));
+            this.OnPropertyChanged(nameof(CanUndo));
+            this.OnPropertyChanged(nameof(CanRedo));
         }
         #endregion
 
@@ -2304,18 +2305,18 @@
             /// </summary>
             /// <param name="owner"></param>
             /// <param name="cropCursorVisualBuffer"></param>
-            /// <param name="zoom"></param>
             /// <param name="tileIdOrEmpty"></param>
+            /// <param name="workingRectangle"></param>
             internal AddRegisteredTileProcessing(
                 TileCropPageViewModel owner,
                 TileRecordVisualBuffer cropCursorVisualBuffer,
-                Zoom zoom,
-                TileIdOrEmpty tileIdOrEmpty)
+                TileIdOrEmpty tileIdOrEmpty,
+                RectangleFloat workingRectangle)
             {
                 this.Owner = owner;
                 this.CropCursorVisualBuffer = cropCursorVisualBuffer;
-                this.Zoom = zoom;
                 this.TileIdOrEmpty = tileIdOrEmpty;
+                this.WorkingRectangle = workingRectangle;
             }
 
             // - パブリック・メソッド
@@ -2323,11 +2324,10 @@
             /// <summary>
             ///     ドゥ―
             /// </summary>
-            /// <exception cref="NotImplementedException"></exception>
             public void Do()
             {
                 // ［タイル］のＩｄ変更
-                this.Owner.SelectedTileIdOrEmpty = this.TileIdOrEmpty; // this.Owner.TilesetSettingsVM.UsableId;
+                this.Owner.SelectedTileIdOrEmpty = this.TileIdOrEmpty;
 
                 // ビューの再描画（タイルＩｄ更新）
                 this.Owner.NotifyTileIdChange();
@@ -2354,16 +2354,16 @@
                     TileRecordVisualBuffer tileRecordVisualBuffer = tileRecordVisualBufferOrNull ?? throw new NullReferenceException(nameof(tileRecordVisualBufferOrNull));
 
                     // 新・元画像の位置とサイズ
-                    tileRecordVisualBuffer.SourceRectangle = this.CropCursorVisualBuffer.SourceRectangle; // this.Owner.SourceCroppedCursorRect;
+                    tileRecordVisualBuffer.SourceRectangle = this.CropCursorVisualBuffer.SourceRectangle;
 
                     // 新・作業画像の位置とサイズ
-                    tileRecordVisualBuffer.WorkingRectangle = this.CropCursorVisualBuffer.SourceRectangle.Do(this.Owner.Zoom);    // this.Owner.SourceCroppedCursorRect.Do(this.Owner.Zoom);
+                    tileRecordVisualBuffer.WorkingRectangle = this.WorkingRectangle;
 
                     // 新・タイル・タイトル
-                    tileRecordVisualBuffer.Title = this.CropCursorVisualBuffer.Title; // new Models.TileTitle(this.Owner.SelectedTileTitleAsStr);
+                    tileRecordVisualBuffer.Title = this.CropCursorVisualBuffer.Title;
 
                     // 新・論理削除
-                    tileRecordVisualBuffer.LogicalDelete = this.CropCursorVisualBuffer.LogicalDelete; // Models.LogicalDelete.False;
+                    tileRecordVisualBuffer.LogicalDelete = this.CropCursorVisualBuffer.LogicalDelete;
                 }
 
                 //
@@ -2389,7 +2389,44 @@
             /// <exception cref="NotImplementedException"></exception>
             public void Undo()
             {
-                throw new NotImplementedException();
+                // ［タイル］のＩｄ消去
+                this.Owner.SelectedTileIdOrEmpty = TileIdOrEmpty.Empty;
+
+                // ビューの再描画（タイルＩｄ更新）
+                this.Owner.NotifyTileIdChange();
+
+                // リストから削除
+                if (!this.Owner.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisualBuffer? tileRecordVisualBufferOrNull))
+                {
+                    // TODO 成功しなかったら異常
+                    throw new Exception();
+                }
+
+                //
+                // 設定ファイルの保存
+                // ==================
+                //
+                if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetSettingsFile))
+                {
+                    // TODO 保存失敗時のエラー対応
+                }
+
+                // タイル タイトル表示欄とか更新したい
+                this.Owner.OnPropertyChanged(nameof(SelectedTileTitleAsStr));
+
+                // TODO 追加・削除ボタンの表示状態を更新したい
+                this.Owner.OnPropertyChanged(nameof(AddsButtonHint));
+                this.Owner.OnPropertyChanged(nameof(AddsButtonText));
+
+                //  ［削除］ボタンの再描画
+                this.Owner.InvalidateDeletesButton();
+
+                //
+                // カラーマップの再描画
+                // ====================
+                //
+                //this.coloredMapGraphicsView1.Invalidate();
+                this.Owner.InvalidateGraphicsViewOfTilesetWorking();
             }
 
             // - プライベート・プロパティ
@@ -2405,14 +2442,14 @@
             TileRecordVisualBuffer CropCursorVisualBuffer { get; }
 
             /// <summary>
-            ///     ［ズーム］
-            /// </summary>
-            Zoom Zoom { get; }
-
-            /// <summary>
             ///     ［タイル］のＩｄ
             /// </summary>
             TileIdOrEmpty TileIdOrEmpty { get; }
+
+            /// <summary>
+            ///     タイルセット作業画像の位置とサイズ
+            /// </summary>
+            RectangleFloat WorkingRectangle { get; }
         }
         #endregion
     }
