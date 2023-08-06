@@ -502,6 +502,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
+        ///   リドゥ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Redo {
+            get {
+                return ResourceManager.GetString("Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   言語を選ぶ に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string SelectLanguage {
@@ -588,6 +597,15 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string Top {
             get {
                 return ResourceManager.GetString("Top", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   アンドゥ に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Undo {
+            get {
+                return ResourceManager.GetString("Undo", resourceCulture);
             }
         }
         

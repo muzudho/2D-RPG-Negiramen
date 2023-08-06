@@ -5,7 +5,7 @@ using System.Collections.Generic;
 /// <summary>
 ///     😁 ヒストリー
 /// </summary>
-internal class History
+internal class Its
 {
     // - インターナル・メソッド
 
@@ -20,9 +20,12 @@ internal class History
             this.FuturedStack.Clear();
         }
 
-        processing.Do();
+        if (this.State != State.Undoing && this.State != State.Redoing)
+        {
+            processing.Do();
 
-        this.CompletionStack.Push(processing);
+            this.CompletionStack.Push(processing);
+        }
     }
 
     /// <summary>
@@ -35,10 +38,19 @@ internal class History
             return;
         }
 
-        var done = this.CompletionStack.Pop();
-        done.Undo();
+        try
+        {
+            this.State = State.Undoing;
 
-        this.FuturedStack.Push(done);
+            var done = this.CompletionStack.Pop();
+            done.Undo();
+
+            this.FuturedStack.Push(done);
+        }
+        finally
+        {
+            this.State = State.None;
+        }
     }
 
     /// <summary>
@@ -51,10 +63,19 @@ internal class History
             return;
         }
 
-        var done = this.FuturedStack.Pop();
-        done.Do();
+        try
+        {
+            this.State = State.Redoing;
 
-        this.CompletionStack.Push(done);
+            var done = this.FuturedStack.Pop();
+            done.Do();
+
+            this.CompletionStack.Push(done);
+        }
+        finally
+        {
+            this.State = State.None;
+        }
     }
 
     // - プライベート・プロパティ
@@ -68,4 +89,9 @@ internal class History
     ///     将来スタック
     /// </summary>
     Stack<IProcessing> FuturedStack { get; } = new Stack<IProcessing>();
+
+    /// <summary>
+    ///     状態
+    /// </summary>
+    State State { get; set; } = State.None;
 }

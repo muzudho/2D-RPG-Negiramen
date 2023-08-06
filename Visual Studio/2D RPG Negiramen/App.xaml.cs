@@ -4,6 +4,7 @@ using _2D_RPG_Negiramen.Models.History;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
+using TheHistory = _2D_RPG_Negiramen.Models.History;
 using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
 /// <summary>
@@ -150,7 +151,7 @@ public partial class App : Application
     /// <summary>
     ///     操作履歴
     /// </summary>
-    internal static History History { get; private set; } = new History();
+    internal static TheHistory.Its History { get; private set; } = new TheHistory.Its();
     #endregion
 
     // - インターナル静的メソッド

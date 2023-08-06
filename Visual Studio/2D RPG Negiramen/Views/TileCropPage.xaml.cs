@@ -563,4 +563,28 @@ public partial class TileCropPage : ContentPage
         }
     }
     #endregion
+
+    #region イベントハンドラ（［アンドゥ］ボタン・クリック時）
+    /// <summary>
+    ///     ［アンドゥ］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void UndoImageButton_Clicked(object sender, EventArgs e)
+    {
+        App.History.Undo();
+    }
+    #endregion
+
+    #region イベントハンドラ（［リドゥ］ボタン・クリック時）
+    /// <summary>
+    ///     ［リドゥ］ボタン・クリック時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void RedoImageButton_Clicked(object sender, EventArgs e)
+    {
+        App.History.Redo();
+    }
+    #endregion
 }

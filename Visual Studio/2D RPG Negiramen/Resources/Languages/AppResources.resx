@@ -321,4 +321,10 @@
   <data name="ToImportAFile" xml:space="preserve">
     <value>ファイルをインポートするために</value>
   </data>
+  <data name="Undo" xml:space="preserve">
+    <value>アンドゥ</value>
+  </data>
+  <data name="Redo" xml:space="preserve">
+    <value>リドゥ</value>
+  </data>
 </root>

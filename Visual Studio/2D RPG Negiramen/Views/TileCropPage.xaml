@@ -79,11 +79,15 @@
 
                 <!-- リドゥ -->
                 <ImageButton VerticalOptions="Center"
-                             Source="button_redo.png"/>
+                             Source="button_redo.png"
+                             ToolTipProperties.Text="{app:Translate Redo}"
+                             Clicked="RedoImageButton_Clicked"/>
 
                 <!-- アンドゥ -->
                 <ImageButton VerticalOptions="Center"
-                             Source="button_undo.png"/>
+                             Source="button_undo.png"
+                             ToolTipProperties.Text="{app:Translate Undo}"
+                             Clicked="UndoImageButton_Clicked"/>
 
                 <!-- ロケール選択 -->
                 <Picker VerticalOptions="Center"
