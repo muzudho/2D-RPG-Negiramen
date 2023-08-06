@@ -2653,4 +2653,15 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　将来リストの中身を全部捨ててるところも　状態管理の内側に入れて直した」  
 
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　完了リストが０件のときは　アンドゥ・ボタンを押せないようにしてくれだぜ。  
+将来リストが０件のときは　リドゥ・ボタンを押せないようにしてくれだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　アンドゥ、リドゥは　完了リスト、将来リスト間の移動が終わってから実行しないと  
+画面更新時に　反映が後手後手になるのか。直して　実装した」  
+
 ＜書きかけ＞

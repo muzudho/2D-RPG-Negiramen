@@ -81,12 +81,14 @@
                 <ImageButton VerticalOptions="Center"
                              Source="button_redo.png"
                              ToolTipProperties.Text="{app:Translate Redo}"
+                             IsEnabled="{Binding CanRedo}"
                              Clicked="RedoImageButton_Clicked"/>
 
                 <!-- アンドゥ -->
                 <ImageButton VerticalOptions="Center"
                              Source="button_undo.png"
                              ToolTipProperties.Text="{app:Translate Undo}"
+                             IsEnabled="{Binding CanUndo}"
                              Clicked="UndoImageButton_Clicked"/>
 
                 <!-- ロケール選択 -->

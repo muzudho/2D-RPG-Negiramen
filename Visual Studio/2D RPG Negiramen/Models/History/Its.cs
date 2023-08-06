@@ -17,14 +17,15 @@ internal class Its
     {
         if (this.State != State.Undoing && this.State != State.Redoing)
         {
-            if (0 < this.FuturedStack.Count)
+            if (0 < this.FutureStack.Count)
             {
-                this.FuturedStack.Clear();
+                this.FutureStack.Clear();
             }
 
-            processing.Do();
-
             this.CompletionStack.Push(processing);
+
+            // アンドゥ・リドゥの活性性を変更するために、完了リストに追加した後に実行する
+            processing.Do();
         }
     }
 
@@ -43,9 +44,10 @@ internal class Its
             this.State = State.Undoing;
 
             var done = this.CompletionStack.Pop();
-            done.Undo();
+            this.FutureStack.Push(done);
 
-            this.FuturedStack.Push(done);
+            // アンドゥ・リドゥの活性性を変更するために、リストから移動した後に実行する
+            done.Undo();
         }
         finally
         {
@@ -58,7 +60,7 @@ internal class Its
     /// </summary>
     internal void Redo()
     {
-        if (this.FuturedStack.Count < 1)
+        if (this.FutureStack.Count < 1)
         {
             return;
         }
@@ -67,16 +69,29 @@ internal class Its
         {
             this.State = State.Redoing;
 
-            var done = this.FuturedStack.Pop();
-            done.Do();
-
+            var done = this.FutureStack.Pop();
             this.CompletionStack.Push(done);
+
+            // アンドゥ・リドゥの活性性を変更するために、リストから移動した後に実行する
+            done.Do();
         }
         finally
         {
             this.State = State.None;
         }
     }
+
+    /// <summary>
+    ///     アンドゥできるか？
+    /// </summary>
+    /// <returns>そうだ</returns>
+    internal bool CanUndo() => 0 < this.CompletionStack.Count;
+
+    /// <summary>
+    ///     リドゥできるか？
+    /// </summary>
+    /// <returns>そうだ</returns>
+    internal bool CanRedo() => 0 < this.FutureStack.Count;
 
     // - プライベート・プロパティ
 
@@ -88,7 +103,7 @@ internal class Its
     /// <summary>
     ///     将来スタック
     /// </summary>
-    Stack<IProcessing> FuturedStack { get; } = new Stack<IProcessing>();
+    Stack<IProcessing> FutureStack { get; } = new Stack<IProcessing>();
 
     /// <summary>
     ///     状態

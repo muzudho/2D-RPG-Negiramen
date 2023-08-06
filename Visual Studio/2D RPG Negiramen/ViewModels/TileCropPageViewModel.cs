@@ -339,6 +339,18 @@
         public ObservableCollection<CultureInfo> CultureInfoCollection => App.CultureInfoCollection;
         #endregion
 
+        #region 変更通知プロパティ（履歴　関連）
+        /// <summary>
+        ///     アンドゥできるか？
+        /// </summary>
+        public bool CanUndo => App.History.CanUndo();
+
+        /// <summary>
+        ///     リドゥできるか？
+        /// </summary>
+        public bool CanRedo => App.History.CanRedo();
+        #endregion
+
         #region 変更通知プロパティ（タイルセット設定ビューモデル）
         /// <summary>
         ///     タイルセット設定ビューモデル
@@ -2192,6 +2204,8 @@
                     registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Owner.Zoom);
                 }
 
+                this.Owner.OnPropertyChanged(nameof(CanUndo));
+                this.Owner.OnPropertyChanged(nameof(CanRedo));
                 this.Owner.OnPropertyChanged(nameof(ZoomAsFloat));
 
                 this.Owner.OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
