@@ -1406,28 +1406,6 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（［カラーマップ］描画　関連）
-        /// <summary>
-        ///     ［カラーマップ］のダーティー回数
-        ///     
-        ///     <list type="bullet">
-        ///         <item>変化すればいいので、リミットチェックは不要</item>
-        ///     </list>
-        /// </summary>
-        public byte DirtyCountOfColoredMap
-        {
-            get => this.dirtyCountOfColoerdMap;
-            set
-            {
-                if (this.dirtyCountOfColoerdMap == value)
-                    return;
-
-                this.dirtyCountOfColoerdMap = value;
-                OnPropertyChanged(nameof(DirtyCountOfColoredMap));
-            }
-        }
-        #endregion
-
         #region 変更通知プロパティ（［選択タイル］　関連）
         /// <summary>
         ///     ［選択タイル］のＩｄ。BASE64表現
@@ -2086,13 +2064,6 @@
         ///     ［切抜きカーソル］の線の半分の太さ
         /// </summary>
         ThicknessOfLine halfThicknessOfTileCursorLine;
-        #endregion
-
-        #region フィールド（［カラーマップ］描画　関連）
-        /// <summary>
-        ///     ［カラーマップ］のダーティー回数
-        /// </summary>
-        byte dirtyCountOfColoerdMap;
         #endregion
 
         #region フィールド（［追加／上書き］ボタン　関連）
