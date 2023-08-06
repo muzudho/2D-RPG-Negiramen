@@ -35,9 +35,9 @@
 
         // - パブリック・プロパティ
 
-        #region プロパティ（タイルセット設定）
+        #region プロパティ（［タイルセット設定］　関連）
         /// <summary>
-        ///     タイルセット設定ファイルへのパス（文字列形式）
+        ///     ［タイルセット設定］ファイルへのパス（文字列形式）
         /// </summary>
         public string TilesetSettingFilePathAsStr
         {
@@ -60,7 +60,7 @@
         }
 
         /// <summary>
-        ///     タイルセット設定ファイルへのパス
+        ///     ［タイルセット設定］ファイルへのパス
         /// </summary>
         public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetSettingsFile
         {
@@ -75,9 +75,9 @@
         }
         #endregion
 
-        #region プロパティ（タイルセット元画像）
+        #region プロパティ（［タイルセット元画像］　関連）
         /// <summary>
-        ///     タイルセット元画像ファイルへのパス
+        ///     ［タイルセット元画像］ファイルへのパス
         /// </summary>
         public TheFileEntryLocations.UnityAssets.Images.TilesetPng TilesetImageFile
         {
@@ -92,7 +92,7 @@
         }
 
         /// <summary>
-        ///     タイルセット画像ファイルへのパス（文字列形式）
+        ///     ［タイルセット元画像］ファイルへのパス（文字列形式）
         /// </summary>
         public string TilesetImageFilePathAsStr
         {
@@ -109,19 +109,13 @@
             }
         }
 
-        // タイルセット元画像
-        SKBitmap tilesetSourceBitmap = new ();
-
         /// <summary>
-        ///     タイルセット元画像
+        ///     ［タイルセット元画像］
         /// </summary>
-        public SKBitmap TilesetSourceBitmap
-        {
-            get => this.tilesetSourceBitmap;
-        }
+        public SKBitmap TilesetSourceBitmap => this.tilesetSourceBitmap;
 
         /// <summary>
-        ///     タイルセット元画像の設定
+        ///     ［タイルセット元画像］の設定
         /// </summary>
         /// <param name="bitmap"></param>
         public void SetTilesetSourceBitmap(SKBitmap bitmap)
@@ -144,14 +138,14 @@
         }
 
         /// <summary>
-        ///     タイルセット元画像のサイズ
+        ///     ［タイルセット元画像］のサイズ
         /// </summary>
         public Models.Geometric.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
         #endregion
 
-        #region プロパティ（タイルセット作業画像関連）
+        #region プロパティ（［タイルセット作業画像］　関連）
         /// <summary>
-        ///     タイルセット作業画像ファイルへのパス（文字列形式）
+        ///     ［タイルセット作業画像］ファイルへのパス（文字列形式）
         /// </summary>
         public string TilesetWorkingImageFilePathAsStr
         {
@@ -159,12 +153,12 @@
         }
 
         /// <summary>
-        ///     タイルセット作業画像。ビットマップ形式
+        ///     ［タイルセット作業画像］ビットマップ形式
         /// </summary>
         public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
         #endregion
 
-        #region プロパティ（ズーム）
+        #region プロパティ（［ズーム］　関連）
         /// <summary>
         ///     ズーム
         ///     
@@ -195,9 +189,9 @@
         public float ZoomMinAsFloat => this.zoomMin.AsFloat;
         #endregion
 
-        #region プロパティ（選択タイル）
+        #region プロパティ（［選択タイル］　関連）
         /// <summary>
-        ///     選択タイル
+        ///     ［選択タイル］
         /// </summary>
         public Option<TileRecordViewModel> SelectedTileVMOption
         {
@@ -257,11 +251,9 @@
                 // TODO コメントもリフレッシュしたい
             }
         }
-        #endregion
 
-        #region プロパティ（登録タイル　関連）
         /// <summary>
-        ///     選択タイルＩｄ
+        ///     ［選択タイル］のＩｄ
         /// </summary>
         public Models.TileId SelectedTileId
         {
@@ -366,412 +358,33 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（タイルセット元画像関連）
+        #region 変更通知プロパティ（［タイルセット元画像］　関連）
         /// <summary>
-        ///     タイルセット元画像の横幅。読取専用
+        ///     ［タイルセット元画像］の横幅。読取専用
         /// </summary>
-        public int TilesetSourceImageWidthAsInt
-        {
-            get => tilesetSourceImageSize.Width.AsInt;
-        }
+        public int TilesetSourceImageWidthAsInt => tilesetSourceImageSize.Width.AsInt;
 
         /// <summary>
-        ///     タイルセット元画像の縦幅。読取専用
+        ///     ［タイルセット元画像］の縦幅。読取専用
         /// </summary>
-        public int TilesetSourceImageHeightAsInt
-        {
-            get => tilesetSourceImageSize.Height.AsInt;
-        }
+        public int TilesetSourceImageHeightAsInt => tilesetSourceImageSize.Height.AsInt;
         #endregion
 
-        #region 変更通知プロパティ（タイルセット作業画像関連）
+        #region 変更通知プロパティ（［タイルセット作業画像］　関連）
         /// <summary>
-        ///     タイルセット作業画像の横幅。読取専用
+        ///     ［タイルセット作業画像］の横幅。読取専用
         /// </summary>
-        public int TilesetWorkingImageWidthAsInt
-        {
-            get => workingImageSize.Width.AsInt;
-        }
+        public int TilesetWorkingImageWidthAsInt => workingImageSize.Width.AsInt;
 
         /// <summary>
-        ///     タイルセット作業画像の縦幅。読取専用
+        ///     ［タイルセット作業画像］の縦幅。読取専用
         /// </summary>
-        public int TilesetWorkingImageHeightAsInt
-        {
-            get => workingImageSize.Height.AsInt;
-        }
+        public int TilesetWorkingImageHeightAsInt => workingImageSize.Height.AsInt;
         #endregion
 
-        #region 変更通知プロパティ（グリッド　関連）
+        #region 変更通知プロパティ（［ズーム］　関連）
         /// <summary>
-        ///     グリッド・キャンバスの画像サイズ
-        ///         
-        ///     <list type="bullet">
-        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる</item>
-        ///     </list>
-        /// </summary>
-        public Models.Geometric.SizeInt GridCanvasImageSize
-        {
-            get => this.gridCanvasImageSize;
-            set
-            {
-                if (this.gridCanvasImageSize != value)
-                {
-                    this.GridCanvasImageWidthAsInt = value.Width.AsInt;
-                    this.GridCanvasImageHeightAsInt = value.Height.AsInt;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     <pre>
-        ///         グリッドのキャンバスの横幅
-        ///         
-        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドのキャンバス・サイズを 2px 広げる
-        ///     </pre>
-        /// </summary>
-        public int GridCanvasImageWidthAsInt
-        {
-            get => this.GridCanvasImageSize.Width.AsInt;
-            set
-            {
-                if (this.gridCanvasImageSize.Width.AsInt != value)
-                {
-                    this.gridCanvasImageSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.gridCanvasImageSize.Height);
-                    OnPropertyChanged(nameof(GridCanvasImageWidthAsInt));
-                    OnPropertyChanged(nameof(GridCanvasImageSize));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     <pre>
-        ///         グリッドのキャンバスの縦幅
-        ///         
-        ///         グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドのキャンバス・サイズを 2px 広げる
-        ///     </pre>
-        /// </summary>
-        public int GridCanvasImageHeightAsInt
-        {
-            get => this.GridCanvasImageSize.Height.AsInt;
-            set
-            {
-                if (this.gridCanvasImageSize.Height.AsInt != value)
-                {
-                    this.gridCanvasImageSize = new Models.Geometric.SizeInt(this.gridCanvasImageSize.Width, new Models.Geometric.HeightInt(value));
-                    OnPropertyChanged(nameof(GridCanvasImageHeightAsInt));
-                    OnPropertyChanged(nameof(GridCanvasImageSize));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッドの線の太さの半分
-        /// </summary>
-        public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
-
-        ThicknessOfLine halfThicknessOfGridLine = new(1);
-
-        /// <summary>
-        ///     グリッド線の半分の太さ
-        /// </summary>
-        internal ThicknessOfLine HalfThicknessOfGridLine
-        {
-            get => this.halfThicknessOfGridLine;
-            set
-            {
-                if (this.halfThicknessOfGridLine != value)
-                {
-                    this.halfThicknessOfGridLine = value;
-                    OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
-                    OnPropertyChanged(nameof(HalfThicknessOfGridLine));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド位相の左上表示位置。元画像ベース
-        /// </summary>
-        Models.Geometric.PointInt sourceGridPhase = Models.Geometric.PointInt.Empty;
-
-        /// <summary>
-        ///     グリッド位相の左上表示位置。元画像ベース
-        /// </summary>
-        public Models.Geometric.PointInt SourceGridPhase
-        {
-            get => this.sourceGridPhase;
-            set
-            {
-                if (this.sourceGridPhase != value)
-                {
-                    this.SourceGridPhaseLeftAsInt = value.X.AsInt;
-                    this.SourceGridPhaseTopAsInt = value.Y.AsInt;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド位相の左上表示位置ｘ。元画像ベース
-        /// </summary>
-        public int SourceGridPhaseLeftAsInt
-        {
-            get => this.sourceGridPhase.X.AsInt;
-            set
-            {
-                if (this.sourceGridPhase.X.AsInt != value)
-                {
-                    this.sourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.sourceGridPhase.Y);
-                    this.WorkingGridPhaseLeftAsFloat = this.ZoomAsFloat * this.sourceGridPhase.X.AsInt;
-
-                    // キャンバスを再描画
-                    InvalidateCanvasOfGrid();
-
-                    // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(SourceGridPhaseLeftAsInt));
-                    OnPropertyChanged(nameof(SourceGridPhase));
-
-                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridPhase));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド位相の左上表示位置ｙ。元画像ベース
-        /// </summary>
-        public int SourceGridPhaseTopAsInt
-        {
-            get => this.sourceGridPhase.Y.AsInt;
-            set
-            {
-                if (this.sourceGridPhase.Y.AsInt != value)
-                {
-                    this.sourceGridPhase = new Models.Geometric.PointInt(this.sourceGridPhase.X, new Models.Geometric.YInt(value));
-                    this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsFloat * this.sourceGridPhase.Y.AsInt);
-
-                    // キャンバスを再描画
-                    InvalidateCanvasOfGrid();
-
-                    // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(SourceGridPhaseTopAsInt));
-                    OnPropertyChanged(nameof(SourceGridPhase));
-
-                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridPhase));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド位相の左上表示位置。ズーム後
-        /// </summary>
-        public Models.Geometric.PointFloat WorkingGridPhase
-        {
-            get => this.workingGridPhase;
-            set
-            {
-                if (this.workingGridPhase != value)
-                {
-                    this.WorkingGridPhaseLeftAsFloat = value.X.AsFloat;
-                    this.WorkingGridPhaseTopAsFloat = value.Y.AsFloat;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド位相の左上表示位置ｘ。ズーム後（読取専用）
-        /// </summary>
-        public float WorkingGridPhaseLeftAsFloat
-        {
-            get => this.workingGridPhase.X.AsFloat;
-            set
-            {
-                if (this.workingGridPhase.X.AsFloat != value)
-                {
-                    this.workingGridPhase = new Models.Geometric.PointFloat(
-                        x: new Models.Geometric.XFloat(value),
-                        y: this.workingGridPhase.Y);
-
-                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridPhase));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド位相の左上表示位置ｙ。ズーム後（読取専用）
-        /// </summary>
-        public float WorkingGridPhaseTopAsFloat
-        {
-            get => this.workingGridPhase.Y.AsFloat;
-            set
-            {
-                if (this.workingGridPhase.Y.AsFloat != value)
-                {
-                    this.workingGridPhase = new Models.Geometric.PointFloat(
-                        x: this.workingGridPhase.X,
-                        y: new Models.Geometric.YFloat(value));
-
-                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridPhase));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド・タイルのサイズ。元画像ベース
-        /// </summary>
-        public Models.Geometric.SizeInt SourceGridUnit
-        {
-            get => this.sourceGridUnit;
-            set
-            {
-                if (this.sourceGridUnit != value)
-                {
-                    this.SourceGridTileWidthAsInt = value.Width.AsInt;
-                    this.SourceGridTileHeightAsInt = value.Height.AsInt;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド・タイルの横幅。元画像ベース
-        /// </summary>
-        public int SourceGridTileWidthAsInt
-        {
-            get => this.sourceGridUnit.Width.AsInt;
-            set
-            {
-                if (this.sourceGridUnit.Width.AsInt != value &&
-                    // バリデーション
-                    0 < value && value <= this.TileMaxWidthAsInt)
-                {
-                    this.sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridUnit.Height);
-
-                    // 作業グリッド・タイル横幅の再計算
-                    RefreshWorkingGridTileWidth();
-
-                    // カーソルの線の幅を含まない
-                    this.WorkingCroppedCursorWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
-
-                    // キャンバスを再描画
-                    InvalidateCanvasOfGrid();
-                    // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileWidthAsInt set]");
-
-                    // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(SourceGridTileWidthAsInt));
-                    OnPropertyChanged(nameof(SourceGridUnit));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド・タイルの縦幅。元画像ベース
-        /// </summary>
-        public int SourceGridTileHeightAsInt
-        {
-            get => this.sourceGridUnit.Height.AsInt;
-            set
-            {
-                if (this.sourceGridUnit.Height.AsInt != value &&
-                    // バリデーション
-                    0 < value && value <= this.TileMaxHeightAsInt)
-                {
-                    this.sourceGridUnit = new Models.Geometric.SizeInt(this.sourceGridUnit.Width, new Models.Geometric.HeightInt(value));
-
-                    // 作業グリッド・タイル横幅の再計算
-                    RefreshWorkingGridTileHeight();
-
-                    // カーソルの線の幅を含まない
-                    this.WorkingCroppedCursorHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
-
-                    // キャンバスを再描画
-                    InvalidateCanvasOfGrid();
-                    // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileHeightAsInt set]");
-
-                    // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(SourceGridTileHeightAsInt));
-                    OnPropertyChanged(nameof(SourceGridUnit));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド・タイルのサイズ。ズーム後（読取専用）
-        /// </summary>
-        public Models.Geometric.SizeFloat WorkingGridUnit
-        {
-            get => this.workingGridUnit;
-            set
-            {
-                if (this.workingGridUnit != value)
-                {
-                    this.WorkingGridTileWidthAsFloat = value.Width.AsFloat;
-                    this.WorkingGridTileHeightAsFloat = value.Height.AsFloat;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド・タイルの横幅。ズーム後（読取専用）
-        /// </summary>
-        public float WorkingGridTileWidthAsFloat
-        {
-            get => this.workingGridUnit.Width.AsFloat;
-            set
-            {
-                if (this.workingGridUnit.Width.AsFloat != value)
-                {
-                    this.workingGridUnit = new Models.Geometric.SizeFloat(
-                        width: new Models.Geometric.WidthFloat(value),
-                        height: this.WorkingGridUnit.Height);
-
-                    OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridUnit));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド・タイルの縦幅。ズーム後（読取専用）
-        /// </summary>
-        public float WorkingGridTileHeightAsFloat
-        {
-            get => this.workingGridUnit.Height.AsFloat;
-            set
-            {
-                if (this.workingGridUnit.Height.AsFloat != value)
-                {
-                    this.workingGridUnit = new Models.Geometric.SizeFloat(
-                        width: this.WorkingGridUnit.Width,
-                        height: new Models.Geometric.HeightFloat(value));
-
-                    OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-                    OnPropertyChanged(nameof(WorkingGridUnit));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     グリッド・タイルの最大横幅
-        /// </summary>
-        public int TileMaxWidthAsInt
-        {
-            get => App.GetOrLoadSettings().TileMaxSize.Width.AsInt;
-        }
-
-        /// <summary>
-        ///     グリッド・タイルの最大縦幅
-        /// </summary>
-        public int TileMaxHeightAsInt
-        {
-            get => App.GetOrLoadSettings().TileMaxSize.Height.AsInt;
-        }
-        #endregion
-
-        #region 変更通知プロパティ（ズーム）
-        /// <summary>
-        ///     ズーム。整数形式
+        ///     ［ズーム］整数形式
         ///     
         ///     <list type="bullet">
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
@@ -840,201 +453,365 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（追加／上書きボタンのラベル）
-        string addsButtonText = string.Empty;
-
+        #region 変更通知プロパティ（［元画像グリッド］　関連）
         /// <summary>
-        ///     追加／上書きボタンのラベル
-        /// </summary>
-        public string AddsButtonText
-        {
-            get
-            {
-                return this.addsButtonText;
-            }
-            set
-            {
-                if (this.addsButtonText != value)
-                {
-                    this.addsButtonText = value;
-                    OnPropertyChanged(nameof(AddsButtonText));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（追加／上書きボタンのツールチップ・ヒント）
-        /// <summary>
-        ///     追加／上書きボタンのツールチップ・ヒント
-        /// </summary>
-        public string AddsButtonHint
-        {
-            get
-            {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
-                {
-                    if (selectedTileVM.Id == Models.TileId.Empty)
-                    {
-                        // 未選択時
-                        return "選択タイルを、タイル一覧画面へ追加";
-                    }
-                    else
-                    {
-                        return "選択タイルを、タイル一覧画面へ上書";
-                    }
-                }
-                else
-                {
-                    // タイル・カーソル無し時
-                    return "選択タイルを、タイル一覧画面へ追加";
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（追加／上書ボタンの活性性）
-        bool addsButtonIsEnabled;
-
-        /// <summary>
-        ///     追加／上書ボタンの活性性
-        /// </summary>
-        public bool AddsButtonIsEnabled
-        {
-            get
-            {
-                return this.addsButtonIsEnabled;
-            }
-            set
-            {
-                if (this.addsButtonIsEnabled != value)
-                {
-                    this.addsButtonIsEnabled = value;
-                    OnPropertyChanged(nameof(AddsButtonIsEnabled));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（削除ボタンの活性性）
-        bool deletesButtonIsEnabled;
-
-        /// <summary>
-        ///     削除ボタンの活性性
-        /// </summary>
-        public bool DeletesButtonIsEnabled
-        {
-            get
-            {
-                return this.deletesButtonIsEnabled;
-            }
-            set
-            {
-                if (this.deletesButtonIsEnabled != value)
-                {
-                    this.deletesButtonIsEnabled = value;
-                    OnPropertyChanged(nameof(DeletesButtonIsEnabled));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（タイル・カーソルの線の半分の太さ）
-        ThicknessOfLine halfThicknessOfTileCursorLine;
-
-        /// <summary>
-        ///     タイル・カーソルの線の半分の太さ
-        /// </summary>
-        public ThicknessOfLine HalfThicknessOfTileCursorLine
-        {
-            get
-            {
-                return this.halfThicknessOfTileCursorLine;
-            }
-            set
-            {
-                if (this.halfThicknessOfTileCursorLine != value)
-                {
-                    this.halfThicknessOfTileCursorLine = value;
-                    OnPropertyChanged(nameof(HalfThicknessOfTileCursorLine));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
-        bool selectingOnPointingDevice;
-
-        /// <summary>
-        ///     ポインティング・デバイス押下中か？
-        /// 
+        ///     ［元画像グリッド］のキャンバスの画像サイズ
+        ///         
         ///     <list type="bullet">
-        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
-        ///         <item>マウスじゃないと思うけど</item>
+        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
-        public bool IsMouseDragging
+        public Models.Geometric.SizeInt GridCanvasImageSize
         {
-            get => this.selectingOnPointingDevice;
+            get => this.gridCanvasImageSize;
             set
             {
-                if (this.selectingOnPointingDevice != value)
+                if (this.gridCanvasImageSize != value)
                 {
-                    this.selectingOnPointingDevice = value;
-                    OnPropertyChanged(nameof(IsMouseDragging));
+                    this.GridCanvasImageWidthAsInt = value.Width.AsInt;
+                    this.GridCanvasImageHeightAsInt = value.Height.AsInt;
                 }
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（選択タイルＩｄ。BASE64表現）
         /// <summary>
-        ///     選択タイルＩｄ。BASE64表現
+        ///     ［元画像グリッド］のキャンバスの横幅
         ///     
-        ///     <see cref="SelectedTileId"/>
+        ///     <list type="bullet">
+        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドのキャンバス・サイズを 2px 広げる</item>
+        ///     </list>
         /// </summary>
-        public string SelectedTileIdAsBASE64
+        public int GridCanvasImageWidthAsInt
         {
-            get
+            get => this.GridCanvasImageSize.Width.AsInt;
+            set
             {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
+                if (this.gridCanvasImageSize.Width.AsInt != value)
                 {
-                    return selectedTileVM.Id.AsBASE64;
+                    this.gridCanvasImageSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.gridCanvasImageSize.Height);
+                    OnPropertyChanged(nameof(GridCanvasImageWidthAsInt));
+                    OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
-                else
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］のキャンバスの縦幅
+        ///
+        ///     <list type="bullet">
+        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドのキャンバス・サイズを 2px 広げる</item>
+        ///     </list>
+        /// </summary>
+        public int GridCanvasImageHeightAsInt
+        {
+            get => this.GridCanvasImageSize.Height.AsInt;
+            set
+            {
+                if (this.gridCanvasImageSize.Height.AsInt != value)
                 {
-                    // タイル・カーソル無し時
-                    return string.Empty;
+                    this.gridCanvasImageSize = new Models.Geometric.SizeInt(this.gridCanvasImageSize.Width, new Models.Geometric.HeightInt(value));
+                    OnPropertyChanged(nameof(GridCanvasImageHeightAsInt));
+                    OnPropertyChanged(nameof(GridCanvasImageSize));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］の線の太さの半分
+        /// </summary>
+        public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
+
+        /// <summary>
+        ///     ［元画像グリッド］の線の半分の太さ
+        /// </summary>
+        internal ThicknessOfLine HalfThicknessOfGridLine
+        {
+            get => this.halfThicknessOfGridLine;
+            set
+            {
+                if (this.halfThicknessOfGridLine != value)
+                {
+                    this.halfThicknessOfGridLine = value;
+                    OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
+                    OnPropertyChanged(nameof(HalfThicknessOfGridLine));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］の位相の左上表示位置。元画像ベース
+        /// </summary>
+        public Models.Geometric.PointInt SourceGridPhase
+        {
+            get => this.sourceGridPhase;
+            set
+            {
+                if (this.sourceGridPhase != value)
+                {
+                    this.SourceGridPhaseLeftAsInt = value.X.AsInt;
+                    this.SourceGridPhaseTopAsInt = value.Y.AsInt;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］の位相の左上表示位置ｘ。元画像ベース
+        /// </summary>
+        public int SourceGridPhaseLeftAsInt
+        {
+            get => this.sourceGridPhase.X.AsInt;
+            set
+            {
+                if (this.sourceGridPhase.X.AsInt != value)
+                {
+                    this.sourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.sourceGridPhase.Y);
+                    this.WorkingGridPhaseLeftAsFloat = this.ZoomAsFloat * this.sourceGridPhase.X.AsInt;
+
+                    // キャンバスを再描画
+                    InvalidateCanvasOfGrid();
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(SourceGridPhaseLeftAsInt));
+                    OnPropertyChanged(nameof(SourceGridPhase));
+
+                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
+                    OnPropertyChanged(nameof(WorkingGridPhase));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］の位相の左上表示位置ｙ。元画像ベース
+        /// </summary>
+        public int SourceGridPhaseTopAsInt
+        {
+            get => this.sourceGridPhase.Y.AsInt;
+            set
+            {
+                if (this.sourceGridPhase.Y.AsInt != value)
+                {
+                    this.sourceGridPhase = new Models.Geometric.PointInt(this.sourceGridPhase.X, new Models.Geometric.YInt(value));
+                    this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsFloat * this.sourceGridPhase.Y.AsInt);
+
+                    // キャンバスを再描画
+                    InvalidateCanvasOfGrid();
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(SourceGridPhaseTopAsInt));
+                    OnPropertyChanged(nameof(SourceGridPhase));
+
+                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
+                    OnPropertyChanged(nameof(WorkingGridPhase));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］のタイルのサイズ。元画像ベース
+        /// </summary>
+        public Models.Geometric.SizeInt SourceGridUnit
+        {
+            get => this.sourceGridUnit;
+            set
+            {
+                if (this.sourceGridUnit != value)
+                {
+                    this.SourceGridTileWidthAsInt = value.Width.AsInt;
+                    this.SourceGridTileHeightAsInt = value.Height.AsInt;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］のタイルの横幅。元画像ベース
+        /// </summary>
+        public int SourceGridTileWidthAsInt
+        {
+            get => this.sourceGridUnit.Width.AsInt;
+            set
+            {
+                if (this.sourceGridUnit.Width.AsInt != value &&
+                    // バリデーション
+                    0 < value && value <= this.TileMaxWidthAsInt)
+                {
+                    this.sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridUnit.Height);
+
+                    // 作業グリッド・タイル横幅の再計算
+                    RefreshWorkingGridTileWidth();
+
+                    // カーソルの線の幅を含まない
+                    this.WorkingCroppedCursorWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
+
+                    // キャンバスを再描画
+                    InvalidateCanvasOfGrid();
+                    // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileWidthAsInt set]");
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(SourceGridTileWidthAsInt));
+                    OnPropertyChanged(nameof(SourceGridUnit));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］のタイルの縦幅。元画像ベース
+        /// </summary>
+        public int SourceGridTileHeightAsInt
+        {
+            get => this.sourceGridUnit.Height.AsInt;
+            set
+            {
+                if (this.sourceGridUnit.Height.AsInt != value &&
+                    // バリデーション
+                    0 < value && value <= this.TileMaxHeightAsInt)
+                {
+                    this.sourceGridUnit = new Models.Geometric.SizeInt(this.sourceGridUnit.Width, new Models.Geometric.HeightInt(value));
+
+                    // 作業グリッド・タイル横幅の再計算
+                    RefreshWorkingGridTileHeight();
+
+                    // カーソルの線の幅を含まない
+                    this.WorkingCroppedCursorHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
+
+                    // キャンバスを再描画
+                    InvalidateCanvasOfGrid();
+                    // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileHeightAsInt set]");
+
+                    // キャンバスを再描画後に変更通知
+                    OnPropertyChanged(nameof(SourceGridTileHeightAsInt));
+                    OnPropertyChanged(nameof(SourceGridUnit));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［元画像グリッド］のタイルの最大横幅
+        /// </summary>
+        public int TileMaxWidthAsInt => App.GetOrLoadSettings().TileMaxSize.Width.AsInt;
+
+        /// <summary>
+        ///     ［元画像グリッド］のタイルの最大縦幅
+        /// </summary>
+        public int TileMaxHeightAsInt => App.GetOrLoadSettings().TileMaxSize.Height.AsInt;
+        #endregion
+
+        #region 変更通知プロパティ（［作業グリッド］　関連）
+        /// <summary>
+        ///     ［作業グリッド］の位相の左上表示位置
+        /// </summary>
+        public Models.Geometric.PointFloat WorkingGridPhase
+        {
+            get => this.workingGridPhase;
+            set
+            {
+                if (this.workingGridPhase != value)
+                {
+                    this.WorkingGridPhaseLeftAsFloat = value.X.AsFloat;
+                    this.WorkingGridPhaseTopAsFloat = value.Y.AsFloat;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［作業グリッド］の位相の左上表示位置ｘ（読取専用）
+        /// </summary>
+        public float WorkingGridPhaseLeftAsFloat
+        {
+            get => this.workingGridPhase.X.AsFloat;
+            set
+            {
+                if (this.workingGridPhase.X.AsFloat != value)
+                {
+                    this.workingGridPhase = new Models.Geometric.PointFloat(
+                        x: new Models.Geometric.XFloat(value),
+                        y: this.workingGridPhase.Y);
+
+                    OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
+                    OnPropertyChanged(nameof(WorkingGridPhase));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［作業グリッド］の位相の左上表示位置ｙ（読取専用）
+        /// </summary>
+        public float WorkingGridPhaseTopAsFloat
+        {
+            get => this.workingGridPhase.Y.AsFloat;
+            set
+            {
+                if (this.workingGridPhase.Y.AsFloat != value)
+                {
+                    this.workingGridPhase = new Models.Geometric.PointFloat(
+                        x: this.workingGridPhase.X,
+                        y: new Models.Geometric.YFloat(value));
+
+                    OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
+                    OnPropertyChanged(nameof(WorkingGridPhase));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［作業グリッド］のタイルのサイズ（読取専用）
+        /// </summary>
+        public Models.Geometric.SizeFloat WorkingGridUnit
+        {
+            get => this.workingGridUnit;
+            set
+            {
+                if (this.workingGridUnit != value)
+                {
+                    this.WorkingGridTileWidthAsFloat = value.Width.AsFloat;
+                    this.WorkingGridTileHeightAsFloat = value.Height.AsFloat;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［作業グリッド］のタイルの横幅（読取専用）
+        /// </summary>
+        public float WorkingGridTileWidthAsFloat
+        {
+            get => this.workingGridUnit.Width.AsFloat;
+            set
+            {
+                if (this.workingGridUnit.Width.AsFloat != value)
+                {
+                    this.workingGridUnit = new Models.Geometric.SizeFloat(
+                        width: new Models.Geometric.WidthFloat(value),
+                        height: this.WorkingGridUnit.Height);
+
+                    OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
+                    OnPropertyChanged(nameof(WorkingGridUnit));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［作業グリッド］のタイルの縦幅（読取専用）
+        /// </summary>
+        public float WorkingGridTileHeightAsFloat
+        {
+            get => this.workingGridUnit.Height.AsFloat;
+            set
+            {
+                if (this.workingGridUnit.Height.AsFloat != value)
+                {
+                    this.workingGridUnit = new Models.Geometric.SizeFloat(
+                        width: this.WorkingGridUnit.Width,
+                        height: new Models.Geometric.HeightFloat(value));
+
+                    OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
+                    OnPropertyChanged(nameof(WorkingGridUnit));
                 }
             }
         }
         #endregion
 
-        #region 変更通知プロパティ（選択タイルＩｄ。フォネティックコード表現）
+        #region 変更通知プロパティ（［切抜きカーソル］　関連）
         /// <summary>
-        ///     選択タイルＩｄ。フォネティックコード表現
-        ///     
-        ///     <see cref="SelectedTileId"/>
-        /// </summary>
-        public string SelectedTileIdAsPhoneticCode
-        {
-            get
-            {
-                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
-                {
-                    return selectedTileVM.Id.AsPhoneticCode;
-                }
-                else
-                {
-                    // タイル・カーソル無し時
-                    return string.Empty;
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（切抜きカーソル。元画像ベース　関連）
-        /// <summary>
-        ///     切抜きカーソル。元画像ベースの矩形
+        ///     ［切抜きカーソル］元画像ベースの矩形
         ///     
         ///     <list type="bullet">
         ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
@@ -1083,7 +860,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。元画像ベースの位置ｘ
+        ///     ［矩形カーソル］元画像ベースの位置ｘ
         /// </summary>
         public int SourceCroppedCursorLeftAsInt
         {
@@ -1149,7 +926,7 @@
         }
 
         /// <summary>
-        ///     切抜きカーソル。元画像ベースの位置ｙ
+        ///     ［切抜きカーソル］元画像ベースの位置ｙ
         /// </summary>
         public int SourceCroppedCursorTopAsInt
         {
@@ -1215,7 +992,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。元画像ベースのサイズ
+        ///     ［矩形カーソル］元画像ベースのサイズ
         ///     
         ///     <list type="bullet">
         ///         <item>線の太さを含まない</item>
@@ -1262,7 +1039,7 @@
         }
 
         /// <summary>
-        ///     切抜きカーソル。元画像ベースの横幅
+        ///     ［切抜きカーソル］元画像ベースの横幅
         /// </summary>
         public int SourceCroppedCursorWidthAsInt
         {
@@ -1320,7 +1097,7 @@
         }
 
         /// <summary>
-        ///     切抜きカーソル。元画像ベースの縦幅
+        ///     ［切抜きカーソル］元画像ベースの縦幅
         /// </summary>
         public int SourceCroppedCursorHeightAsInt
         {
@@ -1376,11 +1153,9 @@
                 OnPropertyChanged(nameof(SourceCroppedCursorRect));
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（矩形カーソル。ズーム済み　関連）
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置（マージンとして）
+        ///     ［切抜きカーソル］ズーム済みの位置（マージンとして）
         /// </summary>
         public Thickness WorkingCroppedCursorPointAsMargin
         {
@@ -1391,7 +1166,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置
+        ///     ［切抜きカーソル］ズーム済みの位置
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1411,7 +1186,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置ｘ
+        ///     ［切抜きカーソル］ズーム済みの位置ｘ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1438,7 +1213,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置ｙ
+        ///     ［矩形カーソル］ズーム済みの位置ｙ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1465,7 +1240,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みのサイズ
+        ///     ［矩形カーソル］ズーム済みのサイズ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1485,7 +1260,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの横幅
+        ///     ［矩形カーソル］ズーム済みの横幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1515,7 +1290,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの縦幅
+        ///     ［矩形カーソル］ズーム済みの縦幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1545,7 +1320,7 @@
         }
 
         /// <summary>
-        ///     切抜きカーソル。ズーム済みの横幅
+        ///     ［切抜きカーソル］ズーム済みの横幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含む</item>
@@ -1558,7 +1333,7 @@
         }
 
         /// <summary>
-        ///     切抜きカーソル。ズーム済みの縦幅
+        ///     ［切抜きカーソル］ズーム済みの縦幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含む</item>
@@ -1571,7 +1346,7 @@
         }
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置ｘ
+        ///     ［矩形カーソル］ズーム済みの位置ｘ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1582,7 +1357,7 @@
         public string WorkingCroppedCursorLeftAsPresentableText => this.workingCroppedCursorPoint.X.AsFloat.ToString("F1");
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置ｙ
+        ///     ［矩形カーソル］ズーム済みの位置ｙ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1592,7 +1367,7 @@
         public string WorkingCroppedCursorTopAsPresentableText => this.workingCroppedCursorPoint.Y.AsFloat.ToString("F1");
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの横幅
+        ///     ［矩形カーソル］ズーム済みの横幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1602,7 +1377,7 @@
         public string WorkingCroppedCursorWidthAsPresentableText => this.workingCroppedCursorSize.Width.AsFloat.ToString("F1");
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みの縦幅
+        ///     ［矩形カーソル］ズーム済みの縦幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1610,11 +1385,97 @@
         ///     </list>
         /// </summary>
         public string WorkingCroppedCursorHeightAsPresentableText => this.workingCroppedCursorSize.Height.AsFloat.ToString("F1");
+
+        /// <summary>
+        ///     ［切抜きカーソル］の線の半分の太さ
+        /// </summary>
+        public ThicknessOfLine HalfThicknessOfTileCursorLine
+        {
+            get
+            {
+                return this.halfThicknessOfTileCursorLine;
+            }
+            set
+            {
+                if (this.halfThicknessOfTileCursorLine != value)
+                {
+                    this.halfThicknessOfTileCursorLine = value;
+                    OnPropertyChanged(nameof(HalfThicknessOfTileCursorLine));
+                }
+            }
+        }
         #endregion
 
-        #region 変更通知プロパティ（登録タイル　関連）
+        #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
+        bool selectingOnPointingDevice;
+
         /// <summary>
-        ///     登録タイルのタイトル
+        ///     ポインティング・デバイス押下中か？
+        /// 
+        ///     <list type="bullet">
+        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
+        ///         <item>マウスじゃないと思うけど</item>
+        ///     </list>
+        /// </summary>
+        public bool IsMouseDragging
+        {
+            get => this.selectingOnPointingDevice;
+            set
+            {
+                if (this.selectingOnPointingDevice != value)
+                {
+                    this.selectingOnPointingDevice = value;
+                    OnPropertyChanged(nameof(IsMouseDragging));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（［選択タイル］　関連）
+        /// <summary>
+        ///     ［選択タイル］のＩｄ。BASE64表現
+        ///     
+        ///     <see cref="SelectedTileId"/>
+        /// </summary>
+        public string SelectedTileIdAsBASE64
+        {
+            get
+            {
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
+                {
+                    return selectedTileVM.Id.AsBASE64;
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                    return string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［選択タイル］のＩｄ。フォネティックコード表現
+        ///     
+        ///     <see cref="SelectedTileId"/>
+        /// </summary>
+        public string SelectedTileIdAsPhoneticCode
+        {
+            get
+            {
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
+                {
+                    return selectedTileVM.Id.AsPhoneticCode;
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                    return string.Empty;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［選択タイル］のタイトル
         /// </summary>
         public string SelectedTileTitleAsStr
         {
@@ -1663,6 +1524,94 @@
                 }
 
                 OnPropertyChanged(nameof(SelectedTileTitleAsStr));
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（［追加／上書き］ボタン　関連）
+        /// <summary>
+        ///     ［追加／上書き］ボタンのラベル
+        /// </summary>
+        public string AddsButtonText
+        {
+            get
+            {
+                return this.addsButtonText;
+            }
+            set
+            {
+                if (this.addsButtonText != value)
+                {
+                    this.addsButtonText = value;
+                    OnPropertyChanged(nameof(AddsButtonText));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［追加／上書き］ボタンのツールチップ・ヒント
+        /// </summary>
+        public string AddsButtonHint
+        {
+            get
+            {
+                if (this.selectedTileVMOption.TryGetValue(out TileRecordViewModel selectedTileVM))
+                {
+                    if (selectedTileVM.Id == Models.TileId.Empty)
+                    {
+                        // 未選択時
+                        return "選択タイルを、タイル一覧画面へ追加";
+                    }
+                    else
+                    {
+                        return "選択タイルを、タイル一覧画面へ上書";
+                    }
+                }
+                else
+                {
+                    // タイル・カーソル無し時
+                    return "選択タイルを、タイル一覧画面へ追加";
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［追加／上書き］ボタンの活性性
+        /// </summary>
+        public bool AddsButtonIsEnabled
+        {
+            get
+            {
+                return this.addsButtonIsEnabled;
+            }
+            set
+            {
+                if (this.addsButtonIsEnabled != value)
+                {
+                    this.addsButtonIsEnabled = value;
+                    OnPropertyChanged(nameof(AddsButtonIsEnabled));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（［削除］ボタン　関連）
+        /// <summary>
+        ///     ［削除］ボタンの活性性
+        /// </summary>
+        public bool DeletesButtonIsEnabled
+        {
+            get
+            {
+                return this.deletesButtonIsEnabled;
+            }
+            set
+            {
+                if (this.deletesButtonIsEnabled != value)
+                {
+                    this.deletesButtonIsEnabled = value;
+                    OnPropertyChanged(nameof(DeletesButtonIsEnabled));
+                }
             }
         }
         #endregion
@@ -1726,10 +1675,30 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（切抜きカーソル。ズーム済み　関連）
+        #region メソッド（［タイルセット設定］　関連）
+        /// <summary>
+        ///     ［タイルセット設定］ビューモデルに変更あり
+        /// </summary>
+        internal void InvalidateTilesetSettingsVM()
+        {
+            OnPropertyChanged(nameof(TilesetSettingsVM));
+        }
+        #endregion
+
+        #region メソッド（［タイルセット作業画像］　関連）
+        /// <summary>
+        ///     ［タイルセット作業画像］の再描画
+        /// </summary>
+        internal void RefreshWorkingTilesetImage()
+        {
+            OnPropertyChanged(nameof(TilesetWorkingImageFilePathAsStr));
+        }
+        #endregion
+
+        #region メソッド（［切抜きカーソル］　関連）
         /// <summary>
         ///     <pre>
-        ///         切抜きカーソル。ズーム済みのキャンバスの再描画
+        ///         ［切抜きカーソル］ズーム済みのキャンバスの再描画
         /// 
         ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
         ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
@@ -1761,9 +1730,9 @@
         }
         #endregion
 
-        #region メソッド（タイルＩｄの再描画）
+        #region メソッド（［選択タイル］　関連）
         /// <summary>
-        ///     タイルＩｄの再描画
+        ///     ［選択タイル］Ｉｄの再描画
         /// </summary>
         internal void NotifyTileIdChange()
         {
@@ -1772,25 +1741,15 @@
         }
         #endregion
 
-        #region メソッド（作業中タイルセット画像の再描画）
+        #region メソッド（［切抜きカーソル］　関連）
         /// <summary>
-        ///     作業中タイルセット画像の再描画
-        /// </summary>
-        internal void RefreshWorkingTilesetImage()
-        {
-            OnPropertyChanged(nameof(TilesetWorkingImageFilePathAsStr));
-        }
-        #endregion
-
-        #region メソッド　＞　再描画　＞　切抜きカーソル
-        /// <summary>
-        ///     切抜きカーソルの再描画
+        ///     ［切抜きカーソル］の再描画
         /// </summary>
         internal void InvalidateCroppedCursor()
         {
             if (this.TilesetSettingsVM.TryGetByRectangle(
-    sourceRect: this.SourceCroppedCursorRect,
-    out TileRecordViewModel? recordVMOrNull))
+                sourceRect: this.SourceCroppedCursorRect,
+                out TileRecordViewModel? recordVMOrNull))
             {
                 TileRecordViewModel recordVM = recordVMOrNull ?? throw new NullReferenceException(nameof(recordVMOrNull));
                 // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
@@ -1824,17 +1783,7 @@
         }
         #endregion
 
-        #region メソッド　＞　変更あり　＞　タイルセット設定ビューモデル
-        /// <summary>
-        ///     タイルセット設定ビューモデルに変更あり
-        /// </summary>
-        internal void InvalidateTilesetSettingsVM()
-        {
-            OnPropertyChanged(nameof(TilesetSettingsVM));
-        }
-        #endregion
-
-        #region メソッド　＞　再描画　＞　［追加／上書き］ボタン
+        #region メソッド（［追加／上書き］ボタン　関連）
         /// <summary>
         ///     ［追加／上書き］ボタンの再描画
         /// </summary>
@@ -1888,7 +1837,7 @@
         }
         #endregion
 
-        #region メソッド　＞　再描画　＞　［削除］ボタン
+        #region メソッド（［削除］ボタン　関連）
         /// <summary>
         ///     ［削除］ボタンの再描画
         /// </summary>
@@ -1943,34 +1892,32 @@
 
         // - プライベート・フィールド
 
-        #region フィールド（タイルセット設定　関連）
+        #region フィールド（［タイルセット設定］　関連）
         /// <summary>
-        ///     タイルセット設定のCSVファイル
+        ///     ［タイルセット設定］のCSVファイル
         /// </summary>
         TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv _tilesetSettingsFile = TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv.Empty;
 
         /// <summary>
-        ///     タイルセット設定ビューモデル
+        ///     ［タイルセット設定］ビューモデル
         /// </summary>
         TilesetSettingsViewModel _tilesetSettingsVM = new();
         #endregion
 
-        #region フィールド（タイルセット元画像　関連）
+        #region フィールド（［タイルセット元画像］　関連）
         /// <summary>
-        ///     タイルセット元画像ファイルへのパス
+        ///     ［タイルセット元画像］
+        /// </summary>
+        SKBitmap tilesetSourceBitmap = new();
+
+        /// <summary>
+        ///     ［タイルセット元画像］ファイルへのパス
         /// </summary>
         TheFileEntryLocations.UnityAssets.Images.TilesetPng tilesetImageFile = TheFileEntryLocations.UnityAssets.Images.TilesetPng.Empty;
 
         /// <summary>
-        ///     タイルセット元画像サイズ
+        ///     ［タイルセット元画像］サイズ
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                Models.SizeInt tilesetSourceImageSize = Models.SizeInt.Empty;
-        後:
-                SizeInt tilesetSourceImageSize = SizeInt.Empty;
-        */
         Models.Geometric.SizeInt tilesetSourceImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
@@ -1988,42 +1935,69 @@
         Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
-        #region フィールド（グリッド　関連）
+        #region フィールド（［ズーム］　関連）
         /// <summary>
-        ///     グリッド・キャンバス画像サイズ
+        ///     ［ズーム］最大
+        /// </summary>
+        Models.Geometric.Zoom zoomMax = new(4.0f);
+
+        /// <summary>
+        ///     ［ズーム］最小
+        /// </summary>
+        Models.Geometric.Zoom zoomMin = new(0.5f);
+
+        /// <summary>
+        ///     ［ズーム］
+        /// </summary>
+        Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+        #endregion
+
+        #region フィールド（［元画像グリッド］　関連）
+        /// <summary>
+        ///     ［元画像グリッド］のキャンバス画像サイズ
         /// </summary>
         Models.Geometric.SizeInt gridCanvasImageSize = Models.Geometric.SizeInt.Empty;
 
         /// <summary>
-        ///     グリッド単位。元画像ベース
+        ///     ［元画像グリッド］の単位
         /// </summary>
         Models.Geometric.SizeInt sourceGridUnit = new(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
         /// <summary>
-        ///     グリッド位相の左上表示位置。ズーム後
+        ///     ［元画像グリッド］の位相の左上表示位置
         /// </summary>
-        Models.Geometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Empty;
+        Models.Geometric.PointInt sourceGridPhase = Models.Geometric.PointInt.Empty;
 
         /// <summary>
-        ///     グリッド単位。ズーム後
+        ///     ［元画像グリッド］の線の太さの半分
         /// </summary>
-        Models.Geometric.SizeFloat workingGridUnit = new(new Models.Geometric.WidthFloat(32.0f), new Models.Geometric.HeightFloat(32.0f));
+        ThicknessOfLine halfThicknessOfGridLine = new(1);
         #endregion
 
-        #region フィールド（矩形カーソル。元画像ベース　関連）
+        #region フィールド（［作業グリッド］　関連）
         /// <summary>
-        ///     矩形カーソル。元画像ベース
+        ///     ［作業グリッド］の単位
+        /// </summary>
+        Models.Geometric.SizeFloat workingGridUnit = new(new Models.Geometric.WidthFloat(32.0f), new Models.Geometric.HeightFloat(32.0f));
+
+        /// <summary>
+        ///     ［作業グリッド］の位相の左上表示位置
+        /// </summary>
+        Models.Geometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Empty;
+        #endregion
+
+        #region フィールド（［切抜きカーソル］　関連）
+        /// <summary>
+        ///     ［切抜きカーソル］元画像ベース
         ///     
         ///     <list type="bullet">
         ///         <item>タイル・カーソルが有るときと、無いときを分ける</item>
         ///     </list>
         /// </summary>
         Option<TileRecordViewModel> selectedTileVMOption = new(new TileRecordViewModel());
-        #endregion
 
-        #region フィールド（矩形カーソル。ズーム済み　関連）
         /// <summary>
-        ///     矩形カーソル。ズーム済みの位置
+        ///     ［切抜きカーソル］ズーム済みの位置
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -2032,37 +2006,44 @@
         Models.Geometric.PointFloat workingCroppedCursorPoint = Models.Geometric.PointFloat.Empty;
 
         /// <summary>
-        ///     矩形カーソル。ズーム済みのサイズ
+        ///     ［切抜きカーソル］ズーム済みのサイズ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅は含まない</item>
         ///     </list>
         /// </summary>
         Models.Geometric.SizeFloat workingCroppedCursorSize = Models.Geometric.SizeFloat.Empty;
+
+        /// <summary>
+        ///     ［切抜きカーソル］の線の半分の太さ
+        /// </summary>
+        ThicknessOfLine halfThicknessOfTileCursorLine;
         #endregion
 
-        #region フィールド（ズーム　関連）
+        #region フィールド（［追加／上書き］ボタン　関連）
         /// <summary>
-        ///     ズーム最大
+        ///     ［追加／上書き］ボタンのラベル
         /// </summary>
-        Models.Geometric.Zoom zoomMax = new(4.0f);
+        string addsButtonText = string.Empty;
 
         /// <summary>
-        ///     ズーム最小
+        ///     ［追加／上書き］ボタンの活性性
         /// </summary>
-        Models.Geometric.Zoom zoomMin = new(0.5f);
+        bool addsButtonIsEnabled;
+        #endregion
 
+        #region フィールド（［削除］ボタン　関連）
         /// <summary>
-        ///     ズーム
+        ///     ［削除］ボタンの活性性
         /// </summary>
-        Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+        bool deletesButtonIsEnabled;
         #endregion
 
         // - プライベート・メソッド
 
-        #region メソッド（作業タイルセット画像の再作成）
+        #region メソッド（［タイルセット作業画像］　関連）
         /// <summary>
-        ///     作業タイルセット画像の再作成
+        ///     ［タイルセット作業画像］の再作成
         /// </summary>
         void RemakeWorkingTilesetImage()
         {
@@ -2089,10 +2070,27 @@
         }
         #endregion
 
-        #region メソッド（グリッド・キャンバス　関連）
+        #region メソッド（［ズーム］　関連）
+        /// <summary>
+        ///     ズームする
+        /// </summary>
+        void DoZoom()
+        {
+            // 拡大率
+            double zoomNum = this.ZoomAsFloat;
+
+            // 元画像の複製
+            var copySourceMap = new SKBitmap();
+            this.TilesetSourceBitmap.CopyTo(copySourceMap);
+
+            // TODO 出力先画像（ズーム）
+        }
+        #endregion
+
+        #region メソッド（［元画像グリッド］　関連）
         /// <summary>
         ///     <pre>
-        ///         グリッドのキャンバスの再描画
+        ///         ［元画像グリッド］のキャンバスの再描画
         /// 
         ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
         ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
@@ -2112,7 +2110,7 @@
         }
 
         /// <summary>
-        ///     グリッド・キャンバス画像の再作成
+        ///     ［元画像グリッド］のキャンバス画像の再作成
         ///     
         ///     <list type="bullet">
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
@@ -2126,23 +2124,9 @@
         }
         #endregion
 
-        #region メソッド（ズーム）
-        void DoZoom()
-        {
-            // 拡大率
-            double zoomNum = this.ZoomAsFloat;
-
-            // 元画像の複製
-            var copySourceMap = new SKBitmap();
-            this.TilesetSourceBitmap.CopyTo(copySourceMap);
-
-            // TODO 出力先画像（ズーム）
-        }
-        #endregion
-
-        #region メソッド（作業グリッド・タイル横幅の再計算）
+        #region メソッド（［作業グリッド］　関連）
         /// <summary>
-        ///     作業グリッド・タイル横幅の再計算
+        ///     ［作業グリッド］タイル横幅の再計算
         /// </summary>
         void RefreshWorkingGridTileWidth()
         {
@@ -2151,11 +2135,9 @@
             OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
             OnPropertyChanged(nameof(WorkingGridUnit));
         }
-        #endregion
 
-        #region メソッド（作業グリッド・タイル縦幅の再計算）
         /// <summary>
-        ///     作業グリッド・タイル縦幅の再計算
+        ///     ［作業グリッド］タイル縦幅の再計算
         /// </summary>
         void RefreshWorkingGridTileHeight()
         {
