@@ -15,13 +15,13 @@ internal class Its
     /// <param name="processing">処理</param>
     internal void Do(IProcessing processing)
     {
-        if (0 < this.FuturedStack.Count)
-        {
-            this.FuturedStack.Clear();
-        }
-
         if (this.State != State.Undoing && this.State != State.Redoing)
         {
+            if (0 < this.FuturedStack.Count)
+            {
+                this.FuturedStack.Clear();
+            }
+
             processing.Do();
 
             this.CompletionStack.Push(processing);
