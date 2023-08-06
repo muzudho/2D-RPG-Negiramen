@@ -2553,4 +2553,18 @@ author = "むずでょ"
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　ズームの変更と、ズームの変更によって起こる事象を切り分けてくれだぜ」  
 
+![202308_maui_06-1415--ZoomProcessing-o2o0.png](https://crieit.now.sh/upload_images/db3b8995061475c572c158c85dbcd69f64cf2cbd2922a.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`IDone` インターフェースは　`IProcessing`　インターフェースに名称変更、  
+`Redo`　メソッドも　`Do`　に名称変更。そして実装」  
+
+![202308_maui_06-1422--ZoomRecursive-o2o0.png](https://crieit.now.sh/upload_images/05df4970d2bdfbb0042de5f80ce0040a64cf2e6914f9c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　`History` クラスも `Done` メソッドを止め、 `Do` メソッドに変更、中で `Processing` クラスの `Do` メソッドを呼び出している」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あと、コードの書き方が下手で　無駄に再帰してるから　書き直したい」  
+
 ＜書きかけ＞

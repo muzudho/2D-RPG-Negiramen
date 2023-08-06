@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen;
 
+using _2D_RPG_Negiramen.Models.History;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Globalization;
@@ -143,6 +144,13 @@ public partial class App : Application
             return cacheFolder;
         }
     }
+    #endregion
+
+    #region プロパティ（操作履歴）
+    /// <summary>
+    ///     操作履歴
+    /// </summary>
+    internal static History History { get; private set; } = new History();
     #endregion
 
     // - インターナル静的メソッド

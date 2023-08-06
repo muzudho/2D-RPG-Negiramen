@@ -10,17 +10,19 @@ internal class History
     // - インターナル・メソッド
 
     /// <summary>
-    ///     ダン
+    ///     ドゥ
     /// </summary>
-    /// <param name="done"></param>
-    internal void Done(IDone done)
+    /// <param name="processing">処理</param>
+    internal void Do(IProcessing processing)
     {
         if (0 < this.FuturedStack.Count)
         {
             this.FuturedStack.Clear();
         }
 
-        this.CompletionStack.Push(done);
+        processing.Do();
+
+        this.CompletionStack.Push(processing);
     }
 
     /// <summary>
@@ -60,10 +62,10 @@ internal class History
     /// <summary>
     ///     完了スタック
     /// </summary>
-    Stack<IDone> CompletionStack { get; } = new Stack<IDone>();
+    Stack<IProcessing> CompletionStack { get; } = new Stack<IProcessing>();
 
     /// <summary>
     ///     将来スタック
     /// </summary>
-    Stack<IDone> FuturedStack { get; } = new Stack<IDone>();
+    Stack<IProcessing> FuturedStack { get; } = new Stack<IProcessing>();
 }

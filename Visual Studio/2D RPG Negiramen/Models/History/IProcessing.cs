@@ -1,9 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Models.History;
 
 /// <summary>
-///     😁 ダン
+///     😁 処理
 /// </summary>
-internal interface IDone
+internal interface IProcessing
 {
     // パブリック・メソッド
 

@@ -408,8 +408,8 @@
 
                         this.zoom = newValue;
 
-                        // ズーム変更後の影響
-                        new Zoomed(this, oldValue, newValue).Do();
+                        // 再帰的にズーム再変更、かつ変更後の影響を処理
+                        App.History.Do(new ZoomProcessing(this, oldValue, newValue));
                     }
                 }
             }
@@ -2090,7 +2090,7 @@
         /// <summary>
         ///     ズームしました
         /// </summary>
-        class Zoomed : IDone
+        class ZoomProcessing : IProcessing
         {
             // - その他
 
@@ -2099,7 +2099,7 @@
             /// </summary>
             /// <param name="oldValue">変更前の値</param>
             /// <param name="newValue">変更後の値</param>
-            internal Zoomed(TileCropPageViewModel owner, Zoom oldValue, Zoom newValue)
+            internal ZoomProcessing(TileCropPageViewModel owner, Zoom oldValue, Zoom newValue)
             {
                 this.Owner = owner;
                 this.OldValue = oldValue;
