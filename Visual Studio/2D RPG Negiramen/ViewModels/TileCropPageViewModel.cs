@@ -1733,6 +1733,20 @@
         internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; private set; }
         #endregion
 
+        #region プロパティ（ポインティング・デバイス押下開始位置）
+        /// <summary>
+        ///     ポインティング・デバイス押下開始位置
+        /// </summary>
+        internal Models.Geometric.PointFloat PointingDeviceStartPoint { get; set; }
+        #endregion
+
+        #region プロパティ（ポインティング・デバイス現在位置）
+        /// <summary>
+        ///     ポインティング・デバイス現在位置
+        /// </summary>
+        internal Models.Geometric.PointFloat PointingDeviceCurrentPoint { get; set; }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（［タイルセット設定］　関連）
@@ -1947,6 +1961,58 @@
             this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.SourceCroppedCursorRect);
         }
         #endregion
+
+        internal void RefreshTileForm()
+        {
+            //
+            // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
+            // ====================================================================
+            //
+
+            // ズームしたまま
+            RectangleFloat workingRect = Models.CoordinateHelper.GetCursorRectangle(
+                startPoint: this.PointingDeviceStartPoint,
+                endPoint: this.PointingDeviceCurrentPoint,
+                gridLeftTop: this.WorkingGridPhase,
+                gridTile: this.WorkingGridUnit);
+
+            // ズームを除去
+            var sourceRect = new RectangleInt(
+                location: new PointInt(
+                    x: new XInt((int)(workingRect.Location.X.AsFloat / this.ZoomAsFloat)),
+                    y: new YInt((int)(workingRect.Location.Y.AsFloat / this.ZoomAsFloat))),
+                size: new SizeInt(
+                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / this.ZoomAsFloat)),
+                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / this.ZoomAsFloat))));
+
+            //
+            // 計算値の反映
+            // ============
+            //
+            // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
+
+            this.SourceCroppedCursorRect = sourceRect;
+
+            //
+            // 登録済みのタイルと被っていないか判定
+            // ====================================
+            //
+            //      - （軽くない処理）
+            //
+            this.RecalculateBetweenCroppedCursorAndRegisteredTile();
+
+            //
+            // 切抜きカーソル更新
+            // ==================
+            //
+            this.InvalidateCroppedCursor();
+
+            // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
+            this.InvalidateAddsButton();
+
+            // （切抜きカーソル更新後）［削除］ボタン活性化
+            this.InvalidateDeletesButton();
+        }
 
         // - プライベート・フィールド
 
