@@ -175,6 +175,11 @@ public interface ITileCropPageViewModel
     ///     ［登録タイル］追加
     /// </summary>
     void AddRegisteredTile();
+
+    /// <summary>
+    ///     ［登録タイル］削除
+    /// </summary>
+    void RemoveRegisteredTile();
     #endregion
 
     // - パブリック・メソッド

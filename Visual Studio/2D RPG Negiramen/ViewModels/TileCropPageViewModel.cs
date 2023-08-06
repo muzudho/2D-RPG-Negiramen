@@ -7,6 +7,7 @@
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
+    using System.Diagnostics;
     using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
@@ -1632,7 +1633,7 @@
 
         #region メソッド（［登録タイル］　関連）
         /// <summary>
-        ///     TODO ［登録タイル］追加
+        ///     ［登録タイル］追加
         /// </summary>
         public void AddRegisteredTile()
         {
@@ -1665,6 +1666,14 @@
                 workingRectangle: cropCursorVisualBufferOrNull.SourceRectangle.Do(this.Zoom)));
             this.OnPropertyChanged(nameof(CanUndo));
             this.OnPropertyChanged(nameof(CanRedo));
+        }
+
+        /// <summary>
+        ///     ［登録タイル］削除
+        /// </summary>
+        public void RemoveRegisteredTile()
+        {
+            new RemoveRegisteredTileProcessing(this).Do();
         }
         #endregion
 
@@ -2295,7 +2304,10 @@
         }
         #endregion
 
-        #region クラス（［登録タイル］追加処理）
+        #region クラス（［登録タイル追加］処理）
+        /// <summary>
+        ///     ［登録タイル追加］処理
+        /// </summary>
         class AddRegisteredTileProcessing : IProcessing
         {
             // - その他
@@ -2321,6 +2333,7 @@
 
             // - パブリック・メソッド
 
+            #region メソッド（ドゥ―）
             /// <summary>
             ///     ドゥ―
             /// </summary>
@@ -2379,10 +2392,11 @@
                 // カラーマップの再描画
                 // ====================
                 //
-                //this.coloredMapGraphicsView1.Invalidate();
                 this.Owner.InvalidateGraphicsViewOfTilesetWorking();
             }
+            #endregion
 
+            #region メソッド（アンドゥ―）
             /// <summary>
             ///     アンドゥ―
             /// </summary>
@@ -2414,9 +2428,10 @@
                 // タイル タイトル表示欄とか更新したい
                 this.Owner.OnPropertyChanged(nameof(SelectedTileTitleAsStr));
 
-                // TODO 追加・削除ボタンの表示状態を更新したい
+                // 追加・削除ボタンの表示状態を更新したい
                 this.Owner.OnPropertyChanged(nameof(AddsButtonHint));
                 this.Owner.OnPropertyChanged(nameof(AddsButtonText));
+                this.Owner.OnPropertyChanged(nameof(AddsButtonIsEnabled));                
 
                 //  ［削除］ボタンの再描画
                 this.Owner.InvalidateDeletesButton();
@@ -2428,6 +2443,7 @@
                 //this.coloredMapGraphicsView1.Invalidate();
                 this.Owner.InvalidateGraphicsViewOfTilesetWorking();
             }
+            #endregion
 
             // - プライベート・プロパティ
 
@@ -2450,6 +2466,73 @@
             ///     タイルセット作業画像の位置とサイズ
             /// </summary>
             RectangleFloat WorkingRectangle { get; }
+        }
+        #endregion
+
+        #region クラス（［登録タイル削除］処理）
+        /// <summary>
+        ///     ［登録タイル削除］処理
+        /// </summary>
+        class RemoveRegisteredTileProcessing : IProcessing
+        {
+            /// <summary>
+            ///     生成
+            /// </summary>
+            /// <param name="owner"></param>
+            internal RemoveRegisteredTileProcessing(TileCropPageViewModel owner)
+            {
+                this.Owner = owner;
+            }
+
+            public void Do()
+            {
+                //
+                // 設定ファイルの編集
+                // ==================
+                //
+                //      - 選択中のタイルを論理削除
+                //
+                if (this.Owner.TilesetSettingsVM.DeleteLogical(
+                    // 現在選択中のタイルのＩｄ
+                    id: this.Owner.SelectedTileIdOrEmpty))
+                {
+                    // タイルセット設定ビューモデルに変更あり
+                    this.Owner.InvalidateTilesetSettingsVM();
+                }
+
+                Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 context.SelectedTileId: [{this.Owner.SelectedTileIdOrEmpty.AsBASE64}]");
+
+                //
+                // 設定ファイルの保存
+                // ==================
+                //
+                if (this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetSettingsFile))
+                {
+                    // 保存成功
+                }
+                else
+                {
+                    // TODO 保存失敗時のエラー対応
+                }
+
+                //
+                // カラーマップの再描画
+                // ====================
+                //
+                this.Owner.InvalidateGraphicsViewOfTilesetWorking();
+            }
+
+            public void Undo()
+            {
+                throw new NotImplementedException();
+            }
+
+            // - プライベート・プロパティ
+
+            /// <summary>
+            ///     外側のクラス
+            /// </summary>
+            TileCropPageViewModel Owner { get; }
         }
         #endregion
     }

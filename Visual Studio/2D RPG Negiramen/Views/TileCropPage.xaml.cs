@@ -431,40 +431,8 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        //
-        // 設定ファイルの編集
-        // ==================
-        //
-        //      - 選択中のタイルを論理削除
-        //
-        if (context.TilesetSettingsVM.DeleteLogical(
-            // 現在選択中のタイルのＩｄ
-            id: context.SelectedTileIdOrEmpty))
-        {
-            // タイルセット設定ビューモデルに変更あり
-            context.InvalidateTilesetSettingsVM();
-        }
-
-        Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 context.SelectedTileId: [{context.SelectedTileIdOrEmpty.AsBASE64}]");
-
-        //
-        // 設定ファイルの保存
-        // ==================
-        //
-        if (context.TilesetSettingsVM.SaveCSV(context.TilesetSettingsFile))
-        {
-            // 保存成功
-        }
-        else
-        {
-            // TODO 保存失敗時のエラー対応
-        }
-
-        //
-        // カラーマップの再描画
-        // ====================
-        //
-        this.coloredMapGraphicsView1.Invalidate();
+        // 登録タイル削除
+        context.RemoveRegisteredTile();
     }
     #endregion
 
