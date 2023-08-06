@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels
 {
+    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.FileEntries;
     using CommunityToolkit.Mvvm.ComponentModel;
@@ -248,19 +249,21 @@
         /// <param name="sourceRect">矩形</param>
         /// <param name="resultVMOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetByRectangle(TheGeometric.RectangleInt sourceRect, out TileRecordVisualBuffer? resultVMOrNull)
+        internal void MatchByRectangle(
+            TheGeometric.RectangleInt sourceRect,
+            LazyArgs.Set<TileRecordVisualBuffer> some,
+            Action none)
         {
             foreach (var recordVM in this.RecordViewModelList)
             {
                 if (recordVM.SourceRectangle == sourceRect)
                 {
-                    resultVMOrNull = recordVM;
-                    return true;
+                    some(recordVM);
+                    return;
                 }
             }
 
-            resultVMOrNull = null;
-            return false;
+            none();
         }
         #endregion
 
