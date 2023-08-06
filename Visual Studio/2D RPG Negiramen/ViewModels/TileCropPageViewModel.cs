@@ -205,46 +205,55 @@
                 if (this.selectedTileRecordVisualBufferOption == value)
                     return;
 
-                TileRecordVisualBuffer newTileRecordVM;
-
-                if (value.Unwrap(out newTileRecordVM))
-                {
-                    // 非ヌルの想定
-                    if (newTileRecordVM == null)
+                value.Unwrap(
+                    some: (contents) =>
                     {
-                        throw new InvalidOperationException($"{nameof(newTileRecordVM)} must not be null");
-                    }
-                }
-                else
-                {
-                    // クリアーの意図
-                    newTileRecordVM = new TileRecordVisualBuffer();
-                }
+                        this.selectedTileRecordVisualBufferOption.Unwrap(
+                            some: (contents) =>
+                            {
+                            },
+                            none: () =>
+                            {
+                                // タイル・カーソル無し時
 
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer oldTileRecordVM))
-                {
-                    // 非ヌルの想定
-                    if (oldTileRecordVM == null)
+                                // 新規作成
+                                this.selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(new TileRecordVisualBuffer());
+                            });
+
+                        // （変更通知を送っている）
+                        this.SelectedTileIdOrEmpty = contents.Id;
+                        this.SourceCroppedCursorLeftAsInt = contents.SourceRectangle.Location.X.AsInt;
+                        this.SourceCroppedCursorTopAsInt = contents.SourceRectangle.Location.Y.AsInt;
+                        this.SourceCroppedCursorWidthAsInt = contents.SourceRectangle.Size.Width.AsInt;
+                        this.SourceCroppedCursorHeightAsInt = contents.SourceRectangle.Size.Height.AsInt;
+                        this.SelectedTileTitleAsStr = contents.Title.AsStr;
+                    },
+                    none: () =>
                     {
-                        throw new InvalidOperationException($"{nameof(oldTileRecordVM)} must not be null");
-                    }
-                }
-                else
-                {
-                    // タイル・カーソル無し時
+                        this.selectedTileRecordVisualBufferOption.Unwrap(
+                            some: (contents) =>
+                            {
+                                // タイル・カーソル有り時
 
-                    // 新規作成
-                    this.selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(new TileRecordVisualBuffer());
-                }
+                                // TODO もっと楽にクリアーできないものか？ （変更通知を送っている）
+                                this.SelectedTileIdOrEmpty = TileIdOrEmpty.Empty;
+                                this.SourceCroppedCursorLeftAsInt = 0;
+                                this.SourceCroppedCursorTopAsInt = 0;
+                                this.SourceCroppedCursorWidthAsInt = 0;
+                                this.SourceCroppedCursorHeightAsInt = 0;
+                                this.SelectedTileTitleAsStr = string.Empty;
 
-                // 変更通知を送りたいので、構成要素ごとに設定
-                this.SelectedTileIdOrEmpty = newTileRecordVM.Id;
-                this.SourceCroppedCursorLeftAsInt = newTileRecordVM.SourceRectangle.Location.X.AsInt;
-                this.SourceCroppedCursorTopAsInt = newTileRecordVM.SourceRectangle.Location.Y.AsInt;
-                this.SourceCroppedCursorWidthAsInt = newTileRecordVM.SourceRectangle.Size.Width.AsInt;
-                this.SourceCroppedCursorHeightAsInt = newTileRecordVM.SourceRectangle.Size.Height.AsInt;
-                this.SelectedTileTitleAsStr = newTileRecordVM.Title.AsStr;
+                                // 空にする
+                                this.selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(null);
+                            },
+                            none: () =>
+                            {
+                            });
+                    });
 
+
+
+                // 変更通知を送りたい
                 OnPropertyChanged(nameof(AddsButtonHint));
                 OnPropertyChanged(nameof(AddsButtonText));
                 this.NotifyTileIdChange();
@@ -1426,9 +1435,12 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer? selectedTileVisualBuffer))
                 {
-                    return selectedTileVM.Id.AsBASE64;
+                    if(selectedTileVisualBuffer==null)
+                        throw new Exception();
+
+                    return selectedTileVisualBuffer.Id.AsBASE64;
                 }
                 else
                 {
@@ -1447,9 +1459,12 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer? selectedTileVisualBuffer))
                 {
-                    return selectedTileVM.Id.AsPhoneticCode;
+                    if (selectedTileVisualBuffer == null)
+                        throw new Exception();
+
+                    return selectedTileVisualBuffer.Id.AsPhoneticCode;
                 }
                 else
                 {
