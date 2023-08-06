@@ -395,39 +395,16 @@
             get => this.zoom.AsFloat;
             set
             {
+                TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
+
                 if (this.zoom.AsFloat != value)
                 {
                     if (this.ZoomMinAsFloat <= value && value <= this.ZoomMaxAsFloat)
                     {
                         this.zoom = new Models.Geometric.Zoom(value);
 
-                        // 作業画像を再作成
-                        this.RemakeWorkingTilesetImage();
-
-                        // 作業グリッド・タイル横幅の再計算
-                        RefreshWorkingGridTileWidth();
-
-                        // 作業グリッド・タイル縦幅の再計算
-                        RefreshWorkingGridTileHeight();
-
-                        // グリッド・キャンバス画像の再作成
-                        this.RemakeGridCanvasImage();
-
-                        // 全ての登録タイルのズーム時の位置とサイズを更新
-                        foreach (var registeredTileVM in this.TilesetSettingsVM.RecordViewModelList)
-                        {
-                            registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Zoom);
-                        }
-
-                        // 切抜きカーソルの位置とサイズを更新
-                        this.WorkingCroppedCursorPoint = new TheGeometric.PointFloat(
-                            x: new TheGeometric.XFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Location.X.AsInt),
-                            y: new TheGeometric.YFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Location.Y.AsInt));
-                        this.WorkingCroppedCursorSize = new TheGeometric.SizeFloat(
-                            width: new TheGeometric.WidthFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Width.AsInt),
-                            height: new TheGeometric.HeightFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Height.AsInt));
-
-                        TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
+                        // ズーム変更時の影響
+                        this.ReactOnZoomChanged();
 
                         OnPropertyChanged(nameof(ZoomAsFloat));
                         OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
@@ -1728,20 +1705,7 @@
             // TRICK CODE:
             OnPropertyChanged(nameof(WorkingCroppedCursorWidthAsFloat));
         }
-        #endregion
 
-        #region メソッド（［選択タイル］　関連）
-        /// <summary>
-        ///     ［選択タイル］Ｉｄの再描画
-        /// </summary>
-        internal void NotifyTileIdChange()
-        {
-            OnPropertyChanged(nameof(SelectedTileIdAsBASE64));
-            OnPropertyChanged(nameof(SelectedTileIdAsPhoneticCode));
-        }
-        #endregion
-
-        #region メソッド（［切抜きカーソル］　関連）
         /// <summary>
         ///     ［切抜きカーソル］の再描画
         /// </summary>
@@ -1780,6 +1744,17 @@
                         logicalDelete: Models.LogicalDelete.False),
                     workingRect: this.SourceCroppedCursorRect.Do(this.Zoom)));
             }
+        }
+        #endregion
+
+        #region メソッド（［選択タイル］　関連）
+        /// <summary>
+        ///     ［選択タイル］Ｉｄの再描画
+        /// </summary>
+        internal void NotifyTileIdChange()
+        {
+            OnPropertyChanged(nameof(SelectedTileIdAsBASE64));
+            OnPropertyChanged(nameof(SelectedTileIdAsPhoneticCode));
         }
         #endregion
 
@@ -1921,17 +1896,10 @@
         Models.Geometric.SizeInt tilesetSourceImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
-        #region フィールド（タイルセット作業画像　関連）
+        #region フィールド（［タイルセット作業画像］　関連）
         /// <summary>
-        ///     タイルセット作業画像サイズ
+        ///     ［タイルセット作業画像］サイズ
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                Models.SizeInt workingImageSize = Models.SizeInt.Empty;
-        後:
-                SizeInt workingImageSize = SizeInt.Empty;
-        */
         Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
@@ -2070,22 +2038,22 @@
         }
         #endregion
 
-        #region メソッド（［ズーム］　関連）
-        /// <summary>
-        ///     ズームする
-        /// </summary>
-        void DoZoom()
-        {
-            // 拡大率
-            double zoomNum = this.ZoomAsFloat;
+        //#region メソッド（［ズーム］　関連）
+        ///// <summary>
+        /////     ズームする
+        ///// </summary>
+        //void DoZoom()
+        //{
+        //    // 拡大率
+        //    double zoomNum = this.ZoomAsFloat;
 
-            // 元画像の複製
-            var copySourceMap = new SKBitmap();
-            this.TilesetSourceBitmap.CopyTo(copySourceMap);
+        //    // 元画像の複製
+        //    var copySourceMap = new SKBitmap();
+        //    this.TilesetSourceBitmap.CopyTo(copySourceMap);
 
-            // TODO 出力先画像（ズーム）
-        }
-        #endregion
+        //    // TODO 出力先画像（ズーム）
+        //}
+        //#endregion
 
         #region メソッド（［元画像グリッド］　関連）
         /// <summary>
@@ -2147,5 +2115,39 @@
             OnPropertyChanged(nameof(WorkingGridUnit));
         }
         #endregion
+
+        // FIXME 【特設】ズーム関連
+
+        /// <summary>
+        ///     ［ズーム］変更時の影響
+        /// </summary>
+        void ReactOnZoomChanged()
+        {
+            // ［タイルセット作業画像］を再作成
+            this.RemakeWorkingTilesetImage();
+
+            // ［作業グリッド］タイル横幅の再計算
+            RefreshWorkingGridTileWidth();
+
+            // ［作業グリッド］タイル縦幅の再計算
+            RefreshWorkingGridTileHeight();
+
+            // ［グリッド］のキャンバス画像の再作成
+            this.RemakeGridCanvasImage();
+
+            // 全ての［登録タイル］のズーム時の位置とサイズを更新
+            foreach (var registeredTileVM in this.TilesetSettingsVM.RecordViewModelList)
+            {
+                registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Zoom);
+            }
+
+            // ［切抜きカーソル］の位置とサイズを更新
+            this.WorkingCroppedCursorPoint = new TheGeometric.PointFloat(
+                x: new TheGeometric.XFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Location.X.AsInt),
+                y: new TheGeometric.YFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Location.Y.AsInt));
+            this.WorkingCroppedCursorSize = new TheGeometric.SizeFloat(
+                width: new TheGeometric.WidthFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Width.AsInt),
+                height: new TheGeometric.HeightFloat(this.ZoomAsFloat * this.SourceCroppedCursorRect.Size.Height.AsInt));
+        }
     }
 }

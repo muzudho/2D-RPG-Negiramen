@@ -2526,4 +2526,31 @@ author = "むずでょ"
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　じゃあ　試しに　ズームを　ヒストリカルにしなさいよ」  
 
+![202308_maui_06-1221--Redo-o2o0.png](https://crieit.now.sh/upload_images/e053ab0d78aa219040d6bd7945d1eafc64cf11f641740.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ヒストリカルにしていないということは、  
+リドゥの方向のプログラムしか　書かれていないということだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面の更新しか　書いてなくない？　ズームの数字が　いくつから　いくつへ変更したか書いてないわよ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　コード・ビハインドだからな」  
+
+![202308_maui_06-1315--Zoom.png](https://crieit.now.sh/upload_images/e50cabb8fd3965441c338b531452251864cf1e63b02b8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ズームして何が起こるかは　ビュー・モデルの方に書いてある」
+
+![202308_maui_06-1318--ZoomChange-o2o0.png](https://crieit.now.sh/upload_images/ad70323f0257024d839d8540142d204464cf1f3aea353.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ズームすると、画像を作り直したり、グリッドを作り直したり、  
+切抜きカーソルを描き直したり、カラーマップを描き直したり、  
+広範囲に影響があるようだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　ズームの変更と、ズームの変更によって起こる事象を切り分けてくれだぜ」  
+
 ＜書きかけ＞

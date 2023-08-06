@@ -214,23 +214,26 @@
                         SemanticProperties.Hint="Map drawing page"
                         Clicked="MapDrawingButton_Clicked"/>
 
-                    <!-- 「タイル切抜き」 -->
+                    <!-- 「タイル切抜き」
                     <Button Grid.Row="2" Grid.Column="1"
                         Text="{app:Translate TileCrop}"
                         SemanticProperties.Hint="Tile crop page"
                         Clicked="TileCropButton_Clicked"/>
+                     -->
 
-                    <!-- 「ログイン（１）」 -->
+                    <!-- 「ログイン（１）」
                     <Button Grid.Row="3" Grid.Column="0"
                         Text="{app:Translate Login1Page}"
                         IsEnabled="False"
                         Clicked="LoginPage1Button_Clicked"/>
+                     -->
 
-                    <!-- 「ログイン（２）」 -->
+                    <!-- 「ログイン（２）」
                     <Button Grid.Row="3" Grid.Column="1"
                         Text="{app:Translate Login2Page}"
                         IsEnabled="False"
                         Clicked="LoginPage2Button_Clicked"/>
+                     -->
                 </Grid>
 
                 <Label HorizontalOptions="Center"
