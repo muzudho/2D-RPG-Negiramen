@@ -194,7 +194,9 @@
 
         #region プロパティ（［選択タイル］　関連）
         /// <summary>
-        ///     ［選択タイル］
+        ///     ［選択タイル］の有無、またその内容
+        ///     
+        ///     TODO ★ 選択タイルが無いとき、無いということをセットするのを忘れている？
         /// </summary>
         public Option<TileRecordVisualBuffer> SelectedTileRecordVisualBufferOption
         {
@@ -206,34 +208,35 @@
                     return;
 
                 value.Unwrap(
-                    some: (contents) =>
+                    some: (newValue) =>
                     {
                         this.selectedTileRecordVisualBufferOption.Unwrap(
-                            some: (contents) =>
+                            some: (_currentSelectedTile) =>
                             {
+                                // 有るなら構わない
                             },
                             none: () =>
                             {
-                                // タイル・カーソル無し時
+                                // 選択タイル無し時
 
                                 // 新規作成
                                 this.selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(new TileRecordVisualBuffer());
                             });
 
                         // （変更通知を送っている）
-                        this.SelectedTileIdOrEmpty = contents.Id;
-                        this.SourceCroppedCursorLeftAsInt = contents.SourceRectangle.Location.X.AsInt;
-                        this.SourceCroppedCursorTopAsInt = contents.SourceRectangle.Location.Y.AsInt;
-                        this.SourceCroppedCursorWidthAsInt = contents.SourceRectangle.Size.Width.AsInt;
-                        this.SourceCroppedCursorHeightAsInt = contents.SourceRectangle.Size.Height.AsInt;
-                        this.SelectedTileTitleAsStr = contents.Title.AsStr;
+                        this.SelectedTileIdOrEmpty = newValue.Id;
+                        this.SourceCroppedCursorLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                        this.SourceCroppedCursorTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                        this.SourceCroppedCursorWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                        this.SourceCroppedCursorHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                        this.SelectedTileTitleAsStr = newValue.Title.AsStr;
                     },
                     none: () =>
                     {
                         this.selectedTileRecordVisualBufferOption.Unwrap(
-                            some: (contents) =>
+                            some: (oldValue) =>
                             {
-                                // タイル・カーソル有り時
+                                // 選択タイル有り時
 
                                 // TODO もっと楽にクリアーできないものか？ （変更通知を送っている）
                                 this.SelectedTileIdOrEmpty = TileIdOrEmpty.Empty;
@@ -248,6 +251,7 @@
                             },
                             none: () =>
                             {
+                                // 選択タイルが無いなら変更なし
                             });
                     });
 
@@ -1706,7 +1710,7 @@
         /// </summary>
         public void AddRegisteredTile()
         {
-            // ［切抜きカーソル］があるか？
+            // ［選択タイル］があるか？
             this.SelectedTileRecordVisualBufferOption.Unwrap(
                 some: (cropCursorVisualBuffer) =>
                 {

@@ -2789,4 +2789,11 @@ author = "むずでょ"
 「　**切抜きカーソル** と **選択タイル** は別の概念なのに　プロパティを使い回している気がするな。  
 これを直すのは　大がかりなので、また今度だぜ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　**上書きボタンをクリックして保存する** という操作も止めたい。  
+テキストボックスに入力したら　そのまま保存してほしい」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　アンドゥ・リドゥを考え出すと　設計に変更が生じるな」  
+
 ＜書きかけ＞
