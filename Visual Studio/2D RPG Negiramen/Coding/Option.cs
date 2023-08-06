@@ -75,14 +75,14 @@ namespace _2D_RPG_Negiramen.Coding
             // T型変数 == T型変数 とは書けないらしい
             // return (this.Some == c.Some);
             //または、
-            return (this.Some.Equals(c.Some));
+            return (this.Contents.Equals(c.Contents));
         }
 
         /// <summary>
         ///     Equalsがtrueを返すときに同じ値を返す
         /// </summary>
         /// <returns>ハッシュ値</returns>
-        public override int GetHashCode() => this.Some.GetHashCode();
+        public override int GetHashCode() => this.Contents.GetHashCode();
         #endregion
 
         // - その他
@@ -91,24 +91,35 @@ namespace _2D_RPG_Negiramen.Coding
         /// 生成
         /// </summary>
         /// <param name="some"></param>
-        internal Option(T some)
+        internal Option(T? some)
         {
-            this.Some = some;
+            this.Contents = some;
         }
 
         // - インターナル・メソッド
 
-        internal bool TryGetValue(out T some)
+        /// <summary>
+        ///     中身を取り出す
+        /// </summary>
+        /// <param name="contents"></param>
+        /// <returns></returns>
+        internal bool Unwrap(out T? contents)
         {
-            some = this.Some;
-            return some != null;
+            contents = this.Contents;
+            return contents != null;
         }
+
+        /// <summary>
+        ///     中身があるか？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool IsSome => this.Contents != null;
 
         // - プライベート・プロパティ
 
         /// <summary>
-        /// 値
+        ///     中身
         /// </summary>
-        T Some { get; set; }
+        T? Contents { get; set; }
     }
 }

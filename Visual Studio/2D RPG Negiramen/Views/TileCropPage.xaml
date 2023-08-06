@@ -491,14 +491,14 @@
                 <VerticalStackLayout>
 
                     <!-- 追加／上書ボタン -->
-                    <Button IsEnabled="{Binding AddsButtonIsEnabled}"
+                    <Button IsEnabled="{Binding IsEnabledAddsButton}"
                             Text="{Binding AddsButtonText}"
                             ToolTipProperties.Text="{Binding AddsButtonHint}"
                             Clicked="AddsButton_Clicked"/>
 
                     <!-- ［削除］ボタン -->
                     <Button Margin="0,40,0,0"
-                            IsEnabled="{Binding DeletesButtonIsEnabled}"
+                            IsEnabled="{Binding IsEnabledDeletesButton}"
                             Text="{app:Translate Delete}"
                             Clicked="DeletesButton_Clicked"/>
 
@@ -587,13 +587,14 @@
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    Text="{Binding SelectedTileIdAsBASE64, Mode=OneWay}"
-                   IsReadOnly="True"/>
+                   IsReadOnly="True"
+                   BackgroundColor="Transparent"/>
 
-            <!-- タイル名 -->
+            <!-- タイル タイトル -->
             <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                    Placeholder="草原"
                    Text="{Binding SelectedTileTitleAsStr}"
-                   BackgroundColor="FloralWhite"/>
+                   IsEnabled="{Binding IsEnabledSelectedTileTitleAsStr}"/>
 
             <!--    ◆５段目 ヒント部
                     =================

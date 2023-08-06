@@ -179,9 +179,7 @@
         // - プライベート静的プロパティー
 
         /// <summary>
-        ///     <pre>
-        ///         BASE64 を、オーラル・コミュニケーションがしやすいように英単語に変換するもの
-        ///     </pre>
+        ///     BASE64 を、オーラル・コミュニケーションがしやすいように英単語に変換するもの
         /// </summary>
         static Dictionary<char, string> PhoneticAlphabet = new()
         {
@@ -263,14 +261,12 @@
             this.source = source;
         }
 
-        // - フィールド
+        // - プロパティー
 
         /// <summary>
-        ///     値
+        ///     空欄か？
         /// </summary>
-        int source;
-
-        // - プロパティー
+        internal bool IsEmpty => this == TileIdOrEmpty.Empty;
 
         /// <summary>
         ///     整数型形式で取得
@@ -314,5 +310,14 @@
                 return String.Join(" ", list);
             }
         }
+
+        // - プライベート・フィールド
+
+        #region フィールド（入力まま）
+        /// <summary>
+        ///     入力まま
+        /// </summary>
+        int source;
+        #endregion
     }
 }

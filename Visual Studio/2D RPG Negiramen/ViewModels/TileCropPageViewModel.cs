@@ -201,15 +201,13 @@
             get => this.selectedTileRecordVisualBufferOption;
             set
             {
+                // 値に変化がない
                 if (this.selectedTileRecordVisualBufferOption == value)
-                {
-                    // 値に変化がない
                     return;
-                }
 
                 TileRecordVisualBuffer newTileRecordVM;
 
-                if (value.TryGetValue(out newTileRecordVM))
+                if (value.Unwrap(out newTileRecordVM))
                 {
                     // 非ヌルの想定
                     if (newTileRecordVM == null)
@@ -223,7 +221,7 @@
                     newTileRecordVM = new TileRecordVisualBuffer();
                 }
 
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer oldTileRecordVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer oldTileRecordVM))
                 {
                     // 非ヌルの想定
                     if (oldTileRecordVM == null)
@@ -251,7 +249,9 @@
                 OnPropertyChanged(nameof(AddsButtonText));
                 this.NotifyTileIdChange();
                 // TODO 矩形もリフレッシュしたい
-                // TODO コメントもリフレッシュしたい
+
+                // タイルタイトル
+                OnPropertyChanged(nameof(IsEnabledSelectedTileTitleAsStr));
             }
         }
 
@@ -262,7 +262,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.Id;
                 }
@@ -274,7 +274,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.Id == value)
                     {
@@ -806,7 +806,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle;
                 }
@@ -818,7 +818,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle == value)
                     {
@@ -851,7 +851,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Location.X.AsInt;
                 }
@@ -863,7 +863,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Location.X.AsInt == value)
                     {
@@ -917,7 +917,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Location.Y.AsInt;
                 }
@@ -929,7 +929,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Location.Y.AsInt == value)
                     {
@@ -987,7 +987,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Size;
                 }
@@ -999,7 +999,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Size == value)
                     {
@@ -1030,7 +1030,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Size.Width.AsInt;
                 }
@@ -1042,7 +1042,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Size.Width.AsInt == value)
                     {
@@ -1088,7 +1088,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Size.Height.AsInt;
                 }
@@ -1100,7 +1100,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Size.Height.AsInt == value)
                     {
@@ -1426,7 +1426,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.Id.AsBASE64;
                 }
@@ -1447,7 +1447,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.Id.AsPhoneticCode;
                 }
@@ -1460,13 +1460,23 @@
         }
 
         /// <summary>
+        ///     ［選択タイル］のタイトルの活性性
+        ///     
+        ///     <list type="bullet">
+        ///         <item>切抜きカーソルがある</item>
+        ///         <item>選択タイルＩｄが空欄でない</item>
+        ///     </list>
+        /// </summary>
+        public bool IsEnabledSelectedTileTitleAsStr => this.selectedTileRecordVisualBufferOption.IsSome && !this.SelectedTileIdOrEmpty.IsEmpty;
+
+        /// <summary>
         ///     ［選択タイル］のタイトル
         /// </summary>
         public string SelectedTileTitleAsStr
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.Title.AsStr;
                 }
@@ -1478,7 +1488,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.Title.AsStr == value)
                     {
@@ -1540,7 +1550,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer selectedTileVM))
+                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.Id == Models.TileIdOrEmpty.Empty)
                     {
@@ -1563,18 +1573,18 @@
         /// <summary>
         ///     ［追加／上書き］ボタンの活性性
         /// </summary>
-        public bool AddsButtonIsEnabled
+        public bool IsEnabledAddsButton
         {
             get
             {
-                return this.addsButtonIsEnabled;
+                return this.isEnabledAddsButton;
             }
             set
             {
-                if (this.addsButtonIsEnabled != value)
+                if (this.isEnabledAddsButton != value)
                 {
-                    this.addsButtonIsEnabled = value;
-                    OnPropertyChanged(nameof(AddsButtonIsEnabled));
+                    this.isEnabledAddsButton = value;
+                    OnPropertyChanged(nameof(IsEnabledAddsButton));
                 }
             }
         }
@@ -1584,18 +1594,18 @@
         /// <summary>
         ///     ［削除］ボタンの活性性
         /// </summary>
-        public bool DeletesButtonIsEnabled
+        public bool IsEnabledDeletesButton
         {
             get
             {
-                return this.deletesButtonIsEnabled;
+                return this.isEnabledDeletesButton;
             }
             set
             {
-                if (this.deletesButtonIsEnabled != value)
+                if (this.isEnabledDeletesButton != value)
                 {
-                    this.deletesButtonIsEnabled = value;
-                    OnPropertyChanged(nameof(DeletesButtonIsEnabled));
+                    this.isEnabledDeletesButton = value;
+                    OnPropertyChanged(nameof(IsEnabledDeletesButton));
                 }
             }
         }
@@ -1647,7 +1657,7 @@
         public void AddRegisteredTile()
         {
             // ［切抜きカーソル］があるか？
-            if (!this.SelectedTileRecordVisualBufferOption.TryGetValue(out TileRecordVisualBuffer? cropCursorVisualBufferOrNull))
+            if (!this.SelectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer? cropCursorVisualBufferOrNull))
             {
                 // 空カーソルなら、ここに来ない（何もしない）
                 return;
@@ -1835,12 +1845,12 @@
                     // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
                     this.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
-                    this.AddsButtonIsEnabled = false;
+                    this.IsEnabledAddsButton = false;
                     return;
                 }
             }
 
-            if (this.selectedTileRecordVisualBufferOption.TryGetValue(out var recordVM))
+            if (this.selectedTileRecordVisualBufferOption.Unwrap(out var recordVM))
             {
                 // 切抜きカーソル有り時
 
@@ -1857,7 +1867,7 @@
                     this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
                 }
 
-                this.AddsButtonIsEnabled = true;
+                this.IsEnabledAddsButton = true;
             }
             else
             {
@@ -1865,7 +1875,7 @@
 
                 // 「追加」
                 this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-                this.AddsButtonIsEnabled = false;
+                this.IsEnabledAddsButton = false;
             }
         }
         #endregion
@@ -1876,25 +1886,25 @@
         /// </summary>
         internal void InvalidateDeletesButton()
         {
-            if (this.selectedTileRecordVisualBufferOption.TryGetValue(out var recordVM))
+            if (this.selectedTileRecordVisualBufferOption.Unwrap(out var recordVM))
             {
                 // 切抜きカーソル有り時
 
                 if (recordVM.Id == TileIdOrEmpty.Empty)
                 {
                     // Ｉｄ未設定時
-                    this.DeletesButtonIsEnabled = false;
+                    this.IsEnabledDeletesButton = false;
                 }
                 else
                 {
                     // タイル登録済み時
-                    this.DeletesButtonIsEnabled = true;
+                    this.IsEnabledDeletesButton = true;
                 }
             }
             else
             {
                 // 切抜きカーソル無し時
-                this.DeletesButtonIsEnabled = false;
+                this.IsEnabledDeletesButton = false;
             }
         }
         #endregion
@@ -2055,14 +2065,14 @@
         /// <summary>
         ///     ［追加／上書き］ボタンの活性性
         /// </summary>
-        bool addsButtonIsEnabled;
+        bool isEnabledAddsButton;
         #endregion
 
         #region フィールド（［削除］ボタン　関連）
         /// <summary>
         ///     ［削除］ボタンの活性性
         /// </summary>
-        bool deletesButtonIsEnabled;
+        bool isEnabledDeletesButton;
         #endregion
 
         // - プライベート・メソッド
@@ -2406,6 +2416,8 @@
                 // ====================
                 //
                 this.Owner.InvalidateGraphicsViewOfTilesetWorking();
+
+                this.Owner.OnPropertyChanged(nameof(IsEnabledSelectedTileTitleAsStr));
             }
             #endregion
 
@@ -2444,7 +2456,7 @@
                 // 追加・削除ボタンの表示状態を更新したい
                 this.Owner.OnPropertyChanged(nameof(AddsButtonHint));
                 this.Owner.OnPropertyChanged(nameof(AddsButtonText));
-                this.Owner.OnPropertyChanged(nameof(AddsButtonIsEnabled));
+                this.Owner.OnPropertyChanged(nameof(IsEnabledAddsButton));
 
                 //  ［削除］ボタンの再描画
                 this.Owner.InvalidateDeletesButton();
@@ -2455,6 +2467,8 @@
                 //
                 //this.coloredMapGraphicsView1.Invalidate();
                 this.Owner.InvalidateGraphicsViewOfTilesetWorking();
+
+                this.Owner.OnPropertyChanged(nameof(IsEnabledSelectedTileTitleAsStr));
             }
             #endregion
 
@@ -2536,6 +2550,8 @@
                 // ====================
                 //
                 this.Owner.InvalidateGraphicsViewOfTilesetWorking();
+
+                this.Owner.OnPropertyChanged(nameof(IsEnabledSelectedTileTitleAsStr));
             }
 
             public void Undo()
@@ -2574,6 +2590,8 @@
                 // ====================
                 //
                 this.Owner.InvalidateGraphicsViewOfTilesetWorking();
+
+                this.Owner.OnPropertyChanged(nameof(IsEnabledSelectedTileTitleAsStr));
             }
 
             // - プライベート・プロパティ
