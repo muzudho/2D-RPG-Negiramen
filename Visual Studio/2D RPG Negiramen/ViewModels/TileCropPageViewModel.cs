@@ -328,8 +328,17 @@
             {
                 if (LocalizationResourceManager.Instance.CultureInfo != value)
                 {
+                    CultureInfo oldValue = LocalizationResourceManager.Instance.CultureInfo;
+                    CultureInfo newValue = value;
+
                     LocalizationResourceManager.Instance.SetCulture(value);
                     OnPropertyChanged(nameof(SelectedCultureInfo));
+
+                    // 再帰的
+                    App.History.Do(new SetCultureInfoProcessing(
+                        owner: this,
+                        oldValue: oldValue,
+                        newValue: newValue));
                 }
             }
         }
@@ -2578,6 +2587,56 @@
             ///     ［タイル］のＩｄ
             /// </summary>
             TileIdOrEmpty TileIdOrEmpty { get; }
+        }
+        #endregion
+
+        #region クラス（［文化情報設定］処理）
+        /// <summary>
+        ///     ［文化情報設定］処理
+        /// </summary>
+        class SetCultureInfoProcessing : IProcessing
+        {
+            // - その他
+
+            /// <summary>
+            ///     生成
+            /// </summary>
+            internal SetCultureInfoProcessing(
+                TileCropPageViewModel owner,
+                CultureInfo oldValue,
+                CultureInfo newValue)
+            {
+                this.Owner = owner;
+                this.OldValue = oldValue;
+                this.NewValue = newValue;
+            }
+
+            /// <summary>
+            ///     ドゥー
+            /// </summary>
+            public void Do()
+            {
+                this.Owner.SelectedCultureInfo = this.NewValue;
+            }
+
+            /// <summary>
+            ///     アンドゥ
+            /// </summary>
+            public void Undo()
+            {
+                this.Owner.SelectedCultureInfo = this.OldValue;
+            }
+
+            // - プライベート・プロパティ
+
+            /// <summary>
+            ///     外側のクラス
+            /// </summary>
+            TileCropPageViewModel Owner { get; }
+
+            CultureInfo OldValue { get; }
+
+            CultureInfo NewValue { get; }
         }
         #endregion
     }
