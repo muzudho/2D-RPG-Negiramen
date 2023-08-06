@@ -170,6 +170,17 @@ public interface ITileCropPageViewModel
     bool IsMouseDragging { get; }
     #endregion
 
+    #region 変更通知プロパティ（［カラーマップ］描画　関連）
+    /// <summary>
+    ///     ［カラーマップ］のダーティー回数
+    ///     
+    ///     <list type="bullet">
+    ///         <item>変化すればいいので、リミットチェックは不要</item>
+    ///     </list>
+    /// </summary>
+    byte DirtyCountOfColoredMap { get; set; }
+    #endregion
+
     #region メソッド（［登録タイル］　関連）
     /// <summary>
     ///     ［登録タイル］追加

@@ -397,6 +397,7 @@
                               InputTransparent="True">
                     <GraphicsView.Drawable>
                         <modelsDrawing:ColoredMap BindingContext="{x:Reference thisContentPage}"
+                                                  DirtyCount="{Binding DirtyCountOfColoredMap}"
                                                   TilesetSettingsVM="{Binding TileCropPageVM.TilesetSettingsVM}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>

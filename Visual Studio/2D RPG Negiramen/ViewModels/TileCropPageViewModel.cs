@@ -543,7 +543,7 @@
                     this.WorkingGridPhaseLeftAsFloat = this.ZoomAsFloat * this.sourceGridPhase.X.AsInt;
 
                     // キャンバスを再描画
-                    InvalidateCanvasOfGrid();
+                    InvalidateGraphicsViewOfGrid();
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridPhaseLeftAsInt));
@@ -569,7 +569,7 @@
                     this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsFloat * this.sourceGridPhase.Y.AsInt);
 
                     // キャンバスを再描画
-                    InvalidateCanvasOfGrid();
+                    InvalidateGraphicsViewOfGrid();
 
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(SourceGridPhaseTopAsInt));
@@ -618,7 +618,7 @@
                     this.WorkingCroppedCursorWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
 
                     // キャンバスを再描画
-                    InvalidateCanvasOfGrid();
+                    InvalidateGraphicsViewOfGrid();
                     // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileWidthAsInt set]");
 
                     // キャンバスを再描画後に変更通知
@@ -649,7 +649,7 @@
                     this.WorkingCroppedCursorHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
 
                     // キャンバスを再描画
-                    InvalidateCanvasOfGrid();
+                    InvalidateGraphicsViewOfGrid();
                     // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileHeightAsInt set]");
 
                     // キャンバスを再描画後に変更通知
@@ -1406,6 +1406,28 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（［カラーマップ］描画　関連）
+        /// <summary>
+        ///     ［カラーマップ］のダーティー回数
+        ///     
+        ///     <list type="bullet">
+        ///         <item>変化すればいいので、リミットチェックは不要</item>
+        ///     </list>
+        /// </summary>
+        public byte DirtyCountOfColoredMap
+        {
+            get => this.dirtyCountOfColoerdMap;
+            set
+            {
+                if (this.dirtyCountOfColoerdMap == value)
+                    return;
+
+                this.dirtyCountOfColoerdMap = value;
+                OnPropertyChanged(nameof(DirtyCountOfColoredMap));
+            }
+        }
+        #endregion
+
         #region 変更通知プロパティ（［選択タイル］　関連）
         /// <summary>
         ///     ［選択タイル］のＩｄ。BASE64表現
@@ -1706,6 +1728,7 @@
             //// ====================
             ////
             //this.coloredMapGraphicsView1.Invalidate();
+            this.InvalidateGraphicsViewOfTilesetWorking();
         }
         #endregion
 
@@ -2065,6 +2088,13 @@
         ThicknessOfLine halfThicknessOfTileCursorLine;
         #endregion
 
+        #region フィールド（［カラーマップ］描画　関連）
+        /// <summary>
+        ///     ［カラーマップ］のダーティー回数
+        /// </summary>
+        byte dirtyCountOfColoerdMap;
+        #endregion
+
         #region フィールド（［追加／上書き］ボタン　関連）
         /// <summary>
         ///     ［追加／上書き］ボタンのラベル
@@ -2087,6 +2117,33 @@
         // - プライベート・メソッド
 
         #region メソッド（［タイルセット作業画像］　関連）
+        /// <summary>
+        ///     <pre>
+        ///         ［元画像グリッド］のキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        void InvalidateGraphicsViewOfTilesetWorking()
+        {
+            if (this.TilesetWorkingImageWidthAsInt % 2 == 1)
+            {
+                this.workingImageSize = new SizeInt(
+                    width: new WidthInt(this.workingImageSize.Width.AsInt - 1),
+                    height: new HeightInt(this.workingImageSize.Height.AsInt));
+            }
+            else
+            {
+                this.workingImageSize = new SizeInt(
+                    width: new WidthInt(this.workingImageSize.Width.AsInt + 1),
+                    height: new HeightInt(this.workingImageSize.Height.AsInt));
+            }
+
+            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
+        }
+
         /// <summary>
         ///     ［タイルセット作業画像］の再作成
         /// </summary>
@@ -2125,7 +2182,7 @@
         ///                 振動させることで、再描画を呼び起こすことにする
         ///     </pre>
         /// </summary>
-        void InvalidateCanvasOfGrid()
+        void InvalidateGraphicsViewOfGrid()
         {
             if (this.GridCanvasImageWidthAsInt % 2 == 1)
             {

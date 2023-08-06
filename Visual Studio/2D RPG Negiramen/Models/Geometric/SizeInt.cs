@@ -85,15 +85,6 @@
         public override int GetHashCode() => (Width, Height).GetHashCode();
         #endregion
 
-        // - インターナル静的プロパティー
-
-        #region プロパティ（ゼロ・オブジェクト）
-        /// <summary>
-        ///     ゼロ・オブジェクト
-        /// </summary>
-        internal static SizeInt Empty = new(WidthInt.Empty, HeightInt.Empty);
-        #endregion
-
         // - その他
 
         #region その他（生成）
@@ -102,18 +93,20 @@
         /// </summary>
         /// <param name="width">横幅</param>
         /// <param name="height">縦幅</param>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                internal SizeInt(Models.WidthInt width, Models.HeightInt height)
-        後:
-                internal SizeInt(Models.WidthInt width, HeightInt height)
-        */
         internal SizeInt(WidthInt width, HeightInt height)
         {
             Width = width;
             Height = height;
         }
+        #endregion
+
+        // - インターナル静的プロパティー
+
+        #region プロパティ（ゼロ・オブジェクト）
+        /// <summary>
+        ///     ゼロ・オブジェクト
+        /// </summary>
+        internal static SizeInt Empty = new(WidthInt.Empty, HeightInt.Empty);
         #endregion
 
         // - インターナル・プロパティー

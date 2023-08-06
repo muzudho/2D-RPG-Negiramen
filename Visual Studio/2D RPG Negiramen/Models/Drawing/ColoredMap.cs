@@ -10,6 +10,29 @@ internal class ColoredMap : BindableObject, IDrawable
 {
     // - パブリック束縛可能プロパティ
 
+    #region 束縛可能プロパティ（［ダーティー回数］　関連）
+    /// <summary>
+    ///     ［ダーティー回数］
+    /// </summary>
+    public byte DirtyCount
+    {
+        get => (byte)GetValue(DirtyCountProperty);
+        set => SetValue(DirtyCountProperty, value);
+    }
+
+    /// <summary>
+    ///     <see cref="IsDirty"/> に対応
+    /// </summary>
+    public static BindableProperty DirtyCountProperty = BindableProperty.Create(
+        // プロパティ名
+        propertyName: nameof(DirtyCount),
+        // 返却型
+        returnType: typeof(byte),
+        // これを含んでいるクラス
+        declaringType: typeof(ColoredMap),
+        defaultValue: (byte)0);
+    #endregion
+
     #region 束縛可能プロパティ（タイルセット設定ビューモデル）
     /// <summary>
     ///     タイルセット設定ビューモデル
@@ -39,7 +62,7 @@ internal class ColoredMap : BindableObject, IDrawable
     /// <param name="dirtyRect">位置とサイズ</param>
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {
-        Trace.WriteLine($"[ColoredMap.cs Draw] 開始");
+        Trace.WriteLine($"[ColoredMap.cs Draw] 開始 this.DirtyCount: {this.DirtyCount}");
 
         if (this.TilesetSettingsVM == null)
         {

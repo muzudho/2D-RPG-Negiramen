@@ -421,7 +421,10 @@ public partial class TileCropPage : ContentPage
         // カラーマップの再描画
         // ====================
         //
-        this.coloredMapGraphicsView1.Invalidate();
+        // this.coloredMapGraphicsView1.Invalidate();
+        // context.InvalidateTilesetWorkingCanvasOfGrid();
+        //context.DirtyCountOfColoredMap++;
+        //Trace.WriteLine($"[TileCropPage.xaml.cs AddsButton_Clicked] context.DirtyCountOfColoredMap: {context.DirtyCountOfColoredMap}");
     }
     #endregion
 
