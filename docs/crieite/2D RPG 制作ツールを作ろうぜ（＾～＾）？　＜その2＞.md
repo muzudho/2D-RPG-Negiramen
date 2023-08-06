@@ -2696,4 +2696,57 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　C# で　メモリ管理を自力実装することになるとは……」  
 
+## グラフィック・ビューを、ビュー・モデルから Invalidate する方法が無い
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　グラフィック・ビューを、ビュー・モデルから Invalidate する方法が無いぜ」  
+
+![202308_maui_06-1647--Invalidate-o2o0.png](https://crieit.now.sh/upload_images/a4e44f578acb15b4867bd865d6f3372a64cf506fae002.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　そら、ビュー・モデルは　ビューに指図しないしな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　横幅を振動させるトリック・コードを書くかだぜ？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　そのトリック、偶数回　振動させると　元に戻って使えないという弱点があるのよね」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　縦に振動すれば　回避できるが……」  
+
+![202308_maui_06-1704--Dirty-o2o0.png](https://crieit.now.sh/upload_images/a0a53d329864ab1a5e8b7782352112a864cf542fd3c0f.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　試しに　`Dirty`　フラグを付けてみるか。このフラグが立ったら再描画されるといいんだが」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、 `Drawing` の方でフラグを下ろしても、 ビューモデルの方のフラグは下ろされてないから  
+１度フラグを立てると　立ちっぱなしで　プロパティ・チェンジしないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　Byte 型値にして　永遠に足し続ければどうか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+（カタ　カタ　カタ　カタ）  
+
+![202308_maui_06-1741--Drawable-o2o0.png](https://crieit.now.sh/upload_images/30f43668b83057434f2702db86d52dc164cf5cc715135.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　束縛変数に　変更通知をバンバン送っても　再描画は走らないぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`Drawable` ではなく、 `GraphicsView` に変更通知を送る必要があるのでは？」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　👇　他の人は　苦労してないんじゃないの？」  
+
+📖 [Binding from view to GraphicsView property in .NET MAUI](https://stackoverflow.com/questions/74144361/binding-from-view-to-graphicsview-property-in-net-maui)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　そのようなコードは動かない。　仕方ないので　トリックコードを使う」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　フレームワークに不具合があると、トリックコードが増えていくの　わらう」  
+
 ＜書きかけ＞
