@@ -2567,4 +2567,30 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　あと、コードの書き方が下手で　無駄に再帰してるから　書き直したい」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　MAUI には　キーボード操作のイベントハンドラが無いじゃないか」  
+
+📖 [.NET MAUIでのCtrl+Enterなどのキーイベントハンドリングの難しさ](https://qiita.com/selfstudy/items/d0f9520d3b40f8946d36)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　スマホに　キーボードは付いていませんからね」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`[Ctrl] + [Z]`　の操作をカスタマイズできないのかだぜ、クソじゃないか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　MAUI は　意固地にも　画面上のボタンを押せ、ということかだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　それが　**クロスプラットフォームの真実**　なのでしょう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　♪  
+真理は　避けられず  
+真実は　踏み込んだ者にしか知られず  
+真相は　勝手なものである」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父んの前で　真実に触れるなだぜ」  
+
 ＜書きかけ＞
