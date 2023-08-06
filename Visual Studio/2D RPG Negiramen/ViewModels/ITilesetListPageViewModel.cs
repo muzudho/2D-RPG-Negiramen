@@ -109,6 +109,6 @@ public interface ITilesetListPageViewModel
     /// <summary>
     ///     選択中のタイルセットを保存
     /// </summary>
-    void SaveSelectedTileset(TilesetLocalConfigurationBuffer difference);
+    void SaveSelectedTileset(TilesetLocalConfigurationDifference difference);
     #endregion
 }

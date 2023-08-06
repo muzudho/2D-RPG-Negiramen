@@ -9,7 +9,7 @@ using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item>ミュータブル</item>
 ///     </list>
 /// </summary>
-internal class ProjectConfigurationBuffer
+internal class ProjectConfigurationDifference
 {
     // - インターナル・プロパティ
 

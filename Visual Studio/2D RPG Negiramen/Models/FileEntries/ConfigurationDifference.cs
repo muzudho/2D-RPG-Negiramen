@@ -1,7 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries;
 
-using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
-
 /// <summary>
 ///     😁 構成ファイルの差分
 ///     
@@ -9,7 +7,7 @@ using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 ///         <item>ミュータブル</item>
 ///     </list>
 /// </summary>
-internal class ConfigurationBuffer
+internal class ConfigurationDifference
 {
     // - インターナル・プロパティ
 

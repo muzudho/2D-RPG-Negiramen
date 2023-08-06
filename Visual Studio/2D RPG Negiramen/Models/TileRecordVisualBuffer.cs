@@ -1,17 +1,16 @@
-﻿namespace _2D_RPG_Negiramen.ViewModels
+﻿namespace _2D_RPG_Negiramen.Models
 {
-    using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
-    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
+    using TheGeometric = Geometric;
 
     /// <summary>
-    ///     タイル１件分の記録
+    ///     タイル１件分の画面向けの記録
     ///     
     ///     <list type="bullet">
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    internal class TileRecordViewModel : ObservableObject
+    internal class TileRecordVisualBuffer : ObservableObject
     {
         // - その他
 
@@ -22,11 +21,11 @@
         /// <param name="tileRecord">タイル</param>
         /// <param name="workingRect">ズーム後の位置とサイズ</param>
         /// <returns></returns>
-        public static TileRecordViewModel FromModel(
+        public static TileRecordVisualBuffer FromModel(
             TileRecord tileRecord,
             TheGeometric.RectangleFloat workingRect)
         {
-            return new TileRecordViewModel()
+            return new TileRecordVisualBuffer()
             {
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
@@ -39,13 +38,13 @@
         /// <summary>
         ///     生成
         /// </summary>
-        public TileRecordViewModel()
+        public TileRecordVisualBuffer()
         {
-            this.Id = Models.TileId.Empty;
-            this.SourceRectangle = TheGeometric.RectangleInt.Empty;
-            this.WorkingRectangle = TheGeometric.RectangleFloat.Empty;
-            this.Title = Models.TileTitle.Empty;
-            this.LogicalDelete = Models.LogicalDelete.False;
+            Id = TileId.Empty;
+            SourceRectangle = TheGeometric.RectangleInt.Empty;
+            WorkingRectangle = TheGeometric.RectangleFloat.Empty;
+            Title = TileTitle.Empty;
+            LogicalDelete = LogicalDelete.False;
         }
         #endregion
 
@@ -59,7 +58,7 @@
         ///         <item>0 は `MA==` だが、これは空文字として表示する</item>
         ///     </list>
         /// </summary>
-        internal Models.TileId Id { get; set; }
+        internal TileId Id { get; set; }
         #endregion
 
         #region プロパティ（矩形　関連）
@@ -78,7 +77,7 @@
         /// <summary>
         ///     タイトル
         /// </summary>
-        internal Models.TileTitle Title { get; set; }
+        internal TileTitle Title { get; set; }
         #endregion
 
         #region プロパティ（論理削除）
@@ -89,7 +88,7 @@
         ///         <item>しないなら 0、 するなら 1</item>
         ///     </list>
         /// </summary>
-        internal Models.LogicalDelete LogicalDelete { get; set; }
+        internal LogicalDelete LogicalDelete { get; set; }
         #endregion
 
         // - インターナル・メソッド
@@ -101,7 +100,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Id:{this.Id.AsBASE64}, SourceRect:{this.SourceRectangle.Dump()}, WorkingRect:{this.WorkingRectangle.Dump()}, Title:{this.Title.AsStr}, LogicalDelete: {this.LogicalDelete.AsInt}";
+            return $"Id:{Id.AsBASE64}, SourceRect:{SourceRectangle.Dump()}, WorkingRect:{WorkingRectangle.Dump()}, Title:{Title.AsStr}, LogicalDelete: {LogicalDelete.AsInt}";
         }
         #endregion
     }

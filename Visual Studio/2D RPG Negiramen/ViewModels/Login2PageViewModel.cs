@@ -219,7 +219,7 @@ internal class Login2PageViewModel : ObservableObject, ILogin2PageViewModel
         // プロジェクト構成ファイルの上書き更新
         if(ProjectConfiguration.SaveTOML(
             current: App.GetOrLoadProjectConfiguration(),
-            difference: new ProjectConfigurationBuffer()
+            difference: new ProjectConfigurationDifference()
             {
                 StarterKitFolderLocation = this.StarterKitFolderLocation,
                 UnityAssetsFolderLocation = this.UnityAssetsFolderLocation,

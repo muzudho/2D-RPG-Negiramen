@@ -242,7 +242,7 @@
                 //
 
                 // 構成ファイルの更新差分
-                var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+                var configurationDifference = new Models.FileEntries.ConfigurationDifference()
                 {
                     CurrentYourCircleFolderName = _yourCircleFolderName,
                     CurrentYourWorkFolderName = _yourWorkFolderName,
@@ -266,7 +266,7 @@
                 //
 
                 // プロジェクト構成ファイルの更新差分
-                var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
+                var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationDifference()
                 {
                     StarterKitFolderLocation = this.starterKitFolder,
                     UnityAssetsFolderLocation = this.unityAssetsFolder,

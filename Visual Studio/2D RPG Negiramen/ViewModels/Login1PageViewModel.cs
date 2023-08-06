@@ -339,7 +339,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     void SaveCurrentYourCircleFolderName()
     {
         // 構成ファイルの更新差分
-        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+        var configurationDifference = new Models.FileEntries.ConfigurationDifference()
         {
             CurrentYourCircleFolderName = this.YourCircleFolderName,
         };
@@ -364,7 +364,7 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
     void SaveCurrentYourWorkFolderName()
     {
         // 構成ファイルの更新差分
-        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+        var configurationDifference = new Models.FileEntries.ConfigurationDifference()
         {
             CurrentYourWorkFolderName = this.YourWorkFolderName,
         };

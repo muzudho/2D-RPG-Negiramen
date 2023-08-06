@@ -47,7 +47,7 @@ public partial class Login2Page : ContentPage
             yourWorkFolderName: App.GetOrLoadConfiguration().CurrentYourWorkFolderName);
 
         // 構成ファイルの更新差分
-        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+        var configurationDifference = new Models.FileEntries.ConfigurationDifference()
         {
         };
 
@@ -79,7 +79,7 @@ public partial class Login2Page : ContentPage
         //
 
         // プロジェクト構成ファイルの更新差分
-        var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationBuffer()
+        var projectConfigurationDifference = new Models.FileEntries.ProjectConfigurationDifference()
         {
             StarterKitFolderLocation = this.Login2PageVM.StarterKitFolderLocation,
             UnityAssetsFolderLocation = this.Login2PageVM.UnityAssetsFolderLocation,

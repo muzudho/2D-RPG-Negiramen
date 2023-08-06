@@ -137,18 +137,18 @@ internal class TilesetGlobalConfiguration
     /// <param name="difference">現在の構成から更新した差分</param>
     /// <param name="newConfiguration">差分を反映した構成</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(TheFileEntryLocations.UnityAssets.Images.TilesetGlobalToml tilesetGlobalConfigurationLocation, TilesetGlobalConfiguration current, TilesetGlobalConfigurationBuffer difference, out TilesetGlobalConfiguration newConfiguration)
+    internal static bool SaveTOML(TheFileEntryLocations.UnityAssets.Images.TilesetGlobalToml tilesetGlobalConfigurationLocation, TilesetGlobalConfiguration current, TilesetGlobalConfigurationDifference difference, out TilesetGlobalConfiguration newConfiguration)
     {
-        var configurationBuffer = new TilesetGlobalConfigurationBuffer();
+        var configurationDifference2nd = new TilesetGlobalConfigurationDifference();
 
         // 差分適用
-        configurationBuffer.Uuid = difference.Uuid ?? current.Uuid;
-        configurationBuffer.Extension = difference.Extension ?? current.Extension;
+        configurationDifference2nd.Uuid = difference.Uuid ?? current.Uuid;
+        configurationDifference2nd.Extension = difference.Extension ?? current.Extension;
 
         // 差分をマージして、イミュータブルに変換
         newConfiguration = new TilesetGlobalConfiguration(
-            uuid: configurationBuffer.Uuid,
-            extension: configurationBuffer.Extension);
+            uuid: configurationDifference2nd.Uuid,
+            extension: configurationDifference2nd.Extension);
 
         WriteTOML(
             tilesetGlobalConfigurationLocation: tilesetGlobalConfigurationLocation,

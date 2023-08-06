@@ -161,7 +161,7 @@ class Configuration
     /// <param name="difference">現在の構成から更新した差分</param>
     /// <param name="newConfiguration">差分を反映した構成</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(Configuration current, ConfigurationBuffer difference, out Configuration newConfiguration)
+    internal static bool SaveTOML(Configuration current, ConfigurationDifference difference, out Configuration newConfiguration)
     {
         //
         // マルチプラットフォームの MAUI では、
@@ -184,24 +184,24 @@ class Configuration
         // 📖　[File system helpers](https://learn.microsoft.com/en-us/dotnet/maui/platform-integration/storage/file-system-helpers?tabs=windows)
         //
 
-        var configurationBuffer = new ConfigurationBuffer();
+        var configurationDifference = new ConfigurationDifference();
 
         // 差分適用
-        configurationBuffer.CurrentYourCircleFolderName = difference.CurrentYourCircleFolderName?? current.CurrentYourCircleFolderName;
-        configurationBuffer.CurrentYourWorkFolderName = difference.CurrentYourWorkFolderName?? current.CurrentYourWorkFolderName;
-        configurationBuffer.ProjectIdList = difference.ProjectIdList ?? current.ProjectIdList;
+        configurationDifference.CurrentYourCircleFolderName = difference.CurrentYourCircleFolderName?? current.CurrentYourCircleFolderName;
+        configurationDifference.CurrentYourWorkFolderName = difference.CurrentYourWorkFolderName?? current.CurrentYourWorkFolderName;
+        configurationDifference.ProjectIdList = difference.ProjectIdList ?? current.ProjectIdList;
 
         var strBuilder = new StringBuilder();
         strBuilder.AppendLine($@"[current_project_id]
 
 # あなたのサークル・フォルダ名
-your_circle_folder_name = ""{configurationBuffer.CurrentYourCircleFolderName.AsStr}""
+your_circle_folder_name = ""{configurationDifference.CurrentYourCircleFolderName.AsStr}""
 
 # あなたの作品フォルダ名
-your_work_folder_name = ""{configurationBuffer.CurrentYourWorkFolderName.AsStr}""
+your_work_folder_name = ""{configurationDifference.CurrentYourWorkFolderName.AsStr}""
 ");
 
-        foreach (var projectId in configurationBuffer.ProjectIdList)
+        foreach (var projectId in configurationDifference.ProjectIdList)
         {
             strBuilder.AppendLine($@"[[project_id]]
 
@@ -220,9 +220,9 @@ your_work_folder_name = ""{projectId.YourWorkFolderName.AsStr}""
 
         // 差分をマージして、イミュータブルに変換
         newConfiguration = new Configuration(
-            configurationBuffer.CurrentYourCircleFolderName,
-            configurationBuffer.CurrentYourWorkFolderName,
-            configurationBuffer.ProjectIdList);
+            configurationDifference.CurrentYourCircleFolderName,
+            configurationDifference.CurrentYourWorkFolderName,
+            configurationDifference.ProjectIdList);
 
         return true;
     }

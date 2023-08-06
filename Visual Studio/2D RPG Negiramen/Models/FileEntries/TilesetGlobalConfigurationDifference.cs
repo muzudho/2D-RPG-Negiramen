@@ -1,13 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries;
 
 /// <summary>
-///     😁 タイルセット・グローバル構成バッファー
+///     😁 タイルセット・グローバル構成の差分
 ///     
 ///     <list type="bullet">
 ///         <item>ミュータブル</item>
 ///     </list>
 /// </summary>
-internal class TilesetGlobalConfigurationBuffer
+internal class TilesetGlobalConfigurationDifference
 {
     // - インターナル・プロパティ
 

@@ -121,18 +121,18 @@ class ProjectConfiguration
     /// <param name="difference">現在の構成から更新した差分</param>
     /// <param name="newConfiguration">差分を反映した構成</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(ProjectConfiguration current, ProjectConfigurationBuffer difference, out ProjectConfiguration newConfiguration)
+    internal static bool SaveTOML(ProjectConfiguration current, ProjectConfigurationDifference difference, out ProjectConfiguration newConfiguration)
     {
-        var configurationBuffer = new ProjectConfigurationBuffer();
+        var configurationDifference2nd = new ProjectConfigurationDifference();
 
         // 差分適用
-        configurationBuffer.StarterKitFolderLocation = difference.StarterKitFolderLocation ?? current.StarterKitFolderLocation;
-        configurationBuffer.UnityAssetsFolderLocation = difference.UnityAssetsFolderLocation ?? current.UnityAssetsFolderLocation;
+        configurationDifference2nd.StarterKitFolderLocation = difference.StarterKitFolderLocation ?? current.StarterKitFolderLocation;
+        configurationDifference2nd.UnityAssetsFolderLocation = difference.UnityAssetsFolderLocation ?? current.UnityAssetsFolderLocation;
 
         // 差分をマージして、イミュータブルに変換
         newConfiguration = new ProjectConfiguration(
-            configurationBuffer.StarterKitFolderLocation,
-            configurationBuffer.UnityAssetsFolderLocation);
+            configurationDifference2nd.StarterKitFolderLocation,
+            configurationDifference2nd.UnityAssetsFolderLocation);
 
         // テキストファイル書出し
         WriteToml(newConfiguration);

@@ -38,7 +38,7 @@ public partial class Login1Page : ContentPage
     void SaveConfigurationToml()
     {
         // 構成ファイルの更新差分
-        var configurationDifference = new Models.FileEntries.ConfigurationBuffer()
+        var configurationDifference = new Models.FileEntries.ConfigurationDifference()
         {
             CurrentYourCircleFolderName = this.Login1PageVM.YourCircleFolderName,
             CurrentYourWorkFolderName = this.Login1PageVM.YourWorkFolderName,

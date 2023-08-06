@@ -306,7 +306,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
             this.SelectedTilesetRecord.TitleAsStr = titleAsStr;
 
             this.SaveSelectedTileset(
-                difference: new TilesetLocalConfigurationBuffer()
+                difference: new TilesetLocalConfigurationDifference()
                 {
                     Title = TilesetTitle.FromString(titleAsStr),
                 });
@@ -321,7 +321,7 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// <summary>
     ///     選択中のタイルセットを保存
     /// </summary>
-    public void SaveSelectedTileset(TilesetLocalConfigurationBuffer difference)
+    public void SaveSelectedTileset(TilesetLocalConfigurationDifference difference)
     {
         // ファイル・ステムが UUID ではないなら、何もしません
         if (!UUIDHelper.IsMatch(this.SelectedTilesetFileStemAsStr))

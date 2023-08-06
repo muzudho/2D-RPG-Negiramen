@@ -46,7 +46,7 @@
                 foreach (TileRecord record in tilesetSettings.RecordList)
                 {
                     tilesetSettingsVM.RecordViewModelList.Add(
-                        TileRecordViewModel.FromModel(
+                        TileRecordVisualBuffer.FromModel(
                             tileRecord: record,
                             workingRect: record.Rectangle.ToFloat()));
                 }
@@ -81,7 +81,7 @@
         /// <summary>
         /// 対象のタイルセットに含まれるすべてのタイルの記録
         /// </summary>
-        internal List<TileRecordViewModel> RecordViewModelList { get; private set; } = new List<TileRecordViewModel>();
+        internal List<TileRecordVisualBuffer> RecordViewModelList { get; private set; } = new List<TileRecordVisualBuffer>();
         #endregion
 
         #region プロパティ（次に採番できるＩｄ。１から始まる）
@@ -110,7 +110,7 @@
             Models.LogicalDelete logicalDelete)
         {
             this.RecordViewModelList.Add(
-                TileRecordViewModel.FromModel(
+                TileRecordVisualBuffer.FromModel(
                     tileRecord: new TileRecord(
                         id,
                         rect,
@@ -139,7 +139,7 @@
                     Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{recordVM.Id.AsBASE64}]");
 
                     // 差替え
-                    this.RecordViewModelList[i] = TileRecordViewModel.FromModel(
+                    this.RecordViewModelList[i] = TileRecordVisualBuffer.FromModel(
                         tileRecord: new TileRecord(
                             id: recordVM.Id,
                             rect: recordVM.SourceRectangle,
@@ -162,7 +162,7 @@
         /// <param name="tileId">タイルＩｄ</param>
         /// <param name="resultVMOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetTileById(TileId tileId, out TileRecordViewModel? resultVMOrNull)
+        internal bool TryGetTileById(TileId tileId, out TileRecordVisualBuffer? resultVMOrNull)
         {
             foreach (var recordVM in this.RecordViewModelList)
             {
@@ -185,7 +185,7 @@
         /// <param name="sourceRect">矩形</param>
         /// <param name="resultVMOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetByRectangle(TheGeometric.RectangleInt sourceRect, out TileRecordViewModel? resultVMOrNull)
+        internal bool TryGetByRectangle(TheGeometric.RectangleInt sourceRect, out TileRecordVisualBuffer? resultVMOrNull)
         {
             foreach (var recordVM in this.RecordViewModelList)
             {

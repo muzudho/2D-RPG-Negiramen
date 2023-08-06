@@ -1,13 +1,13 @@
 ﻿namespace _2D_RPG_Negiramen.Models.FileEntries;
 
 /// <summary>
-///     😁 タイルセット・ローカル構成バッファー
+///     😁 タイルセット・ローカル構成の差分
 ///     
 ///     <list type="bullet">
 ///         <item>ミュータブル</item>
 ///     </list>
 /// </summary>
-public class TilesetLocalConfigurationBuffer
+public class TilesetLocalConfigurationDifference
 {
     // - インターナル・プロパティ
 

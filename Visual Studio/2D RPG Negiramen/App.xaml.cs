@@ -264,7 +264,7 @@ public partial class App : Application
             // 初回時は、構成ファイルが無いので、新規作成する
             if (Models.FileEntries.Configuration.SaveTOML(
                 current: Models.FileEntries.Configuration.Empty,
-                difference: new Models.FileEntries.ConfigurationBuffer(),
+                difference: new Models.FileEntries.ConfigurationDifference(),
                 out configuration))
             {
                 // Ok
@@ -323,7 +323,7 @@ public partial class App : Application
             // 初回時は、構成ファイルが無いので、新規作成する
             if (Models.FileEntries.ProjectConfiguration.SaveTOML(
                 current: Models.FileEntries.ProjectConfiguration.Empty,
-                difference: new Models.FileEntries.ProjectConfigurationBuffer(),
+                difference: new Models.FileEntries.ProjectConfigurationDifference(),
                 out projectConfiguration))
             {
                 // Ok

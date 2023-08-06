@@ -43,7 +43,7 @@ class Settings
         // ======
         //
         // 全部ヌルなので、既定値を入れていきます
-        var buffer = new SettingsBuffer()
+        var difference = new SettingsDifference()
         {
             // 一辺が 2048 ピクセルのキャンバスを想定し、両端に太さが 2px のグリッドの線があって 1px ずつ食み出るから 2px 引いて 2046
             TileMaxSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(2046), new Models.Geometric.HeightInt(2046)),
@@ -76,7 +76,7 @@ class Settings
                         {
                             if (maxWidthObj is int maxWidthAsInt)
                             {
-                                buffer.TileMaxSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(maxWidthAsInt), buffer.TileMaxSize.Height);
+                                difference.TileMaxSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(maxWidthAsInt), difference.TileMaxSize.Height);
                             }
                         }
 
@@ -85,7 +85,7 @@ class Settings
                         {
                             if (maxHeightObj is int maxHeightAsInt)
                             {
-                                buffer.TileMaxSize = new Models.Geometric.SizeInt(buffer.TileMaxSize.Width, new Models.Geometric.HeightInt(maxHeightAsInt));
+                                difference.TileMaxSize = new Models.Geometric.SizeInt(difference.TileMaxSize.Width, new Models.Geometric.HeightInt(maxHeightAsInt));
                             }
                         }
                     }
@@ -102,7 +102,7 @@ class Settings
         finally
         {
             settings = new Settings(
-                buffer.TileMaxSize);
+                difference.TileMaxSize);
         }
     }
     #endregion
@@ -115,7 +115,7 @@ class Settings
     /// <param name="difference">現在の設定から更新した差分</param>
     /// <param name="newSettings">差分を反映した設定</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(Settings current, SettingsBuffer difference, out Settings newSettings)
+    internal static bool SaveTOML(Settings current, SettingsDifference difference, out Settings newSettings)
     {
         // フォルダ名は自動的に与えられているので、これを使う
         string appDataDirAsStr = FileSystem.Current.AppDataDirectory;
@@ -124,16 +124,16 @@ class Settings
         // 保存したいファイルへのパス
         var settingsFilePathAsStr = System.IO.Path.Combine(appDataDirAsStr, "settings.toml");
 
-        var settingsBuffer = new SettingsBuffer();
+        var settingsDifference2nd = new SettingsDifference();
 
         // 差分適用
-        settingsBuffer.TileMaxSize = difference.TileMaxSize == null ? current.TileMaxSize : difference.TileMaxSize;
+        settingsDifference2nd.TileMaxSize = difference.TileMaxSize ?? current.TileMaxSize;
 
         var text = $@"[tile]
 
 # 一辺が 2048 ピクセルのキャンバスを想定し、両端に太さが 2px のグリッドの線があって 1px ずつ食み出るから 2px 引いて 2046
-max_width = {settingsBuffer.TileMaxSize.Width.AsInt}
-max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
+max_width = {settingsDifference2nd.TileMaxSize.Width.AsInt}
+max_height = {settingsDifference2nd.TileMaxSize.Height.AsInt}
 ";
 
         // 上書き
@@ -141,7 +141,7 @@ max_height = {settingsBuffer.TileMaxSize.Height.AsInt}
 
         // イミュータブル・オブジェクトを生成
         newSettings = new Settings(
-            settingsBuffer.TileMaxSize);
+            settingsDifference2nd.TileMaxSize);
         return true;
     }
     #endregion

@@ -135,18 +135,18 @@ internal class TilesetLocalConfiguration
     /// <param name="difference">現在の構成から更新した差分</param>
     /// <param name="newConfiguration">差分を反映した構成</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(TheFileEntryLocations.UnityAssets.Images.TilesetLocalToml tilesetLocalConfigurationLocation, TilesetLocalConfiguration current, TilesetLocalConfigurationBuffer difference, out TilesetLocalConfiguration newConfiguration)
+    internal static bool SaveTOML(TheFileEntryLocations.UnityAssets.Images.TilesetLocalToml tilesetLocalConfigurationLocation, TilesetLocalConfiguration current, TilesetLocalConfigurationDifference difference, out TilesetLocalConfiguration newConfiguration)
     {
-        var configurationBuffer = new TilesetLocalConfigurationBuffer();
+        var configurationDifference2nd = new TilesetLocalConfigurationDifference();
 
         // 差分適用
-        configurationBuffer.Title = difference.Title ?? current.Title;
-        configurationBuffer.Author = difference.Author ?? current.Author;
+        configurationDifference2nd.Title = difference.Title ?? current.Title;
+        configurationDifference2nd.Author = difference.Author ?? current.Author;
 
         // 差分をマージして、イミュータブルに変換
         newConfiguration = new TilesetLocalConfiguration(
-            title: configurationBuffer.Title ?? throw new Exception(),
-            author: configurationBuffer.Author ?? throw new Exception());
+            title: configurationDifference2nd.Title ?? throw new Exception(),
+            author: configurationDifference2nd.Author ?? throw new Exception());
 
         WriteTOML(
             tilesetLocalConfigurationLocation: tilesetLocalConfigurationLocation,

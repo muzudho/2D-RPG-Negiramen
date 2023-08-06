@@ -61,9 +61,9 @@ class StarterKitConfiguration
     /// <param name="difference">現在の構成から更新した差分</param>
     /// <param name="newConfiguration">差分を反映した構成</param>
     /// <returns>完了した</returns>
-    internal static bool SaveTOML(StarterKitConfiguration current, StarterKitConfigurationBuffer difference, out StarterKitConfiguration newConfiguration)
+    internal static bool SaveTOML(StarterKitConfiguration current, StarterKitConfigurationDifference difference, out StarterKitConfiguration newConfiguration)
     {
-        var configurationBuffer = new StarterKitConfigurationBuffer();
+        var configurationDifference2nd = new StarterKitConfigurationDifference();
 
         //
         // 注意：　変数展開後のパスではなく、変数展開前のパス文字列を保存すること
