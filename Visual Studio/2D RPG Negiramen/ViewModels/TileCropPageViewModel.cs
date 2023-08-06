@@ -1515,47 +1515,58 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
-                {
-                    return selectedTileVM.Title.AsStr;
-                }
-                else
-                {
-                    // タイル・カーソル無し時
-                    return string.Empty;
-                }
+                string title = string.Empty;
+
+                this.selectedTileRecordVisualBufferOption.Unwrap(
+                    some: (contents) =>
+                    {
+                        title = contents.Title.AsStr;
+                    },
+                    none: () =>
+                    {
+                        // タイル・カーソル無し時
+                    });
+
+                return title;
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
-                {
-                    if (selectedTileVM.Title.AsStr == value)
-                    {
-                        // 値に変化がない
-                        return;
-                    }
+                bool isNoChange = false;
 
-                    var rect1 = selectedTileVM.SourceRectangle;
-                    selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: selectedTileVM.Id,
-                            rect: rect1,
-                            title: new Models.TileTitle(value),
-                            logicalDelete: selectedTileVM.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom)));
-                }
-                else
-                {
-                    // タイル・カーソル無し時
-                    var rect1 = Models.Geometric.RectangleInt.Empty;
-                    selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: TileIdOrEmpty.Empty,
-                            rect: rect1,
-                            title: new Models.TileTitle(value),
-                            logicalDelete: Models.LogicalDelete.False),
-                       workingRect: rect1.Do(this.Zoom)));
-                }
+                this.selectedTileRecordVisualBufferOption.Unwrap(
+                    some: (contents) =>
+                    {
+                        if (contents.Title.AsStr == value)
+                        {
+                            // 値に変化がない
+                            isNoChange = true;
+                            return;
+                        }
+
+                        var rect1 = contents.SourceRectangle;
+                        selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
+                            tileRecord: new Models.TileRecord(
+                                id: contents.Id,
+                                rect: rect1,
+                                title: new Models.TileTitle(value),
+                                logicalDelete: contents.LogicalDelete),
+                            workingRect: rect1.Do(this.Zoom)));
+                    },
+                    none: () =>
+                    {
+                        // タイル・カーソル無し時
+                        var rect1 = Models.Geometric.RectangleInt.Empty;
+                        selectedTileRecordVisualBufferOption = new Option<TileRecordVisualBuffer>(TileRecordVisualBuffer.FromModel(
+                            tileRecord: new Models.TileRecord(
+                                id: TileIdOrEmpty.Empty,
+                                rect: rect1,
+                                title: new Models.TileTitle(value),
+                                logicalDelete: Models.LogicalDelete.False),
+                           workingRect: rect1.Do(this.Zoom)));
+                    });
+
+                if (isNoChange)
+                    return;
 
                 OnPropertyChanged(nameof(SelectedTileTitleAsStr));
             }
@@ -1983,6 +1994,8 @@
             // 軽くはない処理
             this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.SourceCroppedCursorRect);
             this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.SourceCroppedCursorRect);
+
+            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
         #endregion
 
