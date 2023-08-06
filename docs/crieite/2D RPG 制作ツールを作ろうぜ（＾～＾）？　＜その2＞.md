@@ -2749,4 +2749,26 @@ author = "むずでょ"
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　フレームワークに不具合があると、トリックコードが増えていくの　わらう」  
 
+## 全部の操作に Do と Undo を用意しろだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　全部の操作に Do と Undo を用意しろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　アンドゥによる削除は　完全削除で、  
+手動操作による削除は　論理削除なのな。  
+これは　非対称でいいのかだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　論理削除フラグを　下げるだけで　元データが復活するのだから、  
+削除のアンドゥには　向いてるのに」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　追加のアンドゥには向いてるの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　追加のアンドゥで　論理削除されたデータを残すとして、  
+リドゥするのは　論理削除の解除ではなくて　上書きなんで、  
+追加のリドゥの役には立たないぜ」  
+
 ＜書きかけ＞

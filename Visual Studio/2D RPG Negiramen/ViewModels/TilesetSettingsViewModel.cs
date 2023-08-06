@@ -2,7 +2,6 @@
 {
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.FileEntries;
-    using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
     using CommunityToolkit.Mvvm.ComponentModel;
     using System.Diagnostics;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
@@ -34,7 +33,7 @@
         /// </summary>
         /// <param name="tilesetSettingsVM">タイルセット設定ビューモデル</param>
         /// <returns></returns>
-        internal static bool LoadCSV(DataCsvTilesetCsv tilesetSettingsFile, out TilesetSettingsViewModel tilesetSettingsVM)
+        internal static bool LoadCSV(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tilesetSettingsFile, out TilesetSettingsViewModel tilesetSettingsVM)
         {
             // 既定値の設定（空っぽ）
             tilesetSettingsVM = new TilesetSettingsViewModel();
@@ -145,6 +144,41 @@
                             rect: recordVM.SourceRectangle,
                             title: recordVM.Title,
                             logicalDelete: Models.LogicalDelete.True),
+                        workingRect: recordVM.WorkingRectangle);
+
+                    return true;
+                }
+            }
+
+            return false;
+        }
+        #endregion
+
+        #region メソッド（タイルの論理削除の取消）
+        /// <summary>
+        ///     タイルの論理削除の取消
+        /// </summary>
+        /// <param name="id">タイルＩｄ</param>
+        /// <remarks>完了</remarks>
+        internal bool UndeleteLogical(
+            Models.TileIdOrEmpty id)
+        {
+            // 愚直な検索
+            for (int i = 0; i < this.RecordViewModelList.Count; i++)
+            {
+                var recordVM = this.RecordViewModelList[i];
+
+                if (recordVM.Id == id)
+                {
+                    Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除の取消　id: [{recordVM.Id.AsBASE64}]");
+
+                    // 差替え
+                    this.RecordViewModelList[i] = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new TileRecord(
+                            id: recordVM.Id,
+                            rect: recordVM.SourceRectangle,
+                            title: recordVM.Title,
+                            logicalDelete: Models.LogicalDelete.False),
                         workingRect: recordVM.WorkingRectangle);
 
                     return true;
@@ -340,7 +374,7 @@
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-        internal bool SaveCSV(DataCsvTilesetCsv tileSetSettingsFile)
+        internal bool SaveCSV(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
             // 論理削除されているものも保存する
             return TilesetSettings.SaveCSV(

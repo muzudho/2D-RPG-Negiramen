@@ -1673,7 +1673,11 @@
         /// </summary>
         public void RemoveRegisteredTile()
         {
-            new RemoveRegisteredTileProcessing(this).Do();
+            App.History.Do(new RemoveRegisteredTileProcessing(
+                owner: this,
+                tileIdOrEmpty: this.SelectedTileIdOrEmpty));
+            this.OnPropertyChanged(nameof(CanUndo));
+            this.OnPropertyChanged(nameof(CanRedo));
         }
         #endregion
 
@@ -2431,7 +2435,7 @@
                 // 追加・削除ボタンの表示状態を更新したい
                 this.Owner.OnPropertyChanged(nameof(AddsButtonHint));
                 this.Owner.OnPropertyChanged(nameof(AddsButtonText));
-                this.Owner.OnPropertyChanged(nameof(AddsButtonIsEnabled));                
+                this.Owner.OnPropertyChanged(nameof(AddsButtonIsEnabled));
 
                 //  ［削除］ボタンの再描画
                 this.Owner.InvalidateDeletesButton();
@@ -2479,9 +2483,12 @@
             ///     生成
             /// </summary>
             /// <param name="owner"></param>
-            internal RemoveRegisteredTileProcessing(TileCropPageViewModel owner)
+            internal RemoveRegisteredTileProcessing(
+                TileCropPageViewModel owner,
+                TileIdOrEmpty tileIdOrEmpty)
             {
                 this.Owner = owner;
+                TileIdOrEmpty = tileIdOrEmpty;
             }
 
             public void Do()
@@ -2494,13 +2501,13 @@
                 //
                 if (this.Owner.TilesetSettingsVM.DeleteLogical(
                     // 現在選択中のタイルのＩｄ
-                    id: this.Owner.SelectedTileIdOrEmpty))
+                    id: this.TileIdOrEmpty))
                 {
                     // タイルセット設定ビューモデルに変更あり
                     this.Owner.InvalidateTilesetSettingsVM();
                 }
 
-                Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 context.SelectedTileId: [{this.Owner.SelectedTileIdOrEmpty.AsBASE64}]");
+                Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
 
                 //
                 // 設定ファイルの保存
@@ -2524,7 +2531,40 @@
 
             public void Undo()
             {
-                throw new NotImplementedException();
+                //
+                // 設定ファイルの編集
+                // ==================
+                //
+                //      - 選択中のタイルの論理削除の取消
+                //
+                if (this.Owner.TilesetSettingsVM.UndeleteLogical(
+                    // 現在選択中のタイルのＩｄ
+                    id: this.TileIdOrEmpty))
+                {
+                    // タイルセット設定ビューモデルに変更あり
+                    this.Owner.InvalidateTilesetSettingsVM();
+                }
+
+                Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
+
+                //
+                // 設定ファイルの保存
+                // ==================
+                //
+                if (this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetSettingsFile))
+                {
+                    // 保存成功
+                }
+                else
+                {
+                    // TODO 保存失敗時のエラー対応
+                }
+
+                //
+                // カラーマップの再描画
+                // ====================
+                //
+                this.Owner.InvalidateGraphicsViewOfTilesetWorking();
             }
 
             // - プライベート・プロパティ
@@ -2533,6 +2573,11 @@
             ///     外側のクラス
             /// </summary>
             TileCropPageViewModel Owner { get; }
+
+            /// <summary>
+            ///     ［タイル］のＩｄ
+            /// </summary>
+            TileIdOrEmpty TileIdOrEmpty { get; }
         }
         #endregion
     }
