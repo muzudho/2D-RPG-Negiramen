@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
-using _2D_RPG_Negiramen.Models.FileEntries;
 using _2D_RPG_Negiramen.ViewModels;
 using System.IO;
 using System.Diagnostics;
@@ -283,21 +282,7 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
-    //#region イベントハンドラ（［ホーム］ボタン・クリック時）
-    ///// <summary>
-    /////     ［ホーム］ボタン・クリック時
-    ///// </summary>
-    ///// <param name="sender"></param>
-    ///// <param name="e"></param>
-    //async void HomeBtn_Clicked(object sender, EventArgs e)
-    //{
-    //    await PolicyOfView.ReactOnPushed((Button)sender);
-
-    //    await Shell.Current.GoToAsync("//HomePage");
-    //}
-    //#endregion
-
-    #region イベントハンドラ（［タイルセット一覧］ボタン・クリック時）
+    #region イベントハンドラ（［タイルセット一覧］ボタン　関連）
     /// <summary>
     ///     ［タイルセット一覧］ボタン・クリック時
     /// </summary>
@@ -311,13 +296,13 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（タップ時）
+    #region イベントハンドラ（［タイルセット］画像　関連）
     /// <summary>
-    ///     タップ時
+    ///     ［タイルセット］画像タップ時
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    void TapGestureRecognizer_Tapped(object sender, TappedEventArgs e)
+    void TilesetImage_OnTapped(object sender, TappedEventArgs e)
     {
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
@@ -332,17 +317,17 @@ public partial class TileCropPage : ContentPage
             // 疑似マウス・ダウン
             // ==================
             //
-            Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・ダウン");
+            Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
 
             // ポイントしている位置
             PointingDeviceCurrentPoint = PointingDeviceStartPoint = new Models.Geometric.PointFloat(
                 new Models.Geometric.XFloat((float)tappedPoint.Value.X),
                 new Models.Geometric.YFloat((float)tappedPoint.Value.Y));
-            // Trace.WriteLine($"[TileCropPage TapGestureRecognizer_Tapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
+            // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
 
             // タイル・フォームの表示更新
             RefreshTileForm();
-            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TapGestureRecognizer_Tapped 疑似マウスダウン]");
+            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
         }
         else
         {
@@ -351,7 +336,7 @@ public partial class TileCropPage : ContentPage
             // ==================
             //
 
-            Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 疑似マウス・アップ");
+            Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
 
             // ポイントしている位置
             PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
@@ -361,18 +346,16 @@ public partial class TileCropPage : ContentPage
 
             // タイル・フォームの表示更新
             RefreshTileForm();
-            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TapGestureRecognizer_Tapped 疑似マウスアップ]");
+            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
         }
     }
-    #endregion
 
-    #region イベントハンドラ（マウスカーソル移動時）
     /// <summary>
-    ///     マウスカーソル移動時
+    ///     ［タイルセット］画像ポインター移動時
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    void PointerGestureRecognizer_PointerMoved(object sender, PointerEventArgs e)
+    void TilesetImage_OnPointerMoved(object sender, PointerEventArgs e)
     {
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
@@ -396,15 +379,13 @@ public partial class TileCropPage : ContentPage
             context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
         }
     }
-    #endregion
 
-    #region イベントハンドラ（表面の描画時）
     /// <summary>
-    ///     表面の描画時
+    ///     ［タイルセット］画像表面の描画時
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    void skiaView1_PaintSurface(object sender, SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e)
+    void TilesetImageSkiaView_PaintSurface(object sender, SkiaSharp.Views.Maui.SKPaintSurfaceEventArgs e)
     {
         var bindingContext = this.TileCropPageVM;
 
@@ -421,7 +402,7 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（［追加］ボタン・クリック時）
+    #region イベントハンドラ（［追加］ボタン　関連）
     /// <summary>
     ///     ［追加］ボタン・クリック時
     /// </summary>
@@ -506,7 +487,7 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（［削除］ボタン・クリック時）
+    #region イベントハンドラ（［削除］ボタン　関連）
     /// <summary>
     ///     ［削除］ボタン・クリック時
     /// </summary>
@@ -555,9 +536,9 @@ public partial class TileCropPage : ContentPage
     }
     #endregion
 
-    #region イベントハンドラ（ズーム変更時）
+    #region イベントハンドラ（［ズーム］テキスト変更時）
     /// <summary>
-    ///     ズーム変更時
+    ///     ［ズーム］テキスト変更時
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>

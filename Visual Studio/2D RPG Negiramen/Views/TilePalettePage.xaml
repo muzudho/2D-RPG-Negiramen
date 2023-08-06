@@ -25,8 +25,8 @@
             <Grid Grid.Column="0"
                   RowDefinitions="*" ColumnDefinitions="*">
 
-                <Image x:Name="tileImage"
-                       Margin="4,4,0,0"
+                <!-- x:Name="tileImage" -->
+                <Image Margin="4,4,0,0"
                        HorizontalOptions="Start" VerticalOptions="Start"
                        WidthRequest="64" HeightRequest="64"
                        Source="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets/Doujin Circle Negiramen/Negiramen Quest/Auto Generated/Images/Tilesets/86A25699-E391-4D61-85A5-356BA8049881.png">

@@ -2502,4 +2502,28 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　ネギラーメンから　素材を削除するときは、アンドゥもできません、ということにするんだぜ」  
 
+# 📅 （2023-08-06 sun）アンドゥ・リドゥ機能を作れだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　アンドゥ・リドゥ機能を作れだぜ」  
+
+![202308_maui_06-1152--Done-o2o0.png](https://crieit.now.sh/upload_images/eced50158e1543811a537a2f5002b09664cf0b5da767c.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　コンピューター将棋と同じだぜ。　全ての操作には、進むと　戻るが　あるんだぜ」  
+
+![202308_maui_06-1201--History-o2o0.png](https://crieit.now.sh/upload_images/b4b3caeb34f9c7c450b0e45a8456888a64cf0d1c9d3c4.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　履歴管理機能も　便利機能を付けなければ　芯は　これだけだぜ」  
+
+![202308_maui_06-1216--EventHandler-o2o0.png](https://crieit.now.sh/upload_images/7b4da01e8824b99d89ebdaf0f94c7abc64cf10b91cc4e.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　イベントハンドラの内、自動ではなく、ユーザーの操作によって呼び出されるものが  
+ヒストリーの記録対象になるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　じゃあ　試しに　ズームを　ヒストリカルにしなさいよ」  
+
 ＜書きかけ＞

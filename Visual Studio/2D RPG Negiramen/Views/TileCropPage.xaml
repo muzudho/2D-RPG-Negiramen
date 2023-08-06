@@ -337,10 +337,10 @@
                                    Margin="4,4,0,0"
                                    WidthRequest="{Binding TilesetWorkingImageWidthAsInt}" HeightRequest="{Binding TilesetWorkingImageHeightAsInt}"                       
                                    IgnorePixelScaling="True"
-                                   PaintSurface="skiaView1_PaintSurface">
+                                   PaintSurface="TilesetImageSkiaView_PaintSurface">
                     <skia:SKCanvasView.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped"/>
-                        <PointerGestureRecognizer PointerMoved="PointerGestureRecognizer_PointerMoved"/>
+                        <TapGestureRecognizer Tapped="TilesetImage_OnTapped"/>
+                        <PointerGestureRecognizer PointerMoved="TilesetImage_OnPointerMoved"/>
                     </skia:SKCanvasView.GestureRecognizers>
                 </skia:SKCanvasView>
 
