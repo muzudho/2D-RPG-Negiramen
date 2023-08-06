@@ -2669,4 +2669,31 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　👆　ズームだけ　アンドゥ・リドゥに対応したぜ」  
 
+## マップ切抜き画面、前に開いたときの内容が残ってる
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　お父ん、バグがあるぜ。  
+マップ切抜き画面、前に開いたときの内容が残ってる」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　キャッシュされてるよな。  
+破棄して　新規作成してほしいんだが」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　キャッシュを止めてもらう方法がないか　調べるか」  
+
+📖 [.NET MAUI シェル ページ](https://learn.microsoft.com/ja-jp/dotnet/maui/fundamentals/shell/pages)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　MAUI が更新されてないという情報が　よく見つかるな」  
+
+📖 [Call Dispose() on Page and ViewModel when the page is popped if they implement IDisposable #7354](https://github.com/dotnet/maui/issues/7354)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　画面遷移が　進んでいるのか、　戻っているのか　フレームワークに情報を与える方法が無いのだから  
+キャッシュを削除していいのか、　キャッシュを残すべきか、判別できないんじゃないの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　C# で　メモリ管理を自力実装することになるとは……」  
+
 ＜書きかけ＞

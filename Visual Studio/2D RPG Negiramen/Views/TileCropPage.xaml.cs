@@ -122,25 +122,39 @@ public partial class TileCropPage : ContentPage
 
     // - プライベート・イベントハンドラ
 
-    #region イベントハンドラ（ページ読込完了時）
+    #region イベントハンドラ（ページ新規生成時）
     /// <summary>
-    ///     ページ読込完了時
+    ///     ページ新規生成時
+    ///     
+    ///     <list type="bullet">
+    ///         <item>訪問時ではないことに注意</item>
+    ///     </list>
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
     void ContentPage_Loaded(object sender, EventArgs e)
     {
-        ////
-        //// ユーザー設定の読込
-        //// ==========================
-        ////
-        //StarterKitConfiguration starterKitConfiguration = App.GetOrLoadStarterKitConfiguration();
+        Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ページ新規作成時");
+    }
+    #endregion
+
+    #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
+    /// <summary>
+    ///     別ページから、このページに訪れたときに呼び出される
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="e"></param>
+    void thisContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
+    {
+        Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ページ来訪時");
 
         //
         // ビューモデルの取得
         // ==================
         //
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
+
+        context.ReactOnVisited();
 
         //
         // タイル設定ファイルの読込
@@ -265,20 +279,6 @@ public partial class TileCropPage : ContentPage
         // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
         var context = this.TileCropPageVM;
         context.InvalidateLocale();
-    }
-    #endregion
-
-    #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
-    /// <summary>
-    ///     別ページから、このページに訪れたときに呼び出される
-    /// </summary>
-    /// <param name="sender"></param>
-    /// <param name="e"></param>
-    void thisContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
-    {
-        var context = this.TileCropPageVM;
-
-        context.ReactOnVisited();
     }
     #endregion
 
@@ -414,70 +414,8 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        //
-        // 切抜きカーソルの中身
-        //
-        TileRecordViewModel tileRecordViewModel;
-
-        // 切抜きカーソルの中身を取得
-        if (context.SelectedTileVMOption.TryGetValue(out TileRecordViewModel? tileRecordViewModelOrNull))
-        {
-            tileRecordViewModel = tileRecordViewModelOrNull ?? throw new NullReferenceException(nameof(tileRecordViewModelOrNull));
-        }
-        else
-        {
-            // 空カーソルなら、ここに来ない（何もしない）
-            throw new InvalidOperationException("[TileCropPage.xaml.cs AddsButton_Clicked] cropped cursor is nothing");
-        }
-
-        if (context.SelectedTileId == Models.TileId.Empty)
-        {
-            // Ｉｄが無いということは、新規作成だ
-
-            // 新しいＩｄを追加
-            context.SelectedTileId = context.TilesetSettingsVM.UsableId;
-
-            context.TilesetSettingsVM.IncreaseUsableId();
-
-            // ビューの再描画（タイルＩｄ更新）
-            context.NotifyTileIdChange();
-
-            // タイルを新規登録（ダミー値。あとですぐ上書きする）
-            context.TilesetSettingsVM.AddTile(
-                id: context.SelectedTileId,
-                rect: RectangleInt.Empty,
-                workingRect: RectangleFloat.Empty,
-                title: Models.TileTitle.Empty,
-                logicalDelete: Models.LogicalDelete.False);
-        }
-
-        //
-        // この時点で、タイルは必ず登録されている
-        //
-
-        // タイルＩｄを使って、タイル・レコードを取得、その内容を上書き
-        if (context.TilesetSettingsVM.TryGetTileById(context.SelectedTileId, out TileRecordViewModel? tileRecordVMOrNull))
-        {
-            TileRecordViewModel recordVM = tileRecordVMOrNull ?? throw new NullReferenceException(nameof(tileRecordVMOrNull));
-
-            recordVM.SourceRectangle = context.SourceCroppedCursorRect;
-            recordVM.WorkingRectangle = context.SourceCroppedCursorRect.Do(context.Zoom);
-            recordVM.Title = new Models.TileTitle(context.SelectedTileTitleAsStr);
-            recordVM.LogicalDelete = Models.LogicalDelete.False;
-        }
-
-        //
-        // 設定ファイルの保存
-        // ==================
-        //
-        if (context.TilesetSettingsVM.SaveCSV(context.TilesetSettingsFile))
-        {
-            // 保存成功
-        }
-        else
-        {
-            // TODO 保存失敗時のエラー対応
-        }
+        // 登録タイル追加
+        context.AddRegisteredTile();
 
         //
         // カラーマップの再描画

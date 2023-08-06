@@ -170,6 +170,13 @@ public interface ITileCropPageViewModel
     bool IsMouseDragging { get; }
     #endregion
 
+    #region メソッド（［登録タイル］　関連）
+    /// <summary>
+    ///     ［登録タイル］追加
+    /// </summary>
+    void AddRegisteredTile();
+    #endregion
+
     // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）

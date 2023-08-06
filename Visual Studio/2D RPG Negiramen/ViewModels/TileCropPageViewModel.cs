@@ -1630,6 +1630,85 @@
         }
         #endregion
 
+        #region メソッド（［登録タイル］　関連）
+        /// <summary>
+        ///     TODO ［登録タイル］追加
+        /// </summary>
+        public void AddRegisteredTile()
+        {
+            //
+            // 切抜きカーソルの中身
+            //
+            TileRecordViewModel tileRecordViewModel;
+
+            // 切抜きカーソルの中身を取得
+            if (this.SelectedTileVMOption.TryGetValue(out TileRecordViewModel? tileRecordViewModelOrNull))
+            {
+                tileRecordViewModel = tileRecordViewModelOrNull ?? throw new NullReferenceException(nameof(tileRecordViewModelOrNull));
+            }
+            else
+            {
+                // 空カーソルなら、ここに来ない（何もしない）
+                throw new InvalidOperationException("[TileCropPage.xaml.cs AddsButton_Clicked] cropped cursor is nothing");
+            }
+
+            if (this.SelectedTileId == Models.TileId.Empty)
+            {
+                // Ｉｄが無いということは、新規作成だ
+
+                // 新しいＩｄを追加
+                this.SelectedTileId = this.TilesetSettingsVM.UsableId;
+
+                this.TilesetSettingsVM.IncreaseUsableId();
+
+                // ビューの再描画（タイルＩｄ更新）
+                this.NotifyTileIdChange();
+
+                // タイルを新規登録（ダミー値。あとですぐ上書きする）
+                this.TilesetSettingsVM.AddTile(
+                    id: this.SelectedTileId,
+                    rect: RectangleInt.Empty,
+                    workingRect: RectangleFloat.Empty,
+                    title: Models.TileTitle.Empty,
+                    logicalDelete: Models.LogicalDelete.False);
+            }
+
+            //
+            // この時点で、タイルは必ず登録されている
+            //
+
+            // タイルＩｄを使って、タイル・レコードを取得、その内容を上書き
+            if (this.TilesetSettingsVM.TryGetTileById(this.SelectedTileId, out TileRecordViewModel? tileRecordVMOrNull))
+            {
+                TileRecordViewModel recordVM = tileRecordVMOrNull ?? throw new NullReferenceException(nameof(tileRecordVMOrNull));
+
+                recordVM.SourceRectangle = this.SourceCroppedCursorRect;
+                recordVM.WorkingRectangle = this.SourceCroppedCursorRect.Do(this.Zoom);
+                recordVM.Title = new Models.TileTitle(this.SelectedTileTitleAsStr);
+                recordVM.LogicalDelete = Models.LogicalDelete.False;
+            }
+
+            //
+            // 設定ファイルの保存
+            // ==================
+            //
+            if (this.TilesetSettingsVM.SaveCSV(this.TilesetSettingsFile))
+            {
+                // 保存成功
+            }
+            else
+            {
+                // TODO 保存失敗時のエラー対応
+            }
+
+            ////
+            //// カラーマップの再描画
+            //// ====================
+            ////
+            //this.coloredMapGraphicsView1.Invalidate();
+        }
+        #endregion
+
         // - インターナル・プロパティ
 
         #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
@@ -2099,8 +2178,9 @@
 
         // - プライベート・クラス
 
+        #region クラス（ズーム処理）
         /// <summary>
-        ///     ズームしました
+        ///     ズーム処理
         /// </summary>
         class ZoomProcessing : IProcessing
         {
@@ -2227,5 +2307,6 @@
                 this.Owner.OnPropertyChanged(nameof(WorkingCroppedCursorHeightAsPresentableText));   // TODO これは要るか？
             }
         }
+        #endregion
     }
 }
