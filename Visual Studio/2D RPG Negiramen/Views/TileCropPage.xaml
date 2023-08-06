@@ -74,14 +74,25 @@
                        FontSize="Large"/>
             </HorizontalStackLayout>
 
-            <!-- ロケール選択 -->
-            <Picker Grid.Column="1"
-                    VerticalOptions="Center"
-                    HorizontalOptions="End"
-                    ItemsSource="{Binding CultureInfoCollection}"
-                    ItemDisplayBinding="{Binding NativeName}"
-                    SelectedItem="{Binding SelectedCultureInfo}"
-                    SelectedIndexChanged="LocalePicker_SelectedIndexChanged"/>
+            <HorizontalStackLayout Grid.Column="1"
+                                   HorizontalOptions="End">
+
+                <!-- リドゥ -->
+                <ImageButton VerticalOptions="Center"
+                             Source="button_redo.png"/>
+
+                <!-- アンドゥ -->
+                <ImageButton VerticalOptions="Center"
+                             Source="button_undo.png"/>
+
+                <!-- ロケール選択 -->
+                <Picker VerticalOptions="Center"
+                        ItemsSource="{Binding CultureInfoCollection}"
+                        ItemDisplayBinding="{Binding NativeName}"
+                        SelectedItem="{Binding SelectedCultureInfo}"
+                        SelectedIndexChanged="LocalePicker_SelectedIndexChanged"/>
+            </HorizontalStackLayout>
+        
         </Grid>
     </Shell.TitleView>
 

@@ -2593,4 +2593,34 @@ author = "むずでょ"
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　お父んの前で　真実に触れるなだぜ」  
 
+## アンドゥ・リドゥ　ボタンを置こうぜ？
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　アンドゥ・リドゥ　ボタンを置こうぜ？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　Unicode には　アンドゥ・リドゥに適した絵文字は無いようだぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　`アンドゥ`、 `リドゥ` と書かれたボタンが　画面上に置いてあるのも　邪魔ねえ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　日本語なのに `Undo`、 `Redo` というボタンを画面に配置するのも　負けた気になるしな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　画像ボタンは作れないのか？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👇　機能はあるみたいなんで、頑張って　絵　を描くか……」  
+
+📖 [ImageButton](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/controls/imagebutton)  
+
+![202308_maui_06-1508--Buttons-o2o0.png](https://crieit.now.sh/upload_images/a328de6484934a7e4aece14b5b4cded564cf39226f259.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　置くとこないし、右上でどうだぜ？」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　やっつけ　わらう」  
+
 ＜書きかけ＞
