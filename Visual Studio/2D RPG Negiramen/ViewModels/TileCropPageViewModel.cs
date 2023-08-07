@@ -36,306 +36,6 @@
         }
         #endregion
 
-        // - パブリック・プロパティ
-
-        #region プロパティ（［タイルセット設定］　関連）
-        /// <summary>
-        ///     ［タイルセット設定］ファイルへのパス（文字列形式）
-        /// </summary>
-        public string TilesetSettingFilePathAsStr
-        {
-            get => _tilesetSettingsFile.Path.AsStr;
-            set
-            {
-                if (value == null || String.IsNullOrWhiteSpace(value))
-                {
-                    throw new ArgumentException($"the {nameof(TilesetSettingFilePathAsStr)} must not be null or whitespace");
-                }
-
-                if (_tilesetSettingsFile.Path.AsStr != value)
-                {
-                    _tilesetSettingsFile = new TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv(
-                        pathSource: FileEntryPathSource.FromString(value),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     ［タイルセット設定］ファイルへのパス
-        /// </summary>
-        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetSettingsFile
-        {
-            get => _tilesetSettingsFile;
-            set
-            {
-                if (_tilesetSettingsFile != value)
-                {
-                    _tilesetSettingsFile = value;
-                }
-            }
-        }
-        #endregion
-
-        #region プロパティ（［タイルセット元画像］　関連）
-        /// <summary>
-        ///     ［タイルセット元画像］ファイルへのパス
-        /// </summary>
-        public TheFileEntryLocations.UnityAssets.Images.TilesetPng TilesetImageFile
-        {
-            get => tilesetImageFile;
-            set
-            {
-                if (tilesetImageFile != value)
-                {
-                    tilesetImageFile = value;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     ［タイルセット元画像］ファイルへのパス（文字列形式）
-        /// </summary>
-        public string TilesetImageFilePathAsStr
-        {
-            get => tilesetImageFile.Path.AsStr;
-            set
-            {
-                if (tilesetImageFile.Path.AsStr != value)
-                {
-                    tilesetImageFile = new TheFileEntryLocations.UnityAssets.Images.TilesetPng(
-                        pathSource: FileEntryPathSource.FromString(value),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     ［タイルセット元画像］
-        /// </summary>
-        public SKBitmap TilesetSourceBitmap => this.tilesetSourceBitmap;
-
-        /// <summary>
-        ///     ［タイルセット元画像］の設定
-        /// </summary>
-        /// <param name="bitmap"></param>
-        public void SetTilesetSourceBitmap(SKBitmap bitmap)
-        {
-            if (this.tilesetSourceBitmap != bitmap)
-            {
-                this.tilesetSourceBitmap = bitmap;
-
-                // タイルセット画像のサイズ設定（画像の再作成）
-                this.tilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
-                OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
-                OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
-
-                // 作業画像の再作成
-                this.RemakeWorkingTilesetImage();
-
-                // グリッド・キャンバス画像の再作成
-                this.RemakeGridCanvasImage();
-            }
-        }
-
-        /// <summary>
-        ///     ［タイルセット元画像］のサイズ
-        /// </summary>
-        public Models.Geometric.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
-        #endregion
-
-        #region プロパティ（［タイルセット作業画像］　関連）
-        /// <summary>
-        ///     ［タイルセット作業画像］ファイルへのパス（文字列形式）
-        /// </summary>
-        public string TilesetWorkingImageFilePathAsStr
-        {
-            get => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
-        }
-
-        /// <summary>
-        ///     ［タイルセット作業画像］ビットマップ形式
-        /// </summary>
-        public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
-        #endregion
-
-        #region プロパティ（［ズーム］　関連）
-        /// <summary>
-        ///     ズーム
-        ///     
-        ///     <list type="bullet">
-        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
-        ///     </list>
-        /// </summary>
-        public Models.Geometric.Zoom Zoom
-        {
-            get => this.zoom;
-            set
-            {
-                if (this.zoom != value)
-                {
-                    this.ZoomAsFloat = value.AsFloat;
-                }
-            }
-        }
-
-        /// <summary>
-        ///     ズーム最大
-        /// </summary>
-        public float ZoomMaxAsFloat => this.zoomMax.AsFloat;
-
-        /// <summary>
-        ///     ズーム最小
-        /// </summary>
-        public float ZoomMinAsFloat => this.zoomMin.AsFloat;
-        #endregion
-
-        #region プロパティ（［切抜きカーソル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソル］が指すタイル
-        ///     
-        ///     <list type="bullet">
-        ///         <item>［切抜きカーソル］が未確定のときも、指しているタイルにアクセスできることに注意</item>
-        ///         <item>TODO ★ ［切抜きカーソル］が指すタイルが無いとき、無いということをセットするのを忘れている？</item>
-        ///     </list>
-        /// </summary>
-        public TileRecordVisualBuffer CroppedCursorPointedTileRecordVisualBuffer
-        {
-            get => this.croppedCursorPointedTileRecordVisualBuffer;
-            set
-            {
-                var contents = this.croppedCursorPointedTileRecordVisualBuffer;
-
-                // 値に変化がない
-                if (contents == value)
-                    return;
-
-                if (value.IsNone)
-                {
-                    if (contents.IsNone)
-                    {
-                        // ［切抜きカーソル］の指すタイルが無いなら変更なし
-                    }
-                    else
-                    {
-                        // ［切抜きカーソル］の指すタイル有り時
-
-                        // TODO もっと楽にクリアーできないものか？ （変更通知を送っている）
-                        this.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
-                        this.CroppedCursorPointedTileSourceLeftAsInt = 0;
-                        this.CroppedCursorPointedTileSourceTopAsInt = 0;
-                        this.CroppedCursorPointedTileSourceWidthAsInt = 0;
-                        this.CroppedCursorPointedTileSourceHeightAsInt = 0;
-                        this.CroppedCursorPointedTileTitleAsStr = string.Empty;
-
-                        // 空にする
-                        this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.CreateEmpty();
-                    }
-                }
-                else
-                {
-                    var newValue = value;
-
-                    if (contents.IsNone)
-                    {
-                        // ［切抜きカーソル］の指すタイル無し時
-
-                        // 新規作成
-                        this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.CreateEmpty();
-                    }
-                    else
-                    {
-                        // ［切抜きカーソル］の指すタイルが有るなら構わない
-                    }
-
-                    // （変更通知を送っている）
-                    this.CroppedCursorPointedTileIdOrEmpty = newValue.Id;
-                    this.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                    this.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                    this.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                    this.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
-                    this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
-                }
-
-                // 変更通知を送りたい
-                OnPropertyChanged(nameof(AddsButtonHint));
-                OnPropertyChanged(nameof(AddsButtonText));
-                this.NotifyTileIdChange();
-                // TODO 矩形もリフレッシュしたい
-
-                // タイルタイトル
-                OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
-            }
-        }
-        #endregion
-
-        #region プロパティ（［選択タイル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソル］の指すタイルのＩｄ
-        /// </summary>
-        public Models.TileIdOrEmpty CroppedCursorPointedTileIdOrEmpty
-        {
-            get
-            {
-                var contents = this.croppedCursorPointedTileRecordVisualBuffer;
-
-                if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］の指すタイル無し時
-                    return Models.TileIdOrEmpty.Empty;
-                }
-
-                return contents.Id;
-            }
-            set
-            {
-                var contents = this.croppedCursorPointedTileRecordVisualBuffer;
-
-                if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］の指すタイル無し時
-
-                    // タイルＩｄだけ持っておく
-                    this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: value,  // 更新
-                            rect: Models.Geometric.RectangleInt.Empty,
-                            title: Models.TileTitle.Empty,
-                            logicalDelete: Models.LogicalDelete.False),
-                    workingRect: Models.Geometric.RectangleFloat.Empty);
-                }
-                else
-                {
-                    if (contents.Id == value)
-                    {
-                        // 値に変化がない
-                        return;
-                    }
-
-                    this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
-                        tileRecord: new TileRecord(
-                            id: value,  // 更新
-                            rect: contents.SourceRectangle,
-                            title: contents.Title,
-                            logicalDelete: contents.LogicalDelete),
-                        workingRect: contents.SourceRectangle.Do(this.Zoom));
-                }
-
-                this.InvalidateLocale();
-
-                // ［追加／上書き］ボタン再描画
-                this.InvalidateAddsButton();
-
-                // ［削除］ボタン再描画
-                this.InvalidateDeletesButton();
-
-                NotifyTileIdChange();
-            }
-        }
-        #endregion
-
         // - パブリック変更通知プロパティ
 
         #region 変更通知プロパティ（ロケール　関連）
@@ -815,9 +515,32 @@
         }
         #endregion
 
-        #region 変更通知プロパティ（［切抜きカーソル］　関連）
+        #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
         /// <summary>
-        ///     ［切抜きカーソル］の指すタイルの元画像ベースの矩形
+        ///     ポインティング・デバイス押下中か？
+        /// 
+        ///     <list type="bullet">
+        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
+        ///         <item>マウスじゃないと思うけど</item>
+        ///     </list>
+        /// </summary>
+        public bool IsMouseDragging
+        {
+            get => this.isMouseDragging;
+            set
+            {
+                if (this.isMouseDragging != value)
+                {
+                    this.isMouseDragging = value;
+                    OnPropertyChanged(nameof(IsMouseDragging));
+                }
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（［切抜きカーソルが指すタイル］　関連）
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
         ///     
         ///     <list type="bullet">
         ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
@@ -869,7 +592,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］元画像ベースの位置ｘ
+        ///     ［切抜きカーソルが指すタイル］の元画像ベースの位置ｘ
         /// </summary>
         public int CroppedCursorPointedTileSourceLeftAsInt
         {
@@ -937,7 +660,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］元画像ベースの位置ｙ
+        ///     ［切抜きカーソルが指すタイル］の元画像ベースの位置ｙ
         /// </summary>
         public int CroppedCursorPointedTileSourceTopAsInt
         {
@@ -1055,7 +778,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］元画像ベースの横幅
+        ///     ［切抜きカーソルが指すタイル］の元画像ベースの横幅
         /// </summary>
         public int CroppedCursorPointedTileSourceWidthAsInt
         {
@@ -1115,7 +838,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］元画像ベースの縦幅
+        ///     ［切抜きカーソルが指すタイル］の元画像ベースの縦幅
         /// </summary>
         public int CroppedCursorPointedTileSourceHeightAsInt
         {
@@ -1175,7 +898,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］ズーム済みの位置（マージンとして）
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置（マージンとして）
         /// </summary>
         public Thickness CroppedCursorWorkingPointAsMargin
         {
@@ -1186,7 +909,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］ズーム済みの横幅
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの横幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含む</item>
@@ -1199,7 +922,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］ズーム済みの縦幅
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含む</item>
@@ -1212,7 +935,22 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］ズーム済みの位置
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置とサイズ
+        /// </summary>
+        public Models.Geometric.RectangleFloat CroppedCursorPointedTileWorkingRect
+        {
+            get => this.croppedCursorPointedTileWorkingRect;
+            set
+            {
+                if (this.croppedCursorPointedTileWorkingRect == value)
+                    return;
+
+                this.croppedCursorPointedTileWorkingRect = value;
+            }
+        }
+
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1232,7 +970,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］ズーム済みの位置ｘ
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置ｘ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1261,7 +999,7 @@
         }
 
         /// <summary>
-        ///     ［矩形カーソル］ズーム済みの位置ｙ
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置ｙ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1289,20 +1027,8 @@
             }
         }
 
-        public Models.Geometric.RectangleFloat CroppedCursorPointedTileWorkingRect
-        {
-            get => this.croppedCursorPointedTileWorkingRect;
-            set
-            {
-                if (this.croppedCursorPointedTileWorkingRect == value)
-                    return;
-
-                this.croppedCursorPointedTileWorkingRect = value;
-            }
-        }
-
         /// <summary>
-        ///     ［矩形カーソル］ズーム済みのサイズ
+        ///     ［切抜きカーソルが指すタイル］のズーム済みのサイズ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1322,7 +1048,7 @@
         }
 
         /// <summary>
-        ///     ［矩形カーソル］ズーム済みの横幅
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの横幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1356,7 +1082,7 @@
         }
 
         /// <summary>
-        ///     ［矩形カーソル］ズーム済みの縦幅
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1390,7 +1116,7 @@
         }
 
         /// <summary>
-        ///     ［矩形カーソル］ズーム済みの位置ｘ
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置ｘ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1401,7 +1127,7 @@
         public string CroppedCursorPointedTileWorkingLeftAsPresentableText => this.croppedCursorPointedTileWorkingRect.Location.X.AsFloat.ToString("F1");
 
         /// <summary>
-        ///     ［矩形カーソル］ズーム済みの位置ｙ
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置ｙ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1411,7 +1137,7 @@
         public string CroppedCursorPointedTileWorkingTopAsPresentableText => this.croppedCursorPointedTileWorkingRect.Location.Y.AsFloat.ToString("F1");
 
         /// <summary>
-        ///     ［矩形カーソル］ズーム済みの横幅
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの横幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1421,7 +1147,7 @@
         public string CroppedCursorPointedTileWorkingWidthAsPresentableText => this.croppedCursorPointedTileWorkingRect.Size.Width.AsFloat.ToString("F1");
 
         /// <summary>
-        ///     ［矩形カーソル］ズーム済みの縦幅
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
@@ -1431,7 +1157,7 @@
         public string CroppedCursorPointedTileWorkingHeightAsPresentableText => this.croppedCursorPointedTileWorkingRect.Size.Height.AsFloat.ToString("F1");
 
         /// <summary>
-        ///     ［切抜きカーソル］の線の半分の太さ
+        ///     ［切抜きカーソルが指すタイル］の線の半分の太さ
         /// </summary>
         public ThicknessOfLine HalfThicknessOfTileCursorLine
         {
@@ -1448,34 +1174,9 @@
                 }
             }
         }
-        #endregion
 
-        #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
         /// <summary>
-        ///     ポインティング・デバイス押下中か？
-        /// 
-        ///     <list type="bullet">
-        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
-        ///         <item>マウスじゃないと思うけど</item>
-        ///     </list>
-        /// </summary>
-        public bool IsMouseDragging
-        {
-            get => this.isMouseDragging;
-            set
-            {
-                if (this.isMouseDragging != value)
-                {
-                    this.isMouseDragging = value;
-                    OnPropertyChanged(nameof(IsMouseDragging));
-                }
-            }
-        }
-        #endregion
-
-        #region 変更通知プロパティ（［選択タイル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソル］の指すタイルのＩｄ。BASE64表現
+        ///     ［切抜きカーソルが指すタイル］のＩｄ。BASE64表現
         ///     
         ///     <see cref="CroppedCursorPointedTileIdOrEmpty"/>
         /// </summary>
@@ -1496,7 +1197,7 @@
         }
 
         /// <summary>
-        ///     ［切抜きカーソル］の指すタイルのＩｄ。フォネティックコード表現
+        ///     ［切抜きカーソルが指すタイル］のＩｄ。フォネティックコード表現
         ///     
         ///     <see cref="CroppedCursorPointedTileIdOrEmpty"/>
         /// </summary>
@@ -1517,7 +1218,7 @@
         }
 
         /// <summary>
-        ///     ［選択タイル］のタイトルの活性性
+        ///     ［切抜きカーソルが指すタイル］のタイトルの活性性
         ///     
         ///     <list type="bullet">
         ///         <item>切抜きカーソルがある</item>
@@ -1527,7 +1228,7 @@
         public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.croppedCursorPointedTileRecordVisualBuffer.IsNone && !this.CroppedCursorPointedTileIdOrEmpty.IsEmpty;
 
         /// <summary>
-        ///     ［切抜きカーソル］の指すタイルのタイトル
+        ///     ［切抜きカーソルが指すタイル］のタイトル
         /// </summary>
         public string CroppedCursorPointedTileTitleAsStr
         {
@@ -1657,6 +1358,306 @@
                     this.isEnabledDeletesButton = value;
                     OnPropertyChanged(nameof(IsEnabledDeletesButton));
                 }
+            }
+        }
+        #endregion
+
+        // - パブリック・プロパティ
+
+        #region プロパティ（［タイルセット設定］　関連）
+        /// <summary>
+        ///     ［タイルセット設定］ファイルへのパス（文字列形式）
+        /// </summary>
+        public string TilesetSettingFilePathAsStr
+        {
+            get => _tilesetSettingsFile.Path.AsStr;
+            set
+            {
+                if (value == null || String.IsNullOrWhiteSpace(value))
+                {
+                    throw new ArgumentException($"the {nameof(TilesetSettingFilePathAsStr)} must not be null or whitespace");
+                }
+
+                if (_tilesetSettingsFile.Path.AsStr != value)
+                {
+                    _tilesetSettingsFile = new TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv(
+                        pathSource: FileEntryPathSource.FromString(value),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［タイルセット設定］ファイルへのパス
+        /// </summary>
+        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetSettingsFile
+        {
+            get => _tilesetSettingsFile;
+            set
+            {
+                if (_tilesetSettingsFile != value)
+                {
+                    _tilesetSettingsFile = value;
+                }
+            }
+        }
+        #endregion
+
+        #region プロパティ（［タイルセット元画像］　関連）
+        /// <summary>
+        ///     ［タイルセット元画像］ファイルへのパス
+        /// </summary>
+        public TheFileEntryLocations.UnityAssets.Images.TilesetPng TilesetImageFile
+        {
+            get => tilesetImageFile;
+            set
+            {
+                if (tilesetImageFile != value)
+                {
+                    tilesetImageFile = value;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［タイルセット元画像］ファイルへのパス（文字列形式）
+        /// </summary>
+        public string TilesetImageFilePathAsStr
+        {
+            get => tilesetImageFile.Path.AsStr;
+            set
+            {
+                if (tilesetImageFile.Path.AsStr != value)
+                {
+                    tilesetImageFile = new TheFileEntryLocations.UnityAssets.Images.TilesetPng(
+                        pathSource: FileEntryPathSource.FromString(value),
+                        convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                    replaceSeparators: true));
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ［タイルセット元画像］
+        /// </summary>
+        public SKBitmap TilesetSourceBitmap => this.tilesetSourceBitmap;
+
+        /// <summary>
+        ///     ［タイルセット元画像］の設定
+        /// </summary>
+        /// <param name="bitmap"></param>
+        public void SetTilesetSourceBitmap(SKBitmap bitmap)
+        {
+            if (this.tilesetSourceBitmap != bitmap)
+            {
+                this.tilesetSourceBitmap = bitmap;
+
+                // タイルセット画像のサイズ設定（画像の再作成）
+                this.tilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+                OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
+                OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
+
+                // 作業画像の再作成
+                this.RemakeWorkingTilesetImage();
+
+                // グリッド・キャンバス画像の再作成
+                this.RemakeGridCanvasImage();
+            }
+        }
+
+        /// <summary>
+        ///     ［タイルセット元画像］のサイズ
+        /// </summary>
+        public Models.Geometric.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
+        #endregion
+
+        #region プロパティ（［タイルセット作業画像］　関連）
+        /// <summary>
+        ///     ［タイルセット作業画像］ファイルへのパス（文字列形式）
+        /// </summary>
+        public string TilesetWorkingImageFilePathAsStr
+        {
+            get => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
+        }
+
+        /// <summary>
+        ///     ［タイルセット作業画像］ビットマップ形式
+        /// </summary>
+        public SKBitmap TilesetWorkingBitmap { get; set; } = new SKBitmap();
+        #endregion
+
+        #region プロパティ（［ズーム］　関連）
+        /// <summary>
+        ///     ズーム
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///     </list>
+        /// </summary>
+        public Models.Geometric.Zoom Zoom
+        {
+            get => this.zoom;
+            set
+            {
+                if (this.zoom != value)
+                {
+                    this.ZoomAsFloat = value.AsFloat;
+                }
+            }
+        }
+
+        /// <summary>
+        ///     ズーム最大
+        /// </summary>
+        public float ZoomMaxAsFloat => this.zoomMax.AsFloat;
+
+        /// <summary>
+        ///     ズーム最小
+        /// </summary>
+        public float ZoomMinAsFloat => this.zoomMin.AsFloat;
+        #endregion
+
+        #region プロパティ（［切抜きカーソル］　関連）
+        /// <summary>
+        ///     ［切抜きカーソル］が指すタイル
+        ///     
+        ///     <list type="bullet">
+        ///         <item>［切抜きカーソル］が未確定のときも、指しているタイルにアクセスできることに注意</item>
+        ///         <item>TODO ★ ［切抜きカーソル］が指すタイルが無いとき、無いということをセットするのを忘れている？</item>
+        ///     </list>
+        /// </summary>
+        public TileRecordVisualBuffer CroppedCursorPointedTileRecordVisualBuffer
+        {
+            get => this.croppedCursorPointedTileRecordVisualBuffer;
+            set
+            {
+                var contents = this.croppedCursorPointedTileRecordVisualBuffer;
+
+                // 値に変化がない
+                if (contents == value)
+                    return;
+
+                if (value.IsNone)
+                {
+                    if (contents.IsNone)
+                    {
+                        // ［切抜きカーソル］の指すタイルが無いなら変更なし
+                    }
+                    else
+                    {
+                        // ［切抜きカーソル］の指すタイル有り時
+
+                        // TODO もっと楽にクリアーできないものか？ （変更通知を送っている）
+                        this.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
+                        this.CroppedCursorPointedTileSourceLeftAsInt = 0;
+                        this.CroppedCursorPointedTileSourceTopAsInt = 0;
+                        this.CroppedCursorPointedTileSourceWidthAsInt = 0;
+                        this.CroppedCursorPointedTileSourceHeightAsInt = 0;
+                        this.CroppedCursorPointedTileTitleAsStr = string.Empty;
+
+                        // 空にする
+                        this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.CreateEmpty();
+                    }
+                }
+                else
+                {
+                    var newValue = value;
+
+                    if (contents.IsNone)
+                    {
+                        // ［切抜きカーソル］の指すタイル無し時
+
+                        // 新規作成
+                        this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.CreateEmpty();
+                    }
+                    else
+                    {
+                        // ［切抜きカーソル］の指すタイルが有るなら構わない
+                    }
+
+                    // （変更通知を送っている）
+                    this.CroppedCursorPointedTileIdOrEmpty = newValue.Id;
+                    this.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                    this.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                    this.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                    this.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                    this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
+                }
+
+                // 変更通知を送りたい
+                OnPropertyChanged(nameof(AddsButtonHint));
+                OnPropertyChanged(nameof(AddsButtonText));
+                this.NotifyTileIdChange();
+                // TODO 矩形もリフレッシュしたい
+
+                // タイルタイトル
+                OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+            }
+        }
+        #endregion
+
+        #region プロパティ（［切抜きカーソルが指すタイル］　関連）
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］のＩｄ
+        /// </summary>
+        public Models.TileIdOrEmpty CroppedCursorPointedTileIdOrEmpty
+        {
+            get
+            {
+                var contents = this.croppedCursorPointedTileRecordVisualBuffer;
+
+                if (contents.IsNone)
+                {
+                    // ［切抜きカーソル］の指すタイル無し時
+                    return Models.TileIdOrEmpty.Empty;
+                }
+
+                return contents.Id;
+            }
+            set
+            {
+                var contents = this.croppedCursorPointedTileRecordVisualBuffer;
+
+                if (contents.IsNone)
+                {
+                    // ［切抜きカーソル］の指すタイル無し時
+
+                    // タイルＩｄだけ持っておく
+                    this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: value,  // 更新
+                            rect: Models.Geometric.RectangleInt.Empty,
+                            title: Models.TileTitle.Empty,
+                            logicalDelete: Models.LogicalDelete.False),
+                    workingRect: Models.Geometric.RectangleFloat.Empty);
+                }
+                else
+                {
+                    if (contents.Id == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
+
+                    this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new TileRecord(
+                            id: value,  // 更新
+                            rect: contents.SourceRectangle,
+                            title: contents.Title,
+                            logicalDelete: contents.LogicalDelete),
+                        workingRect: contents.SourceRectangle.Do(this.Zoom));
+                }
+
+                this.InvalidateLocale();
+
+                // ［追加／上書き］ボタン再描画
+                this.InvalidateAddsButton();
+
+                // ［削除］ボタン再描画
+                this.InvalidateDeletesButton();
+
+                NotifyTileIdChange();
             }
         }
         #endregion
