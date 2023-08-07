@@ -8,6 +8,7 @@
     ///     
     ///     <list type="bullet">
     ///         <item>ミュータブル</item>
+    ///         <item>元画像の横幅、縦幅が 1未満 のとき、 None （存在しないもの）として扱う</item>
     ///     </list>
     /// </summary>
     internal class TileRecordVisualBuffer : ObservableObject
