@@ -73,8 +73,13 @@ internal class TileRecordVisualBufferOption
     /// </summary>
     /// <param name="contents"></param>
     /// <returns></returns>
-    internal void Unwrap(LazyArgs.Set<TileRecordVisualBuffer> some, Action none)
+    internal void Unwrap(LazyArgs.Set<TileRecordVisualBuffer> some)
     {
+        Action none = () =>
+        {
+            throw new Exception();
+        };
+
         this.selectedTileRecordVisualBufferOption.Unwrap(some, none);
     }
 
