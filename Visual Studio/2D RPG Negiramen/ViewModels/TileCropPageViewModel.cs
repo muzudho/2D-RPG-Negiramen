@@ -2145,6 +2145,7 @@
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
+        ///         <item>TODO ★ croppedCursorPointedTileRecordVisualBuffer に統合できないか？</item>
         ///     </list>
         /// </summary>
         Models.Geometric.PointFloat croppedCursorPointedTileWorkingPoint = Models.Geometric.PointFloat.Empty;
@@ -2154,6 +2155,7 @@
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅は含まない</item>
+        ///         <item>TODO ★ croppedCursorPointedTileRecordVisualBuffer に統合できないか？</item>
         ///     </list>
         /// </summary>
         Models.Geometric.SizeFloat croppedCursorPointedTileWorkingSize = Models.Geometric.SizeFloat.Zero;
