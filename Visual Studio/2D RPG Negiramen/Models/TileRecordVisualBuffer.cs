@@ -64,14 +64,16 @@
         internal TileIdOrEmpty Id { get; set; }
         #endregion
 
-        #region プロパティ（矩形　関連）
+        #region プロパティ（［元画像］　関連）
         /// <summary>
-        ///     矩形（元データ）
+        ///     ［元画像］の矩形
         /// </summary>
         internal TheGeometric.RectangleInt SourceRectangle { get; set; }
+        #endregion
 
+        #region プロパティ（［作業画像］　関連）
         /// <summary>
-        ///     矩形（ズーム後）
+        ///     ［作業画像］の矩形（ズーム後）
         /// </summary>
         internal TheGeometric.RectangleFloat WorkingRectangle { get; set; }
         #endregion
