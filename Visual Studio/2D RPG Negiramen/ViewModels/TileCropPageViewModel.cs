@@ -1710,38 +1710,46 @@
         /// </summary>
         public void AddRegisteredTile()
         {
-            // ［選択タイル］があるか？
-            this.SelectedTileRecordVisualBufferOption.Unwrap(
-                some: (cropCursorVisualBuffer) =>
-                {
-                    TileIdOrEmpty tileIdOrEmpty;
-                    if (this.SelectedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+            // ［切抜きカーソル］にサイズがあるか？
+            if (this.SelectedTileRecordVisualBufferOption.IsNone)
+            {
+                // ［切抜きカーソル］にサイズがなければ、ここに来ない（何もしない）
+
+            }
+            else
+            {
+                this.SelectedTileRecordVisualBufferOption.Unwrap(
+                    some: (cropCursorVisualBuffer) =>
                     {
-                        // Ｉｄが空欄ということは、新規作成だ
+                        TileIdOrEmpty tileIdOrEmpty;
+                        if (this.SelectedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+                        {
+                            // Ｉｄが空欄ということは、新規作成だ
 
-                        // 新しいタイルＩｄを発行
-                        tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
-                        this.TilesetSettingsVM.IncreaseUsableId();
-                    }
-                    else
+                            // 新しいタイルＩｄを発行
+                            tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
+                            this.TilesetSettingsVM.IncreaseUsableId();
+                        }
+                        else
+                        {
+                            tileIdOrEmpty = this.SelectedTileIdOrEmpty;
+                        }
+
+                        // ［登録タイル追加］処理
+                        App.History.Do(new AddRegisteredTileProcessing(
+                            owner: this,
+                            cropCursorVisualBuffer: cropCursorVisualBuffer,
+                            tileIdOrEmpty: tileIdOrEmpty,
+                            workingRectangle: cropCursorVisualBuffer.SourceRectangle.Do(this.Zoom)));
+                        this.OnPropertyChanged(nameof(CanUndo));
+                        this.OnPropertyChanged(nameof(CanRedo));
+                    },
+                    none: () =>
                     {
-                        tileIdOrEmpty = this.SelectedTileIdOrEmpty;
-                    }
-
-                    // ［登録タイル追加］処理
-                    App.History.Do(new AddRegisteredTileProcessing(
-                        owner: this,
-                        cropCursorVisualBuffer: cropCursorVisualBuffer,
-                        tileIdOrEmpty: tileIdOrEmpty,
-                        workingRectangle: cropCursorVisualBuffer.SourceRectangle.Do(this.Zoom)));
-                    this.OnPropertyChanged(nameof(CanUndo));
-                    this.OnPropertyChanged(nameof(CanRedo));
-
-                },
-                none: () =>
-                {
-                    // 空カーソルなら、ここに来ない（何もしない）
-                });
+                        // ここにはこない
+                        throw new Exception();
+                    });
+            }
         }
 
         /// <summary>

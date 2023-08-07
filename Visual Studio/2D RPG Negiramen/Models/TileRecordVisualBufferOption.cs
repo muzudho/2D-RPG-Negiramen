@@ -36,6 +36,28 @@ internal class TileRecordVisualBufferOption
 
     }
 
+    // - インターナル・プロパティ
+
+    internal bool IsNone
+    {
+        get
+        {
+            bool isNone = false;
+
+            this.selectedTileRecordVisualBufferOption.Unwrap(
+                some: (contents) =>
+                {
+
+                },
+                none: () =>
+                {
+                    isNone = true;
+                });
+
+            return isNone;
+        }
+    }
+
     // - インターナル・メソッド
 
     /// <summary>
@@ -59,6 +81,8 @@ internal class TileRecordVisualBufferOption
     {
         return this.selectedTileRecordVisualBufferOption.Unwrap(out contents);
     }
+
+    
 
     /// <summary>
     ///     中身があるか？
