@@ -571,11 +571,9 @@
                 }
                 else
                 {
+                    // 値に変化がない
                     if (contents.SourceRectangle == value)
-                    {
-                        // 値に変化がない
                         return;
-                    }
                 }
 
                 this.CroppedCursorPointedTileSourceLeftAsInt = value.Location.X.AsInt;
@@ -630,11 +628,9 @@
                 }
                 else
                 {
+                    // 値に変化がない
                     if (contents.SourceRectangle.Location.X.AsInt == value)
-                    {
-                        // 値に変化がない
                         return;
-                    }
 
                     // 元画像ベース
                     var rect1 = new Models.Geometric.RectangleInt(
@@ -668,11 +664,9 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
+                // ［切抜きカーソル］無し時
                 if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］無し時
                     return 0;
-                }
 
                 return contents.SourceRectangle.Location.Y.AsInt;
             }
@@ -699,11 +693,9 @@
                 }
                 else
                 {
+                    // 値に変化がない
                     if (contents.SourceRectangle.Location.Y.AsInt == value)
-                    {
-                        // 値に変化がない
                         return;
-                    }
 
                     // 元画像ベース
                     var rect1 = new Models.Geometric.RectangleInt(
@@ -741,11 +733,9 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
+                // ［切抜きカーソル］無し時
                 if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］無し時
                     return Models.Geometric.SizeInt.Empty;
-                }
 
                 return contents.SourceRectangle.Size;
             }
@@ -759,11 +749,9 @@
                 }
                 else
                 {
+                    // 値に変化がない
                     if (contents.SourceRectangle.Size == value)
-                    {
-                        // 値に変化がない
                         return;
-                    }
                 }
 
                 //
@@ -786,11 +774,9 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
+                // ［切抜きカーソル］無し時
                 if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］無し時
                     return 0;
-                }
 
                 return contents.SourceRectangle.Size.Width.AsInt;
             }
@@ -812,11 +798,9 @@
                 }
                 else
                 {
+                    // 値に変化がない
                     if (contents.SourceRectangle.Size.Width.AsInt == value)
-                    {
-                        // 値に変化がない
                         return;
-                    }
 
                     var rect1 = new Models.Geometric.RectangleInt(contents.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), contents.SourceRectangle.Size.Height));
                     croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
@@ -846,11 +830,9 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
+                // ［切抜きカーソル］無し時
                 if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］無し時
                     return 0;
-                }
 
                 return contents.SourceRectangle.Size.Height.AsInt;
             }
@@ -872,11 +854,9 @@
                 }
                 else
                 {
+                    // 値に変化がない
                     if (contents.SourceRectangle.Size.Height.AsInt == value)
-                    {
-                        // 値に変化がない
                         return;
-                    }
 
                     var rect1 = new Models.Geometric.RectangleInt(contents.SourceRectangle.Location, new Models.Geometric.SizeInt(contents.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
                     croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
@@ -932,41 +912,6 @@
         public float CanvasOfCroppedCursorWorkingHeightAsFloat
         {
             get => this.croppedCursorPointedTileWorkingRect.Size.Height.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
-        }
-
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置とサイズ
-        /// </summary>
-        public Models.Geometric.RectangleFloat CroppedCursorPointedTileWorkingRect
-        {
-            get => this.croppedCursorPointedTileWorkingRect;
-            set
-            {
-                if (this.croppedCursorPointedTileWorkingRect == value)
-                    return;
-
-                this.croppedCursorPointedTileWorkingRect = value;
-            }
-        }
-
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置
-        ///         
-        ///     <list type="bullet">
-        ///         <item>カーソルの線の幅を含まない</item>
-        ///     </list>
-        /// </summary>
-        public Models.Geometric.PointFloat CroppedCursorPointedTileWorkingLocation
-        {
-            get => this.croppedCursorPointedTileWorkingRect.Location;
-            set
-            {
-                if (this.croppedCursorPointedTileWorkingRect.Location != value)
-                {
-                    this.CroppedCursorPointedTileWorkingLeftAsFloat = value.X.AsFloat;
-                    this.CroppedCursorPointedTileWorkingTopAsFloat = value.Y.AsFloat;
-                }
-            }
         }
 
         /// <summary>
@@ -1039,11 +984,12 @@
             get => this.croppedCursorPointedTileWorkingRect.Size;
             set
             {
-                if (this.croppedCursorPointedTileWorkingRect.Size != value)
-                {
-                    this.CroppedCursorPointedTileWorkingWidthAsFloat = value.Width.AsFloat;
-                    this.CroppedCursorPointedTileWorkingHeightAsFloat = value.Height.AsFloat;
-                }
+                if (this.croppedCursorPointedTileWorkingRect.Size == value)
+                    return;
+
+                // 末端へ下りる
+                this.CroppedCursorPointedTileWorkingWidthAsFloat = value.Width.AsFloat;
+                this.CroppedCursorPointedTileWorkingHeightAsFloat = value.Height.AsFloat;
             }
         }
 
@@ -1161,17 +1107,14 @@
         /// </summary>
         public ThicknessOfLine HalfThicknessOfTileCursorLine
         {
-            get
-            {
-                return this.halfThicknessOfTileCursorLine;
-            }
+            get => this.halfThicknessOfTileCursorLine;
             set
             {
-                if (this.halfThicknessOfTileCursorLine != value)
-                {
-                    this.halfThicknessOfTileCursorLine = value;
-                    OnPropertyChanged(nameof(HalfThicknessOfTileCursorLine));
-                }
+                if (this.halfThicknessOfTileCursorLine == value)
+                    return;
+
+                this.halfThicknessOfTileCursorLine = value;
+                OnPropertyChanged(nameof(HalfThicknessOfTileCursorLine));
             }
         }
 
@@ -1186,11 +1129,9 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
+                // ［切抜きカーソル］無し時
                 if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］無し時
                     return string.Empty;
-                }
 
                 return contents.Id.AsBASE64;
             }
@@ -1207,11 +1148,9 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
+                // ［切抜きカーソル］無し時
                 if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］無し時
                     return string.Empty;
-                }
 
                 return contents.Id.AsPhoneticCode;
             }
@@ -1232,10 +1171,7 @@
         /// </summary>
         public string CroppedCursorPointedTileTitleAsStr
         {
-            get
-            {
-                return this.croppedCursorPointedTileRecordVisualBuffer.Title.AsStr;
-            }
+            get => this.croppedCursorPointedTileRecordVisualBuffer.Title.AsStr;
             set
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
@@ -1254,11 +1190,9 @@
                 }
                 else
                 {
+                    // 値に変化がない
                     if (contents.Title.AsStr == value)
-                    {
-                        // 値に変化がない
                         return;
-                    }
 
                     var rect1 = contents.SourceRectangle;
                     croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
@@ -1281,10 +1215,7 @@
         /// </summary>
         public string AddsButtonText
         {
-            get
-            {
-                return this.addsButtonText;
-            }
+            get => this.addsButtonText;
             set
             {
                 if (this.addsButtonText != value)
@@ -1304,18 +1235,14 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
+                // TODO 翻訳
+                // ［切抜きカーソル］無し時
                 if (contents.IsNone)
-                {
-                    // TODO 翻訳
-                    // ［切抜きカーソル］無し時
                     return "選択タイルを、タイル一覧画面へ追加";
-                }
 
+                // 未選択時
                 if (contents.Id == Models.TileIdOrEmpty.Empty)
-                {
-                    // 未選択時
                     return "選択タイルを、タイル一覧画面へ追加";
-                }
 
                 return "選択タイルを、タイル一覧画面へ上書";
             }
@@ -1326,17 +1253,14 @@
         /// </summary>
         public bool IsEnabledAddsButton
         {
-            get
-            {
-                return this.isEnabledAddsButton;
-            }
+            get => this.isEnabledAddsButton;
             set
             {
-                if (this.isEnabledAddsButton != value)
-                {
-                    this.isEnabledAddsButton = value;
-                    OnPropertyChanged(nameof(IsEnabledAddsButton));
-                }
+                if (this.isEnabledAddsButton == value)
+                    return;
+
+                this.isEnabledAddsButton = value;
+                OnPropertyChanged(nameof(IsEnabledAddsButton));
             }
         }
         #endregion
@@ -1347,17 +1271,14 @@
         /// </summary>
         public bool IsEnabledDeletesButton
         {
-            get
-            {
-                return this.isEnabledDeletesButton;
-            }
+            get => this.isEnabledDeletesButton;
             set
             {
-                if (this.isEnabledDeletesButton != value)
-                {
-                    this.isEnabledDeletesButton = value;
-                    OnPropertyChanged(nameof(IsEnabledDeletesButton));
-                }
+                if (this.isEnabledDeletesButton == value)
+                    return;
+
+                this.isEnabledDeletesButton = value;
+                OnPropertyChanged(nameof(IsEnabledDeletesButton));
             }
         }
         #endregion
@@ -1374,17 +1295,15 @@
             set
             {
                 if (value == null || String.IsNullOrWhiteSpace(value))
-                {
                     throw new ArgumentException($"the {nameof(TilesetSettingFilePathAsStr)} must not be null or whitespace");
-                }
 
-                if (_tilesetSettingsFile.Path.AsStr != value)
-                {
-                    _tilesetSettingsFile = new TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv(
-                        pathSource: FileEntryPathSource.FromString(value),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
-                }
+                if (_tilesetSettingsFile.Path.AsStr == value)
+                    return;
+
+                _tilesetSettingsFile = new TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv(
+                    pathSource: FileEntryPathSource.FromString(value),
+                    convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                replaceSeparators: true));
             }
         }
 
@@ -1396,10 +1315,10 @@
             get => _tilesetSettingsFile;
             set
             {
-                if (_tilesetSettingsFile != value)
-                {
-                    _tilesetSettingsFile = value;
-                }
+                if (_tilesetSettingsFile == value)
+                    return;
+
+                _tilesetSettingsFile = value;
             }
         }
         #endregion
@@ -1413,10 +1332,10 @@
             get => tilesetImageFile;
             set
             {
-                if (tilesetImageFile != value)
-                {
-                    tilesetImageFile = value;
-                }
+                if (tilesetImageFile == value)
+                    return;
+
+                tilesetImageFile = value;
             }
         }
 
@@ -1428,13 +1347,13 @@
             get => tilesetImageFile.Path.AsStr;
             set
             {
-                if (tilesetImageFile.Path.AsStr != value)
-                {
-                    tilesetImageFile = new TheFileEntryLocations.UnityAssets.Images.TilesetPng(
-                        pathSource: FileEntryPathSource.FromString(value),
-                        convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                    replaceSeparators: true));
-                }
+                if (tilesetImageFile.Path.AsStr == value)
+                    return;
+
+                tilesetImageFile = new TheFileEntryLocations.UnityAssets.Images.TilesetPng(
+                    pathSource: FileEntryPathSource.FromString(value),
+                    convert: (pathSource) => FileEntryPath.From(pathSource,
+                                                                replaceSeparators: true));
             }
         }
 
@@ -1449,21 +1368,21 @@
         /// <param name="bitmap"></param>
         public void SetTilesetSourceBitmap(SKBitmap bitmap)
         {
-            if (this.tilesetSourceBitmap != bitmap)
-            {
-                this.tilesetSourceBitmap = bitmap;
+            if (this.tilesetSourceBitmap == bitmap)
+                return;
 
-                // タイルセット画像のサイズ設定（画像の再作成）
-                this.tilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
-                OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
-                OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
+            this.tilesetSourceBitmap = bitmap;
 
-                // 作業画像の再作成
-                this.RemakeWorkingTilesetImage();
+            // タイルセット画像のサイズ設定（画像の再作成）
+            this.tilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+            OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
+            OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
-                // グリッド・キャンバス画像の再作成
-                this.RemakeGridCanvasImage();
-            }
+            // 作業画像の再作成
+            this.RemakeWorkingTilesetImage();
+
+            // グリッド・キャンバス画像の再作成
+            this.RemakeGridCanvasImage();
         }
 
         /// <summary>
@@ -1476,10 +1395,7 @@
         /// <summary>
         ///     ［タイルセット作業画像］ファイルへのパス（文字列形式）
         /// </summary>
-        public string TilesetWorkingImageFilePathAsStr
-        {
-            get => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
-        }
+        public string TilesetWorkingImageFilePathAsStr => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
 
         /// <summary>
         ///     ［タイルセット作業画像］ビットマップ形式
@@ -1500,10 +1416,10 @@
             get => this.zoom;
             set
             {
-                if (this.zoom != value)
-                {
-                    this.ZoomAsFloat = value.AsFloat;
-                }
+                if (this.zoom == value)
+                    return;
+
+                this.ZoomAsFloat = value.AsFloat;
             }
         }
 
@@ -1599,6 +1515,44 @@
 
         #region プロパティ（［切抜きカーソルが指すタイル］　関連）
         /// <summary>
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置とサイズ
+        /// </summary>
+        public Models.Geometric.RectangleFloat CroppedCursorPointedTileWorkingRect
+        {
+            get => this.croppedCursorPointedTileWorkingRect;
+            set
+            {
+                if (this.croppedCursorPointedTileWorkingRect == value)
+                    return;
+
+                // 末端へ下りる
+                this.CroppedCursorPointedTileWorkingLocation = value.Location;
+                this.CroppedCursorPointedTileWorkingSize = value.Size;
+            }
+        }
+
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///     </list>
+        /// </summary>
+        public Models.Geometric.PointFloat CroppedCursorPointedTileWorkingLocation
+        {
+            get => this.croppedCursorPointedTileWorkingRect.Location;
+            set
+            {
+                if (this.croppedCursorPointedTileWorkingRect.Location == value)
+                    return;
+
+                // 末端へ下りる
+                this.CroppedCursorPointedTileWorkingLeftAsFloat = value.X.AsFloat;
+                this.CroppedCursorPointedTileWorkingTopAsFloat = value.Y.AsFloat;
+            }
+        }
+
+        /// <summary>
         ///     ［切抜きカーソルが指すタイル］のＩｄ
         /// </summary>
         public Models.TileIdOrEmpty CroppedCursorPointedTileIdOrEmpty
@@ -1607,11 +1561,9 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
+                // ［切抜きカーソル］の指すタイル無し時
                 if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］の指すタイル無し時
                     return Models.TileIdOrEmpty.Empty;
-                }
 
                 return contents.Id;
             }
@@ -1634,11 +1586,9 @@
                 }
                 else
                 {
+                    // 値に変化がない
                     if (contents.Id == value)
-                    {
-                        // 値に変化がない
                         return;
-                    }
 
                     this.croppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
                         tileRecord: new TileRecord(
@@ -1672,10 +1622,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        public void InvalidateLocale()
-        {
-            this.InvalidateAddsButton();
-        }
+        public void InvalidateLocale() => this.InvalidateAddsButton();
         #endregion
 
         #region メソッド（画面遷移でこの画面に戻ってきた時）
@@ -1709,12 +1656,9 @@
         {
             var contents = this.CroppedCursorPointedTileRecordVisualBuffer;
 
-            // ［切抜きカーソル］にサイズがあるか？
+            // ［切抜きカーソル］にサイズがなければ、何もしない
             if (contents.IsNone)
-            {
-                // ［切抜きカーソル］にサイズがなければ、ここに来ない（何もしない）
                 return;
-            }
 
             TileIdOrEmpty tileIdOrEmpty;
             if (this.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
