@@ -192,25 +192,28 @@
         public float ZoomMinAsFloat => this.zoomMin.AsFloat;
         #endregion
 
-        #region プロパティ（［選択タイル］　関連）
+        #region プロパティ（［切抜きカーソル］　関連）
         /// <summary>
-        ///     ［選択タイル］の有無、またその内容
+        ///     ［切抜きカーソル］が指すタイル
         ///     
-        ///     TODO ★ 選択タイルが無いとき、無いということをセットするのを忘れている？
+        ///     <list type="bullet">
+        ///         <item>［切抜きカーソル］が未確定のときも、指しているタイルにアクセスできることに注意</item>
+        ///         <item>TODO ★ ［切抜きカーソル］が指すタイルが無いとき、無いということをセットするのを忘れている？</item>
+        ///     </list>
         /// </summary>
-        public TileRecordVisualBufferOption SelectedTileRecordVisualBufferOption
+        public TileRecordVisualBufferOption CropCursorPointedTileRecordVisualBufferOption
         {
-            get => this.selectedTileRecordVisualBufferOption;
+            get => this.cropCursorPointedTileRecordVisualBufferOption;
             set
             {
                 // 値に変化がない
-                if (this.selectedTileRecordVisualBufferOption == value)
+                if (this.cropCursorPointedTileRecordVisualBufferOption == value)
                     return;
 
                 value.Unwrap(
                     some: (newValue) =>
                     {
-                        this.selectedTileRecordVisualBufferOption.Unwrap(
+                        this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                             some: (_currentSelectedTile) =>
                             {
                                 // 有るなら構わない
@@ -220,7 +223,7 @@
                                 // 選択タイル無し時
 
                                 // 新規作成
-                                this.selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateEmpty();
+                                this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateEmpty();
                             });
 
                         // （変更通知を送っている）
@@ -233,7 +236,7 @@
                     },
                     none: () =>
                     {
-                        this.selectedTileRecordVisualBufferOption.Unwrap(
+                        this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                             some: (oldValue) =>
                             {
                                 // 選択タイル有り時
@@ -247,7 +250,7 @@
                                 this.SelectedTileTitleAsStr = string.Empty;
 
                                 // 空にする
-                                this.selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateNone();
+                                this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateNone();
                             },
                             none: () =>
                             {
@@ -267,7 +270,9 @@
                 OnPropertyChanged(nameof(IsEnabledSelectedTileTitleAsStr));
             }
         }
+        #endregion
 
+        #region プロパティ（［選択タイル］　関連）
         /// <summary>
         ///     ［選択タイル］のＩｄ
         /// </summary>
@@ -277,7 +282,7 @@
             {
                 Models.TileIdOrEmpty tileId = Models.TileIdOrEmpty.Empty;
 
-                this.selectedTileRecordVisualBufferOption.Unwrap(
+                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                     some: (contents) =>
                     {
                         tileId = contents.Id;
@@ -293,7 +298,7 @@
             {
                 bool isNoChange = false;
 
-                this.selectedTileRecordVisualBufferOption.Unwrap(
+                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                     some: (contents) =>
                     {
                         if (contents.Id == value)
@@ -303,7 +308,7 @@
                             return;
                         }
 
-                        this.selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                        this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                             tileRecord: new TileRecord(
                                 id: value,  // 更新
                                 rect: contents.SourceRectangle,
@@ -316,7 +321,7 @@
                         // タイル・カーソル無し時
 
                         // タイルＩｄだけ持っておく
-                        this.selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                        this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                             tileRecord: new Models.TileRecord(
                                 id: value,  // 更新
                                 rect: Models.Geometric.RectangleInt.Empty,
@@ -834,7 +839,7 @@
             {
                 RectangleInt result = Models.Geometric.RectangleInt.Empty;
 
-                this.selectedTileRecordVisualBufferOption.Unwrap(
+                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                     some: (selectedTileVisualBuffer) =>
                     {
                         result = selectedTileVisualBuffer.SourceRectangle;
@@ -850,7 +855,7 @@
             {
                 bool isNoChange = false;
 
-                this.selectedTileRecordVisualBufferOption.Unwrap(
+                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                     some: (selectedTileVisualBuffer) =>
                     {
                         if (selectedTileVisualBuffer.SourceRectangle == value)
@@ -888,7 +893,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Location.X.AsInt;
                 }
@@ -900,7 +905,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Location.X.AsInt == value)
                     {
@@ -912,7 +917,7 @@
                     var rect1 = new Models.Geometric.RectangleInt(
                                 location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTileVM.SourceRectangle.Location.Y),
                                 size: selectedTileVM.SourceRectangle.Size);
-                    this.selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
@@ -928,7 +933,7 @@
                     var rect1 = new Models.Geometric.RectangleInt(
                                 location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
                                 size: Models.Geometric.SizeInt.Empty);
-                    this.selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
@@ -954,7 +959,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Location.Y.AsInt;
                 }
@@ -966,7 +971,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Location.Y.AsInt == value)
                     {
@@ -978,7 +983,7 @@
                     var rect1 = new Models.Geometric.RectangleInt(
                             location: new Models.Geometric.PointInt(selectedTileVM.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
                             size: selectedTileVM.SourceRectangle.Size);
-                    selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
@@ -994,7 +999,7 @@
                     var rect1 = new Models.Geometric.RectangleInt(
                             location: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
                             size: Models.Geometric.SizeInt.Empty);
-                    selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
@@ -1024,7 +1029,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Size;
                 }
@@ -1036,7 +1041,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Size == value)
                     {
@@ -1067,7 +1072,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Size.Width.AsInt;
                 }
@@ -1079,7 +1084,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Size.Width.AsInt == value)
                     {
@@ -1088,7 +1093,7 @@
                     }
 
                     var rect1 = new Models.Geometric.RectangleInt(selectedTileVM.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), selectedTileVM.SourceRectangle.Size.Height));
-                    selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
@@ -1100,7 +1105,7 @@
                 {
                     // タイル・カーソル無し時
                     var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty));
-                    selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
@@ -1125,7 +1130,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     return selectedTileVM.SourceRectangle.Size.Height.AsInt;
                 }
@@ -1137,7 +1142,7 @@
             }
             set
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.SourceRectangle.Size.Height.AsInt == value)
                     {
@@ -1146,7 +1151,7 @@
                     }
 
                     var rect1 = new Models.Geometric.RectangleInt(selectedTileVM.SourceRectangle.Location, new Models.Geometric.SizeInt(selectedTileVM.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
-                    selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: selectedTileVM.Id,
                             rect: rect1,
@@ -1158,7 +1163,7 @@
                 {
                     // タイル・カーソル無し時
                     var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value)));
-                    selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: rect1,
@@ -1463,7 +1468,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer? selectedTileVisualBuffer))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer? selectedTileVisualBuffer))
                 {
                     if(selectedTileVisualBuffer==null)
                         throw new Exception();
@@ -1487,7 +1492,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer? selectedTileVisualBuffer))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer? selectedTileVisualBuffer))
                 {
                     if (selectedTileVisualBuffer == null)
                         throw new Exception();
@@ -1510,7 +1515,7 @@
         ///         <item>選択タイルＩｄが空欄でない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledSelectedTileTitleAsStr => this.selectedTileRecordVisualBufferOption.IsSome && !this.SelectedTileIdOrEmpty.IsEmpty;
+        public bool IsEnabledSelectedTileTitleAsStr => this.cropCursorPointedTileRecordVisualBufferOption.IsSome && !this.SelectedTileIdOrEmpty.IsEmpty;
 
         /// <summary>
         ///     ［選択タイル］のタイトル
@@ -1521,7 +1526,7 @@
             {
                 string title = string.Empty;
 
-                this.selectedTileRecordVisualBufferOption.Unwrap(
+                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                     some: (contents) =>
                     {
                         title = contents.Title.AsStr;
@@ -1537,7 +1542,7 @@
             {
                 bool isNoChange = false;
 
-                this.selectedTileRecordVisualBufferOption.Unwrap(
+                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                     some: (contents) =>
                     {
                         if (contents.Title.AsStr == value)
@@ -1548,7 +1553,7 @@
                         }
 
                         var rect1 = contents.SourceRectangle;
-                        selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                        cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                             tileRecord: new Models.TileRecord(
                                 id: contents.Id,
                                 rect: rect1,
@@ -1560,7 +1565,7 @@
                     {
                         // タイル・カーソル無し時
                         var rect1 = Models.Geometric.RectangleInt.Empty;
-                        selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                        cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                             tileRecord: new Models.TileRecord(
                                 id: TileIdOrEmpty.Empty,
                                 rect: rect1,
@@ -1604,7 +1609,7 @@
         {
             get
             {
-                if (this.selectedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
+                if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out TileRecordVisualBuffer selectedTileVM))
                 {
                     if (selectedTileVM.Id == Models.TileIdOrEmpty.Empty)
                     {
@@ -1711,14 +1716,14 @@
         public void AddRegisteredTile()
         {
             // ［切抜きカーソル］にサイズがあるか？
-            if (this.SelectedTileRecordVisualBufferOption.IsNone)
+            if (this.CropCursorPointedTileRecordVisualBufferOption.IsNone)
             {
                 // ［切抜きカーソル］にサイズがなければ、ここに来ない（何もしない）
 
             }
             else
             {
-                this.SelectedTileRecordVisualBufferOption.Unwrap(
+                this.CropCursorPointedTileRecordVisualBufferOption.Unwrap(
                     some: (cropCursorVisualBuffer) =>
                     {
                         TileIdOrEmpty tileIdOrEmpty;
@@ -1870,7 +1875,7 @@
                     //
 
                     // 選択中のタイルを設定
-                    this.SelectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(tileRecordVisualBuffer);
+                    this.CropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(tileRecordVisualBuffer);
                 },
                 none: () =>
                 {
@@ -1882,7 +1887,7 @@
                     //
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.SelectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    this.CropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: this.SourceCroppedCursorRect,
@@ -1925,7 +1930,7 @@
                 }
             }
 
-            this.selectedTileRecordVisualBufferOption.Unwrap(
+            this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
                 some: (contents) =>
                 {
                     // 切抜きカーソル有り時
@@ -1962,7 +1967,7 @@
         /// </summary>
         internal void InvalidateDeletesButton()
         {
-            if (this.selectedTileRecordVisualBufferOption.Unwrap(out var recordVM))
+            if (this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(out var recordVM))
             {
                 // 切抜きカーソル有り時
 
@@ -2157,13 +2162,14 @@
 
         #region フィールド（［切抜きカーソル］　関連）
         /// <summary>
-        ///     ［切抜きカーソル］元画像ベース
+        ///     ［切抜きカーソル］が指すタイル
         ///     
         ///     <list type="bullet">
-        ///         <item>タイル・カーソルが有るときと、無いときを分ける</item>
+        ///         <item>［切抜きカーソル］が指すタイルが有るときと、無いときを分ける</item>
+        ///         <item>［切抜きカーソル］が未確定のときも、指しているタイルにアクセスできることに注意</item>
         ///     </list>
         /// </summary>
-        TileRecordVisualBufferOption selectedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateEmpty();
+        TileRecordVisualBufferOption cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateEmpty();
 
         /// <summary>
         ///     ［切抜きカーソル］ズーム済みの位置
