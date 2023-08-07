@@ -828,12 +828,7 @@
                     return Models.Geometric.RectangleInt.Empty;
                 }
 
-                RectangleInt result = Models.Geometric.RectangleInt.Empty;
-
-                var selectedTileVisualBuffer = this.cropCursorPointedTileRecordVisualBuffer;
-                result = selectedTileVisualBuffer.SourceRectangle;
-
-                return result;
+                return this.cropCursorPointedTileRecordVisualBuffer.SourceRectangle;
             }
             set
             {
@@ -844,18 +839,11 @@
                 }
                 else
                 {
-                    bool isNoChange = false;
-
-                    var selectedTileVisualBuffer = this.cropCursorPointedTileRecordVisualBuffer;
-                    if (selectedTileVisualBuffer.SourceRectangle == value)
+                    if (this.cropCursorPointedTileRecordVisualBuffer.SourceRectangle == value)
                     {
                         // 値に変化がない
-                        isNoChange = true;
                         return;
                     }
-
-                    if (isNoChange)
-                        return;
                 }
 
                 this.SourceCroppedCursorLeftAsInt = value.Location.X.AsInt;
@@ -1464,8 +1452,6 @@
         #endregion
 
         #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
-        bool isMouseDragging;
-
         /// <summary>
         ///     ポインティング・デバイス押下中か？
         /// 
@@ -2097,6 +2083,13 @@
         }
 
         // - プライベート・フィールド
+
+        #region フィールド（ポインティング・デバイス押下中か？）
+        /// <summary>
+        ///     ポインティング・デバイス押下中か？
+        /// </summary>
+        bool isMouseDragging;
+        #endregion
 
         #region フィールド（［タイルセット設定］　関連）
         /// <summary>
