@@ -47,7 +47,11 @@ internal class TileRecordVisualBufferOption
             this.selectedTileRecordVisualBufferOption.Unwrap(
                 some: (contents) =>
                 {
-
+                    // 追加
+                    if (contents.IsNone)
+                    {
+                        isNone = true;
+                    }
                 },
                 none: () =>
                 {

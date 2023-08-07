@@ -120,7 +120,7 @@
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
-            defaultValue: Geometric.SizeFloat.Empty);
+            defaultValue: Geometric.SizeFloat.Zero);
         #endregion
 
         // - パブリック・メソッド

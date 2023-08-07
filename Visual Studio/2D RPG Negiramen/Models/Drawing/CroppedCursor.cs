@@ -37,9 +37,9 @@
             defaultValue: ThicknessOfLine.Min);
         #endregion
 
-        #region 束縛可能プロパティ（切抜きカーソル。ズーム済み　関連）
+        #region 束縛可能プロパティ（［切抜きカーソル］ズーム済み　関連）
         /// <summary>
-        ///     切抜きカーソル。ズーム済みのサイズ
+        ///     ［切抜きカーソル］ズーム済みのサイズ
         ///     
         ///     <list type="bullet">
         ///         <item>切抜きカーソルの線の太さを含まない</item>
@@ -61,7 +61,7 @@
             returnType: typeof(Geometric.SizeFloat),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
-            defaultValue: Geometric.SizeFloat.Empty);
+            defaultValue: Geometric.SizeFloat.Zero);
         #endregion
 
         #region 束縛可能プロパティ（ポインティング・デバイス押下中か？）
@@ -99,7 +99,7 @@
         /// <param name="dirtyRect">位置とサイズ</param>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            if (this.CroppedCursorSize.Width.AsFloat < 1 || this.CroppedCursorSize.Height.AsFloat < 1)
+            if (this.CroppedCursorSize.IsEmpty)
             {
                 // カーソルが無いケース
                 Trace.WriteLine($"[TileCursor Draw] 切抜きカーソルに大きさが無いから描画しない。  this.IsMouseDragging: {this.IsMouseDragging}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.CroppedCursorSize.Width.AsFloat: {this.CroppedCursorSize.Width.AsFloat}, this.CroppedCursorSize.Height.AsFloat: {this.CroppedCursorSize.Height.AsFloat}");

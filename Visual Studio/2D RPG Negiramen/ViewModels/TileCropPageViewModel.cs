@@ -1526,7 +1526,7 @@
         #endregion
 
         #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
-        bool selectingOnPointingDevice;
+        bool isMouseDragging;
 
         /// <summary>
         ///     ポインティング・デバイス押下中か？
@@ -1538,12 +1538,12 @@
         /// </summary>
         public bool IsMouseDragging
         {
-            get => this.selectingOnPointingDevice;
+            get => this.isMouseDragging;
             set
             {
-                if (this.selectingOnPointingDevice != value)
+                if (this.isMouseDragging != value)
                 {
-                    this.selectingOnPointingDevice = value;
+                    this.isMouseDragging = value;
                     OnPropertyChanged(nameof(IsMouseDragging));
                 }
             }
@@ -2298,7 +2298,7 @@
         ///         <item>カーソルの線の幅は含まない</item>
         ///     </list>
         /// </summary>
-        Models.Geometric.SizeFloat workingCroppedCursorSize = Models.Geometric.SizeFloat.Empty;
+        Models.Geometric.SizeFloat workingCroppedCursorSize = Models.Geometric.SizeFloat.Zero;
 
         /// <summary>
         ///     ［切抜きカーソル］の線の半分の太さ

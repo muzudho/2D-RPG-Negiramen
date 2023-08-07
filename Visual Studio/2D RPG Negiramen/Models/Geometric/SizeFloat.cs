@@ -92,7 +92,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static SizeFloat Empty = new(WidthFloat.Empty, HeightFloat.Empty);
+        internal static SizeFloat Zero = new(WidthFloat.Empty, HeightFloat.Empty);
         #endregion
 
         // - その他
@@ -125,6 +125,8 @@
         /// </summary>
         internal HeightFloat Height { get; private set; }
         #endregion
+
+        internal bool IsEmpty => this.Width.AsFloat < 1 || this.Height.AsFloat < 1;
 
         // - インターナル・メソッド
 
