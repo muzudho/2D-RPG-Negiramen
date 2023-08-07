@@ -201,7 +201,7 @@
         ///         <item>TODO ★ ［切抜きカーソル］が指すタイルが無いとき、無いということをセットするのを忘れている？</item>
         ///     </list>
         /// </summary>
-        public TileRecordVisualBufferOption CropCursorPointedTileRecordVisualBufferOption
+        public TileRecordVisualBuffer CropCursorPointedTileRecordVisualBufferOption
         {
             get => this.cropCursorPointedTileRecordVisualBufferOption;
             set
@@ -218,53 +218,43 @@
                     }
                     else
                     {
-                        this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                            some: (oldValue) =>
-                            {
-                                // 選択タイル有り時
+                        // ［切抜きカーソル］の指すタイル有り時
 
-                                // TODO もっと楽にクリアーできないものか？ （変更通知を送っている）
-                                this.SelectedTileIdOrEmpty = TileIdOrEmpty.Empty;
-                                this.SourceCroppedCursorLeftAsInt = 0;
-                                this.SourceCroppedCursorTopAsInt = 0;
-                                this.SourceCroppedCursorWidthAsInt = 0;
-                                this.SourceCroppedCursorHeightAsInt = 0;
-                                this.SelectedTileTitleAsStr = string.Empty;
+                        // TODO もっと楽にクリアーできないものか？ （変更通知を送っている）
+                        this.SelectedTileIdOrEmpty = TileIdOrEmpty.Empty;
+                        this.SourceCroppedCursorLeftAsInt = 0;
+                        this.SourceCroppedCursorTopAsInt = 0;
+                        this.SourceCroppedCursorWidthAsInt = 0;
+                        this.SourceCroppedCursorHeightAsInt = 0;
+                        this.SelectedTileTitleAsStr = string.Empty;
 
-                                // 空にする
-                                this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateNone();
-                            });
+                        // 空にする
+                        this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.CreateEmpty();
                     }
                 }
                 else
                 {
-                    value.Unwrap(
-                        some: (newValue) =>
-                        {
-                            if(this.cropCursorPointedTileRecordVisualBufferOption.IsNone)
-                            {
-                                // ［切抜きカーソル］の指すタイル無し時
+                    var newValue = value;
 
-                                // 新規作成
-                                this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateEmpty();
-                            }
-                            else
-                            {
-                                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                                    some: (_currentSelectedTile) =>
-                                    {
-                                        // ［切抜きカーソル］の指すタイルが有るなら構わない
-                                    });
-                            }
+                    if (this.cropCursorPointedTileRecordVisualBufferOption.IsNone)
+                    {
+                        // ［切抜きカーソル］の指すタイル無し時
 
-                            // （変更通知を送っている）
-                            this.SelectedTileIdOrEmpty = newValue.Id;
-                            this.SourceCroppedCursorLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                            this.SourceCroppedCursorTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                            this.SourceCroppedCursorWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                            this.SourceCroppedCursorHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
-                            this.SelectedTileTitleAsStr = newValue.Title.AsStr;
-                        });
+                        // 新規作成
+                        this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.CreateEmpty();
+                    }
+                    else
+                    {
+                        // ［切抜きカーソル］の指すタイルが有るなら構わない
+                    }
+
+                    // （変更通知を送っている）
+                    this.SelectedTileIdOrEmpty = newValue.Id;
+                    this.SourceCroppedCursorLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                    this.SourceCroppedCursorTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                    this.SourceCroppedCursorWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                    this.SourceCroppedCursorHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                    this.SelectedTileTitleAsStr = newValue.Title.AsStr;
                 }
 
                 // 変更通知を送りたい
@@ -293,15 +283,7 @@
                     return Models.TileIdOrEmpty.Empty;
                 }
 
-                Models.TileIdOrEmpty tileId = Models.TileIdOrEmpty.Empty;
-
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        tileId = contents.Id;
-                    });
-
-                return tileId;
+                return this.cropCursorPointedTileRecordVisualBufferOption.Id;
             }
             set
             {
@@ -310,39 +292,30 @@
                     // ［切抜きカーソル］の指すタイル無し時
 
                     // タイルＩｄだけ持っておく
-                    this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: value,  // 更新
                             rect: Models.Geometric.RectangleInt.Empty,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                    workingRect: Models.Geometric.RectangleFloat.Empty));
+                    workingRect: Models.Geometric.RectangleFloat.Empty);
                 }
                 else
                 {
-                    bool isNoChange = false;
-
-                    this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                        some: (contents) =>
-                        {
-                            if (contents.Id == value)
-                            {
-                                // 値に変化がない
-                                isNoChange = true;
-                                return;
-                            }
-
-                            this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
-                                tileRecord: new TileRecord(
-                                    id: value,  // 更新
-                                    rect: contents.SourceRectangle,
-                                    title: contents.Title,
-                                    logicalDelete: contents.LogicalDelete),
-                                workingRect: contents.SourceRectangle.Do(this.Zoom)));
-                        });
-
-                    if (isNoChange)
+                    var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                    if (contents.Id == value)
+                    {
+                        // 値に変化がない
                         return;
+                    }
+
+                    this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new TileRecord(
+                            id: value,  // 更新
+                            rect: contents.SourceRectangle,
+                            title: contents.Title,
+                            logicalDelete: contents.LogicalDelete),
+                        workingRect: contents.SourceRectangle.Do(this.Zoom));
                 }
 
                 this.InvalidateLocale();
@@ -857,17 +830,14 @@
 
                 RectangleInt result = Models.Geometric.RectangleInt.Empty;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (selectedTileVisualBuffer) =>
-                    {
-                        result = selectedTileVisualBuffer.SourceRectangle;
-                    });
+                var selectedTileVisualBuffer = this.cropCursorPointedTileRecordVisualBufferOption;
+                result = selectedTileVisualBuffer.SourceRectangle;
 
                 return result;
             }
             set
             {
-                if(this.cropCursorPointedTileRecordVisualBufferOption.IsNone)
+                if (this.cropCursorPointedTileRecordVisualBufferOption.IsNone)
                 {
                     // ［切抜きカーソル］の指すタイル無し時
 
@@ -876,16 +846,13 @@
                 {
                     bool isNoChange = false;
 
-                    this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                        some: (selectedTileVisualBuffer) =>
-                        {
-                            if (selectedTileVisualBuffer.SourceRectangle == value)
-                            {
-                                // 値に変化がない
-                                isNoChange = true;
-                                return;
-                            }
-                        });
+                    var selectedTileVisualBuffer = this.cropCursorPointedTileRecordVisualBufferOption;
+                    if (selectedTileVisualBuffer.SourceRectangle == value)
+                    {
+                        // 値に変化がない
+                        isNoChange = true;
+                        return;
+                    }
 
                     if (isNoChange)
                         return;
@@ -919,11 +886,8 @@
 
                 int result = 0;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        result = contents.SourceRectangle.Location.X.AsInt;
-                    });
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                result = contents.SourceRectangle.Location.X.AsInt;
 
                 return result;
             }
@@ -937,40 +901,37 @@
                     var rect1 = new Models.Geometric.RectangleInt(
                                 location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
                                 size: Models.Geometric.SizeInt.Empty);
-                    this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom)));
+                        workingRect: rect1.Do(this.Zoom));
                 }
                 else
                 {
                     bool isNoChange = false;
 
-                    this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                        some: (contents) =>
-                        {
-                            if (contents.SourceRectangle.Location.X.AsInt == value)
-                            {
-                                // 値に変化がない
-                                isNoChange = true;
-                                return;
-                            }
+                    var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                    if (contents.SourceRectangle.Location.X.AsInt == value)
+                    {
+                        // 値に変化がない
+                        isNoChange = true;
+                        return;
+                    }
 
-                            // 元画像ベース
-                            var rect1 = new Models.Geometric.RectangleInt(
-                                        location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), contents.SourceRectangle.Location.Y),
-                                        size: contents.SourceRectangle.Size);
-                            this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
-                                tileRecord: new Models.TileRecord(
-                                    id: contents.Id,
-                                    rect: rect1,
-                                    title: contents.Title,
-                                    logicalDelete: contents.LogicalDelete),
-                                workingRect: rect1.Do(this.Zoom)));
-                        });
+                    // 元画像ベース
+                    var rect1 = new Models.Geometric.RectangleInt(
+                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), contents.SourceRectangle.Location.Y),
+                                size: contents.SourceRectangle.Size);
+                    this.cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: contents.Id,
+                            rect: rect1,
+                            title: contents.Title,
+                            logicalDelete: contents.LogicalDelete),
+                        workingRect: rect1.Do(this.Zoom));
 
                     if (isNoChange)
                         return;
@@ -1001,11 +962,8 @@
 
                 int top = 0;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        top = contents.SourceRectangle.Location.Y.AsInt;
-                    });
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                top = contents.SourceRectangle.Location.Y.AsInt;
 
                 return top;
             }
@@ -1019,40 +977,38 @@
                     var rect1 = new Models.Geometric.RectangleInt(
                             location: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
                             size: Models.Geometric.SizeInt.Empty);
-                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom)));
+                        workingRect: rect1.Do(this.Zoom));
                 }
                 else
                 {
                     bool isNoChanged = false;
 
-                    this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                        some: (contents) =>
-                        {
-                            if (contents.SourceRectangle.Location.Y.AsInt == value)
-                            {
-                                // 値に変化がない
-                                isNoChanged = true;
-                                return;
-                            }
+                    var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                    if (contents.SourceRectangle.Location.Y.AsInt == value)
+                    {
+                        // 値に変化がない
+                        isNoChanged = true;
+                        return;
+                    }
 
-                            // 元画像ベース
-                            var rect1 = new Models.Geometric.RectangleInt(
-                                    location: new Models.Geometric.PointInt(contents.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
-                                    size: contents.SourceRectangle.Size);
-                            cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
-                                tileRecord: new Models.TileRecord(
-                                    id: contents.Id,
-                                    rect: rect1,
-                                    title: contents.Title,
-                                    logicalDelete: contents.LogicalDelete),
-                                workingRect: rect1.Do(this.Zoom)));
-                        });
+                    // 元画像ベース
+                    var rect1 = new Models.Geometric.RectangleInt(
+                            location: new Models.Geometric.PointInt(contents.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
+                            size: contents.SourceRectangle.Size);
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: contents.Id,
+                            rect: rect1,
+                            title: contents.Title,
+                            logicalDelete: contents.LogicalDelete),
+                        workingRect: rect1.Do(this.Zoom));
 
                     if (isNoChanged)
                         return;
@@ -1087,11 +1043,8 @@
                     return Models.Geometric.SizeInt.Empty;
                 }
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        size = contents.SourceRectangle.Size;
-                    });
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                size = contents.SourceRectangle.Size;
 
                 return size;
             }
@@ -1105,16 +1058,13 @@
                 }
                 else
                 {
-                    this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                        some: (contents) =>
-                        {
-                            if (contents.SourceRectangle.Size == value)
-                            {
-                                // 値に変化がない
-                                isNoChanged = true;
-                                return;
-                            }
-                        });
+                    var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                    if (contents.SourceRectangle.Size == value)
+                    {
+                        // 値に変化がない
+                        isNoChanged = true;
+                        return;
+                    }
                 }
 
                 if (isNoChanged)
@@ -1146,11 +1096,8 @@
 
                 int width = 0;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        width = contents.SourceRectangle.Size.Width.AsInt;
-                    });
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                width = contents.SourceRectangle.Size.Width.AsInt;
 
                 return width;
             }
@@ -1160,34 +1107,31 @@
                 {
                     // ［切抜きカーソル］無し時
                     var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty));
-                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom)));
+                        workingRect: rect1.Do(this.Zoom));
                 }
                 else
                 {
-                    this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                        some: (contents) =>
-                        {
-                            if (contents.SourceRectangle.Size.Width.AsInt == value)
-                            {
-                                // 値に変化がない
-                                return;
-                            }
+                    var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                    if (contents.SourceRectangle.Size.Width.AsInt == value)
+                    {
+                        // 値に変化がない
+                        return;
+                    }
 
-                            var rect1 = new Models.Geometric.RectangleInt(contents.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), contents.SourceRectangle.Size.Height));
-                            cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
-                                tileRecord: new Models.TileRecord(
-                                    id: contents.Id,
-                                    rect: rect1,
-                                    title: contents.Title,
-                                    logicalDelete: contents.LogicalDelete),
-                                workingRect: rect1.Do(this.Zoom)));
-                        });
+                    var rect1 = new Models.Geometric.RectangleInt(contents.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), contents.SourceRectangle.Size.Height));
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: contents.Id,
+                            rect: rect1,
+                            title: contents.Title,
+                            logicalDelete: contents.LogicalDelete),
+                        workingRect: rect1.Do(this.Zoom));
                 }
 
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
@@ -1214,11 +1158,8 @@
 
                 int height = 0;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        height = contents.SourceRectangle.Size.Height.AsInt;
-                    });
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                height = contents.SourceRectangle.Size.Height.AsInt;
 
                 return height;
             }
@@ -1228,37 +1169,34 @@
                 {
                     // ［切抜きカーソル］無し時
                     var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value)));
-                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom)));
+                        workingRect: rect1.Do(this.Zoom));
                 }
                 else
                 {
                     bool isNoChanged = false;
 
-                    this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                        some: (contents) =>
-                        {
-                            if (contents.SourceRectangle.Size.Height.AsInt == value)
-                            {
-                                // 値に変化がない
-                                isNoChanged = true;
-                                return;
-                            }
+                    var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                    if (contents.SourceRectangle.Size.Height.AsInt == value)
+                    {
+                        // 値に変化がない
+                        isNoChanged = true;
+                        return;
+                    }
 
-                            var rect1 = new Models.Geometric.RectangleInt(contents.SourceRectangle.Location, new Models.Geometric.SizeInt(contents.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
-                            cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
-                                tileRecord: new Models.TileRecord(
-                                    id: contents.Id,
-                                    rect: rect1,
-                                    title: contents.Title,
-                                    logicalDelete: contents.LogicalDelete),
-                                workingRect: rect1.Do(this.Zoom)));
-                        });
+                    var rect1 = new Models.Geometric.RectangleInt(contents.SourceRectangle.Location, new Models.Geometric.SizeInt(contents.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: contents.Id,
+                            rect: rect1,
+                            title: contents.Title,
+                            logicalDelete: contents.LogicalDelete),
+                        workingRect: rect1.Do(this.Zoom));
 
                     if (isNoChanged)
                         return;
@@ -1568,14 +1506,11 @@
 
                 string base64 = string.Empty;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        if (contents == null)
-                            throw new Exception();
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                if (contents == null)
+                    throw new Exception();
 
-                        base64 = contents.Id.AsBASE64;
-                    });
+                base64 = contents.Id.AsBASE64;
 
                 return base64;
             }
@@ -1598,14 +1533,11 @@
 
                 string code = string.Empty;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        if (contents == null)
-                            throw new Exception();
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                if (contents == null)
+                    throw new Exception();
 
-                        code = contents.Id.AsPhoneticCode;
-                    });
+                code = contents.Id.AsPhoneticCode;
 
                 return code;
             }
@@ -1619,7 +1551,7 @@
         ///         <item>選択タイルＩｄが空欄でない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledSelectedTileTitleAsStr => this.cropCursorPointedTileRecordVisualBufferOption.IsSome && !this.SelectedTileIdOrEmpty.IsEmpty;
+        public bool IsEnabledSelectedTileTitleAsStr => !this.cropCursorPointedTileRecordVisualBufferOption.IsNone && !this.SelectedTileIdOrEmpty.IsEmpty;
 
         /// <summary>
         ///     ［切抜きカーソル］の指すタイルのタイトル
@@ -1630,11 +1562,8 @@
             {
                 string title = string.Empty;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        title = contents.Title.AsStr;
-                    });
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                title = contents.Title.AsStr;
 
                 return title;
             }
@@ -1644,37 +1573,34 @@
                 {
                     // ［切抜きカーソル］の指すタイル無し時
                     var rect1 = Models.Geometric.RectangleInt.Empty;
-                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: rect1,
                             title: new Models.TileTitle(value),
                             logicalDelete: Models.LogicalDelete.False),
-                       workingRect: rect1.Do(this.Zoom)));
+                       workingRect: rect1.Do(this.Zoom));
                 }
                 else
                 {
                     bool isNoChange = false;
 
-                    this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                        some: (contents) =>
-                        {
-                            if (contents.Title.AsStr == value)
-                            {
-                                // 値に変化がない
-                                isNoChange = true;
-                                return;
-                            }
+                    var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                    if (contents.Title.AsStr == value)
+                    {
+                        // 値に変化がない
+                        isNoChange = true;
+                        return;
+                    }
 
-                            var rect1 = contents.SourceRectangle;
-                            cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
-                                tileRecord: new Models.TileRecord(
-                                    id: contents.Id,
-                                    rect: rect1,
-                                    title: new Models.TileTitle(value),
-                                    logicalDelete: contents.LogicalDelete),
-                                workingRect: rect1.Do(this.Zoom)));
-                        });
+                    var rect1 = contents.SourceRectangle;
+                    cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: contents.Id,
+                            rect: rect1,
+                            title: new Models.TileTitle(value),
+                            logicalDelete: contents.LogicalDelete),
+                        workingRect: rect1.Do(this.Zoom));
 
                     if (isNoChange)
                         return;
@@ -1721,19 +1647,16 @@
 
                 string hint = string.Empty;
 
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        if (contents.Id == Models.TileIdOrEmpty.Empty)
-                        {
-                            // 未選択時
-                            hint = "選択タイルを、タイル一覧画面へ追加";
-                        }
-                        else
-                        {
-                            hint = "選択タイルを、タイル一覧画面へ上書";
-                        }
-                    });
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
+                if (contents.Id == Models.TileIdOrEmpty.Empty)
+                {
+                    // 未選択時
+                    hint = "選択タイルを、タイル一覧画面へ追加";
+                }
+                else
+                {
+                    hint = "選択タイルを、タイル一覧画面へ上書";
+                }
 
                 return hint;
             }
@@ -1833,32 +1756,29 @@
             }
             else
             {
-                this.CropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (cropCursorVisualBuffer) =>
-                    {
-                        TileIdOrEmpty tileIdOrEmpty;
-                        if (this.SelectedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
-                        {
-                            // Ｉｄが空欄ということは、新規作成だ
+                var cropCursorVisualBuffer = this.CropCursorPointedTileRecordVisualBufferOption;
+                TileIdOrEmpty tileIdOrEmpty;
+                if (this.SelectedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+                {
+                    // Ｉｄが空欄ということは、新規作成だ
 
-                            // 新しいタイルＩｄを発行
-                            tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
-                            this.TilesetSettingsVM.IncreaseUsableId();
-                        }
-                        else
-                        {
-                            tileIdOrEmpty = this.SelectedTileIdOrEmpty;
-                        }
+                    // 新しいタイルＩｄを発行
+                    tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
+                    this.TilesetSettingsVM.IncreaseUsableId();
+                }
+                else
+                {
+                    tileIdOrEmpty = this.SelectedTileIdOrEmpty;
+                }
 
-                        // ［登録タイル追加］処理
-                        App.History.Do(new AddRegisteredTileProcessing(
-                            owner: this,
-                            cropCursorVisualBuffer: cropCursorVisualBuffer,
-                            tileIdOrEmpty: tileIdOrEmpty,
-                            workingRectangle: cropCursorVisualBuffer.SourceRectangle.Do(this.Zoom)));
-                        this.OnPropertyChanged(nameof(CanUndo));
-                        this.OnPropertyChanged(nameof(CanRedo));
-                    });
+                // ［登録タイル追加］処理
+                App.History.Do(new AddRegisteredTileProcessing(
+                    owner: this,
+                    cropCursorVisualBuffer: cropCursorVisualBuffer,
+                    tileIdOrEmpty: tileIdOrEmpty,
+                    workingRectangle: cropCursorVisualBuffer.SourceRectangle.Do(this.Zoom)));
+                this.OnPropertyChanged(nameof(CanUndo));
+                this.OnPropertyChanged(nameof(CanRedo));
             }
         }
 
@@ -1980,7 +1900,7 @@
                     //
 
                     // 選択中のタイルを設定
-                    this.CropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(tileRecordVisualBuffer);
+                    this.CropCursorPointedTileRecordVisualBufferOption = tileRecordVisualBuffer;
                 },
                 none: () =>
                 {
@@ -1992,13 +1912,13 @@
                     //
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.CropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateSome(TileRecordVisualBuffer.FromModel(
+                    this.CropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: this.SourceCroppedCursorRect,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: this.SourceCroppedCursorRect.Do(this.Zoom)));
+                        workingRect: this.SourceCroppedCursorRect.Do(this.Zoom));
                 });
         }
         #endregion
@@ -2045,26 +1965,23 @@
             }
             else
             {
-                this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                    some: (contents) =>
-                    {
-                        // 切抜きカーソル有り時
+                var contents = this.cropCursorPointedTileRecordVisualBufferOption;
 
-                        if (contents.Id == TileIdOrEmpty.Empty)
-                        {
-                            // Ｉｄ未設定時
+                // 切抜きカーソル有り時
+                if (contents.Id == TileIdOrEmpty.Empty)
+                {
+                    // Ｉｄ未設定時
 
-                            // ［追加」
-                            this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-                        }
-                        else
-                        {
-                            // 「上書」
-                            this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
-                        }
+                    // ［追加」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                }
+                else
+                {
+                    // 「上書」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
+                }
 
-                        this.IsEnabledAddsButton = true;
-                    });
+                this.IsEnabledAddsButton = true;
             }
         }
         #endregion
@@ -2082,22 +1999,19 @@
                 return;
             }
 
-            this.cropCursorPointedTileRecordVisualBufferOption.Unwrap(
-                some: (contents) =>
-                {
-                    // 切抜きカーソル有り時
+            var contents = this.cropCursorPointedTileRecordVisualBufferOption;
 
-                    if (contents.Id == TileIdOrEmpty.Empty)
-                    {
-                        // Ｉｄ未設定時
-                        this.IsEnabledDeletesButton = false;
-                    }
-                    else
-                    {
-                        // タイル登録済み時
-                        this.IsEnabledDeletesButton = true;
-                    }
-                });
+            // 切抜きカーソル有り時
+            if (contents.Id == TileIdOrEmpty.Empty)
+            {
+                // Ｉｄ未設定時
+                this.IsEnabledDeletesButton = false;
+            }
+            else
+            {
+                // タイル登録済み時
+                this.IsEnabledDeletesButton = true;
+            }
         }
         #endregion
 
@@ -2280,7 +2194,7 @@
         ///         <item>［切抜きカーソル］が未確定のときも、指しているタイルにアクセスできることに注意</item>
         ///     </list>
         /// </summary>
-        TileRecordVisualBufferOption cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBufferOption.CreateEmpty();
+        TileRecordVisualBuffer cropCursorPointedTileRecordVisualBufferOption = TileRecordVisualBuffer.CreateEmpty();
 
         /// <summary>
         ///     ［切抜きカーソル］ズーム済みの位置

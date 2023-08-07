@@ -66,6 +66,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Remove="Models\TileRecordVisualBufferOption.cs" />
+	</ItemGroup>
+
+	<ItemGroup>
 	  <None Remove="Resources\Raw\languages.csv" />
 	</ItemGroup>
 
