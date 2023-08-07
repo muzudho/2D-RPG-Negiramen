@@ -1218,12 +1218,12 @@
         ///         <item>カーソルの線の幅を含まない</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.PointFloat CroppedCursorPointedTileWorkingPoint
+        public Models.Geometric.PointFloat CroppedCursorPointedTileWorkingLocation
         {
-            get => this.croppedCursorPointedTileWorkingPoint;
+            get => this.croppedCursorPointedTileWorkingLocation;
             set
             {
-                if (this.croppedCursorPointedTileWorkingPoint != value)
+                if (this.croppedCursorPointedTileWorkingLocation != value)
                 {
                     this.CroppedCursorPointedTileWorkingLeftAsFloat = value.X.AsFloat;
                     this.CroppedCursorPointedTileWorkingTopAsFloat = value.Y.AsFloat;
@@ -1240,17 +1240,17 @@
         /// </summary>
         public float CroppedCursorPointedTileWorkingLeftAsFloat
         {
-            get => this.croppedCursorPointedTileWorkingPoint.X.AsFloat;
+            get => this.croppedCursorPointedTileWorkingLocation.X.AsFloat;
             set
             {
-                if (this.croppedCursorPointedTileWorkingPoint.X.AsFloat != value)
+                if (this.croppedCursorPointedTileWorkingLocation.X.AsFloat != value)
                 {
-                    this.croppedCursorPointedTileWorkingPoint = new Models.Geometric.PointFloat(
+                    this.croppedCursorPointedTileWorkingLocation = new Models.Geometric.PointFloat(
                         x: new Models.Geometric.XFloat(value),
-                        y: this.croppedCursorPointedTileWorkingPoint.Y);
+                        y: this.croppedCursorPointedTileWorkingLocation.Y);
 
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsFloat));
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingPoint));
+                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
                     OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
 
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsPresentableText));
@@ -1267,21 +1267,37 @@
         /// </summary>
         public float CroppedCursorPointedTileWorkingTopAsFloat
         {
-            get => this.croppedCursorPointedTileWorkingPoint.Y.AsFloat;
+            get => this.croppedCursorPointedTileWorkingLocation.Y.AsFloat;
             set
             {
-                if (this.croppedCursorPointedTileWorkingPoint.Y.AsFloat != value)
+                if (this.croppedCursorPointedTileWorkingLocation.Y.AsFloat != value)
                 {
-                    this.croppedCursorPointedTileWorkingPoint = new Models.Geometric.PointFloat(
-                        x: this.croppedCursorPointedTileWorkingPoint.X,
+                    this.croppedCursorPointedTileWorkingLocation = new Models.Geometric.PointFloat(
+                        x: this.croppedCursorPointedTileWorkingLocation.X,
                         y: new Models.Geometric.YFloat(value));
 
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsFloat));
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingPoint));
+                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
                     OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
 
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsPresentableText));
                 }
+            }
+        }
+
+        public Models.Geometric.RectangleFloat CroppedCursorPointedTileWorkingRect
+        {
+            get => new RectangleFloat(
+                location: this.CroppedCursorPointedTileWorkingLocation,
+                size: this.CroppedCursorPointedTileWorkingSize);
+            set
+            {
+                if (this.croppedCursorPointedTileWorkingLocation == value.Location &&
+                    this.croppedCursorPointedTileWorkingSize == value.Size)
+                    return;
+
+                this.croppedCursorPointedTileWorkingLocation = value.Location;
+                this.croppedCursorPointedTileWorkingSize = value.Size;
             }
         }
 
@@ -1374,7 +1390,7 @@
         ///         <item>📖 [Microsoft　＞　Standard numeric format strings](https://learn.microsoft.com/en-us/dotnet/standard/base-types/standard-numeric-format-strings?redirectedfrom=MSDN)  </item>
         ///     </list>
         /// </summary>
-        public string CroppedCursorPointedTileWorkingLeftAsPresentableText => this.croppedCursorPointedTileWorkingPoint.X.AsFloat.ToString("F1");
+        public string CroppedCursorPointedTileWorkingLeftAsPresentableText => this.croppedCursorPointedTileWorkingLocation.X.AsFloat.ToString("F1");
 
         /// <summary>
         ///     ［矩形カーソル］ズーム済みの位置ｙ
@@ -1384,7 +1400,7 @@
         ///         <item>表示用テキスト</item>
         ///     </list>
         /// </summary>
-        public string CroppedCursorPointedTileWorkingTopAsPresentableText => this.croppedCursorPointedTileWorkingPoint.Y.AsFloat.ToString("F1");
+        public string CroppedCursorPointedTileWorkingTopAsPresentableText => this.croppedCursorPointedTileWorkingLocation.Y.AsFloat.ToString("F1");
 
         /// <summary>
         ///     ［矩形カーソル］ズーム済みの横幅
@@ -2007,6 +2023,7 @@
             //
             // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
 
+            // this.CroppedCursorPointedTileWorkingRect = workingRect;
             this.CroppedCursorPointedTileSourceRect = sourceRect;
 
             //
@@ -2148,7 +2165,33 @@
         ///         <item>TODO ★ croppedCursorPointedTileRecordVisualBuffer に統合できないか？</item>
         ///     </list>
         /// </summary>
-        Models.Geometric.PointFloat croppedCursorPointedTileWorkingPoint = Models.Geometric.PointFloat.Empty;
+        Models.Geometric.PointFloat croppedCursorPointedTileWorkingLocation = Models.Geometric.PointFloat.Empty;
+        /*
+        /// <summary>
+        ///     ［切抜きカーソル］ズーム済みの位置
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅を含まない</item>
+        ///         <item>TODO ★ croppedCursorPointedTileRecordVisualBuffer に統合できないか？</item>
+        ///     </list>
+        /// </summary>
+        Models.Geometric.PointFloat CroppedCursorPointedTileWorkingLocationTemp
+        {
+            get
+            {
+                return this.croppedCursorPointedTileRecordVisualBuffer.WorkingRectangle.Location;
+            }
+            set
+            {
+                if (this.croppedCursorPointedTileRecordVisualBuffer.WorkingRectangle.Location == value)
+                    return;
+
+                this.croppedCursorPointedTileRecordVisualBuffer.WorkingRectangle = new RectangleFloat(
+                    location: value,
+                    size: this.croppedCursorPointedTileRecordVisualBuffer.WorkingRectangle.Size);
+            }
+        }
+        */
 
         /// <summary>
         ///     ［切抜きカーソル］ズーム済みのサイズ
@@ -2159,6 +2202,32 @@
         ///     </list>
         /// </summary>
         Models.Geometric.SizeFloat croppedCursorPointedTileWorkingSize = Models.Geometric.SizeFloat.Zero;
+        /*
+        /// <summary>
+        ///     ［切抜きカーソル］ズーム済みのサイズ
+        ///         
+        ///     <list type="bullet">
+        ///         <item>カーソルの線の幅は含まない</item>
+        ///         <item>TODO ★ croppedCursorPointedTileRecordVisualBuffer に統合できないか？</item>
+        ///     </list>
+        /// </summary>
+        Models.Geometric.SizeFloat CroppedCursorPointedTileWorkingSizeTemp
+        {
+            get
+            {
+                return this.croppedCursorPointedTileRecordVisualBuffer.WorkingRectangle.Size;
+            }
+            set
+            {
+                if (this.croppedCursorPointedTileRecordVisualBuffer.WorkingRectangle.Size == value)
+                    return;
+
+                this.croppedCursorPointedTileRecordVisualBuffer.WorkingRectangle = new RectangleFloat(
+                    location: this.croppedCursorPointedTileRecordVisualBuffer.WorkingRectangle.Location,
+                    size: value);
+            }
+        }
+        */
 
         /// <summary>
         ///     ［切抜きカーソル］の線の半分の太さ
@@ -2395,7 +2464,7 @@
                 // ［切抜きカーソルが指すタイル］更新
                 {
                     // 位置
-                    this.Owner.CroppedCursorPointedTileWorkingPoint = new TheGeometric.PointFloat(
+                    this.Owner.CroppedCursorPointedTileWorkingLocation = new TheGeometric.PointFloat(
                         x: new TheGeometric.XFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.X.AsInt),
                         y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
