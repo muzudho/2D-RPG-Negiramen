@@ -19,7 +19,7 @@ internal class TileRecordVisualBufferOption
     {
         return new TileRecordVisualBufferOption()
         {
-            selectedTileRecordVisualBufferOption = new(new TileRecordVisualBuffer()),
+            selectedTileRecordVisualBufferOption = new(TileRecordVisualBuffer.CreateEmpty()),
         };
     }
 
@@ -58,6 +58,14 @@ internal class TileRecordVisualBufferOption
         }
     }
 
+    // - インターナル・プロパティ
+
+    /// <summary>
+    ///     中身があるか？
+    /// </summary>
+    /// <returns>そうだ</returns>
+    internal bool IsSome => this.selectedTileRecordVisualBufferOption.IsSome;
+
     // - インターナル・メソッド
 
     /// <summary>
@@ -70,27 +78,7 @@ internal class TileRecordVisualBufferOption
         this.selectedTileRecordVisualBufferOption.Unwrap(some, none);
     }
 
-    /// <summary>
-    ///     TODO 廃止方針
-    ///     中身を取り出す
-    /// </summary>
-    /// <param name="contents"></param>
-    /// <returns></returns>
-    [Obsolete]
-    internal bool Unwrap(out TileRecordVisualBuffer? contents)
-    {
-        return this.selectedTileRecordVisualBufferOption.Unwrap(out contents);
-    }
-
-    
-
-    /// <summary>
-    ///     中身があるか？
-    /// </summary>
-    /// <returns>そうだ</returns>
-    internal bool IsSome => this.selectedTileRecordVisualBufferOption.IsSome;
-
     // - プライベート・プロパティ
 
-    Option<TileRecordVisualBuffer> selectedTileRecordVisualBufferOption = new(new TileRecordVisualBuffer());
+    Option<TileRecordVisualBuffer> selectedTileRecordVisualBufferOption = new(TileRecordVisualBuffer.CreateEmpty());
 }

@@ -16,6 +16,8 @@
         // - その他
 
         #region その他（生成　関連）
+        internal static TileRecordVisualBuffer CreateEmpty() => new TileRecordVisualBuffer();
+
         /// <summary>
         ///     生成
         /// </summary>
