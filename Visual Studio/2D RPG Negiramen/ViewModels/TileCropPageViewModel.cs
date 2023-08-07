@@ -823,7 +823,7 @@
         ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.RectangleInt SourceCroppedCursorRect
+        public Models.Geometric.RectangleInt CroppedCursorPointedTileSourceRect
         {
             get
             {
@@ -932,7 +932,7 @@
                 // TODO サイズは変化無しか？
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceLeftAsInt));
-                OnPropertyChanged(nameof(SourceCroppedCursorRect));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileSourceRect));
             }
         }
 
@@ -1001,7 +1001,7 @@
                 // TODO サイズは変化無しか？
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceTopAsInt));
-                OnPropertyChanged(nameof(SourceCroppedCursorRect));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileSourceRect));
             }
         }
 
@@ -1016,8 +1016,6 @@
         {
             get
             {
-                Models.Geometric.SizeInt size = SizeInt.Empty;
-
                 var contents = this.croppedCursorPointedTileRecordVisualBuffer;
 
                 if (contents.IsNone)
@@ -1052,7 +1050,7 @@
                 this.CroppedCursorPointedTileSourceWidthAsInt = value.Width.AsInt;
                 this.CroppedCursorPointedTileSourceHeightAsInt = value.Height.AsInt;
 
-                OnPropertyChanged(nameof(SourceCroppedCursorRect));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileSourceRect));
             }
         }
 
@@ -1112,7 +1110,7 @@
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceWidthAsInt));
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceSize));
-                OnPropertyChanged(nameof(SourceCroppedCursorRect));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileSourceRect));
             }
         }
 
@@ -1172,7 +1170,7 @@
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceHeightAsInt));
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceSize));
-                OnPropertyChanged(nameof(SourceCroppedCursorRect));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileSourceRect));
             }
         }
 
@@ -1828,7 +1826,7 @@
         internal void LoadCroppedCursorPointedTile()
         {
             this.TilesetSettingsVM.MatchByRectangle(
-                sourceRect: this.SourceCroppedCursorRect,
+                sourceRect: this.CroppedCursorPointedTileSourceRect,
                 some: (tileRecordVisualBuffer) =>
                 {
                     // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
@@ -1854,10 +1852,10 @@
                     this.CroppedCursorPointedTileRecordVisualBuffer = TileRecordVisualBuffer.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
-                            rect: this.SourceCroppedCursorRect,
+                            rect: this.CroppedCursorPointedTileSourceRect,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: this.SourceCroppedCursorRect.Do(this.Zoom));
+                        workingRect: this.CroppedCursorPointedTileSourceRect.Do(this.Zoom));
                 });
         }
         #endregion
@@ -1964,7 +1962,7 @@
         /// </summary>
         internal void RecalculateBetweenCroppedCursorAndRegisteredTile()
         {
-            if (this.SourceCroppedCursorRect == TheGeometric.RectangleInt.Empty)
+            if (this.CroppedCursorPointedTileSourceRect == TheGeometric.RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
                 this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
@@ -1973,8 +1971,8 @@
             }
 
             // 軽くはない処理
-            this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.SourceCroppedCursorRect);
-            this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.SourceCroppedCursorRect);
+            this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
+            this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
 
             Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
@@ -2009,7 +2007,7 @@
             //
             // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
 
-            this.SourceCroppedCursorRect = sourceRect;
+            this.CroppedCursorPointedTileSourceRect = sourceRect;
 
             //
             // 登録済みのタイルと被っていないか判定
@@ -2392,17 +2390,17 @@
                     this.Owner.RefreshWorkingGridTileHeight();
                 }
 
-                // ［切抜きカーソル］更新
+                // ［切抜きカーソルが指すタイル］更新
                 {
                     // 位置
                     this.Owner.CroppedCursorPointedTileWorkingPoint = new TheGeometric.PointFloat(
-                        x: new TheGeometric.XFloat(this.Owner.ZoomAsFloat * this.Owner.SourceCroppedCursorRect.Location.X.AsInt),
-                        y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.SourceCroppedCursorRect.Location.Y.AsInt));
+                        x: new TheGeometric.XFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.X.AsInt),
+                        y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
                     // サイズ
                     this.Owner.CroppedCursorPointedTileWorkingSize = new TheGeometric.SizeFloat(
-                        width: new TheGeometric.WidthFloat(this.Owner.ZoomAsFloat * this.Owner.SourceCroppedCursorRect.Size.Width.AsInt),
-                        height: new TheGeometric.HeightFloat(this.Owner.ZoomAsFloat * this.Owner.SourceCroppedCursorRect.Size.Height.AsInt));
+                        width: new TheGeometric.WidthFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Size.Width.AsInt),
+                        height: new TheGeometric.HeightFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Size.Height.AsInt));
                 }
 
                 // 全ての［登録タイル］の更新
