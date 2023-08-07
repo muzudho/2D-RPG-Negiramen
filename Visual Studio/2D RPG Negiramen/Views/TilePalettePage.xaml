@@ -92,14 +92,14 @@
                     </HorizontalStackLayout>
 
                     <!--
-                        タイル・カーソル位置
-                        ====================
+                        ［矩形カーソル］が指すタイルの位置
+                        ==================================
                     -->
                     <HorizontalStackLayout>
                         <Label Text="(" />
-                        <Label Text="{Binding SourceCroppedCursorLeftAsInt}" />
+                        <Label Text="{Binding CroppedCursorPointedTileSourceLeftAsInt}" />
                         <Label Text="," />
-                        <Label Text="{Binding SourceCroppedCursorTopAsInt}" />
+                        <Label Text="{Binding CroppedCursorPointedTileSourceTopAsInt}" />
                         <Label Text=") cursor" />
                     </HorizontalStackLayout>
 

@@ -73,7 +73,7 @@ public partial class TilePalettePage : ContentPage
         //
         context.TappedXOnImageAsInt = (int)tapped.X.AsFloat;
         context.TappedYOnImageAsInt = (int)tapped.Y.AsFloat;
-        context.SourceCroppedCursorLeftAsInt = (int)tileCursor.X.AsFloat;
-        context.SourceCroppedCursorTopAsInt = (int)tileCursor.Y.AsFloat;
+        context.CroppedCursorPointedTileSourceLeftAsInt = (int)tileCursor.X.AsFloat;
+        context.CroppedCursorPointedTileSourceTopAsInt = (int)tileCursor.Y.AsFloat;
     }
 }

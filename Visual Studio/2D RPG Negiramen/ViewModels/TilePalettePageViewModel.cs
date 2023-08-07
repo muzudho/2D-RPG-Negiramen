@@ -108,7 +108,7 @@
         /// <summary>
         ///     切抜きカーソル。元画像ベースの位置ｘ
         /// </summary>
-        public int SourceCroppedCursorLeftAsInt
+        public int CroppedCursorPointedTileSourceLeftAsInt
         {
             get => sourceCroppedCursorPoint.X.AsInt;
             set
@@ -116,13 +116,13 @@
                 if (sourceCroppedCursorPoint.X.AsInt != value)
                 {
                     sourceCroppedCursorPoint = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), sourceCroppedCursorPoint.Y);
-                    OnPropertyChanged(nameof(SourceCroppedCursorLeftAsInt));
+                    OnPropertyChanged(nameof(CroppedCursorPointedTileSourceLeftAsInt));
 
                     this.workingCroppedCursorPointAsMargin = new Thickness(
                         // 左
-                        this.SourceCroppedCursorLeftAsInt,
+                        this.CroppedCursorPointedTileSourceLeftAsInt,
                         // 上
-                        this.SourceCroppedCursorTopAsInt,
+                        this.CroppedCursorPointedTileSourceTopAsInt,
                         // 右
                         0,
                         // 下
@@ -134,7 +134,7 @@
         /// <summary>
         ///     切抜きカーソル。元画像ベースの位置ｙ
         /// </summary>
-        public int SourceCroppedCursorTopAsInt
+        public int CroppedCursorPointedTileSourceTopAsInt
         {
             get => sourceCroppedCursorPoint.Y.AsInt;
             set
@@ -142,13 +142,13 @@
                 if (sourceCroppedCursorPoint.Y.AsInt != value)
                 {
                     sourceCroppedCursorPoint = new Models.Geometric.PointInt(sourceCroppedCursorPoint.X, new Models.Geometric.YInt(value));
-                    OnPropertyChanged(nameof(SourceCroppedCursorTopAsInt));
+                    OnPropertyChanged(nameof(CroppedCursorPointedTileSourceTopAsInt));
 
                     this.workingCroppedCursorPointAsMargin = new Thickness(
                         // 左
-                        this.SourceCroppedCursorLeftAsInt,
+                        this.CroppedCursorPointedTileSourceLeftAsInt,
                         // 上
-                        this.SourceCroppedCursorTopAsInt,
+                        this.CroppedCursorPointedTileSourceTopAsInt,
                         // 右
                         0,
                         // 下

@@ -531,38 +531,38 @@
             <!--    ◆２段目 入力部
                     ===============
             -->
-            <!-- カーソル -->
+            <!-- 「カーソル」 -->
             <Label Grid.Row="1" Grid.Column="1"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
                    Text="{app:Translate Cursor}"/>
 
-            <!-- 元画像：　切抜きカーソル。位置Ｘ -->
+            <!-- 元画像：　［切抜きカーソル］が指すタイル。位置Ｘ -->
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SourceCroppedCursorLeftAsInt}"
+                   Text="{Binding CroppedCursorPointedTileSourceLeftAsInt}"
                    FontSize="24"/>
 
-            <!-- 元画像：　切抜きカーソル。位置Ｙ -->
+            <!-- 元画像：　［切抜きカーソル］が指すタイル。位置Ｙ -->
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SourceCroppedCursorTopAsInt}"
+                   Text="{Binding CroppedCursorPointedTileSourceTopAsInt}"
                    FontSize="24"/>
 
-            <!-- 元画像：　切抜きカーソル。横幅 -->
+            <!-- 元画像：　［切抜きカーソル］が指すタイル。横幅 -->
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SourceCroppedCursorWidthAsInt}"
+                   Text="{Binding CroppedCursorPointedTileSourceWidthAsInt}"
                    FontSize="24"/>
 
-            <!-- 元画像：　切抜きカーソル。縦幅 -->
+            <!-- 元画像：　［切抜きカーソル］が指すタイル。縦幅 -->
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding SourceCroppedCursorHeightAsInt}"
+                   Text="{Binding CroppedCursorPointedTileSourceHeightAsInt}"
                    FontSize="24"/>
 
             <!--    ◆３段目 読み仮名部
