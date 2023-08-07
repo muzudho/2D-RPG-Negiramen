@@ -91,6 +91,13 @@
         internal LogicalDelete LogicalDelete { get; set; }
         #endregion
 
+        #region プロパティ（サイズが無いか？）
+        /// <summary>
+        ///     サイズが無いか？
+        /// </summary>
+        internal bool IsNone => (this.SourceRectangle.RightAsInt - this.SourceRectangle.LeftAsInt < 1) && (this.SourceRectangle.BottomAsInt - this.SourceRectangle.TopAsInt < 1);
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（ダンプ）

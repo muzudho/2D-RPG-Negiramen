@@ -2796,4 +2796,19 @@ author = "むずでょ"
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　アンドゥ・リドゥを考え出すと　設計に変更が生じるな」  
 
+# 📅 （2023-08-07 mon）アンドゥ・リドゥ機能を早よ作れだぜ
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　アンドゥ・リドゥ機能を早よ作れだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　アンドゥ・リドゥ機能は　もう付いていて、  
+既存のプログラムを　すべて　それに対応していくという作業なんだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　それを早よしろだぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　既存のプログラムの不出来なところを直さないと　そこへ進めないぜ」  
+
 ＜書きかけ＞
