@@ -118,7 +118,7 @@
                     sourceCroppedCursorPoint = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), sourceCroppedCursorPoint.Y);
                     OnPropertyChanged(nameof(CroppedCursorPointedTileSourceLeftAsInt));
 
-                    this.workingCroppedCursorPointAsMargin = new Thickness(
+                    this.croppedCursorWorkingPointAsMargin = new Thickness(
                         // 左
                         this.CroppedCursorPointedTileSourceLeftAsInt,
                         // 上
@@ -144,7 +144,7 @@
                     sourceCroppedCursorPoint = new Models.Geometric.PointInt(sourceCroppedCursorPoint.X, new Models.Geometric.YInt(value));
                     OnPropertyChanged(nameof(CroppedCursorPointedTileSourceTopAsInt));
 
-                    this.workingCroppedCursorPointAsMargin = new Thickness(
+                    this.croppedCursorWorkingPointAsMargin = new Thickness(
                         // 左
                         this.CroppedCursorPointedTileSourceLeftAsInt,
                         // 上
@@ -160,15 +160,15 @@
         /// <summary>
         ///     矩形カーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        public Thickness WorkingCroppedCursorPointAsMargin
+        public Thickness CroppedCursorWorkingPointAsMargin
         {
-            get => this.workingCroppedCursorPointAsMargin;
+            get => this.croppedCursorWorkingPointAsMargin;
             private set
             {
-                if (this.workingCroppedCursorPointAsMargin != value)
+                if (this.croppedCursorWorkingPointAsMargin != value)
                 {
-                    this.workingCroppedCursorPointAsMargin = value;
-                    OnPropertyChanged(nameof(WorkingCroppedCursorPointAsMargin));
+                    this.croppedCursorWorkingPointAsMargin = value;
+                    OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
                 }
             }
         }
@@ -231,6 +231,6 @@
         /// <summary>
         ///     切抜きカーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        Thickness workingCroppedCursorPointAsMargin = Thickness.Zero;
+        Thickness croppedCursorWorkingPointAsMargin = Thickness.Zero;
     }
 }

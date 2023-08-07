@@ -405,14 +405,14 @@
                         ==============
                 -->
                 <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
-                              Margin="{Binding WorkingCroppedCursorPointAsMargin}"
-                              WidthRequest="{Binding WorkingCroppedCursorCanvasWidthAsFloat}" HeightRequest="{Binding WorkingCroppedCursorCanvasHeightAsFloat}"
+                              Margin="{Binding CroppedCursorWorkingPointAsMargin}"
+                              WidthRequest="{Binding CanvasOfCroppedCursorWorkingWidthAsFloat}" HeightRequest="{Binding CanvasOfCroppedCursorWorkingHeightAsFloat}"
                               InputTransparent="True"
                               x:Name="croppedCursor1">
                     <GraphicsView.Drawable>
                         <modelsDrawing:CroppedCursor BindingContext="{x:Reference thisContentPage}"
                                                      HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"
-                                                     CroppedCursorSize="{Binding TileCropPageVM.WorkingCroppedCursorSize}"
+                                                     CroppedCursorSize="{Binding TileCropPageVM.CroppedCursorPointedTileWorkingSize}"
                                                      IsMouseDragging="{Binding TileCropPageVM.IsMouseDragging}"/>
                     </GraphicsView.Drawable>
                 </GraphicsView>
@@ -447,32 +447,32 @@
                    VerticalTextAlignment="Center"
                    Text="{app:Translate Working}"/>
 
-            <!-- ズーム済み：　切抜きカーソル。位置Ｘ -->
+            <!-- ズーム済み：　［切抜きカーソルが指すタイル］位置Ｘ -->
             <Label Grid.Row="1" Grid.Column="2"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorLeftAsPresentableText}"
+                   Text="{Binding CroppedCursorPointedTileWorkingLeftAsPresentableText}"
                    FontSize="24"/>
 
-            <!-- ズーム済み：　切抜きカーソル。位置Ｙ -->
+            <!-- ズーム済み：　［切抜きカーソルが指すタイル］位置Ｙ -->
             <Label Grid.Row="1" Grid.Column="3"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorTopAsPresentableText}"
+                   Text="{Binding CroppedCursorPointedTileWorkingTopAsPresentableText}"
                    FontSize="24"/>
 
-            <!-- ズーム済み：　切抜きカーソル。横幅 -->
+            <!-- ズーム済み：　［切抜きカーソルが指すタイル］横幅 -->
             <Label Grid.Row="1" Grid.Column="4"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorWidthAsPresentableText}"
+                   Text="{Binding CroppedCursorPointedTileWorkingWidthAsPresentableText}"
                    FontSize="24"/>
 
-            <!-- ズーム済み：　切抜きカーソル。縦幅 -->
+            <!-- ズーム済み：　［切抜きカーソルが指すタイル］縦幅 -->
             <Label Grid.Row="1" Grid.Column="5"
                    HorizontalTextAlignment="End"
                    VerticalTextAlignment="Center"
-                   Text="{Binding WorkingCroppedCursorHeightAsPresentableText}"
+                   Text="{Binding CroppedCursorPointedTileWorkingHeightAsPresentableText}"
                    FontSize="24"/>
         </Grid>
 

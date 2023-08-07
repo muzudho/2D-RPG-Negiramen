@@ -43,7 +43,7 @@
                 -->
                 <GraphicsView x:Name="Canvas"
                               HorizontalOptions="Start" VerticalOptions="Start"
-                              Margin="{Binding WorkingCroppedCursorPointAsMargin}"
+                              Margin="{Binding CroppedCursorWorkingPointAsMargin}"
                               WidthRequest="40" HeightRequest="40"
                               Drawable="{StaticResource MyTileCursor}"
                               InputTransparent="True">

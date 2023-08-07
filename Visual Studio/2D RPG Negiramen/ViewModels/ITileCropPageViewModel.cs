@@ -76,17 +76,17 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置（マージンとして）
     /// </summary>
-    public Thickness WorkingCroppedCursorPointAsMargin { get; }
+    public Thickness CroppedCursorWorkingPointAsMargin { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置ｘ（マージンとして）
     /// </summary>
-    public float WorkingCroppedCursorLeftAsFloat { get; }
+    public float CroppedCursorPointedTileWorkingLeftAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置ｙ（マージンとして）
     /// </summary>
-    public float WorkingCroppedCursorTopAsFloat { get; }
+    public float CroppedCursorPointedTileWorkingTopAsFloat { get; }
 
     /// <summary>
     ///     切抜きカーソル。ズーム済みのサイズ
@@ -95,27 +95,27 @@ public interface ITileCropPageViewModel
     ///         <item>線の太さを含まない</item>
     ///     </list>
     /// </summary>
-    Models.Geometric.SizeFloat WorkingCroppedCursorSize { get; }
+    Models.Geometric.SizeFloat CroppedCursorPointedTileWorkingSize { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの横幅。線の太さを含まない
     /// </summary>
-    public float WorkingCroppedCursorWidthAsFloat { get; }
+    public float CroppedCursorPointedTileWorkingWidthAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの縦幅。線の太さを含まない
     /// </summary>
-    public float WorkingCroppedCursorHeightAsFloat { get; }
+    public float CroppedCursorPointedTileWorkingHeightAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの横幅。線の太さを含む
     /// </summary>
-    public float WorkingCroppedCursorCanvasWidthAsFloat { get; }
+    public float CanvasOfCroppedCursorWorkingWidthAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの縦幅。線の太さを含む
     /// </summary>
-    public float WorkingCroppedCursorCanvasHeightAsFloat { get; }
+    public float CanvasOfCroppedCursorWorkingHeightAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置ｘ
@@ -125,7 +125,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string WorkingCroppedCursorLeftAsPresentableText { get; }
+    string CroppedCursorPointedTileWorkingLeftAsPresentableText { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置ｙ
@@ -135,7 +135,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string WorkingCroppedCursorTopAsPresentableText { get; }
+    string CroppedCursorPointedTileWorkingTopAsPresentableText { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの横幅
@@ -145,7 +145,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string WorkingCroppedCursorWidthAsPresentableText { get; }
+    string CroppedCursorPointedTileWorkingWidthAsPresentableText { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの縦幅
@@ -155,7 +155,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string WorkingCroppedCursorHeightAsPresentableText { get; }
+    string CroppedCursorPointedTileWorkingHeightAsPresentableText { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）
