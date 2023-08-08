@@ -141,11 +141,11 @@ public class TilesetDatatable
     /// </summary>
     /// <returns>完了した</returns>
     internal static bool SaveCSV(
-        DataCsvTilesetCsv tileSetSettingsFile,
+        DataCsvTilesetCsv tileSetSettingsFileLocation,
         IEnumerator<TileRecord> recordList)
     {
         // 保存したいファイルへのパス
-        var settingsFilePathAsStr = tileSetSettingsFile.Path.AsStr;
+        var settingsFilePathAsStr = tileSetSettingsFileLocation.Path.AsStr;
 
         var builder = new StringBuilder();
 
@@ -455,7 +455,7 @@ public class TilesetDatatable
     {
         // 論理削除されているものも保存する
         return TilesetDatatable.SaveCSV(
-            tileSetSettingsFile: tileSetSettingsFile,
+            tileSetSettingsFileLocation: tileSetSettingsFile,
             recordList: this.GetAllRecords(includeLogicalDelete: true));
     }
     #endregion

@@ -9,7 +9,7 @@
     using TheGeometric = Geometric;
 
     /// <summary>
-    ///     😁 タイルセット・データテーブル視覚的
+    ///     😁 タイルセット・データテーブルの画面向け記憶
     ///     
     ///     <list type="bullet">
     ///         <item>ミュータブル</item>
@@ -45,8 +45,8 @@
 
                 foreach (TileRecord record in tilesetDatatable.RecordList)
                 {
-                    tilesetDatatableVisually.TileRecordVisualBufferList.Add(
-                        TileRecordVisualBuffer.FromModel(
+                    tilesetDatatableVisually.TileRecordVisuallyList.Add(
+                        TileRecordVisually.FromModel(
                             tileRecord: record,
                             workingRect: record.Rectangle.ToFloat()));
                 }
@@ -77,11 +77,11 @@
 
         // - インターナル・プロパティー
 
-        #region プロパティ（対象のタイルセットに含まれるすべてのタイルの記録）
+        #region プロパティ（対象のタイルセットに含まれるすべてのタイルの画面向け記憶）
         /// <summary>
-        /// 対象のタイルセットに含まれるすべてのタイルの記録
+        /// 対象のタイルセットに含まれるすべてのタイルの画面向け記憶
         /// </summary>
-        internal List<TileRecordVisualBuffer> TileRecordVisualBufferList { get; private set; } = new List<TileRecordVisualBuffer>();
+        internal List<TileRecordVisually> TileRecordVisuallyList { get; private set; } = new List<TileRecordVisually>();
         #endregion
 
         #region プロパティ（次に採番できるＩｄ。１から始まる）
@@ -109,8 +109,8 @@
             TileTitle title,
             LogicalDelete logicalDelete)
         {
-            TileRecordVisualBufferList.Add(
-                TileRecordVisualBuffer.FromModel(
+            TileRecordVisuallyList.Add(
+                TileRecordVisually.FromModel(
                     tileRecord: new TileRecord(
                         id,
                         rect,
@@ -130,16 +130,16 @@
             TileIdOrEmpty id)
         {
             // 愚直な検索
-            for (int i = 0; i < TileRecordVisualBufferList.Count; i++)
+            for (int i = 0; i < TileRecordVisuallyList.Count; i++)
             {
-                var recordVM = TileRecordVisualBufferList[i];
+                var recordVM = TileRecordVisuallyList[i];
 
                 if (recordVM.Id == id)
                 {
                     Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{recordVM.Id.AsBASE64}]");
 
                     // 差替え
-                    TileRecordVisualBufferList[i] = TileRecordVisualBuffer.FromModel(
+                    TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: recordVM.Id,
                             rect: recordVM.SourceRectangle,
@@ -165,16 +165,16 @@
             TileIdOrEmpty id)
         {
             // 愚直な検索
-            for (int i = 0; i < TileRecordVisualBufferList.Count; i++)
+            for (int i = 0; i < TileRecordVisuallyList.Count; i++)
             {
-                var recordVM = TileRecordVisualBufferList[i];
+                var recordVM = TileRecordVisuallyList[i];
 
                 if (recordVM.Id == id)
                 {
                     Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除の取消　id: [{recordVM.Id.AsBASE64}]");
 
                     // 差替え
-                    TileRecordVisualBufferList[i] = TileRecordVisualBuffer.FromModel(
+                    TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: recordVM.Id,
                             rect: recordVM.SourceRectangle,
@@ -195,20 +195,20 @@
         ///     指定のＩｄと一致するレコードを返す
         /// </summary>
         /// <param name="tileId">タイルＩｄ</param>
-        /// <param name="resultVMOrNull">結果</param>
+        /// <param name="resultVisuallyOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetTileById(TileIdOrEmpty tileId, out TileRecordVisualBuffer? resultVMOrNull)
+        internal bool TryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
-            foreach (var recordVM in TileRecordVisualBufferList)
+            foreach (var recordVM in TileRecordVisuallyList)
             {
                 if (recordVM.Id == tileId)
                 {
-                    resultVMOrNull = recordVM;
+                    resultVisuallyOrNull = recordVM;
                     return true;
                 }
             }
 
-            resultVMOrNull = null;
+            resultVisuallyOrNull = null;
             return false;
         }
         #endregion
@@ -218,24 +218,24 @@
         ///     Ｉｄを指定してレコードを削除
         /// </summary>
         /// <param name="tileId">タイルＩｄ</param>
-        /// <param name="resultOrNull">結果</param>
+        /// <param name="resultVisuallyOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisualBuffer? resultOrNull)
+        internal bool TryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
-            resultOrNull = null;
+            resultVisuallyOrNull = null;
 
-            foreach (var recordVM in TileRecordVisualBufferList)
+            foreach (var recordVisually in TileRecordVisuallyList)
             {
-                if (recordVM.Id == tileId)
+                if (recordVisually.Id == tileId)
                 {
-                    resultOrNull = recordVM;
+                    resultVisuallyOrNull = recordVisually;
                     break;
                 }
             }
 
-            if (resultOrNull != null)
+            if (resultVisuallyOrNull != null)
             {
-                return TileRecordVisualBufferList.Remove(resultOrNull);
+                return TileRecordVisuallyList.Remove(resultVisuallyOrNull);
             }
 
             return false;
@@ -251,10 +251,10 @@
         /// <returns>有った</returns>
         internal void MatchByRectangle(
             TheGeometric.RectangleInt sourceRect,
-            LazyArgs.Set<TileRecordVisualBuffer> some,
+            LazyArgs.Set<TileRecordVisually> some,
             Action none)
         {
-            foreach (var recordVM in TileRecordVisualBufferList)
+            foreach (var recordVM in TileRecordVisuallyList)
             {
                 if (recordVM.SourceRectangle == sourceRect)
                 {
@@ -274,7 +274,7 @@
         /// <returns>ストリーム</returns>
         internal IEnumerator<TileRecord> GetAllSourceRecords(bool includeLogicalDelete = false)
         {
-            foreach (var recordVM in TileRecordVisualBufferList)
+            foreach (var recordVM in TileRecordVisuallyList)
             {
                 // 論理削除されているものは除く
                 if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)
@@ -299,7 +299,7 @@
         /// <returns>ストリーム</returns>
         internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles(bool includeLogicalDelete = false)
         {
-            foreach (var recordVM in TileRecordVisualBufferList)
+            foreach (var recordVM in TileRecordVisuallyList)
             {
                 // 論理削除されているものは除く
                 if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)
@@ -381,7 +381,7 @@
         {
             // 論理削除されているものも保存する
             return TilesetDatatable.SaveCSV(
-                tileSetSettingsFile: tileSetSettingsFile,
+                tileSetSettingsFileLocation: tileSetSettingsFile,
                 recordList: GetAllSourceRecords(includeLogicalDelete: true));
         }
         #endregion
@@ -395,7 +395,7 @@
         {
             var list = new List<TileRecord>();
 
-            foreach (var recordVM in TileRecordVisualBufferList)
+            foreach (var recordVM in TileRecordVisuallyList)
             {
                 // 論理削除されているものは除く
                 if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)

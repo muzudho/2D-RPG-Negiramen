@@ -47,7 +47,7 @@ internal class ColoredMap : BindableObject, IDrawable
         }
 
         // 各登録タイル
-        foreach (var recordVM in this.TilesetSettingsVM.TileRecordVisualBufferList)
+        foreach (var recordVM in this.TilesetSettingsVM.TileRecordVisuallyList)
         {
             if (recordVM.LogicalDelete == Models.LogicalDelete.True)
             {

@@ -1,22 +1,23 @@
-﻿namespace _2D_RPG_Negiramen.Models
+﻿namespace _2D_RPG_Negiramen.Models.Visually
 {
+    using _2D_RPG_Negiramen.Models;
     using CommunityToolkit.Mvvm.ComponentModel;
     using TheGeometric = Geometric;
 
     /// <summary>
-    ///     タイル１件分の画面向けの記録
+    ///     😁 タイル１件分の画面向け記録
     ///     
     ///     <list type="bullet">
     ///         <item>ミュータブル</item>
     ///         <item>元画像の横幅、縦幅が 1未満 のとき、 None （存在しないもの）として扱う</item>
     ///     </list>
     /// </summary>
-    internal class TileRecordVisualBuffer : ObservableObject
+    internal class TileRecordVisually : ObservableObject
     {
         // - その他
 
         #region その他（生成　関連）
-        internal static TileRecordVisualBuffer CreateEmpty() => new TileRecordVisualBuffer();
+        internal static TileRecordVisually CreateEmpty() => new TileRecordVisually();
 
         /// <summary>
         ///     生成
@@ -24,11 +25,11 @@
         /// <param name="tileRecord">タイル</param>
         /// <param name="workingRect">ズーム後の位置とサイズ</param>
         /// <returns></returns>
-        public static TileRecordVisualBuffer FromModel(
+        public static TileRecordVisually FromModel(
             TileRecord tileRecord,
             TheGeometric.RectangleFloat workingRect)
         {
-            return new TileRecordVisualBuffer()
+            return new TileRecordVisually()
             {
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
@@ -41,7 +42,7 @@
         /// <summary>
         ///     生成
         /// </summary>
-        public TileRecordVisualBuffer()
+        public TileRecordVisually()
         {
             Id = TileIdOrEmpty.Empty;
             SourceRectangle = TheGeometric.RectangleInt.Empty;
@@ -100,7 +101,7 @@
         /// <summary>
         ///     サイズが無いか？
         /// </summary>
-        internal bool IsNone => (this.SourceRectangle.RightAsInt - this.SourceRectangle.LeftAsInt < 1) && (this.SourceRectangle.BottomAsInt - this.SourceRectangle.TopAsInt < 1);
+        internal bool IsNone => SourceRectangle.RightAsInt - SourceRectangle.LeftAsInt < 1 && SourceRectangle.BottomAsInt - SourceRectangle.TopAsInt < 1;
         #endregion
 
         // - インターナル・メソッド
