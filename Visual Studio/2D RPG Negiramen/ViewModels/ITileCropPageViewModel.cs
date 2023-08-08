@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels;
 
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.Models.Visually;
 using SkiaSharp;
 
 /// <summary>
@@ -14,7 +15,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     タイルセット設定ビューモデル
     /// </summary>
-    TilesetSettingsViewModel TilesetSettingsVM { get; }
+    TilesetDatatableVisually TilesetSettingsVM { get; }
     #endregion
 
     #region プロパティ（タイルセット元画像　関連）

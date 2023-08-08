@@ -4,6 +4,7 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.History;
+    using _2D_RPG_Negiramen.Models.Visually;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -86,7 +87,7 @@
         /// <summary>
         ///     タイルセット設定ビューモデル
         /// </summary>
-        public TilesetSettingsViewModel TilesetSettingsVM
+        public TilesetDatatableVisually TilesetSettingsVM
         {
             get => this._tilesetSettingsVM;
             set
@@ -2038,7 +2039,7 @@
         /// <summary>
         ///     ［タイルセット設定］ビューモデル
         /// </summary>
-        TilesetSettingsViewModel _tilesetSettingsVM = new();
+        TilesetDatatableVisually _tilesetSettingsVM = new();
         #endregion
 
         #region フィールド（［タイルセット元画像］　関連）
@@ -2435,7 +2436,7 @@
                 }
 
                 // 全ての［登録タイル］の更新
-                foreach (var registeredTileVM in this.Owner.TilesetSettingsVM.RecordViewModelList)
+                foreach (var registeredTileVM in this.Owner.TilesetSettingsVM.TileRecordVisualBufferList)
                 {
                     // ズーム時の位置とサイズ
                     registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Owner.Zoom);

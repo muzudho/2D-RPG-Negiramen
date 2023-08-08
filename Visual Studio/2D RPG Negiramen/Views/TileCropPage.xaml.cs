@@ -8,6 +8,8 @@ using TheGraphics = Microsoft.Maui.Graphics;
 #if IOS || ANDROID || MACCATALYST
 using Microsoft.Maui.Graphics.Platform;
 using _2D_RPG_Negiramen.Models.Geometric;
+using _2D_RPG_Negiramen.VisualModels;
+using _2D_RPG_Negiramen.Models.Visually;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
 using _2D_RPG_Negiramen.Models;
@@ -15,6 +17,8 @@ using System.Net;
 using SkiaSharp;
 using _2D_RPG_Negiramen.FeatSkia;
 using _2D_RPG_Negiramen.Models.Geometric;
+using _2D_RPG_Negiramen.VisualModels;
+using _2D_RPG_Negiramen.Models.Visually;
 #endif
 
 /// <summary>
@@ -87,7 +91,7 @@ public partial class TileCropPage : ContentPage
         // タイル設定ファイルの読込
         // ========================
         //
-        if (TilesetSettingsViewModel.LoadCSV(context.TilesetSettingsFile, out TilesetSettingsViewModel tileSetSettingsVM))
+        if (TilesetDatatableVisually.LoadCSV(context.TilesetSettingsFile, out TilesetDatatableVisually tileSetSettingsVM))
         {
             context.TilesetSettingsVM = tileSetSettingsVM;
 

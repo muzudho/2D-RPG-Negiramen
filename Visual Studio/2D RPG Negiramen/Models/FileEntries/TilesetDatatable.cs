@@ -6,13 +6,13 @@ using System.Diagnostics;
 using _2D_RPG_Negiramen.Models.FileEntries.Locations.UnityAssets;
 
 /// <summary>
-///     タイルセット設定
+///     タイルセット・データテーブル
 ///     
 ///     <list type="bullet">
 ///         <item>とりあえずミュータブル</item>
 ///     </list>
 /// </summary>
-public class TilesetSettings
+public class TilesetDatatable
 {
     // - インターナル静的メソッド
 
@@ -26,11 +26,11 @@ public class TilesetSettings
     /// <returns></returns>
     internal static bool LoadCSV(
         DataCsvTilesetCsv tilesetSettingsFile,
-        out TilesetSettings tilesetSettings,
+        out TilesetDatatable tilesetSettings,
         out TileIdOrEmpty usableId)
     {
         // 既定値の設定（空っぽ）
-        tilesetSettings = new TilesetSettings();
+        tilesetSettings = new TilesetDatatable();
 
         usableId = new TileIdOrEmpty(1);
 
@@ -395,7 +395,7 @@ public class TilesetSettings
     /// <returns>そうだ</returns>
     internal bool HasIntersection(TheGeometric.RectangleInt target)
     {
-        return TilesetSettings.HasIntersection(target, this.GetAllRectangles());
+        return TilesetDatatable.HasIntersection(target, this.GetAllRectangles());
     }
     #endregion
 
@@ -407,7 +407,7 @@ public class TilesetSettings
     /// <returns>そうだ</returns>
     internal bool IsCongruence(TheGeometric.RectangleInt target)
     {
-        return TilesetSettings.IsCongruence(target, this.GetAllRectangles());
+        return TilesetDatatable.IsCongruence(target, this.GetAllRectangles());
     }
     #endregion
 
@@ -423,7 +423,7 @@ public class TilesetSettings
     internal bool IsValid()
     {
         // 論理削除されているものも妥当性チェックで使う
-        return TilesetSettings.IsValid(this.CreateTileRecordList(includeLogicalDelete: true));
+        return TilesetDatatable.IsValid(this.CreateTileRecordList(includeLogicalDelete: true));
     }
     #endregion
 
@@ -454,7 +454,7 @@ public class TilesetSettings
     internal bool SaveCSV(DataCsvTilesetCsv tileSetSettingsFile)
     {
         // 論理削除されているものも保存する
-        return TilesetSettings.SaveCSV(
+        return TilesetDatatable.SaveCSV(
             tileSetSettingsFile: tileSetSettingsFile,
             recordList: this.GetAllRecords(includeLogicalDelete: true));
     }

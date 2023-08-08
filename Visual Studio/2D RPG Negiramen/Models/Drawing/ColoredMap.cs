@@ -1,6 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing;
 
-using _2D_RPG_Negiramen.ViewModels;
+using _2D_RPG_Negiramen.Models.Visually;
 using System.Diagnostics;
 
 /// <summary>
@@ -14,9 +14,9 @@ internal class ColoredMap : BindableObject, IDrawable
     /// <summary>
     ///     タイルセット設定ビューモデル
     /// </summary>
-    public TilesetSettingsViewModel TilesetSettingsVM
+    public TilesetDatatableVisually TilesetSettingsVM
     {
-        get => (TilesetSettingsViewModel)GetValue(TilesetSettingsVMProperty);
+        get => (TilesetDatatableVisually)GetValue(TilesetSettingsVMProperty);
         set => SetValue(TilesetSettingsVMProperty, value);
     }
 
@@ -27,7 +27,7 @@ internal class ColoredMap : BindableObject, IDrawable
         // プロパティ名
         propertyName: nameof(TilesetSettingsVM),
         // 返却型
-        returnType: typeof(TilesetSettingsViewModel),
+        returnType: typeof(TilesetDatatableVisually),
         // これを含んでいるクラス
         declaringType: typeof(ColoredMap));
     #endregion
@@ -47,7 +47,7 @@ internal class ColoredMap : BindableObject, IDrawable
         }
 
         // 各登録タイル
-        foreach (var recordVM in this.TilesetSettingsVM.RecordViewModelList)
+        foreach (var recordVM in this.TilesetSettingsVM.TileRecordVisualBufferList)
         {
             if (recordVM.LogicalDelete == Models.LogicalDelete.True)
             {
