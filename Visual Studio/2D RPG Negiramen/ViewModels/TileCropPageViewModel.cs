@@ -614,14 +614,13 @@
                 {
                     // ［切抜きカーソル］無し時
 
-                    // 元画像ベース
-                    var rect1 = new Models.Geometric.RectangleInt(
-                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
-                                size: Models.Geometric.SizeInt.Empty);
                     this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
-                            rect: rect1,
+                            // 元画像ベース
+                            rect: new Models.Geometric.RectangleInt(
+                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
+                                size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         zoom: this.Zoom);
@@ -632,14 +631,13 @@
                     if (currentTileVisually.SourceRectangle.Location.X.AsInt == value)
                         return;
 
-                    // 元画像ベース
-                    var rect1 = new Models.Geometric.RectangleInt(
-                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), currentTileVisually.SourceRectangle.Location.Y),
-                                size: currentTileVisually.SourceRectangle.Size);
                     this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
-                            rect: rect1,
+                            // 元画像ベース
+                            rect: new Models.Geometric.RectangleInt(
+                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), currentTileVisually.SourceRectangle.Location.Y),
+                                size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
@@ -678,15 +676,13 @@
                 {
                     // ［切抜きカーソル］無し時
 
-                    // 元画像ベース
-                    var rect1 = new Models.Geometric.RectangleInt(
-                            location: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
-                            size: Models.Geometric.SizeInt.Empty);
-
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
-                            rect: rect1,
+                            // 元画像ベース
+                            rect: new Models.Geometric.RectangleInt(
+                            location: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
+                            size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         zoom: this.Zoom);
@@ -697,14 +693,13 @@
                     if (currentTileVisually.SourceRectangle.Location.Y.AsInt == value)
                         return;
 
-                    // 元画像ベース
-                    var rect1 = new Models.Geometric.RectangleInt(
-                            location: new Models.Geometric.PointInt(currentTileVisually.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
-                            size: currentTileVisually.SourceRectangle.Size);
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
-                            rect: rect1,
+                            // 元画像ベース
+                            rect: new Models.Geometric.RectangleInt(
+                            location: new Models.Geometric.PointInt(currentTileVisually.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
+                            size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
@@ -787,11 +782,10 @@
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty));
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
-                            rect: rect1,
+                            rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         zoom: this.Zoom);
@@ -802,11 +796,10 @@
                     if (currentTileVisually.SourceRectangle.Size.Width.AsInt == value)
                         return;
 
-                    var rect1 = new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height));
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
-                            rect: rect1,
+                            rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
@@ -843,11 +836,10 @@
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value)));
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
-                            rect: rect1,
+                            rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         zoom: this.Zoom);
@@ -858,11 +850,10 @@
                     if (currentTileVisually.SourceRectangle.Size.Height.AsInt == value)
                         return;
 
-                    var rect1 = new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
-                            rect: rect1,
+                            rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
@@ -1175,16 +1166,15 @@
             get => this.croppedCursorPointedTileRecordVisually.Title.AsStr;
             set
             {
-                var contents = this.croppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
 
-                if (contents.IsNone)
+                if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］の指すタイル無し時
-                    var rect1 = Models.Geometric.RectangleInt.Empty;
                     this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
-                            rect: rect1,
+                            rect: Models.Geometric.RectangleInt.Empty,
                             title: new Models.TileTitle(value),
                             logicalDelete: Models.LogicalDelete.False),
                        zoom: this.Zoom);
@@ -1194,16 +1184,57 @@
                     // ［切抜きカーソル］の指すタイルが有る時
 
                     // 値に変化がない
-                    if (contents.Title.AsStr == value)
+                    if (currentTileVisually.Title.AsStr == value)
                         return;
 
-                    var rect1 = contents.SourceRectangle;
                     this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: contents.Id,
-                            rect: rect1,
+                            id: currentTileVisually.Id,
+                            rect: currentTileVisually.SourceRectangle,
                             title: new Models.TileTitle(value),
-                            logicalDelete: contents.LogicalDelete),
+                            logicalDelete: currentTileVisually.LogicalDelete),
+                        zoom: this.Zoom);
+                }
+
+                OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            }
+        }
+
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］の論理削除
+        /// </summary>
+        public bool CroppedCursorPointedTileLogicalDeleteAsBool
+        {
+            get => this.croppedCursorPointedTileRecordVisually.LogicalDelete.AsBool;
+            set
+            {
+                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
+
+                if (currentTileVisually.IsNone)
+                {
+                    // ［切抜きカーソルが指すタイル］無し時
+                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: TileIdOrEmpty.Empty,
+                            rect: Models.Geometric.RectangleInt.Empty,
+                            title: TileTitle.Empty,
+                            logicalDelete: LogicalDelete.FromBool(value)),
+                       zoom: this.Zoom);
+                }
+                else
+                {
+                    // ［切抜きカーソル］の指すタイルが有る時
+
+                    // 値に変化がない
+                    if (currentTileVisually.LogicalDelete.AsBool == value)
+                        return;
+
+                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: currentTileVisually.Id,
+                            rect: currentTileVisually.SourceRectangle,
+                            title: currentTileVisually.Title,
+                            logicalDelete: LogicalDelete.FromBool(value)),
                         zoom: this.Zoom);
                 }
 
@@ -1277,7 +1308,7 @@
             (this.CroppedCursorPointedTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool)
             ||
             // ※３
-            (this.CroppedCursorPointedTileRecordVisually.Id != TileIdOrEmpty.Empty  && this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool));
+            (this.CroppedCursorPointedTileRecordVisually.Id != TileIdOrEmpty.Empty && this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool));
         #endregion
 
         #region 変更通知プロパティ（［削除］ボタン　関連）
@@ -1463,29 +1494,36 @@
             get => this.croppedCursorPointedTileRecordVisually;
             set
             {
-                var contents = this.croppedCursorPointedTileRecordVisually;
+                var oldTileVisually = this.croppedCursorPointedTileRecordVisually;
 
                 // 値に変化がない
-                if (contents == value)
+                if (oldTileVisually == value)
                     return;
 
                 if (value.IsNone)
                 {
-                    if (contents.IsNone)
+                    // ［切抜きカーソルが指すタイル］を無しに設定する
+
+                    if (oldTileVisually.IsNone)
                     {
-                        // ［切抜きカーソル］の指すタイルが無いなら変更なし
+                        // ［切抜きカーソルが指すタイル］がもともと無く、［切抜きカーソルが指すタイル］を無しに設定するのだから、何もしなくてよい
                     }
                     else
                     {
-                        // ［切抜きカーソル］の指すタイル有り時
+                        // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
 
-                        // TODO もっと楽にクリアーできないものか？ （変更通知を送っている）
+                        // 末端にセット（変更通知を呼ぶために）
+                        // Ｉｄ
                         this.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
-                        this.CroppedCursorPointedTileSourceLeftAsInt = 0;
-                        this.CroppedCursorPointedTileSourceTopAsInt = 0;
-                        this.CroppedCursorPointedTileSourceWidthAsInt = 0;
-                        this.CroppedCursorPointedTileSourceHeightAsInt = 0;
+
+                        // 元画像の位置とサイズ
+                        this.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+
+                        // タイトル
                         this.CroppedCursorPointedTileTitleAsStr = string.Empty;
+
+                        // 論理削除
+                        this.CroppedCursorPointedTileLogicalDeleteAsBool = false;
 
                         // 空にする
                         this.croppedCursorPointedTileRecordVisually = TileRecordVisually.CreateEmpty();
@@ -1495,7 +1533,7 @@
                 {
                     var newValue = value;
 
-                    if (contents.IsNone)
+                    if (oldTileVisually.IsNone)
                     {
                         // ［切抜きカーソル］の指すタイル無し時
 

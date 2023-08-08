@@ -166,6 +166,27 @@
         }
         #endregion
 
+        // - その他
+
+        #region その他（生成）
+        internal static LogicalDelete FromBool(bool source)
+        {
+            if (source)
+                return LogicalDelete.True;
+
+            return LogicalDelete.False;
+        }
+
+        /// <summary>
+        ///     生成
+        /// </summary>
+        /// <param name="source">元の値</param>
+        internal LogicalDelete(int source)
+        {
+            this.source = source;
+        }
+        #endregion
+
         // - 静的プロパティー
 
         #region プロパティ（偽オブジェクト）
@@ -180,19 +201,6 @@
         ///     真オブジェクト
         /// </summary>
         internal static LogicalDelete True = new(1);
-        #endregion
-
-        // - その他
-
-        #region その他（生成）
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="source">元の値</param>
-        internal LogicalDelete(int source)
-        {
-            this.source = source;
-        }
         #endregion
 
         // - フィールド
