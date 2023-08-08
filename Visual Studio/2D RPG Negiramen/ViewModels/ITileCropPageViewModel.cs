@@ -40,7 +40,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     グリッド位相の左上表示位置
     /// </summary>
-    Models.Geometric.PointInt SourceGridPhase { get; }
+    Models.Geometric.PointInt GridPhaseSourceLocation { get; }
 
     /// <summary>
     ///     グリッド位相の左上表示位置

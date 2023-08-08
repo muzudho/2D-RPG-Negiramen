@@ -14,22 +14,8 @@
         /// <summary>
         ///     グリッド・キャンバス画像のサイズ
         /// </summary>
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-        前:
-                public Models.SizeInt GridCanvasImageSize
-        後:
-                public SizeInt GridCanvasImageSize
-        */
         public Geometric.SizeInt GridCanvasImageSize
         {
-
-            /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-            前:
-                        get => (Models.SizeInt)GetValue(GridCanvasImageSizeProperty);
-            後:
-                        get => (SizeInt)GetValue(GridCanvasImageSizeProperty);
-            */
             get => (Geometric.SizeInt)GetValue(GridCanvasImageSizeProperty);
             set => SetValue(GridCanvasImageSizeProperty, value);
         }
@@ -41,13 +27,6 @@
             // プロパティ名
             propertyName: nameof(GridCanvasImageSize),
             // 返却型
-
-            /* プロジェクト '2D RPG Negiramen (net7.0-windows10.0.19041.0)' からのマージされていない変更
-            前:
-                        returnType: typeof(Models.SizeInt),
-            後:
-                        returnType: typeof(SizeInt),
-            */
             returnType: typeof(Geometric.SizeInt),
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid));
@@ -79,18 +58,18 @@
         /// <summary>
         ///     グリッド位相の左上表示位置
         /// </summary>
-        public Geometric.PointFloat GridPhase
+        public Geometric.PointFloat GridPhaseWorkingLocation
         {
-            get => (Geometric.PointFloat)GetValue(GridPhaseProperty);
-            set => SetValue(GridPhaseProperty, value);
+            get => (Geometric.PointFloat)GetValue(GridPhaseWorkingLocationProperty);
+            set => SetValue(GridPhaseWorkingLocationProperty, value);
         }
 
         /// <summary>
         ///     グリッド位相の左上表示位置
         /// </summary>
-        public static BindableProperty GridPhaseProperty = BindableProperty.Create(
+        public static BindableProperty GridPhaseWorkingLocationProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(GridPhase),
+            propertyName: nameof(GridPhaseWorkingLocation),
             // 返却型
             returnType: typeof(Geometric.PointFloat),
             // これを含んでいるクラス
@@ -133,7 +112,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.SourceGridPhase: {this.GridPhase.Dump()}, this.GridUnit: {this.GridUnit.Dump()} dirtyRect: ({dirtyRect.Width:.2}, {dirtyRect.Height:.2})");
+            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridPhaseSourceLocation: {this.GridPhaseWorkingLocation.Dump()}, this.GridUnit: {this.GridUnit.Dump()} dirtyRect: ({dirtyRect.Width:.2}, {dirtyRect.Height:.2})");
 
             // 線の色
             canvas.StrokeColor = new Color((int)(0.7 * 255), (int)(0.7 * 255), (int)(0.7 * 255));
@@ -150,15 +129,15 @@
             // ==================
             //
             {
-                float y1 = halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
-                float y2 = this.GridCanvasImageSize.Height.AsInt + halfThicknessOfLineAsInt + this.GridPhase.Y.AsFloat;
+                float y1 = halfThicknessOfLineAsInt + this.GridPhaseWorkingLocation.Y.AsFloat;
+                float y2 = this.GridCanvasImageSize.Height.AsInt + halfThicknessOfLineAsInt + this.GridPhaseWorkingLocation.Y.AsFloat;
 
                 float prevX;
                 float x = 0;
                 for (var i = 0; x < this.GridCanvasImageSize.Width.AsInt + halfThicknessOfLineAsInt; i++)
                 {
                     prevX = x;
-                    x = i * this.GridUnit.Width.AsFloat + this.GridPhase.X.AsFloat + halfThicknessOfLineAsInt;
+                    x = i * this.GridUnit.Width.AsFloat + this.GridPhaseWorkingLocation.X.AsFloat + halfThicknessOfLineAsInt;
 
                     if (x <= prevX)
                     {
@@ -175,20 +154,20 @@
             // ==================
             //
             {
-                float x1 = halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
+                float x1 = halfThicknessOfLineAsInt + this.GridPhaseWorkingLocation.X.AsFloat;
 
                 // CANCEL CODE: 横幅が偶数なら横幅を +1、奇数なら横幅を -1 するという TRICK CODE が別の箇所にあるので、
                 //              imageWidth は +1 したり、 -1 したり振動している。これはつらい。
                 //              そこで、右辺にもグリッドの線があるから　端まで線を引かなくていいことを利用し
                 //              右辺の線の手前まで線を引くようにする
-                float x2 = this.GridCanvasImageSize.Width.AsInt - halfThicknessOfLineAsInt + this.GridPhase.X.AsFloat;
+                float x2 = this.GridCanvasImageSize.Width.AsInt - halfThicknessOfLineAsInt + this.GridPhaseWorkingLocation.X.AsFloat;
 
                 float prevY;
                 float y = 0;
                 for (var i = 0; y < this.GridCanvasImageSize.Height.AsInt + halfThicknessOfLineAsInt; i++)
                 {
                     prevY = y;
-                    y = i * this.GridUnit.Height.AsFloat + this.GridPhase.Y.AsFloat + halfThicknessOfLineAsInt;
+                    y = i * this.GridUnit.Height.AsFloat + this.GridPhaseWorkingLocation.Y.AsFloat + halfThicknessOfLineAsInt;
 
                     if (y <= prevY)
                     {

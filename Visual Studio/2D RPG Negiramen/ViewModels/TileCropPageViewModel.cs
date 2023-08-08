@@ -247,15 +247,15 @@
         /// <summary>
         ///     ［元画像グリッド］の位相の左上表示位置。元画像ベース
         /// </summary>
-        public Models.Geometric.PointInt SourceGridPhase
+        public Models.Geometric.PointInt GridPhaseSourceLocation
         {
-            get => this.sourceGridPhase;
+            get => this.gridPhaseSourceLocation;
             set
             {
-                if (this.sourceGridPhase != value)
+                if (this.gridPhaseSourceLocation != value)
                 {
-                    this.SourceGridPhaseLeftAsInt = value.X.AsInt;
-                    this.SourceGridPhaseTopAsInt = value.Y.AsInt;
+                    this.GridPhaseSourceLeftAsInt = value.X.AsInt;
+                    this.GridPhaseSourceTopAsInt = value.Y.AsInt;
                 }
             }
         }
@@ -263,22 +263,22 @@
         /// <summary>
         ///     ［元画像グリッド］の位相の左上表示位置ｘ。元画像ベース
         /// </summary>
-        public int SourceGridPhaseLeftAsInt
+        public int GridPhaseSourceLeftAsInt
         {
-            get => this.sourceGridPhase.X.AsInt;
+            get => this.gridPhaseSourceLocation.X.AsInt;
             set
             {
-                if (this.sourceGridPhase.X.AsInt != value)
+                if (this.gridPhaseSourceLocation.X.AsInt != value)
                 {
-                    this.sourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.sourceGridPhase.Y);
-                    this.WorkingGridPhaseLeftAsFloat = this.ZoomAsFloat * this.sourceGridPhase.X.AsInt;
+                    this.gridPhaseSourceLocation = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.gridPhaseSourceLocation.Y);
+                    this.WorkingGridPhaseLeftAsFloat = this.ZoomAsFloat * this.gridPhaseSourceLocation.X.AsInt;
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
 
                     // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(SourceGridPhaseLeftAsInt));
-                    OnPropertyChanged(nameof(SourceGridPhase));
+                    OnPropertyChanged(nameof(GridPhaseSourceLeftAsInt));
+                    OnPropertyChanged(nameof(GridPhaseSourceLocation));
 
                     OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
                     OnPropertyChanged(nameof(WorkingGridPhase));
@@ -289,22 +289,22 @@
         /// <summary>
         ///     ［元画像グリッド］の位相の左上表示位置ｙ。元画像ベース
         /// </summary>
-        public int SourceGridPhaseTopAsInt
+        public int GridPhaseSourceTopAsInt
         {
-            get => this.sourceGridPhase.Y.AsInt;
+            get => this.gridPhaseSourceLocation.Y.AsInt;
             set
             {
-                if (this.sourceGridPhase.Y.AsInt != value)
+                if (this.gridPhaseSourceLocation.Y.AsInt != value)
                 {
-                    this.sourceGridPhase = new Models.Geometric.PointInt(this.sourceGridPhase.X, new Models.Geometric.YInt(value));
-                    this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsFloat * this.sourceGridPhase.Y.AsInt);
+                    this.gridPhaseSourceLocation = new Models.Geometric.PointInt(this.gridPhaseSourceLocation.X, new Models.Geometric.YInt(value));
+                    this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsFloat * this.gridPhaseSourceLocation.Y.AsInt);
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
 
                     // キャンバスを再描画後に変更通知
-                    OnPropertyChanged(nameof(SourceGridPhaseTopAsInt));
-                    OnPropertyChanged(nameof(SourceGridPhase));
+                    OnPropertyChanged(nameof(GridPhaseSourceTopAsInt));
+                    OnPropertyChanged(nameof(GridPhaseSourceLocation));
 
                     OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
                     OnPropertyChanged(nameof(WorkingGridPhase));
@@ -1637,7 +1637,7 @@
             // グリッド・キャンバス
             {
                 // グリッドの左上位置（初期値）
-                this.SourceGridPhase = new Models.Geometric.PointInt(new Models.Geometric.XInt(0), new Models.Geometric.YInt(0));
+                this.GridPhaseSourceLocation = new Models.Geometric.PointInt(new Models.Geometric.XInt(0), new Models.Geometric.YInt(0));
 
                 // グリッドのタイルサイズ（初期値）
                 this.SourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
@@ -2096,7 +2096,7 @@
         /// <summary>
         ///     ［元画像グリッド］の位相の左上表示位置
         /// </summary>
-        Models.Geometric.PointInt sourceGridPhase = Models.Geometric.PointInt.Empty;
+        Models.Geometric.PointInt gridPhaseSourceLocation = Models.Geometric.PointInt.Empty;
 
         /// <summary>
         ///     ［元画像グリッド］の線の太さの半分
