@@ -2890,5 +2890,25 @@ CSV ファイルに対応するクラスは　`TilesetDatatable` に名称変更
 「　`IsNone` フラグと、 `LogicalDelete` フラグの２つがあるのが　ダメなのでは？  
 どちらか片方にしたら　どうだぜ？」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　やってみるかだぜ」  
+
+（カタ　カタ　カタ　カタ）  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　論理削除済みの跡地を　クリックしても　選択できなくなったぜ。  
+だから　復元ボタンも　活性化しなくなったぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　論理削除されてない　何もないところなら　選択できるぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　カーソルが無いということと、カーソルが論理削除されているということは　何が違うの？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　論理削除されているカーソルは　有る　はずだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そこは　分けるのか……」  
 
 ＜書きかけ＞
