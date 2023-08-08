@@ -2452,6 +2452,7 @@
                 {
                     // ズーム時の位置とサイズ
                     registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Owner.Zoom);
+                    registeredTileVM.Zoom = this.Owner.Zoom;
                 }
 
                 this.Owner.OnPropertyChanged(nameof(CanUndo));
