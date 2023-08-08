@@ -315,4 +315,7 @@
   <data name="Redo" xml:space="preserve">
     <value>Redo</value>
   </data>
+  <data name="Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
 </root>

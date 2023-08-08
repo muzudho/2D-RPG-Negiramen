@@ -1235,16 +1235,17 @@
             {
                 var contents = this.croppedCursorPointedTileRecordVisually;
 
-                // TODO 翻訳
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
-                    return "選択タイルを、タイル一覧画面へ追加";
+                    return string.Empty;
 
                 // 未選択時
                 if (contents.Id == Models.TileIdOrEmpty.Empty)
-                    return "選択タイルを、タイル一覧画面へ追加";
+                    // "これがタイル１つ分だと登録します"
+                    return (string)LocalizationResourceManager.Instance["RegisterThatThisIsForOneTile"];
 
-                return "選択タイルを、タイル一覧画面へ上書";
+                // "残っているタイルの記憶から復元します"
+                return (string)LocalizationResourceManager.Instance["RestoreFromMemoryOfRemainingTiles"];
             }
         }
 
@@ -1901,8 +1902,20 @@
                 // 切抜きカーソル有り時
                 // Ｉｄ未設定時
 
-                // ［追加」
-                this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                if (this.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+                {
+                    // Ｉｄが空欄
+                    // ［追加］（新規作成）だ
+
+                    // ［追加」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                }
+                else
+                {
+                    // ［復元」
+                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
+                }
+
 
                 this.IsEnabledAddsButton = true;
             }

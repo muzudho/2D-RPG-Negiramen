@@ -359,7 +359,8 @@ public partial class TileCropPage : ContentPage
         }
         else
         {
-            // TODO 上書き機能削除
+            // 上書きボタンだが、［上書き］処理をする
+            context.OverwriteRegisteredTile();
         }
     }
     #endregion

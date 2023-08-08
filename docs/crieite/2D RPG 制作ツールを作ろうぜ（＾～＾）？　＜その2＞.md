@@ -2822,4 +2822,52 @@ author = "むずでょ"
 ![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
 「　プログラムがヘタクソで　すぐに　アンドゥ・リドゥ　に置き換えられないのねえ」  
 
+## １つのボタンで　追加／上書き　の２つの機能を切り替えて使うの、やめたい
+
+![202308_maui_08-1830--OverwriteButton-o2o0.png](https://crieit.now.sh/upload_images/4bfbd64aba8397db3c60be53fa6ce99e64d20cc74d4ac.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　１つのボタンで　追加／上書き　の２つの機能を切り替えて使うの、やめたい」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　アンドゥするには　追加をアンドゥするのか　上書きをアンドゥするのか　はっきりしたいわねえ」    
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　リドゥは同じ処理なのに、アンドゥは別の処理になるから　分けたいのか」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+（カタ　カタ　カタ　カタ）  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　作りながら　方針転換していくのねえ」  
+
+## TilesetSettings を TilesetDatatable へ名称変更
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　タイルセットに　設定ファイル３つもあって　名前が似ていてややこしいので、  
+CSV ファイルに対応するクラスは　`TilesetDatatable` に名称変更するぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　調整ばっかりだな」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+(カタ　カタ　カタ　カタ)  
+
+## 上書きボタンやっぱ要る
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　あっ、　やっぱ　上書きボタン　要るぜ　戻す」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+(カタ　カタ　カタ　カタ)  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　迷走してるわねえ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　上書きボタンは　名前を変えて　復元ボタンにするぜ。  
+論理削除フラグを解除するのに使うんだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　本当に必要な最小限の機能を　洗い出したか？」  
+
 ＜書きかけ＞
