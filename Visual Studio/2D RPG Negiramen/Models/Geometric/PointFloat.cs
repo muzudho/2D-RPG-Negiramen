@@ -126,17 +126,17 @@
         internal YFloat Y { get; private set; }
         #endregion
 
-        #region メソッド（ズームする）
+        #region メソッド（掛け算する）
         /// <summary>
-        ///     ズームする
+        ///     掛け算する
         /// </summary>
         /// <param name="zoom">ズーム率</param>
         /// <returns>ズーム後</returns>
-        internal PointFloat Do(Zoom zoom)
+        internal PointFloat Multiplicate(Zoom zoom)
         {
             return new PointFloat(
-                x: this.X.Do(zoom),
-                y: this.Y.Do(zoom));
+                x: this.X.Multiplicate(zoom),
+                y: this.Y.Multiplicate(zoom));
         }
         #endregion
 

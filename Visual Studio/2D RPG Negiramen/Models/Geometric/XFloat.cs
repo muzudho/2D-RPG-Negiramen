@@ -212,13 +212,13 @@
         }
         #endregion
 
-        #region メソッド（ズームする）
+        #region メソッド（掛け算する）
         /// <summary>
-        ///     ズームする
+        ///     掛け算する
         /// </summary>
         /// <param name="zoom">ズーム率</param>
         /// <returns>ズーム後</returns>
-        internal XFloat Do(Zoom zoom)
+        internal XFloat Multiplicate(Zoom zoom)
         {
             return new XFloat(zoom.AsFloat * this.source);
         }

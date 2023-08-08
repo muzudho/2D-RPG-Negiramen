@@ -45,7 +45,7 @@
         public TileRecordVisually()
         {
             Id = TileIdOrEmpty.Empty;
-            SourceRectangle = TheGeometric.RectangleInt.Empty;
+            // SourceRectangle = TheGeometric.RectangleInt.Empty;
             Title = TileTitle.Empty;
             LogicalDelete = LogicalDelete.False;
             // Zoom = Zoom.IdentityElement;
@@ -80,13 +80,7 @@
                 this.sourceRectangle = value;
 
                 // ［作業画像］の矩形再計算
-                this.workingRectangle = new RectangleFloat(
-                    location: new PointFloat(
-                        x: new XFloat(this.Zoom.AsFloat * this.SourceRectangle.Location.X.AsInt),
-                        y: new YFloat(this.Zoom.AsFloat * this.SourceRectangle.Location.Y.AsInt)),
-                    size: new SizeFloat(
-                        width: new WidthFloat(this.Zoom.AsFloat * this.SourceRectangle.Size.Width.AsInt),
-                        height: new HeightFloat(this.Zoom.AsFloat * this.SourceRectangle.Size.Height.AsInt)));
+                this.RefreshWorkingRectangle();
             }
         }
         #endregion
@@ -140,13 +134,7 @@
                 this.zoom = value;
 
                 // ［作業画像］の矩形再計算
-                this.workingRectangle = new RectangleFloat(
-                    location: new PointFloat(
-                        x: new XFloat(this.Zoom.AsFloat * this.SourceRectangle.Location.X.AsInt),
-                        y: new YFloat(this.Zoom.AsFloat * this.SourceRectangle.Location.Y.AsInt)),
-                    size: new SizeFloat(
-                        width: new WidthFloat(this.Zoom.AsFloat * this.SourceRectangle.Size.Width.AsInt),
-                        height: new HeightFloat(this.Zoom.AsFloat * this.SourceRectangle.Size.Height.AsInt)));
+                this.RefreshWorkingRectangle();
             }
         }
         #endregion
@@ -169,5 +157,23 @@
         Zoom zoom = Zoom.IdentityElement;
         TheGeometric.RectangleInt sourceRectangle = RectangleInt.Empty;
         TheGeometric.RectangleFloat workingRectangle = RectangleFloat.Empty;
+
+        // - プライベート・メソッド
+
+        #region メソッド（［作業画像］の矩形再計算）
+        /// <summary>
+        ///     ［作業画像］の矩形再計算
+        /// </summary>
+        void RefreshWorkingRectangle()
+        {
+            this.workingRectangle = new RectangleFloat(
+                location: new PointFloat(
+                    x: this.SourceRectangle.Location.X.ToFloat(),
+                    y: this.SourceRectangle.Location.Y.ToFloat()),
+                size: new SizeFloat(
+                    width: this.SourceRectangle.Size.Width.ToFloat(),
+                    height: this.SourceRectangle.Size.Height.ToFloat())).Multiplicate(this.Zoom);
+        }
+        #endregion
     }
 }

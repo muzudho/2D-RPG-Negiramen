@@ -167,17 +167,17 @@
         }
         #endregion
 
-        #region メソッド（ズームする）
+        #region メソッド（掛け算する）
         /// <summary>
-        ///     ズームする
+        ///     掛け算する
         /// </summary>
         /// <param name="zoom">ズーム率</param>
         /// <returns>ズーム後</returns>
-        internal RectangleFloat Do(Zoom zoom)
+        internal RectangleFloat Multiplicate(Zoom zoom)
         {
             return new RectangleFloat(
-                location: this.Location.Do(zoom),
-                size: this.Size.Do(zoom));
+                location: this.Location.Multiplicate(zoom),
+                size: this.Size.Multiplicate(zoom));
         }
         #endregion
     }
