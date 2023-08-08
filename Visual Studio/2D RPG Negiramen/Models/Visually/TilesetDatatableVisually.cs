@@ -3,6 +3,7 @@
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.FileEntries;
+    using _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
     using System.Diagnostics;
     using TheFileEntryLocations = FileEntries.Locations;
@@ -34,12 +35,15 @@
         /// </summary>
         /// <param name="tilesetDatatableVisually">タイルセット・データテーブル視覚的</param>
         /// <returns></returns>
-        internal static bool LoadCSV(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tilesetSettingsFileLocation, out TilesetDatatableVisually tilesetDatatableVisually)
+        internal static bool LoadCSV(
+            TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tilesetDatatableFileLocation,
+            Zoom zoom,
+            out TilesetDatatableVisually tilesetDatatableVisually)
         {
             // 既定値の設定（空っぽ）
             tilesetDatatableVisually = new TilesetDatatableVisually();
 
-            if (TilesetDatatable.LoadCSV(tilesetSettingsFileLocation, out TilesetDatatable tilesetDatatable, out TileIdOrEmpty usableId))
+            if (TilesetDatatable.LoadCSV(tilesetDatatableFileLocation, out TilesetDatatable tilesetDatatable, out TileIdOrEmpty usableId))
             {
                 tilesetDatatableVisually.UsableId = usableId;
 
@@ -48,7 +52,8 @@
                     tilesetDatatableVisually.TileRecordVisuallyList.Add(
                         TileRecordVisually.FromModel(
                             tileRecord: record,
-                            workingRect: record.Rectangle.ToFloat()));
+                            workingRect: record.Rectangle.ToFloat(),
+                            zoom: zoom));
                 }
                 try
                 {
@@ -56,7 +61,7 @@
                     // ファイルの有無確認
                     // ==================
                     //
-                    if (File.Exists(tilesetSettingsFileLocation.Path.AsStr))
+                    if (File.Exists(tilesetDatatableFileLocation.Path.AsStr))
                     {
                     }
 
@@ -102,10 +107,11 @@
         /// <param name="workingRect">（ズーム後の）位置とサイズ</param>
         /// <param name="title">タイトル</param>
         /// <param name="logicalDelete">論理削除</param>
-        internal void AddTile(
+        internal void AddTileVisually(
             TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
             TheGeometric.RectangleFloat workingRect,
+            Zoom zoom,
             TileTitle title,
             LogicalDelete logicalDelete)
         {
@@ -116,7 +122,8 @@
                         rect,
                         title,
                         logicalDelete),
-                    workingRect: workingRect));
+                    workingRect: workingRect,
+                    zoom: zoom));
         }
         #endregion
 
@@ -132,20 +139,21 @@
             // 愚直な検索
             for (int i = 0; i < TileRecordVisuallyList.Count; i++)
             {
-                var recordVM = TileRecordVisuallyList[i];
+                var tileVisually = TileRecordVisuallyList[i];
 
-                if (recordVM.Id == id)
+                if (tileVisually.Id == id)
                 {
-                    Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{recordVM.Id.AsBASE64}]");
+                    Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{tileVisually.Id.AsBASE64}]");
 
-                    // 差替え
+                    // 論理削除フラグの差替え
                     TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
-                            id: recordVM.Id,
-                            rect: recordVM.SourceRectangle,
-                            title: recordVM.Title,
+                            id: tileVisually.Id,
+                            rect: tileVisually.SourceRectangle,
+                            title: tileVisually.Title,
                             logicalDelete: LogicalDelete.True),
-                        workingRect: recordVM.WorkingRectangle);
+                        workingRect: tileVisually.WorkingRectangle,
+                        zoom: tileVisually.Zoom);
 
                     return true;
                 }
@@ -167,20 +175,21 @@
             // 愚直な検索
             for (int i = 0; i < TileRecordVisuallyList.Count; i++)
             {
-                var recordVM = TileRecordVisuallyList[i];
+                var tileVisually = TileRecordVisuallyList[i];
 
-                if (recordVM.Id == id)
+                if (tileVisually.Id == id)
                 {
-                    Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除の取消　id: [{recordVM.Id.AsBASE64}]");
+                    Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除の取消　id: [{tileVisually.Id.AsBASE64}]");
 
-                    // 差替え
+                    // 論理削除フラグの差替え
                     TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
-                            id: recordVM.Id,
-                            rect: recordVM.SourceRectangle,
-                            title: recordVM.Title,
+                            id: tileVisually.Id,
+                            rect: tileVisually.SourceRectangle,
+                            title: tileVisually.Title,
                             logicalDelete: LogicalDelete.False),
-                        workingRect: recordVM.WorkingRectangle);
+                        workingRect: tileVisually.WorkingRectangle,
+                        zoom: tileVisually.Zoom);
 
                     return true;
                 }

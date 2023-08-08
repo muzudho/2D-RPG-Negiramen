@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels
 {
-    using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.History;
@@ -17,7 +16,7 @@
     ///     😁 ［タイル切抜きページ］ビューモデル
     /// </summary>
     [QueryProperty(nameof(TilesetImageFile), queryId: "TilesetImageFile")]
-    [QueryProperty(nameof(TilesetSettingsFile), queryId: "TilesetSettingsFile")]
+    [QueryProperty(nameof(TilesetDatatableFileLocation), queryId: "TilesetSettingsFile")]
     class TileCropPageViewModel : ObservableObject, ITileCropPageViewModel
     {
         // - その他
@@ -625,7 +624,8 @@
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
                 else
                 {
@@ -643,7 +643,8 @@
                             rect: rect1,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -690,7 +691,8 @@
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
                 else
                 {
@@ -708,7 +710,8 @@
                             rect: rect1,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -795,7 +798,8 @@
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
                 else
                 {
@@ -810,7 +814,8 @@
                             rect: rect1,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
 
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
@@ -851,7 +856,8 @@
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
                 else
                 {
@@ -866,7 +872,8 @@
                             rect: rect1,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
@@ -1187,7 +1194,8 @@
                             rect: rect1,
                             title: new Models.TileTitle(value),
                             logicalDelete: Models.LogicalDelete.False),
-                       workingRect: rect1.Do(this.Zoom));
+                       workingRect: rect1.Do(this.Zoom),
+                       zoom: this.Zoom);
                 }
                 else
                 {
@@ -1202,7 +1210,8 @@
                             rect: rect1,
                             title: new Models.TileTitle(value),
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom));
+                        workingRect: rect1.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
@@ -1286,9 +1295,9 @@
 
         // - パブリック・プロパティ
 
-        #region プロパティ（［タイルセット設定］　関連）
+        #region プロパティ（［タイルセット・データテーブル］　関連）
         /// <summary>
-        ///     ［タイルセット設定］ファイルへのパス（文字列形式）
+        ///     ［タイルセット・データテーブル］ファイルへのパス（文字列形式）
         /// </summary>
         public string TilesetSettingFilePathAsStr
         {
@@ -1309,9 +1318,9 @@
         }
 
         /// <summary>
-        ///     ［タイルセット設定］ファイルへのパス
+        ///     ［タイルセット・データテーブル］ファイルの場所
         /// </summary>
-        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetSettingsFile
+        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetDatatableFileLocation
         {
             get => _tilesetSettingsFile;
             set
@@ -1583,7 +1592,8 @@
                             rect: Models.Geometric.RectangleInt.Empty,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                    workingRect: Models.Geometric.RectangleFloat.Empty);
+                    workingRect: Models.Geometric.RectangleFloat.Empty,
+                    zoom: this.Zoom);
                 }
                 else
                 {
@@ -1597,7 +1607,8 @@
                             rect: contents.SourceRectangle,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: contents.SourceRectangle.Do(this.Zoom));
+                        workingRect: contents.SourceRectangle.Do(this.Zoom),
+                        zoom: this.Zoom);
                 }
 
                 this.InvalidateLocale();
@@ -1850,7 +1861,8 @@
                             rect: this.CroppedCursorPointedTileSourceRect,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: this.CroppedCursorPointedTileSourceRect.Do(this.Zoom));
+                        workingRect: this.CroppedCursorPointedTileSourceRect.Do(this.Zoom),
+                        zoom: this.Zoom);
                 });
         }
         #endregion
@@ -2512,12 +2524,13 @@
                 if (!this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisuallyOrNull))
                 {
                     // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-                    this.Owner.TilesetSettingsVM.AddTile(
-                    id: this.TileIdOrEmpty,
-                    rect: RectangleInt.Empty,
-                    workingRect: RectangleFloat.Empty,
-                    title: Models.TileTitle.Empty,
-                    logicalDelete: Models.LogicalDelete.False);
+                    this.Owner.TilesetSettingsVM.AddTileVisually(
+                        id: this.TileIdOrEmpty,
+                        rect: RectangleInt.Empty,
+                        workingRect: RectangleFloat.Empty,
+                        zoom: Zoom.IdentityElement,
+                        title: Models.TileTitle.Empty,
+                        logicalDelete: Models.LogicalDelete.False);
                 }
 
                 //
@@ -2546,7 +2559,7 @@
                 // 設定ファイルの保存
                 // ==================
                 //
-                if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetSettingsFile))
+                if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
                 {
                     // TODO 保存失敗時のエラー対応
                 }
@@ -2585,7 +2598,7 @@
                 // 設定ファイルの保存
                 // ==================
                 //
-                if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetSettingsFile))
+                if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
                 {
                     // TODO 保存失敗時のエラー対応
                 }
@@ -2676,7 +2689,7 @@
                 // 設定ファイルの保存
                 // ==================
                 //
-                if (this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetSettingsFile))
+                if (this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
                 {
                     // 保存成功
                 }
@@ -2716,7 +2729,7 @@
                 // 設定ファイルの保存
                 // ==================
                 //
-                if (this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetSettingsFile))
+                if (this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
                 {
                     // 保存成功
                 }

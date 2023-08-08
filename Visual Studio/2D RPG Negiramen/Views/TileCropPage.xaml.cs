@@ -89,19 +89,22 @@ public partial class TileCropPage : ContentPage
         // タイル設定ファイルの読込
         // ========================
         //
-        if (TilesetDatatableVisually.LoadCSV(context.TilesetSettingsFile, out TilesetDatatableVisually tileSetSettingsVM))
+        if (TilesetDatatableVisually.LoadCSV(
+            tilesetDatatableFileLocation: context.TilesetDatatableFileLocation,
+            zoom: context.Zoom,
+            tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
         {
-            context.TilesetSettingsVM = tileSetSettingsVM;
+            context.TilesetSettingsVM = tilesetDatatableVisually;
 
 #if DEBUG
             // ファイルの整合性チェック（重い処理）
             if (context.TilesetSettingsVM.IsValid())
             {
-                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {context.TilesetSettingsFile.Path.AsStr}");
+                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {context.TilesetDatatableFileLocation.Path.AsStr}");
             }
             else
             {
-                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {context.TilesetSettingsFile.Path.AsStr}");
+                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {context.TilesetDatatableFileLocation.Path.AsStr}");
             }
 #endif
 

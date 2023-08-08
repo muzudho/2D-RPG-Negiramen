@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Visually
 {
     using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
     using TheGeometric = Geometric;
 
@@ -27,13 +28,15 @@
         /// <returns></returns>
         public static TileRecordVisually FromModel(
             TileRecord tileRecord,
-            TheGeometric.RectangleFloat workingRect)
+            TheGeometric.RectangleFloat workingRect,
+            Zoom zoom)
         {
             return new TileRecordVisually()
             {
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
                 WorkingRectangle = workingRect,
+                Zoom = zoom,
                 Title = tileRecord.Title,
                 LogicalDelete = tileRecord.LogicalDelete,
             };
@@ -49,6 +52,7 @@
             WorkingRectangle = TheGeometric.RectangleFloat.Empty;
             Title = TileTitle.Empty;
             LogicalDelete = LogicalDelete.False;
+            Zoom = Zoom.IdentityElement;
         }
         #endregion
 
@@ -75,6 +79,8 @@
         #region プロパティ（［作業画像］　関連）
         /// <summary>
         ///     ［作業画像］の矩形（ズーム後）
+        ///     
+        ///     TODO ★ WorkingRectangle を止めて、ズームに置き換えたい
         /// </summary>
         internal TheGeometric.RectangleFloat WorkingRectangle { get; set; }
         #endregion
@@ -102,6 +108,13 @@
         ///     サイズが無いか？
         /// </summary>
         internal bool IsNone => SourceRectangle.RightAsInt - SourceRectangle.LeftAsInt < 1 && SourceRectangle.BottomAsInt - SourceRectangle.TopAsInt < 1;
+        #endregion
+
+        #region プロパティ（ズーム）
+        /// <summary>
+        ///     ズーム
+        /// </summary>
+        internal Zoom Zoom { get; set; }
         #endregion
 
         // - インターナル・メソッド
