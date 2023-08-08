@@ -594,7 +594,8 @@
             <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                    Placeholder="草原"
                    Text="{Binding CroppedCursorPointedTileTitleAsStr}"
-                   IsEnabled="{Binding IsEnabledCroppedCursorPointedTileTitleAsStr}"/>
+                   IsEnabled="{Binding IsEnabledCroppedCursorPointedTileTitleAsStr}"
+                   Completed="TileTitleEntry_Completed"/>
 
             <!--    ◆５段目 ヒント部
                     =================

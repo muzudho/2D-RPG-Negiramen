@@ -431,4 +431,18 @@ public partial class TileCropPage : ContentPage
         App.History.Redo();
     }
     #endregion
+
+    #region イベントハンドラ（［タイル・タイトル］エンター入力時）
+    /// <summary>
+    ///     ［タイル・タイトル］エンター入力時
+    /// </summary>
+    /// <param name="sender">このイベントを呼び出したコントロール</param>
+    /// <param name="e">この発生イベントの制御変数</param>
+    private void TileTitleEntry_Completed(object sender, EventArgs e)
+    {
+        Entry entry = (Entry)sender;
+
+        Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
+    }
+    #endregion
 }
