@@ -1899,18 +1899,10 @@
             else
             {
                 // 切抜きカーソル有り時
-                if (contents.Id == TileIdOrEmpty.Empty)
-                {
-                    // Ｉｄ未設定時
+                // Ｉｄ未設定時
 
-                    // ［追加」
-                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-                }
-                else
-                {
-                    // 「上書」
-                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Overwrite"];
-                }
+                // ［追加」
+                this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
 
                 this.IsEnabledAddsButton = true;
             }

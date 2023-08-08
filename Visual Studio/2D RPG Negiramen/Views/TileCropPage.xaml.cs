@@ -354,11 +354,7 @@ public partial class TileCropPage : ContentPage
         }
         else
         {
-            // Ｉｄが空欄でない
-            // ［上書き］（更新）だ
-
-            // 
-            context.OverwriteRegisteredTile();
+            // TODO 上書き機能削除
         }
     }
     #endregion

@@ -204,9 +204,6 @@
   <data name="Add" xml:space="preserve">
     <value>Addition</value>
   </data>
-  <data name="Overwrite" xml:space="preserve">
-    <value>Overwrite</value>
-  </data>
   <data name="Cursor" xml:space="preserve">
     <value>Cursor</value>
   </data>

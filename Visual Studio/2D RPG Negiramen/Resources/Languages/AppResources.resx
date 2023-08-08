@@ -210,9 +210,6 @@
   <data name="Add" xml:space="preserve">
     <value>追加</value>
   </data>
-  <data name="Overwrite" xml:space="preserve">
-    <value>上書</value>
-  </data>
   <data name="Cursor" xml:space="preserve">
     <value>カーソル</value>
   </data>

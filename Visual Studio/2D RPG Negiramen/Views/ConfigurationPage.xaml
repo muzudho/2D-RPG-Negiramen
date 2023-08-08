@@ -156,7 +156,7 @@
         <!-- 「Unity の Assets フォルダ―へ足りてないファイルを転送」 -->
         <Button Margin="10,10,10,10" WidthRequest="400"
                 Text="{app:Translate ConfigurationPageDeployButtonDescription}"
-                SemanticProperties.Hint="Overwrite project to Unity"
+                SemanticProperties.Hint="Deploy project to Unity"
                 Command="{Binding MakeUnityAssetsFolderCommand}"/>
 
         <Grid RowDefinitions="*,*" ColumnDefinitions="20,*" Margin="10,10,10,10">
