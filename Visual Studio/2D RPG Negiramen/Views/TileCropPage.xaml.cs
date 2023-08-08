@@ -442,7 +442,11 @@ public partial class TileCropPage : ContentPage
     {
         Entry entry = (Entry)sender;
 
+        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
+
         Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
+
+        context.OverwriteRegisteredTile();
     }
     #endregion
 }
