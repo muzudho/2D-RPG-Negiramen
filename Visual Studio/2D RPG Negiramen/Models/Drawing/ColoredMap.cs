@@ -47,24 +47,24 @@ internal class ColoredMap : BindableObject, IDrawable
         }
 
         // 各登録タイル
-        foreach (var recordVM in this.TilesetSettingsVM.TileRecordVisuallyList)
+        foreach (var tileVisually in this.TilesetSettingsVM.TileRecordVisuallyList)
         {
-            if (recordVM.LogicalDelete == Models.LogicalDelete.True)
+            if (tileVisually.LogicalDelete == Models.LogicalDelete.True)
             {
                 // 論理削除されてるから無視
-                // Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] 論理削除されてるから無視　recordVM: {recordVM.Dump()}");
+                // Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] 論理削除されてるから無視　tileVisually: {tileVisually.Dump()}");
                 continue;
             }
             //else
             //{
-            //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] recordVM: {recordVM.Dump()}");
+            //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] tileVisually: {tileVisually.Dump()}");
             //}
 
             // 枠の線の太さの半分
             int halfFrameThickness = 2;
 
             // 線の色はランダム。自然数を散らしているだけ。色相は黄緑になるところが多いので、黄緑が沢山出てくるのは仕方ない。
-            float hue = ((int)((float)recordVM.Id.AsInt / 7.0f * 100.0f) % 100) / 100.0f;
+            float hue = ((int)((float)tileVisually.Id.AsInt / 7.0f * 100.0f) % 100) / 100.0f;
             canvas.StrokeColor = Color.FromHsv(
                 h: hue,                                     // ヒュー（Hue；色相）
                                                             // h: (float)Random.Shared.NextDouble(),    // ヒュー（Hue；色相）
@@ -78,7 +78,7 @@ internal class ColoredMap : BindableObject, IDrawable
             canvas.StrokeSize = 2 * halfFrameThickness;
             canvas.DrawRoundedRectangle(
                 // 枠の線の太さの半分だけサイズを縮める
-                rect: recordVM.WorkingRectangle.AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
+                rect: tileVisually.WorkingRectangle.AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
                 cornerRadius: 16.0d);
         }
     }

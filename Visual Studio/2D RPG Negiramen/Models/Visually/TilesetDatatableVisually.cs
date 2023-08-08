@@ -202,11 +202,11 @@
         /// <returns>有った</returns>
         internal bool TryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
-            foreach (var recordVM in TileRecordVisuallyList)
+            foreach (var tileVisually in TileRecordVisuallyList)
             {
-                if (recordVM.Id == tileId)
+                if (tileVisually.Id == tileId)
                 {
-                    resultVisuallyOrNull = recordVM;
+                    resultVisuallyOrNull = tileVisually;
                     return true;
                 }
             }
@@ -282,20 +282,20 @@
         /// <returns>ストリーム</returns>
         internal IEnumerator<TileRecord> GetAllSourceRecords(bool includeLogicalDelete = false)
         {
-            foreach (var recordVM in TileRecordVisuallyList)
+            foreach (var tileVisually in TileRecordVisuallyList)
             {
                 // 論理削除されているものは除く
-                if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)
+                if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
                 {
                     continue;
                 }
 
                 // レコードを１件返す
                 yield return new TileRecord(
-                    id: recordVM.Id,
-                    rect: recordVM.SourceRectangle,
-                    title: recordVM.Title,
-                    logicalDelete: recordVM.LogicalDelete);
+                    id: tileVisually.Id,
+                    rect: tileVisually.SourceRectangle,
+                    title: tileVisually.Title,
+                    logicalDelete: tileVisually.LogicalDelete);
             }
         }
         #endregion
@@ -307,16 +307,16 @@
         /// <returns>ストリーム</returns>
         internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles(bool includeLogicalDelete = false)
         {
-            foreach (var recordVM in TileRecordVisuallyList)
+            foreach (var tileVisually in TileRecordVisuallyList)
             {
                 // 論理削除されているものは除く
-                if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)
+                if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
                 {
                     continue;
                 }
 
                 // 矩形を１件返す
-                yield return recordVM.SourceRectangle;
+                yield return tileVisually.SourceRectangle;
             }
         }
         #endregion
@@ -403,19 +403,19 @@
         {
             var list = new List<TileRecord>();
 
-            foreach (var recordVM in TileRecordVisuallyList)
+            foreach (var tileVisually in TileRecordVisuallyList)
             {
                 // 論理削除されているものは除く
-                if (!includeLogicalDelete && recordVM.LogicalDelete == LogicalDelete.True)
+                if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
                 {
                     continue;
                 }
 
                 list.Add(new TileRecord(
-                    id: recordVM.Id,
-                    rect: recordVM.SourceRectangle,
-                    title: recordVM.Title,
-                    logicalDelete: recordVM.LogicalDelete));
+                    id: tileVisually.Id,
+                    rect: tileVisually.SourceRectangle,
+                    title: tileVisually.Title,
+                    logicalDelete: tileVisually.LogicalDelete));
             }
 
             return list;

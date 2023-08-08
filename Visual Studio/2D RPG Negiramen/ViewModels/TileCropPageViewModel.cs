@@ -608,9 +608,9 @@
             }
             set
             {
-                var contents = this.croppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
 
-                if (contents.IsNone)
+                if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
@@ -629,19 +629,19 @@
                 else
                 {
                     // 値に変化がない
-                    if (contents.SourceRectangle.Location.X.AsInt == value)
+                    if (currentTileVisually.SourceRectangle.Location.X.AsInt == value)
                         return;
 
                     // 元画像ベース
                     var rect1 = new Models.Geometric.RectangleInt(
-                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), contents.SourceRectangle.Location.Y),
-                                size: contents.SourceRectangle.Size);
+                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), currentTileVisually.SourceRectangle.Location.Y),
+                                size: currentTileVisually.SourceRectangle.Size);
                     this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: contents.Id,
+                            id: currentTileVisually.Id,
                             rect: rect1,
-                            title: contents.Title,
-                            logicalDelete: contents.LogicalDelete),
+                            title: currentTileVisually.Title,
+                            logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
                 }
 
@@ -672,9 +672,9 @@
             }
             set
             {
-                var contents = this.croppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
 
-                if (contents.IsNone)
+                if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
@@ -694,19 +694,19 @@
                 else
                 {
                     // 値に変化がない
-                    if (contents.SourceRectangle.Location.Y.AsInt == value)
+                    if (currentTileVisually.SourceRectangle.Location.Y.AsInt == value)
                         return;
 
                     // 元画像ベース
                     var rect1 = new Models.Geometric.RectangleInt(
-                            location: new Models.Geometric.PointInt(contents.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
-                            size: contents.SourceRectangle.Size);
+                            location: new Models.Geometric.PointInt(currentTileVisually.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
+                            size: currentTileVisually.SourceRectangle.Size);
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: contents.Id,
+                            id: currentTileVisually.Id,
                             rect: rect1,
-                            title: contents.Title,
-                            logicalDelete: contents.LogicalDelete),
+                            title: currentTileVisually.Title,
+                            logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
                 }
 
@@ -782,9 +782,9 @@
             }
             set
             {
-                var contents = this.croppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
 
-                if (contents.IsNone)
+                if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
                     var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty));
@@ -799,16 +799,16 @@
                 else
                 {
                     // 値に変化がない
-                    if (contents.SourceRectangle.Size.Width.AsInt == value)
+                    if (currentTileVisually.SourceRectangle.Size.Width.AsInt == value)
                         return;
 
-                    var rect1 = new Models.Geometric.RectangleInt(contents.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), contents.SourceRectangle.Size.Height));
+                    var rect1 = new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height));
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: contents.Id,
+                            id: currentTileVisually.Id,
                             rect: rect1,
-                            title: contents.Title,
-                            logicalDelete: contents.LogicalDelete),
+                            title: currentTileVisually.Title,
+                            logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
                 }
 
@@ -838,9 +838,9 @@
             }
             set
             {
-                var contents = this.croppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
 
-                if (contents.IsNone)
+                if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
                     var rect1 = new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value)));
@@ -855,16 +855,16 @@
                 else
                 {
                     // 値に変化がない
-                    if (contents.SourceRectangle.Size.Height.AsInt == value)
+                    if (currentTileVisually.SourceRectangle.Size.Height.AsInt == value)
                         return;
 
-                    var rect1 = new Models.Geometric.RectangleInt(contents.SourceRectangle.Location, new Models.Geometric.SizeInt(contents.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
+                    var rect1 = new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value)));
                     croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
-                            id: contents.Id,
+                            id: currentTileVisually.Id,
                             rect: rect1,
-                            title: contents.Title,
-                            logicalDelete: contents.LogicalDelete),
+                            title: currentTileVisually.Title,
+                            logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
                 }
 
@@ -1253,20 +1253,31 @@
         }
 
         /// <summary>
-        ///     ［追加／上書き］ボタンの活性性
+        ///     <pre>
+        ///         ［追加／復元］ボタンの活性性
+        ///         
+        ///         ※１　以下の条件を満たさないと、いずれにしても不活性
+        ///     </pre>
+        ///     <list type="bullet">
+        ///         <item>［切抜きカーソルが指すタイル］が有る</item>
+        ///     </list>
+        ///     ※２　［追加］ボタンは、以下の条件で活性
+        ///     <list type="bullet">
+        ///         <item>Ｉｄが未設定時、かつ、論理削除フラグがＯｆｆ</item>
+        ///     </list>
+        ///     ※３　［復元］ボタンは、以下の条件で活性
+        ///     <list type="bullet">
+        ///         <item>Ｉｄが設定時、かつ、論理削除フラグがＯｎ</item>
+        ///     </list>
         /// </summary>
-        public bool IsEnabledAddsButton
-        {
-            get => this.isEnabledAddsButton;
-            set
-            {
-                if (this.isEnabledAddsButton == value)
-                    return;
-
-                this.isEnabledAddsButton = value;
-                OnPropertyChanged(nameof(IsEnabledAddsButton));
-            }
-        }
+        public bool IsEnabledAddsButton =>
+            // ※１
+            !this.CroppedCursorPointedTileRecordVisually.IsNone && (
+            // ※２
+            (this.CroppedCursorPointedTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool)
+            ||
+            // ※３
+            (this.CroppedCursorPointedTileRecordVisually.Id != TileIdOrEmpty.Empty  && this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool));
         #endregion
 
         #region 変更通知プロパティ（［削除］ボタン　関連）
@@ -1573,9 +1584,9 @@
             }
             set
             {
-                var contents = this.croppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
 
-                if (contents.IsNone)
+                if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］の指すタイル無し時
 
@@ -1591,15 +1602,15 @@
                 else
                 {
                     // 値に変化がない
-                    if (contents.Id == value)
+                    if (currentTileVisually.Id == value)
                         return;
 
                     this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: value,  // 更新
-                            rect: contents.SourceRectangle,
-                            title: contents.Title,
-                            logicalDelete: contents.LogicalDelete),
+                            rect: currentTileVisually.SourceRectangle,
+                            title: currentTileVisually.Title,
+                            logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.Zoom);
                 }
 
@@ -1827,7 +1838,7 @@
                 sourceRect: this.CroppedCursorPointedTileSourceRect,
                 some: (tileVisually) =>
                 {
-                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
+                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
 
                     // タイルを指す（論理削除されているものも含む）
                     this.CroppedCursorPointedTileRecordVisually = tileVisually;
@@ -1882,7 +1893,6 @@
                     // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
                     this.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
-                    this.IsEnabledAddsButton = false;
                     return;
                 }
             }
@@ -1895,7 +1905,6 @@
 
                 // 「追加」
                 this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-                this.IsEnabledAddsButton = false;
             }
             else
             {
@@ -1915,10 +1924,10 @@
                     // ［復元」
                     this.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
                 }
-
-
-                this.IsEnabledAddsButton = true;
             }
+
+            // ［追加／復元］ボタンの活性性
+            OnPropertyChanged(nameof(IsEnabledAddsButton));
         }
         #endregion
 
@@ -2028,6 +2037,9 @@
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
             this.InvalidateDeletesButton();
+
+            // ［追加／復元］ボタン
+            OnPropertyChanged(nameof(IsEnabledAddsButton));
 
             // タイルセット タイトル
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
@@ -2522,7 +2534,7 @@
                 this.Owner.NotifyTileIdChange();
 
                 // リストに登録済みか確認
-                if (!this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisuallyOrNull))
+                if (!this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
                 {
                     // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
                     this.Owner.TilesetSettingsVM.AddTileVisually(
@@ -2538,21 +2550,21 @@
                 //
 
                 // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-                if (this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out tileRecordVisuallyOrNull))
+                if (this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
                 {
-                    TileRecordVisually tileRecordVisually = tileRecordVisuallyOrNull ?? throw new NullReferenceException(nameof(tileRecordVisuallyOrNull));
+                    TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
                     // 新・元画像の位置とサイズ
-                    tileRecordVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
+                    registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
                     // 新・作業画像の位置とサイズ
-                    tileRecordVisually.Zoom = this.Owner.Zoom;
+                    registeredTileVisually.Zoom = this.Owner.Zoom;
 
                     // 新・タイル・タイトル
-                    tileRecordVisually.Title = this.CroppedCursorVisually.Title;
+                    registeredTileVisually.Title = this.CroppedCursorVisually.Title;
 
                     // 新・論理削除
-                    tileRecordVisually.LogicalDelete = this.CroppedCursorVisually.LogicalDelete;
+                    registeredTileVisually.LogicalDelete = this.CroppedCursorVisually.LogicalDelete;
                 }
 
                 //
