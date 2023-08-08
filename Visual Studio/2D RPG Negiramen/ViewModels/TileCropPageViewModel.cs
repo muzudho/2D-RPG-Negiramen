@@ -1648,32 +1648,57 @@
         }
         #endregion
 
-        #region メソッド（［登録タイル］　関連）
+        #region メソッド（［追加／上書き］　関連）
         /// <summary>
-        ///     ［登録タイル］追加
+        ///     ［追加］
         /// </summary>
         public void AddRegisteredTile()
         {
             var contents = this.CroppedCursorPointedTileRecordVisualBuffer;
 
+            TileIdOrEmpty tileIdOrEmpty;
+
+            // Ｉｄが空欄
+            // ［追加］（新規作成）だ
+
             // ［切抜きカーソル］にサイズがなければ、何もしない
             if (contents.IsNone)
                 return;
 
+            // 新しいタイルＩｄを発行
+            tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
+            this.TilesetSettingsVM.IncreaseUsableId();
+
+            // 追加でも、上書きでも、同じ処理でいける
+            // ［登録タイル追加］処理
+            App.History.Do(new AddRegisteredTileProcessing(
+                owner: this,
+                croppedCursorVisualBuffer: contents,
+                tileIdOrEmpty: tileIdOrEmpty,
+                workingRectangle: contents.SourceRectangle.Do(this.Zoom)));
+
+            this.OnPropertyChanged(nameof(CanUndo));
+            this.OnPropertyChanged(nameof(CanRedo));
+        }
+
+        /// <summary>
+        ///     ［上書き］
+        /// </summary>
+        public void OverwriteRegisteredTile()
+        {
+            var contents = this.CroppedCursorPointedTileRecordVisualBuffer;
+
             TileIdOrEmpty tileIdOrEmpty;
-            if (this.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
-            {
-                // Ｉｄが空欄ということは、新規作成だ
 
-                // 新しいタイルＩｄを発行
-                tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
-                this.TilesetSettingsVM.IncreaseUsableId();
-            }
-            else
-            {
-                tileIdOrEmpty = this.CroppedCursorPointedTileIdOrEmpty;
-            }
+            // ［切抜きカーソル］にサイズがなければ、何もしない
+            if (contents.IsNone)
+                return;
 
+            // Ｉｄが空欄でない
+            // ［上書き］（更新）だ
+            tileIdOrEmpty = this.CroppedCursorPointedTileIdOrEmpty;
+
+            // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
             App.History.Do(new AddRegisteredTileProcessing(
                 owner: this,

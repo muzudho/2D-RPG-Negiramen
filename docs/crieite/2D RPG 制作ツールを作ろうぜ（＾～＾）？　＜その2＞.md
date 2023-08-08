@@ -2811,4 +2811,15 @@ author = "むずでょ"
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
 「　既存のプログラムの不出来なところを直さないと　そこへ進めないぜ」  
 
+# 📅 （2023-08-08 tue）アンドゥ・リドゥ機能を早よ作れだぜ（３日目）
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　アンドゥ・リドゥ機能を早よ作れだぜ。３日目だぜ」   
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　既存のコードを　アンドゥ・リドゥ　に対応するために、事前のコードの整理整頓中だぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　プログラムがヘタクソで　すぐに　アンドゥ・リドゥ　に置き換えられないのねえ」  
+
 ＜書きかけ＞
