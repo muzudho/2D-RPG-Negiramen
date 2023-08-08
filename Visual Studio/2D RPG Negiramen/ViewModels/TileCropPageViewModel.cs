@@ -1160,11 +1160,12 @@
         ///     ［切抜きカーソルが指すタイル］のタイトルの活性性
         ///     
         ///     <list type="bullet">
-        ///         <item>切抜きカーソルがある</item>
-        ///         <item>選択タイルＩｄが空欄でない</item>
+        ///         <item>［切抜きカーソルが指すタイル］がある</item>
+        ///         <item>［切抜きカーソルが指すタイル］のＩｄが空欄でない</item>
+        ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.croppedCursorPointedTileRecordVisually.IsNone && !this.CroppedCursorPointedTileIdOrEmpty.IsEmpty;
+        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.CroppedCursorPointedTileRecordVisually.IsNone && !this.CroppedCursorPointedTileIdOrEmpty.IsEmpty && !this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
@@ -1180,7 +1181,7 @@
                 {
                     // ［切抜きカーソル］の指すタイル無し時
                     var rect1 = Models.Geometric.RectangleInt.Empty;
-                    croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: rect1,
@@ -1190,12 +1191,14 @@
                 }
                 else
                 {
+                    // ［切抜きカーソル］の指すタイルが有る時
+
                     // 値に変化がない
                     if (contents.Title.AsStr == value)
                         return;
 
                     var rect1 = contents.SourceRectangle;
-                    croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: contents.Id,
                             rect: rect1,
@@ -1822,17 +1825,12 @@
         {
             this.TilesetSettingsVM.MatchByRectangle(
                 sourceRect: this.CroppedCursorPointedTileSourceRect,
-                some: (tileRecordVisualBuffer) =>
+                some: (tileVisually) =>
                 {
                     // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{recordVM.Id.AsInt}, X:{recordVM.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
 
-                    //
-                    // データ表示
-                    // ==========
-                    //
-
-                    // 選択中のタイルを設定
-                    this.CroppedCursorPointedTileRecordVisually = tileRecordVisualBuffer;
+                    // タイルを指す（論理削除されているものも含む）
+                    this.CroppedCursorPointedTileRecordVisually = tileVisually;
                 },
                 none: () =>
                 {
@@ -1851,7 +1849,9 @@
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
                         zoom: this.Zoom);
-                });
+                },
+                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
+                includeLogicalDelete: true);
         }
         #endregion
 
@@ -2031,6 +2031,7 @@
 
             // タイルセット タイトル
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
         }
 
         // - プライベート・フィールド

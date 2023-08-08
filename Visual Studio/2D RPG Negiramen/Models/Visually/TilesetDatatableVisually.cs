@@ -255,13 +255,18 @@
         internal void MatchByRectangle(
             TheGeometric.RectangleInt sourceRect,
             LazyArgs.Set<TileRecordVisually> some,
-            Action none)
+            Action none,
+            bool includeLogicalDelete = false)
         {
-            foreach (var recordVM in TileRecordVisuallyList)
+            foreach (var tileVisually in TileRecordVisuallyList)
             {
-                if (recordVM.SourceRectangle == sourceRect)
+                // 論理削除されている要素は無視
+                if (tileVisually.LogicalDelete.AsBool && !includeLogicalDelete)
+                    break;
+
+                if (tileVisually.SourceRectangle == sourceRect)
                 {
-                    some(recordVM);
+                    some(tileVisually);
                     return;
                 }
             }
