@@ -624,7 +624,6 @@
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
                 else
@@ -643,7 +642,6 @@
                             rect: rect1,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
 
@@ -691,7 +689,6 @@
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
                 else
@@ -710,7 +707,6 @@
                             rect: rect1,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
 
@@ -798,7 +794,6 @@
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
                 else
@@ -814,7 +809,6 @@
                             rect: rect1,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
 
@@ -856,7 +850,6 @@
                             rect: rect1,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
                 else
@@ -872,7 +865,6 @@
                             rect: rect1,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
 
@@ -1194,7 +1186,6 @@
                             rect: rect1,
                             title: new Models.TileTitle(value),
                             logicalDelete: Models.LogicalDelete.False),
-                       workingRect: rect1.Do(this.Zoom),
                        zoom: this.Zoom);
                 }
                 else
@@ -1210,7 +1201,6 @@
                             rect: rect1,
                             title: new Models.TileTitle(value),
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: rect1.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
 
@@ -1592,7 +1582,6 @@
                             rect: Models.Geometric.RectangleInt.Empty,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                    workingRect: Models.Geometric.RectangleFloat.Empty,
                     zoom: this.Zoom);
                 }
                 else
@@ -1607,7 +1596,6 @@
                             rect: contents.SourceRectangle,
                             title: contents.Title,
                             logicalDelete: contents.LogicalDelete),
-                        workingRect: contents.SourceRectangle.Do(this.Zoom),
                         zoom: this.Zoom);
                 }
 
@@ -1861,7 +1849,6 @@
                             rect: this.CroppedCursorPointedTileSourceRect,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        workingRect: this.CroppedCursorPointedTileSourceRect.Do(this.Zoom),
                         zoom: this.Zoom);
                 });
         }
@@ -2450,8 +2437,7 @@
                 // 全ての［登録タイル］の更新
                 foreach (var registeredTileVM in this.Owner.TilesetSettingsVM.TileRecordVisuallyList)
                 {
-                    // ズーム時の位置とサイズ
-                    registeredTileVM.WorkingRectangle = registeredTileVM.SourceRectangle.Do(this.Owner.Zoom);
+                    // ズーム
                     registeredTileVM.Zoom = this.Owner.Zoom;
                 }
 
@@ -2528,7 +2514,6 @@
                     this.Owner.TilesetSettingsVM.AddTileVisually(
                         id: this.TileIdOrEmpty,
                         rect: RectangleInt.Empty,
-                        workingRect: RectangleFloat.Empty,
                         zoom: Zoom.IdentityElement,
                         title: Models.TileTitle.Empty,
                         logicalDelete: Models.LogicalDelete.False);
@@ -2547,7 +2532,7 @@
                     tileRecordVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
                     // 新・作業画像の位置とサイズ
-                    tileRecordVisually.WorkingRectangle = this.WorkingRectangle;
+                    tileRecordVisually.Zoom = this.Owner.Zoom;
 
                     // 新・タイル・タイトル
                     tileRecordVisually.Title = this.CroppedCursorVisually.Title;

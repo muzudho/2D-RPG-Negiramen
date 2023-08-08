@@ -24,18 +24,15 @@
         ///     生成
         /// </summary>
         /// <param name="tileRecord">タイル</param>
-        /// <param name="workingRect">ズーム後の位置とサイズ</param>
         /// <returns></returns>
         public static TileRecordVisually FromModel(
             TileRecord tileRecord,
-            TheGeometric.RectangleFloat workingRect,
             Zoom zoom)
         {
             return new TileRecordVisually()
             {
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
-                WorkingRectangle = workingRect,
                 Zoom = zoom,
                 Title = tileRecord.Title,
                 LogicalDelete = tileRecord.LogicalDelete,
@@ -49,10 +46,9 @@
         {
             Id = TileIdOrEmpty.Empty;
             SourceRectangle = TheGeometric.RectangleInt.Empty;
-            WorkingRectangle = TheGeometric.RectangleFloat.Empty;
             Title = TileTitle.Empty;
             LogicalDelete = LogicalDelete.False;
-            Zoom = Zoom.IdentityElement;
+            // Zoom = Zoom.IdentityElement;
         }
         #endregion
 
@@ -73,7 +69,26 @@
         /// <summary>
         ///     ［元画像］の矩形
         /// </summary>
-        internal TheGeometric.RectangleInt SourceRectangle { get; set; }
+        internal TheGeometric.RectangleInt SourceRectangle
+        {
+            get => this.sourceRectangle;
+            set
+            {
+                if (this.sourceRectangle == value)
+                    return;
+
+                this.sourceRectangle = value;
+
+                // ［作業画像］の矩形再計算
+                this.workingRectangle = new RectangleFloat(
+                    location: new PointFloat(
+                        x: new XFloat(this.Zoom.AsFloat * this.SourceRectangle.Location.X.AsInt),
+                        y: new YFloat(this.Zoom.AsFloat * this.SourceRectangle.Location.Y.AsInt)),
+                    size: new SizeFloat(
+                        width: new WidthFloat(this.Zoom.AsFloat * this.SourceRectangle.Size.Width.AsInt),
+                        height: new HeightFloat(this.Zoom.AsFloat * this.SourceRectangle.Size.Height.AsInt)));
+            }
+        }
         #endregion
 
         #region プロパティ（［作業画像］　関連）
@@ -82,7 +97,7 @@
         ///     
         ///     TODO ★ WorkingRectangle を止めて、ズームに置き換えたい
         /// </summary>
-        internal TheGeometric.RectangleFloat WorkingRectangle { get; set; }
+        internal TheGeometric.RectangleFloat WorkingRectangle => this.workingRectangle;
         #endregion
 
         #region プロパティ（タイトル）
@@ -114,7 +129,26 @@
         /// <summary>
         ///     ズーム
         /// </summary>
-        internal Zoom Zoom { get; set; }
+        internal Zoom Zoom
+        {
+            get => this.zoom;
+            set
+            {
+                if (this.zoom == value)
+                    return;
+
+                this.zoom = value;
+
+                // ［作業画像］の矩形再計算
+                this.workingRectangle = new RectangleFloat(
+                    location: new PointFloat(
+                        x: new XFloat(this.Zoom.AsFloat * this.SourceRectangle.Location.X.AsInt),
+                        y: new YFloat(this.Zoom.AsFloat * this.SourceRectangle.Location.Y.AsInt)),
+                    size: new SizeFloat(
+                        width: new WidthFloat(this.Zoom.AsFloat * this.SourceRectangle.Size.Width.AsInt),
+                        height: new HeightFloat(this.Zoom.AsFloat * this.SourceRectangle.Size.Height.AsInt)));
+            }
+        }
         #endregion
 
         // - インターナル・メソッド
@@ -129,5 +163,11 @@
             return $"Id:{Id.AsBASE64}, SourceRect:{SourceRectangle.Dump()}, WorkingRect:{WorkingRectangle.Dump()}, Title:{Title.AsStr}, LogicalDelete: {LogicalDelete.AsInt}";
         }
         #endregion
+
+        // - プライベート・フィールド
+
+        Zoom zoom = Zoom.IdentityElement;
+        TheGeometric.RectangleInt sourceRectangle = RectangleInt.Empty;
+        TheGeometric.RectangleFloat workingRectangle = RectangleFloat.Empty;
     }
 }

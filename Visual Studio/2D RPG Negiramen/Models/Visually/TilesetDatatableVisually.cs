@@ -52,7 +52,6 @@
                     tilesetDatatableVisually.TileRecordVisuallyList.Add(
                         TileRecordVisually.FromModel(
                             tileRecord: record,
-                            workingRect: record.Rectangle.ToFloat(),
                             zoom: zoom));
                 }
                 try
@@ -104,13 +103,11 @@
         /// </summary>
         /// <param name="id">タイルＩｄ</param>
         /// <param name="rect">位置とサイズ</param>
-        /// <param name="workingRect">（ズーム後の）位置とサイズ</param>
         /// <param name="title">タイトル</param>
         /// <param name="logicalDelete">論理削除</param>
         internal void AddTileVisually(
             TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
-            TheGeometric.RectangleFloat workingRect,
             Zoom zoom,
             TileTitle title,
             LogicalDelete logicalDelete)
@@ -122,7 +119,6 @@
                         rect,
                         title,
                         logicalDelete),
-                    workingRect: workingRect,
                     zoom: zoom));
         }
         #endregion
@@ -152,7 +148,6 @@
                             rect: tileVisually.SourceRectangle,
                             title: tileVisually.Title,
                             logicalDelete: LogicalDelete.True),
-                        workingRect: tileVisually.WorkingRectangle,
                         zoom: tileVisually.Zoom);
 
                     return true;
@@ -188,7 +183,6 @@
                             rect: tileVisually.SourceRectangle,
                             title: tileVisually.Title,
                             logicalDelete: LogicalDelete.False),
-                        workingRect: tileVisually.WorkingRectangle,
                         zoom: tileVisually.Zoom);
 
                     return true;
