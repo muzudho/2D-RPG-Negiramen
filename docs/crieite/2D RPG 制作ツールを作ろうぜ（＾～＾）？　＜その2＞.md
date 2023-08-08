@@ -2870,4 +2870,25 @@ CSV ファイルに対応するクラスは　`TilesetDatatable` に名称変更
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　本当に必要な最小限の機能を　洗い出したか？」  
 
+![202308_maui_08-2331--Restore.png](https://crieit.now.sh/upload_images/daee7aa7345154b0b662ef4acefffe0264d251cf13154.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　例えば　復元は　こんなケースで使う」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　マーカーが無い所で　タイル・タイトル入力できるの　おかしくない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　状況を調べて　テキストボックスを不活性にするの　わりと大変な作業」  
+
+## 論理削除フラグが False になってる
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　見えないマーカーがあるんだが、論理削除フラグが　False　になってるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　`IsNone` フラグと、 `LogicalDelete` フラグの２つがあるのが　ダメなのでは？  
+どちらか片方にしたら　どうだぜ？」  
+
+
 ＜書きかけ＞

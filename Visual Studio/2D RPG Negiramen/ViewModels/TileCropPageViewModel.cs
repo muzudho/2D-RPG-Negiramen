@@ -1301,14 +1301,23 @@
         ///         <item>Ｉｄが設定時、かつ、論理削除フラグがＯｎ</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledAddsButton =>
-            // ※１
-            !this.CroppedCursorPointedTileRecordVisually.IsNone && (
-            // ※２
-            (this.CroppedCursorPointedTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool)
-            ||
-            // ※３
-            (this.CroppedCursorPointedTileRecordVisually.Id != TileIdOrEmpty.Empty && this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool));
+        public bool IsEnabledAddsButton
+        {
+            get
+            {
+                // ※１
+                var isEnabled = !this.CroppedCursorPointedTileRecordVisually.IsNone && (
+                // ※２
+                (this.CroppedCursorPointedTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool)
+                ||
+                // ※３
+                (this.CroppedCursorPointedTileRecordVisually.Id != TileIdOrEmpty.Empty && this.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool));
+
+                Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.CroppedCursorPointedTileRecordVisually.Dump()}");
+
+                return isEnabled;
+            }
+        }
         #endregion
 
         #region 変更通知プロパティ（［削除］ボタン　関連）
@@ -2264,11 +2273,6 @@
         ///     ［追加／上書き］ボタンのラベル
         /// </summary>
         string addsButtonText = string.Empty;
-
-        /// <summary>
-        ///     ［追加／上書き］ボタンの活性性
-        /// </summary>
-        bool isEnabledAddsButton;
         #endregion
 
         #region フィールド（［削除］ボタン　関連）
