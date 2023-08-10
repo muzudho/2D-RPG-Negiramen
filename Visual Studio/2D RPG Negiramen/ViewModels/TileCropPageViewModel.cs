@@ -903,13 +903,10 @@
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの位置（マージンとして）
         /// </summary>
-        public Thickness CroppedCursorWorkingPointAsMargin
-        {
-            get => new(left: this.CroppedCursorPointedTileWorkingLeftAsFloat,
-                       top: this.CroppedCursorPointedTileWorkingTopAsFloat,
-                       right: 0,
-                       bottom: 0);
-        }
+        public Thickness CroppedCursorWorkingPointAsMargin => new(left: this.CroppedCursorPointedTileWorkingLeftAsFloat,
+                                                                  top: this.CroppedCursorPointedTileWorkingTopAsFloat,
+                                                                  right: 0,
+                                                                  bottom: 0);
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの横幅
@@ -919,10 +916,7 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfCroppedCursorWorkingWidthAsFloat
-        {
-            get => this.croppedCursorPointedTileWorkingRect.Size.Width.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
-        }
+        public float CanvasOfCroppedCursorWorkingWidthAsFloat => this.croppedCursorPointedTileWorkingRect.Size.Width.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
@@ -932,10 +926,7 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfCroppedCursorWorkingHeightAsFloat
-        {
-            get => this.croppedCursorPointedTileWorkingRect.Size.Height.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
-        }
+        public float CanvasOfCroppedCursorWorkingHeightAsFloat => this.croppedCursorPointedTileWorkingRect.Size.Height.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの位置ｘ
@@ -1618,56 +1609,12 @@
             }
             set
             {
-                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
+                if (this.croppedCursorPointedTileRecordVisually.Id == value)
+                    return;
 
-                if (currentTileVisually.IsNone)
-                {
-                    // ［切抜きカーソル］の指すタイル無し時
-
-                    // タイルＩｄだけ持っておく
-                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: value,  // 更新
-                            rect: Models.Geometric.RectangleInt.Empty,
-                            title: Models.TileTitle.Empty,
-                            logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileIdOrEmpty 1]"
-#endif
-                    );
-                }
-                else
-                {
-                    // ［切抜きカーソル］の指すタイル有り時
-
-                    // 値に変化がない
-                    if (currentTileVisually.Id == value)
-                        return;
-
-                    // Ｉｄだけを差替える
-                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new TileRecord(
-                            id: value,  // 更新
-                            rect: currentTileVisually.SourceRectangle,
-                            title: currentTileVisually.Title,
-                            logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Zoom
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileIdOrEmpty 2]"
-#endif
-                        );
-                }
-
-                this.InvalidateLocale();
-
-                // ［追加／上書き］ボタン再描画
-                this.InvalidateAddsButton();
-
-                // ［削除］ボタン再描画
-                this.InvalidateDeletesButton();
-
-                NotifyTileIdChange();
+                // 差分更新
+                this.UpdateCroppedCursorPointedTileByDifference(
+                    tileId: value);
             }
         }
         #endregion
@@ -1921,10 +1868,31 @@
         /// </summary>
         /// <returns></returns>
         public void UpdateCroppedCursorPointedTileByDifference(
+            TileIdOrEmpty? tileId = null,
             TileTitle? tileTitle = null,
             LogicalDelete? logicalDelete = null)
         {
             var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
+
+            // タイルＩｄ
+            if (!(tileId is null) && currentTileVisually.Id != tileId)
+            {
+                this.croppedCursorPointedTileRecordVisually.Id = tileId;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
+
+                // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
+                // this.InvalidateLocale();
+                // this.InvalidateAddsButton();
+
+                // ［追加／上書き］ボタン再描画
+                this.InvalidateAddsButton();
+
+                // ［削除］ボタン再描画
+                this.InvalidateDeletesButton();
+
+                // NotifyTileIdChange();
+            }
 
             // タイル・タイトル
             if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
