@@ -1215,45 +1215,12 @@
             get => this.croppedCursorPointedTileRecordVisually.LogicalDelete.AsBool;
             set
             {
-                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
+                if (this.croppedCursorPointedTileRecordVisually.LogicalDelete.AsBool == value)
+                    return;
 
-                if (currentTileVisually.IsNone)
-                {
-                    // ［切抜きカーソルが指すタイル］無し時
-                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: TileIdOrEmpty.Empty,
-                            rect: Models.Geometric.RectangleInt.Empty,
-                            title: TileTitle.Empty,
-                            logicalDelete: LogicalDelete.FromBool(value)),
-                       zoom: this.Zoom
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileLogicalDeleteAsBool 1]"
-#endif
-                       );
-                }
-                else
-                {
-                    // ［切抜きカーソル］の指すタイルが有る時
-
-                    // 値に変化がない
-                    if (currentTileVisually.LogicalDelete.AsBool == value)
-                        return;
-
-                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: currentTileVisually.Id,
-                            rect: currentTileVisually.SourceRectangle,
-                            title: currentTileVisually.Title,
-                            logicalDelete: LogicalDelete.FromBool(value)),
-                        zoom: this.Zoom
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileLogicalDeleteAsBool 2]"
-#endif
-                        );
-                }
-
-                OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+                // 差分更新
+                this.UpdateCroppedCursorPointedTileByDifference(
+                    logicalDelete: LogicalDelete.FromBool(value));
             }
         }
         #endregion
@@ -1954,8 +1921,8 @@
         /// </summary>
         /// <returns></returns>
         public void UpdateCroppedCursorPointedTileByDifference(
-            TileTitle? tileTitle = null
-            )
+            TileTitle? tileTitle = null,
+            LogicalDelete? logicalDelete = null)
         {
             var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
 
@@ -1964,6 +1931,13 @@
             {
                 this.croppedCursorPointedTileRecordVisually.Title = tileTitle;
                 OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            }
+
+            // 論理削除フラグ
+            if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
+            {
+                this.croppedCursorPointedTileRecordVisually.LogicalDelete = logicalDelete;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
             }
 
             Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] this.croppedCursorPointedTileRecordVisually.Dump(): {this.croppedCursorPointedTileRecordVisually.Dump()}");
