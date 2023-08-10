@@ -2911,4 +2911,38 @@ CSV ファイルに対応するクラスは　`TilesetDatatable` に名称変更
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　そこは　分けるのか……」  
 
+# 📅 （2023-08-09 wed）寝てた
+
+Zzz
+
+# 📅 （2023-08-10 thu）アンドゥ・リドゥ機能を早よ作れだぜ（５日目）
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　アンドゥ・リドゥ機能を早よ作れだぜ。５日目だぜ」   
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　論理削除フラグのできが悪くてな。見直しだぜ」  
+
+![202308_maui_10-1841--LogicalDelete-o2o0.png](https://crieit.now.sh/upload_images/f9dad432e926a89cf3b7c9b8f9bf546a64d4b13401a48.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　👆　ファイルでは論理削除フラグが立ってるのに、  
+デバッグ出力では下りてるから、それがなぜなのかを調査するぜ」  
+
+![202308_maui_10-1856--LogicalDelete-o2o0.png](https://crieit.now.sh/upload_images/717392c5b8cc8ba7b57d3b34f145c97664d4b499ea708.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　ファイルから読み込んだときは　論理削除フラグは立ってるぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　途中で下ろしたのかだぜ？」  
+
+![202308_maui_10-1900--LogicalDelete-o2o0.png](https://crieit.now.sh/upload_images/596f91e7ddf4e5854ce8bff799174ace64d4b59e54988.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png)  
+「　途中で　タイトルも消えて、論理削除フラグも下ろしてるな」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そんなことは　やめろだぜ」  
+
 ＜書きかけ＞

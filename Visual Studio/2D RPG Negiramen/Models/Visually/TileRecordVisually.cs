@@ -3,6 +3,7 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
+    using System.Diagnostics;
     using TheGeometric = Geometric;
 
     /// <summary>
@@ -29,7 +30,7 @@
             TileRecord tileRecord,
             Zoom zoom)
         {
-            return new TileRecordVisually()
+            var tileVisually = new TileRecordVisually()
             {
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
@@ -37,18 +38,17 @@
                 Title = tileRecord.Title,
                 LogicalDelete = tileRecord.LogicalDelete,
             };
+
+            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}");
+
+            return tileVisually;
         }
 
         /// <summary>
         ///     生成
         /// </summary>
-        public TileRecordVisually()
+        TileRecordVisually()
         {
-            Id = TileIdOrEmpty.Empty;
-            // SourceRectangle = TheGeometric.RectangleInt.Empty;
-            Title = TileTitle.Empty;
-            LogicalDelete = LogicalDelete.False;
-            // Zoom = Zoom.IdentityElement;
         }
         #endregion
 
@@ -62,7 +62,7 @@
         ///         <item>0 は `MA==` だが、これは空文字として表示する</item>
         ///     </list>
         /// </summary>
-        internal TileIdOrEmpty Id { get; set; }
+        internal TileIdOrEmpty Id { get; set; } = TileIdOrEmpty.Empty;
         #endregion
 
         #region プロパティ（［元画像］　関連）
@@ -98,7 +98,7 @@
         /// <summary>
         ///     タイトル
         /// </summary>
-        internal TileTitle Title { get; set; }
+        internal TileTitle Title { get; set; } = TileTitle.Empty;
         #endregion
 
         #region プロパティ（論理削除）
@@ -109,7 +109,18 @@
         ///         <item>しないなら 0、 するなら 1</item>
         ///     </list>
         /// </summary>
-        internal LogicalDelete LogicalDelete { get; set; }
+        internal LogicalDelete LogicalDelete
+        {
+            get => this.logicalDelete;
+            set
+            {
+                if (this.logicalDelete == value)
+                    return;
+
+                this.logicalDelete = value;
+                Trace.WriteLine($"[TileRecordVisually.cs LogicalDelete] this.logicalDelete.AsBool: {this.logicalDelete.AsBool}");
+            }
+        }
         #endregion
 
         #region プロパティ（サイズが無いか？）
@@ -157,6 +168,7 @@
         Zoom zoom = Zoom.IdentityElement;
         TheGeometric.RectangleInt sourceRectangle = RectangleInt.Empty;
         TheGeometric.RectangleFloat workingRectangle = RectangleFloat.Empty;
+        LogicalDelete logicalDelete = LogicalDelete.False;
 
         // - プライベート・メソッド
 
