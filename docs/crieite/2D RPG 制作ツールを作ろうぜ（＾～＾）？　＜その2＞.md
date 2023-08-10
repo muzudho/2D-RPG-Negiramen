@@ -2969,4 +2969,19 @@ Zzz
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　PCを再起動したら直った。何だったんだ……？」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　なんか　エラー出るけど　無視して実行したら　動くな、不気味だな」  
+
+## ８月下旬の予定
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「 横幅を 奇数、偶数 振動させてるトリックコードを止めて、  
+オフセット 0, 1 を切り替える変数を別途用意したい。これは８月下旬にしよう」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「 また　範囲指定するとき　Working　の方を使っているが、  
+全部　Source　の方を使うように変更したい。  
+Working　は変数にしないようにしたい。これも８月下旬にしよう」  
+
+
 ＜書きかけ＞
