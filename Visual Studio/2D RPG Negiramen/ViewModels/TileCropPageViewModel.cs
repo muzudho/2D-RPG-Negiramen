@@ -2140,11 +2140,12 @@
         TileRecordVisually croppedCursorPointedTileRecordVisually = TileRecordVisually.CreateEmpty();
 
         /// <summary>
-        ///     ［切抜きカーソル］ズーム済みの位置
+        ///     ［切抜きカーソル］ズーム済みのサイズ
         ///         
         ///     <list type="bullet">
         ///         <item>カーソルの線の幅を含まない</item>
-        ///         <item>TODO ★ croppedCursorPointedTileRecordVisualBuffer に統合できないか？</item>
+        ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
+        ///         <item>仕様変更するときは、TRICK CODE に注意</item>
         ///     </list>
         /// </summary>
         Models.Geometric.SizeFloat croppedCursorPointedTileWorkingSize = Models.Geometric.SizeFloat.Zero;
