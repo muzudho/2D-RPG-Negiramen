@@ -1198,45 +1198,12 @@
             get => this.croppedCursorPointedTileRecordVisually.Title.AsStr;
             set
             {
-                var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
+                if (this.croppedCursorPointedTileRecordVisually.Title.AsStr == value)
+                    return;
 
-                if (currentTileVisually.IsNone)
-                {
-                    // ［切抜きカーソル］の指すタイル無し時
-                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: TileIdOrEmpty.Empty,
-                            rect: Models.Geometric.RectangleInt.Empty,
-                            title: new Models.TileTitle(value),
-                            logicalDelete: Models.LogicalDelete.False),
-                       zoom: this.Zoom
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileTitleAsStr 1]"
-#endif
-                       );
-                }
-                else
-                {
-                    // ［切抜きカーソル］の指すタイルが有る時
-
-                    // 値に変化がない
-                    if (currentTileVisually.Title.AsStr == value)
-                        return;
-
-                    this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: currentTileVisually.Id,
-                            rect: currentTileVisually.SourceRectangle,
-                            title: new Models.TileTitle(value),
-                            logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Zoom
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileTitleAsStr 2]"
-#endif
-                        );
-                }
-
-                OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+                // 差分更新
+                this.UpdateCroppedCursorPointedTileByDifference(
+                    tileTitle: TileTitle.FromString(value));
             }
         }
 
@@ -1568,6 +1535,9 @@
                     else
                     {
                         // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
+                        this.UpdateCroppedCursorPointedTileByDifference(
+                            // タイトル
+                            tileTitle: TileTitle.Empty);
 
                         // 末端にセット（変更通知を呼ぶために）
                         // Ｉｄ
@@ -1575,9 +1545,6 @@
 
                         // 元画像の位置とサイズ
                         this.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
-
-                        // タイトル
-                        this.CroppedCursorPointedTileTitleAsStr = string.Empty;
 
                         // 論理削除
                         this.CroppedCursorPointedTileLogicalDeleteAsBool = false;
@@ -1603,12 +1570,17 @@
                     }
 
                     // （変更通知を送っている）
+                    this.UpdateCroppedCursorPointedTileByDifference(
+                        // タイトル
+                        tileTitle: newValue.Title);
+
+                    // （変更通知を送っている）
                     this.CroppedCursorPointedTileIdOrEmpty = newValue.Id;
                     this.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
                     this.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
                     this.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
                     this.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
-                    this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
+                    // this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
                 }
 
                 // 変更通知を送りたい
@@ -1973,6 +1945,28 @@
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);
+        }
+        #endregion
+
+        #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］を差分更新
+        /// </summary>
+        /// <returns></returns>
+        public void UpdateCroppedCursorPointedTileByDifference(
+            TileTitle? tileTitle = null
+            )
+        {
+            var currentTileVisually = this.croppedCursorPointedTileRecordVisually;
+
+            // タイル・タイトル
+            if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
+            {
+                this.croppedCursorPointedTileRecordVisually.Title = tileTitle;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            }
+
+            Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] this.croppedCursorPointedTileRecordVisually.Dump(): {this.croppedCursorPointedTileRecordVisually.Dump()}");
         }
         #endregion
 
