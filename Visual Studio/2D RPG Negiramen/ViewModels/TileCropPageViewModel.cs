@@ -581,8 +581,18 @@
                 this.CroppedCursorPointedTileSourceSize = value.Size;
 
                 // 切抜きカーソル。ズーム済み
-                this.CroppedCursorPointedTileWorkingLeftAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceLeftAsInt;
-                this.CroppedCursorPointedTileWorkingTopAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceTopAsInt;
+                // this.CroppedCursorPointedTileWorkingLeftAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceLeftAsInt;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsFloat));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
+                OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsPresentableText));
+
+                // this.CroppedCursorPointedTileWorkingTopAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceTopAsInt;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsFloat));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
+                OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsPresentableText));
+
                 this.CroppedCursorPointedTileWorkingSize = new Models.Geometric.SizeFloat(
                     width: new Models.Geometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt),
                     height: new Models.Geometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt));
@@ -652,8 +662,18 @@
                 }
 
                 // 切抜きカーソル。ズーム済み
-                this.CroppedCursorPointedTileWorkingLeftAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceLeftAsInt;
-                this.CroppedCursorPointedTileWorkingTopAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceTopAsInt;
+                // this.CroppedCursorPointedTileWorkingLeftAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceLeftAsInt;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsFloat));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
+                OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsPresentableText));
+
+                // this.CroppedCursorPointedTileWorkingTopAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceTopAsInt;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsFloat));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
+                OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsPresentableText));
+
                 // TODO サイズは変化無しか？
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceLeftAsInt));
@@ -722,8 +742,18 @@
                 }
 
                 // 切抜きカーソル。ズーム済み
-                this.CroppedCursorPointedTileWorkingLeftAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceLeftAsInt;
-                this.CroppedCursorPointedTileWorkingTopAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceTopAsInt;
+                // this.CroppedCursorPointedTileWorkingLeftAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceLeftAsInt;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsFloat));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
+                OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsPresentableText));
+
+                // this.CroppedCursorPointedTileWorkingTopAsFloat = this.ZoomAsFloat * this.CroppedCursorPointedTileSourceTopAsInt;
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsFloat));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
+                OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
+                OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsPresentableText));
+
                 // TODO サイズは変化無しか？
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceTopAsInt));
@@ -935,27 +965,7 @@
         ///         <item>カーソルの線の幅を含まない</item>
         ///     </list>
         /// </summary>
-        public float CroppedCursorPointedTileWorkingLeftAsFloat
-        {
-            get => this.croppedCursorPointedTileWorkingRect.Location.X.AsFloat;
-            set
-            {
-                if (this.croppedCursorPointedTileWorkingRect.Location.X.AsFloat != value)
-                {
-                    this.croppedCursorPointedTileWorkingRect = new RectangleFloat(
-                        location: new Models.Geometric.PointFloat(
-                            x: new Models.Geometric.XFloat(value),
-                            y: this.croppedCursorPointedTileWorkingRect.Location.Y),
-                        size: this.croppedCursorPointedTileWorkingRect.Size);
-
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsFloat));
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
-                    OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
-
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsPresentableText));
-                }
-            }
-        }
+        public float CroppedCursorPointedTileWorkingLeftAsFloat => this.ZoomAsFloat * this.CroppedCursorPointedTileSourceLeftAsInt;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの位置ｙ
@@ -964,27 +974,7 @@
         ///         <item>カーソルの線の幅を含まない</item>
         ///     </list>
         /// </summary>
-        public float CroppedCursorPointedTileWorkingTopAsFloat
-        {
-            get => this.croppedCursorPointedTileWorkingRect.Location.Y.AsFloat;
-            set
-            {
-                if (this.croppedCursorPointedTileWorkingRect.Location.Y.AsFloat != value)
-                {
-                    this.croppedCursorPointedTileWorkingRect = new RectangleFloat(
-                        location: new Models.Geometric.PointFloat(
-                            x: this.croppedCursorPointedTileWorkingRect.Location.X,
-                            y: new Models.Geometric.YFloat(value)),
-                        size: this.croppedCursorPointedTileWorkingRect.Size);
-
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsFloat));
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLocation));
-                    OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
-
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsPresentableText));
-                }
-            }
-        }
+        public float CroppedCursorPointedTileWorkingTopAsFloat => this.ZoomAsFloat * this.CroppedCursorPointedTileSourceTopAsInt;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みのサイズ
@@ -1570,8 +1560,8 @@
                     return;
 
                 // 末端へ下りる
-                this.CroppedCursorPointedTileWorkingLeftAsFloat = value.X.AsFloat;
-                this.CroppedCursorPointedTileWorkingTopAsFloat = value.Y.AsFloat;
+                // this.CroppedCursorPointedTileWorkingLeftAsFloat = value.X.AsFloat;
+                // this.CroppedCursorPointedTileWorkingTopAsFloat = value.Y.AsFloat;
             }
         }
 

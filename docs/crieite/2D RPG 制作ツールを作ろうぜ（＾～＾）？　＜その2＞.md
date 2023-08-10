@@ -2966,4 +2966,7 @@ Zzz
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　👆　`x:Name` を認識しなくなったぜ」  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　PCを再起動したら直った。何だったんだ……？」  
+
 ＜書きかけ＞
