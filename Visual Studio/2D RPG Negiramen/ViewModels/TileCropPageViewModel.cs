@@ -623,7 +623,11 @@
                                 size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceLeftAsInt 1]"
+#endif
+                        );
                 }
                 else
                 {
@@ -640,7 +644,11 @@
                                 size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceLeftAsInt 2]"
+#endif
+                        );
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -685,7 +693,11 @@
                             size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceTopAsInt 1]"
+#endif
+                        );
                 }
                 else
                 {
@@ -702,7 +714,11 @@
                             size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceTopAsInt 2]"
+#endif
+                        );
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -788,7 +804,11 @@
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceWidthAsInt 1]"
+#endif
+                        );
                 }
                 else
                 {
@@ -802,7 +822,11 @@
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceWidthAsInt 2]"
+#endif
+                        );
                 }
 
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
@@ -842,7 +866,11 @@
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceHeightAsInt 1]"
+#endif
+                        );
                 }
                 else
                 {
@@ -856,7 +884,11 @@
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceHeightAsInt 2]"
+#endif
+                        );
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
@@ -1177,7 +1209,11 @@
                             rect: Models.Geometric.RectangleInt.Empty,
                             title: new Models.TileTitle(value),
                             logicalDelete: Models.LogicalDelete.False),
-                       zoom: this.Zoom);
+                       zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileTitleAsStr 1]"
+#endif
+                       );
                 }
                 else
                 {
@@ -1193,7 +1229,11 @@
                             rect: currentTileVisually.SourceRectangle,
                             title: new Models.TileTitle(value),
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileTitleAsStr 2]"
+#endif
+                        );
                 }
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
@@ -1219,7 +1259,11 @@
                             rect: Models.Geometric.RectangleInt.Empty,
                             title: TileTitle.Empty,
                             logicalDelete: LogicalDelete.FromBool(value)),
-                       zoom: this.Zoom);
+                       zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileLogicalDeleteAsBool 1]"
+#endif
+                       );
                 }
                 else
                 {
@@ -1235,7 +1279,11 @@
                             rect: currentTileVisually.SourceRectangle,
                             title: currentTileVisually.Title,
                             logicalDelete: LogicalDelete.FromBool(value)),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileLogicalDeleteAsBool 2]"
+#endif
+                        );
                 }
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
@@ -1644,21 +1692,32 @@
                             rect: Models.Geometric.RectangleInt.Empty,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                    zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileIdOrEmpty 1]"
+#endif
+                    );
                 }
                 else
                 {
+                    // ［切抜きカーソル］の指すタイル有り時
+
                     // 値に変化がない
                     if (currentTileVisually.Id == value)
                         return;
 
+                    // Ｉｄだけを差替える
                     this.croppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: value,  // 更新
                             rect: currentTileVisually.SourceRectangle,
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileIdOrEmpty 2]"
+#endif
+                        );
                 }
 
                 this.InvalidateLocale();
@@ -1906,7 +1965,11 @@
                             rect: this.CroppedCursorPointedTileSourceRect,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom);
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
+#endif
+                        );
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);

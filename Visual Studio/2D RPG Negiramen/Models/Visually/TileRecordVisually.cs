@@ -28,7 +28,11 @@
         /// <returns></returns>
         public static TileRecordVisually FromModel(
             TileRecord tileRecord,
-            Zoom zoom)
+            Zoom zoom
+#if DEBUG
+            , string hint
+#endif
+            )
         {
             var tileVisually = new TileRecordVisually()
             {
@@ -39,7 +43,11 @@
                 LogicalDelete = tileRecord.LogicalDelete,
             };
 
+#if DEBUG
+            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}, hint: {hint}");
+#else
             Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}");
+#endif
 
             return tileVisually;
         }
@@ -162,6 +170,53 @@
             return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {SourceRectangle.Dump()}, WorkingRect: {WorkingRectangle.Dump()}, Title: {Title.AsStr}, LogicalDelete: {LogicalDelete.AsBool}";
         }
         #endregion
+
+        /// <summary>
+        ///     差分更新
+        /// </summary>
+        /// <param name="tileRecord">タイル</param>
+        /// <returns></returns>
+        internal void UpdateByDifference(
+#if DEBUG
+            string hint,
+#endif
+            TileIdOrEmpty? tileIdOrEmpty = null,
+            RectangleInt? rectangleInt = null,
+            TileTitle? tileTitle = null,
+            LogicalDelete? logicalDelete = null,
+            Zoom? zoom = null)
+        {
+            if (!(tileIdOrEmpty is null))
+            {
+                this.Id = tileIdOrEmpty;
+            }
+
+            if (!(rectangleInt is null))
+            {
+                this.SourceRectangle = rectangleInt;
+            }
+
+            if (!(tileTitle is null))
+            {
+                this.Title = tileTitle;
+            }
+
+            if (!(logicalDelete is null))
+            {
+                this.LogicalDelete = logicalDelete;
+            }
+
+            if(!(zoom is null))
+            {
+                this.Zoom = zoom;
+            }
+
+#if DEBUG
+            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}, hint: {hint}");
+#else
+            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}");
+#endif
+        }
 
         // - プライベート・フィールド
 

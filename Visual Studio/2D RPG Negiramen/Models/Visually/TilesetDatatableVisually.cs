@@ -52,7 +52,11 @@
                     tilesetDatatableVisually.TileRecordVisuallyList.Add(
                         TileRecordVisually.FromModel(
                             tileRecord: record,
-                            zoom: zoom));
+                            zoom: zoom
+#if DEBUG
+                            , hint: "[TilesetDatatableVisually.cs LoadCSV]"
+#endif
+                            ));
                 }
                 try
                 {
@@ -119,7 +123,11 @@
                         rect,
                         title,
                         logicalDelete),
-                    zoom: zoom));
+                    zoom: zoom
+#if DEBUG
+                    , hint: "[TilesetDatatableVisually.cs AddTileVisually]"
+#endif
+                    ));
         }
         #endregion
 
@@ -148,7 +156,11 @@
                             rect: tileVisually.SourceRectangle,
                             title: tileVisually.Title,
                             logicalDelete: LogicalDelete.True),
-                        zoom: tileVisually.Zoom);
+                        zoom: tileVisually.Zoom
+#if DEBUG
+                        , hint: "[TilesetDatatableVisually.cs DeleteLogical]"
+#endif
+                        );
 
                     return true;
                 }
@@ -183,7 +195,11 @@
                             rect: tileVisually.SourceRectangle,
                             title: tileVisually.Title,
                             logicalDelete: LogicalDelete.False),
-                        zoom: tileVisually.Zoom);
+                        zoom: tileVisually.Zoom
+#if DEBUG
+                        , hint: "[TilesetDatatableVisually.cs UndeleteLogical]"
+#endif
+                        );
 
                     return true;
                 }
