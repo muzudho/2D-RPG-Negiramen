@@ -1555,23 +1555,6 @@
 
         #region プロパティ（［切抜きカーソルが指すタイル］　関連）
         /// <summary>
-        ///     ［切抜きカーソルが指すタイル］のズーム済みの位置とサイズ
-        /// </summary>
-        public Models.Geometric.RectangleFloat CroppedCursorPointedTileWorkingRect
-        {
-            get => this.croppedCursorPointedTileWorkingRect;
-            set
-            {
-                if (this.croppedCursorPointedTileWorkingRect == value)
-                    return;
-
-                // 末端へ下りる
-                this.CroppedCursorPointedTileWorkingLocation = value.Location;
-                this.CroppedCursorPointedTileWorkingSize = value.Size;
-            }
-        }
-
-        /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの位置
         ///         
         ///     <list type="bullet">
@@ -2060,8 +2043,6 @@
             // ============
             //
             // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
-
-            // this.CroppedCursorPointedTileWorkingRect = workingRect;
             this.CroppedCursorPointedTileSourceRect = sourceRect;
 
             //
