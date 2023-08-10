@@ -2954,9 +2954,16 @@ Zzz
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 （カタ　カタ　カタ　カタ）  
 
+## 壊れた
+
 ![202308_maui_10-2159--Broken.png](https://crieit.now.sh/upload_images/4d0cab70d61016b8963dada83af9a4a064d4df4d7e120.png)  
 
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　👆　なんだか分からないが　壊れたぜ」  
+
+![202308_maui_10-2234--BrokenXName.png](https://crieit.now.sh/upload_images/3cfef72fbe33cb978893c1712ada060f64d4e789a8d23.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　`x:Name` を認識しなくなったぜ」  
 
 ＜書きかけ＞
