@@ -2951,4 +2951,12 @@ Zzz
 「　ログにコードの場所を付けてみた。  
 タイルを選んだときに　タイトルと、論理削除を読み取ってないのかな？]  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+（カタ　カタ　カタ　カタ）  
+
+![202308_maui_10-2159--Broken.png](https://crieit.now.sh/upload_images/4d0cab70d61016b8963dada83af9a4a064d4df4d7e120.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　なんだか分からないが　壊れたぜ」  
+
 ＜書きかけ＞
