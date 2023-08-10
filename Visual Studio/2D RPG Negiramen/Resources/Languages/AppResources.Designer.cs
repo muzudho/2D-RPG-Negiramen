@@ -466,15 +466,6 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   上書 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string Overwrite {
-            get {
-                return ResourceManager.GetString("Overwrite", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   ポップアップ練習 に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string PopupExercises {
@@ -507,6 +498,33 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         internal static string Redo {
             get {
                 return ResourceManager.GetString("Redo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   これがタイル１つ分だと登録します に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RegisterThatThisIsForOneTile {
+            get {
+                return ResourceManager.GetString("RegisterThatThisIsForOneTile", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   復元 に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string Restore {
+            get {
+                return ResourceManager.GetString("Restore", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   残っているタイルの記憶から復元します に類似しているローカライズされた文字列を検索します。
+        /// </summary>
+        internal static string RestoreFromMemoryOfRemainingTiles {
+            get {
+                return ResourceManager.GetString("RestoreFromMemoryOfRemainingTiles", resourceCulture);
             }
         }
         

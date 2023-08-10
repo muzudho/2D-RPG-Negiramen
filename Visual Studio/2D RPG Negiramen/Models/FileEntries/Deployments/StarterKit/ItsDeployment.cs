@@ -29,7 +29,7 @@ internal class ItsDeployment
         var starterKitInfo = new DirectoryInfo(starterKitFolder.Path.AsStr);
 
         // 📂 `For Unity Assets` が含まれていれば OK
-        DirectoryInfo assetsInfo = null;
+        DirectoryInfo? assetsInfo = null;
 
         foreach (var dirInfo in starterKitInfo.EnumerateDirectories())
         {
@@ -67,7 +67,7 @@ internal class ItsDeployment
     static bool CheckForUnityAssetsFolder(DirectoryInfo assetsInfo)
     {
         // 📂 `Images` が含まれていれば OK
-        DirectoryInfo imagesInfo = null;
+        DirectoryInfo? imagesInfo = null;
 
         foreach (var dirInfo in assetsInfo.EnumerateDirectories())
         {
@@ -106,7 +106,7 @@ internal class ItsDeployment
     static bool CheckImagesFolder(DirectoryInfo imagesInfo)
     {
         // 📂 `Tileset` が含まれていれば OK
-        DirectoryInfo tileSetInfo = null;
+        DirectoryInfo? tileSetInfo = null;
 
         foreach (var dirInfo in imagesInfo.EnumerateDirectories())
         {
@@ -146,7 +146,7 @@ internal class ItsDeployment
     static bool CheckTilesetsFolder(DirectoryInfo tilesetInfo)
     {
         // 📄 `86A25699-E391-4D61-85A5-356BA8049881.png` が含まれていれば OK
-        FileInfo adventureFieldPngFileInfo = null;
+        FileInfo? adventureFieldPngFileInfo = null;
 
         foreach (var fileInfo in tilesetInfo.EnumerateFiles())
         {

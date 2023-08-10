@@ -5,7 +5,6 @@ using _2D_RPG_Negiramen.Models.FileEntries;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Maui.Controls;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Globalization;
 
 /// <summary>
@@ -21,9 +20,14 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
     /// </summary>
     public TilesetListPageViewModel(GridItemsLayout itemsLayout)
     {
-        this.TilesetRecordVMList = new List<TilesetRecordViewModel>();
+        // this.TilesetRecordVMList = new List<TilesetRecordViewModel>();
         this.ItemsLayout = itemsLayout;
     }
+
+    //TilesetListPageViewModel()
+    //{
+    //    // this.TilesetRecordVMList = new List<TilesetRecordViewModel>();
+    //}
     #endregion
 
     // - パブリック・プロパティ
@@ -399,13 +403,13 @@ class TilesetListPageViewModel : ObservableObject, ITilesetListPageViewModel
 
     // - プライベート・フィールド
 
-    GridItemsLayout itemsLayout;
+    GridItemsLayout itemsLayout = new GridItemsLayout(ItemsLayoutOrientation.Horizontal);
 
     bool isEnabledTileCropButton;
     bool isEnabledRenameFileNameToUUIDButton;
     bool isEnabledTilesetRemoveButton;
 
-    string selectedTilesetFileStemAsStr;
-    string selectedTilesetFileExtensionAsStr;
+    string selectedTilesetFileStemAsStr = string.Empty;
+    string selectedTilesetFileExtensionAsStr = string.Empty;
     string selectedTilesetTitleAsStr = string.Empty;
 }

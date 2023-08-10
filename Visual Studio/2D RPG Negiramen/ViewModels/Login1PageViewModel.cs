@@ -183,8 +183,25 @@ internal class Login1PageViewModel : ObservableObject, ILogin1PageViewModel
         get => this.selectedProjectId;
         set
         {
-            if (this.selectedProjectId == value)
+            // どちらもヌルなら何もしない
+            if (this.selectedProjectId is null && value is null)
                 return;
+
+            if ((this.selectedProjectId is null && !(value is null)) ||
+                (!(this.selectedProjectId is null) && value is null))
+            {
+                // 片方だけがヌルなら更新する
+            }
+            else
+            {
+                // どちらもヌルでないケースでは
+                ProjectId oldValue = this.selectedProjectId ?? throw new Exception();
+                ProjectId newValue = value ?? throw new Exception();
+
+                // 変わりがなければ何もしない
+                if (oldValue == newValue)
+                    return;
+            }
 
             this.selectedProjectId = value;
             OnPropertyChanged(nameof(SelectedProjectId));

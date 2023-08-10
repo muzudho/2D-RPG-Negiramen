@@ -53,7 +53,7 @@
         /// <summary>
         ///     プロパティ変更時
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         #endregion
 
         // - パブリック・メソッド
