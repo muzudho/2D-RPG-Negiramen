@@ -3030,4 +3030,25 @@ Working　は変数にしないようにしたい。これも８月下旬にし�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　👆　ドーナツUI にするとこう」  
 
+## タイルセット一覧画面もドーナツUI にしようぜ？
+
+![202308_maui_21-0708--TilesetList.png](https://crieit.now.sh/upload_images/ba433bd0a737a8d22e4383b6704e3bce64e28eeac66af.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　タイルセット一覧画面も　四方をぐるっと　青い領域で囲みたいぜ」  
+
+![202308_maui_21-0724--TilesetListDonutUI.png](https://crieit.now.sh/upload_images/4b3693da668179578574fd2343238ce064e292cbb6da0.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　こうなるぜ」  
+
+## タイル切抜き画面もドーナツUI にしようぜ？
+
+![202308_maui_21-0725--TileCrop.png](https://crieit.now.sh/upload_images/976f6a53fdfe478354d08063929c5da164e2931338db1.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　タイル切抜き画面も　四方をぐるっと　青い領域で囲みたいぜ」  
+
+
+
 ＜書きかけ＞
