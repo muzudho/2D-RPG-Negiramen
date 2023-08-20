@@ -12,7 +12,7 @@
              NavigatedTo="thisContentPage_NavigatedTo">
 
     <!--    リソースの用意
-            ==============
+    ======================
     -->
     <ContentPage.Resources>
         <!--    バリデーション
@@ -32,7 +32,7 @@
     </ContentPage.BindingContext>
 
     <!--    画面内タイトルバー
-            ==================
+    ==========================
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
@@ -103,13 +103,13 @@
     </Shell.TitleView>
 
     <!-- ドーナツ本体
-         ============
+    =================
     -->
     <Grid RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
           BackgroundColor="{DynamicResource DonutBody}">
 
         <!-- ドーナツの影
-             ============
+        =================
         -->
         <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="68,*,136" ColumnDefinitions="20,*,20"
               BackgroundColor="{DynamicResource DonutShadow}">
@@ -121,150 +121,148 @@
                       1       0 or 68       上メニュー（デバッグ用。使う時に広げること）
             -->
             <Grid Grid.Row="0" Grid.Column="1"
-              RowDefinitions="68,68">
+                  RowDefinitions="68,68">
 
                 <!--    上メニュー
-                        ==========
+                ==================
                 -->
                 <Grid Grid.Row="0"
-                  RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,64,64,*"
-                  Padding="8,8,8,8"
-                  BackgroundColor="SkyBlue">
+                      RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,64,64,*">
 
                     <!--    ◆１段目　ラベル列
-                            ==================
+                    ==========================
                     -->
                     <!-- 「よこ」 -->
                     <Label Grid.Row="0" Grid.Column="1"
-                   HorizontalTextAlignment="End"
-                   Text="{app:Translate Width}"/>
+                           HorizontalTextAlignment="End"
+                           Text="{app:Translate Width}"/>
 
                     <!-- 「たて」 -->
                     <Label Grid.Row="0" Grid.Column="2"
-                   HorizontalTextAlignment="End"
-                   Text="{app:Translate Height}"/>
+                           HorizontalTextAlignment="End"
+                           Text="{app:Translate Height}"/>
 
                     <!-- 「ひだり」 -->
                     <Label Grid.Row="0" Grid.Column="4"
-                   HorizontalTextAlignment="End"
-                   Text="{app:Translate Left}"/>
+                           HorizontalTextAlignment="End"
+                           Text="{app:Translate Left}"/>
 
                     <!-- 「うえ」 -->
                     <Label Grid.Row="0" Grid.Column="5"
-                   HorizontalTextAlignment="End"
-                   Text="{app:Translate Top}"/>
+                           HorizontalTextAlignment="End"
+                           Text="{app:Translate Top}"/>
 
                     <!-- 「よこ」 -->
                     <Label Grid.Row="0" Grid.Column="7"
-                   HorizontalTextAlignment="End"
-                   Text="{app:Translate Width}"/>
+                           HorizontalTextAlignment="End"
+                           Text="{app:Translate Width}"/>
 
                     <!-- 「たて」 -->
                     <Label Grid.Row="0" Grid.Column="8"
-                   HorizontalTextAlignment="End"
-                   Text="{app:Translate Height}"/>
+                           HorizontalTextAlignment="End"
+                           Text="{app:Translate Height}"/>
 
                     <!--    ◆２段目 入出力行
-                            =================
+                    =========================
                     -->
                     <!-- 「画像」 -->
                     <Label Grid.Row="1" Grid.Column="0"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{app:Translate Image}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           Text="{app:Translate Image}"/>
 
                     <!-- 元画像の横幅。読取専用 -->
                     <Label Grid.Row="1" Grid.Column="1"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   FontSize="24"
-                   Text="{Binding TilesetSourceImageWidthAsInt, Mode=OneWay}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           Text="{Binding TilesetSourceImageWidthAsInt, Mode=OneWay}"/>
 
                     <!-- 元画像の縦幅。読取専用 -->
                     <Label Grid.Row="1" Grid.Column="2"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   FontSize="24"
-                   Text="{Binding TilesetSourceImageHeightAsInt, Mode=OneWay}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           Text="{Binding TilesetSourceImageHeightAsInt, Mode=OneWay}"/>
 
                     <!-- 「グリッド位相」 -->
                     <Label Grid.Row="1" Grid.Column="3"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{app:Translate GridPhase}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           Text="{app:Translate GridPhase}"/>
 
                     <!-- グリッド位相左 -->
                     <Entry Grid.Row="1" Grid.Column="4"
-                   HorizontalTextAlignment="End"
-                   Placeholder="0"
-                   Text="{Binding GridPhaseSourceLeftAsInt}"
-                   BackgroundColor="FloralWhite"/>
+                           HorizontalTextAlignment="End"
+                           Placeholder="0"
+                           Text="{Binding GridPhaseSourceLeftAsInt}"
+                           BackgroundColor="FloralWhite"/>
 
                     <!-- グリッド位相上 -->
                     <Entry Grid.Row="1" Grid.Column="5"
-                   HorizontalTextAlignment="End"
-                   Placeholder="0"
-                   Text="{Binding GridPhaseSourceTopAsInt}"
-                   BackgroundColor="FloralWhite"/>
+                           HorizontalTextAlignment="End"
+                           Placeholder="0"
+                           Text="{Binding GridPhaseSourceTopAsInt}"
+                           BackgroundColor="FloralWhite"/>
 
                     <!-- 「グリッド\n１ます」 -->
                     <Label Grid.Row="1" Grid.Column="6"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{app:Translate GridOne}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           Text="{app:Translate GridOne}"/>
 
                     <!-- グリッド・タイル横幅 -->
                     <Entry Grid.Row="1" Grid.Column="7"
-                   HorizontalTextAlignment="End"
-                   Placeholder="32"
-                   Text="{Binding SourceGridTileWidthAsInt}"
-                   BackgroundColor="FloralWhite">
+                           HorizontalTextAlignment="End"
+                           Placeholder="32"
+                           Text="{Binding SourceGridTileWidthAsInt}"
+                           BackgroundColor="FloralWhite">
                         <Entry.Behaviors>
                             <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                       ValidStyle="{StaticResource ValidEntryStyle}"
-                                                       Flags="ValidateOnValueChanged"
-                                                       MinimumValue="1"
-                                                       MaximumValue="{Binding TileMaxWidthAsInt}"
-                                                       MaximumDecimalPlaces="0" />
+                                                               ValidStyle="{StaticResource ValidEntryStyle}"
+                                                               Flags="ValidateOnValueChanged"
+                                                               MinimumValue="1"
+                                                               MaximumValue="{Binding TileMaxWidthAsInt}"
+                                                               MaximumDecimalPlaces="0" />
                         </Entry.Behaviors>
                     </Entry>
 
                     <!-- グリッド・タイル縦幅 -->
                     <Entry Grid.Row="1" Grid.Column="8"
-                   HorizontalTextAlignment="End"
-                   Placeholder="32"
-                   Text="{Binding SourceGridTileHeightAsInt}"
-                   BackgroundColor="FloralWhite">
+                           HorizontalTextAlignment="End"
+                           Placeholder="32"
+                           Text="{Binding SourceGridTileHeightAsInt}"
+                           BackgroundColor="FloralWhite">
                         <Entry.Behaviors>
                             <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                       ValidStyle="{StaticResource ValidEntryStyle}"
-                                                       Flags="ValidateOnValueChanged"
-                                                       MinimumValue="1"
-                                                       MaximumValue="{Binding TileMaxHeightAsInt}"
-                                                       MaximumDecimalPlaces="0" />
+                                                               ValidStyle="{StaticResource ValidEntryStyle}"
+                                                               Flags="ValidateOnValueChanged"
+                                                               MinimumValue="1"
+                                                               MaximumValue="{Binding TileMaxHeightAsInt}"
+                                                               MaximumDecimalPlaces="0" />
                         </Entry.Behaviors>
                     </Entry>
 
                     <!-- 「ズーム」 -->
                     <Label Grid.Row="1" Grid.Column="9"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{app:Translate Zoom}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           Text="{app:Translate Zoom}"/>
 
                     <!-- ズーム -->
                     <Entry Grid.Row="1" Grid.Column="10"
-                   HorizontalTextAlignment="End"
-                   Placeholder="32"
-                   Text="{Binding ZoomAsFloat}"
-                   BackgroundColor="FloralWhite"
-                   TextChanged="ZoomEntry_TextChanged">
+                           HorizontalTextAlignment="End"
+                           Placeholder="32"
+                           Text="{Binding ZoomAsFloat}"
+                           BackgroundColor="FloralWhite"
+                           TextChanged="ZoomEntry_TextChanged">
                         <Entry.Behaviors>
                             <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                       ValidStyle="{StaticResource ValidEntryStyle}"
-                                                       Flags="ValidateOnValueChanged"
-                                                       MinimumValue="{Binding ZoomMinAsFloat}"
-                                                       MaximumValue="{Binding ZoomMaxAsFloat}"
-                                                       MaximumDecimalPlaces="1" />
+                                                               ValidStyle="{StaticResource ValidEntryStyle}"
+                                                               Flags="ValidateOnValueChanged"
+                                                               MinimumValue="{Binding ZoomMinAsFloat}"
+                                                               MaximumValue="{Binding ZoomMaxAsFloat}"
+                                                               MaximumDecimalPlaces="1" />
                         </Entry.Behaviors>
                     </Entry>
                 </Grid>
@@ -278,65 +276,63 @@
                         非使用時    False
                 -->
                 <Grid Grid.Row="1"
-                  IsVisible="False"
-                  RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,64,64,*"
-                  Padding="8,8,8,8"
-                  BackgroundColor="SkyBlue">
+                      IsVisible="False"
+                      RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,64,64,64,*">
 
                     <!--    ◆１段目　ラベル列
-                            ==================
+                    ==========================
                     -->
 
                     <!--    ◆２段目 入出力行
-                            =================
+                    =========================
                     -->
                     <!-- 「作業中」 -->
                     <Label Grid.Row="1" Grid.Column="0"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   Text="{app:Translate Working}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           Text="{app:Translate Working}"/>
 
                     <!-- 元画像の横幅。読取専用 -->
                     <Label Grid.Row="1" Grid.Column="1"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   FontSize="24"
-                   Text="{Binding TilesetWorkingImageWidthAsInt}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           Text="{Binding TilesetWorkingImageWidthAsInt}"/>
 
                     <!-- 元画像の縦幅。読取専用 -->
                     <Label Grid.Row="1" Grid.Column="2"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   FontSize="24"
-                   Text="{Binding TilesetWorkingImageHeightAsInt}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           Text="{Binding TilesetWorkingImageHeightAsInt}"/>
 
                     <!-- ズーム後：グリッド位相左 -->
                     <Label Grid.Row="1" Grid.Column="4"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   FontSize="24"
-                   Text="{Binding WorkingGridPhaseLeftAsFloat}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           Text="{Binding WorkingGridPhaseLeftAsFloat}"/>
 
                     <!-- ズーム後：グリッド位相上 -->
                     <Label Grid.Row="1" Grid.Column="5"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   FontSize="24"
-                   Text="{Binding WorkingGridPhaseTopAsFloat}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           Text="{Binding WorkingGridPhaseTopAsFloat}"/>
 
                     <!-- ズーム後：タイル横幅 -->
                     <Label Grid.Row="1" Grid.Column="7"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   FontSize="24"
-                   Text="{Binding WorkingGridTileWidthAsFloat}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           Text="{Binding WorkingGridTileWidthAsFloat}"/>
 
                     <!-- ズーム後：タイル縦幅 -->
                     <Label Grid.Row="1" Grid.Column="8"
-                   HorizontalTextAlignment="End"
-                   VerticalTextAlignment="Center"
-                   FontSize="24"
-                   Text="{Binding WorkingGridTileHeightAsFloat}"/>
+                           HorizontalTextAlignment="End"
+                           VerticalTextAlignment="Center"
+                           FontSize="24"
+                           Text="{Binding WorkingGridTileHeightAsFloat}"/>
                 </Grid>
             </Grid>
 
@@ -361,13 +357,13 @@
                                 * だからマージンは 4px 取っておく
                     -->
                     <skia:SKCanvasView IsVisible="True"
-                                x:Name="skiaTilesetCanvas1"
-                                Grid.Row="0" Grid.Column="0"
-                                HorizontalOptions="Start" VerticalOptions="Start"
-                                Margin="4,4,0,0"
-                                WidthRequest="{Binding TilesetWorkingImageWidthAsInt}" HeightRequest="{Binding TilesetWorkingImageHeightAsInt}"                       
-                                IgnorePixelScaling="True"
-                                PaintSurface="TilesetImageSkiaView_PaintSurface">
+                                        x:Name="skiaTilesetCanvas1"
+                                        Grid.Row="0" Grid.Column="0"
+                                        HorizontalOptions="Start" VerticalOptions="Start"
+                                        Margin="4,4,0,0"
+                                        WidthRequest="{Binding TilesetWorkingImageWidthAsInt}" HeightRequest="{Binding TilesetWorkingImageHeightAsInt}"                       
+                                        IgnorePixelScaling="True"
+                                        PaintSurface="TilesetImageSkiaView_PaintSurface">
                         <skia:SKCanvasView.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TilesetImage_OnTapped"/>
                             <PointerGestureRecognizer PointerMoved="TilesetImage_OnPointerMoved"/>
@@ -455,16 +451,14 @@
                     -->
                     <Grid Grid.Row="0"
                           IsVisible="False"
-                          RowDefinitions="20,48" ColumnDefinitions="128,64,64,64,64,64,*"
-                          Padding="8,8,8,8"
-                          BackgroundColor="SkyBlue">
+                          RowDefinitions="20,48" ColumnDefinitions="128,64,64,64,64,64,*">
 
                         <!--    ◆１段目 読み仮名部
-                                ===================
+                        ===========================
                         -->
 
                         <!--    ◆２段目 入力部
-                                ===============
+                        =======================
                         -->
                         <!-- 「作業中」 -->
                         <Label Grid.Row="1" Grid.Column="1"
@@ -502,15 +496,13 @@
                     </Grid>
 
                     <!--    下メニュー
-                            ==========
+                    ==================
                     -->
                     <Grid Grid.Row="1"
-                          RowDefinitions="20,48,20,48,20" ColumnDefinitions="128,64,64,64,64,64,*"
-                          Padding="8,8,8,8"
-                          BackgroundColor="SkyBlue">
+                          RowDefinitions="20,48,20,48,20" ColumnDefinitions="128,64,64,64,64,64,*">
 
                         <!--    ◆ボタン縦並び
-                                ==============
+                        ======================
                         -->
                         <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
                             <VerticalStackLayout>
@@ -531,7 +523,7 @@
                         </Grid>
 
                         <!--    ◆１段目 読み仮名部
-                                ===================
+                        ===========================
                         -->
                         <!-- 「ひだり」 -->
                         <Label Grid.Row="0" Grid.Column="2"
@@ -554,7 +546,7 @@
                                Text="{app:Translate Height}"/>
 
                         <!--    ◆２段目 入力部
-                                ===============
+                        =======================
                         -->
                         <!-- 「カーソル」 -->
                         <Label Grid.Row="1" Grid.Column="1"
@@ -591,7 +583,7 @@
                                FontSize="24"/>
 
                         <!--    ◆３段目 読み仮名部
-                                ===================
+                        ===========================
                         -->
                         <!-- 「管理コード」 -->
                         <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
@@ -605,7 +597,7 @@
                                Text="{app:Translate TileTitle}"/>
 
                         <!--    ◆４段目 入力部
-                                ===============
+                        =======================
                         -->
                         <!-- 管理コード BASE64形式 -->
                         <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
@@ -623,7 +615,7 @@
                                Completed="TileTitleEntry_Completed"/>
 
                         <!--    ◆５段目 ヒント部
-                                =================
+                        =========================
                         -->
                         <!-- 「コードのおぼえかた」 -->
                         <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
