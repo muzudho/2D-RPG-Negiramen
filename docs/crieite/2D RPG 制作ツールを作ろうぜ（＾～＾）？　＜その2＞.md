@@ -3049,6 +3049,9 @@ Working　は変数にしないようにしたい。これも８月下旬にし�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　👆　タイル切抜き画面も　四方をぐるっと　青い領域で囲みたいぜ」  
 
+![202308_maui_21-0803--Donut.png](https://crieit.now.sh/upload_images/b751ab70b789dcc0cadfb6796619000264e29c12594cf.png)  
 
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　ひとまず　こう。朝はここまで」  
 
 ＜書きかけ＞
