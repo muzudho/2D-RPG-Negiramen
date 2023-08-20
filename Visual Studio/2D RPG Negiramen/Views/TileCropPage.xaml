@@ -339,8 +339,9 @@
             <!-- ドーナツの穴
             =================
             -->
-            <ScrollView Grid.Row="1" Grid.Column="1">
-                <Grid RowDefinitions="*" ColumnDefinitions="*">
+            <ScrollView Grid.Row="1" Grid.Column="1"
+                        BackgroundColor="{DynamicResource DonutHole}">
+                <Grid>
 
                     <!--
                         MAUI には マウス・ダウンと、マウス・アップの捕捉がなく、
