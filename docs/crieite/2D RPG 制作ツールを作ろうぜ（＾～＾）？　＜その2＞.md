@@ -3018,4 +3018,16 @@ Working　は変数にしないようにしたい。これも８月下旬にし�
 ![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
 「　じゃあ　それで進めてくれだぜ」  
 
+## ホーム画面もドーナツUI にしようぜ？
+
+![202308_maui_21-0656--Home.png](https://crieit.now.sh/upload_images/aed822fc02d410ec5d1eab3cf733b80764e28c4d62a93.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　ホーム画面も　四方をぐるっと　青い領域で囲みたいぜ」  
+
+![202308_maui_21-0705--DonutUI.png](https://crieit.now.sh/upload_images/d49477e1a6c64e518c819f345a3aa8ec64e28e48e0f84.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　ドーナツUI にするとこう」  
+
 ＜書きかけ＞

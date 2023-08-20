@@ -52,8 +52,8 @@
 
             <!-- ロケール選択 -->
             <Picker Grid.Column="1"
-                    VerticalOptions="Center"
                     HorizontalOptions="End"
+                    VerticalOptions="Center"
                     ItemsSource="{Binding CultureInfoCollection}"
                     ItemDisplayBinding="{Binding NativeName}"
                     SelectedItem="{Binding SelectedCultureInfo}"

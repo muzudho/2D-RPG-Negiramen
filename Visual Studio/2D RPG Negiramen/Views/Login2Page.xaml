@@ -41,8 +41,8 @@
                         ================
                 -->
                 <Label Text="{app:Translate Login2Page}"
-                       VerticalOptions="Center"
                        HorizontalOptions="Center"
+                       VerticalOptions="Center"
                        FontSize="Large"/>
             </HorizontalStackLayout>
 
