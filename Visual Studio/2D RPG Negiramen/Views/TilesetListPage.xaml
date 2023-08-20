@@ -9,13 +9,13 @@
     <!--
     SizeChanged="ContentPage_SizeChanged"
     -->
-    
+
     <!--    画面内タイトルバー
             ==================
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
-              BackgroundColor="SkyBlue">
+              BackgroundColor="{DynamicResource DonutBody}">
             <!--    パンくずリスト
                     ==============
             -->
@@ -46,8 +46,8 @@
             <!-- ロケール選択 -->
             <Picker Grid.Column="1"
                     Margin="0,0,16,0"
-                    VerticalOptions="Center"
                     HorizontalOptions="End"
+                    VerticalOptions="Center"
                     ItemsSource="{Binding CultureInfoCollection}"
                     ItemDisplayBinding="{Binding NativeName}"
                     SelectedItem="{Binding SelectedCultureInfo}"
@@ -55,105 +55,113 @@
         </Grid>
     </Shell.TitleView>
 
-    <!--
-            ======     ====================
-            １段目     上段メニュー
-            ２段目     コレクション・ビュー
-            ３段目     ボタン・エリア
+    <!-- ドーナツ本体
+         ============
     -->
-    <Grid RowDefinitions="52, *, 152">
+    <Grid RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
+          BackgroundColor="{DynamicResource DonutBody}">
 
-        <HorizontalStackLayout Grid.Row="0"
-                                Padding="16,4,0,4"
-                                BackgroundColor="SkyBlue">
+        <!-- ドーナツ本体メニュー
+             ====================
+        -->
+        <Grid Grid.Row="0" Grid.Column="1"
+              RowDefinitions="20,48" ColumnDefinitions="150,*">
 
             <!-- 「インポート」 -->
-            <Button WidthRequest="150"
-                    HeightRequest="44"
+            <Button Grid.Row="1" Grid.Column="0"
                     Text="{app:Translate Import}"
                     Clicked="ImportButton_Clicked"/>
-                
-        </HorizontalStackLayout>
+        </Grid>
 
-        
-        <!--    コレクション・ビュー
-                ====================
-        
-                        ok
-                        ItemsLayout="VerticalGrid, 2"
-                        ItemsLayout="VerticalGrid, 4"
-                        ItemsLayout="VerticalList"
-                        ItemsLayout="HorizontalList"
-                        ItemsLayout="{Binding ItemsLayout}"
-
-                        is not work
-                        ItemsLayout="HorizontalGrid, 2"
-                        ItemsLayout="HorizontalGrid, 4"
-
-                        １段目　サムネイル画像
-                        ２段目　タイトル
-                         LineBreakMode="TailTruncation"
+        <!-- ドーナツの影
+             ============
         -->
-        <CollectionView Grid.Row="1"
-                        ItemsSource="{Binding TilesetRecordVMCollection}"
-                        ItemsLayout="{Binding ItemsLayout}"
-                        SelectionMode="Single"
-                        SizeChanged="CollectionView_SizeChanged"
-                        SelectionChanged="CollectionView_SelectionChanged">
-            <CollectionView.ItemTemplate>
-                <DataTemplate>
-                    <Grid RowDefinitions="128,20"
-                          WidthRequest="128"
-                          HeightRequest="148">
-                        
-                        <!-- サムネイル画像 -->
-                        <Image Grid.Row="0"
-                               Aspect="AspectFill"
-                               WidthRequest="{Binding ThumbnailWidthAsInt}"
-                               HeightRequest="{Binding ThumbnailHeightAsInt}" 
-                               Source="{Binding ThumbnailFilePathAsStr}"/>
-                        
-                        <!-- タイトル -->
-                        <Label Grid.Row="1"
-                               HorizontalOptions="Center"
-                               Text="{Binding TitleAsStr}" 
-                               FontAttributes="Bold"/>
-                    </Grid>
-                </DataTemplate>
-            </CollectionView.ItemTemplate>
-        </CollectionView>
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="68,*,136" ColumnDefinitions="20,*,20"
+              BackgroundColor="{DynamicResource DonutShadow}">
 
-        <Grid Grid.Row="2"
-              RowDefinitions="20,48,20,48" ColumnDefinitions="166,320,100,300,*"
-              Padding="8,8,8,8"
-              BackgroundColor="SkyBlue">
-
-            <!--    １段目
-                    ======
+            <!-- ドーナツの穴
+                 ============
             -->
-            <!-- 「ファイル・ステム」（※UUID形式） -->
-            <Label Grid.Row="0" Grid.Column="1"
+            <!--    コレクション・ビュー
+                    ====================
+        
+                    ok
+                    ItemsLayout="VerticalGrid, 2"
+                    ItemsLayout="VerticalGrid, 4"
+                    ItemsLayout="VerticalList"
+                    ItemsLayout="HorizontalList"
+                    ItemsLayout="{Binding ItemsLayout}"
+
+                    is not work
+                    ItemsLayout="HorizontalGrid, 2"
+                    ItemsLayout="HorizontalGrid, 4"
+
+                    １段目　サムネイル画像
+                    ２段目　タイトル
+                        LineBreakMode="TailTruncation"
+            -->
+            <CollectionView Grid.Row="1" Grid.Column="1"
+                            ItemsSource="{Binding TilesetRecordVMCollection}"
+                            ItemsLayout="{Binding ItemsLayout}"
+                            SelectionMode="Single"
+                            SizeChanged="CollectionView_SizeChanged"
+                            SelectionChanged="CollectionView_SelectionChanged">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid RowDefinitions="128,20"
+                              WidthRequest="128"
+                              HeightRequest="148">
+
+                            <!-- サムネイル画像 -->
+                            <Image Grid.Row="0"
+                                   Aspect="AspectFill"
+                                   WidthRequest="{Binding ThumbnailWidthAsInt}"
+                                   HeightRequest="{Binding ThumbnailHeightAsInt}" 
+                                   Source="{Binding ThumbnailFilePathAsStr}"/>
+
+                            <!-- タイトル -->
+                            <Label Grid.Row="1"
+                                   HorizontalOptions="Center"
+                                   Text="{Binding TitleAsStr}" 
+                                   FontAttributes="Bold"/>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
+            <!-- ドーナツの穴下部
+                 ================
+            -->
+            <Grid Grid.Row="2" Grid.Column="1"
+                  RowDefinitions="20,48,20,48" ColumnDefinitions="166,320,100,300,*">
+
+                <!--    １段目
+                        ======
+                -->
+                <!-- 「ファイル・ステム」（※UUID形式） -->
+                <Label Grid.Row="0" Grid.Column="1"
                    Text="{app:Translate FileStem}"/>
 
-            <!-- 「拡張子」 -->
-            <Label Grid.Row="0" Grid.Column="2"
+                <!-- 「拡張子」 -->
+                <Label Grid.Row="0" Grid.Column="2"
                    Text="{app:Translate FileExtension}"/>
 
-            <!--    ２段目
-                    ======
-            -->
-            <VerticalStackLayout Grid.Row="1" Grid.RowSpan="3" Grid.Column="0"
+                <!--    ２段目
+                        ======
+                -->
+                <VerticalStackLayout Grid.Row="1" Grid.RowSpan="3" Grid.Column="0"
                                  Padding="0,0,16,0">
 
-                <!-- 「タイル切抜き」 -->
-                <Button WidthRequest="150"
+                    <!-- 「タイル切抜き」 -->
+                    <Button WidthRequest="150"
                         HeightRequest="20"
                         Text="{app:Translate TileCrop}"
                         IsEnabled="{Binding IsEnabledTileCropButton}"
                         Clicked="TileCropButton_Clicked"/>
 
-                <!-- 「タイルセット削除」 -->
-                <Button Margin="0,16,0,0"
+                    <!-- 「タイルセット削除」 -->
+                    <Button Margin="0,16,0,0"
                         WidthRequest="150"
                         HeightRequest="20"
                         Text="{app:Translate DeleteTileset}"
@@ -161,50 +169,53 @@
                         Style="{DynamicResource dangerButton}"
                         Clicked="TilesetDeleteButton_Clicked"/>
 
-            </VerticalStackLayout>
+                </VerticalStackLayout>
 
-            <!--    選択ファイル・ステム。 UUID形式
-                    ===============================
+                <!--    選択ファイル・ステム。 UUID形式
+                        ===============================
             
-                    XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
-            -->
-            <Entry Grid.Row="1" Grid.Column="1"
+                        XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX
+                -->
+                <Entry Grid.Row="1" Grid.Column="1"
                    Text="{Binding SelectedTilesetFileStemAsStr}"
                    IsReadOnly="True"
                    BackgroundColor="Transparent"/>
 
-            <!--    選択ファイル・拡張子
-                    ====================
+                <!--    選択ファイル・拡張子
+                        ====================
             
-                    .png
-            -->
-            <Entry Grid.Row="1" Grid.Column="2"
+                        .png
+                -->
+                <Entry Grid.Row="1" Grid.Column="2"
                    Text="{Binding SelectedTilesetFileExtensionAsStr}"
                    IsReadOnly="True"
                    BackgroundColor="Transparent"/>
 
-            <!-- 「ファイル・ステムをＵＵＩＤに変更する」 -->
-            <Button Grid.Row="1" Grid.Column="3"
+                <!-- 「ファイル・ステムをＵＵＩＤに変更する」 -->
+                <Button Grid.Row="1" Grid.Column="3"
                     WidthRequest="300"
                     HeightRequest="20"
                     IsEnabled="{Binding IsEnabledRenameFileNameToUUIDButton}"
                     Text="{app:Translate ChangeFileStemToUuid}"
                     Clicked="RenameFileNameToUUIDButton_Clicked"/>
 
-            <!--    ３段目
-                    ======
-            -->
-            <!-- 「タイルセット タイトル」 -->
-            <Label Grid.Row="2" Grid.Column="1"
+                <!--    ３段目
+                        ======
+                -->
+                <!-- 「タイルセット タイトル」 -->
+                <Label Grid.Row="2" Grid.Column="1"
                    Text="{app:Translate TilesetTitle}"/>
 
-            <!--    ４段目
-                    ======
-            -->
-            <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"
+                <!--    ４段目
+                        ======
+                -->
+                <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="4"
                    Placeholder="冒険の荒野"
                    Text="{Binding SelectedTilesetTitleAsStr}"
                    Completed="TilesetTitleEntry_Completed"/>
+            </Grid>
+
         </Grid>
     </Grid>
+
 </ContentPage>
