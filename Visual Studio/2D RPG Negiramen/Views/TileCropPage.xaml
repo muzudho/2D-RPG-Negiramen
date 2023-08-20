@@ -108,6 +108,37 @@
     <Grid RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
           BackgroundColor="{DynamicResource DonutBody}">
 
+        <!-- ドーナツ本体メニュー
+        =========================
+        -->
+        <Grid Grid.Row="0" Grid.Column="1"
+              RowDefinitions="20,48" ColumnDefinitions="64,*">
+            
+            <!-- 「ズーム」 -->
+            <Label Grid.Row="0" Grid.Column="0"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Center"
+                    Text="{app:Translate Zoom}"/>
+
+            <!-- ズーム -->
+            <Entry Grid.Row="1" Grid.Column="0"
+                    HorizontalTextAlignment="Start"
+                    Placeholder="32"
+                    Text="{Binding ZoomAsFloat}"
+                    BackgroundColor="FloralWhite"
+                    TextChanged="ZoomEntry_TextChanged">
+                <Entry.Behaviors>
+                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                        ValidStyle="{StaticResource ValidEntryStyle}"
+                                                        Flags="ValidateOnValueChanged"
+                                                        MinimumValue="{Binding ZoomMinAsFloat}"
+                                                        MaximumValue="{Binding ZoomMaxAsFloat}"
+                                                        MaximumDecimalPlaces="1" />
+                </Entry.Behaviors>
+            </Entry>
+
+        </Grid>
+
         <!-- ドーナツの影
         =================
         -->
@@ -243,28 +274,6 @@
                         </Entry.Behaviors>
                     </Entry>
 
-                    <!-- 「ズーム」 -->
-                    <Label Grid.Row="1" Grid.Column="9"
-                           HorizontalTextAlignment="End"
-                           VerticalTextAlignment="Center"
-                           Text="{app:Translate Zoom}"/>
-
-                    <!-- ズーム -->
-                    <Entry Grid.Row="1" Grid.Column="10"
-                           HorizontalTextAlignment="End"
-                           Placeholder="32"
-                           Text="{Binding ZoomAsFloat}"
-                           BackgroundColor="FloralWhite"
-                           TextChanged="ZoomEntry_TextChanged">
-                        <Entry.Behaviors>
-                            <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                               ValidStyle="{StaticResource ValidEntryStyle}"
-                                                               Flags="ValidateOnValueChanged"
-                                                               MinimumValue="{Binding ZoomMinAsFloat}"
-                                                               MaximumValue="{Binding ZoomMaxAsFloat}"
-                                                               MaximumDecimalPlaces="1" />
-                        </Entry.Behaviors>
-                    </Entry>
                 </Grid>
 
                 <!--    上メニュー（デバッグ用）
