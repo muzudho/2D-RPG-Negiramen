@@ -4,6 +4,13 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
 
+    <Color x:Key="DonutBody">SkyBlue</Color>
+    <Color x:Key="DonutShadow">#aaaaaa</Color>
+    <Color x:Key="DonutHole">#cccccc</Color>
+    <SolidColorBrush x:Key="DonutBodyBrush" Color="{StaticResource DonutBody}"/>
+    <SolidColorBrush x:Key="DonutShadowBrush" Color="{StaticResource DonutShadow}"/>
+    <SolidColorBrush x:Key="DonutHoleBrush" Color="{StaticResource DonutHole}"/>
+
     <Color x:Key="Primary">RoyalBlue</Color>
     <Color x:Key="Secondary">Gainsboro</Color>
     <Color x:Key="SecondaryDark">#606060</Color>

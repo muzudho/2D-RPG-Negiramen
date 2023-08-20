@@ -2983,5 +2983,39 @@ Zzz
 全部　Source　の方を使うように変更したい。  
 Working　は変数にしないようにしたい。これも８月下旬にしよう」  
 
+# 📅 （2023-08-21 mon）ドーナツUI にしようぜ？
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　四方をぐるっと　青い領域で囲みたい」  
+
+![202308_maui_21-0600--Current.png](https://crieit.now.sh/upload_images/2edea73551e7b33eed4248d2c6013d0064e27f2a03aa8.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　現状こうなわけだが」  
+
+![202308_maui_21-0624--Donut.png](https://crieit.now.sh/upload_images/42b2b541b254ed69513f1099c9ccf60b64e284bba5a97.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　３重グリッドにするわけだぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　作業領域が狭いなあ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　MAUI のテキストボックスが　でかすぎんのよ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👇　なんで　フォントがこんなに大きいのか分からん」  
+
+📖 [.NET MAUI のフォント](https://learn.microsoft.com/ja-jp/dotnet/maui/user-interface/fonts)  
+
+![202308_maui_21-0642--MenuSize.png](https://crieit.now.sh/upload_images/9e49bb9e9b692132cc4749fb31df3a9864e288ebd45a9.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　ルビ振る領域も考えると　ドーナツは　これだけ広くなる。
+4K ディスプレイ推奨だぜ」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　じゃあ　それで進めてくれだぜ」  
 
 ＜書きかけ＞

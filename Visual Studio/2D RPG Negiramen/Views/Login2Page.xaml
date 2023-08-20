@@ -17,7 +17,7 @@
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
-              BackgroundColor="SkyBlue">
+              BackgroundColor="{DynamicResource DonutBody}">
             <!--    パンくずリスト
                     ==============
             -->
@@ -57,87 +57,106 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="*,64">
-        <ScrollView>
-            <Grid Grid.Row="0"
-                  RowDefinitions="190,20,48,48,20,48" ColumnDefinitions="20,*"
+    <!-- ドーナツ本体
+         ============
+    -->
+    <Grid RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
+          BackgroundColor="{DynamicResource DonutBody}">
+
+        <!-- ドーナツの影
+             ============
+        -->
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
+              BackgroundColor="{DynamicResource DonutShadow}">
+
+            <Grid Grid.Row="0" Grid.Column="1"
+                  RowDefinitions="20,48">
+
+                <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
+                <Label Grid.Row="1"
+                       HorizontalOptions="Center"
+                       Text="{app:Translate _2dRpgNegiramen}"
+                       FontSize="36"/>
+            </Grid>
+
+            <!-- ドーナツの穴
+                     ============
+            -->
+            <ScrollView Grid.Row="1" Grid.Column="1"
+                BackgroundColor="{DynamicResource DonutHole}">
+                <Grid Grid.Row="0"
+                  RowDefinitions="100,20,48,48,20,48" ColumnDefinitions="20,*"
                   Padding="8,8,8,0">
 
-                <!--    １行目
+                    <!--    １行目
                         ======
-                -->
-                <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="2">
-
-                    <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
-                    <Label HorizontalOptions="Center"
-                       Text="{app:Translate _2dRpgNegiramen}"
-                       FontSize="48"/>
-
-                    <Image HorizontalOptions="Center"
+                    -->
+                    <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="2">
+                        <Image HorizontalOptions="Center"
                            HeightRequest="100"
                            Source="title_header.png"
                            SemanticProperties.Description="title header"/>
+                    </VerticalStackLayout>
 
-                </VerticalStackLayout>
-
-                <!--    ２行目
+                    <!--    ２行目
                         ======
                 -->
-                <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス」 -->
-                <Label Grid.Row="1" Grid.Column="1"
+                    <!-- 「あなたがローカルＰＣへダウンロードした 2D RPG Negiramen に含まれる Starter Kit フォルダへのパス」 -->
+                    <Label Grid.Row="1" Grid.Column="1"
                        Text="{app:Translate ConfigurationPageStarterKitFolderDescription}"/>
 
-                <!--    ３行目
+                    <!--    ３行目
                         ======
                 -->
-                <Label Grid.Row="2" Grid.Column="0"
+                    <Label Grid.Row="2" Grid.Column="0"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        Text="📂"
                        SemanticProperties.Hint="Folder emoji"/>
 
-                <Entry Grid.Row="2" Grid.Column="1"
+                    <Entry Grid.Row="2" Grid.Column="1"
                        Placeholder="C:/Users/むずでょ/Documents/GitHub/2D-RPG-Negiramen/Starter Kit"
                        Text="{Binding StarterKitFolderPathAsStr}"/>
 
-                <!--    ４行目
+                    <!--    ４行目
                         ======
                 -->
-                <!-- 「Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。」 -->
-                <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
+                    <!-- 「Unity プロジェクトを 2D テンプレートで作成してから、以下を設定してください。」 -->
+                    <Label Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                        VerticalTextAlignment="Center"
                        Text="{app:Translate ConfigurationPageUnityProjectDescription}"
                        SemanticProperties.Hint="Separator"/>
 
-                <!--    ５行目
+                    <!--    ５行目
                         ======
                 -->
-                <!-- 「Unity プロジェクトの中の Assets フォルダへのパス」 -->
-                <Label Grid.Row="4" Grid.Column="1"
+                    <!-- 「Unity プロジェクトの中の Assets フォルダへのパス」 -->
+                    <Label Grid.Row="4" Grid.Column="1"
                        Text="{app:Translate ConfigurationPageUnityAssetsFolderDescription}"/>
 
-                <!--    ６行目
+                    <!--    ６行目
                         ======
                 -->
-                <Label Grid.Row="5" Grid.Column="0"
+                    <Label Grid.Row="5" Grid.Column="0"
                        HorizontalTextAlignment="Center"
                        VerticalTextAlignment="Center"
                        Text="📂"
                        SemanticProperties.Hint="Folder emoji"/>
 
-                <Entry Grid.Row="5" Grid.Column="1"
+                    <Entry Grid.Row="5" Grid.Column="1"
                        Placeholder="C:/Users/むずでょ/Documents/Unity Projects/Negiramen Practice/Assets"
                        Text="{Binding UnityAssetsFolderPathAsStr}"/>
-            </Grid>
-        </ScrollView>
+                </Grid>
+            </ScrollView>
 
-        <Grid Grid.Row="1"
-              RowDefinitions="48" ColumnDefinitions="*"
-              Padding="8,8,8,8"
-              BackgroundColor="SkyBlue">
+        </Grid>
+
+        <Grid Grid.Row="2" Grid.Column="1"
+                  RowDefinitions="20,48">
 
             <!-- 「新しく作る」 -->
-            <Button WidthRequest="300"
+            <Button Grid.Row="1"
+                    WidthRequest="300"
                     Text="{app:Translate CreateANewProject}"
                     IsEnabled="{Binding IsEnabledOfNewProjectButton}"
                     Command="{Binding MakeNewProjectAndGoNextCommand}"/>

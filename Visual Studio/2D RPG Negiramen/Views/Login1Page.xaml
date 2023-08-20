@@ -21,7 +21,7 @@
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
-              BackgroundColor="SkyBlue">
+              BackgroundColor="{DynamicResource DonutBody}">
             <!--    パンくずリスト
                     ==============
             -->
@@ -61,155 +61,178 @@
         </Grid>
     </Shell.TitleView>
 
-    <Grid RowDefinitions="*,64">
-        <ScrollView>
-            <Grid Grid.Row="0"
-              RowDefinitions="190, 20, 48, 28, 48, 28, 48, *" ColumnDefinitions="1*, 20, 250, 50, 1*"
-              Padding="8,8,8,0">
+    <!-- ドーナツ本体
+         ============
+    -->
+    <Grid RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
+          BackgroundColor="{DynamicResource DonutBody}">
 
-                <!--    １行目
-                        ======
-                -->
-                <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="5">
+        <!-- ドーナツの影
+             ============
+        -->
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
+              BackgroundColor="{DynamicResource DonutShadow}">
 
-                    <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
-                    <Label HorizontalOptions="Center"
-                           Text="{app:Translate _2dRpgNegiramen}"
-                           FontSize="48"/>
-
-                    <Image HorizontalOptions="Center"
-                           HeightRequest="100"
-                           Source="title_header.png"
-                           SemanticProperties.Description="title header"/>
-
-                </VerticalStackLayout>
-
-                <!--    ２行目
-                        ======
-                -->
-                <!-- 「あなたのサークル・フォルダ名」 -->
-                <Label Grid.Row="1" Grid.Column="2"
-                       Text="{app:Translate YourCircleFolderName}"/>
-
-                <!--    ３行目
-                        ======
-                -->
-                <!-- 「📂」 -->
-                <Label Grid.Row="2" Grid.Column="1"
-                       VerticalOptions="Center"
-                       Text="📂"/>
+            <Grid Grid.Row="0" Grid.Column="1"
+                  RowDefinitions="20,48">
                 
-                <Entry Grid.Row="2" Grid.Column="2"
-                       Placeholder="Ramen Shop"
-                       Text="{Binding YourCircleFolderNameAsStr}"
-                       TextChanged="YourCircleFolderNameEntry_TextChanged"/>
+                <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
+                <Label Grid.Row="1"
+                       HorizontalOptions="Center"
+                       Text="{app:Translate _2dRpgNegiramen}"
+                       FontSize="36"/>
+            </Grid>
+
+            <!-- ドーナツの穴
+                 ============
+            -->
+            <ScrollView Grid.Row="1" Grid.Column="1"
+                BackgroundColor="{DynamicResource DonutHole}">
+                <Grid Grid.Row="0"
+                    RowDefinitions="100, 20, 48, 28, 48, 28, 48, *" ColumnDefinitions="1*, 20, 250, 50, 1*"
+                    Padding="8,8,8,0">
+
+                    <!--    １行目
+                            ======
+                    -->
+                    <VerticalStackLayout Grid.Row="0" Grid.ColumnSpan="5">
+
+                        <Image HorizontalOptions="Center"
+                                HeightRequest="100"
+                                Source="title_header.png"
+                                SemanticProperties.Description="title header"/>
+
+                    </VerticalStackLayout>
+
+                    <!--    ２行目
+                            ======
+                    -->
+                    <!-- 「あなたのサークル・フォルダ名」 -->
+                    <Label Grid.Row="1" Grid.Column="2"
+                            Text="{app:Translate YourCircleFolderName}"/>
+
+                    <!--    ３行目
+                            ======
+                    -->
+                    <!-- 「📂」 -->
+                    <Label Grid.Row="2" Grid.Column="1"
+                            VerticalOptions="Center"
+                            Text="📂"/>
+                
+                    <Entry Grid.Row="2" Grid.Column="2"
+                            Placeholder="Ramen Shop"
+                            Text="{Binding YourCircleFolderNameAsStr}"
+                            TextChanged="YourCircleFolderNameEntry_TextChanged"/>
 
                 
                
-                <!--    ４行目
-                        ======
-                -->
-                <!-- 「あなたの作品フォルダ名」 -->
-                <Label Grid.Row="3" Grid.Column="2"
-                       Margin="0,8,0,0"
-                       Text="{app:Translate YourWorkFolderName}"/>
+                    <!--    ４行目
+                            ======
+                    -->
+                    <!-- 「あなたの作品フォルダ名」 -->
+                    <Label Grid.Row="3" Grid.Column="2"
+                            Margin="0,8,0,0"
+                            Text="{app:Translate YourWorkFolderName}"/>
 
-                <!--    ５行目
-                        ======
-                -->
-                <!-- 「📂」 -->
-                <Label Grid.Row="4" Grid.Column="1"
-                       VerticalOptions="Center"
-                       Text="📂"/>
+                    <!--    ５行目
+                            ======
+                    -->
+                    <!-- 「📂」 -->
+                    <Label Grid.Row="4" Grid.Column="1"
+                            VerticalOptions="Center"
+                            Text="📂"/>
                 
-                <!-- あなたの作品フォルダ名 -->
-                <Entry Grid.Row="4" Grid.Column="2"
-                       Placeholder="Negiramen Quest"
-                       Text="{Binding YourWorkFolderNameAsStr}"
-                       TextChanged="YourWorkFolderNameEntry_TextChanged"/>
+                    <!-- あなたの作品フォルダ名 -->
+                    <Entry Grid.Row="4" Grid.Column="2"
+                            Placeholder="Negiramen Quest"
+                            Text="{Binding YourWorkFolderNameAsStr}"
+                            TextChanged="YourWorkFolderNameEntry_TextChanged"/>
 
-                <!--    ６行目
-                        ======
-                -->
-                <!-- 「リストから選ぶ」 -->
-                <Label Grid.Row="5" Grid.Column="2"
-                       Margin="0,8,0,0"
-                       Text="{app:Translate ChooseFromList}"/>
+                    <!--    ６行目
+                            ======
+                    -->
+                    <!-- 「リストから選ぶ」 -->
+                    <Label Grid.Row="5" Grid.Column="2"
+                            Margin="0,8,0,0"
+                            Text="{app:Translate ChooseFromList}"/>
 
-                <!--    ７行目
-                        ======
-                -->
-                <!-- 「📂」 -->
-                <Label Grid.Row="6" Grid.Column="1"
-                       VerticalOptions="Center"
-                       Text="📂"/>
+                    <!--    ７行目
+                            ======
+                    -->
+                    <!-- 「📂」 -->
+                    <Label Grid.Row="6" Grid.Column="1"
+                            VerticalOptions="Center"
+                            Text="📂"/>
                 
-                <!-- 選択中のパス -->
-                <Picker Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2"
-                        VerticalOptions="Center"
-                        HorizontalOptions="StartAndExpand"
-                        WidthRequest="300"
-                        ItemsSource="{Binding ProjectIdList}"
-                        SelectedItem="{Binding SelectedProjectId}"
-                        ItemDisplayBinding="{Binding PresentableTextAsStr}"
-                        SelectedIndexChanged="ProjectIdListPicker_SelectedIndexChanged"/>
+                    <!-- 選択中のパス -->
+                    <Picker Grid.Row="6" Grid.Column="2" Grid.ColumnSpan="2"
+                            VerticalOptions="Center"
+                            HorizontalOptions="StartAndExpand"
+                            WidthRequest="300"
+                            ItemsSource="{Binding ProjectIdList}"
+                            SelectedItem="{Binding SelectedProjectId}"
+                            ItemDisplayBinding="{Binding PresentableTextAsStr}"
+                            SelectedIndexChanged="ProjectIdListPicker_SelectedIndexChanged"/>
 
-                <!--    ８行目
-                        ======
-                -->
-                <HorizontalStackLayout Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3"
-                                       Padding="0,8,0,0">
-                    <Grid RowDefinitions="32,20"
-                          Padding="0,0,0,16">
-                        <!-- 「文字数」 -->
-                        <Label Grid.Row="0"
-                               VerticalOptions="Center"
-                               VerticalTextAlignment="Center"
-                               HeightRequest="28"
-                               Text="{app:Translate NumberOfCharacters}"/>
+                    <!--    ８行目
+                            ======
+                    -->
+                    <HorizontalStackLayout Grid.Row="7" Grid.Column="2" Grid.ColumnSpan="3"
+                                            Padding="0,8,0,0">
+                        <Grid RowDefinitions="32,20"
+                                Padding="0,0,0,16">
+                            <!-- 「文字数」 -->
+                            <Label Grid.Row="0"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                    HeightRequest="28"
+                                    Text="{app:Translate NumberOfCharacters}"/>
 
-                        <!-- 「推奨する使う文字」 -->
-                        <Label Grid.Row="1" 
-                               Text="{app:Translate RecommendedCharactersToUse}"/>
-                    </Grid>
+                            <!-- 「推奨する使う文字」 -->
+                            <Label Grid.Row="1" 
+                                    Text="{app:Translate RecommendedCharactersToUse}"/>
+                        </Grid>
 
-                    <Grid RowDefinitions="32,20"
-                          Padding="16,0,0,0">
-                        <!-- 文字数 -->
-                        <Label Grid.Row="0"
-                               VerticalOptions="Center"
-                               VerticalTextAlignment="Center"
-                               HeightRequest="28"
-                               FontSize="24"
-                               Text="{Binding NumberOfCharacters}"/>
+                        <Grid RowDefinitions="32,20"
+                                Padding="16,0,0,0">
+                            <!-- 文字数 -->
+                            <Label Grid.Row="0"
+                                    VerticalOptions="Center"
+                                    VerticalTextAlignment="Center"
+                                    HeightRequest="28"
+                                    FontSize="24"
+                                    Text="{Binding NumberOfCharacters}"/>
 
-                        <!-- 「全て半角 A-Z a-z 0-9 _ 両端を除き半角スペース」 -->
-                        <Label Grid.Row="1"
-                               Text="{app:Translate RecommendedCharactersToUseDescription}"/>
-                    </Grid>
-                </HorizontalStackLayout>
-            </Grid>
-        </ScrollView>
+                            <!-- 「全て半角 A-Z a-z 0-9 _ 両端を除き半角スペース」 -->
+                            <Label Grid.Row="1"
+                                    Text="{app:Translate RecommendedCharactersToUseDescription}"/>
+                        </Grid>
+                    </HorizontalStackLayout>
+                </Grid>
+            </ScrollView>
+        </Grid>
 
-        <Grid Grid.Row="1"
-              Padding="8,8,8,8"
-              BackgroundColor="SkyBlue">
-            
+        <Grid Grid.Row="2" Grid.Column="1"
+              RowDefinitions="20,48">
+
             <!-- 「続きから」 -->
-            <Button IsVisible="{Binding IsVisibleOfContinueButton}"
+            <Button Grid.Row="1"
+                    IsVisible="{Binding IsVisibleOfContinueButton}"
                     HorizontalOptions="Center"
                     WidthRequest="300"
                     Text="{app:Translate Continue}"
                     Clicked="ContinueButton_Clicked"/>
 
             <!-- 「次へ」 -->
-            <Button IsVisible="{Binding IsVisibleOfNextButton}"
+            <Button Grid.Row="1"
+                    IsVisible="{Binding IsVisibleOfNextButton}"
                     IsEnabled="{Binding IsEnabledOfNextButton}"
                     HorizontalOptions="Center"
                     WidthRequest="300"
                     Text="{app:Translate Next}"
                     Clicked="NextButton_Clicked"/>
         </Grid>
+
     </Grid>
-    
+
 </ContentPage>
