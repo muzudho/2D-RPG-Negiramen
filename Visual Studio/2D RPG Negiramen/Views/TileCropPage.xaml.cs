@@ -154,9 +154,6 @@ public partial class TileCropPage : ContentPage
                             image.Save(outputFileStream);
                         }
                     }
-
-                    // 作業中のタイルセット画像の再描画
-                    context.RefreshWorkingTilesetImage();
                 }
             }
             catch (Exception ex)
