@@ -4,6 +4,7 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Visually;
     using _2D_RPG_Negiramen.ViewModels;
+    using System.Diagnostics;
 
     /// <summary>
     ///     見えないモデル
@@ -16,6 +17,7 @@
     {
         // - その他
 
+        #region その他（生成）
         /// <summary>
         ///     生成
         /// </summary>
@@ -24,6 +26,7 @@
         {
             this.Owner = owner;
         }
+        #endregion
 
         // - インターナル・プロパティ
 
@@ -93,7 +96,7 @@
                     else
                     {
                         // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
-                        this.Owner.UpdateCroppedCursorPointedTileByDifference(
+                        this.UpdateCroppedCursorPointedTileByDifference(
                             // タイトル
                             tileTitle: TileTitle.Empty);
 
@@ -128,7 +131,7 @@
                     }
 
                     // （変更通知を送っている）
-                    this.Owner.UpdateCroppedCursorPointedTileByDifference(
+                    this.UpdateCroppedCursorPointedTileByDifference(
                         // タイトル
                         tileTitle: newValue.Title);
 
@@ -167,9 +170,60 @@
                     return;
 
                 // 差分更新
-                this.Owner.UpdateCroppedCursorPointedTileByDifference(
+                this.UpdateCroppedCursorPointedTileByDifference(
                     tileId: value);
             }
+        }
+        #endregion
+
+        // - インターナル・メソッド
+
+        #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］を差分更新
+        /// </summary>
+        /// <returns></returns>
+        public void UpdateCroppedCursorPointedTileByDifference(
+            TileIdOrEmpty? tileId = null,
+            TileTitle? tileTitle = null,
+            LogicalDelete? logicalDelete = null)
+        {
+            var currentTileVisually = this.CroppedCursorPointedTileRecordVisually;
+
+            // タイルＩｄ
+            if (!(tileId is null) && currentTileVisually.Id != tileId)
+            {
+                this.CroppedCursorPointedTileRecordVisually.Id = tileId;
+
+                // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
+                // this.InvalidateLocale();
+                // this.InvalidateAddsButton();
+
+                // ［追加／上書き］ボタン再描画
+                this.Owner.InvalidateAddsButton();
+
+                // ［削除］ボタン再描画
+                this.Owner.InvalidateDeletesButton();
+
+                // NotifyTileIdChange();
+            }
+
+            // タイル・タイトル
+            if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
+            {
+                this.CroppedCursorPointedTileRecordVisually.Title = tileTitle;
+            }
+
+            // 論理削除フラグ
+            if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
+            {
+                this.CroppedCursorPointedTileRecordVisually.LogicalDelete = logicalDelete;
+            }
+
+            // 変更通知を送る
+            this.Owner.NotifyTileIdChange();
+
+            Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] CroppedCursorPointedTileRecordVisually.Dump(): {this.CroppedCursorPointedTileRecordVisually.Dump()}");
         }
         #endregion
 

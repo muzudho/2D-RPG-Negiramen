@@ -1209,7 +1209,7 @@
                     return;
 
                 // 差分更新
-                this.UpdateCroppedCursorPointedTileByDifference(
+                this.Invisible.UpdateCroppedCursorPointedTileByDifference(
                     tileTitle: TileTitle.FromString(value));
             }
         }
@@ -1226,7 +1226,7 @@
                     return;
 
                 // 差分更新
-                this.UpdateCroppedCursorPointedTileByDifference(
+                this.Invisible.UpdateCroppedCursorPointedTileByDifference(
                     logicalDelete: LogicalDelete.FromBool(value));
             }
         }
@@ -1717,56 +1717,6 @@
         }
         #endregion
 
-        #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］を差分更新
-        /// </summary>
-        /// <returns></returns>
-        public void UpdateCroppedCursorPointedTileByDifference(
-            TileIdOrEmpty? tileId = null,
-            TileTitle? tileTitle = null,
-            LogicalDelete? logicalDelete = null)
-        {
-            var currentTileVisually = this.Invisible.CroppedCursorPointedTileRecordVisually;
-
-            // タイルＩｄ
-            if (!(tileId is null) && currentTileVisually.Id != tileId)
-            {
-                this.Invisible.CroppedCursorPointedTileRecordVisually.Id = tileId;
-                OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
-                OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
-
-                // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
-                // this.InvalidateLocale();
-                // this.InvalidateAddsButton();
-
-                // ［追加／上書き］ボタン再描画
-                this.InvalidateAddsButton();
-
-                // ［削除］ボタン再描画
-                this.InvalidateDeletesButton();
-
-                // NotifyTileIdChange();
-            }
-
-            // タイル・タイトル
-            if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
-            {
-                this.Invisible.CroppedCursorPointedTileRecordVisually.Title = tileTitle;
-                OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
-            }
-
-            // 論理削除フラグ
-            if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
-            {
-                this.Invisible.CroppedCursorPointedTileRecordVisually.LogicalDelete = logicalDelete;
-                OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
-            }
-
-            Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] CroppedCursorPointedTileRecordVisually.Dump(): {this.Invisible.CroppedCursorPointedTileRecordVisually.Dump()}");
-        }
-        #endregion
-
         #region メソッド（［選択タイル］　関連）
         /// <summary>
         ///     ［選択タイル］Ｉｄの再描画
@@ -1947,6 +1897,17 @@
             // タイルセット タイトル
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
             OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+        }
+
+        /// <summary>
+        ///     変更通知を送る
+        /// </summary>
+        internal void NotifyTarget()
+        {
+            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
         }
 
         // - プライベート・フィールド
