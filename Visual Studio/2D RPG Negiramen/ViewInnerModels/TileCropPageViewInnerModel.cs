@@ -3,17 +3,18 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.Visually;
+    using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.ViewModels;
     using System.Diagnostics;
 
     /// <summary>
-    ///     見えないモデル
+    ///     内部モデル
     ///     
     ///     <list type="bullet">
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class TileCropPageViewInvisibleModel
+    class TileCropPageViewInnerModel
     {
         // - その他
 
@@ -22,7 +23,7 @@
         ///     生成
         /// </summary>
         /// <param name="owner"></param>
-        internal TileCropPageViewInvisibleModel(TileCropPageViewModel owner)
+        internal TileCropPageViewInnerModel(TileCropPageViewModel owner)
         {
             this.Owner = owner;
         }
@@ -206,6 +207,17 @@
 
         // - インターナル・メソッド
 
+        #region メソッド（ロケール変更による再描画）
+        /// <summary>
+        ///     ロケール変更による再描画
+        ///     
+        ///     <list type="bullet">
+        ///         <item>動的にテキストを変えている部分に対応するため</item>
+        ///     </list>
+        /// </summary>
+        internal void InvalidateLocale() => this.Owner.InvalidateAddsButton();
+        #endregion
+
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］を差分更新
@@ -224,16 +236,12 @@
                 this.CroppedCursorPointedTileRecordVisually.Id = tileId;
 
                 // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
-                // this.InvalidateLocale();
-                // this.InvalidateAddsButton();
 
                 // ［追加／上書き］ボタン再描画
                 this.Owner.InvalidateAddsButton();
 
                 // ［削除］ボタン再描画
                 this.Owner.InvalidateDeletesButton();
-
-                // NotifyTileIdChange();
             }
 
             // タイル・タイトル
@@ -252,6 +260,79 @@
             this.Owner.NotifyTileIdChange();
 
             Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] CroppedCursorPointedTileRecordVisually.Dump(): {this.CroppedCursorPointedTileRecordVisually.Dump()}");
+        }
+        #endregion
+
+        #region メソッド（［追加／上書き］　関連）
+        /// <summary>
+        ///     ［追加］
+        /// </summary>
+        internal void AddRegisteredTile()
+        {
+            var contents = this.TargetTileRecordVisually;
+
+            TileIdOrEmpty tileIdOrEmpty;
+
+            // Ｉｄが空欄
+            // ［追加］（新規作成）だ
+
+            // ［切抜きカーソル］にサイズがなければ、何もしない
+            if (contents.IsNone)
+                return;
+
+            // 新しいタイルＩｄを発行
+            tileIdOrEmpty = this.Owner.TilesetSettingsVM.UsableId;
+            this.Owner.TilesetSettingsVM.IncreaseUsableId();
+
+            // 追加でも、上書きでも、同じ処理でいける
+            // ［登録タイル追加］処理
+            App.History.Do(new AddRegisteredTileProcessing(
+                owner: this.Owner,
+                croppedCursorVisually: contents,
+                tileIdOrEmpty: tileIdOrEmpty,
+                workingRectangle: contents.SourceRectangle.Do(this.Owner.Zoom)));
+
+            this.Owner.InvalidateForHistory();
+        }
+
+        /// <summary>
+        ///     ［上書き］
+        /// </summary>
+        public void OverwriteRegisteredTile()
+        {
+            var contents = this.TargetTileRecordVisually;
+
+            TileIdOrEmpty tileIdOrEmpty;
+
+            // ［切抜きカーソル］にサイズがなければ、何もしない
+            if (contents.IsNone)
+                return;
+
+            // Ｉｄが空欄でない
+            // ［上書き］（更新）だ
+            tileIdOrEmpty = this.CroppedCursorPointedTileIdOrEmpty;
+
+            // 追加でも、上書きでも、同じ処理でいける
+            // ［登録タイル追加］処理
+            App.History.Do(new AddRegisteredTileProcessing(
+                owner: this.Owner,
+                croppedCursorVisually: contents,
+                tileIdOrEmpty: tileIdOrEmpty,
+                workingRectangle: contents.SourceRectangle.Do(this.Owner.Zoom)));
+
+            this.Owner.InvalidateForHistory();
+        }
+
+        /// <summary>
+        ///     ［登録タイル］削除
+        /// </summary>
+        public void RemoveRegisteredTile()
+        {
+            App.History.Do(new RemoveRegisteredTileProcessing(
+                owner: this.Owner,
+                tileIdOrEmpty: this.CroppedCursorPointedTileIdOrEmpty));
+
+            this.Owner.InvalidateForHistory();
         }
         #endregion
 

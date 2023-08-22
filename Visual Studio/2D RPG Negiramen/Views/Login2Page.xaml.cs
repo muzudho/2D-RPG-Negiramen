@@ -123,8 +123,6 @@ public partial class Login2Page : ContentPage
     void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
     {
         // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
-        //var context = this.TileCropPageVM;
-        //context.InvalidateLocale();
     }
     #endregion
 

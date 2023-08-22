@@ -173,29 +173,6 @@ public interface ITileCropPageViewModel
 
     // - パブリック・メソッド
 
-    #region メソッド（［登録タイル］　関連）
-    /// <summary>
-    ///     ［登録タイル］追加
-    /// </summary>
-    void AddRegisteredTile();
-
-    /// <summary>
-    ///     ［登録タイル］削除
-    /// </summary>
-    void RemoveRegisteredTile();
-    #endregion
-
-    #region メソッド（ロケール変更による再描画）
-    /// <summary>
-    ///     ロケール変更による再描画
-    ///     
-    ///     <list type="bullet">
-    ///         <item>動的にテキストを変えている部分に対応するため</item>
-    ///     </list>
-    /// </summary>
-    void InvalidateLocale();
-    #endregion
-
     #region メソッド（画面遷移でこの画面に戻ってきた時）
     /// <summary>
     ///     画面遷移でこの画面に戻ってきた時

@@ -44,7 +44,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         /// </summary>
         public TileCropPageViewModel()
         {
-            this.Invisible = new TileCropPageViewInvisibleModel(this);
+            this.Inner = new TileCropPageViewInnerModel(this);
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
@@ -122,12 +122,12 @@ using _2D_RPG_Negiramen.Models.Visually;
         /// <summary>
         ///     ［タイルセット元画像］の横幅。読取専用
         /// </summary>
-        public int TilesetSourceImageWidthAsInt => this.Invisible.TilesetSourceImageSize.Width.AsInt;
+        public int TilesetSourceImageWidthAsInt => this.Inner.TilesetSourceImageSize.Width.AsInt;
 
         /// <summary>
         ///     ［タイルセット元画像］の縦幅。読取専用
         /// </summary>
-        public int TilesetSourceImageHeightAsInt => this.Invisible.TilesetSourceImageSize.Height.AsInt;
+        public int TilesetSourceImageHeightAsInt => this.Inner.TilesetSourceImageSize.Height.AsInt;
         #endregion
 
         #region 変更通知プロパティ（［タイルセット作業画像］　関連）
@@ -565,7 +565,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -577,7 +577,7 @@ using _2D_RPG_Negiramen.Models.Visually;
             }
             set
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -618,7 +618,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -630,13 +630,13 @@ using _2D_RPG_Negiramen.Models.Visually;
             }
             set
             {
-                var currentTileVisually = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.Invisible.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -657,7 +657,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                     if (currentTileVisually.SourceRectangle.Location.X.AsInt == value)
                         return;
 
-                    this.Invisible.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -698,7 +698,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -708,13 +708,13 @@ using _2D_RPG_Negiramen.Models.Visually;
             }
             set
             {
-                var currentTileVisually = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.Invisible.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -735,7 +735,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                     if (currentTileVisually.SourceRectangle.Location.Y.AsInt == value)
                         return;
 
-                    this.Invisible.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -780,7 +780,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -790,7 +790,7 @@ using _2D_RPG_Negiramen.Models.Visually;
             }
             set
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -821,7 +821,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -831,12 +831,12 @@ using _2D_RPG_Negiramen.Models.Visually;
             }
             set
             {
-                var currentTileVisually = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.Invisible.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
@@ -854,7 +854,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                     if (currentTileVisually.SourceRectangle.Size.Width.AsInt == value)
                         return;
 
-                    this.Invisible.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
@@ -883,7 +883,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -893,12 +893,12 @@ using _2D_RPG_Negiramen.Models.Visually;
             }
             set
             {
-                var currentTileVisually = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.Invisible.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
@@ -916,7 +916,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                     if (currentTileVisually.SourceRectangle.Size.Height.AsInt == value)
                         return;
 
-                    this.Invisible.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
@@ -1169,7 +1169,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1188,7 +1188,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1207,21 +1207,21 @@ using _2D_RPG_Negiramen.Models.Visually;
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.Invisible.TargetTileRecordVisually.IsNone && !this.Invisible.CroppedCursorPointedTileIdOrEmpty.IsEmpty && !this.Invisible.TargetTileRecordVisually.LogicalDelete.AsBool;
+        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.Inner.TargetTileRecordVisually.IsNone && !this.Inner.CroppedCursorPointedTileIdOrEmpty.IsEmpty && !this.Inner.TargetTileRecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
         /// </summary>
         public string CroppedCursorPointedTileTitleAsStr
         {
-            get => this.Invisible.CroppedCursorPointedTileRecordVisually.Title.AsStr;
+            get => this.Inner.CroppedCursorPointedTileRecordVisually.Title.AsStr;
             set
             {
-                if (this.Invisible.CroppedCursorPointedTileRecordVisually.Title.AsStr == value)
+                if (this.Inner.CroppedCursorPointedTileRecordVisually.Title.AsStr == value)
                     return;
 
                 // 差分更新
-                this.Invisible.UpdateCroppedCursorPointedTileByDifference(
+                this.Inner.UpdateCroppedCursorPointedTileByDifference(
                     tileTitle: TileTitle.FromString(value));
             }
         }
@@ -1231,14 +1231,14 @@ using _2D_RPG_Negiramen.Models.Visually;
         /// </summary>
         public bool CroppedCursorPointedTileLogicalDeleteAsBool
         {
-            get => this.Invisible.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool;
+            get => this.Inner.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool;
             set
             {
-                if (this.Invisible.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool == value)
+                if (this.Inner.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool == value)
                     return;
 
                 // 差分更新
-                this.Invisible.UpdateCroppedCursorPointedTileByDifference(
+                this.Inner.UpdateCroppedCursorPointedTileByDifference(
                     logicalDelete: LogicalDelete.FromBool(value));
             }
         }
@@ -1268,7 +1268,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         {
             get
             {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1307,14 +1307,14 @@ using _2D_RPG_Negiramen.Models.Visually;
             get
             {
                 // ※１
-                var isEnabled = !this.Invisible.TargetTileRecordVisually.IsNone && (
+                var isEnabled = !this.Inner.TargetTileRecordVisually.IsNone && (
                 // ※２
-                (this.Invisible.TargetTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.Invisible.TargetTileRecordVisually.LogicalDelete.AsBool)
+                (this.Inner.TargetTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.Inner.TargetTileRecordVisually.LogicalDelete.AsBool)
                 ||
                 // ※３
-                (this.Invisible.TargetTileRecordVisually.Id != TileIdOrEmpty.Empty && this.Invisible.TargetTileRecordVisually.LogicalDelete.AsBool));
+                (this.Inner.TargetTileRecordVisually.Id != TileIdOrEmpty.Empty && this.Inner.TargetTileRecordVisually.LogicalDelete.AsBool));
 
-                Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.Invisible.TargetTileRecordVisually.Dump()}");
+                Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.Inner.TargetTileRecordVisually.Dump()}");
 
                 return isEnabled;
             }
@@ -1425,7 +1425,7 @@ using _2D_RPG_Negiramen.Models.Visually;
             this.tilesetSourceBitmap = bitmap;
 
             // タイルセット画像のサイズ設定（画像の再作成）
-            this.Invisible.TilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+            this.Inner.TilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
             OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
@@ -1482,17 +1482,6 @@ using _2D_RPG_Negiramen.Models.Visually;
 
         // - パブリック・メソッド
 
-        #region メソッド（ロケール変更による再描画）
-        /// <summary>
-        ///     ロケール変更による再描画
-        ///     
-        ///     <list type="bullet">
-        ///         <item>動的にテキストを変えている部分に対応するため</item>
-        ///     </list>
-        /// </summary>
-        public void InvalidateLocale() => this.InvalidateAddsButton();
-        #endregion
-
         #region メソッド（画面遷移でこの画面に戻ってきた時）
         /// <summary>
         ///     画面遷移でこの画面に戻ってきた時
@@ -1516,89 +1505,13 @@ using _2D_RPG_Negiramen.Models.Visually;
         }
         #endregion
 
-        #region メソッド（［追加／上書き］　関連）
-        /// <summary>
-        ///     ［追加］
-        /// </summary>
-        public void AddRegisteredTile()
-        {
-            var contents = this.Invisible.TargetTileRecordVisually;
-
-            TileIdOrEmpty tileIdOrEmpty;
-
-            // Ｉｄが空欄
-            // ［追加］（新規作成）だ
-
-            // ［切抜きカーソル］にサイズがなければ、何もしない
-            if (contents.IsNone)
-                return;
-
-            // 新しいタイルＩｄを発行
-            tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
-            this.TilesetSettingsVM.IncreaseUsableId();
-
-            // 追加でも、上書きでも、同じ処理でいける
-            // ［登録タイル追加］処理
-            App.History.Do(new AddRegisteredTileProcessing(
-                owner: this,
-                croppedCursorVisually: contents,
-                tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.Zoom)));
-
-            this.OnPropertyChanged(nameof(CanUndo));
-            this.OnPropertyChanged(nameof(CanRedo));
-        }
-
-        /// <summary>
-        ///     ［上書き］
-        /// </summary>
-        public void OverwriteRegisteredTile()
-        {
-            var contents = this.Invisible.TargetTileRecordVisually;
-
-            TileIdOrEmpty tileIdOrEmpty;
-
-            // ［切抜きカーソル］にサイズがなければ、何もしない
-            if (contents.IsNone)
-                return;
-
-            // Ｉｄが空欄でない
-            // ［上書き］（更新）だ
-            tileIdOrEmpty = this.Invisible.CroppedCursorPointedTileIdOrEmpty;
-
-            // 追加でも、上書きでも、同じ処理でいける
-            // ［登録タイル追加］処理
-            App.History.Do(new AddRegisteredTileProcessing(
-                owner: this,
-                croppedCursorVisually: contents,
-                tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.Zoom)));
-
-            this.OnPropertyChanged(nameof(CanUndo));
-            this.OnPropertyChanged(nameof(CanRedo));
-        }
-
-        /// <summary>
-        ///     ［登録タイル］削除
-        /// </summary>
-        public void RemoveRegisteredTile()
-        {
-            App.History.Do(new RemoveRegisteredTileProcessing(
-                owner: this,
-                tileIdOrEmpty: this.Invisible.CroppedCursorPointedTileIdOrEmpty));
-
-            this.OnPropertyChanged(nameof(CanUndo));
-            this.OnPropertyChanged(nameof(CanRedo));
-        }
-        #endregion
-
         // - インターナル・プロパティ
 
-        #region プロパティ（見えないモデル）
+        #region プロパティ（内部モデル）
         /// <summary>
-        ///     見えないモデル
+        ///     内部モデル
         /// </summary>
-        internal TileCropPageViewInvisibleModel Invisible { get; }
+        internal TileCropPageViewInnerModel Inner { get; }
         #endregion
 
         // - インターナル変更通知メソッド
@@ -1698,7 +1611,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                     // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
 
                     // タイルを指す（論理削除されているものも含む）
-                    this.Invisible.TargetTileRecordVisually = tileVisually;
+                    this.Inner.TargetTileRecordVisually = tileVisually;
                 },
                 none: () =>
                 {
@@ -1710,7 +1623,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                     //
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.Invisible.TargetTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.TargetTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: this.CroppedCursorPointedTileSourceRect,
@@ -1749,10 +1662,10 @@ using _2D_RPG_Negiramen.Models.Visually;
         internal void InvalidateAddsButton()
         {
             // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-            if (this.Invisible.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+            if (this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
             {
                 // 合同のときは「交差中」とは表示しない
-                if (!this.Invisible.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+                if (!this.Inner.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
                 {
                     // 「交差中」
                     // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
@@ -1762,7 +1675,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                 }
             }
 
-            var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+            var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
             if (contents.IsNone)
             {
@@ -1776,7 +1689,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                 // 切抜きカーソル有り時
                 // Ｉｄ未設定時
 
-                if (this.Invisible.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+                if (this.Inner.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
                 {
                     // Ｉｄが空欄
                     // ［追加］（新規作成）だ
@@ -1802,7 +1715,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         /// </summary>
         internal void InvalidateDeletesButton()
         {
-            var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
+            var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
             if (contents.IsNone)
             {
@@ -1838,16 +1751,16 @@ using _2D_RPG_Negiramen.Models.Visually;
             if (this.CroppedCursorPointedTileSourceRect == TheGeometric.RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
-                this.Invisible.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
-                this.Invisible.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
+                this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.Inner.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
                 return;
             }
 
             // 軽くはない処理
-            this.Invisible.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
-            this.Invisible.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
+            this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
+            this.Inner.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
 
-            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.Invisible.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.Invisible.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
+            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.Inner.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
         #endregion
 
@@ -1864,8 +1777,8 @@ using _2D_RPG_Negiramen.Models.Visually;
 
             // ズームしたまま
             RectangleFloat workingRect = Models.CoordinateHelper.GetCursorRectangle(
-                startPoint: this.Invisible.PointingDeviceStartPoint,
-                endPoint: this.Invisible.PointingDeviceCurrentPoint,
+                startPoint: this.Inner.PointingDeviceStartPoint,
+                endPoint: this.Inner.PointingDeviceCurrentPoint,
                 gridLeftTop: this.WorkingGridPhase,
                 gridTile: this.WorkingGridUnit);
 
@@ -1932,8 +1845,8 @@ using _2D_RPG_Negiramen.Models.Visually;
 
             // 作業画像のサイズ計算
             this.workingImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Height.AsInt)));
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.TilesetWorkingBitmap = temporaryBitmap.Resize(
@@ -1995,8 +1908,8 @@ using _2D_RPG_Negiramen.Models.Visually;
         internal void RemakeGridCanvasImage()
         {
             this.GridCanvasImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
         #endregion
 
@@ -2161,18 +2074,18 @@ using _2D_RPG_Negiramen.Models.Visually;
         /// </summary>
         internal void OnAddsButtonClicked()
         {
-            if (this.Invisible.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+            if (this.Inner.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
 
                 // 登録タイル追加
-                this.AddRegisteredTile();
+                this.Inner.AddRegisteredTile();
             }
             else
             {
                 // 上書きボタンだが、［上書き］処理をする
-                this.OverwriteRegisteredTile();
+                this.Inner.OverwriteRegisteredTile();
             }
         }
         #endregion
@@ -2196,7 +2109,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                 Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
 
                 // ポイントしている位置
-                this.Invisible.PointingDeviceCurrentPoint = this.Invisible.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
+                this.Inner.PointingDeviceCurrentPoint = this.Inner.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
                     new Models.Geometric.XFloat((float)tappedPoint.X),
                     new Models.Geometric.YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
@@ -2216,7 +2129,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                 Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
 
                 // ポイントしている位置
-                this.Invisible.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                this.Inner.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
                     new Models.Geometric.XFloat((float)tappedPoint.X),
                     new Models.Geometric.YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
@@ -2244,7 +2157,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                 //
 
                 // ポイントしている位置
-                this.Invisible.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                this.Inner.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
                     new Models.Geometric.XFloat((float)tappedPoint.X),
                     new Models.Geometric.YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
@@ -2257,16 +2170,16 @@ using _2D_RPG_Negiramen.Models.Visually;
         }
         #endregion
 
-        // - プライベート・フィールド
+        // - プライベート変更通知フィールド
 
-        #region フィールド（ポインティング・デバイス押下中か？）
+        #region 変更通知フィールド（ポインティング・デバイス押下中か？）
         /// <summary>
         ///     ポインティング・デバイス押下中か？
         /// </summary>
         bool isMouseDragging;
         #endregion
 
-        #region フィールド（［タイルセット設定］　関連）
+        #region 変更通知フィールド（［タイルセット設定］　関連）
         /// <summary>
         ///     ［タイルセット設定］ビューモデル
         /// </summary>
@@ -2278,7 +2191,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv _tilesetSettingsFile = TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv.Empty;
         #endregion
 
-        #region フィールド（［タイルセット元画像］　関連）
+        #region 変更通知フィールド（［タイルセット元画像］　関連）
         /// <summary>
         ///     ［タイルセット元画像］
         /// </summary>
@@ -2290,14 +2203,19 @@ using _2D_RPG_Negiramen.Models.Visually;
         TheFileEntryLocations.UnityAssets.Images.TilesetPng tilesetImageFile = TheFileEntryLocations.UnityAssets.Images.TilesetPng.Empty;
         #endregion
 
-        #region フィールド（［タイルセット作業画像］　関連）
+        #region 変更通知フィールド（［タイルセット作業画像］　関連）
         /// <summary>
         ///     ［タイルセット作業画像］サイズ
         /// </summary>
         Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
-        #region フィールド（［ズーム］　関連）
+        #region 変更通知フィールド（［ズーム］　関連）
+        /// <summary>
+        ///     ［ズーム］
+        /// </summary>
+        Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+
         /// <summary>
         ///     ［ズーム］最大
         /// </summary>
@@ -2307,14 +2225,9 @@ using _2D_RPG_Negiramen.Models.Visually;
         ///     ［ズーム］最小
         /// </summary>
         Models.Geometric.Zoom zoomMin = new(0.5f);
-
-        /// <summary>
-        ///     ［ズーム］
-        /// </summary>
-        Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
         #endregion
 
-        #region フィールド（［元画像グリッド］　関連）
+        #region 変更通知フィールド（［元画像グリッド］　関連）
         /// <summary>
         ///     ［元画像グリッド］のキャンバス画像サイズ
         /// </summary>
@@ -2336,7 +2249,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         ThicknessOfLine halfThicknessOfGridLine = new(1);
         #endregion
 
-        #region フィールド（［作業グリッド］　関連）
+        #region 変更通知フィールド（［作業グリッド］　関連）
         /// <summary>
         ///     ［作業グリッド］の単位
         /// </summary>
@@ -2347,6 +2260,29 @@ using _2D_RPG_Negiramen.Models.Visually;
         /// </summary>
         Models.Geometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Empty;
         #endregion
+
+        #region 変更通知フィールド（［切抜きカーソル］　関連）
+        /// <summary>
+        ///     ［切抜きカーソル］の線の半分の太さ
+        /// </summary>
+        ThicknessOfLine halfThicknessOfTileCursorLine;
+        #endregion
+
+        #region 変更通知フィールド（［追加／上書き］ボタン　関連）
+        /// <summary>
+        ///     ［追加／上書き］ボタンのラベル
+        /// </summary>
+        string addsButtonText = string.Empty;
+        #endregion
+
+        #region 変更通知フィールド（［削除］ボタン　関連）
+        /// <summary>
+        ///     ［削除］ボタンの活性性
+        /// </summary>
+        bool isEnabledDeletesButton;
+        #endregion
+
+        // - プライベート・フィールド
 
         #region フィールド（［切抜きカーソル］　関連）
         /// <summary>
@@ -2361,25 +2297,6 @@ using _2D_RPG_Negiramen.Models.Visually;
         Models.Geometric.WidthFloat trickWidth = Models.Geometric.WidthFloat.Zero;
         Models.Geometric.WidthFloat croppedCursorPointedTileWorkingWidthWithoutTrick = Models.Geometric.WidthFloat.Zero;
         Models.Geometric.HeightFloat croppedCursorPointedTileWorkingHeight = Models.Geometric.HeightFloat.Zero;
-
-        /// <summary>
-        ///     ［切抜きカーソル］の線の半分の太さ
-        /// </summary>
-        ThicknessOfLine halfThicknessOfTileCursorLine;
-        #endregion
-
-        #region フィールド（［追加／上書き］ボタン　関連）
-        /// <summary>
-        ///     ［追加／上書き］ボタンのラベル
-        /// </summary>
-        string addsButtonText = string.Empty;
-        #endregion
-
-        #region フィールド（［削除］ボタン　関連）
-        /// <summary>
-        ///     ［削除］ボタンの活性性
-        /// </summary>
-        bool isEnabledDeletesButton;
         #endregion
 
         // - プライベート・メソッド
