@@ -1739,13 +1739,6 @@ using _2D_RPG_Negiramen.Models.Visually;
 
         // - インターナル・プロパティ
 
-        #region プロパティ（ポインティング・デバイス押下開始位置）
-        /// <summary>
-        ///     ポインティング・デバイス押下開始位置
-        /// </summary>
-        internal Models.Geometric.PointFloat PointingDeviceStartPoint { get; set; }
-        #endregion
-
         #region プロパティ（ポインティング・デバイス現在位置）
         /// <summary>
         ///     ポインティング・デバイス現在位置
@@ -1769,7 +1762,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                 Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
 
                 // ポイントしている位置
-                this.PointingDeviceCurrentPoint = this.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
+                this.PointingDeviceCurrentPoint = this.Invisible.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
                     new Models.Geometric.XFloat((float)tappedPoint.X),
                     new Models.Geometric.YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
@@ -2037,7 +2030,7 @@ using _2D_RPG_Negiramen.Models.Visually;
 
             // ズームしたまま
             RectangleFloat workingRect = Models.CoordinateHelper.GetCursorRectangle(
-                startPoint: this.PointingDeviceStartPoint,
+                startPoint: this.Invisible.PointingDeviceStartPoint,
                 endPoint: this.PointingDeviceCurrentPoint,
                 gridLeftTop: this.WorkingGridPhase,
                 gridTile: this.WorkingGridUnit);

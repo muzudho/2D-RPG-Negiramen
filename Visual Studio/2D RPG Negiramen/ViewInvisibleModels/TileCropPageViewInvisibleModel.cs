@@ -190,6 +190,13 @@
         internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
         #endregion
 
+        #region プロパティ（ポインティング・デバイス押下開始位置）
+        /// <summary>
+        ///     ポインティング・デバイス押下開始位置
+        /// </summary>
+        internal Models.Geometric.PointFloat PointingDeviceStartPoint { get; set; }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
