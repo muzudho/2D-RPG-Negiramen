@@ -1480,31 +1480,6 @@ using _2D_RPG_Negiramen.Models.Visually;
         public float ZoomMinAsFloat => this.zoomMin.AsFloat;
         #endregion
 
-        // - パブリック・メソッド
-
-        #region メソッド（画面遷移でこの画面に戻ってきた時）
-        /// <summary>
-        ///     画面遷移でこの画面に戻ってきた時
-        /// </summary>
-        public void ReactOnVisited()
-        {
-            // ロケールが変わってるかもしれないので反映
-            OnPropertyChanged(nameof(SelectedCultureInfo));
-
-            // グリッド・キャンバス
-            {
-                // グリッドの左上位置（初期値）
-                this.GridPhaseSourceLocation = new Models.Geometric.PointInt(new Models.Geometric.XInt(0), new Models.Geometric.YInt(0));
-
-                // グリッドのタイルサイズ（初期値）
-                this.SourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
-
-                // グリッド・キャンバス画像の再作成
-                this.RemakeGridCanvasImage();
-            }
-        }
-        #endregion
-
         // - インターナル・プロパティ
 
         #region プロパティ（内部モデル）
@@ -1515,6 +1490,11 @@ using _2D_RPG_Negiramen.Models.Visually;
         #endregion
 
         // - インターナル変更通知メソッド
+
+        internal void InvalidateCultureInfo()
+        {
+            OnPropertyChanged(nameof(SelectedCultureInfo));
+        }
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
         /// <summary>
@@ -1954,7 +1934,8 @@ using _2D_RPG_Negiramen.Models.Visually;
         internal void OnNavigatedTo(SKCanvasView skiaTilesetCanvas1)
         {
             Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ページ来訪時");
-            this.ReactOnVisited();
+
+            this.Inner.ReactOnVisited();
 
             //
             // タイル設定ファイルの読込

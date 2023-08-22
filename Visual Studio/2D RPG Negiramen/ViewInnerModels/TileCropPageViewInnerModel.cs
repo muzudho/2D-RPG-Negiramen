@@ -336,6 +336,29 @@
         }
         #endregion
 
+        #region メソッド（画面遷移でこの画面に戻ってきた時）
+        /// <summary>
+        ///     画面遷移でこの画面に戻ってきた時
+        /// </summary>
+        internal void ReactOnVisited()
+        {
+            // ロケールが変わってるかもしれないので反映
+            this.Owner.InvalidateCultureInfo();
+
+            // グリッド・キャンバス
+            {
+                // グリッドの左上位置（初期値）
+                this.Owner.GridPhaseSourceLocation = new Models.Geometric.PointInt(new Models.Geometric.XInt(0), new Models.Geometric.YInt(0));
+
+                // グリッドのタイルサイズ（初期値）
+                this.Owner.SourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
+
+                // グリッド・キャンバス画像の再作成
+                this.Owner.RemakeGridCanvasImage();
+            }
+        }
+        #endregion
+
         // - プライベート・プロパティ
 
         TileCropPageViewModel Owner { get; }

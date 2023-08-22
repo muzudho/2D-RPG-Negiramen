@@ -170,13 +170,4 @@ public interface ITileCropPageViewModel
     /// </summary>
     bool IsMouseDragging { get; }
     #endregion
-
-    // - パブリック・メソッド
-
-    #region メソッド（画面遷移でこの画面に戻ってきた時）
-    /// <summary>
-    ///     画面遷移でこの画面に戻ってきた時
-    /// </summary>
-    void ReactOnVisited();
-    #endregion
 }
