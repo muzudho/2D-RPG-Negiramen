@@ -202,11 +202,4 @@ public interface ITileCropPageViewModel
     /// </summary>
     void ReactOnVisited();
     #endregion
-
-    // - パブリック・インベントハンドラ
-
-    /// <summary>
-    ///     ［追加］ボタン　クリック時
-    /// </summary>
-    void OnAddsButtonClicked();
 }

@@ -197,6 +197,13 @@
         internal Models.Geometric.PointFloat PointingDeviceStartPoint { get; set; }
         #endregion
 
+        #region プロパティ（ポインティング・デバイス現在位置）
+        /// <summary>
+        ///     ポインティング・デバイス現在位置
+        /// </summary>
+        internal Models.Geometric.PointFloat PointingDeviceCurrentPoint { get; set; }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）

@@ -1592,231 +1592,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         }
         #endregion
 
-        // - パブリック・インベントハンドラ
-
-        #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
-        /// <summary>
-        ///     別ページから、このページに訪れたときに呼び出される
-        /// </summary>
-        public void OnNavigatedTo(SKCanvasView skiaTilesetCanvas1)
-        {
-            Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ページ来訪時");
-            this.ReactOnVisited();
-
-            //
-            // タイル設定ファイルの読込
-            // ========================
-            //
-            if (TilesetDatatableVisually.LoadCSV(
-                tilesetDatatableFileLocation: this.TilesetDatatableFileLocation,
-                zoom: this.Zoom,
-                tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
-            {
-                this.TilesetSettingsVM = tilesetDatatableVisually;
-
-#if DEBUG
-                // ファイルの整合性チェック（重い処理）
-                if (this.TilesetSettingsVM.IsValid())
-                {
-                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {this.TilesetDatatableFileLocation.Path.AsStr}");
-                }
-                else
-                {
-                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {this.TilesetDatatableFileLocation.Path.AsStr}");
-                }
-#endif
-
-                //// 登録タイルのデバッグ出力
-                //foreach (var record in context.TilesetSettings.RecordList)
-                //{
-                //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
-                //}
-            }
-
-            //
-            // タイルセット画像ファイルへのパスを取得
-            //
-            var tilesetImageFilePathAsStr = this.TilesetImageFilePathAsStr;
-
-            //
-            // タイルセット画像の読込、作業中タイルセット画像の書出
-            // ====================================================
-            //
-            var task = Task.Run(async () =>
-            {
-                try
-                {
-                    // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
-                    using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
-                    {
-#if IOS || ANDROID || MACCATALYST
-                    // PlatformImage isn't currently supported on Windows.
-                    
-                    TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
-#elif WINDOWS
-                        TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
-#endif
-
-                        //
-                        // 作業中のタイルセット画像の保存
-                        //
-                        if (image != null)
-                        {
-                            // ディレクトリーが無ければ作成する
-                            var folder = App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder;
-                            folder.CreateThisDirectoryIfItDoesNotExist();
-
-                            // 書出先（ウィンドウズ・ローカルＰＣ）
-                            using (Stream outputFileStream = System.IO.File.Open(folder.WorkingTilesetPng.Path.AsStr, FileMode.OpenOrCreate))
-                            {
-                                image.Save(outputFileStream);
-                            }
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // TODO エラー対応どうする？
-                }
-
-                // ↓ SkiaSharp の流儀
-                try
-                {
-                    // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
-                    using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
-                    {
-                        // ↓ １つのストリームが使えるのは、１回切り
-                        using (var memStream = new MemoryStream())
-                        {
-                            await inputFileStream.CopyToAsync(memStream);
-                            memStream.Seek(0, SeekOrigin.Begin);
-
-                            // 元画像
-                            this.SetTilesetSourceBitmap(SkiaSharp.SKBitmap.Decode(memStream));
-
-                            // 複製
-                            this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
-
-                            // 画像処理（明度を下げる）
-                            FeatSkia.ReduceBrightness.DoItInPlace(this.TilesetWorkingBitmap);
-                        };
-
-                        // 再描画
-                        skiaTilesetCanvas1.InvalidateSurface();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    // TODO エラー対応どうする？
-                }
-            });
-
-            Task.WaitAll(new Task[] { task });
-        }
-        #endregion
-
-        #region イベントハンドラ（［追加］ボタン　クリック時）
-        /// <summary>
-        ///     ［追加］ボタン　クリック時
-        /// </summary>
-        public void OnAddsButtonClicked()
-        {
-            if (this.Invisible.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
-            {
-                // Ｉｄが空欄
-                // ［追加］（新規作成）だ
-
-                // 登録タイル追加
-                this.AddRegisteredTile();
-            }
-            else
-            {
-                // 上書きボタンだが、［上書き］処理をする
-                this.OverwriteRegisteredTile();
-            }
-        }
-        #endregion
-
-        // - インターナル・プロパティ
-
-        #region プロパティ（ポインティング・デバイス現在位置）
-        /// <summary>
-        ///     ポインティング・デバイス現在位置
-        /// </summary>
-        internal Models.Geometric.PointFloat PointingDeviceCurrentPoint { get; set; }
-        #endregion
-
-        // - インターナル・イベントハンドラ
-
-        public void OnTilesetImageTapped(Point tappedPoint)
-        {
-            // 反転
-            this.IsMouseDragging = !this.IsMouseDragging;
-
-            if (this.IsMouseDragging)
-            {
-                //
-                // 疑似マウス・ダウン
-                // ==================
-                //
-                Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
-
-                // ポイントしている位置
-                this.PointingDeviceCurrentPoint = this.Invisible.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
-                    new Models.Geometric.XFloat((float)tappedPoint.X),
-                    new Models.Geometric.YFloat((float)tappedPoint.Y));
-                // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
-
-                // タイル・フォームの表示更新
-                this.RefreshTileForm();
-
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
-            }
-            else
-            {
-                //
-                // 疑似マウス・アップ
-                // ==================
-                //
-
-                Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
-
-                // ポイントしている位置
-                this.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
-                    new Models.Geometric.XFloat((float)tappedPoint.X),
-                    new Models.Geometric.YFloat((float)tappedPoint.Y));
-                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
-
-                // タイル・フォームの表示更新
-                this.RefreshTileForm();
-
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
-            }
-        }
-
-        public void OnTilesetImagePointerMove(Point tappedPoint)
-        {
-            if (this.IsMouseDragging)
-            {
-                //
-                // 疑似マウス・ドラッグ
-                // ====================
-                //
-
-                // ポイントしている位置
-                this.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
-                    new Models.Geometric.XFloat((float)tappedPoint.X),
-                    new Models.Geometric.YFloat((float)tappedPoint.Y));
-                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
-
-                // タイル・フォームの表示更新
-                this.RefreshTileForm();
-
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
-            }
-        }
-
-        // - インターナル・メソッド
+        // - インターナル変更通知メソッド
 
         #region メソッド（［タイルセット設定］　関連）
         /// <summary>
@@ -1827,6 +1603,21 @@ using _2D_RPG_Negiramen.Models.Visually;
             OnPropertyChanged(nameof(TilesetSettingsVM));
         }
         #endregion
+
+        #region インターナル変更通知メソッド（［切抜きカーソルが指すタイル］　関連）
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］
+        /// </summary>
+        internal void InvalidateTarget()
+        {
+            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
+        }
+        #endregion
+
+        // - インターナル・メソッド
 
         #region メソッド（［切抜きカーソル］　関連）
         /// <summary>
@@ -2021,6 +1812,10 @@ using _2D_RPG_Negiramen.Models.Visually;
         }
         #endregion
 
+        #region メソッド（タイル・フォーム更新）
+        /// <summary>
+        ///     タイル・フォーム更新
+        /// </summary>
         internal void RefreshTileForm()
         {
             //
@@ -2031,7 +1826,7 @@ using _2D_RPG_Negiramen.Models.Visually;
             // ズームしたまま
             RectangleFloat workingRect = Models.CoordinateHelper.GetCursorRectangle(
                 startPoint: this.Invisible.PointingDeviceStartPoint,
-                endPoint: this.PointingDeviceCurrentPoint,
+                endPoint: this.Invisible.PointingDeviceCurrentPoint,
                 gridLeftTop: this.WorkingGridPhase,
                 gridTile: this.WorkingGridUnit);
 
@@ -2078,17 +1873,230 @@ using _2D_RPG_Negiramen.Models.Visually;
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
             OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
         }
+        #endregion
 
-        #region メソッド（変更通知を送る）
+        // - インターナル・インベントハンドラ
+
+        #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
         /// <summary>
-        ///     変更通知を送る
+        ///     別ページから、このページに訪れたときに呼び出される
         /// </summary>
-        internal void NotifyTarget()
+        internal void OnNavigatedTo(SKCanvasView skiaTilesetCanvas1)
         {
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
+            Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ページ来訪時");
+            this.ReactOnVisited();
+
+            //
+            // タイル設定ファイルの読込
+            // ========================
+            //
+            if (TilesetDatatableVisually.LoadCSV(
+                tilesetDatatableFileLocation: this.TilesetDatatableFileLocation,
+                zoom: this.Zoom,
+                tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
+            {
+                this.TilesetSettingsVM = tilesetDatatableVisually;
+
+#if DEBUG
+                // ファイルの整合性チェック（重い処理）
+                if (this.TilesetSettingsVM.IsValid())
+                {
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {this.TilesetDatatableFileLocation.Path.AsStr}");
+                }
+                else
+                {
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {this.TilesetDatatableFileLocation.Path.AsStr}");
+                }
+#endif
+
+                //// 登録タイルのデバッグ出力
+                //foreach (var record in context.TilesetSettings.RecordList)
+                //{
+                //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
+                //}
+            }
+
+            //
+            // タイルセット画像ファイルへのパスを取得
+            //
+            var tilesetImageFilePathAsStr = this.TilesetImageFilePathAsStr;
+
+            //
+            // タイルセット画像の読込、作業中タイルセット画像の書出
+            // ====================================================
+            //
+            var task = Task.Run(async () =>
+            {
+                try
+                {
+                    // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
+                    using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
+                    {
+#if IOS || ANDROID || MACCATALYST
+                    // PlatformImage isn't currently supported on Windows.
+                    
+                    TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
+#elif WINDOWS
+                        TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
+#endif
+
+                        //
+                        // 作業中のタイルセット画像の保存
+                        //
+                        if (image != null)
+                        {
+                            // ディレクトリーが無ければ作成する
+                            var folder = App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder;
+                            folder.CreateThisDirectoryIfItDoesNotExist();
+
+                            // 書出先（ウィンドウズ・ローカルＰＣ）
+                            using (Stream outputFileStream = System.IO.File.Open(folder.WorkingTilesetPng.Path.AsStr, FileMode.OpenOrCreate))
+                            {
+                                image.Save(outputFileStream);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // TODO エラー対応どうする？
+                }
+
+                // ↓ SkiaSharp の流儀
+                try
+                {
+                    // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
+                    using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
+                    {
+                        // ↓ １つのストリームが使えるのは、１回切り
+                        using (var memStream = new MemoryStream())
+                        {
+                            await inputFileStream.CopyToAsync(memStream);
+                            memStream.Seek(0, SeekOrigin.Begin);
+
+                            // 元画像
+                            this.SetTilesetSourceBitmap(SkiaSharp.SKBitmap.Decode(memStream));
+
+                            // 複製
+                            this.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
+
+                            // 画像処理（明度を下げる）
+                            FeatSkia.ReduceBrightness.DoItInPlace(this.TilesetWorkingBitmap);
+                        };
+
+                        // 再描画
+                        skiaTilesetCanvas1.InvalidateSurface();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // TODO エラー対応どうする？
+                }
+            });
+
+            Task.WaitAll(new Task[] { task });
+        }
+        #endregion
+
+        #region イベントハンドラ（［追加］ボタン　クリック時）
+        /// <summary>
+        ///     ［追加］ボタン　クリック時
+        /// </summary>
+        internal void OnAddsButtonClicked()
+        {
+            if (this.Invisible.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+            {
+                // Ｉｄが空欄
+                // ［追加］（新規作成）だ
+
+                // 登録タイル追加
+                this.AddRegisteredTile();
+            }
+            else
+            {
+                // 上書きボタンだが、［上書き］処理をする
+                this.OverwriteRegisteredTile();
+            }
+        }
+        #endregion
+
+        #region イベントハンドラ（タイルセット画像上でタップ時）
+        /// <summary>
+        ///     タイルセット画像上でタップ時
+        /// </summary>
+        /// <param name="tappedPoint"></param>
+        public void OnTilesetImageTapped(Point tappedPoint)
+        {
+            // 反転
+            this.IsMouseDragging = !this.IsMouseDragging;
+
+            if (this.IsMouseDragging)
+            {
+                //
+                // 疑似マウス・ダウン
+                // ==================
+                //
+                Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
+
+                // ポイントしている位置
+                this.Invisible.PointingDeviceCurrentPoint = this.Invisible.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+            }
+            else
+            {
+                //
+                // 疑似マウス・アップ
+                // ==================
+                //
+
+                Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
+
+                // ポイントしている位置
+                this.Invisible.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+            }
+        }
+        #endregion
+
+        #region イベントハンドラ（タイルセット画像上でポインター移動）
+        /// <summary>
+        ///     タイルセット画像上でポインター移動
+        /// </summary>
+        /// <param name="tappedPoint"></param>
+        public void OnTilesetImagePointerMove(Point tappedPoint)
+        {
+            if (this.IsMouseDragging)
+            {
+                //
+                // 疑似マウス・ドラッグ
+                // ====================
+                //
+
+                // ポイントしている位置
+                this.Invisible.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+            }
         }
         #endregion
 
