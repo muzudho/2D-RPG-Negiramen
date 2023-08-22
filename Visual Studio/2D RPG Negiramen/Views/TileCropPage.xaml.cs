@@ -45,10 +45,6 @@ public partial class TileCropPage : ContentPage
     public ITileCropPageViewModel TileCropPageVM => (ITileCropPageViewModel)this.BindingContext;
     #endregion
 
-    // - プライベート・プロパティ
-
-    // - プライベート・メソッド
-
     // - プライベート・イベントハンドラ
 
     #region イベントハンドラ（ページ新規生成時）
@@ -75,125 +71,13 @@ public partial class TileCropPage : ContentPage
     /// <param name="e"></param>
     void thisContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
     {
-        Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ページ来訪時");
-
         //
         // ビューモデルの取得
         // ==================
         //
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.ReactOnVisited();
-
-        //
-        // タイル設定ファイルの読込
-        // ========================
-        //
-        if (TilesetDatatableVisually.LoadCSV(
-            tilesetDatatableFileLocation: context.TilesetDatatableFileLocation,
-            zoom: context.Zoom,
-            tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
-        {
-            context.TilesetSettingsVM = tilesetDatatableVisually;
-
-#if DEBUG
-            // ファイルの整合性チェック（重い処理）
-            if (context.TilesetSettingsVM.IsValid())
-            {
-                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {context.TilesetDatatableFileLocation.Path.AsStr}");
-            }
-            else
-            {
-                Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {context.TilesetDatatableFileLocation.Path.AsStr}");
-            }
-#endif
-
-            //// 登録タイルのデバッグ出力
-            //foreach (var record in context.TilesetSettings.RecordList)
-            //{
-            //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
-            //}
-        }
-
-        //
-        // タイルセット画像ファイルへのパスを取得
-        //
-        var tilesetImageFilePathAsStr = context.TilesetImageFilePathAsStr;
-
-        //
-        // タイルセット画像の読込、作業中タイルセット画像の書出
-        // ====================================================
-        //
-        var task = Task.Run(async () =>
-        {
-            try
-            {
-                // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
-                using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
-                {
-#if IOS || ANDROID || MACCATALYST
-                    // PlatformImage isn't currently supported on Windows.
-                    
-                    TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
-#elif WINDOWS
-                    TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
-#endif
-
-                    //
-                    // 作業中のタイルセット画像の保存
-                    //
-                    if (image != null)
-                    {
-                        // ディレクトリーが無ければ作成する
-                        var folder = App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder;
-                        folder.CreateThisDirectoryIfItDoesNotExist();
-
-                        // 書出先（ウィンドウズ・ローカルＰＣ）
-                        using (Stream outputFileStream = System.IO.File.Open(folder.WorkingTilesetPng.Path.AsStr, FileMode.OpenOrCreate))
-                        {
-                            image.Save(outputFileStream);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // TODO エラー対応どうする？
-            }
-
-            // ↓ SkiaSharp の流儀
-            try
-            {
-                // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
-                using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
-                {
-                    // ↓ １つのストリームが使えるのは、１回切り
-                    using (var memStream = new MemoryStream())
-                    {
-                        await inputFileStream.CopyToAsync(memStream);
-                        memStream.Seek(0, SeekOrigin.Begin);
-
-                        // 元画像
-                        context.SetTilesetSourceBitmap(SkiaSharp.SKBitmap.Decode(memStream));
-
-                        // 複製
-                        context.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(context.TilesetSourceBitmap));
-
-                        // 画像処理（明度を下げる）
-                        FeatSkia.ReduceBrightness.DoItInPlace(context.TilesetWorkingBitmap);
-                    };
-
-                    // 再描画
-                    this.skiaTilesetCanvas1.InvalidateSurface();
-                }
-            }
-            catch (Exception ex)
-            {
-                // TODO エラー対応どうする？
-            }
-        });
-
-        Task.WaitAll(new Task[] { task });
+        context.OnNavigatedTo(this.skiaTilesetCanvas1);
     }
     #endregion
 
