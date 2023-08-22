@@ -1772,24 +1772,18 @@
         /// </summary>
         internal void TrickRefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
         {
-            int offset;
-
-            if (((int)this.croppedCursorPointedTileWorkingWidthWithoutTrick.AsFloat) % 2 == 1) // FIXME 浮動小数点型の剰余は無理がある
+            if (this.TrickWidth.AsFloat == 1.0f)
             {
-                // Trace.WriteLine($"{codePlace} 幅 {this._tileCursorCanvasSize.Width.AsInt} から 1 引く");
-                offset = -1;
+                this.TrickWidth = WidthFloat.Zero;
             }
             else
             {
-                // Trace.WriteLine($"{codePlace} 幅 {this._tileCursorCanvasSize.Width.AsInt} へ 1 足す");
-                offset = 1;
+                this.TrickWidth = WidthFloat.One;
             }
-
-            // TODO 循環参照を避けるために、直接フィールドを変更
-            this.CroppedCursorPointedTileWorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(this.croppedCursorPointedTileWorkingWidthWithoutTrick.AsFloat + offset);
 
             // TRICK CODE:
             OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsFloat));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
         }
 
         /// <summary>

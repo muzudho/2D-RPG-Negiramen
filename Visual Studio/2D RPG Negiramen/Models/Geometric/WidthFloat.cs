@@ -190,6 +190,13 @@
         internal static WidthFloat Zero = new(0);
         #endregion
 
+        #region プロパティ（１オブジェクト）
+        /// <summary>
+        /// １オブジェクト
+        /// </summary>
+        internal static WidthFloat One = new(1);
+        #endregion
+
         // - インターナル・プロパティー
 
         #region プロパティ（値。浮動小数点数形式）
