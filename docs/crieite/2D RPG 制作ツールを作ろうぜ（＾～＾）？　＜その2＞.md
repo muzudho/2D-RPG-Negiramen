@@ -3054,4 +3054,13 @@ Working　は変数にしないようにしたい。これも８月下旬にし�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　👆　ひとまず　こう。朝はここまで」  
 
+# 📅 （2023-08-22 tue）アンドゥ・リドゥをやってたのよ
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　アンドゥ・リドゥを　形にしないと　次に進まなくない？」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　その前に　タイル切抜き画面の　トリック・コードが足引っ張ってるので  
+それの改修だぜ」  
+
 ＜書きかけ＞
