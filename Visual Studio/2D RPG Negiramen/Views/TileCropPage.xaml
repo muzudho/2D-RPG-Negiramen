@@ -433,7 +433,7 @@
                         <GraphicsView.Drawable>
                             <modelsDrawing:CroppedCursor BindingContext="{x:Reference thisContentPage}"
                                                     HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"
-                                                    CroppedCursorSize="{Binding TileCropPageVM.CroppedCursorPointedTileWorkingSize}"
+                                                    CroppedCursorSize="{Binding TileCropPageVM.CroppedCursorPointedTileWorkingSizeWithTrick}"
                                                     IsMouseDragging="{Binding TileCropPageVM.IsMouseDragging}"/>
                         </GraphicsView.Drawable>
                     </GraphicsView>

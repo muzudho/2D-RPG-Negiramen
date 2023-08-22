@@ -96,7 +96,7 @@ public interface ITileCropPageViewModel
     ///         <item>線の太さを含まない</item>
     ///     </list>
     /// </summary>
-    Models.Geometric.SizeFloat CroppedCursorPointedTileWorkingSize { get; }
+    Models.Geometric.SizeFloat CroppedCursorPointedTileWorkingSizeWithTrick { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの横幅。線の太さを含まない

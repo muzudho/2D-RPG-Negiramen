@@ -976,10 +976,10 @@
         ///         <item>カーソルの線の幅を含まない</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.SizeFloat CroppedCursorPointedTileWorkingSize
+        public Models.Geometric.SizeFloat CroppedCursorPointedTileWorkingSizeWithTrick
         {
             get => new Models.Geometric.SizeFloat(
-                    width: this.CroppedCursorPointedTileWorkingWidthWithoutTrick,
+                    width: new WidthFloat(this.CroppedCursorPointedTileWorkingWidthWithoutTrick.AsFloat + this.TrickWidth.AsFloat),
                     height: this.CroppedCursorPointedTileWorkingHeight);
         }
 
@@ -1050,7 +1050,7 @@
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsFloat));
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingHeightAsFloat));
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSize));
+                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
 
                     OnPropertyChanged(nameof(CanvasOfCroppedCursorWorkingWidthAsFloat));
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsPresentableText));
@@ -1080,7 +1080,7 @@
                     // キャンバスを再描画後に変更通知
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsFloat));
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingHeightAsFloat));
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSize));
+                    OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
 
                     OnPropertyChanged(nameof(CanvasOfCroppedCursorWorkingHeightAsFloat));
                     OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingHeightAsPresentableText));
@@ -2445,7 +2445,7 @@
                 this.Owner.OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
                 this.Owner.OnPropertyChanged(nameof(CanvasOfCroppedCursorWorkingWidthAsFloat));
                 this.Owner.OnPropertyChanged(nameof(CanvasOfCroppedCursorWorkingHeightAsFloat));
-                this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSize));
+                this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
                 this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsPresentableText));   // TODO これは要るか？
                 this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsPresentableText));   // TODO これは要るか？
                 this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsPresentableText));   // TODO これは要るか？
