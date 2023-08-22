@@ -131,28 +131,11 @@ public partial class TileCropPage : ContentPage
     /// <param name="e">イベント</param>
     void TilesetImage_OnPointerMoved(object sender, PointerEventArgs e)
     {
+        Point tappedPoint = e.GetPosition((Element)sender) ?? Point.Zero;
+
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        if (context.IsMouseDragging)
-        {
-            //
-            // 疑似マウス・ドラッグ
-            // ====================
-            //
-
-            Point? tappedPoint = e.GetPosition((Element)sender) ?? Point.Zero;
-
-            // ポイントしている位置
-            context.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
-                new Models.Geometric.XFloat((float)tappedPoint.Value.X),
-                new Models.Geometric.YFloat((float)tappedPoint.Value.Y));
-            // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
-
-            // タイル・フォームの表示更新
-            context.RefreshTileForm();
-
-            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
-        }
+        context.OnTilesetImagePointerMove(tappedPoint);
     }
 
     /// <summary>

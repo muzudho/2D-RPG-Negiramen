@@ -1801,6 +1801,27 @@ using _2D_RPG_Negiramen.Models.Visually;
             }
         }
 
+        public void OnTilesetImagePointerMove(Point tappedPoint)
+        {
+            if (this.IsMouseDragging)
+            {
+                //
+                // 疑似マウス・ドラッグ
+                // ====================
+                //
+
+                // ポイントしている位置
+                this.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+            }
+        }
 
         // - インターナル・メソッド
 
