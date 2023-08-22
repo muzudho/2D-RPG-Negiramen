@@ -99,7 +99,7 @@
 
                         // 末端にセット（変更通知を呼ぶために）
                         // Ｉｄ
-                        this.Owner.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
+                        this.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
 
                         // 元画像の位置とサイズ
                         this.Owner.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
@@ -133,7 +133,7 @@
                         tileTitle: newValue.Title);
 
                     // （変更通知を送っている）
-                    this.Owner.CroppedCursorPointedTileIdOrEmpty = newValue.Id;
+                    this.CroppedCursorPointedTileIdOrEmpty = newValue.Id;
                     this.Owner.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
                     this.Owner.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
                     this.Owner.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
@@ -143,6 +143,32 @@
 
                 // 変更通知を送りたい
                 this.Owner.NotifyTileIdChange();
+            }
+        }
+
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］のＩｄ
+        /// </summary>
+        public Models.TileIdOrEmpty CroppedCursorPointedTileIdOrEmpty
+        {
+            get
+            {
+                var contents = this.CroppedCursorPointedTileRecordVisually;
+
+                // ［切抜きカーソル］の指すタイル無し時
+                if (contents.IsNone)
+                    return Models.TileIdOrEmpty.Empty;
+
+                return contents.Id;
+            }
+            set
+            {
+                if (this.CroppedCursorPointedTileRecordVisually.Id == value)
+                    return;
+
+                // 差分更新
+                this.Owner.UpdateCroppedCursorPointedTileByDifference(
+                    tileId: value);
             }
         }
         #endregion

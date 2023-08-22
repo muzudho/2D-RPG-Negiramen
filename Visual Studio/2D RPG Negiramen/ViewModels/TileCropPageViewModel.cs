@@ -1195,7 +1195,7 @@
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.Invisible.TargetTileRecordVisually.IsNone && !this.CroppedCursorPointedTileIdOrEmpty.IsEmpty && !this.Invisible.TargetTileRecordVisually.LogicalDelete.AsBool;
+        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.Invisible.TargetTileRecordVisually.IsNone && !this.Invisible.CroppedCursorPointedTileIdOrEmpty.IsEmpty && !this.Invisible.TargetTileRecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
@@ -1468,34 +1468,6 @@
         public float ZoomMinAsFloat => this.zoomMin.AsFloat;
         #endregion
 
-        #region プロパティ（［切抜きカーソルが指すタイル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］のＩｄ
-        /// </summary>
-        public Models.TileIdOrEmpty CroppedCursorPointedTileIdOrEmpty
-        {
-            get
-            {
-                var contents = this.Invisible.CroppedCursorPointedTileRecordVisually;
-
-                // ［切抜きカーソル］の指すタイル無し時
-                if (contents.IsNone)
-                    return Models.TileIdOrEmpty.Empty;
-
-                return contents.Id;
-            }
-            set
-            {
-                if (this.Invisible.CroppedCursorPointedTileRecordVisually.Id == value)
-                    return;
-
-                // 差分更新
-                this.UpdateCroppedCursorPointedTileByDifference(
-                    tileId: value);
-            }
-        }
-        #endregion
-
         // - パブリック・メソッド
 
         #region メソッド（ロケール変更による再描画）
@@ -1580,7 +1552,7 @@
 
             // Ｉｄが空欄でない
             // ［上書き］（更新）だ
-            tileIdOrEmpty = this.CroppedCursorPointedTileIdOrEmpty;
+            tileIdOrEmpty = this.Invisible.CroppedCursorPointedTileIdOrEmpty;
 
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
@@ -1601,7 +1573,7 @@
         {
             App.History.Do(new RemoveRegisteredTileProcessing(
                 owner: this,
-                tileIdOrEmpty: this.CroppedCursorPointedTileIdOrEmpty));
+                tileIdOrEmpty: this.Invisible.CroppedCursorPointedTileIdOrEmpty));
 
             this.OnPropertyChanged(nameof(CanUndo));
             this.OnPropertyChanged(nameof(CanRedo));
@@ -1610,12 +1582,13 @@
 
         // - パブリック・インベントハンドラ
 
+        #region イベントハンドラ（［追加］ボタン　クリック時）
         /// <summary>
         ///     ［追加］ボタン　クリック時
         /// </summary>
         public void OnAddsButtonClicked()
         {
-            if (this.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+            if (this.Invisible.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
@@ -1629,6 +1602,7 @@
                 this.OverwriteRegisteredTile();
             }
         }
+        #endregion
 
         // - インターナル・プロパティ
 
@@ -1842,7 +1816,7 @@
                 // 切抜きカーソル有り時
                 // Ｉｄ未設定時
 
-                if (this.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+                if (this.Invisible.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
                 {
                     // Ｉｄが空欄
                     // ［追加］（新規作成）だ
@@ -2396,7 +2370,7 @@
             public void Do()
             {
                 // ［タイル］のＩｄ変更
-                this.Owner.CroppedCursorPointedTileIdOrEmpty = this.TileIdOrEmpty;
+                this.Owner.Invisible.CroppedCursorPointedTileIdOrEmpty = this.TileIdOrEmpty;
 
                 // ビューの再描画（タイルＩｄ更新）
                 this.Owner.NotifyTileIdChange();
@@ -2462,7 +2436,7 @@
             public void Undo()
             {
                 // ［タイル］のＩｄ消去
-                this.Owner.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
+                this.Owner.Invisible.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
 
                 // ビューの再描画（タイルＩｄ更新）
                 this.Owner.NotifyTileIdChange();
