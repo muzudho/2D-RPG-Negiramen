@@ -1,14 +1,32 @@
 ﻿namespace _2D_RPG_Negiramen.ViewModels
 {
     using CommunityToolkit.Mvvm.ComponentModel;
+    using System.Diagnostics;
 
     /// <summary>
     ///     😁 ［タイル・パレット・ページ］ビューモデル
     /// </summary>
     internal class TilePalettePageViewModel : ObservableObject
     {
-        // - 変更通知プロパティ
 
+        // - その他
+
+        #region その他（生成）
+        /// <summary>
+        ///     生成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
+        ///     </list>
+        /// </summary>
+        public TilePalettePageViewModel()
+        {
+        }
+        #endregion
+
+        // - パブリック変更通知プロパティ
+
+        #region 変更通知プロパティ（画像上のポインティング位置ｘ）
         /// <summary>
         ///     画像上のポインティング位置ｘ
         /// </summary>
@@ -24,7 +42,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（画像上のポインティング位置ｙ）
         /// <summary>
         ///     画像上のポインティング位置ｙ
         /// </summary>
@@ -40,7 +60,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（画像上のタップ位置ｘ）
         /// <summary>
         ///     画像上のタップ位置ｘ
         /// </summary>
@@ -56,7 +78,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（画像上のタップ位置ｙ）
         /// <summary>
         ///     画像上のタップ位置ｙ
         /// </summary>
@@ -72,7 +96,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（ウィンドウ上のポインティング位置ｘ）
         /// <summary>
         ///     ウィンドウ上のポインティング位置ｘ
         /// </summary>
@@ -88,7 +114,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（ウィンドウ上のポインティング位置ｙ）
         /// <summary>
         ///     ウィンドウ上のポインティング位置ｙ
         /// </summary>
@@ -104,7 +132,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（切抜きカーソル。元画像ベースの位置ｘ）
         /// <summary>
         ///     切抜きカーソル。元画像ベースの位置ｘ
         /// </summary>
@@ -130,7 +160,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（切抜きカーソル。元画像ベースの位置ｙ）
         /// <summary>
         ///     切抜きカーソル。元画像ベースの位置ｙ
         /// </summary>
@@ -156,7 +188,9 @@
                 }
             }
         }
+        #endregion
 
+        #region 変更通知プロパティ（矩形カーソル。ズーム済みの位置（マージンとして））
         /// <summary>
         ///     矩形カーソル。ズーム済みの位置（マージンとして）
         /// </summary>
@@ -172,6 +206,7 @@
                 }
             }
         }
+        #endregion
 
         #region 変更通知プロパティ（グリッド全体の左上表示位置）
         Models.Geometric.PointFloat workingGridLeftTop = Models.Geometric.PointFloat.Empty;
@@ -193,18 +228,53 @@
         }
         #endregion
 
-        // - その他
+        // - パブリック・イベントハンドラ
 
+        #region イベントハンドラ（ポインター・ムーブ時）
         /// <summary>
-        ///     生成
-        ///     
-        ///     <list type="bullet">
-        ///         <item>ビュー・モデルのデフォルト・コンストラクターは public 修飾にする必要がある</item>
-        ///     </list>
+        ///     ポインター・ムーブ時
         /// </summary>
-        public TilePalettePageViewModel()
+        public void OnPointedMove(Image image, Point pointerPosition)
         {
+            this.PointingXOnImageAsInt = (int)pointerPosition.X;
+            this.PointingYOnImageAsInt = (int)pointerPosition.Y;
+
+            //Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.X = {image.X}");
+            //Trace.WriteLine($"[TilePalettePage PointerGestureRecognizer_PointerMoved] image.Y = {image.Y}");
+
+            this.PointingXOnWindowAsInt = this.PointingXOnImageAsInt + (int)image.X;
+            this.PointingYOnWindowAsInt = this.PointingYOnImageAsInt + (int)image.Y;
         }
+        #endregion
+
+        #region イベントハンドラ（タップ時）
+        /// <summary>
+        ///     タップ時
+        /// </summary>
+        public void OnTapped(Point tappedPosition)
+        {
+            // タップした位置
+            var tapped = new Models.Geometric.PointFloat(
+                new Models.Geometric.XFloat((float)tappedPosition.X),
+                new Models.Geometric.YFloat((float)tappedPosition.Y));
+            Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tapped.X.AsFloat} y:{tapped.Y.AsFloat}");
+
+            // タイル・カーソルの位置
+            var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(
+                tapped: tapped,
+                gridLeftTop: this.WorkingGridLeftTop,
+                gridTile: new Models.Geometric.SizeFloat(new Models.Geometric.WidthFloat(32), new Models.Geometric.HeightFloat(32)));
+
+            //
+            // 計算値の反映
+            // ============
+            //
+            this.TappedXOnImageAsInt = (int)tapped.X.AsFloat;
+            this.TappedYOnImageAsInt = (int)tapped.Y.AsFloat;
+            this.CroppedCursorPointedTileSourceLeftAsInt = (int)tileCursor.X.AsFloat;
+            this.CroppedCursorPointedTileSourceTopAsInt = (int)tileCursor.Y.AsFloat;
+        }
+        #endregion
 
         // - プライベート・フィールド
 
