@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewInvisibleModels
 {
-    using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models;
+    using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.Visually;
     using _2D_RPG_Negiramen.ViewModels;
     using System.Diagnostics;

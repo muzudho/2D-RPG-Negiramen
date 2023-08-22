@@ -23,6 +23,7 @@ using _2D_RPG_Negiramen.Models.Visually;
     using System.Net;
     using _2D_RPG_Negiramen.FeatSkia;
     using SkiaSharp.Views.Maui.Controls;
+    using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 #endif
 
     /// <summary>
@@ -1594,7 +1595,7 @@ using _2D_RPG_Negiramen.Models.Visually;
 
         // - インターナル変更通知メソッド
 
-        #region メソッド（［タイルセット設定］　関連）
+        #region 変更通知メソッド（［タイルセット設定］　関連）
         /// <summary>
         ///     ［タイルセット設定］ビューモデルに変更あり
         /// </summary>
@@ -1604,7 +1605,7 @@ using _2D_RPG_Negiramen.Models.Visually;
         }
         #endregion
 
-        #region インターナル変更通知メソッド（［切抜きカーソルが指すタイル］　関連）
+        #region 変更通知メソッド（［切抜きカーソルが指すタイル］　関連）
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］
         /// </summary>
@@ -1614,6 +1615,36 @@ using _2D_RPG_Negiramen.Models.Visually;
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
             OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
+        }
+        #endregion
+
+        #region 変更通知メソッド（［履歴］）
+        /// <summary>
+        ///     ［履歴］
+        /// </summary>
+        internal void InvalidateForHistory()
+        {
+            OnPropertyChanged(nameof(CanUndo));
+            OnPropertyChanged(nameof(CanRedo));
+            OnPropertyChanged(nameof(ZoomAsFloat));
+
+            OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
+            OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
+            OnPropertyChanged(nameof(WorkingGridPhase));
+
+            OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
+            OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
+            OnPropertyChanged(nameof(WorkingGridUnit));
+
+            // 切抜きカーソル。ズーム後
+            OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
+            OnPropertyChanged(nameof(CanvasOfCroppedCursorWorkingWidthAsFloat));
+            OnPropertyChanged(nameof(CanvasOfCroppedCursorWorkingHeightAsFloat));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsPresentableText));   // TODO これは要るか？
+            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsPresentableText));   // TODO これは要るか？
+            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsPresentableText));   // TODO これは要るか？
+            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingHeightAsPresentableText));   // TODO これは要るか？
         }
         #endregion
 
@@ -1872,6 +1903,88 @@ using _2D_RPG_Negiramen.Models.Visually;
             // タイルセット タイトル
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
             OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+        }
+        #endregion
+
+        #region メソッド（［タイルセット作業画像］　関連）
+        /// <summary>
+        ///     ［タイルセット作業画像］の再作成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///     </list>
+        /// </summary>
+        internal void RemakeWorkingTilesetImage()
+        {
+            // 元画像をベースに、作業画像を複製
+            var temporaryBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
+
+            // 画像処理（明度を下げる）
+            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
+
+            // 作業画像のサイズ計算
+            this.workingImageSize = new Models.Geometric.SizeInt(
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Height.AsInt)));
+
+            // 作業画像のリサイズ
+            this.TilesetWorkingBitmap = temporaryBitmap.Resize(
+                size: new SKSizeI(
+                    width: this.workingImageSize.Width.AsInt,
+                    height: this.workingImageSize.Height.AsInt),
+                quality: SKFilterQuality.Medium);
+
+            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
+            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
+        }
+        #endregion
+
+        #region メソッド（［元画像グリッド］　関連）
+        /// <summary>
+        ///     ［元画像グリッド］のキャンバス画像の再作成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
+        ///     </list>
+        /// </summary>
+        internal void RemakeGridCanvasImage()
+        {
+            this.GridCanvasImageSize = new Models.Geometric.SizeInt(
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
+        }
+        #endregion
+
+        #region メソッド（［作業グリッド］　関連）
+        /// <summary>
+        ///     ［作業グリッド］タイル横幅の再計算
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///     </list>
+        /// </summary>
+        internal void RefreshWorkingGridTileWidth()
+        {
+            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
+
+            OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
+            OnPropertyChanged(nameof(WorkingGridUnit));
+        }
+
+        /// <summary>
+        ///     ［作業グリッド］タイル縦幅の再計算
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///     </list>
+        /// </summary>
+        internal void RefreshWorkingGridTileHeight()
+        {
+            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
+
+            OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
+            OnPropertyChanged(nameof(WorkingGridUnit));
         }
         #endregion
 
@@ -2263,33 +2376,6 @@ using _2D_RPG_Negiramen.Models.Visually;
 
             OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
         }
-
-        /// <summary>
-        ///     ［タイルセット作業画像］の再作成
-        /// </summary>
-        void RemakeWorkingTilesetImage()
-        {
-            // 元画像をベースに、作業画像を複製
-            var temporaryBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
-
-            // 画像処理（明度を下げる）
-            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
-
-            // 作業画像のサイズ計算
-            this.workingImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Height.AsInt)));
-
-            // 作業画像のリサイズ
-            this.TilesetWorkingBitmap = temporaryBitmap.Resize(
-                size: new SKSizeI(
-                    width: this.workingImageSize.Width.AsInt,
-                    height: this.workingImageSize.Height.AsInt),
-                quality: SKFilterQuality.Medium);
-
-            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
-            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
-        }
         #endregion
 
         #region メソッド（［元画像グリッド］　関連）
@@ -2313,177 +2399,9 @@ using _2D_RPG_Negiramen.Models.Visually;
                 this.GridCanvasImageWidthAsInt++;
             }
         }
-
-        /// <summary>
-        ///     ［元画像グリッド］のキャンバス画像の再作成
-        ///     
-        ///     <list type="bullet">
-        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
-        ///     </list>
-        /// </summary>
-        void RemakeGridCanvasImage()
-        {
-            this.GridCanvasImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Invisible.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
-        }
-        #endregion
-
-        #region メソッド（［作業グリッド］　関連）
-        /// <summary>
-        ///     ［作業グリッド］タイル横幅の再計算
-        /// </summary>
-        void RefreshWorkingGridTileWidth()
-        {
-            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
-
-            OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-            OnPropertyChanged(nameof(WorkingGridUnit));
-        }
-
-        /// <summary>
-        ///     ［作業グリッド］タイル縦幅の再計算
-        /// </summary>
-        void RefreshWorkingGridTileHeight()
-        {
-            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
-
-            OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-            OnPropertyChanged(nameof(WorkingGridUnit));
-        }
         #endregion
 
         // - プライベート・クラス
-
-        #region クラス（［ズーム］処理）
-        /// <summary>
-        ///     ［ズーム］処理
-        /// </summary>
-        class ZoomProcessing : IProcessing
-        {
-            // - その他
-
-            /// <summary>
-            ///     生成
-            /// </summary>
-            /// <param name="oldValue">変更前の値</param>
-            /// <param name="newValue">変更後の値</param>
-            internal ZoomProcessing(TileCropPageViewModel owner, Zoom oldValue, Zoom newValue)
-            {
-                this.Owner = owner;
-                this.OldValue = oldValue;
-                this.NewValue = newValue;
-            }
-
-            // - パブリック・メソッド
-
-            /// <summary>
-            ///     ドゥ
-            /// </summary>
-            public void Do()
-            {
-                this.Owner.Zoom = this.NewValue;
-
-                this.AfterChanged();
-            }
-
-            /// <summary>
-            ///     アンドゥ
-            /// </summary>
-            public void Undo()
-            {
-                this.Owner.Zoom = this.OldValue;
-
-                this.AfterChanged();
-            }
-
-            // - プライベート・プロパティ
-
-            /// <summary>
-            ///     外側のクラス
-            /// </summary>
-            TileCropPageViewModel Owner { get; }
-
-            /// <summary>
-            ///     変更前の値
-            /// </summary>
-            Zoom OldValue { get; }
-
-            /// <summary>
-            ///     変更後の値
-            /// </summary>
-            Zoom NewValue { get; }
-
-            // - プライベート・メソッド
-
-            /// <summary>
-            ///     ［ズーム］変更後の影響
-            /// </summary>
-            void AfterChanged()
-            {
-                // ［タイルセット作業画像］の更新
-                {
-                    // 画像の再作成
-                    this.Owner.RemakeWorkingTilesetImage();
-                }
-
-                // ［元画像グリッド］の更新
-                {
-                    // キャンバス画像の再作成
-                    this.Owner.RemakeGridCanvasImage();
-                }
-
-                // ［作業グリッド］の再計算
-                {
-                    // 横幅
-                    this.Owner.RefreshWorkingGridTileWidth();
-                    // 縦幅
-                    this.Owner.RefreshWorkingGridTileHeight();
-                }
-
-                // ［切抜きカーソルが指すタイル］更新
-                {
-                    //// 位置
-                    //this.Owner.CroppedCursorPointedTileWorkingLocation = new TheGeometric.PointFloat(
-                    //    x: new TheGeometric.XFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.X.AsInt),
-                    //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
-
-                    // サイズ
-                    this.Owner.CroppedCursorPointedTileWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-                    this.Owner.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
-                }
-
-                // 全ての［登録タイル］の更新
-                foreach (var registeredTileVM in this.Owner.TilesetSettingsVM.TileRecordVisuallyList)
-                {
-                    // ズーム
-                    registeredTileVM.Zoom = this.Owner.Zoom;
-                }
-
-                this.Owner.OnPropertyChanged(nameof(CanUndo));
-                this.Owner.OnPropertyChanged(nameof(CanRedo));
-                this.Owner.OnPropertyChanged(nameof(ZoomAsFloat));
-
-                this.Owner.OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
-                this.Owner.OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
-                this.Owner.OnPropertyChanged(nameof(WorkingGridPhase));
-
-                this.Owner.OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-                this.Owner.OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-                this.Owner.OnPropertyChanged(nameof(WorkingGridUnit));
-
-                // 切抜きカーソル。ズーム後
-                this.Owner.OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
-                this.Owner.OnPropertyChanged(nameof(CanvasOfCroppedCursorWorkingWidthAsFloat));
-                this.Owner.OnPropertyChanged(nameof(CanvasOfCroppedCursorWorkingHeightAsFloat));
-                this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
-                this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingLeftAsPresentableText));   // TODO これは要るか？
-                this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingTopAsPresentableText));   // TODO これは要るか？
-                this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsPresentableText));   // TODO これは要るか？
-                this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingHeightAsPresentableText));   // TODO これは要るか？
-            }
-        }
-        #endregion
 
         #region クラス（［登録タイル追加］処理）
         /// <summary>

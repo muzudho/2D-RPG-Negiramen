@@ -3063,4 +3063,14 @@ Working　は変数にしないようにしたい。これも８月下旬にし�
 「　その前に　タイル切抜き画面の　トリック・コードが足引っ張ってるので  
 それの改修だぜ」  
 
+## View Model がでかくなりすぎる
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　ビューモデルがでかくなりすぎる。  
+`View Invisible Models` というフォルダーを作って中身を分けることにするぜ」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　`View History` というフォルダーも作る」  
+
+
 ＜書きかけ＞
