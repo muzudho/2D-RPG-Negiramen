@@ -187,7 +187,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static HeightFloat Empty = new(0);
+        internal static HeightFloat Zero = new(0);
         #endregion
 
         // - インターナル・プロパティー

@@ -92,7 +92,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static SizeFloat Zero = new(WidthFloat.Empty, HeightFloat.Empty);
+        internal static SizeFloat Zero = new(WidthFloat.Zero, HeightFloat.Zero);
         #endregion
 
         // - その他
