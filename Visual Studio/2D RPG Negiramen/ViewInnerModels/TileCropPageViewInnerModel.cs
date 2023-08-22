@@ -6,6 +6,7 @@
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.ViewModels;
     using System.Diagnostics;
+    using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
@@ -30,7 +31,7 @@
         }
         #endregion
 
-        // - インターナル変更通知プロパティ
+        // - パブリック変更通知プロパティ
 
         #region プロパティ（タイルセット設定ビューモデル）
         /// <summary>
@@ -52,6 +53,74 @@
             set
             {
                 this.Owner.TilesetDatatableFileLocation = value;
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（ロケール　関連）
+        /// <summary>
+        ///     現在選択中の文化情報。文字列形式
+        /// </summary>
+        public CultureInfo SelectedCultureInfo
+        {
+            get => this.Owner.SelectedCultureInfo;
+            set
+            {
+                this.Owner.SelectedCultureInfo = value;
+            }
+        }
+        #endregion
+
+        public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithoutTrick
+        {
+            get => this.Owner.CroppedCursorPointedTileWorkingWidthWithoutTrick;
+            set
+            {
+                this.Owner.CroppedCursorPointedTileWorkingWidthWithoutTrick = value;
+            }
+        }
+
+        public Models.Geometric.HeightFloat CroppedCursorPointedTileWorkingHeight
+        {
+            get => this.Owner.CroppedCursorPointedTileWorkingHeight;
+            set
+            {
+                this.Owner.CroppedCursorPointedTileWorkingHeight = value;
+            }
+        }
+
+        #region 変更通知プロパティ（［切抜きカーソルが指すタイル］　関連）
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
+        ///     
+        ///     <list type="bullet">
+        ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
+        ///     </list>
+        /// </summary>
+        public Models.Geometric.RectangleInt CroppedCursorPointedTileSourceRect
+        {
+            get => this.Owner.CroppedCursorPointedTileSourceRect;
+            set
+            {
+                this.Owner.CroppedCursorPointedTileSourceRect = value;
+            }
+        }
+        #endregion
+
+        #region 変更通知プロパティ（［ズーム］　関連）
+        /// <summary>
+        ///     ［ズーム］整数形式
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///     </list>
+        /// </summary>
+        public float ZoomAsFloat
+        {
+            get => this.Owner.ZoomAsFloat;
+            set
+            {
+                this.Owner.ZoomAsFloat = value;
             }
         }
         #endregion
@@ -278,6 +347,20 @@
         internal void InvalidateDeletesButton() => this.Owner.InvalidateDeletesButton();
         #endregion
 
+        #region 変更通知メソッド（［タイルセット設定］　関連）
+        /// <summary>
+        ///     ［タイルセット設定］ビューモデルに変更あり
+        /// </summary>
+        internal void InvalidateTilesetSettingsVM() => this.Owner.InvalidateTilesetSettingsVM();
+        #endregion
+
+        #region 変更通知メソッド（［履歴］）
+        /// <summary>
+        ///     ［履歴］
+        /// </summary>
+        internal void InvalidateForHistory() => this.Owner.InvalidateForHistory();
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（ロケール変更による再描画）
@@ -402,7 +485,7 @@
         public void RemoveRegisteredTile()
         {
             App.History.Do(new RemoveRegisteredTileProcessing(
-                owner: this.Owner,
+                inner: this,
                 tileIdOrEmpty: this.CroppedCursorPointedTileIdOrEmpty));
 
             this.Owner.InvalidateForHistory();
@@ -430,6 +513,41 @@
                 this.Owner.RemakeGridCanvasImage();
             }
         }
+        #endregion
+
+        #region メソッド（［タイルセット作業画像］　関連）
+        /// <summary>
+        ///     ［タイルセット作業画像］の再作成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///     </list>
+        /// </summary>
+        internal void RemakeWorkingTilesetImage() => this.Owner.RemakeWorkingTilesetImage();
+        #endregion
+
+        #region メソッド（［元画像グリッド］　関連）
+        /// <summary>
+        ///     ［元画像グリッド］のキャンバス画像の再作成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
+        ///     </list>
+        /// </summary>
+        internal void RemakeGridCanvasImage() => this.Owner.RemakeGridCanvasImage();
+        #endregion
+
+        #region メソッド（［作業グリッド］　関連）
+        /// <summary>
+        ///     ［作業グリッド］タイル横幅の再計算
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///     </list>
+        /// </summary>
+        internal void RefreshWorkingGridTileWidth() => this.Owner.RefreshWorkingGridTileWidth();
+        internal void RefreshWorkingGridTileHeight() => this.Owner.RefreshWorkingGridTileHeight();
         #endregion
 
         // - プライベート・プロパティ

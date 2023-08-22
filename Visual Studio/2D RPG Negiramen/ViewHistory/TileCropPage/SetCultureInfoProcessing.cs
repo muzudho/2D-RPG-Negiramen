@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.ViewModels;
+using _2D_RPG_Negiramen.ViewInnerModels;
 using System.Globalization;
 
 /// <summary>
@@ -15,11 +15,11 @@ internal class SetCultureInfoProcessing : IProcessing
     ///     生成
     /// </summary>
     internal SetCultureInfoProcessing(
-        TileCropPageViewModel owner,
+        TileCropPageViewInnerModel inner,
         CultureInfo oldValue,
         CultureInfo newValue)
     {
-        this.Owner = owner;
+        this.Inner = inner;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -29,7 +29,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.Owner.SelectedCultureInfo = this.NewValue;
+        this.Inner.SelectedCultureInfo = this.NewValue;
     }
 
     /// <summary>
@@ -37,15 +37,15 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.Owner.SelectedCultureInfo = this.OldValue;
+        this.Inner.SelectedCultureInfo = this.OldValue;
     }
 
     // - プライベート・プロパティ
 
     /// <summary>
-    ///     外側のクラス
+    ///     内部クラス
     /// </summary>
-    TileCropPageViewModel Owner { get; }
+    TileCropPageViewInnerModel Inner { get; }
 
     CultureInfo OldValue { get; }
 

@@ -14,13 +14,13 @@
     using TheGraphics = Microsoft.Maui.Graphics;
 
 #if IOS || ANDROID || MACCATALYST
-using Microsoft.Maui.Graphics.Platform;
-using _2D_RPG_Negiramen.Models.Geometric;
-using _2D_RPG_Negiramen.Models.Visually;
+    using Microsoft.Maui.Graphics.Platform;
+    using _2D_RPG_Negiramen.Models.Geometric;
+    using _2D_RPG_Negiramen.Models.Visually;
+    using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 #elif WINDOWS
     using Microsoft.Maui.Graphics.Win2D;
     using System.Net;
-    using _2D_RPG_Negiramen.FeatSkia;
     using SkiaSharp.Views.Maui.Controls;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 #endif
@@ -72,7 +72,7 @@ using _2D_RPG_Negiramen.Models.Visually;
 
                     // 再帰的
                     App.History.Do(new SetCultureInfoProcessing(
-                        owner: this,
+                        inner: this.Inner,
                         oldValue: oldValue,
                         newValue: newValue));
                 }
@@ -167,7 +167,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                         this.zoom = newValue;
 
                         // 再帰的にズーム再変更、かつ変更後の影響を処理
-                        App.History.Do(new ZoomProcessing(this, oldValue, newValue));
+                        App.History.Do(new ZoomProcessing(this.Inner, oldValue, newValue));
                     }
                 }
             }
@@ -1020,10 +1020,7 @@ using _2D_RPG_Negiramen.Models.Visually;
 
         public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithoutTrick
         {
-            get
-            {
-                return this.croppedCursorPointedTileWorkingWidthWithoutTrick;
-            }
+            get => this.croppedCursorPointedTileWorkingWidthWithoutTrick;
             set
             {
                 this.croppedCursorPointedTileWorkingWidthWithoutTrick = value;
@@ -1032,10 +1029,7 @@ using _2D_RPG_Negiramen.Models.Visually;
 
         public Models.Geometric.HeightFloat CroppedCursorPointedTileWorkingHeight
         {
-            get
-            {
-                return this.croppedCursorPointedTileWorkingHeight;
-            }
+            get => this.croppedCursorPointedTileWorkingHeight;
             set
             {
                 this.croppedCursorPointedTileWorkingHeight = value;

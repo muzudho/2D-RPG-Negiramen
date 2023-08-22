@@ -2,7 +2,7 @@
 
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.ViewModels;
+using _2D_RPG_Negiramen.ViewInnerModels;
 using System.Diagnostics;
 
 /// <summary>
@@ -15,10 +15,10 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// </summary>
     /// <param name="owner"></param>
     internal RemoveRegisteredTileProcessing(
-        TileCropPageViewModel owner,
+        TileCropPageViewInnerModel inner,
         TileIdOrEmpty tileIdOrEmpty)
     {
-        this.Owner = owner;
+        this.Inner = inner;
         TileIdOrEmpty = tileIdOrEmpty;
     }
 
@@ -30,12 +30,12 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルを論理削除
         //
-        if (this.Owner.TilesetSettingsVM.DeleteLogical(
+        if (this.Inner.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.Owner.InvalidateTilesetSettingsVM();
+            this.Inner.InvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -44,7 +44,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
+        if (this.Inner.TilesetSettingsVM.SaveCSV(this.Inner.TilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -57,7 +57,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Owner.InvalidateForTileAdd();
+        this.Inner.InvalidateForTileAdd();
     }
 
     public void Undo()
@@ -68,12 +68,12 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルの論理削除の取消
         //
-        if (this.Owner.TilesetSettingsVM.UndeleteLogical(
+        if (this.Inner.TilesetSettingsVM.UndeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.Owner.InvalidateTilesetSettingsVM();
+            this.Inner.InvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -82,7 +82,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
+        if (this.Inner.TilesetSettingsVM.SaveCSV(this.Inner.TilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -95,15 +95,15 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Owner.InvalidateForTileAdd();
+        this.Inner.InvalidateForTileAdd();
     }
 
     // - プライベート・プロパティ
 
     /// <summary>
-    ///     外側のクラス
+    ///     内部クラス
     /// </summary>
-    TileCropPageViewModel Owner { get; }
+    TileCropPageViewInnerModel Inner { get; }
 
     /// <summary>
     ///     ［タイル］のＩｄ

@@ -2,7 +2,7 @@
 
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.ViewModels;
+using _2D_RPG_Negiramen.ViewInnerModels;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
@@ -17,9 +17,9 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
-    internal ZoomProcessing(TileCropPageViewModel owner, Zoom oldValue, Zoom newValue)
+    internal ZoomProcessing(TileCropPageViewInnerModel inner, Zoom oldValue, Zoom newValue)
     {
-        this.Owner = owner;
+        this.Inner = inner;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -31,7 +31,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.Owner.Zoom = this.NewValue;
+        this.Inner.Zoom = this.NewValue;
 
         this.AfterChanged();
     }
@@ -41,7 +41,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.Owner.Zoom = this.OldValue;
+        this.Inner.Zoom = this.OldValue;
 
         this.AfterChanged();
     }
@@ -49,9 +49,9 @@ internal class ZoomProcessing : IProcessing
     // - プライベート・プロパティ
 
     /// <summary>
-    ///     外側のクラス
+    ///     内部クラス
     /// </summary>
-    TileCropPageViewModel Owner { get; }
+    TileCropPageViewInnerModel Inner { get; }
 
     /// <summary>
     ///     変更前の値
@@ -73,21 +73,21 @@ internal class ZoomProcessing : IProcessing
         // ［タイルセット作業画像］の更新
         {
             // 画像の再作成
-            this.Owner.RemakeWorkingTilesetImage();
+            this.Inner.RemakeWorkingTilesetImage();
         }
 
         // ［元画像グリッド］の更新
         {
             // キャンバス画像の再作成
-            this.Owner.RemakeGridCanvasImage();
+            this.Inner.RemakeGridCanvasImage();
         }
 
         // ［作業グリッド］の再計算
         {
             // 横幅
-            this.Owner.RefreshWorkingGridTileWidth();
+            this.Inner.RefreshWorkingGridTileWidth();
             // 縦幅
-            this.Owner.RefreshWorkingGridTileHeight();
+            this.Inner.RefreshWorkingGridTileHeight();
         }
 
         // ［切抜きカーソルが指すタイル］更新
@@ -98,18 +98,18 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Owner.CroppedCursorPointedTileWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.Owner.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Inner.CroppedCursorPointedTileWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Inner.ZoomAsFloat * this.Inner.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.Inner.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Inner.ZoomAsFloat * this.Inner.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.Owner.TilesetSettingsVM.TileRecordVisuallyList)
+        foreach (var registeredTileVM in this.Inner.TilesetSettingsVM.TileRecordVisuallyList)
         {
             // ズーム
-            registeredTileVM.Zoom = this.Owner.Zoom;
+            registeredTileVM.Zoom = this.Inner.Zoom;
         }
 
         // 変更通知
-        this.Owner.InvalidateForHistory();
+        this.Inner.InvalidateForHistory();
     }
 }
