@@ -4,6 +4,7 @@
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.History;
     using _2D_RPG_Negiramen.Models.Visually;
+    using _2D_RPG_Negiramen.ViewInvisibleModels;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -107,12 +108,12 @@
         /// <summary>
         ///     ［タイルセット元画像］の横幅。読取専用
         /// </summary>
-        public int TilesetSourceImageWidthAsInt => tilesetSourceImageSize.Width.AsInt;
+        public int TilesetSourceImageWidthAsInt => this.TileCropPageViewInvisibleModel.TilesetSourceImageSize.Width.AsInt;
 
         /// <summary>
         ///     ［タイルセット元画像］の縦幅。読取専用
         /// </summary>
-        public int TilesetSourceImageHeightAsInt => tilesetSourceImageSize.Height.AsInt;
+        public int TilesetSourceImageHeightAsInt => this.TileCropPageViewInvisibleModel.TilesetSourceImageSize.Height.AsInt;
         #endregion
 
         #region 変更通知プロパティ（［タイルセット作業画像］　関連）
@@ -1328,28 +1329,10 @@
 
         #region プロパティ（［タイルセット・データテーブル］　関連）
         /// <summary>
-        ///     ［タイルセット・データテーブル］ファイルへのパス（文字列形式）
-        /// </summary>
-        public string TilesetSettingFilePathAsStr
-        {
-            get => _tilesetSettingsFile.Path.AsStr;
-            set
-            {
-                if (value == null || String.IsNullOrWhiteSpace(value))
-                    throw new ArgumentException($"the {nameof(TilesetSettingFilePathAsStr)} must not be null or whitespace");
-
-                if (_tilesetSettingsFile.Path.AsStr == value)
-                    return;
-
-                _tilesetSettingsFile = new TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv(
-                    pathSource: FileEntryPathSource.FromString(value),
-                    convert: (pathSource) => FileEntryPath.From(pathSource,
-                                                                replaceSeparators: true));
-            }
-        }
-
-        /// <summary>
         ///     ［タイルセット・データテーブル］ファイルの場所
+        ///     <list type="bullet">
+        ///         <item>ページの引数として使用</item>
+        ///     </list>
         /// </summary>
         public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetDatatableFileLocation
         {
@@ -1367,6 +1350,9 @@
         #region プロパティ（［タイルセット元画像］　関連）
         /// <summary>
         ///     ［タイルセット元画像］ファイルへのパス
+        ///     <list type="bullet">
+        ///         <item>ページの引数として使用</item>
+        ///     </list>
         /// </summary>
         public TheFileEntryLocations.UnityAssets.Images.TilesetPng TilesetImageFile
         {
@@ -1382,6 +1368,9 @@
 
         /// <summary>
         ///     ［タイルセット元画像］ファイルへのパス（文字列形式）
+        ///     <list type="bullet">
+        ///         <item>コード・ビハインドで使用</item>
+        ///     </list>
         /// </summary>
         public string TilesetImageFilePathAsStr
         {
@@ -1400,11 +1389,17 @@
 
         /// <summary>
         ///     ［タイルセット元画像］
+        ///     <list type="bullet">
+        ///         <item>コード・ビハインドで使用</item>
+        ///     </list>
         /// </summary>
         public SKBitmap TilesetSourceBitmap => this.tilesetSourceBitmap;
 
         /// <summary>
         ///     ［タイルセット元画像］の設定
+        ///     <list type="bullet">
+        ///         <item>コード・ビハインドで使用</item>
+        ///     </list>
         /// </summary>
         /// <param name="bitmap"></param>
         public void SetTilesetSourceBitmap(SKBitmap bitmap)
@@ -1415,7 +1410,7 @@
             this.tilesetSourceBitmap = bitmap;
 
             // タイルセット画像のサイズ設定（画像の再作成）
-            this.tilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+            this.TileCropPageViewInvisibleModel.TilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
             OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
@@ -1425,11 +1420,6 @@
             // グリッド・キャンバス画像の再作成
             this.RemakeGridCanvasImage();
         }
-
-        /// <summary>
-        ///     ［タイルセット元画像］のサイズ
-        /// </summary>
-        public Models.Geometric.SizeInt TilesetSourceImageSize => tilesetSourceImageSize;
         #endregion
 
         #region プロパティ（［タイルセット作業画像］　関連）
@@ -2068,14 +2058,14 @@
 
         #region フィールド（［タイルセット設定］　関連）
         /// <summary>
-        ///     ［タイルセット設定］のCSVファイル
-        /// </summary>
-        TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv _tilesetSettingsFile = TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv.Empty;
-
-        /// <summary>
         ///     ［タイルセット設定］ビューモデル
         /// </summary>
         TilesetDatatableVisually _tilesetSettingsVM = new();
+
+        /// <summary>
+        ///     ［タイルセット設定］のCSVファイル
+        /// </summary>
+        TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv _tilesetSettingsFile = TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv.Empty;
         #endregion
 
         #region フィールド（［タイルセット元画像］　関連）
@@ -2088,11 +2078,6 @@
         ///     ［タイルセット元画像］ファイルへのパス
         /// </summary>
         TheFileEntryLocations.UnityAssets.Images.TilesetPng tilesetImageFile = TheFileEntryLocations.UnityAssets.Images.TilesetPng.Empty;
-
-        /// <summary>
-        ///     ［タイルセット元画像］サイズ
-        /// </summary>
-        Models.Geometric.SizeInt tilesetSourceImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
         #region フィールド（［タイルセット作業画像］　関連）
@@ -2197,6 +2182,15 @@
         bool isEnabledDeletesButton;
         #endregion
 
+        // - プライベート・プロパティ
+
+        #region プロパティ（見えないモデル）
+        /// <summary>
+        ///     見えないモデル
+        /// </summary>
+        TileCropPageViewInvisibleModel TileCropPageViewInvisibleModel { get; set; } = new TileCropPageViewInvisibleModel();
+        #endregion
+
         // - プライベート・メソッド
 
         #region メソッド（［タイルセット作業画像］　関連）
@@ -2240,8 +2234,8 @@
 
             // 作業画像のサイズ計算
             this.workingImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt)));
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TileCropPageViewInvisibleModel.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TileCropPageViewInvisibleModel.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.TilesetWorkingBitmap = temporaryBitmap.Resize(
@@ -2287,8 +2281,8 @@
         void RemakeGridCanvasImage()
         {
             this.GridCanvasImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TileCropPageViewInvisibleModel.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TileCropPageViewInvisibleModel.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
         }
         #endregion
 
