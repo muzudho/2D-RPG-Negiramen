@@ -1593,6 +1593,15 @@ using _2D_RPG_Negiramen.Models.Visually;
         }
         #endregion
 
+        // - インターナル・プロパティ
+
+        #region プロパティ（見えないモデル）
+        /// <summary>
+        ///     見えないモデル
+        /// </summary>
+        internal TileCropPageViewInvisibleModel Invisible { get; }
+        #endregion
+
         // - インターナル変更通知メソッド
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
@@ -1936,6 +1945,42 @@ using _2D_RPG_Negiramen.Models.Visually;
 
             OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
             OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
+        }
+
+        /// <summary>
+        ///     <pre>
+        ///         ［元画像グリッド］のキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        internal void InvalidateForTileAdd()
+        {
+            if (this.TilesetWorkingImageWidthAsInt % 2 == 1)
+            {
+                this.workingImageSize = new SizeInt(
+                    width: new WidthInt(this.workingImageSize.Width.AsInt - 1),
+                    height: new HeightInt(this.workingImageSize.Height.AsInt));
+            }
+            else
+            {
+                this.workingImageSize = new SizeInt(
+                    width: new WidthInt(this.workingImageSize.Width.AsInt + 1),
+                    height: new HeightInt(this.workingImageSize.Height.AsInt));
+            }
+
+            // タイル タイトル表示欄とか更新したい
+            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+
+            // 追加・削除ボタンの表示状態を更新したい
+            OnPropertyChanged(nameof(AddsButtonHint));
+            OnPropertyChanged(nameof(AddsButtonText));
+            OnPropertyChanged(nameof(IsEnabledAddsButton));
+
+            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
+            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
         }
         #endregion
 
@@ -2338,45 +2383,8 @@ using _2D_RPG_Negiramen.Models.Visually;
         bool isEnabledDeletesButton;
         #endregion
 
-        // - プライベート・プロパティ
-
-        #region プロパティ（見えないモデル）
-        /// <summary>
-        ///     見えないモデル
-        /// </summary>
-        TileCropPageViewInvisibleModel Invisible { get; }
-        #endregion
 
         // - プライベート・メソッド
-
-        #region メソッド（［タイルセット作業画像］　関連）
-        /// <summary>
-        ///     <pre>
-        ///         ［元画像グリッド］のキャンバスの再描画
-        /// 
-        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-        ///                 振動させることで、再描画を呼び起こすことにする
-        ///     </pre>
-        /// </summary>
-        void InvalidateGraphicsViewOfTilesetWorking()
-        {
-            if (this.TilesetWorkingImageWidthAsInt % 2 == 1)
-            {
-                this.workingImageSize = new SizeInt(
-                    width: new WidthInt(this.workingImageSize.Width.AsInt - 1),
-                    height: new HeightInt(this.workingImageSize.Height.AsInt));
-            }
-            else
-            {
-                this.workingImageSize = new SizeInt(
-                    width: new WidthInt(this.workingImageSize.Width.AsInt + 1),
-                    height: new HeightInt(this.workingImageSize.Height.AsInt));
-            }
-
-            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
-        }
-        #endregion
 
         #region メソッド（［元画像グリッド］　関連）
         /// <summary>
@@ -2402,175 +2410,6 @@ using _2D_RPG_Negiramen.Models.Visually;
         #endregion
 
         // - プライベート・クラス
-
-        #region クラス（［登録タイル追加］処理）
-        /// <summary>
-        ///     ［登録タイル追加］処理
-        /// </summary>
-        class AddRegisteredTileProcessing : IProcessing
-        {
-            // - その他
-
-            /// <summary>
-            ///     生成
-            /// </summary>
-            /// <param name="owner"></param>
-            /// <param name="croppedCursorVisually"></param>
-            /// <param name="tileIdOrEmpty"></param>
-            /// <param name="workingRectangle"></param>
-            internal AddRegisteredTileProcessing(
-                TileCropPageViewModel owner,
-                TileRecordVisually croppedCursorVisually,
-                TileIdOrEmpty tileIdOrEmpty,
-                RectangleFloat workingRectangle)
-            {
-                this.Owner = owner;
-                this.CroppedCursorVisually = croppedCursorVisually;
-                this.TileIdOrEmpty = tileIdOrEmpty;
-                this.WorkingRectangle = workingRectangle;
-            }
-
-            // - パブリック・メソッド
-
-            #region メソッド（ドゥ―）
-            /// <summary>
-            ///     ドゥ―
-            /// </summary>
-            public void Do()
-            {
-                // ［タイル］のＩｄ変更
-                this.Owner.Invisible.CroppedCursorPointedTileIdOrEmpty = this.TileIdOrEmpty;
-
-                // ビューの再描画（タイルＩｄ更新）
-                this.Owner.NotifyTileIdChange();
-
-                // リストに登録済みか確認
-                if (!this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
-                {
-                    // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-                    this.Owner.TilesetSettingsVM.AddTileVisually(
-                        id: this.TileIdOrEmpty,
-                        rect: RectangleInt.Empty,
-                        zoom: Zoom.IdentityElement,
-                        title: Models.TileTitle.Empty,
-                        logicalDelete: Models.LogicalDelete.False);
-                }
-
-                //
-                // この時点で、タイルは必ず登録されている
-                //
-
-                // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-                if (this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
-                {
-                    TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
-
-                    // 新・元画像の位置とサイズ
-                    registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
-
-                    // 新・作業画像の位置とサイズ
-                    registeredTileVisually.Zoom = this.Owner.Zoom;
-
-                    // 新・タイル・タイトル
-                    registeredTileVisually.Title = this.CroppedCursorVisually.Title;
-
-                    // 新・論理削除
-                    registeredTileVisually.LogicalDelete = this.CroppedCursorVisually.LogicalDelete;
-                }
-
-                //
-                // 設定ファイルの保存
-                // ==================
-                //
-                if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
-                {
-                    // TODO 保存失敗時のエラー対応
-                }
-
-                //
-                // カラーマップの再描画
-                // ====================
-                //
-                this.Owner.InvalidateGraphicsViewOfTilesetWorking();
-
-                this.Owner.OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
-            }
-            #endregion
-
-            #region メソッド（アンドゥ―）
-            /// <summary>
-            ///     アンドゥ―
-            /// </summary>
-            /// <exception cref="NotImplementedException"></exception>
-            public void Undo()
-            {
-                // ［タイル］のＩｄ消去
-                this.Owner.Invisible.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
-
-                // ビューの再描画（タイルＩｄ更新）
-                this.Owner.NotifyTileIdChange();
-
-                // リストから削除
-                if (!this.Owner.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
-                {
-                    // TODO 成功しなかったら異常
-                    throw new Exception();
-                }
-
-                //
-                // 設定ファイルの保存
-                // ==================
-                //
-                if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
-                {
-                    // TODO 保存失敗時のエラー対応
-                }
-
-                // タイル タイトル表示欄とか更新したい
-                this.Owner.OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
-
-                // 追加・削除ボタンの表示状態を更新したい
-                this.Owner.OnPropertyChanged(nameof(AddsButtonHint));
-                this.Owner.OnPropertyChanged(nameof(AddsButtonText));
-                this.Owner.OnPropertyChanged(nameof(IsEnabledAddsButton));
-
-                //  ［削除］ボタンの再描画
-                this.Owner.InvalidateDeletesButton();
-
-                //
-                // カラーマップの再描画
-                // ====================
-                //
-                //this.coloredMapGraphicsView1.Invalidate();
-                this.Owner.InvalidateGraphicsViewOfTilesetWorking();
-
-                this.Owner.OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
-            }
-            #endregion
-
-            // - プライベート・プロパティ
-
-            /// <summary>
-            ///     外側のクラス
-            /// </summary>
-            TileCropPageViewModel Owner { get; }
-
-            /// <summary>
-            ///     ［切抜きカーソル］に対応
-            /// </summary>
-            TileRecordVisually CroppedCursorVisually { get; }
-
-            /// <summary>
-            ///     ［タイル］のＩｄ
-            /// </summary>
-            TileIdOrEmpty TileIdOrEmpty { get; }
-
-            /// <summary>
-            ///     タイルセット作業画像の位置とサイズ
-            /// </summary>
-            RectangleFloat WorkingRectangle { get; }
-        }
-        #endregion
 
         #region クラス（［登録タイル削除］処理）
         /// <summary>
@@ -2625,7 +2464,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                 // カラーマップの再描画
                 // ====================
                 //
-                this.Owner.InvalidateGraphicsViewOfTilesetWorking();
+                this.Owner.InvalidateForTileAdd();
 
                 this.Owner.OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
             }
@@ -2665,7 +2504,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                 // カラーマップの再描画
                 // ====================
                 //
-                this.Owner.InvalidateGraphicsViewOfTilesetWorking();
+                this.Owner.InvalidateForTileAdd();
 
                 this.Owner.OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
             }
