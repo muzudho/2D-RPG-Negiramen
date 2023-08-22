@@ -171,6 +171,8 @@ public interface ITileCropPageViewModel
     bool IsMouseDragging { get; }
     #endregion
 
+    // - パブリック・メソッド
+
     #region メソッド（［登録タイル］　関連）
     /// <summary>
     ///     ［登録タイル］追加
@@ -182,8 +184,6 @@ public interface ITileCropPageViewModel
     /// </summary>
     void RemoveRegisteredTile();
     #endregion
-
-    // - パブリック・メソッド
 
     #region メソッド（ロケール変更による再描画）
     /// <summary>
@@ -202,4 +202,11 @@ public interface ITileCropPageViewModel
     /// </summary>
     void ReactOnVisited();
     #endregion
+
+    // - パブリック・インベントハンドラ
+
+    /// <summary>
+    ///     ［追加］ボタン　クリック時
+    /// </summary>
+    void OnAddsButtonClicked();
 }

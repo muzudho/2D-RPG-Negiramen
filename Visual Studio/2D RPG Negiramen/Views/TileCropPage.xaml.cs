@@ -346,19 +346,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        if (context.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
-        {
-            // Ｉｄが空欄
-            // ［追加］（新規作成）だ
-
-            // 登録タイル追加
-            context.AddRegisteredTile();
-        }
-        else
-        {
-            // 上書きボタンだが、［上書き］処理をする
-            context.OverwriteRegisteredTile();
-        }
+        context.OnAddsButtonClicked();
     }
     #endregion
 

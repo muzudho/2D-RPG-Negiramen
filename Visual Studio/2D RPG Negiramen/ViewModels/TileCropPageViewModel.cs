@@ -1608,6 +1608,28 @@
         }
         #endregion
 
+        // - パブリック・インベントハンドラ
+
+        /// <summary>
+        ///     ［追加］ボタン　クリック時
+        /// </summary>
+        public void OnAddsButtonClicked()
+        {
+            if (this.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+            {
+                // Ｉｄが空欄
+                // ［追加］（新規作成）だ
+
+                // 登録タイル追加
+                this.AddRegisteredTile();
+            }
+            else
+            {
+                // 上書きボタンだが、［上書き］処理をする
+                this.OverwriteRegisteredTile();
+            }
+        }
+
         // - インターナル・プロパティ
 
         #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
