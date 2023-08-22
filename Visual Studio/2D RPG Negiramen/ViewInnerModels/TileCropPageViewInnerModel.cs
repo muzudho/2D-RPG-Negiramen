@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewInvisibleModels
+﻿namespace _2D_RPG_Negiramen.ViewInnerModels
 {
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
@@ -6,6 +6,7 @@
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.ViewModels;
     using System.Diagnostics;
+    using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
 
     /// <summary>
     ///     内部モデル
@@ -26,6 +27,32 @@
         internal TileCropPageViewInnerModel(TileCropPageViewModel owner)
         {
             this.Owner = owner;
+        }
+        #endregion
+
+        // - インターナル変更通知プロパティ
+
+        #region プロパティ（タイルセット設定ビューモデル）
+        /// <summary>
+        ///     タイルセット設定ビューモデル
+        /// </summary>
+        public TilesetDatatableVisually TilesetSettingsVM => this.Owner.TilesetSettingsVM;
+        #endregion
+
+        #region プロパティ（［タイルセット・データテーブル］　関連）
+        /// <summary>
+        ///     ［タイルセット・データテーブル］ファイルの場所
+        ///     <list type="bullet">
+        ///         <item>ページの引数として使用</item>
+        ///     </list>
+        /// </summary>
+        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetDatatableFileLocation
+        {
+            get => this.Owner.TilesetDatatableFileLocation;
+            set
+            {
+                this.Owner.TilesetDatatableFileLocation = value;
+            }
         }
         #endregion
 
@@ -144,7 +171,7 @@
                 }
 
                 // 変更通知を送りたい
-                this.Owner.NotifyTileIdChange();
+                this.Owner.InvalidateTileIdChange();
             }
         }
 
@@ -205,6 +232,52 @@
         internal Models.Geometric.PointFloat PointingDeviceCurrentPoint { get; set; }
         #endregion
 
+        #region プロパティ（［ズーム］　関連）
+        /// <summary>
+        ///     ズーム
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///         <item>コード・ビハインドで使用</item>
+        ///     </list>
+        /// </summary>
+        public Models.Geometric.Zoom Zoom
+        {
+            get => this.Owner.Zoom;
+            set
+            {
+                this.Owner.Zoom = value;
+            }
+        }
+        #endregion
+
+        // - インターナル変更通知メソッド
+
+        #region 変更通知メソッド（［選択タイル］　関連）
+        /// <summary>
+        ///     ［選択タイル］Ｉｄの再描画
+        /// </summary>
+        internal void InvalidateTileIdChange() => this.Owner.InvalidateTileIdChange();
+        #endregion
+
+        /// <summary>
+        ///     <pre>
+        ///         ［元画像グリッド］のキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        internal void InvalidateForTileAdd() => this.Owner.InvalidateForTileAdd();
+
+        #region メソッド（［削除］ボタン　関連）
+        /// <summary>
+        ///     ［削除］ボタンの再描画
+        /// </summary>
+        internal void InvalidateDeletesButton() => this.Owner.InvalidateDeletesButton();
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（ロケール変更による再描画）
@@ -257,7 +330,7 @@
             }
 
             // 変更通知を送る
-            this.Owner.NotifyTileIdChange();
+            this.Owner.InvalidateTileIdChange();
 
             Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] CroppedCursorPointedTileRecordVisually.Dump(): {this.CroppedCursorPointedTileRecordVisually.Dump()}");
         }
@@ -287,7 +360,7 @@
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
             App.History.Do(new AddRegisteredTileProcessing(
-                owner: this.Owner,
+                inner: this,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
                 workingRectangle: contents.SourceRectangle.Do(this.Owner.Zoom)));
@@ -315,7 +388,7 @@
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
             App.History.Do(new AddRegisteredTileProcessing(
-                owner: this.Owner,
+                inner: this.Owner.Inner,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
                 workingRectangle: contents.SourceRectangle.Do(this.Owner.Zoom)));

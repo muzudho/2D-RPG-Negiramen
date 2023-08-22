@@ -3,7 +3,7 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.Visually;
-    using _2D_RPG_Negiramen.ViewInvisibleModels;
+    using _2D_RPG_Negiramen.ViewInnerModels;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -112,7 +112,7 @@ using _2D_RPG_Negiramen.Models.Visually;
                     OnPropertyChanged(nameof(TilesetSettingsVM));
 
                     // TODO これ要るか？ 再描画
-                    NotifyTileIdChange();
+                    InvalidateTileIdChange();
                 }
             }
         }
@@ -1549,6 +1549,21 @@ using _2D_RPG_Negiramen.Models.Visually;
         }
         #endregion
 
+        #region 変更通知メソッド（［選択タイル］　関連）
+        /// <summary>
+        ///     ［選択タイル］Ｉｄの再描画
+        /// </summary>
+        internal void InvalidateTileIdChange()
+        {
+            OnPropertyChanged(nameof(AddsButtonHint));
+            OnPropertyChanged(nameof(AddsButtonText));
+            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+
+            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
+        }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（［切抜きカーソル］　関連）
@@ -1617,21 +1632,6 @@ using _2D_RPG_Negiramen.Models.Visually;
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);
-        }
-        #endregion
-
-        #region メソッド（［選択タイル］　関連）
-        /// <summary>
-        ///     ［選択タイル］Ｉｄの再描画
-        /// </summary>
-        internal void NotifyTileIdChange()
-        {
-            OnPropertyChanged(nameof(AddsButtonHint));
-            OnPropertyChanged(nameof(AddsButtonText));
-            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
-
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
         }
         #endregion
 

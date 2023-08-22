@@ -1,10 +1,10 @@
 ﻿namespace _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
-using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using _2D_RPG_Negiramen.Models.Visually;
-using _2D_RPG_Negiramen.ViewModels;
+using _2D_RPG_Negiramen.ViewInnerModels;
 
 /// <summary>
 ///     ［登録タイル追加］処理
@@ -16,17 +16,17 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="owner"></param>
+    /// <param name="inner"></param>
     /// <param name="croppedCursorVisually"></param>
     /// <param name="tileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
-        TileCropPageViewModel owner,
+        TileCropPageViewInnerModel inner,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
-        this.Owner = owner;
+        this.Inner = inner;
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
         this.WorkingRectangle = workingRectangle;
@@ -41,16 +41,16 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.Owner.Inner.CroppedCursorPointedTileIdOrEmpty = this.TileIdOrEmpty;
+        this.Inner.CroppedCursorPointedTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.Owner.NotifyTileIdChange();
+        this.Inner.InvalidateTileIdChange();
 
         // リストに登録済みか確認
-        if (!this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
+        if (!this.Inner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
         {
             // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.Owner.TilesetSettingsVM.AddTileVisually(
+            this.Inner.TilesetSettingsVM.AddTileVisually(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 zoom: Zoom.IdentityElement,
@@ -63,7 +63,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         //
 
         // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.Owner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
+        if (this.Inner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
         {
             TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
@@ -71,7 +71,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.Owner.Zoom;
+            registeredTileVisually.Zoom = this.Inner.Zoom;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
@@ -84,7 +84,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
+        if (!this.Inner.TilesetSettingsVM.SaveCSV(this.Inner.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -93,7 +93,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Owner.InvalidateForTileAdd();
+        this.Inner.InvalidateForTileAdd();
     }
     #endregion
 
@@ -105,13 +105,13 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.Owner.Inner.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
+        this.Inner.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.Owner.NotifyTileIdChange();
+        this.Inner.InvalidateTileIdChange();
 
         // リストから削除
-        if (!this.Owner.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
+        if (!this.Inner.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
         {
             // TODO 成功しなかったら異常
             throw new Exception();
@@ -121,29 +121,29 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Owner.TilesetSettingsVM.SaveCSV(this.Owner.TilesetDatatableFileLocation))
+        if (!this.Inner.TilesetSettingsVM.SaveCSV(this.Inner.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
 
         //  ［削除］ボタンの再描画
-        this.Owner.InvalidateDeletesButton();
+        this.Inner.InvalidateDeletesButton();
 
         //
         // カラーマップの再描画
         // ====================
         //
         //this.coloredMapGraphicsView1.Invalidate();
-        this.Owner.InvalidateForTileAdd();
+        this.Inner.InvalidateForTileAdd();
     }
     #endregion
 
     // - プライベート・プロパティ
 
     /// <summary>
-    ///     外側のクラス
+    ///     内部モデル
     /// </summary>
-    TileCropPageViewModel Owner { get; }
+    TileCropPageViewInnerModel Inner { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応
