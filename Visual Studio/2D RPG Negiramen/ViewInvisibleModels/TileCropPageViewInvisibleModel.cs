@@ -30,8 +30,6 @@
 
         // - インターナル・プロパティ
 
-        TileCropPageViewModel Owner { get; }
-
         #region プロパティ（［タイルセット元画像］　関連）
         /// <summary>
         ///     ［タイルセット元画像］のサイズ
@@ -176,6 +174,22 @@
         }
         #endregion
 
+        #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
+        /// <summary>
+        ///     切抜きカーソルと、既存タイルが交差しているか？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
+        #endregion
+
+        #region プロパティ（切抜きカーソルと、既存タイルは合同か？）
+        /// <summary>
+        ///     切抜きカーソルと、既存タイルは合同か？
+        /// </summary>
+        /// <returns>そうだ</returns>
+        internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
@@ -226,6 +240,10 @@
             Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] CroppedCursorPointedTileRecordVisually.Dump(): {this.CroppedCursorPointedTileRecordVisually.Dump()}");
         }
         #endregion
+
+        // - プライベート・プロパティ
+
+        TileCropPageViewModel Owner { get; }
 
         // - プライベート・フィールド
 

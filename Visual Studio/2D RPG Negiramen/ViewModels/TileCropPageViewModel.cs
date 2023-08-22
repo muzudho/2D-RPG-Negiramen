@@ -1739,22 +1739,6 @@ using _2D_RPG_Negiramen.Models.Visually;
 
         // - インターナル・プロパティ
 
-        #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
-        /// <summary>
-        ///     切抜きカーソルと、既存タイルが交差しているか？
-        /// </summary>
-        /// <returns>そうだ</returns>
-        internal bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; private set; }
-        #endregion
-
-        #region プロパティ（切抜きカーソルと、既存タイルは合同か？）
-        /// <summary>
-        ///     切抜きカーソルと、既存タイルは合同か？
-        /// </summary>
-        /// <returns>そうだ</returns>
-        internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; private set; }
-        #endregion
-
         #region プロパティ（ポインティング・デバイス押下開始位置）
         /// <summary>
         ///     ポインティング・デバイス押下開始位置
@@ -1768,6 +1752,55 @@ using _2D_RPG_Negiramen.Models.Visually;
         /// </summary>
         internal Models.Geometric.PointFloat PointingDeviceCurrentPoint { get; set; }
         #endregion
+
+        // - インターナル・イベントハンドラ
+
+        public void OnTilesetImageTapped(Point tappedPoint)
+        {
+            // 反転
+            this.IsMouseDragging = !this.IsMouseDragging;
+
+            if (this.IsMouseDragging)
+            {
+                //
+                // 疑似マウス・ダウン
+                // ==================
+                //
+                Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
+
+                // ポイントしている位置
+                this.PointingDeviceCurrentPoint = this.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+            }
+            else
+            {
+                //
+                // 疑似マウス・アップ
+                // ==================
+                //
+
+                Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
+
+                // ポイントしている位置
+                this.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+            }
+        }
+
 
         // - インターナル・メソッド
 
@@ -1872,10 +1905,10 @@ using _2D_RPG_Negiramen.Models.Visually;
         internal void InvalidateAddsButton()
         {
             // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-            if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+            if (this.Invisible.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
             {
                 // 合同のときは「交差中」とは表示しない
-                if (!this.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+                if (!this.Invisible.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
                 {
                     // 「交差中」
                     // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
@@ -1961,16 +1994,16 @@ using _2D_RPG_Negiramen.Models.Visually;
             if (this.CroppedCursorPointedTileSourceRect == TheGeometric.RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
-                this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
-                this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
+                this.Invisible.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.Invisible.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
                 return;
             }
 
             // 軽くはない処理
-            this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
-            this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
+            this.Invisible.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
+            this.Invisible.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
 
-            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
+            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.Invisible.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.Invisible.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
         #endregion
 
@@ -2032,6 +2065,7 @@ using _2D_RPG_Negiramen.Models.Visually;
             OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
         }
 
+        #region メソッド（変更通知を送る）
         /// <summary>
         ///     変更通知を送る
         /// </summary>
@@ -2042,6 +2076,7 @@ using _2D_RPG_Negiramen.Models.Visually;
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
             OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
         }
+        #endregion
 
         // - プライベート・フィールド
 

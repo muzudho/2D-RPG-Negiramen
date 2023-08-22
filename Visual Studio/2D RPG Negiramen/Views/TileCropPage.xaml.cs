@@ -117,52 +117,11 @@ public partial class TileCropPage : ContentPage
     /// <param name="e">イベント</param>
     void TilesetImage_OnTapped(object sender, TappedEventArgs e)
     {
+        Point tappedPoint = e.GetPosition((Element)sender) ?? Point.Zero;
+
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        // 反転
-        context.IsMouseDragging = !context.IsMouseDragging;
-
-        Point? tappedPoint = e.GetPosition((Element)sender) ?? Point.Zero;
-
-        if (context.IsMouseDragging)
-        {
-            //
-            // 疑似マウス・ダウン
-            // ==================
-            //
-            Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
-
-            // ポイントしている位置
-            context.PointingDeviceCurrentPoint = context.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
-                new Models.Geometric.XFloat((float)tappedPoint.Value.X),
-                new Models.Geometric.YFloat((float)tappedPoint.Value.Y));
-            // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
-
-            // タイル・フォームの表示更新
-            context.RefreshTileForm();
-
-            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
-        }
-        else
-        {
-            //
-            // 疑似マウス・アップ
-            // ==================
-            //
-
-            Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
-
-            // ポイントしている位置
-            context.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
-                new Models.Geometric.XFloat((float)tappedPoint.Value.X),
-                new Models.Geometric.YFloat((float)tappedPoint.Value.Y));
-            // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
-
-            // タイル・フォームの表示更新
-            context.RefreshTileForm();
-
-            context.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
-        }
+        context.OnTilesetImageTapped(tappedPoint);
     }
 
     /// <summary>
