@@ -1793,68 +1793,6 @@
         }
         #endregion
 
-        #region メソッド（タイル・フォーム更新）
-        /// <summary>
-        ///     タイル・フォーム更新
-        /// </summary>
-        internal void RefreshTileForm()
-        {
-            //
-            // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
-            // ====================================================================
-            //
-
-            // ズームしたまま
-            RectangleFloat workingRect = Models.CoordinateHelper.GetCursorRectangle(
-                startPoint: this.Inner.PointingDeviceStartPoint,
-                endPoint: this.Inner.PointingDeviceCurrentPoint,
-                gridLeftTop: this.WorkingGridPhase,
-                gridTile: this.WorkingGridUnit);
-
-            // ズームを除去
-            var sourceRect = new RectangleInt(
-                location: new PointInt(
-                    x: new XInt((int)(workingRect.Location.X.AsFloat / this.ZoomAsFloat)),
-                    y: new YInt((int)(workingRect.Location.Y.AsFloat / this.ZoomAsFloat))),
-                size: new SizeInt(
-                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / this.ZoomAsFloat)),
-                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / this.ZoomAsFloat))));
-
-            //
-            // 計算値の反映
-            // ============
-            //
-            // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
-            this.CroppedCursorPointedTileSourceRect = sourceRect;
-
-            //
-            // 登録済みのタイルと被っていないか判定
-            // ====================================
-            //
-            //      - （軽くない処理）
-            //
-            this.RecalculateBetweenCroppedCursorAndRegisteredTile();
-
-            //
-            // 切抜きカーソル更新
-            // ==================
-            //
-            this.LoadCroppedCursorPointedTile();
-
-            // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.RefreshAddsButton2();
-
-            // （切抜きカーソル更新後）［削除］ボタン活性化
-            this.RefreshDeletesButton();
-
-            // ［追加／復元］ボタン
-            this.InvalidateAddsButton();
-
-            // タイル・タイトル
-            this.InvalidateTileTitle();
-        }
-        #endregion
-
         // - インターナル・インベントハンドラ
 
         #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
@@ -2026,7 +1964,7 @@
                 // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
 
                 // タイル・フォームの表示更新
-                this.RefreshTileForm();
+                this.Inner.RefreshTileForm();
 
                 this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
             }
@@ -2046,7 +1984,7 @@
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
                 // タイル・フォームの表示更新
-                this.RefreshTileForm();
+                this.Inner.RefreshTileForm();
 
                 this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
             }
@@ -2074,7 +2012,7 @@
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
                 // タイル・フォームの表示更新
-                this.RefreshTileForm();
+                this.Inner.RefreshTileForm();
 
                 this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
