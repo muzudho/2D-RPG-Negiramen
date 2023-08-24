@@ -374,6 +374,32 @@
         internal void InvalidateLocale() => this.Owner.InvalidateAddsButton();
         #endregion
 
+        #region メソッド（［切抜きカーソル］　関連）
+        /// <summary>
+        ///     <pre>
+        ///         ［切抜きカーソル］ズーム済みのキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        internal void TrickRefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
+        {
+            if (this.Owner.TrickWidth.AsFloat == 1.0f)
+            {
+                this.Owner.TrickWidth = WidthFloat.Zero;
+            }
+            else
+            {
+                this.Owner.TrickWidth = WidthFloat.One;
+            }
+
+            // TRICK CODE:
+            this.Owner.InvalidateCroppedCursor();
+        }
+        #endregion
+
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］を差分更新
@@ -549,6 +575,8 @@
         internal void RefreshWorkingGridTileWidth() => this.Owner.RefreshWorkingGridTileWidth();
         internal void RefreshWorkingGridTileHeight() => this.Owner.RefreshWorkingGridTileHeight();
         #endregion
+
+
 
         // - プライベート・プロパティ
 

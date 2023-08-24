@@ -155,7 +155,7 @@
             get => this.zoom.AsFloat;
             set
             {
-                TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
+                this.Inner.TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                 if (this.zoom.AsFloat != value)
                 {
@@ -1485,10 +1485,15 @@
 
         // - インターナル変更通知メソッド
 
+        #region 変更通知メソッド（文化情報）
+        /// <summary>
+        ///     文化情報
+        /// </summary>
         internal void InvalidateCultureInfo()
         {
             OnPropertyChanged(nameof(SelectedCultureInfo));
         }
+        #endregion
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
         /// <summary>
@@ -1558,34 +1563,20 @@
         }
         #endregion
 
-        // - インターナル・メソッド
-
-        #region メソッド（［切抜きカーソル］　関連）
+        #region 変更通知メソッド（切抜きカーソル）
         /// <summary>
-        ///     <pre>
-        ///         ［切抜きカーソル］ズーム済みのキャンバスの再描画
-        /// 
-        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-        ///                 振動させることで、再描画を呼び起こすことにする
-        ///     </pre>
+        ///     切抜きカーソル
         /// </summary>
-        internal void TrickRefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
+        internal void InvalidateCroppedCursor()
         {
-            if (this.TrickWidth.AsFloat == 1.0f)
-            {
-                this.TrickWidth = WidthFloat.Zero;
-            }
-            else
-            {
-                this.TrickWidth = WidthFloat.One;
-            }
-
-            // TRICK CODE:
             OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsFloat));
             OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
         }
+        #endregion
 
+        // - インターナル・メソッド
+
+        #region メソッド（［切抜きカーソル］　関連）
         /// <summary>
         ///     ［切抜きカーソル］の再描画
         ///     
@@ -2092,7 +2083,7 @@
                 // タイル・フォームの表示更新
                 this.RefreshTileForm();
 
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+                this.Inner.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
             }
             else
             {
@@ -2112,7 +2103,7 @@
                 // タイル・フォームの表示更新
                 this.RefreshTileForm();
 
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+                this.Inner.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
             }
         }
         #endregion
@@ -2140,7 +2131,7 @@
                 // タイル・フォームの表示更新
                 this.RefreshTileForm();
 
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+                this.Inner.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
         }
         #endregion
