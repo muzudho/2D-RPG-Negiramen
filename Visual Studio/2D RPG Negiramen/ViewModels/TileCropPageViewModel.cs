@@ -988,30 +988,18 @@
             set => this.Inner.TrickWidth = value;
         }
 
-        public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithTrick
-        {
-            get
-            {
-                return new WidthFloat(this.croppedCursorPointedTileWorkingWidthWithoutTrick.AsFloat + this.TrickWidth.AsFloat);
-            }
-        }
+        public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithTrick => new WidthFloat(this.croppedCursorPointedTileWorkingWidthWithoutTrick.AsFloat + this.TrickWidth.AsFloat);
 
         public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithoutTrick
         {
             get => this.croppedCursorPointedTileWorkingWidthWithoutTrick;
-            set
-            {
-                this.croppedCursorPointedTileWorkingWidthWithoutTrick = value;
-            }
+            set => this.croppedCursorPointedTileWorkingWidthWithoutTrick = value;
         }
 
         public Models.Geometric.HeightFloat CroppedCursorPointedTileWorkingHeight
         {
             get => this.croppedCursorPointedTileWorkingHeight;
-            set
-            {
-                this.croppedCursorPointedTileWorkingHeight = value;
-            }
+            set => this.croppedCursorPointedTileWorkingHeight = value;
         }
 
 
