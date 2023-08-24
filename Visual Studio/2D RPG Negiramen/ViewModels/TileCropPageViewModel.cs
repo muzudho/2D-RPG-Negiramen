@@ -1586,25 +1586,12 @@
         }
         #endregion
 
-        #region 変更通知メソッド（タイル・タイトル）
-        /// <summary>
-        ///     タイル・タイトル
-        /// </summary>
-        internal void InvalidateTileTitle()
-        {
-            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
-            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
-        }
-        #endregion
-
         #region 変更通知メソッド（［追加／復元］ボタン）
         /// <summary>
         ///     ［追加／復元］ボタン
         /// </summary>
         internal void InvalidateAddsButton()
         {
-            OnPropertyChanged(nameof(AddsButtonHint));
-            OnPropertyChanged(nameof(AddsButtonText));
             OnPropertyChanged(nameof(IsEnabledAddsButton));
         }
         #endregion
@@ -1737,6 +1724,44 @@
 
             // タイルセット タイトル
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+        }
+        #endregion
+
+        #region メソッド（［タイルセット作業画像］　関連）
+        /// <summary>
+        ///     <pre>
+        ///         ［元画像グリッド］のキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        internal void InvalidateForTileAdd()
+        {
+            if (this.TilesetWorkingImageWidthAsInt % 2 == 1)
+            {
+                this.workingImageSize = new SizeInt(
+                    width: new WidthInt(this.workingImageSize.Width.AsInt - 1),
+                    height: new HeightInt(this.workingImageSize.Height.AsInt));
+            }
+            else
+            {
+                this.workingImageSize = new SizeInt(
+                    width: new WidthInt(this.workingImageSize.Width.AsInt + 1),
+                    height: new HeightInt(this.workingImageSize.Height.AsInt));
+            }
+
+            // タイル タイトル表示欄とか更新したい
+            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+
+            // 追加・削除ボタンの表示状態を更新したい
+            OnPropertyChanged(nameof(AddsButtonHint));
+            OnPropertyChanged(nameof(AddsButtonText));
+            OnPropertyChanged(nameof(IsEnabledAddsButton));
+
+            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
             OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
         }
         #endregion
