@@ -578,7 +578,7 @@
                 this.Owner.SourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
-                this.Owner.RemakeGridCanvasImage();
+                this.RemakeGridCanvasImage2();
             }
         }
         #endregion
@@ -603,7 +603,12 @@
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
-        internal void RemakeGridCanvasImage() => this.Owner.RemakeGridCanvasImage();
+        internal void RemakeGridCanvasImage2()
+        {
+            this.Owner.GridCanvasImageSize = new Models.Geometric.SizeInt(
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.Owner.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.Owner.HalfThicknessOfGridLineAsInt)));
+        }
         #endregion
 
         #region メソッド（［作業グリッド］　関連）
