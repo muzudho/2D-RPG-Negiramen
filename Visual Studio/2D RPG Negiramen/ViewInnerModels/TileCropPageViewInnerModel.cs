@@ -614,8 +614,26 @@
         ///         <item>アンドゥ・リドゥで利用</item>
         ///     </list>
         /// </summary>
-        internal void RefreshWorkingGridTileWidth() => this.Owner.RefreshWorkingGridTileWidth();
-        internal void RefreshWorkingGridTileHeight() => this.Owner.RefreshWorkingGridTileHeight();
+        internal void RefreshWorkingGridTileWidth()
+        {
+            this.Owner.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.Owner.SourceGridUnit.Width.AsInt;
+
+            this.Owner.InvalidateWorkingGrid();
+        }
+
+        /// <summary>
+        ///     ［作業グリッド］タイル縦幅の再計算
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///     </list>
+        /// </summary>
+        internal void RefreshWorkingGridTileHeight()
+        {
+            this.Owner.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.Owner.SourceGridUnit.Height.AsInt;
+
+            this.Owner.InvalidateWorkingGrid();
+        }
         #endregion
 
         #region メソッド（［追加／復元］ボタン　関連）

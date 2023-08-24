@@ -358,7 +358,7 @@
                     this.sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridUnit.Height);
 
                     // 作業グリッド・タイル横幅の再計算
-                    RefreshWorkingGridTileWidth();
+                    this.Inner.RefreshWorkingGridTileWidth();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
@@ -389,7 +389,7 @@
                     this.sourceGridUnit = new Models.Geometric.SizeInt(this.sourceGridUnit.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
-                    RefreshWorkingGridTileHeight();
+                    this.Inner.RefreshWorkingGridTileHeight();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
@@ -1584,6 +1584,18 @@
         }
         #endregion
 
+        #region 変更通知メソッド（作業用グリッド）
+        /// <summary>
+        ///     作業用グリッド
+        /// </summary>
+        internal void InvalidateWorkingGrid()
+        {
+            OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
+            OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
+            OnPropertyChanged(nameof(WorkingGridUnit));
+        }
+        #endregion
+
         // - インターナル・メソッド
 
         #region メソッド（［削除］ボタン　関連）
@@ -1787,38 +1799,6 @@
             this.GridCanvasImageSize = new Models.Geometric.SizeInt(
                 width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Width.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)),
                 height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Height.AsInt) + (2 * this.HalfThicknessOfGridLineAsInt)));
-        }
-        #endregion
-
-        #region メソッド（［作業グリッド］　関連）
-        /// <summary>
-        ///     ［作業グリッド］タイル横幅の再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        internal void RefreshWorkingGridTileWidth()
-        {
-            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
-
-            OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-            OnPropertyChanged(nameof(WorkingGridUnit));
-        }
-
-        /// <summary>
-        ///     ［作業グリッド］タイル縦幅の再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        internal void RefreshWorkingGridTileHeight()
-        {
-            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
-
-            OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-            OnPropertyChanged(nameof(WorkingGridUnit));
         }
         #endregion
 
