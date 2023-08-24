@@ -1737,35 +1737,6 @@
         }
         #endregion
 
-        #region メソッド（［削除］ボタン　関連）
-        /// <summary>
-        ///     ［削除］ボタンの再描画
-        /// </summary>
-        internal void RefreshDeletesButton()
-        {
-            var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
-
-            if (contents.IsNone)
-            {
-                // 切抜きカーソル無し時
-                this.IsEnabledDeletesButton = false;
-                return;
-            }
-
-            // 切抜きカーソル有り時
-            if (contents.Id == TileIdOrEmpty.Empty)
-            {
-                // Ｉｄ未設定時
-                this.IsEnabledDeletesButton = false;
-            }
-            else
-            {
-                // タイル登録済み時
-                this.IsEnabledDeletesButton = true;
-            }
-        }
-        #endregion
-
         // - インターナル・インベントハンドラ
 
         #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
