@@ -1574,61 +1574,17 @@
         }
         #endregion
 
-        // - インターナル・メソッド
-
-        #region メソッド（［追加／上書き］ボタン　関連）
+        #region 変更通知メソッド（［追加／復元］ボタン）
         /// <summary>
-        ///     ［追加／上書き］ボタンの再描画
+        ///     ［追加／復元］ボタン
         /// </summary>
         internal void InvalidateAddsButton()
         {
-            // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-            if (this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
-            {
-                // 合同のときは「交差中」とは表示しない
-                if (!this.Inner.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
-                {
-                    // 「交差中」
-                    // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
-
-                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
-                    return;
-                }
-            }
-
-            var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
-
-            if (contents.IsNone)
-            {
-                // ［切抜きカーソル］の指すタイル無し時
-
-                // 「追加」
-                this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-            }
-            else
-            {
-                // 切抜きカーソル有り時
-                // Ｉｄ未設定時
-
-                if (this.Inner.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
-                {
-                    // Ｉｄが空欄
-                    // ［追加］（新規作成）だ
-
-                    // ［追加」
-                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-                }
-                else
-                {
-                    // ［復元」
-                    this.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
-                }
-            }
-
-            // ［追加／復元］ボタンの活性性
             OnPropertyChanged(nameof(IsEnabledAddsButton));
         }
         #endregion
+
+        // - インターナル・メソッド
 
         #region メソッド（［削除］ボタン　関連）
         /// <summary>
