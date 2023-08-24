@@ -1425,7 +1425,7 @@
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
             // 作業画像の再作成
-            this.RemakeWorkingTilesetImage();
+            this.Inner.RemakeWorkingTilesetImage();
 
             // グリッド・キャンバス画像の再作成
             this.Inner.RemakeGridCanvasImage();
@@ -1855,72 +1855,6 @@
         }
         #endregion
 
-        #region メソッド（［タイルセット作業画像］　関連）
-        /// <summary>
-        ///     ［タイルセット作業画像］の再作成
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        internal void RemakeWorkingTilesetImage()
-        {
-            // 元画像をベースに、作業画像を複製
-            var temporaryBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
-
-            // 画像処理（明度を下げる）
-            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
-
-            // 作業画像のサイズ計算
-            this.workingImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Height.AsInt)));
-
-            // 作業画像のリサイズ
-            this.TilesetWorkingBitmap = temporaryBitmap.Resize(
-                size: new SKSizeI(
-                    width: this.workingImageSize.Width.AsInt,
-                    height: this.workingImageSize.Height.AsInt),
-                quality: SKFilterQuality.Medium);
-
-            this.InvalidateTilesetWorkingImage();
-        }
-
-        /// <summary>
-        ///     <pre>
-        ///         ［元画像グリッド］のキャンバスの再描画
-        /// 
-        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-        ///                 振動させることで、再描画を呼び起こすことにする
-        ///     </pre>
-        /// </summary>
-        internal void InvalidateForTileAdd()
-        {
-            if (this.TilesetWorkingImageWidthAsInt % 2 == 1)
-            {
-                this.workingImageSize = new SizeInt(
-                    width: new WidthInt(this.workingImageSize.Width.AsInt - 1),
-                    height: new HeightInt(this.workingImageSize.Height.AsInt));
-            }
-            else
-            {
-                this.workingImageSize = new SizeInt(
-                    width: new WidthInt(this.workingImageSize.Width.AsInt + 1),
-                    height: new HeightInt(this.workingImageSize.Height.AsInt));
-            }
-
-            // タイル タイトル
-            this.InvalidateTileTitle();
-
-            // 追加・削除ボタンの表示状態を更新したい
-            this.InvalidateAddsButton();
-
-            // タイルセット作業画像
-            this.InvalidateTilesetWorkingImage();
-        }
-        #endregion
-
         // - インターナル・インベントハンドラ
 
         #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
@@ -2180,11 +2114,11 @@
         TheFileEntryLocations.UnityAssets.Images.TilesetPng tilesetImageFile = TheFileEntryLocations.UnityAssets.Images.TilesetPng.Empty;
         #endregion
 
-        #region 変更通知フィールド（［タイルセット作業画像］　関連）
+        #region インターナル変更通知フィールド（［タイルセット作業画像］　関連）
         /// <summary>
         ///     ［タイルセット作業画像］サイズ
         /// </summary>
-        Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
+        internal Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
         #region 変更通知フィールド（［ズーム］　関連）

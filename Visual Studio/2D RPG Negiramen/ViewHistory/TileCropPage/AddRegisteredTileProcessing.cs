@@ -93,7 +93,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Inner.InvalidateForTileAdd();
+        this.Inner.RefreshForTileAdd();
     }
     #endregion
 
@@ -134,7 +134,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ====================
         //
         //this.coloredMapGraphicsView1.Invalidate();
-        this.Inner.InvalidateForTileAdd();
+        this.Inner.RefreshForTileAdd();
     }
     #endregion
 
