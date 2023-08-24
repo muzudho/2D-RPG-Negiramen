@@ -82,6 +82,29 @@
         }
         #endregion
 
+        #region 変更通知プロパティ（ポインティング・デバイス押下中か？）
+        /// <summary>
+        ///     ポインティング・デバイス押下中か？
+        /// 
+        ///     <list type="bullet">
+        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
+        ///         <item>マウスじゃないと思うけど</item>
+        ///     </list>
+        /// </summary>
+        public bool IsMouseDragging
+        {
+            get => this.isMouseDragging;
+            set
+            {
+                if (this.isMouseDragging != value)
+                {
+                    this.isMouseDragging = value;
+                    this.Owner.InvalidateIsMouseDragging();
+                }
+            }
+        }
+        #endregion
+
         public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithoutTrick
         {
             get => this.Owner.CroppedCursorPointedTileWorkingWidthWithoutTrick;
@@ -1132,6 +1155,15 @@
         // - プライベート・プロパティ
 
         TileCropPageViewModel Owner { get; }
+
+        // - プライベート変更通知フィールド
+
+        #region 変更通知フィールド（ポインティング・デバイス押下中か？）
+        /// <summary>
+        ///     ポインティング・デバイス押下中か？
+        /// </summary>
+        bool isMouseDragging;
+        #endregion
 
         // - プライベート・フィールド
 

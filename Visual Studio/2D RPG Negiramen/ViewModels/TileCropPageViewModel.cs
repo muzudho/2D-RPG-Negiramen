@@ -520,21 +520,13 @@
         ///     ポインティング・デバイス押下中か？
         /// 
         ///     <list type="bullet">
-        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
-        ///         <item>マウスじゃないと思うけど</item>
+        ///         <item>透過メソッド</item>
         ///     </list>
         /// </summary>
         public bool IsMouseDragging
         {
-            get => this.isMouseDragging;
-            set
-            {
-                if (this.isMouseDragging != value)
-                {
-                    this.isMouseDragging = value;
-                    OnPropertyChanged(nameof(IsMouseDragging));
-                }
-            }
+            get => this.Inner.IsMouseDragging;
+            set => this.Inner.IsMouseDragging = value;
         }
         #endregion
 
@@ -1501,6 +1493,11 @@
         }
         #endregion
 
+        internal void InvalidateIsMouseDragging()
+        {
+            OnPropertyChanged(nameof(IsMouseDragging));
+        }
+
         #region 変更通知メソッド（［切抜きカーソルが指すタイル］　関連）
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］
@@ -1587,13 +1584,6 @@
         #endregion
 
         // - プライベート変更通知フィールド
-
-        #region 変更通知フィールド（ポインティング・デバイス押下中か？）
-        /// <summary>
-        ///     ポインティング・デバイス押下中か？
-        /// </summary>
-        bool isMouseDragging;
-        #endregion
 
         #region 変更通知フィールド（［タイルセット設定］　関連）
         /// <summary>
