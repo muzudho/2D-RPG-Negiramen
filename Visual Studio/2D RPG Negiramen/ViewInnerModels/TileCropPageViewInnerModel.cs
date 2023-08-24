@@ -333,6 +333,35 @@
                 this.Owner.ZoomAsFloat = value.AsFloat;
             }
         }
+
+        /// <summary>
+        ///     ［ズーム］整数形式
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///     </list>
+        /// </summary>
+        public float ZoomAsFloat
+        {
+            get => this.zoom.AsFloat;
+            set
+            {
+                if (this.zoom.AsFloat != value)
+                {
+                    if (this.Owner.ZoomMinAsFloat <= value && value <= this.Owner.ZoomMaxAsFloat)
+                    {
+                        Zoom oldValue = this.zoom;
+                        Zoom newValue = new Models.Geometric.Zoom(value);
+
+                        this.zoom = newValue;
+                        this.TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
+
+                        // 再帰的にズーム再変更、かつ変更後の影響を処理
+                        App.History.Do(new ZoomProcessing(this, oldValue, newValue));
+                    }
+                }
+            }
+        }
         #endregion
 
         // - インターナル変更通知メソッド
@@ -1096,11 +1125,11 @@
 
         // - プライベート・フィールド
 
-        #region インターナル・フィールド（［ズーム］）
+        #region フィールド（［ズーム］）
         /// <summary>
         ///     ［ズーム］
         /// </summary>
-        internal Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+        Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
         #endregion
 
         #region フィールド（［タイルセット元画像］　関連）

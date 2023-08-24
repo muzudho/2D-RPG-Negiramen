@@ -146,28 +146,15 @@
         ///     ［ズーム］整数形式
         ///     
         ///     <list type="bullet">
-        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///         <item>透過メソッド</item>
         ///     </list>
         /// </summary>
         public float ZoomAsFloat
         {
-            get => this.Inner.zoom.AsFloat;
+            get => this.Inner.ZoomAsFloat;
             set
             {
-                if (this.Inner.zoom.AsFloat != value)
-                {
-                    if (this.ZoomMinAsFloat <= value && value <= this.ZoomMaxAsFloat)
-                    {
-                        Zoom oldValue = this.Inner.zoom;
-                        Zoom newValue = new Models.Geometric.Zoom(value);
-
-                        this.Inner.zoom = newValue;
-                        this.Inner.TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
-
-                        // 再帰的にズーム再変更、かつ変更後の影響を処理
-                        App.History.Do(new ZoomProcessing(this.Inner, oldValue, newValue));
-                    }
-                }
+                this.Inner.ZoomAsFloat = value;
             }
         }
         #endregion
