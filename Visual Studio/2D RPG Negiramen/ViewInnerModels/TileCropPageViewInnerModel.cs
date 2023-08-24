@@ -5,7 +5,6 @@
     using _2D_RPG_Negiramen.Models.Visually;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.ViewModels;
-    using SkiaSharp;
     using System.Diagnostics;
     using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
@@ -592,28 +591,7 @@
         ///         <item>アンドゥ・リドゥで利用</item>
         ///     </list>
         /// </summary>
-        internal void RemakeWorkingTilesetImage()
-        {
-            // 元画像をベースに、作業画像を複製
-            var temporaryBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.Owner.TilesetSourceBitmap));
-
-            // 画像処理（明度を下げる）
-            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
-
-            // 作業画像のサイズ計算
-            this.Owner.workingImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt)));
-
-            // 作業画像のリサイズ
-            this.Owner.TilesetWorkingBitmap = temporaryBitmap.Resize(
-                size: new SKSizeI(
-                    width: this.Owner.workingImageSize.Width.AsInt,
-                    height: this.Owner.workingImageSize.Height.AsInt),
-                quality: SKFilterQuality.Medium);
-
-            this.Owner.InvalidateTilesetWorkingImage();
-        }
+        internal void RemakeWorkingTilesetImage() => this.Owner.RemakeWorkingTilesetImage();
         #endregion
 
         #region メソッド（［元画像グリッド］　関連）

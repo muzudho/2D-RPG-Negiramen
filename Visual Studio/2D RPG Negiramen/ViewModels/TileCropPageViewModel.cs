@@ -1425,7 +1425,7 @@
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
             // 作業画像の再作成
-            this.Inner.RemakeWorkingTilesetImage();
+            this.RemakeWorkingTilesetImage();
 
             // グリッド・キャンバス画像の再作成
             this.Inner.RemakeGridCanvasImage();
@@ -1503,17 +1503,6 @@
         internal void InvalidateTilesetSettingsVM()
         {
             OnPropertyChanged(nameof(TilesetSettingsVM));
-        }
-        #endregion
-
-        #region 変更通知メソッド（［タイルセット作業画像］）
-        /// <summary>
-        ///     ［タイルセット作業画像］
-        /// </summary>
-        internal void InvalidateTilesetWorkingImage()
-        {
-            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
-            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
         }
         #endregion
 
@@ -1729,6 +1718,37 @@
         #endregion
 
         #region メソッド（［タイルセット作業画像］　関連）
+        /// <summary>
+        ///     ［タイルセット作業画像］の再作成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///     </list>
+        /// </summary>
+        internal void RemakeWorkingTilesetImage()
+        {
+            // 元画像をベースに、作業画像を複製
+            var temporaryBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.TilesetSourceBitmap));
+
+            // 画像処理（明度を下げる）
+            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
+
+            // 作業画像のサイズ計算
+            this.workingImageSize = new Models.Geometric.SizeInt(
+                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.Inner.TilesetSourceImageSize.Height.AsInt)));
+
+            // 作業画像のリサイズ
+            this.TilesetWorkingBitmap = temporaryBitmap.Resize(
+                size: new SKSizeI(
+                    width: this.workingImageSize.Width.AsInt,
+                    height: this.workingImageSize.Height.AsInt),
+                quality: SKFilterQuality.Medium);
+
+            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
+            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
+        }
+
         /// <summary>
         ///     <pre>
         ///         ［元画像グリッド］のキャンバスの再描画
@@ -2025,11 +2045,11 @@
         TheFileEntryLocations.UnityAssets.Images.TilesetPng tilesetImageFile = TheFileEntryLocations.UnityAssets.Images.TilesetPng.Empty;
         #endregion
 
-        #region インターナル変更通知フィールド（［タイルセット作業画像］　関連）
+        #region 変更通知フィールド（［タイルセット作業画像］　関連）
         /// <summary>
         ///     ［タイルセット作業画像］サイズ
         /// </summary>
-        internal Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
+        Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
         #region 変更通知フィールド（［ズーム］　関連）
