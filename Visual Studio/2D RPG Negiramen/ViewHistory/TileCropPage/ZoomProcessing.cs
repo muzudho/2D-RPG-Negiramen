@@ -79,7 +79,7 @@ internal class ZoomProcessing : IProcessing
         // ［元画像グリッド］の更新
         {
             // キャンバス画像の再作成
-            this.Inner.RemakeGridCanvasImage2();
+            this.Inner.RemakeGridCanvasImage();
         }
 
         // ［作業グリッド］の再計算
