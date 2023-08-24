@@ -1576,50 +1576,6 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（［切抜きカーソル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソル］の再描画
-        ///     
-        ///     TODO ★ 設定ファイルからリロードしてる？
-        /// </summary>
-        internal void LoadCroppedCursorPointedTile()
-        {
-            this.TilesetSettingsVM.MatchByRectangle(
-                sourceRect: this.CroppedCursorPointedTileSourceRect,
-                some: (tileVisually) =>
-                {
-                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
-
-                    // タイルを指す（論理削除されているものも含む）
-                    this.Inner.TargetTileRecordVisually = tileVisually;
-                },
-                none: () =>
-                {
-                    // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
-
-                    //
-                    // 空欄にする
-                    // ==========
-                    //
-
-                    // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.Inner.TargetTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: Models.TileIdOrEmpty.Empty,
-                            rect: this.CroppedCursorPointedTileSourceRect,
-                            title: Models.TileTitle.Empty,
-                            logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
-#endif
-                        );
-                },
-                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
-                includeLogicalDelete: true);
-        }
-        #endregion
-
         #region メソッド（［追加／上書き］ボタン　関連）
         /// <summary>
         ///     ［追加／上書き］ボタンの再描画
@@ -1775,7 +1731,7 @@
             // 切抜きカーソル更新
             // ==================
             //
-            this.LoadCroppedCursorPointedTile();
+            this.Inner.LoadCroppedCursorPointedTile();
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
             this.InvalidateAddsButton();

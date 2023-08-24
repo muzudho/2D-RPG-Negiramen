@@ -398,6 +398,48 @@
             // TRICK CODE:
             this.Owner.InvalidateCroppedCursor();
         }
+
+        /// <summary>
+        ///     ［切抜きカーソル］の再描画
+        ///     
+        ///     TODO ★ 設定ファイルからリロードしてる？
+        /// </summary>
+        internal void LoadCroppedCursorPointedTile()
+        {
+            this.TilesetSettingsVM.MatchByRectangle(
+                sourceRect: this.CroppedCursorPointedTileSourceRect,
+                some: (tileVisually) =>
+                {
+                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
+
+                    // タイルを指す（論理削除されているものも含む）
+                    this.TargetTileRecordVisually = tileVisually;
+                },
+                none: () =>
+                {
+                    // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+
+                    //
+                    // 空欄にする
+                    // ==========
+                    //
+
+                    // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
+                    this.TargetTileRecordVisually = TileRecordVisually.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: Models.TileIdOrEmpty.Empty,
+                            rect: this.CroppedCursorPointedTileSourceRect,
+                            title: Models.TileTitle.Empty,
+                            logicalDelete: Models.LogicalDelete.False),
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
+#endif
+                        );
+                },
+                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
+                includeLogicalDelete: true);
+        }
         #endregion
 
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
@@ -576,12 +618,6 @@
         internal void RefreshWorkingGridTileHeight() => this.Owner.RefreshWorkingGridTileHeight();
         #endregion
 
-
-
-        // - プライベート・プロパティ
-
-        TileCropPageViewModel Owner { get; }
-
         // - プライベート・フィールド
 
         #region フィールド（［タイルセット元画像］　関連）
@@ -590,5 +626,12 @@
         /// </summary>
         Models.Geometric.SizeInt tilesetSourceImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
+
+        // - プライベート・プロパティ
+
+        TileCropPageViewModel Owner { get; }
+
+        // - プライベート・メソッド
+
     }
 }
