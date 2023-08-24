@@ -346,6 +346,7 @@
                 if (this.zoom == value)
                     return;
 
+                // TODO 循環参照しやすいから、良くないコード
                 this.Owner.ZoomAsFloat = value.AsFloat;
             }
         }

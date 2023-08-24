@@ -154,8 +154,6 @@
             get => this.Inner.zoom.AsFloat;
             set
             {
-                this.Inner.TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
-
                 if (this.Inner.zoom.AsFloat != value)
                 {
                     if (this.ZoomMinAsFloat <= value && value <= this.ZoomMaxAsFloat)
@@ -164,6 +162,7 @@
                         Zoom newValue = new Models.Geometric.Zoom(value);
 
                         this.Inner.zoom = newValue;
+                        this.Inner.TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                         // 再帰的にズーム再変更、かつ変更後の影響を処理
                         App.History.Do(new ZoomProcessing(this.Inner, oldValue, newValue));
