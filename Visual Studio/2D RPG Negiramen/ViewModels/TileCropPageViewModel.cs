@@ -15,6 +15,7 @@
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
+    using SkiaSharp.Views.Maui.Controls;
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.Visually;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
