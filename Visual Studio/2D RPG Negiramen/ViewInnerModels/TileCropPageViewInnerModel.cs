@@ -984,6 +984,108 @@
         }
         #endregion
 
+        #region イベントハンドラ（［追加］ボタン　クリック時）
+        /// <summary>
+        ///     ［追加］ボタン　クリック時
+        /// </summary>
+        internal void OnAddsButtonClicked()
+        {
+            if (this.CroppedCursorPointedTileIdOrEmpty == Models.TileIdOrEmpty.Empty)
+            {
+                // Ｉｄが空欄
+                // ［追加］（新規作成）だ
+
+                // 登録タイル追加
+                this.AddRegisteredTile();
+            }
+            else
+            {
+                // 上書きボタンだが、［上書き］処理をする
+                this.OverwriteRegisteredTile();
+            }
+        }
+        #endregion
+
+        #region イベントハンドラ（タイルセット画像上でタップ時）
+        /// <summary>
+        ///     タイルセット画像上でタップ時
+        /// </summary>
+        /// <param name="tappedPoint"></param>
+        public void OnTilesetImageTapped(Point tappedPoint)
+        {
+            // 反転
+            this.Owner.IsMouseDragging = !this.Owner.IsMouseDragging;
+
+            if (this.Owner.IsMouseDragging)
+            {
+                //
+                // 疑似マウス・ダウン
+                // ==================
+                //
+                Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
+
+                // ポイントしている位置
+                this.PointingDeviceCurrentPoint = this.PointingDeviceStartPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+            }
+            else
+            {
+                //
+                // 疑似マウス・アップ
+                // ==================
+                //
+
+                Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
+
+                // ポイントしている位置
+                this.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+            }
+        }
+        #endregion
+
+        #region イベントハンドラ（タイルセット画像上でポインター移動）
+        /// <summary>
+        ///     タイルセット画像上でポインター移動
+        /// </summary>
+        /// <param name="tappedPoint"></param>
+        public void OnTilesetImagePointerMove(Point tappedPoint)
+        {
+            if (this.Owner.IsMouseDragging)
+            {
+                //
+                // 疑似マウス・ドラッグ
+                // ====================
+                //
+
+                // ポイントしている位置
+                this.PointingDeviceCurrentPoint = new Models.Geometric.PointFloat(
+                    new Models.Geometric.XFloat((float)tappedPoint.X),
+                    new Models.Geometric.YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.RefreshTileForm();
+
+                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+            }
+        }
+        #endregion
+
         // - プライベート・プロパティ
 
         TileCropPageViewModel Owner { get; }

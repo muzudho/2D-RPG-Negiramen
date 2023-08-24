@@ -122,7 +122,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.OnTilesetImageTapped(tappedPoint);
+        context.Inner.OnTilesetImageTapped(tappedPoint);
     }
 
     /// <summary>
@@ -136,7 +136,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.OnTilesetImagePointerMove(tappedPoint);
+        context.Inner.OnTilesetImagePointerMove(tappedPoint);
     }
 
     /// <summary>
@@ -173,7 +173,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.OnAddsButtonClicked();
+        context.Inner.OnAddsButtonClicked();
     }
     #endregion
 
