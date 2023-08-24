@@ -123,6 +123,17 @@
             }
         }
 
+        #region 変更通知プロパティ（［切抜きカーソル］　関連）
+        /// <summary>
+        ///     トリック幅
+        /// </summary>
+        public Models.Geometric.WidthFloat TrickWidth
+        {
+            get => this.trickWidth;
+            set => this.trickWidth = value;
+        }
+        #endregion
+
         #region 変更通知プロパティ（［切抜きカーソルが指すタイル］　関連）
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
@@ -1189,6 +1200,10 @@
         ///     ［タイルセット元画像］サイズ
         /// </summary>
         Models.Geometric.SizeInt tilesetSourceImageSize = Models.Geometric.SizeInt.Empty;
+        #endregion
+
+        #region フィールド（［切抜きカーソル］　関連）
+        Models.Geometric.WidthFloat trickWidth = Models.Geometric.WidthFloat.Zero;
         #endregion
     }
 }

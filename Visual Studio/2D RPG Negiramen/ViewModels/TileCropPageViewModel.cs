@@ -975,16 +975,17 @@
                     height: this.CroppedCursorPointedTileWorkingHeight);
         }
 
+        /// <summary>
+        ///     トリック幅
+        ///     
+        ///     <list type="bullet">
+        ///         <item>透過メソッド</item>
+        ///     </list>
+        /// </summary>
         public Models.Geometric.WidthFloat TrickWidth
         {
-            get
-            {
-                return this.trickWidth;
-            }
-            set
-            {
-                this.trickWidth = value;
-            }
+            get => this.Inner.TrickWidth;
+            set => this.Inner.TrickWidth = value;
         }
 
         public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithTrick
@@ -1683,7 +1684,6 @@
         ///         <item>仕様変更するときは、TRICK CODE に注意</item>
         ///     </list>
         /// </summary>
-        Models.Geometric.WidthFloat trickWidth = Models.Geometric.WidthFloat.Zero;
         Models.Geometric.WidthFloat croppedCursorPointedTileWorkingWidthWithoutTrick = Models.Geometric.WidthFloat.Zero;
         Models.Geometric.HeightFloat croppedCursorPointedTileWorkingHeight = Models.Geometric.HeightFloat.Zero;
         #endregion
