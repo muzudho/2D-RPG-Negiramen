@@ -138,6 +138,28 @@
 
         // - インターナル・プロパティ
 
+        #region プロパティ（［ズーム］　関連）
+        /// <summary>
+        ///     ズーム
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///         <item>コード・ビハインドで使用</item>
+        ///     </list>
+        /// </summary>
+        public Models.Geometric.Zoom Zoom
+        {
+            get => this.zoom;
+            set
+            {
+                if (this.zoom == value)
+                    return;
+
+                this.ZoomAsFloat = value.AsFloat;
+            }
+        }
+        #endregion
+
         #region プロパティ（［タイルセット元画像］　関連）
         /// <summary>
         ///     ［タイルセット元画像］のサイズ
@@ -310,25 +332,6 @@
         ///     ポインティング・デバイス現在位置
         /// </summary>
         internal Models.Geometric.PointFloat PointingDeviceCurrentPoint { get; set; }
-        #endregion
-
-        #region プロパティ（［ズーム］　関連）
-        /// <summary>
-        ///     ズーム
-        ///     
-        ///     <list type="bullet">
-        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
-        ///         <item>コード・ビハインドで使用</item>
-        ///     </list>
-        /// </summary>
-        public Models.Geometric.Zoom Zoom
-        {
-            get => this.Owner.Zoom;
-            set
-            {
-                this.Owner.Zoom = value;
-            }
-        }
         #endregion
 
         // - インターナル変更通知メソッド
@@ -507,7 +510,7 @@
                 inner: this,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.Owner.Zoom)));
+                workingRectangle: contents.SourceRectangle.Do(this.Zoom)));
 
             this.Owner.InvalidateForHistory();
         }
@@ -535,7 +538,7 @@
                 inner: this.Owner.Inner,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.Owner.Zoom)));
+                workingRectangle: contents.SourceRectangle.Do(this.Zoom)));
 
             this.Owner.InvalidateForHistory();
         }
@@ -1086,9 +1089,14 @@
         }
         #endregion
 
-        // - プライベート・プロパティ
+        // - プライベート変更通知フィールド
 
-        TileCropPageViewModel Owner { get; }
+        #region 変更通知フィールド（［ズーム］　関連）
+        /// <summary>
+        ///     ［ズーム］
+        /// </summary>
+        Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+        #endregion
 
         // - プライベート・フィールド
 
@@ -1098,5 +1106,9 @@
         /// </summary>
         Models.Geometric.SizeInt tilesetSourceImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
+
+        // - プライベート・プロパティ
+
+        TileCropPageViewModel Owner { get; }
     }
 }
