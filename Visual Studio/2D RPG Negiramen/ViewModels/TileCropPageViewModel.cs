@@ -151,19 +151,19 @@
         /// </summary>
         public float ZoomAsFloat
         {
-            get => this.Inner.Zoom.AsFloat;
+            get => this.zoom.AsFloat;
             set
             {
                 this.Inner.TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
 
-                if (this.Inner.Zoom.AsFloat != value)
+                if (this.zoom.AsFloat != value)
                 {
                     if (this.ZoomMinAsFloat <= value && value <= this.ZoomMaxAsFloat)
                     {
-                        Zoom oldValue = this.Inner.Zoom;
+                        Zoom oldValue = this.zoom;
                         Zoom newValue = new Models.Geometric.Zoom(value);
 
-                        this.Inner.Zoom = newValue;
+                        this.zoom = newValue;
 
                         // 再帰的にズーム再変更、かつ変更後の影響を処理
                         App.History.Do(new ZoomProcessing(this.Inner, oldValue, newValue));
@@ -644,7 +644,7 @@
                                 size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Inner.Zoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceLeftAsInt 1]"
 #endif
@@ -665,7 +665,7 @@
                                 size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Inner.Zoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceLeftAsInt 2]"
 #endif
@@ -722,7 +722,7 @@
                             size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Inner.Zoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceTopAsInt 1]"
 #endif
@@ -743,7 +743,7 @@
                             size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Inner.Zoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceTopAsInt 2]"
 #endif
@@ -841,7 +841,7 @@
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Inner.Zoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceWidthAsInt 1]"
 #endif
@@ -859,7 +859,7 @@
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Inner.Zoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceWidthAsInt 2]"
 #endif
@@ -903,7 +903,7 @@
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Inner.Zoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceHeightAsInt 1]"
 #endif
@@ -921,7 +921,7 @@
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.Inner.Zoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceHeightAsInt 2]"
 #endif
@@ -1443,6 +1443,26 @@
 
         #region プロパティ（［ズーム］　関連）
         /// <summary>
+        ///     ズーム
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///         <item>コード・ビハインドで使用</item>
+        ///     </list>
+        /// </summary>
+        public Models.Geometric.Zoom Zoom
+        {
+            get => this.zoom;
+            set
+            {
+                if (this.zoom == value)
+                    return;
+
+                this.ZoomAsFloat = value.AsFloat;
+            }
+        }
+
+        /// <summary>
         ///     ズーム最大
         /// </summary>
         public float ZoomMaxAsFloat => this.zoomMax.AsFloat;
@@ -1633,6 +1653,11 @@
         #endregion
 
         #region 変更通知フィールド（［ズーム］　関連）
+        /// <summary>
+        ///     ［ズーム］
+        /// </summary>
+        Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+
         /// <summary>
         ///     ［ズーム］最大
         /// </summary>
