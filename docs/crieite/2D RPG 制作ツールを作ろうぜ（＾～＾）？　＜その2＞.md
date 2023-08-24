@@ -3072,5 +3072,16 @@ Working　は変数にしないようにしたい。これも８月下旬にし�
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　`View History` というフォルダーも作る」  
 
+# 📅 （2023-08-23 wed）寝てただけ
+
+Zzz
+
+# 📅 （2023-08-24 thu）コード掃除
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　コード掃除」  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　ビュー・モデルは　透過メソッドばっかりでも　良い気がしてきたな……」  
 
 ＜書きかけ＞
