@@ -362,6 +362,16 @@
                 }
             }
         }
+
+        /// <summary>
+        ///     ズーム最大
+        /// </summary>
+        public float ZoomMaxAsFloat => this.zoomMax.AsFloat;
+
+        /// <summary>
+        ///     ズーム最小
+        /// </summary>
+        public float ZoomMinAsFloat => this.zoomMin.AsFloat;
         #endregion
 
         // - インターナル変更通知メソッド
@@ -1125,11 +1135,21 @@
 
         // - プライベート・フィールド
 
-        #region フィールド（［ズーム］）
+        #region フィールド（［ズーム］　関連）
         /// <summary>
         ///     ［ズーム］
         /// </summary>
         Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+
+        /// <summary>
+        ///     ［ズーム］最大
+        /// </summary>
+        Models.Geometric.Zoom zoomMax = new(4.0f);
+
+        /// <summary>
+        ///     ［ズーム］最小
+        /// </summary>
+        Models.Geometric.Zoom zoomMin = new(0.5f);
         #endregion
 
         #region フィールド（［タイルセット元画像］　関連）

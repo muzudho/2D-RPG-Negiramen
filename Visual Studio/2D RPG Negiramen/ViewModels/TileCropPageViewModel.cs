@@ -1430,13 +1430,21 @@
         #region プロパティ（［ズーム］　関連）
         /// <summary>
         ///     ズーム最大
+        ///     
+        ///     <list type="bullet">
+        ///         <item>透過メソッド</item>
+        ///     </list>
         /// </summary>
-        public float ZoomMaxAsFloat => this.zoomMax.AsFloat;
+        public float ZoomMaxAsFloat => this.Inner.ZoomMaxAsFloat;
 
         /// <summary>
         ///     ズーム最小
+        ///     
+        ///     <list type="bullet">
+        ///         <item>透過メソッド</item>
+        ///     </list>
         /// </summary>
-        public float ZoomMinAsFloat => this.zoomMin.AsFloat;
+        public float ZoomMinAsFloat => this.Inner.ZoomMinAsFloat;
         #endregion
 
         // - インターナル・プロパティ
@@ -1616,18 +1624,6 @@
         ///     ［タイルセット作業画像］サイズ
         /// </summary>
         internal Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
-        #endregion
-
-        #region 変更通知フィールド（［ズーム］　関連）
-        /// <summary>
-        ///     ［ズーム］最大
-        /// </summary>
-        Models.Geometric.Zoom zoomMax = new(4.0f);
-
-        /// <summary>
-        ///     ［ズーム］最小
-        /// </summary>
-        Models.Geometric.Zoom zoomMin = new(0.5f);
         #endregion
 
         #region 変更通知フィールド（［元画像グリッド］　関連）
