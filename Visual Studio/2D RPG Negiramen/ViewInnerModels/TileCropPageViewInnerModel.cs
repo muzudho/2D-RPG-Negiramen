@@ -321,23 +321,6 @@
         ///         <item>コード・ビハインドで使用</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.Zoom OwnerZoom
-        {
-            get => this.Zoom;
-            set
-            {
-                this.Zoom = value;
-            }
-        }
-
-        /// <summary>
-        ///     ズーム
-        ///     
-        ///     <list type="bullet">
-        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
-        ///         <item>コード・ビハインドで使用</item>
-        ///     </list>
-        /// </summary>
         public Models.Geometric.Zoom Zoom
         {
             get => this.zoom;
@@ -445,7 +428,7 @@
                             rect: this.CroppedCursorPointedTileSourceRect,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.OwnerZoom
+                        zoom: this.Zoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
 #endif
@@ -528,7 +511,7 @@
                 inner: this,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.OwnerZoom)));
+                workingRectangle: contents.SourceRectangle.Do(this.Zoom)));
 
             this.Owner.InvalidateForHistory();
         }
@@ -556,7 +539,7 @@
                 inner: this.Owner.Inner,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.OwnerZoom)));
+                workingRectangle: contents.SourceRectangle.Do(this.Zoom)));
 
             this.Owner.InvalidateForHistory();
         }
@@ -899,7 +882,7 @@
             //
             if (TilesetDatatableVisually.LoadCSV(
                 tilesetDatatableFileLocation: this.TilesetDatatableFileLocation,
-                zoom: this.OwnerZoom,
+                zoom: this.Zoom,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
                 this.Owner.TilesetSettingsVM = tilesetDatatableVisually;
