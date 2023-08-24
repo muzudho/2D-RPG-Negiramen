@@ -358,6 +358,74 @@
         internal void InvalidateLocale() => this.RefreshAddsButton();
         #endregion
 
+        #region メソッド（［切抜きカーソル］　関連）
+        /// <summary>
+        ///     <pre>
+        ///         ［切抜きカーソル］ズーム済みのキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        internal void TrickRefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
+        {
+            if (this.Owner.TrickWidth.AsFloat == 1.0f)
+            {
+                this.Owner.TrickWidth = WidthFloat.Zero;
+            }
+            else
+            {
+                this.Owner.TrickWidth = WidthFloat.One;
+            }
+
+            // TRICK CODE:
+            this.Owner.InvalidateWorkingTargetTile();
+        }
+
+        /// <summary>
+        ///     ［切抜きカーソル］の再描画
+        ///     
+        ///     TODO ★ 設定ファイルからリロードしてる？
+        /// </summary>
+        internal void LoadCroppedCursorPointedTile()
+        {
+            this.TilesetSettingsVM.MatchByRectangle(
+                sourceRect: this.CroppedCursorPointedTileSourceRect,
+                some: (tileVisually) =>
+                {
+                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
+
+                    // タイルを指す（論理削除されているものも含む）
+                    this.TargetTileRecordVisually = tileVisually;
+                },
+                none: () =>
+                {
+                    // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+
+                    //
+                    // 空欄にする
+                    // ==========
+                    //
+
+                    // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
+                    this.TargetTileRecordVisually = TileRecordVisually.FromModel(
+                        tileRecord: new Models.TileRecord(
+                            id: Models.TileIdOrEmpty.Empty,
+                            rect: this.CroppedCursorPointedTileSourceRect,
+                            title: Models.TileTitle.Empty,
+                            logicalDelete: Models.LogicalDelete.False),
+                        zoom: this.Zoom
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
+#endif
+                        );
+                },
+                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
+                includeLogicalDelete: true);
+        }
+        #endregion
+
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］を差分更新
@@ -684,7 +752,7 @@
             // 切抜きカーソル更新
             // ==================
             //
-            this.Owner.LoadCroppedCursorPointedTile();
+            this.LoadCroppedCursorPointedTile();
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
             this.RefreshAddsButton();

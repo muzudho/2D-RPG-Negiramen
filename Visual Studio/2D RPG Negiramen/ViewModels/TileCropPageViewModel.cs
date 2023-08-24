@@ -155,7 +155,7 @@
             get => this.zoom.AsFloat;
             set
             {
-                TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
+                this.Inner.TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                 if (this.zoom.AsFloat != value)
                 {
@@ -1613,76 +1613,6 @@
         }
         #endregion
 
-        // - インターナル・メソッド
-
-        #region メソッド（［切抜きカーソル］　関連）
-        /// <summary>
-        ///     <pre>
-        ///         ［切抜きカーソル］ズーム済みのキャンバスの再描画
-        /// 
-        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-        ///                 振動させることで、再描画を呼び起こすことにする
-        ///     </pre>
-        /// </summary>
-        internal void TrickRefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
-        {
-            if (this.TrickWidth.AsFloat == 1.0f)
-            {
-                this.TrickWidth = WidthFloat.Zero;
-            }
-            else
-            {
-                this.TrickWidth = WidthFloat.One;
-            }
-
-            // TRICK CODE:
-            InvalidateWorkingTargetTile();
-        }
-
-        /// <summary>
-        ///     ［切抜きカーソル］の再描画
-        ///     
-        ///     TODO ★ 設定ファイルからリロードしてる？
-        /// </summary>
-        internal void LoadCroppedCursorPointedTile()
-        {
-            this.TilesetSettingsVM.MatchByRectangle(
-                sourceRect: this.CroppedCursorPointedTileSourceRect,
-                some: (tileVisually) =>
-                {
-                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
-
-                    // タイルを指す（論理削除されているものも含む）
-                    this.Inner.TargetTileRecordVisually = tileVisually;
-                },
-                none: () =>
-                {
-                    // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
-
-                    //
-                    // 空欄にする
-                    // ==========
-                    //
-
-                    // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.Inner.TargetTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new Models.TileRecord(
-                            id: Models.TileIdOrEmpty.Empty,
-                            rect: this.CroppedCursorPointedTileSourceRect,
-                            title: Models.TileTitle.Empty,
-                            logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
-#endif
-                        );
-                },
-                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
-                includeLogicalDelete: true);
-        }
-        #endregion
-
         // - インターナル・インベントハンドラ
 
         #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
@@ -1856,7 +1786,7 @@
                 // タイル・フォームの表示更新
                 this.Inner.RefreshTileForm();
 
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+                this.Inner.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
             }
             else
             {
@@ -1876,7 +1806,7 @@
                 // タイル・フォームの表示更新
                 this.Inner.RefreshTileForm();
 
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+                this.Inner.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
             }
         }
         #endregion
@@ -1904,7 +1834,7 @@
                 // タイル・フォームの表示更新
                 this.Inner.RefreshTileForm();
 
-                this.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+                this.Inner.TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
         }
         #endregion
