@@ -1486,10 +1486,15 @@
 
         // - インターナル変更通知メソッド
 
+        #region 変更通知メソッド（［文化情報］）
+        /// <summary>
+        ///     ［文化情報］
+        /// </summary>
         internal void InvalidateCultureInfo()
         {
             OnPropertyChanged(nameof(SelectedCultureInfo));
         }
+        #endregion
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
         /// <summary>
@@ -1498,6 +1503,29 @@
         internal void InvalidateTilesetSettingsVM()
         {
             OnPropertyChanged(nameof(TilesetSettingsVM));
+        }
+        #endregion
+
+        #region 変更通知メソッド（［タイルセット作業画像］）
+        /// <summary>
+        ///     ［タイルセット作業画像］
+        /// </summary>
+        internal void InvalidateTilesetWorkingImage()
+        {
+            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
+            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
+        }
+        #endregion
+
+        #region 変更通知メソッド（［作業グリッド］）
+        /// <summary>
+        ///     ［作業グリッド］
+        /// </summary>
+        internal void InvalidateWorkingGrid()
+        {
+            OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
+            OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
+            OnPropertyChanged(nameof(WorkingGridUnit));
         }
         #endregion
 
@@ -1511,6 +1539,48 @@
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
             OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
             OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
+        }
+
+        /// <summary>
+        ///     ［選択タイル］Ｉｄの再描画
+        /// </summary>
+        internal void InvalidateTileIdChange()
+        {
+            OnPropertyChanged(nameof(AddsButtonHint));
+            OnPropertyChanged(nameof(AddsButtonText));
+            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+
+            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
+        }
+
+        internal void InvalidateWorkingTargetTile()
+        {
+            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsFloat));
+            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
+        }
+        #endregion
+
+        #region 変更通知メソッド（［タイル・タイトル］）
+        /// <summary>
+        ///     ［タイル・タイトル］
+        /// </summary>
+        internal void InvalidateTileTitle()
+        {
+            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+        }
+        #endregion
+
+        #region 変更通知メソッド（［追加／復元］ボタン）
+        /// <summary>
+        ///     ［追加／復元］ボタン
+        /// </summary>
+        internal void InvalidateAddsButton()
+        {
+            OnPropertyChanged(nameof(AddsButtonHint));
+            OnPropertyChanged(nameof(AddsButtonText));
+            OnPropertyChanged(nameof(IsEnabledAddsButton));
         }
         #endregion
 
@@ -1544,21 +1614,6 @@
         }
         #endregion
 
-        #region 変更通知メソッド（［選択タイル］　関連）
-        /// <summary>
-        ///     ［選択タイル］Ｉｄの再描画
-        /// </summary>
-        internal void InvalidateTileIdChange()
-        {
-            OnPropertyChanged(nameof(AddsButtonHint));
-            OnPropertyChanged(nameof(AddsButtonText));
-            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
-
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
-        }
-        #endregion
-
         // - インターナル・メソッド
 
         #region メソッド（［切抜きカーソル］　関連）
@@ -1583,8 +1638,7 @@
             }
 
             // TRICK CODE:
-            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingWidthAsFloat));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileWorkingSizeWithTrick));
+            InvalidateWorkingTargetTile();
         }
 
         /// <summary>
@@ -1634,7 +1688,7 @@
         /// <summary>
         ///     ［追加／上書き］ボタンの再描画
         /// </summary>
-        internal void InvalidateAddsButton()
+        internal void RefreshAddsButton2()
         {
             // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
             if (this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
@@ -1680,7 +1734,7 @@
             }
 
             // ［追加／復元］ボタンの活性性
-            OnPropertyChanged(nameof(IsEnabledAddsButton));
+            this.InvalidateAddsButton();
         }
         #endregion
 
@@ -1688,7 +1742,7 @@
         /// <summary>
         ///     ［削除］ボタンの再描画
         /// </summary>
-        internal void InvalidateDeletesButton()
+        internal void RefreshDeletesButton()
         {
             var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
 
@@ -1788,17 +1842,16 @@
             this.LoadCroppedCursorPointedTile();
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.InvalidateAddsButton();
+            this.RefreshAddsButton2();
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
-            this.InvalidateDeletesButton();
+            this.RefreshDeletesButton();
 
             // ［追加／復元］ボタン
-            OnPropertyChanged(nameof(IsEnabledAddsButton));
+            this.InvalidateAddsButton();
 
-            // タイルセット タイトル
-            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
-            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+            // タイル・タイトル
+            this.InvalidateTileTitle();
         }
         #endregion
 
@@ -1830,8 +1883,7 @@
                     height: this.workingImageSize.Height.AsInt),
                 quality: SKFilterQuality.Medium);
 
-            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
-            OnPropertyChanged(nameof(TilesetWorkingImageHeightAsInt));
+            this.InvalidateTilesetWorkingImage();
         }
 
         /// <summary>
@@ -1858,16 +1910,14 @@
                     height: new HeightInt(this.workingImageSize.Height.AsInt));
             }
 
-            // タイル タイトル表示欄とか更新したい
-            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            // タイル タイトル
+            this.InvalidateTileTitle();
 
             // 追加・削除ボタンの表示状態を更新したい
-            OnPropertyChanged(nameof(AddsButtonHint));
-            OnPropertyChanged(nameof(AddsButtonText));
-            OnPropertyChanged(nameof(IsEnabledAddsButton));
+            this.InvalidateAddsButton();
 
-            OnPropertyChanged(nameof(TilesetWorkingImageWidthAsInt));
-            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+            // タイルセット作業画像
+            this.InvalidateTilesetWorkingImage();
         }
         #endregion
 
@@ -1900,8 +1950,7 @@
         {
             this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
 
-            OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
-            OnPropertyChanged(nameof(WorkingGridUnit));
+            this.InvalidateWorkingGrid();
         }
 
         /// <summary>
@@ -1915,8 +1964,7 @@
         {
             this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
 
-            OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
-            OnPropertyChanged(nameof(WorkingGridUnit));
+            this.InvalidateWorkingGrid();
         }
         #endregion
 

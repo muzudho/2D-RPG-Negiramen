@@ -344,7 +344,7 @@
         /// <summary>
         ///     ［削除］ボタンの再描画
         /// </summary>
-        internal void InvalidateDeletesButton() => this.Owner.InvalidateDeletesButton();
+        internal void InvalidateDeletesButton() => this.Owner.RefreshDeletesButton();
         #endregion
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
@@ -371,7 +371,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateLocale() => this.Owner.InvalidateAddsButton();
+        internal void InvalidateLocale() => this.Owner.RefreshAddsButton2();
         #endregion
 
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
@@ -394,10 +394,10 @@
                 // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
                 // ［追加／上書き］ボタン再描画
-                this.Owner.InvalidateAddsButton();
+                this.Owner.RefreshAddsButton2();
 
                 // ［削除］ボタン再描画
-                this.Owner.InvalidateDeletesButton();
+                this.Owner.RefreshDeletesButton();
             }
 
             // タイル・タイトル
