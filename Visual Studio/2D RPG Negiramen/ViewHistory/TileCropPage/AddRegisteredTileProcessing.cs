@@ -71,7 +71,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.Inner.Zoom;
+            registeredTileVisually.Zoom = this.Inner.OwnerZoom;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;

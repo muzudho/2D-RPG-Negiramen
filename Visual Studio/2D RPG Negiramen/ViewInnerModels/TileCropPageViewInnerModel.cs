@@ -126,7 +126,7 @@
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
         ///     </list>
         /// </summary>
-        public float ZoomAsFloat
+        public float OwnerZoomAsFloat
         {
             get => this.Owner.ZoomAsFloat;
             set
@@ -321,7 +321,7 @@
         ///         <item>コード・ビハインドで使用</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.Zoom Zoom
+        public Models.Geometric.Zoom OwnerZoom
         {
             get => this.Owner.Zoom;
             set
@@ -424,7 +424,7 @@
                             rect: this.CroppedCursorPointedTileSourceRect,
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.Zoom
+                        zoom: this.OwnerZoom
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
 #endif
@@ -594,8 +594,8 @@
 
             // 作業画像のサイズ計算
             this.Owner.workingImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt)));
+                width: new Models.Geometric.WidthInt((int)(this.OwnerZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.OwnerZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.Owner.TilesetWorkingBitmap = temporaryBitmap.Resize(
@@ -654,8 +654,8 @@
         internal void RemakeGridCanvasImage()
         {
             this.Owner.GridCanvasImageSize = new Models.Geometric.SizeInt(
-                width: new Models.Geometric.WidthInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.Owner.HalfThicknessOfGridLineAsInt)),
-                height: new Models.Geometric.HeightInt((int)(this.ZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.Owner.HalfThicknessOfGridLineAsInt)));
+                width: new Models.Geometric.WidthInt((int)(this.OwnerZoomAsFloat * this.TilesetSourceImageSize.Width.AsInt) + (2 * this.Owner.HalfThicknessOfGridLineAsInt)),
+                height: new Models.Geometric.HeightInt((int)(this.OwnerZoomAsFloat * this.TilesetSourceImageSize.Height.AsInt) + (2 * this.Owner.HalfThicknessOfGridLineAsInt)));
         }
         #endregion
 
@@ -669,7 +669,7 @@
         /// </summary>
         internal void RefreshWorkingGridTileWidth()
         {
-            this.Owner.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.Owner.sourceGridUnit.Width.AsInt;
+            this.Owner.WorkingGridTileWidthAsFloat = this.OwnerZoomAsFloat * this.Owner.sourceGridUnit.Width.AsInt;
 
             this.Owner.InvalidateWorkingGrid();
         }
@@ -683,7 +683,7 @@
         /// </summary>
         internal void RefreshWorkingGridTileHeight()
         {
-            this.Owner.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.Owner.sourceGridUnit.Height.AsInt;
+            this.Owner.WorkingGridTileHeightAsFloat = this.OwnerZoomAsFloat * this.Owner.sourceGridUnit.Height.AsInt;
 
             this.Owner.InvalidateWorkingGrid();
         }
@@ -736,11 +736,11 @@
             // ズームを除去
             var sourceRect = new RectangleInt(
                 location: new PointInt(
-                    x: new XInt((int)(workingRect.Location.X.AsFloat / this.ZoomAsFloat)),
-                    y: new YInt((int)(workingRect.Location.Y.AsFloat / this.ZoomAsFloat))),
+                    x: new XInt((int)(workingRect.Location.X.AsFloat / this.OwnerZoomAsFloat)),
+                    y: new YInt((int)(workingRect.Location.Y.AsFloat / this.OwnerZoomAsFloat))),
                 size: new SizeInt(
-                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / this.ZoomAsFloat)),
-                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / this.ZoomAsFloat))));
+                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / this.OwnerZoomAsFloat)),
+                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / this.OwnerZoomAsFloat))));
 
             //
             // 計算値の反映
@@ -878,7 +878,7 @@
             //
             if (TilesetDatatableVisually.LoadCSV(
                 tilesetDatatableFileLocation: this.TilesetDatatableFileLocation,
-                zoom: this.Zoom,
+                zoom: this.OwnerZoom,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
                 this.Owner.TilesetSettingsVM = tilesetDatatableVisually;
