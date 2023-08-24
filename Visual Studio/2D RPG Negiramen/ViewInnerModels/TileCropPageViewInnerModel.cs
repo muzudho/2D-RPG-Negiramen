@@ -6,10 +6,19 @@
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.ViewModels;
     using SkiaSharp;
+    using SkiaSharp.Views.Maui.Controls;
     using System.Diagnostics;
     using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
+    using TheGraphics = Microsoft.Maui.Graphics;
+
+#if IOS || ANDROID || MACCATALYST
+    using Microsoft.Maui.Graphics.Platform;
+#elif WINDOWS
+    using Microsoft.Maui.Graphics.Win2D;
+    using System.Net;
+#endif
 
     /// <summary>
     ///     内部モデル
@@ -848,6 +857,130 @@
                 // タイル登録済み時
                 this.Owner.IsEnabledDeletesButton = true;
             }
+        }
+        #endregion
+
+        // - インターナル・イベントハンドラ
+
+        #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
+        /// <summary>
+        ///     別ページから、このページに訪れたときに呼び出される
+        /// </summary>
+        internal void OnNavigatedTo(SKCanvasView skiaTilesetCanvas1)
+        {
+            Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ページ来訪時");
+
+            this.ReactOnVisited();
+
+            //
+            // タイル設定ファイルの読込
+            // ========================
+            //
+            if (TilesetDatatableVisually.LoadCSV(
+                tilesetDatatableFileLocation: this.TilesetDatatableFileLocation,
+                zoom: this.Zoom,
+                tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
+            {
+                this.Owner.TilesetSettingsVM = tilesetDatatableVisually;
+
+#if DEBUG
+                // ファイルの整合性チェック（重い処理）
+                if (this.TilesetSettingsVM.IsValid())
+                {
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {this.TilesetDatatableFileLocation.Path.AsStr}");
+                }
+                else
+                {
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {this.TilesetDatatableFileLocation.Path.AsStr}");
+                }
+#endif
+
+                //// 登録タイルのデバッグ出力
+                //foreach (var record in context.TilesetSettings.RecordList)
+                //{
+                //    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] Record: {record.Dump()}");
+                //}
+            }
+
+            //
+            // タイルセット画像ファイルへのパスを取得
+            //
+            var tilesetImageFilePathAsStr = this.Owner.TilesetImageFilePathAsStr;
+
+            //
+            // タイルセット画像の読込、作業中タイルセット画像の書出
+            // ====================================================
+            //
+            var task = Task.Run(async () =>
+            {
+                try
+                {
+                    // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
+                    using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
+                    {
+#if IOS || ANDROID || MACCATALYST
+                    // PlatformImage isn't currently supported on Windows.
+                    
+                    TheGraphics.IImage image = PlatformImage.FromStream(inputFileStream);
+#elif WINDOWS
+                        TheGraphics.IImage image = new W2DImageLoadingService().FromStream(inputFileStream);
+#endif
+
+                        //
+                        // 作業中のタイルセット画像の保存
+                        //
+                        if (image != null)
+                        {
+                            // ディレクトリーが無ければ作成する
+                            var folder = App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder;
+                            folder.CreateThisDirectoryIfItDoesNotExist();
+
+                            // 書出先（ウィンドウズ・ローカルＰＣ）
+                            using (Stream outputFileStream = System.IO.File.Open(folder.WorkingTilesetPng.Path.AsStr, FileMode.OpenOrCreate))
+                            {
+                                image.Save(outputFileStream);
+                            }
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // TODO エラー対応どうする？
+                }
+
+                // ↓ SkiaSharp の流儀
+                try
+                {
+                    // タイルセット読込（読込元：　ウィンドウズ・ローカルＰＣ）
+                    using (Stream inputFileStream = System.IO.File.OpenRead(tilesetImageFilePathAsStr))
+                    {
+                        // ↓ １つのストリームが使えるのは、１回切り
+                        using (var memStream = new MemoryStream())
+                        {
+                            await inputFileStream.CopyToAsync(memStream);
+                            memStream.Seek(0, SeekOrigin.Begin);
+
+                            // 元画像
+                            this.Owner.SetTilesetSourceBitmap(SkiaSharp.SKBitmap.Decode(memStream));
+
+                            // 複製
+                            this.Owner.TilesetWorkingBitmap = SkiaSharp.SKBitmap.FromImage(SkiaSharp.SKImage.FromBitmap(this.Owner.TilesetSourceBitmap));
+
+                            // 画像処理（明度を下げる）
+                            FeatSkia.ReduceBrightness.DoItInPlace(this.Owner.TilesetWorkingBitmap);
+                        };
+
+                        // 再描画
+                        skiaTilesetCanvas1.InvalidateSurface();
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // TODO エラー対応どうする？
+                }
+            });
+
+            Task.WaitAll(new Task[] { task });
         }
         #endregion
 
