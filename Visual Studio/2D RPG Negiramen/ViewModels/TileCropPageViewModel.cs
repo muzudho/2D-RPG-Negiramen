@@ -359,7 +359,7 @@
                     this.sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridUnit.Height);
 
                     // 作業グリッド・タイル横幅の再計算
-                    RefreshWorkingGridTileWidth();
+                    this.Inner.RefreshWorkingGridTileWidth();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
@@ -390,7 +390,7 @@
                     this.sourceGridUnit = new Models.Geometric.SizeInt(this.sourceGridUnit.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
-                    RefreshWorkingGridTileHeight();
+                    this.Inner.RefreshWorkingGridTileHeight();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
@@ -1938,36 +1938,6 @@
         }
         #endregion
 
-        #region メソッド（［作業グリッド］　関連）
-        /// <summary>
-        ///     ［作業グリッド］タイル横幅の再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        internal void RefreshWorkingGridTileWidth()
-        {
-            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
-
-            this.InvalidateWorkingGrid();
-        }
-
-        /// <summary>
-        ///     ［作業グリッド］タイル縦幅の再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        internal void RefreshWorkingGridTileHeight()
-        {
-            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
-
-            this.InvalidateWorkingGrid();
-        }
-        #endregion
-
         // - インターナル・インベントハンドラ
 
         #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
@@ -2258,11 +2228,6 @@
         Models.Geometric.SizeInt gridCanvasImageSize = Models.Geometric.SizeInt.Empty;
 
         /// <summary>
-        ///     ［元画像グリッド］の単位
-        /// </summary>
-        Models.Geometric.SizeInt sourceGridUnit = new(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
-
-        /// <summary>
         ///     ［元画像グリッド］の位相の左上表示位置
         /// </summary>
         Models.Geometric.PointInt gridPhaseSourceLocation = Models.Geometric.PointInt.Empty;
@@ -2272,6 +2237,11 @@
         /// </summary>
         ThicknessOfLine halfThicknessOfGridLine = new(1);
         #endregion
+
+        /// <summary>
+        ///     ［元画像グリッド］の単位
+        /// </summary>
+        internal Models.Geometric.SizeInt sourceGridUnit = new(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
         #region 変更通知フィールド（［作業グリッド］　関連）
         /// <summary>
