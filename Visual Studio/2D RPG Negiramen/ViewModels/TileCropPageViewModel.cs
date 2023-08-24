@@ -10,7 +10,6 @@
     using System.Diagnostics;
     using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
-    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
     using TheGraphics = Microsoft.Maui.Graphics;
 
 #if IOS || ANDROID || MACCATALYST
@@ -1688,7 +1687,7 @@
         /// <summary>
         ///     ［追加／上書き］ボタンの再描画
         /// </summary>
-        internal void RefreshAddsButton2()
+        internal void RefreshAddsButton()
         {
             // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
             if (this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
@@ -1764,32 +1763,6 @@
                 // タイル登録済み時
                 this.IsEnabledDeletesButton = true;
             }
-        }
-        #endregion
-
-        #region メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
-        /// <summary>
-        ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>軽くはない処理</item>
-        ///     </list>
-        /// </summary>
-        internal void RecalculateBetweenCroppedCursorAndRegisteredTile()
-        {
-            if (this.CroppedCursorPointedTileSourceRect == TheGeometric.RectangleInt.Empty)
-            {
-                // カーソルが無ければ、交差も無い。合同ともしない
-                this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
-                this.Inner.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
-                return;
-            }
-
-            // 軽くはない処理
-            this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
-            this.Inner.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
-
-            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.Inner.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.Inner.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
         #endregion
 

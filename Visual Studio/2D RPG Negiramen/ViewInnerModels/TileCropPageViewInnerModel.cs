@@ -9,6 +9,7 @@
     using System.Diagnostics;
     using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
+    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
     /// <summary>
     ///     内部モデル
@@ -361,7 +362,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateLocale() => this.Owner.RefreshAddsButton2();
+        internal void InvalidateLocale() => this.Owner.RefreshAddsButton();
         #endregion
 
         #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
@@ -384,7 +385,7 @@
                 // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
                 // ［追加／上書き］ボタン再描画
-                this.Owner.RefreshAddsButton2();
+                this.Owner.RefreshAddsButton();
 
                 // ［削除］ボタン再描画
                 this.Owner.RefreshDeletesButton();
@@ -618,6 +619,32 @@
         }
         #endregion
 
+        #region メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
+        /// <summary>
+        ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算
+        ///     
+        ///     <list type="bullet">
+        ///         <item>軽くはない処理</item>
+        ///     </list>
+        /// </summary>
+        internal void RecalculateBetweenCroppedCursorAndRegisteredTile()
+        {
+            if (this.CroppedCursorPointedTileSourceRect == TheGeometric.RectangleInt.Empty)
+            {
+                // カーソルが無ければ、交差も無い。合同ともしない
+                this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
+                return;
+            }
+
+            // 軽くはない処理
+            this.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
+            this.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
+
+            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
+        }
+        #endregion
+
         #region メソッド（タイル・フォーム更新）
         /// <summary>
         ///     タイル・フォーム更新
@@ -658,7 +685,7 @@
             //
             //      - （軽くない処理）
             //
-            this.Owner.RecalculateBetweenCroppedCursorAndRegisteredTile();
+            this.RecalculateBetweenCroppedCursorAndRegisteredTile();
 
             //
             // 切抜きカーソル更新
@@ -667,7 +694,7 @@
             this.Owner.LoadCroppedCursorPointedTile();
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.Owner.RefreshAddsButton2();
+            this.Owner.RefreshAddsButton();
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
             this.Owner.RefreshDeletesButton();
