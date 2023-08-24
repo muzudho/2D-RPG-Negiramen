@@ -323,10 +323,30 @@
         /// </summary>
         public Models.Geometric.Zoom OwnerZoom
         {
-            get => this.Owner.Zoom;
+            get => this.Zoom;
             set
             {
-                this.Owner.Zoom = value;
+                this.Zoom = value;
+            }
+        }
+
+        /// <summary>
+        ///     ズーム
+        ///     
+        ///     <list type="bullet">
+        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
+        ///         <item>コード・ビハインドで使用</item>
+        ///     </list>
+        /// </summary>
+        public Models.Geometric.Zoom Zoom
+        {
+            get => this.zoom;
+            set
+            {
+                if (this.zoom == value)
+                    return;
+
+                this.Owner.ZoomAsFloat = value.AsFloat;
             }
         }
         #endregion
@@ -507,7 +527,7 @@
                 inner: this,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.Owner.Zoom)));
+                workingRectangle: contents.SourceRectangle.Do(this.OwnerZoom)));
 
             this.Owner.InvalidateForHistory();
         }
@@ -535,7 +555,7 @@
                 inner: this.Owner.Inner,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.Owner.Zoom)));
+                workingRectangle: contents.SourceRectangle.Do(this.OwnerZoom)));
 
             this.Owner.InvalidateForHistory();
         }
@@ -1091,6 +1111,13 @@
         TileCropPageViewModel Owner { get; }
 
         // - プライベート・フィールド
+
+        #region インターナル・フィールド（［ズーム］）
+        /// <summary>
+        ///     ［ズーム］
+        /// </summary>
+        internal Models.Geometric.Zoom zoom = Models.Geometric.Zoom.IdentityElement;
+        #endregion
 
         #region フィールド（［タイルセット元画像］　関連）
         /// <summary>
