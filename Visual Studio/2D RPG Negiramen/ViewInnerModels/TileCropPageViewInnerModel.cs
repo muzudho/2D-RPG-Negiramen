@@ -330,17 +330,6 @@
         internal void InvalidateTileIdChange() => this.Owner.InvalidateTileIdChange();
         #endregion
 
-        /// <summary>
-        ///     <pre>
-        ///         ［元画像グリッド］のキャンバスの再描画
-        /// 
-        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-        ///                 振動させることで、再描画を呼び起こすことにする
-        ///     </pre>
-        /// </summary>
-        internal void InvalidateForTileAdd() => this.Owner.InvalidateForTileAdd();
-
         #region メソッド（［削除］ボタン　関連）
         /// <summary>
         ///     ［削除］ボタンの再描画
@@ -612,6 +601,40 @@
                     height: this.Owner.workingImageSize.Height.AsInt),
                 quality: SKFilterQuality.Medium);
 
+            this.Owner.InvalidateTilesetWorkingImage();
+        }
+
+        /// <summary>
+        ///     <pre>
+        ///         ［元画像グリッド］のキャンバスの再描画
+        /// 
+        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
+        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
+        ///                 振動させることで、再描画を呼び起こすことにする
+        ///     </pre>
+        /// </summary>
+        internal void InvalidateForTileAdd()
+        {
+            if (this.Owner.TilesetWorkingImageWidthAsInt % 2 == 1)
+            {
+                this.Owner.workingImageSize = new SizeInt(
+                    width: new WidthInt(this.Owner.workingImageSize.Width.AsInt - 1),
+                    height: new HeightInt(this.Owner.workingImageSize.Height.AsInt));
+            }
+            else
+            {
+                this.Owner.workingImageSize = new SizeInt(
+                    width: new WidthInt(this.Owner.workingImageSize.Width.AsInt + 1),
+                    height: new HeightInt(this.Owner.workingImageSize.Height.AsInt));
+            }
+
+            // タイル タイトル表示欄とか更新したい
+            this.Owner.InvalidateTileTitle();
+
+            // 追加・削除ボタンの表示状態を更新したい
+            this.Owner.InvalidateAddsButton();
+
+            // タイルセット作業画像
             this.Owner.InvalidateTilesetWorkingImage();
         }
         #endregion
