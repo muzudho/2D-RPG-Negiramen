@@ -39,6 +39,7 @@
             Owner = owner;
 
             this.CultureInfo = new InnerCultureInfo(this);
+            this.PointingDevice = new InnerPointingDevice(this);
         }
         #endregion
 
@@ -73,21 +74,13 @@
         ///     ポインティング・デバイス押下中か？
         /// 
         ///     <list type="bullet">
-        ///         <item>タイルを選択開始していて、まだ未確定だ</item>
-        ///         <item>マウスじゃないと思うけど</item>
+        ///         <item>透過メソッド</item>
         ///     </list>
         /// </summary>
         public bool IsMouseDragging
         {
-            get => isMouseDragging;
-            set
-            {
-                if (isMouseDragging != value)
-                {
-                    isMouseDragging = value;
-                    Owner.InvalidateIsMouseDragging();
-                }
-            }
+            get => this.PointingDevice.IsMouseDragging;
+            set => this.PointingDevice.IsMouseDragging = value;
         }
         #endregion
 
@@ -325,19 +318,10 @@
         internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
         #endregion
 
-        #region プロパティ（ポインティング・デバイス押下開始位置）
         /// <summary>
-        ///     ポインティング・デバイス押下開始位置
+        ///     ポインティング・デバイス
         /// </summary>
-        internal PointFloat PointingDeviceStartPoint { get; set; }
-        #endregion
-
-        #region プロパティ（ポインティング・デバイス現在位置）
-        /// <summary>
-        ///     ポインティング・デバイス現在位置
-        /// </summary>
-        internal PointFloat PointingDeviceCurrentPoint { get; set; }
-        #endregion
+        internal InnerPointingDevice PointingDevice { get; }
 
         #region プロパティ（［ズーム］　関連）
         /// <summary>
@@ -798,8 +782,8 @@
 
             // ズームしたまま
             RectangleFloat workingRect = CoordinateHelper.GetCursorRectangle(
-                startPoint: PointingDeviceStartPoint,
-                endPoint: PointingDeviceCurrentPoint,
+                startPoint: this.PointingDevice.StartPoint,
+                endPoint: this.PointingDevice.CurrentPoint,
                 gridLeftTop: Owner.WorkingGridPhase,
                 gridTile: Owner.WorkingGridUnit);
 
@@ -1095,7 +1079,7 @@
                 Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
 
                 // ポイントしている位置
-                PointingDeviceCurrentPoint = PointingDeviceStartPoint = new PointFloat(
+                this.PointingDevice.CurrentPoint = this.PointingDevice.StartPoint = new PointFloat(
                     new XFloat((float)tappedPoint.X),
                     new YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
@@ -1115,7 +1099,7 @@
                 Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
 
                 // ポイントしている位置
-                PointingDeviceCurrentPoint = new PointFloat(
+                this.PointingDevice.CurrentPoint = new PointFloat(
                     new XFloat((float)tappedPoint.X),
                     new YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
@@ -1143,7 +1127,7 @@
                 //
 
                 // ポイントしている位置
-                PointingDeviceCurrentPoint = new PointFloat(
+                this.PointingDevice.CurrentPoint = new PointFloat(
                     new XFloat((float)tappedPoint.X),
                     new YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
@@ -1154,15 +1138,6 @@
                 TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
         }
-        #endregion
-
-        // - プライベート変更通知フィールド
-
-        #region 変更通知フィールド（ポインティング・デバイス押下中か？）
-        /// <summary>
-        ///     ポインティング・デバイス押下中か？
-        /// </summary>
-        bool isMouseDragging;
         #endregion
 
         // - プライベート・フィールド
