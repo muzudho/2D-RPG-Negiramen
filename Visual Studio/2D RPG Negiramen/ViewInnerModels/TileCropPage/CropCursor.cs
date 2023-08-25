@@ -61,6 +61,36 @@ internal class CropCursor
         this.Owner.Owner.InvalidateWorkingTargetTile();
     }
 
+    #region メソッド（［作業グリッド］　関連）
+    /// <summary>
+    ///     ［作業グリッド］タイル横幅の再計算
+    ///     
+    ///     <list type="bullet">
+    ///         <item>アンドゥ・リドゥで利用</item>
+    ///     </list>
+    /// </summary>
+    internal void RecalculateWorkingGridTileWidth()
+    {
+        this.Owner.Owner.WorkingGridTileWidthAsFloat = this.Owner.OwnerZoomAsFloat * this.Owner.Owner.sourceGridUnit.Width.AsInt;
+
+        // this.Owner.Owner.InvalidateWorkingGrid();
+    }
+
+    /// <summary>
+    ///     ［作業グリッド］タイル縦幅の再計算
+    ///     
+    ///     <list type="bullet">
+    ///         <item>アンドゥ・リドゥで利用</item>
+    ///     </list>
+    /// </summary>
+    internal void RecalculateWorkingGridTileHeight()
+    {
+        this.Owner.Owner.WorkingGridTileHeightAsFloat = this.Owner.OwnerZoomAsFloat * this.Owner.Owner.sourceGridUnit.Height.AsInt;
+
+        // this.Owner.Owner.InvalidateWorkingGrid();
+    }
+    #endregion
+
     // - プライベート・フィールド
 
     /// <summary>

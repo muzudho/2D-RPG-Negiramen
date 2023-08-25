@@ -380,36 +380,6 @@
         }
         #endregion
 
-        #region メソッド（［作業グリッド］　関連）
-        /// <summary>
-        ///     ［作業グリッド］タイル横幅の再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        internal void RefreshWorkingGridTileWidth()
-        {
-            Owner.WorkingGridTileWidthAsFloat = OwnerZoomAsFloat * Owner.sourceGridUnit.Width.AsInt;
-
-            Owner.InvalidateWorkingGrid();
-        }
-
-        /// <summary>
-        ///     ［作業グリッド］タイル縦幅の再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        internal void RefreshWorkingGridTileHeight()
-        {
-            Owner.WorkingGridTileHeightAsFloat = OwnerZoomAsFloat * Owner.sourceGridUnit.Height.AsInt;
-
-            Owner.InvalidateWorkingGrid();
-        }
-        #endregion
-
         #region メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
         /// <summary>
         ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算

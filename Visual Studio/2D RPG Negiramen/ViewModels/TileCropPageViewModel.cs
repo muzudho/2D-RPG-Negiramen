@@ -347,7 +347,7 @@
                     this.sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridUnit.Height);
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.Inner.RefreshWorkingGridTileWidth();
+                    this.Inner.CropCursor.RecalculateWorkingGridTileWidth();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
@@ -378,7 +378,7 @@
                     this.sourceGridUnit = new Models.Geometric.SizeInt(this.sourceGridUnit.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.Inner.RefreshWorkingGridTileHeight();
+                    this.Inner.CropCursor.RecalculateWorkingGridTileHeight();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;

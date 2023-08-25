@@ -85,9 +85,9 @@ internal class ZoomProcessing : IProcessing
         // ［作業グリッド］の再計算
         {
             // 横幅
-            this.Inner.RefreshWorkingGridTileWidth();
+            this.Inner.CropCursor.RecalculateWorkingGridTileWidth();
             // 縦幅
-            this.Inner.RefreshWorkingGridTileHeight();
+            this.Inner.CropCursor.RecalculateWorkingGridTileHeight();
         }
 
         // ［切抜きカーソルが指すタイル］更新
