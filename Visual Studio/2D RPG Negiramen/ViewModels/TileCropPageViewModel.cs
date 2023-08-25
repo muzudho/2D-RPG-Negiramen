@@ -1288,18 +1288,15 @@
         #region 変更通知プロパティ（［削除］ボタン　関連）
         /// <summary>
         ///     ［削除］ボタンの活性性
+        ///     
+        ///     <list type="bullet">
+        ///         <item>透過メソッド</item>
+        ///     </list>
         /// </summary>
         public bool IsEnabledDeletesButton
         {
-            get => this.isEnabledDeletesButton;
-            set
-            {
-                if (this.isEnabledDeletesButton == value)
-                    return;
-
-                this.isEnabledDeletesButton = value;
-                OnPropertyChanged(nameof(IsEnabledDeletesButton));
-            }
+            get => this.Inner.DeletesButton.IsEnabled;
+            set => this.Inner.DeletesButton.IsEnabled = value;
         }
         #endregion
 
@@ -1526,6 +1523,16 @@
         }
         #endregion
 
+        #region 変更通知メソッド（［削除］ボタン）
+        /// <summary>
+        ///     ［削除］ボタン
+        /// </summary>
+        internal void InvalidateDeletesButton()
+        {
+            OnPropertyChanged(nameof(IsEnabledDeletesButton));
+        }
+        #endregion
+
         #region 変更通知メソッド（［履歴］）
         /// <summary>
         ///     ［履歴］
@@ -1635,13 +1642,6 @@
         ///     ［追加／上書き］ボタンのラベル
         /// </summary>
         string addsButtonText = string.Empty;
-        #endregion
-
-        #region 変更通知フィールド（［削除］ボタン　関連）
-        /// <summary>
-        ///     ［削除］ボタンの活性性
-        /// </summary>
-        bool isEnabledDeletesButton;
         #endregion
 
         // - プライベート・フィールド

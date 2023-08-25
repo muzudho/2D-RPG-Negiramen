@@ -41,6 +41,7 @@
             this.CultureInfo = new InnerCultureInfo(this);
             this.PointingDevice = new InnerPointingDevice(this);
             this.Zoom = new InnerZoom(this);
+            this.DeletesButton = new DeletesButton(this);
         }
         #endregion
 
@@ -324,6 +325,9 @@
         /// <summary>ズーム</summary>
         internal InnerZoom Zoom { get; }
 
+        /// <summary>削除ボタン</summary>
+        internal DeletesButton DeletesButton { get;}
+
         // - インターナル変更通知メソッド
 
         #region 変更通知メソッド（［選択タイル］　関連）
@@ -451,7 +455,7 @@
                 RefreshAddsButton();
 
                 // ［削除］ボタン再描画
-                RefreshDeletesButton();
+                this.DeletesButton.Refresh();
             }
 
             // タイル・タイトル
@@ -760,7 +764,7 @@
             RefreshAddsButton();
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
-            RefreshDeletesButton();
+            this.DeletesButton.Refresh();
 
             // ［追加／復元］ボタン
             Owner.InvalidateAddsButton();
@@ -821,35 +825,6 @@
 
             // ［追加／復元］ボタンの活性性
             Owner.InvalidateAddsButton();
-        }
-        #endregion
-
-        #region メソッド（［削除］ボタン　関連）
-        /// <summary>
-        ///     ［削除］ボタンの再描画
-        /// </summary>
-        internal void RefreshDeletesButton()
-        {
-            var contents = CroppedCursorPointedTileRecordVisually;
-
-            if (contents.IsNone)
-            {
-                // 切抜きカーソル無し時
-                Owner.IsEnabledDeletesButton = false;
-                return;
-            }
-
-            // 切抜きカーソル有り時
-            if (contents.Id == TileIdOrEmpty.Empty)
-            {
-                // Ｉｄ未設定時
-                Owner.IsEnabledDeletesButton = false;
-            }
-            else
-            {
-                // タイル登録済み時
-                Owner.IsEnabledDeletesButton = true;
-            }
         }
         #endregion
 

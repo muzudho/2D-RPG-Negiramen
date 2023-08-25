@@ -127,7 +127,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         }
 
         //  ［削除］ボタンの再描画
-        this.Inner.RefreshDeletesButton();
+        this.Inner.DeletesButton.Refresh();
 
         //
         // カラーマップの再描画
