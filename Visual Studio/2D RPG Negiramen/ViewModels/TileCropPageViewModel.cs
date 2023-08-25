@@ -1171,7 +1171,7 @@
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.Inner.TargetTileRecordVisually.IsNone && !this.Inner.CroppedCursorPointedTileIdOrEmpty.IsEmpty && !this.Inner.TargetTileRecordVisually.LogicalDelete.AsBool;
+        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.Inner.TargetTileRecordVisually.IsNone && !this.Inner.CropTile.IdOrEmpty.IsEmpty && !this.Inner.TargetTileRecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル

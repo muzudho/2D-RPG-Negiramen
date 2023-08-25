@@ -215,7 +215,7 @@
 
                         // 末端にセット（変更通知を呼ぶために）
                         // Ｉｄ
-                        CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
+                        this.CropTile.IdOrEmpty = TileIdOrEmpty.Empty;
 
                         // 元画像の位置とサイズ
                         Owner.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
@@ -249,7 +249,7 @@
                         tileTitle: newValue.Title);
 
                     // （変更通知を送っている）
-                    CroppedCursorPointedTileIdOrEmpty = newValue.Id;
+                    this.CropTile.IdOrEmpty = newValue.Id;
                     Owner.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
                     Owner.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
                     Owner.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
@@ -259,32 +259,6 @@
 
                 // 変更通知を送りたい
                 Owner.InvalidateTileIdChange();
-            }
-        }
-
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］のＩｄ
-        /// </summary>
-        public TileIdOrEmpty CroppedCursorPointedTileIdOrEmpty
-        {
-            get
-            {
-                var contents = this.CropTile.SavesRecordVisually;
-
-                // ［切抜きカーソル］の指すタイル無し時
-                if (contents.IsNone)
-                    return TileIdOrEmpty.Empty;
-
-                return contents.Id;
-            }
-            set
-            {
-                if (this.CropTile.SavesRecordVisually.Id == value)
-                    return;
-
-                // 差分更新
-                this.CropTile.UpdateByDifference(
-                    tileId: value);
             }
         }
         #endregion
@@ -353,11 +327,9 @@
         internal void InvalidateByLocale() => this.AddsButton.Refresh();
         #endregion
 
-        #region メソッド（［切抜きカーソル］　関連）
+        #region メソッド（［切抜きカーソル］と［切抜きカーソルが指すタイル］　関連）
         /// <summary>
-        ///     ［切抜きカーソル］の再描画
-        ///     
-        ///     TODO ★ 設定ファイルからリロードしてる？
+        ///     ［切抜きカーソルが指すタイル］の読込
         /// </summary>
         internal void LoadCroppedCursorPointedTile()
         {
@@ -541,7 +513,7 @@
         ///         <item>軽くはない処理</item>
         ///     </list>
         /// </summary>
-        internal void RecalculateBetweenCroppedCursorAndRegisteredTile()
+        internal void RecalculateBetweenCropCursorAndRegisteredTile()
         {
             if (CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
             {
@@ -599,7 +571,7 @@
             //
             //      - （軽くない処理）
             //
-            RecalculateBetweenCroppedCursorAndRegisteredTile();
+            RecalculateBetweenCropCursorAndRegisteredTile();
 
             //
             // 切抜きカーソル更新
@@ -751,7 +723,7 @@
         /// </summary>
         internal void OnAddsButtonClicked()
         {
-            if (CroppedCursorPointedTileIdOrEmpty == TileIdOrEmpty.Empty)
+            if (this.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ

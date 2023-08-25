@@ -36,6 +36,32 @@ internal class CropTile
     internal TileRecordVisually SavesRecordVisually { get; set; } = TileRecordVisually.CreateEmpty();
     #endregion
 
+    /// <summary>
+    ///     Ｉｄ
+    /// </summary>
+    public TileIdOrEmpty IdOrEmpty
+    {
+        get
+        {
+            var contents = this.SavesRecordVisually;
+
+            // ［切抜きカーソル］の指すタイル無し時
+            if (contents.IsNone)
+                return TileIdOrEmpty.Empty;
+
+            return contents.Id;
+        }
+        set
+        {
+            if (this.SavesRecordVisually.Id == value)
+                return;
+
+            // 差分更新
+            this.UpdateByDifference(
+                tileId: value);
+        }
+    }
+
     // - インターナル・メソッド
 
     #region メソッド（［切抜きカーソルが指すタイル］を差分更新）

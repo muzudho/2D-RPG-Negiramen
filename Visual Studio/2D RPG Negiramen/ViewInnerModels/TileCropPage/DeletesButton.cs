@@ -80,7 +80,7 @@ internal class DeletesButton
     {
         App.History.Do(new RemoveRegisteredTileProcessing(
             inner: this.Owner,
-            tileIdOrEmpty: this.Owner.CroppedCursorPointedTileIdOrEmpty));
+            tileIdOrEmpty: this.Owner.CropTile.IdOrEmpty));
 
         this.Owner.InvalidateForHistory();
     }

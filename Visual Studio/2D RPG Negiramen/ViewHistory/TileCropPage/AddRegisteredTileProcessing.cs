@@ -41,7 +41,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.Inner.CroppedCursorPointedTileIdOrEmpty = this.TileIdOrEmpty;
+        this.Inner.CropTile.IdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.Inner.InvalidateTileIdChange();
@@ -105,7 +105,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.Inner.CroppedCursorPointedTileIdOrEmpty = TileIdOrEmpty.Empty;
+        this.Inner.CropTile.IdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.Inner.InvalidateTileIdChange();
