@@ -29,6 +29,12 @@ internal class CropCursor
     internal WidthFloat TrickWidth { get; set; } = WidthFloat.Zero;
     #endregion
 
+    public Models.Geometric.WidthFloat WorkingWidthWithoutTrick
+    {
+        get => this.workingWidthWithoutTrick;
+        set => this.workingWidthWithoutTrick = value;
+    }
+
     // - インターナル・メソッド
 
     /// <summary>
@@ -54,6 +60,19 @@ internal class CropCursor
         // TRICK CODE:
         this.Owner.Owner.InvalidateWorkingTargetTile();
     }
+
+    // - プライベート・フィールド
+
+    /// <summary>
+    ///     ［切抜きカーソル］ズーム済みのサイズ
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
+    ///         <item>仕様変更するときは、TRICK CODE に注意</item>
+    ///     </list>
+    /// </summary>
+    internal Models.Geometric.WidthFloat workingWidthWithoutTrick = Models.Geometric.WidthFloat.Zero;
 
     // - プライベート・プロパティ
 

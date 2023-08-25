@@ -3,7 +3,6 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.Visually;
-    using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.ViewModels;
     using SkiaSharp;
     using SkiaSharp.Views.Maui.Controls;
@@ -88,15 +87,6 @@
             set => this.PointingDevice.IsMouseDragging = value;
         }
         #endregion
-
-        public WidthFloat CroppedCursorPointedTileWorkingWidthWithoutTrick
-        {
-            get => Owner.CroppedCursorPointedTileWorkingWidthWithoutTrick;
-            set
-            {
-                Owner.CroppedCursorPointedTileWorkingWidthWithoutTrick = value;
-            }
-        }
 
         public HeightFloat CroppedCursorPointedTileWorkingHeight
         {
