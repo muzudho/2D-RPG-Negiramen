@@ -92,7 +92,7 @@ public partial class TileCropPage : ContentPage
         // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
         var context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Inner.InvalidateLocale();
+        context.Inner.InvalidateByLocale();
     }
     #endregion
 

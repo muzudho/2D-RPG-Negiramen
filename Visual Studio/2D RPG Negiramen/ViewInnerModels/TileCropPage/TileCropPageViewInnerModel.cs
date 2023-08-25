@@ -40,6 +40,7 @@
 
             this.CultureInfo = new InnerCultureInfo(this);
             this.PointingDevice = new InnerPointingDevice(this);
+            this.CropCursor = new CropCursor(this);
             this.Zoom = new InnerZoom(this);
             this.AddsButton = new AddsButton(this);
             this.DeletesButton = new DeletesButton(this);
@@ -105,17 +106,6 @@
             }
         }
 
-        #region 変更通知プロパティ（［切抜きカーソル］　関連）
-        /// <summary>
-        ///     トリック幅
-        /// </summary>
-        public WidthFloat TrickWidth
-        {
-            get => trickWidth;
-            set => trickWidth = value;
-        }
-        #endregion
-
         #region 変更通知プロパティ（［切抜きカーソルが指すタイル］　関連）
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
@@ -180,6 +170,9 @@
         /// </summary>
         public string TilesetWorkingImageFilePathAsStr => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
         #endregion
+
+        /// <summary>切抜きカーソル</summary>
+        internal CropCursor CropCursor { get; }
 
         #region プロパティ（［切抜きカーソル］　関連）
         /// <summary>
@@ -365,34 +358,10 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateLocale() => this.AddsButton.Refresh();
+        internal void InvalidateByLocale() => this.AddsButton.Refresh();
         #endregion
 
         #region メソッド（［切抜きカーソル］　関連）
-        /// <summary>
-        ///     <pre>
-        ///         ［切抜きカーソル］ズーム済みのキャンバスの再描画
-        /// 
-        ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-        ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-        ///                 振動させることで、再描画を呼び起こすことにする
-        ///     </pre>
-        /// </summary>
-        internal void TrickRefreshCanvasOfTileCursor(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
-        {
-            if (Owner.TrickWidth.AsFloat == 1.0f)
-            {
-                Owner.TrickWidth = WidthFloat.Zero;
-            }
-            else
-            {
-                Owner.TrickWidth = WidthFloat.One;
-            }
-
-            // TRICK CODE:
-            Owner.InvalidateWorkingTargetTile();
-        }
-
         /// <summary>
         ///     ［切抜きカーソル］の再描画
         ///     
@@ -878,7 +847,7 @@
                 // タイル・フォームの表示更新
                 RefreshTileForm();
 
-                TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+                this.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
             }
             else
             {
@@ -898,7 +867,7 @@
                 // タイル・フォームの表示更新
                 RefreshTileForm();
 
-                TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+                this.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
             }
         }
         #endregion
@@ -926,7 +895,7 @@
                 // タイル・フォームの表示更新
                 RefreshTileForm();
 
-                TrickRefreshCanvasOfTileCursor(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+                this.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
         }
         #endregion
@@ -938,10 +907,6 @@
         ///     ［タイルセット元画像］サイズ
         /// </summary>
         SizeInt tilesetSourceImageSize = SizeInt.Empty;
-        #endregion
-
-        #region フィールド（［切抜きカーソル］　関連）
-        WidthFloat trickWidth = WidthFloat.Zero;
         #endregion
     }
 }

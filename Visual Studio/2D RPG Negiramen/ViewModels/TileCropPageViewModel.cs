@@ -988,8 +988,8 @@
         /// </summary>
         public Models.Geometric.WidthFloat TrickWidth
         {
-            get => this.Inner.TrickWidth;
-            set => this.Inner.TrickWidth = value;
+            get => this.Inner.CropCursor.TrickWidth;
+            set => this.Inner.CropCursor.TrickWidth = value;
         }
 
         public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithTrick => new WidthFloat(this.croppedCursorPointedTileWorkingWidthWithoutTrick.AsFloat + this.TrickWidth.AsFloat);
