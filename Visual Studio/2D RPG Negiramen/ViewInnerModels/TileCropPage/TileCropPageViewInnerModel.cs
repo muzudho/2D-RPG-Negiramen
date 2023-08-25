@@ -178,91 +178,6 @@
         /// <summary>切抜きカーソルが指すタイル</summary>
         internal CropTile CropTile { get; }
 
-        #region プロパティ（［切抜きカーソルが指すタイル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソル］が指すタイル
-        ///     
-        ///     <list type="bullet">
-        ///         <item>［切抜きカーソル］が未確定のときも、指しているタイルにアクセスできることに注意</item>
-        ///         <item>TODO ★ ［切抜きカーソル］が指すタイルが無いとき、無いということをセットするのを忘れている？</item>
-        ///     </list>
-        /// </summary>
-        public TileRecordVisually TargetTileRecordVisually
-        {
-            get => this.CropTile.SavesRecordVisually;
-            set
-            {
-                var oldTileVisually = this.CropTile.SavesRecordVisually;
-
-                // 値に変化がない
-                if (oldTileVisually == value)
-                    return;
-
-                if (value.IsNone)
-                {
-                    // ［切抜きカーソルが指すタイル］を無しに設定する
-
-                    if (oldTileVisually.IsNone)
-                    {
-                        // ［切抜きカーソルが指すタイル］がもともと無く、［切抜きカーソルが指すタイル］を無しに設定するのだから、何もしなくてよい
-                    }
-                    else
-                    {
-                        // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
-                        this.CropTile.UpdateByDifference(
-                            // タイトル
-                            tileTitle: TileTitle.Empty);
-
-                        // 末端にセット（変更通知を呼ぶために）
-                        // Ｉｄ
-                        this.CropTile.IdOrEmpty = TileIdOrEmpty.Empty;
-
-                        // 元画像の位置とサイズ
-                        Owner.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
-
-                        // 論理削除
-                        Owner.CroppedCursorPointedTileLogicalDeleteAsBool = false;
-
-                        // 空にする
-                        this.CropTile.SavesRecordVisually = TileRecordVisually.CreateEmpty();
-                    }
-                }
-                else
-                {
-                    var newValue = value;
-
-                    if (oldTileVisually.IsNone)
-                    {
-                        // ［切抜きカーソル］の指すタイル無し時
-
-                        // 新規作成
-                        this.CropTile.SavesRecordVisually = TileRecordVisually.CreateEmpty();
-                    }
-                    else
-                    {
-                        // ［切抜きカーソル］の指すタイルが有るなら構わない
-                    }
-
-                    // （変更通知を送っている）
-                    this.CropTile.UpdateByDifference(
-                        // タイトル
-                        tileTitle: newValue.Title);
-
-                    // （変更通知を送っている）
-                    this.CropTile.IdOrEmpty = newValue.Id;
-                    Owner.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                    Owner.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                    Owner.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                    Owner.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
-                    // this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
-                }
-
-                // 変更通知を送りたい
-                Owner.InvalidateTileIdChange();
-            }
-        }
-        #endregion
-
         #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
         /// <summary>
         ///     切抜きカーソルと、既存タイルが交差しているか？
@@ -340,7 +255,7 @@
                     // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
 
                     // タイルを指す（論理削除されているものも含む）
-                    TargetTileRecordVisually = tileVisually;
+                    this.CropTile.TargetTileRecordVisually = tileVisually;
                 },
                 none: () =>
                 {
@@ -352,7 +267,7 @@
                     //
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    TargetTileRecordVisually = TileRecordVisually.FromModel(
+                    this.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: CroppedCursorPointedTileSourceRect,

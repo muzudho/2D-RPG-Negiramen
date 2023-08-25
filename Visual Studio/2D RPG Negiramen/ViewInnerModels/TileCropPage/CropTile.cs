@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
 
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.Visually;
 using System.Diagnostics;
 
@@ -34,6 +35,91 @@ internal class CropTile
     ///     </list>
     /// </summary>
     internal TileRecordVisually SavesRecordVisually { get; set; } = TileRecordVisually.CreateEmpty();
+
+    #region プロパティ（［切抜きカーソルが指すタイル］　関連）
+    /// <summary>
+    ///     ［切抜きカーソル］が指すタイル
+    ///     
+    ///     <list type="bullet">
+    ///         <item>［切抜きカーソル］が未確定のときも、指しているタイルにアクセスできることに注意</item>
+    ///         <item>TODO ★ ［切抜きカーソル］が指すタイルが無いとき、無いということをセットするのを忘れている？</item>
+    ///     </list>
+    /// </summary>
+    public TileRecordVisually TargetTileRecordVisually
+    {
+        get => this.SavesRecordVisually;
+        set
+        {
+            var oldTileVisually = this.SavesRecordVisually;
+
+            // 値に変化がない
+            if (oldTileVisually == value)
+                return;
+
+            if (value.IsNone)
+            {
+                // ［切抜きカーソルが指すタイル］を無しに設定する
+
+                if (oldTileVisually.IsNone)
+                {
+                    // ［切抜きカーソルが指すタイル］がもともと無く、［切抜きカーソルが指すタイル］を無しに設定するのだから、何もしなくてよい
+                }
+                else
+                {
+                    // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
+                    this.UpdateByDifference(
+                        // タイトル
+                        tileTitle: TileTitle.Empty);
+
+                    // 末端にセット（変更通知を呼ぶために）
+                    // Ｉｄ
+                    this.IdOrEmpty = TileIdOrEmpty.Empty;
+
+                    // 元画像の位置とサイズ
+                    Owner.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+
+                    // 論理削除
+                    this.Owner.Owner.CroppedCursorPointedTileLogicalDeleteAsBool = false;
+
+                    // 空にする
+                    this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
+                }
+            }
+            else
+            {
+                var newValue = value;
+
+                if (oldTileVisually.IsNone)
+                {
+                    // ［切抜きカーソル］の指すタイル無し時
+
+                    // 新規作成
+                    this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
+                }
+                else
+                {
+                    // ［切抜きカーソル］の指すタイルが有るなら構わない
+                }
+
+                // （変更通知を送っている）
+                this.UpdateByDifference(
+                    // タイトル
+                    tileTitle: newValue.Title);
+
+                // （変更通知を送っている）
+                this.IdOrEmpty = newValue.Id;
+                this.Owner.Owner.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                this.Owner.Owner.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                this.Owner.Owner.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.Owner.Owner.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                // this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
+            }
+
+            // 変更通知を送りたい
+            Owner.InvalidateTileIdChange();
+        }
+    }
+    #endregion
     #endregion
 
     /// <summary>

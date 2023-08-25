@@ -28,7 +28,7 @@ internal class AddsButton
     /// </summary>
     internal void AddTile()
     {
-        var contents = this.Owner.TargetTileRecordVisually;
+        var contents = this.Owner.CropTile.TargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -59,7 +59,7 @@ internal class AddsButton
     /// </summary>
     public void OverwriteTile()
     {
-        var contents = this.Owner.TargetTileRecordVisually;
+        var contents = this.Owner.CropTile.TargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 

@@ -1171,7 +1171,7 @@
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.Inner.TargetTileRecordVisually.IsNone && !this.Inner.CropTile.IdOrEmpty.IsEmpty && !this.Inner.TargetTileRecordVisually.LogicalDelete.AsBool;
+        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.Inner.CropTile.TargetTileRecordVisually.IsNone && !this.Inner.CropTile.IdOrEmpty.IsEmpty && !this.Inner.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
@@ -1271,14 +1271,14 @@
             get
             {
                 // ※１
-                var isEnabled = !this.Inner.TargetTileRecordVisually.IsNone && (
+                var isEnabled = !this.Inner.CropTile.TargetTileRecordVisually.IsNone && (
                 // ※２
-                (this.Inner.TargetTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.Inner.TargetTileRecordVisually.LogicalDelete.AsBool)
+                (this.Inner.CropTile.TargetTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.Inner.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool)
                 ||
                 // ※３
-                (this.Inner.TargetTileRecordVisually.Id != TileIdOrEmpty.Empty && this.Inner.TargetTileRecordVisually.LogicalDelete.AsBool));
+                (this.Inner.CropTile.TargetTileRecordVisually.Id != TileIdOrEmpty.Empty && this.Inner.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool));
 
-                Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.Inner.TargetTileRecordVisually.Dump()}");
+                Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.Inner.CropTile.TargetTileRecordVisually.Dump()}");
 
                 return isEnabled;
             }
