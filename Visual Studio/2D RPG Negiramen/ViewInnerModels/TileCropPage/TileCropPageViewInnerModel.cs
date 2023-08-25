@@ -33,13 +33,14 @@
         /// <summary>
         ///     生成
         /// </summary>
-        /// <param name="owner"></param>
+        /// <param name="owner">所有者</param>
         internal TileCropPageViewInnerModel(TileCropPageViewModel owner)
         {
             Owner = owner;
 
             this.CultureInfo = new InnerCultureInfo(this);
             this.PointingDevice = new InnerPointingDevice(this);
+            this.Zoom = new InnerZoom(this);
         }
         #endregion
 
@@ -151,11 +152,10 @@
 
         // - インターナル・プロパティ
 
+        /// <summary>所有者</summary>
         internal TileCropPageViewModel Owner { get; }
 
-        /// <summary>
-        ///     文化情報
-        /// </summary>
+        /// <summary>文化情報</summary>
         internal InnerCultureInfo CultureInfo { get; }
 
         #region プロパティ（［タイルセット元画像］　関連）
@@ -318,72 +318,11 @@
         internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
         #endregion
 
-        /// <summary>
-        ///     ポインティング・デバイス
-        /// </summary>
+        /// <summary>ポインティング・デバイス</summary>
         internal InnerPointingDevice PointingDevice { get; }
 
-        #region プロパティ（［ズーム］　関連）
-        /// <summary>
-        ///     ズーム
-        ///     
-        ///     <list type="bullet">
-        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
-        ///         <item>コード・ビハインドで使用</item>
-        ///     </list>
-        /// </summary>
-        public Zoom Zoom
-        {
-            get => zoom;
-            set
-            {
-                if (zoom == value)
-                    return;
-
-                // TODO 循環参照しやすいから、良くないコード
-                Owner.ZoomAsFloat = value.AsFloat;
-            }
-        }
-
-        /// <summary>
-        ///     ［ズーム］整数形式
-        ///     
-        ///     <list type="bullet">
-        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
-        ///     </list>
-        /// </summary>
-        public float ZoomAsFloat
-        {
-            get => zoom.AsFloat;
-            set
-            {
-                if (zoom.AsFloat != value)
-                {
-                    if (Owner.ZoomMinAsFloat <= value && value <= Owner.ZoomMaxAsFloat)
-                    {
-                        Zoom oldValue = zoom;
-                        Zoom newValue = new Zoom(value);
-
-                        zoom = newValue;
-                        TrickRefreshCanvasOfTileCursor("[TileCropPageViewModel.cs ZoomAsFloat]");
-
-                        // 再帰的にズーム再変更、かつ変更後の影響を処理
-                        App.History.Do(new ZoomProcessing(this, oldValue, newValue));
-                    }
-                }
-            }
-        }
-
-        /// <summary>
-        ///     ズーム最大
-        /// </summary>
-        public float ZoomMaxAsFloat => zoomMax.AsFloat;
-
-        /// <summary>
-        ///     ズーム最小
-        /// </summary>
-        public float ZoomMinAsFloat => zoomMin.AsFloat;
-        #endregion
+        /// <summary>ズーム</summary>
+        internal InnerZoom Zoom { get; }
 
         // - インターナル変更通知メソッド
 
@@ -478,7 +417,7 @@
                             rect: CroppedCursorPointedTileSourceRect,
                             title: TileTitle.Empty,
                             logicalDelete: LogicalDelete.False),
-                        zoom: Zoom
+                        zoom: this.Zoom.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
 #endif
@@ -561,7 +500,7 @@
                 inner: this,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(Zoom)));
+                workingRectangle: contents.SourceRectangle.Do(this.Zoom.Value)));
 
             Owner.InvalidateForHistory();
         }
@@ -589,7 +528,7 @@
                 inner: Owner.Inner,
                 croppedCursorVisually: contents,
                 tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(Zoom)));
+                workingRectangle: contents.SourceRectangle.Do(this.Zoom.Value)));
 
             Owner.InvalidateForHistory();
         }
@@ -932,7 +871,7 @@
             //
             if (TilesetDatatableVisually.LoadCSV(
                 tilesetDatatableFileLocation: TilesetDatatableFileLocation,
-                zoom: Zoom,
+                zoom: this.Zoom.Value,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
                 Owner.TilesetSettingsVM = tilesetDatatableVisually;
@@ -1141,23 +1080,6 @@
         #endregion
 
         // - プライベート・フィールド
-
-        #region フィールド（［ズーム］　関連）
-        /// <summary>
-        ///     ［ズーム］
-        /// </summary>
-        Zoom zoom = Zoom.IdentityElement;
-
-        /// <summary>
-        ///     ［ズーム］最大
-        /// </summary>
-        Zoom zoomMax = new(4.0f);
-
-        /// <summary>
-        ///     ［ズーム］最小
-        /// </summary>
-        Zoom zoomMin = new(0.5f);
-        #endregion
 
         #region フィールド（［タイルセット元画像］　関連）
         /// <summary>
