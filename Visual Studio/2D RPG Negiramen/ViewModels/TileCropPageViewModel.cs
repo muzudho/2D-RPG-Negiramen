@@ -321,10 +321,10 @@
         /// </summary>
         public Models.Geometric.SizeInt SourceGridUnit
         {
-            get => this.sourceGridUnit;
+            get => this.Inner.GridUnit.SourceValue;
             set
             {
-                if (this.sourceGridUnit != value)
+                if (this.Inner.GridUnit.SourceValue != value)
                 {
                     this.SourceGridTileWidthAsInt = value.Width.AsInt;
                     this.SourceGridTileHeightAsInt = value.Height.AsInt;
@@ -337,20 +337,20 @@
         /// </summary>
         public int SourceGridTileWidthAsInt
         {
-            get => this.sourceGridUnit.Width.AsInt;
+            get => this.Inner.GridUnit.SourceValue.Width.AsInt;
             set
             {
-                if (this.sourceGridUnit.Width.AsInt != value &&
+                if (this.Inner.GridUnit.SourceValue.Width.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.sourceGridUnit = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.sourceGridUnit.Height);
+                    this.Inner.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.Inner.GridUnit.SourceValue.Height);
 
                     // 作業グリッド・タイル横幅の再計算
                     this.Inner.CropCursor.RecalculateWorkingGridTileWidth();
 
                     // カーソルの線の幅を含まない
-                    this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Width.AsInt;
+                    this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.Inner.GridUnit.SourceValue.Width.AsInt;
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
@@ -368,20 +368,20 @@
         /// </summary>
         public int SourceGridTileHeightAsInt
         {
-            get => this.sourceGridUnit.Height.AsInt;
+            get => this.Inner.GridUnit.SourceValue.Height.AsInt;
             set
             {
-                if (this.sourceGridUnit.Height.AsInt != value &&
+                if (this.Inner.GridUnit.SourceValue.Height.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.sourceGridUnit = new Models.Geometric.SizeInt(this.sourceGridUnit.Width, new Models.Geometric.HeightInt(value));
+                    this.Inner.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.Inner.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
                     this.Inner.CropCursor.RecalculateWorkingGridTileHeight();
 
                     // カーソルの線の幅を含まない
-                    this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.sourceGridUnit.Height.AsInt;
+                    this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.Inner.GridUnit.SourceValue.Height.AsInt;
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
@@ -1617,11 +1617,6 @@
         /// </summary>
         ThicknessOfLine halfThicknessOfGridLine = new(1);
         #endregion
-
-        /// <summary>
-        ///     ［元画像グリッド］の単位
-        /// </summary>
-        internal Models.Geometric.SizeInt sourceGridUnit = new(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
 
         #region 変更通知フィールド（［作業グリッド］　関連）
         /// <summary>

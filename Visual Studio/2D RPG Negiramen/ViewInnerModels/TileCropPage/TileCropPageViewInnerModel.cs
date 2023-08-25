@@ -38,10 +38,11 @@
             Owner = owner;
 
             this.CultureInfo = new InnerCultureInfo(this);
+            this.Zoom = new InnerZoom(this);
+            this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this);
             this.CropCursor = new CropCursor(this);
             this.CropTile = new CropTile(this);
-            this.Zoom = new InnerZoom(this);
             this.AddsButton = new AddsButton(this);
             this.DeletesButton = new DeletesButton(this);
         }
@@ -184,17 +185,20 @@
         internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
         #endregion
 
-        /// <summary>ポインティング・デバイス</summary>
-        internal InnerPointingDevice PointingDevice { get; }
-
         /// <summary>ズーム</summary>
         internal InnerZoom Zoom { get; }
+
+        /// <summary>グリッド単位</summary>
+        internal GridUnit GridUnit { get; }
+
+        /// <summary>ポインティング・デバイス</summary>
+        internal InnerPointingDevice PointingDevice { get; }
 
         /// <summary>追加ボタン</summary>
         internal AddsButton AddsButton { get; }
 
         /// <summary>削除ボタン</summary>
-        internal DeletesButton DeletesButton { get;}
+        internal DeletesButton DeletesButton { get; }
 
         // - インターナル変更通知メソッド
 
