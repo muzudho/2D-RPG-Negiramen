@@ -546,7 +546,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -558,7 +558,7 @@
             }
             set
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -599,7 +599,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -611,13 +611,13 @@
             }
             set
             {
-                var currentTileVisually = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.Inner.CropTile.SavesRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -638,7 +638,7 @@
                     if (currentTileVisually.SourceRectangle.Location.X.AsInt == value)
                         return;
 
-                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -679,7 +679,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -689,13 +689,13 @@
             }
             set
             {
-                var currentTileVisually = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.Inner.CropTile.SavesRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -716,7 +716,7 @@
                     if (currentTileVisually.SourceRectangle.Location.Y.AsInt == value)
                         return;
 
-                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -761,7 +761,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -771,7 +771,7 @@
             }
             set
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -802,7 +802,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -812,12 +812,12 @@
             }
             set
             {
-                var currentTileVisually = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.Inner.CropTile.SavesRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
@@ -835,7 +835,7 @@
                     if (currentTileVisually.SourceRectangle.Size.Width.AsInt == value)
                         return;
 
-                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
@@ -864,7 +864,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -874,12 +874,12 @@
             }
             set
             {
-                var currentTileVisually = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var currentTileVisually = this.Inner.CropTile.SavesRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
@@ -897,7 +897,7 @@
                     if (currentTileVisually.SourceRectangle.Size.Height.AsInt == value)
                         return;
 
-                    this.Inner.CroppedCursorPointedTileRecordVisually = TileRecordVisually.FromModel(
+                    this.Inner.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
@@ -1133,7 +1133,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1152,7 +1152,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1178,14 +1178,14 @@
         /// </summary>
         public string CroppedCursorPointedTileTitleAsStr
         {
-            get => this.Inner.CroppedCursorPointedTileRecordVisually.Title.AsStr;
+            get => this.Inner.CropTile.SavesRecordVisually.Title.AsStr;
             set
             {
-                if (this.Inner.CroppedCursorPointedTileRecordVisually.Title.AsStr == value)
+                if (this.Inner.CropTile.SavesRecordVisually.Title.AsStr == value)
                     return;
 
                 // 差分更新
-                this.Inner.UpdateCroppedCursorPointedTileByDifference(
+                this.Inner.CropTile.UpdateByDifference(
                     tileTitle: TileTitle.FromString(value));
             }
         }
@@ -1195,14 +1195,14 @@
         /// </summary>
         public bool CroppedCursorPointedTileLogicalDeleteAsBool
         {
-            get => this.Inner.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool;
+            get => this.Inner.CropTile.SavesRecordVisually.LogicalDelete.AsBool;
             set
             {
-                if (this.Inner.CroppedCursorPointedTileRecordVisually.LogicalDelete.AsBool == value)
+                if (this.Inner.CropTile.SavesRecordVisually.LogicalDelete.AsBool == value)
                     return;
 
                 // 差分更新
-                this.Inner.UpdateCroppedCursorPointedTileByDifference(
+                this.Inner.CropTile.UpdateByDifference(
                     logicalDelete: LogicalDelete.FromBool(value));
             }
         }
@@ -1232,7 +1232,7 @@
         {
             get
             {
-                var contents = this.Inner.CroppedCursorPointedTileRecordVisually;
+                var contents = this.Inner.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)

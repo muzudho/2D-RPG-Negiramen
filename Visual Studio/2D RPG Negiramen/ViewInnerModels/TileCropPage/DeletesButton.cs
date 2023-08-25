@@ -49,7 +49,7 @@ internal class DeletesButton
     /// </summary>
     internal void Refresh()
     {
-        var contents = this.Owner.CroppedCursorPointedTileRecordVisually;
+        var contents = this.Owner.CropTile.SavesRecordVisually;
 
         if (contents.IsNone)
         {

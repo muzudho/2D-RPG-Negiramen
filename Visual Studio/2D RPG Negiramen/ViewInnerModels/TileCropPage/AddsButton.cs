@@ -101,7 +101,7 @@ internal class AddsButton
             }
         }
 
-        var contents = this.Owner.CroppedCursorPointedTileRecordVisually;
+        var contents = this.Owner.CropTile.SavesRecordVisually;
 
         if (contents.IsNone)
         {

@@ -41,6 +41,7 @@
             this.CultureInfo = new InnerCultureInfo(this);
             this.PointingDevice = new InnerPointingDevice(this);
             this.CropCursor = new CropCursor(this);
+            this.CropTile = new CropTile(this);
             this.Zoom = new InnerZoom(this);
             this.AddsButton = new AddsButton(this);
             this.DeletesButton = new DeletesButton(this);
@@ -174,17 +175,8 @@
         /// <summary>切抜きカーソル</summary>
         internal CropCursor CropCursor { get; }
 
-        #region プロパティ（［切抜きカーソル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソル］が指すタイル
-        ///     
-        ///     <list type="bullet">
-        ///         <item>★循環参照しやすいので注意</item>
-        ///         <item>［切抜きカーソル］が指すタイルが未確定のときも、指しているタイルにアクセスできることに注意</item>
-        ///     </list>
-        /// </summary>
-        internal TileRecordVisually CroppedCursorPointedTileRecordVisually { get; set; } = TileRecordVisually.CreateEmpty();
-        #endregion
+        /// <summary>切抜きカーソルが指すタイル</summary>
+        internal CropTile CropTile { get; }
 
         #region プロパティ（［切抜きカーソルが指すタイル］　関連）
         /// <summary>
@@ -197,10 +189,10 @@
         /// </summary>
         public TileRecordVisually TargetTileRecordVisually
         {
-            get => CroppedCursorPointedTileRecordVisually;
+            get => this.CropTile.SavesRecordVisually;
             set
             {
-                var oldTileVisually = CroppedCursorPointedTileRecordVisually;
+                var oldTileVisually = this.CropTile.SavesRecordVisually;
 
                 // 値に変化がない
                 if (oldTileVisually == value)
@@ -217,7 +209,7 @@
                     else
                     {
                         // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
-                        UpdateCroppedCursorPointedTileByDifference(
+                        this.CropTile.UpdateByDifference(
                             // タイトル
                             tileTitle: TileTitle.Empty);
 
@@ -232,7 +224,7 @@
                         Owner.CroppedCursorPointedTileLogicalDeleteAsBool = false;
 
                         // 空にする
-                        CroppedCursorPointedTileRecordVisually = TileRecordVisually.CreateEmpty();
+                        this.CropTile.SavesRecordVisually = TileRecordVisually.CreateEmpty();
                     }
                 }
                 else
@@ -244,7 +236,7 @@
                         // ［切抜きカーソル］の指すタイル無し時
 
                         // 新規作成
-                        CroppedCursorPointedTileRecordVisually = TileRecordVisually.CreateEmpty();
+                        this.CropTile.SavesRecordVisually = TileRecordVisually.CreateEmpty();
                     }
                     else
                     {
@@ -252,7 +244,7 @@
                     }
 
                     // （変更通知を送っている）
-                    UpdateCroppedCursorPointedTileByDifference(
+                    this.CropTile.UpdateByDifference(
                         // タイトル
                         tileTitle: newValue.Title);
 
@@ -277,7 +269,7 @@
         {
             get
             {
-                var contents = CroppedCursorPointedTileRecordVisually;
+                var contents = this.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］の指すタイル無し時
                 if (contents.IsNone)
@@ -287,11 +279,11 @@
             }
             set
             {
-                if (CroppedCursorPointedTileRecordVisually.Id == value)
+                if (this.CropTile.SavesRecordVisually.Id == value)
                     return;
 
                 // 差分更新
-                UpdateCroppedCursorPointedTileByDifference(
+                this.CropTile.UpdateByDifference(
                     tileId: value);
             }
         }
@@ -402,51 +394,6 @@
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);
-        }
-        #endregion
-
-        #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］を差分更新
-        /// </summary>
-        /// <returns></returns>
-        public void UpdateCroppedCursorPointedTileByDifference(
-            TileIdOrEmpty? tileId = null,
-            TileTitle? tileTitle = null,
-            LogicalDelete? logicalDelete = null)
-        {
-            var currentTileVisually = CroppedCursorPointedTileRecordVisually;
-
-            // タイルＩｄ
-            if (!(tileId is null) && currentTileVisually.Id != tileId)
-            {
-                CroppedCursorPointedTileRecordVisually.Id = tileId;
-
-                // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
-
-                // ［追加／上書き］ボタン再描画
-                this.AddsButton.Refresh();
-
-                // ［削除］ボタン再描画
-                this.DeletesButton.Refresh();
-            }
-
-            // タイル・タイトル
-            if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
-            {
-                CroppedCursorPointedTileRecordVisually.Title = tileTitle;
-            }
-
-            // 論理削除フラグ
-            if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
-            {
-                CroppedCursorPointedTileRecordVisually.LogicalDelete = logicalDelete;
-            }
-
-            // 変更通知を送る
-            Owner.InvalidateTileIdChange();
-
-            Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] CroppedCursorPointedTileRecordVisually.Dump(): {CroppedCursorPointedTileRecordVisually.Dump()}");
         }
         #endregion
 
