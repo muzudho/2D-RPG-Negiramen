@@ -190,7 +190,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 登録タイル削除
-        context.Inner.RemoveRegisteredTile();
+        context.Inner.DeletesButton.RemoveTile();
     }
     #endregion
 
@@ -260,7 +260,7 @@ public partial class TileCropPage : ContentPage
 
         Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
 
-        context.Inner.OverwriteRegisteredTile();
+        context.Inner.AddsButton.OverwriteTile();
     }
     #endregion
 }

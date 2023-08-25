@@ -41,6 +41,7 @@
             this.CultureInfo = new InnerCultureInfo(this);
             this.PointingDevice = new InnerPointingDevice(this);
             this.Zoom = new InnerZoom(this);
+            this.AddsButton = new AddsButton(this);
             this.DeletesButton = new DeletesButton(this);
         }
         #endregion
@@ -325,6 +326,9 @@
         /// <summary>ズーム</summary>
         internal InnerZoom Zoom { get; }
 
+        /// <summary>追加ボタン</summary>
+        internal AddsButton AddsButton { get; }
+
         /// <summary>削除ボタン</summary>
         internal DeletesButton DeletesButton { get;}
 
@@ -361,7 +365,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateLocale() => RefreshAddsButton();
+        internal void InvalidateLocale() => this.AddsButton.Refresh();
         #endregion
 
         #region メソッド（［切抜きカーソル］　関連）
@@ -452,7 +456,7 @@
                 // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
                 // ［追加／上書き］ボタン再描画
-                RefreshAddsButton();
+                this.AddsButton.Refresh();
 
                 // ［削除］ボタン再描画
                 this.DeletesButton.Refresh();
@@ -474,79 +478,6 @@
             Owner.InvalidateTileIdChange();
 
             Trace.WriteLine($"[TileCropPageViewModel.cs UpdateCroppedCursorPointedTileByDifference] CroppedCursorPointedTileRecordVisually.Dump(): {CroppedCursorPointedTileRecordVisually.Dump()}");
-        }
-        #endregion
-
-        #region メソッド（［追加／上書き］　関連）
-        /// <summary>
-        ///     ［追加］
-        /// </summary>
-        internal void AddRegisteredTile()
-        {
-            var contents = TargetTileRecordVisually;
-
-            TileIdOrEmpty tileIdOrEmpty;
-
-            // Ｉｄが空欄
-            // ［追加］（新規作成）だ
-
-            // ［切抜きカーソル］にサイズがなければ、何もしない
-            if (contents.IsNone)
-                return;
-
-            // 新しいタイルＩｄを発行
-            tileIdOrEmpty = Owner.TilesetSettingsVM.UsableId;
-            Owner.TilesetSettingsVM.IncreaseUsableId();
-
-            // 追加でも、上書きでも、同じ処理でいける
-            // ［登録タイル追加］処理
-            App.History.Do(new AddRegisteredTileProcessing(
-                inner: this,
-                croppedCursorVisually: contents,
-                tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.Zoom.Value)));
-
-            Owner.InvalidateForHistory();
-        }
-
-        /// <summary>
-        ///     ［上書き］
-        /// </summary>
-        public void OverwriteRegisteredTile()
-        {
-            var contents = TargetTileRecordVisually;
-
-            TileIdOrEmpty tileIdOrEmpty;
-
-            // ［切抜きカーソル］にサイズがなければ、何もしない
-            if (contents.IsNone)
-                return;
-
-            // Ｉｄが空欄でない
-            // ［上書き］（更新）だ
-            tileIdOrEmpty = CroppedCursorPointedTileIdOrEmpty;
-
-            // 追加でも、上書きでも、同じ処理でいける
-            // ［登録タイル追加］処理
-            App.History.Do(new AddRegisteredTileProcessing(
-                inner: Owner.Inner,
-                croppedCursorVisually: contents,
-                tileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: contents.SourceRectangle.Do(this.Zoom.Value)));
-
-            Owner.InvalidateForHistory();
-        }
-
-        /// <summary>
-        ///     ［登録タイル］削除
-        /// </summary>
-        public void RemoveRegisteredTile()
-        {
-            App.History.Do(new RemoveRegisteredTileProcessing(
-                inner: this,
-                tileIdOrEmpty: CroppedCursorPointedTileIdOrEmpty));
-
-            Owner.InvalidateForHistory();
         }
         #endregion
 
@@ -761,7 +692,7 @@
             LoadCroppedCursorPointedTile();
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            RefreshAddsButton();
+            this.AddsButton.Refresh();
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
             this.DeletesButton.Refresh();
@@ -771,60 +702,6 @@
 
             // タイル・タイトル
             Owner.InvalidateTileTitle();
-        }
-        #endregion
-
-        #region メソッド（［追加／上書き］ボタン　関連）
-        /// <summary>
-        ///     ［追加／上書き］ボタンの再描画
-        /// </summary>
-        internal void RefreshAddsButton()
-        {
-            // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-            if (HasIntersectionBetweenCroppedCursorAndRegisteredTile)
-            {
-                // 合同のときは「交差中」とは表示しない
-                if (!IsCongruenceBetweenCroppedCursorAndRegisteredTile)
-                {
-                    // 「交差中」
-                    // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
-
-                    Owner.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
-                    return;
-                }
-            }
-
-            var contents = CroppedCursorPointedTileRecordVisually;
-
-            if (contents.IsNone)
-            {
-                // ［切抜きカーソル］の指すタイル無し時
-
-                // 「追加」
-                Owner.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-            }
-            else
-            {
-                // 切抜きカーソル有り時
-                // Ｉｄ未設定時
-
-                if (CroppedCursorPointedTileIdOrEmpty == TileIdOrEmpty.Empty)
-                {
-                    // Ｉｄが空欄
-                    // ［追加］（新規作成）だ
-
-                    // ［追加」
-                    Owner.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
-                }
-                else
-                {
-                    // ［復元」
-                    Owner.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
-                }
-            }
-
-            // ［追加／復元］ボタンの活性性
-            Owner.InvalidateAddsButton();
         }
         #endregion
 
@@ -964,12 +841,12 @@
                 // ［追加］（新規作成）だ
 
                 // 登録タイル追加
-                AddRegisteredTile();
+                this.AddsButton.AddTile();
             }
             else
             {
                 // 上書きボタンだが、［上書き］処理をする
-                OverwriteRegisteredTile();
+                this.AddsButton.OverwriteTile();
             }
         }
         #endregion

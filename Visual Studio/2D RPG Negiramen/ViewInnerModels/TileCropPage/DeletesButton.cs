@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
 
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 /// <summary>
 ///     削除ボタン
@@ -68,6 +69,20 @@ internal class DeletesButton
             // タイル登録済み時
             this.IsEnabled = true;
         }
+    }
+    #endregion
+
+    #region メソッド（タイル削除）
+    /// <summary>
+    ///     タイル削除
+    /// </summary>
+    public void RemoveTile()
+    {
+        App.History.Do(new RemoveRegisteredTileProcessing(
+            inner: this.Owner,
+            tileIdOrEmpty: this.Owner.CroppedCursorPointedTileIdOrEmpty));
+
+        this.Owner.InvalidateForHistory();
     }
     #endregion
 
