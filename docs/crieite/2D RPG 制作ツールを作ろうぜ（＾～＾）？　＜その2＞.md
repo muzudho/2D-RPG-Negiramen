@@ -3084,4 +3084,9 @@ Zzz
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　ビュー・モデルは　透過メソッドばっかりでも　良い気がしてきたな……」  
 
+# 📅 （2023-08-25 fri）コード掃除
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　コード掃除」  
+
 ＜書きかけ＞

@@ -3,7 +3,6 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.Visually;
-    using _2D_RPG_Negiramen.ViewInnerModels;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -17,11 +16,13 @@
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.Models.Visually;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+    using _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
 #elif WINDOWS
     using Microsoft.Maui.Graphics.Win2D;
     using System.Net;
     using SkiaSharp.Views.Maui.Controls;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+    using _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
 #endif
 
     /// <summary>
@@ -55,27 +56,15 @@
         #region 変更通知プロパティ（ロケール　関連）
         /// <summary>
         ///     現在選択中の文化情報。文字列形式
+        ///     
+        ///     <list type="bullet">
+        ///         <item>透過メソッド</item>
+        ///     </list>
         /// </summary>
         public CultureInfo SelectedCultureInfo
         {
-            get => LocalizationResourceManager.Instance.CultureInfo;
-            set
-            {
-                if (LocalizationResourceManager.Instance.CultureInfo != value)
-                {
-                    CultureInfo oldValue = LocalizationResourceManager.Instance.CultureInfo;
-                    CultureInfo newValue = value;
-
-                    LocalizationResourceManager.Instance.SetCulture(value);
-                    OnPropertyChanged(nameof(SelectedCultureInfo));
-
-                    // 再帰的
-                    App.History.Do(new SetCultureInfoProcessing(
-                        inner: this.Inner,
-                        oldValue: oldValue,
-                        newValue: newValue));
-                }
-            }
+            get => this.Inner.CultureInfo.Selected;
+            set => this.Inner.CultureInfo.Selected = value;
         }
 
         /// <summary>

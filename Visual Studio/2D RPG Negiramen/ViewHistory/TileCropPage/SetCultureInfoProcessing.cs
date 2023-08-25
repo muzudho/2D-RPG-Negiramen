@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.ViewInnerModels;
+using _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
 using System.Globalization;
 
 /// <summary>
@@ -29,7 +29,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.Inner.SelectedCultureInfo = this.NewValue;
+        this.Inner.CultureInfo.Selected = this.NewValue;
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.Inner.SelectedCultureInfo = this.OldValue;
+        this.Inner.CultureInfo.Selected = this.OldValue;
     }
 
     // - プライベート・プロパティ

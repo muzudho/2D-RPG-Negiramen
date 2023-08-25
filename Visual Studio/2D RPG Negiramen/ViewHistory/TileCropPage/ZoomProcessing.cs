@@ -2,7 +2,7 @@
 
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.ViewInnerModels;
+using _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
