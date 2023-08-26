@@ -138,7 +138,7 @@
         /// <summary>
         ///     切抜きカーソル。元画像ベースの位置ｘ
         /// </summary>
-        public int CroppedCursorPointedTileSourceLeftAsInt
+        public int CropTileSourceLeftAsInt
         {
             get => sourceCroppedCursorPoint.X.AsInt;
             set
@@ -146,13 +146,13 @@
                 if (sourceCroppedCursorPoint.X.AsInt != value)
                 {
                     sourceCroppedCursorPoint = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), sourceCroppedCursorPoint.Y);
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileSourceLeftAsInt));
+                    OnPropertyChanged(nameof(CropTileSourceLeftAsInt));
 
                     this.croppedCursorWorkingPointAsMargin = new Thickness(
                         // 左
-                        this.CroppedCursorPointedTileSourceLeftAsInt,
+                        this.CropTileSourceLeftAsInt,
                         // 上
-                        this.CroppedCursorPointedTileSourceTopAsInt,
+                        this.CropTileSourceTopAsInt,
                         // 右
                         0,
                         // 下
@@ -166,7 +166,7 @@
         /// <summary>
         ///     切抜きカーソル。元画像ベースの位置ｙ
         /// </summary>
-        public int CroppedCursorPointedTileSourceTopAsInt
+        public int CropTileSourceTopAsInt
         {
             get => sourceCroppedCursorPoint.Y.AsInt;
             set
@@ -174,13 +174,13 @@
                 if (sourceCroppedCursorPoint.Y.AsInt != value)
                 {
                     sourceCroppedCursorPoint = new Models.Geometric.PointInt(sourceCroppedCursorPoint.X, new Models.Geometric.YInt(value));
-                    OnPropertyChanged(nameof(CroppedCursorPointedTileSourceTopAsInt));
+                    OnPropertyChanged(nameof(CropTileSourceTopAsInt));
 
                     this.croppedCursorWorkingPointAsMargin = new Thickness(
                         // 左
-                        this.CroppedCursorPointedTileSourceLeftAsInt,
+                        this.CropTileSourceLeftAsInt,
                         // 上
-                        this.CroppedCursorPointedTileSourceTopAsInt,
+                        this.CropTileSourceTopAsInt,
                         // 右
                         0,
                         // 下
@@ -271,8 +271,8 @@
             //
             this.TappedXOnImageAsInt = (int)tapped.X.AsFloat;
             this.TappedYOnImageAsInt = (int)tapped.Y.AsFloat;
-            this.CroppedCursorPointedTileSourceLeftAsInt = (int)tileCursor.X.AsFloat;
-            this.CroppedCursorPointedTileSourceTopAsInt = (int)tileCursor.Y.AsFloat;
+            this.CropTileSourceLeftAsInt = (int)tileCursor.X.AsFloat;
+            this.CropTileSourceTopAsInt = (int)tileCursor.Y.AsFloat;
         }
         #endregion
 

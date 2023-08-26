@@ -77,7 +77,7 @@ public partial class TileCropPage : ContentPage
         //
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Spec.OnNavigatedTo(this.skiaTilesetCanvas1);
+        context.SpecObj.OnNavigatedTo(this.skiaTilesetCanvas1);
     }
     #endregion
 
@@ -92,7 +92,7 @@ public partial class TileCropPage : ContentPage
         // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
         var context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Spec.InvalidateByLocale();
+        context.SpecObj.InvalidateByLocale();
     }
     #endregion
 
@@ -122,7 +122,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Spec.OnTilesetImageTapped(tappedPoint);
+        context.SpecObj.OnTilesetImageTapped(tappedPoint);
     }
 
     /// <summary>
@@ -136,7 +136,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Spec.OnTilesetImagePointerMove(tappedPoint);
+        context.SpecObj.OnTilesetImagePointerMove(tappedPoint);
     }
 
     /// <summary>
@@ -173,7 +173,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Spec.OnAddsButtonClicked();
+        context.SpecObj.OnAddsButtonClicked();
     }
     #endregion
 
@@ -190,7 +190,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 登録タイル削除
-        context.Spec.DeletesButton.RemoveTile();
+        context.SpecObj.DeletesButton.RemoveTile();
     }
     #endregion
 
@@ -260,7 +260,7 @@ public partial class TileCropPage : ContentPage
 
         Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
 
-        context.Spec.AddsButton.OverwriteTile();
+        context.SpecObj.AddsButton.OverwriteTile();
     }
     #endregion
 }

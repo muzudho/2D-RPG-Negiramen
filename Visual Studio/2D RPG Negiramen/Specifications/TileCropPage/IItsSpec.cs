@@ -65,8 +65,8 @@ interface IItsSpec
 
     bool WholePageVMCroppedCursorPointedTileLogicalDeleteAsBool { set; }
 
-    int WholePageVMCroppedCursorPointedTileSourceLeftAsInt { set; }
-    int WholePageVMCroppedCursorPointedTileSourceTopAsInt { set; }
+    int OutdoorCropTileSourceLeftAsInt { set; }
+    int OutdoorCropTileSourceTopAsInt { set; }
     int WholePageVMCroppedCursorPointedTileSourceWidthAsInt { set; }
     int WholePageVMCroppedCursorPointedTileSourceHeightAsInt { set; }
 

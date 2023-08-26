@@ -570,14 +570,14 @@
                         <Label Grid.Row="1" Grid.Column="2"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileSourceLeftAsInt}"
+                               Text="{Binding CropTileSourceLeftAsInt}"
                                FontSize="24"/>
 
                         <!-- 元画像：　［切抜きカーソル］が指すタイル。位置Ｙ -->
                         <Label Grid.Row="1" Grid.Column="3"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileSourceTopAsInt}"
+                               Text="{Binding CropTileSourceTopAsInt}"
                                FontSize="24"/>
 
                         <!-- 元画像：　［切抜きカーソル］が指すタイル。横幅 -->

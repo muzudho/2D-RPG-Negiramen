@@ -184,18 +184,25 @@
         /// <summary>全体ページ・ビューモデル</summary>
         internal TileCropPageViewModel WholePageVM { get; }
 
-        public int WholePageVMCroppedCursorPointedTileSourceLeftAsInt
+        /// <summary>
+        ///     切抜きタイル・元画像左（整数として）
+        /// </summary>
+        public int OutdoorCropTileSourceLeftAsInt
         {
             set
             {
-                this.WholePageVM.CroppedCursorPointedTileSourceLeftAsInt = value;
+                this.WholePageVM.CropTileSourceLeftAsInt = value;
             }
         }
-        public int WholePageVMCroppedCursorPointedTileSourceTopAsInt
+
+        /// <summary>
+        ///     切抜きタイル・元画像上（整数として）
+        /// </summary>
+        public int OutdoorCropTileSourceTopAsInt
         {
             set
             {
-                this.WholePageVM.CroppedCursorPointedTileSourceTopAsInt = value;
+                this.WholePageVM.CropTileSourceTopAsInt = value;
             }
         }
         public int WholePageVMCroppedCursorPointedTileSourceWidthAsInt
