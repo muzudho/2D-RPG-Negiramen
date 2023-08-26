@@ -15,8 +15,11 @@ internal class AddsButton
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    internal AddsButton(IItsSpec spec)
+    internal AddsButton(
+        IItsOutdoor outdoor,
+        IItsSpec spec)
     {
+        this.Outdoor = outdoor;
         this.Spec = spec;
     }
     #endregion
@@ -131,10 +134,11 @@ internal class AddsButton
         }
 
         // ［追加／復元］ボタンの活性性
-        this.Spec.OutdoorInvalidateAddsButton();
+        this.Outdoor.InvalidateAddsButton();
     }
 
     // - プライベート・プロパティ
 
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 }

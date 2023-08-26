@@ -15,11 +15,11 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// </summary>
     /// <param name="owner"></param>
     internal RemoveRegisteredTileProcessing(
-        ItsSpec specObj,
+        IItsOutdoor outdoor,
         IItsSpec spec,
         TileIdOrEmpty tileIdOrEmpty)
     {
-        this.SpecObj = specObj;
+        this.Outdoor = outdoor;
         this.Spec = spec;
         TileIdOrEmpty = tileIdOrEmpty;
     }
@@ -32,12 +32,12 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルを論理削除
         //
-        if (this.SpecObj.OutdoorTilesetSettingsVM.DeleteLogical(
+        if (this.Spec.OutdoorTilesetSettingsVMDeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.SpecObj.WholeInvalidateTilesetSettingsVM();
+            this.Spec.WholeInvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -46,7 +46,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.SpecObj.OutdoorTilesetSettingsVM.SaveCSV(this.SpecObj.OutdoorTilesetDatatableFileLocation))
+        if (this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Spec.OutdoorTilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -59,7 +59,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.SpecObj.WholeRefreshForTileAdd();
+        this.Spec.WholeRefreshForTileAdd();
     }
 
     public void Undo()
@@ -70,12 +70,12 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルの論理削除の取消
         //
-        if (this.SpecObj.OutdoorTilesetSettingsVM.UndeleteLogical(
+        if (this.Spec.OutdoorTilesetSettingsVMUndeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.SpecObj.WholeInvalidateTilesetSettingsVM();
+            this.Spec.WholeInvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -84,7 +84,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.SpecObj.OutdoorTilesetSettingsVM.SaveCSV(this.SpecObj.OutdoorTilesetDatatableFileLocation))
+        if (this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Spec.OutdoorTilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -97,7 +97,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.SpecObj.WholeRefreshForTileAdd();
+        this.Spec.WholeRefreshForTileAdd();
     }
 
     // - プライベート・プロパティ
@@ -105,7 +105,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// <summary>
     ///     内部クラス
     /// </summary>
-    ItsSpec SpecObj { get; }
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 
     /// <summary>

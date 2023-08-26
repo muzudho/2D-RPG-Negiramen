@@ -14,8 +14,11 @@ internal class CropCursor
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    internal CropCursor(IItsSpec spec)
+    internal CropCursor(
+        IItsOutdoor outdoor,
+        IItsSpec spec)
     {
+        this.Outdoor = outdoor;
         this.Spec = spec;
     }
     #endregion
@@ -106,5 +109,6 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 }

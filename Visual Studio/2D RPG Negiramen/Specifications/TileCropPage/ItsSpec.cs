@@ -26,7 +26,7 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class ItsSpec : IItsSpec
+    class ItsSpec : IItsSpec, IItsOutdoor
     {
         // - その他
 
@@ -43,12 +43,22 @@
             this.Zoom = new InnerZoom(this);
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this);
-            this.CropCursor = new CropCursor(this);
-            this.CropTile = new CropTile(this);
-            this.AddsButton = new AddsButton(this);
-            this.DeletesButton = new DeletesButton(this,this);
+            this.CropCursor = new CropCursor(this, this);
+            this.CropTile = new CropTile(this, this);
+            this.AddsButton = new AddsButton(this, this);
+            this.DeletesButton = new DeletesButton(this, this);
         }
         #endregion
+
+        public bool OutdoorTilesetSettingsVMDeleteLogical(TileIdOrEmpty id)
+        {
+            return this.OutdoorTilesetSettingsVM.DeleteLogical(id);
+        }
+        public bool OutdoorTilesetSettingsVMUndeleteLogical(TileIdOrEmpty id)
+        {
+            return this.OutdoorTilesetSettingsVM.UndeleteLogical(id);
+        }
+
 
         // - パブリック変更通知プロパティ
 
@@ -75,7 +85,7 @@
 
         public bool OutdoorTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
-            return this.OutdoorTilesetSettingsVM.SaveCSV(tileSetSettingsFile);
+            return this.OutdoorTilesetSettingsVM.SaveCsv(tileSetSettingsFile);
         }
         public bool OutdoorTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
@@ -262,7 +272,7 @@
             this.OutdoorPageVM.InvalidateWorkingTargetTile();
         }
 
-        public void OutdoorInvalidateAddsButton()
+        public void InvalidateAddsButton()
         {
             this.OutdoorPageVM.InvalidateAddsButton();
         }
@@ -411,7 +421,7 @@
         /// <summary>
         ///     ［タイルセット設定］ビューモデルに変更あり
         /// </summary>
-        internal void WholeInvalidateTilesetSettingsVM() => OutdoorPageVM.InvalidateTilesetSettingsVM();
+        public void WholeInvalidateTilesetSettingsVM() => OutdoorPageVM.InvalidateTilesetSettingsVM();
         #endregion
 
         #region 変更通知メソッド（［履歴］）

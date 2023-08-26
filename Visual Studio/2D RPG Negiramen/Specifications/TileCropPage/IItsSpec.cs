@@ -14,9 +14,13 @@ interface IItsSpec
 {
     // - パブリック・プロパティ
 
-    CultureInfo IndoorCultureInfoSelected { set; }
+    void WholeInvalidateTilesetSettingsVM();
+    void WholeInvalidateForHistory();
 
-    void OutdoorInvalidateAddsButton();
+    bool OutdoorTilesetSettingsVMDeleteLogical(TileIdOrEmpty id);
+    bool OutdoorTilesetSettingsVMUndeleteLogical(TileIdOrEmpty id);
+
+    CultureInfo IndoorCultureInfoSelected { set; }
 
     TileRecordVisually IndoorCropTileSavesRecordVisually { get; }
 
@@ -93,9 +97,6 @@ interface IItsSpec
     ///     </list>
     /// </summary>
     RectangleInt OutdoorCroppedCursorPointedTileSourceRect { get; set; }
-
-
-    void WholeInvalidateForHistory();
 
     void OutdoorInvalidateDeletesButton();
 

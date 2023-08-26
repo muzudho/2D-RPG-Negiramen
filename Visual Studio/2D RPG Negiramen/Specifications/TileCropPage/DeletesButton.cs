@@ -15,9 +15,11 @@ internal class DeletesButton
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    internal DeletesButton(ItsSpec specObj, IItsSpec spec)
+    internal DeletesButton(
+        IItsOutdoor outdoor,
+        IItsSpec spec)
     {
-        this.SpecObj = specObj;
+        this.Outdoor = outdoor;
         this.Spec = spec;
     }
     #endregion
@@ -80,7 +82,7 @@ internal class DeletesButton
     public void RemoveTile()
     {
         App.History.Do(new RemoveRegisteredTileProcessing(
-            specObj: this.SpecObj,
+            outdoor: this.Outdoor,
             spec: this.Spec,
             tileIdOrEmpty: this.Spec.IndoorCropTileIdOrEmpty));
 
@@ -99,6 +101,6 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    ItsSpec SpecObj { get; }
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 }

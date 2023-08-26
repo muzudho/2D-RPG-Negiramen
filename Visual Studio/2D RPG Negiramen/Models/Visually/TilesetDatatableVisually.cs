@@ -401,7 +401,7 @@
         ///     保存
         /// </summary>
         /// <returns>完了した</returns>
-        internal bool SaveCSV(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
+        internal bool SaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
             // 論理削除されているものも保存する
             return TilesetDatatable.SaveCSV(

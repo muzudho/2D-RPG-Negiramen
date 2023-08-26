@@ -17,8 +17,11 @@ internal class CropTile
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    internal CropTile(IItsSpec spec)
+    internal CropTile(
+        IItsOutdoor outdoor,
+        IItsSpec spec)
     {
+        this.Outdoor = outdoor;
         this.Spec = spec;
     }
     #endregion
@@ -35,6 +38,7 @@ internal class CropTile
     ///     </list>
     /// </summary>
     internal TileRecordVisually SavesRecordVisually { get; set; } = TileRecordVisually.CreateEmpty();
+    #endregion
 
     #region プロパティ（［切抜きカーソルが指すタイル］　関連）
     /// <summary>
@@ -120,7 +124,6 @@ internal class CropTile
         }
     }
     #endregion
-    #endregion
 
     /// <summary>
     ///     Ｉｄ
@@ -197,5 +200,6 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 }
