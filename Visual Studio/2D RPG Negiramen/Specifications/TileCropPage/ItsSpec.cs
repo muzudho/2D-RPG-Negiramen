@@ -42,7 +42,7 @@
             this.Zoom = new InnerZoom(this,this);
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this,this);
-            this.CropCursor = new CropCursor(this,this);
+            this.CropCursor = new CropCursor(this);
             this.CropTile = new CropTile(this,this);
             this.AddsButton = new AddsButton(this);
             this.DeletesButton = new DeletesButton(this,this);
@@ -148,10 +148,32 @@
         }
         #endregion
 
+        public int GridUnitSourceValueWidthAsInt
+        {
+            get
+            {
+                return this.GridUnit.SourceValue.Width.AsInt;
+            }
+        }
+
+        public int GridUnitSourceValueHeightAsInt
+        {
+            get
+            {
+                return this.GridUnit.SourceValue.Height.AsInt;
+            }
+        }
+
         // - インターナル・プロパティ
 
         /// <summary>全体ページ・ビューモデル</summary>
         internal TileCropPageViewModel WholePageVM { get; }
+
+        public void WholePageVMInvalidateWorkingTargetTile()
+        {
+            this.WholePageVM.InvalidateWorkingTargetTile();
+        }
+
         public void WholePageVMInvalidateAddsButton()
         {
             this.WholePageVM.InvalidateAddsButton();
@@ -165,6 +187,24 @@
         {
             get => this.WholePageVM.AddsButtonHint;
         }
+
+        public float WholePageVMWorkingGridTileWidthAsFloat
+        {
+            set
+            {
+                this.WholePageVM.WorkingGridTileWidthAsFloat = value;
+            }
+        }
+        public float WholePageVMWorkingGridTileHeightAsFloat
+        {
+            set
+            {
+                this.WholePageVM.WorkingGridTileHeightAsFloat = value;
+            }
+        }
+
+
+
 
         /// <summary>文化情報</summary>
         internal InnerCultureInfo CultureInfo { get; }

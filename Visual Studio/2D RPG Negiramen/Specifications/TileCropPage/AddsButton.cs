@@ -15,9 +15,9 @@ internal class AddsButton
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    internal AddsButton(IItsSpec specDelivery)
+    internal AddsButton(IItsSpec spec)
     {
-        this.Spec = specDelivery;
+        this.Spec = spec;
     }
     #endregion
 

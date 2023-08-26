@@ -55,6 +55,16 @@ interface IItsSpec
 
     string WholePageVMAddsButtonText { get; set; }
     string WholePageVMAddsButtonHint { get; }
+    void WholePageVMInvalidateWorkingTargetTile();
+
+    float WholePageVMWorkingGridTileWidthAsFloat { set; }
+    float WholePageVMWorkingGridTileHeightAsFloat { set; }
+
+    float WholeZoomAsFloat { get; set; }
+
+    int GridUnitSourceValueWidthAsInt { get; }
+    int GridUnitSourceValueHeightAsInt { get; }
+
 
     void WholeInvalidateForHistory();
 
