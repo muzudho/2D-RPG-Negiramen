@@ -101,7 +101,7 @@ internal class AddsButton
                 // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
-                this.Spec.OutdoorAddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
+                this.Outdoor.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
                 return;
             }
         }
@@ -113,7 +113,7 @@ internal class AddsButton
             // ［切抜きカーソル］の指すタイル無し時
 
             // 「追加」
-            this.Spec.OutdoorAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+            this.Outdoor.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
         }
         else
         {
@@ -126,12 +126,12 @@ internal class AddsButton
                 // ［追加］（新規作成）だ
 
                 // ［追加」
-                this.Spec.OutdoorAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                this.Outdoor.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
             }
             else
             {
                 // ［復元」
-                this.Spec.OutdoorAddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
+                this.Outdoor.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
             }
         }
 

@@ -49,10 +49,10 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Outdoor.InvalidateTileIdChange();
 
         // リストに登録済みか確認
-        if (!this.Spec.OutdoorTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
+        if (!this.Outdoor.TilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
         {
             // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.Spec.OutdoorTilesetSettingsVMAddTileVisually(
+            this.Outdoor.TilesetSettingsVMAddTileVisually(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 zoom: Zoom.IdentityElement,
@@ -65,7 +65,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         //
 
         // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.Spec.OutdoorTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
+        if (this.Outdoor.TilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
         {
             TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
@@ -86,7 +86,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
+        if (!this.Outdoor.TilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -113,7 +113,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Outdoor.InvalidateTileIdChange();
 
         // リストから削除
-        if (!this.Spec.OutdoorTilesetSettingsVMTryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
+        if (!this.Outdoor.TilesetSettingsVMTryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
         {
             // TODO 成功しなかったら異常
             throw new Exception();
@@ -123,7 +123,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
+        if (!this.Outdoor.TilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }

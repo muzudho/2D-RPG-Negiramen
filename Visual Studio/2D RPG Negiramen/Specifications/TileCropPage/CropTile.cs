@@ -83,7 +83,7 @@ internal class CropTile
                     this.Spec.OutdoorCroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                     // 論理削除
-                    this.Spec.OutdoorCropTileLogicalDeleteAsBool = false;
+                    this.Outdoor.CropTileLogicalDeleteAsBool = false;
 
                     // 空にする
                     this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
@@ -112,10 +112,10 @@ internal class CropTile
 
                 // （変更通知を送っている）
                 this.IdOrEmpty = newValue.Id;
-                this.Spec.OutdoorCropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                this.Spec.OutdoorCropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.Spec.OutdoorCropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.Spec.OutdoorCropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                this.Outdoor.CropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                this.Outdoor.CropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                this.Outdoor.CropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.Outdoor.CropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
                 // this.CropTileTitleAsStr = newValue.Title.AsStr;
             }
 

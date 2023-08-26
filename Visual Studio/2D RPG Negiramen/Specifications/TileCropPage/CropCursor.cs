@@ -61,7 +61,7 @@ internal class CropCursor
         }
 
         // TRICK CODE:
-        this.Spec.OutdoorInvalidateWorkingTargetTile();
+        this.Outdoor.InvalidateWorkingTargetTile();
     }
 
     #region メソッド（［作業グリッド］　関連）
@@ -74,7 +74,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileWidth()
     {
-        this.Spec.OutdorrWorkingGridTileWidthAsFloat = this.Spec.OutdoorZoomAsFloat * this.Spec.IndoorGridUnitSourceValueWidthAsInt;
+        this.Outdoor.WorkingGridTileWidthAsFloat = this.Spec.OutdoorZoomAsFloat * this.Spec.IndoorGridUnitSourceValueWidthAsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -88,7 +88,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileHeight()
     {
-        this.Spec.OutdoorWorkingGridTileHeightAsFloat = this.Spec.OutdoorZoomAsFloat * this.Spec.IndoorGridUnitSourceValueHeightAsInt;
+        this.Outdoor.WorkingGridTileHeightAsFloat = this.Spec.OutdoorZoomAsFloat * this.Spec.IndoorGridUnitSourceValueHeightAsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }

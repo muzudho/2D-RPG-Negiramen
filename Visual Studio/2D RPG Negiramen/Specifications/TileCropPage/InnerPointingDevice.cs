@@ -14,8 +14,11 @@ internal class InnerPointingDevice
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal InnerPointingDevice(IItsSpec spec)
+    internal InnerPointingDevice(
+        IItsOutdoor outdoor,
+        IItsSpec spec)
     {
+        this.Outdoor = outdoor;
         this.Spec = spec;
     }
     #endregion
@@ -53,7 +56,7 @@ internal class InnerPointingDevice
             if (isMouseDragging != value)
             {
                 isMouseDragging = value;
-                this.Spec.OutdoorInvalidateIsMouseDragging();
+                this.Outdoor.InvalidateIsMouseDragging();
             }
         }
     }
@@ -61,6 +64,7 @@ internal class InnerPointingDevice
 
     // - プライベート・プロパティ
 
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 
     #region プロパティ（ポインティング・デバイス押下中か？）

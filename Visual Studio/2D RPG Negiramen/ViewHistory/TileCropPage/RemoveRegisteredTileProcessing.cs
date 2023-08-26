@@ -46,7 +46,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
+        if (this.Outdoor.TilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -84,7 +84,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
+        if (this.Outdoor.TilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
         {
             // 保存成功
         }

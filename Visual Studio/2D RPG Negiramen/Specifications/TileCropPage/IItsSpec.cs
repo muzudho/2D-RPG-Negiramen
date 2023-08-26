@@ -24,38 +24,6 @@ interface IItsSpec
 
     Zoom IndoorZoomValue { get; set; }
 
-
-    bool OutdoorTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile);
-
-    bool OutdoorTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
-
-    void OutdoorTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
-        TheGeometric.RectangleInt rect,
-        Zoom zoom,
-        TileTitle title,
-        LogicalDelete logicalDelete);
-
-    bool OutdoorTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
-
-    string OutdoorAddsButtonText { get; set; }
-    string OutdoorAddsButtonHint { get; }
-    void OutdoorInvalidateWorkingTargetTile();
-
-    float OutdorrWorkingGridTileWidthAsFloat { set; }
-    float OutdoorWorkingGridTileHeightAsFloat { set; }
-
-    bool OutdoorCropTileLogicalDeleteAsBool { set; }
-
-    int OutdoorCropTileSourceLeftAsInt { set; }
-    int OutdoorCropTileSourceTopAsInt { set; }
-    int OutdoorCropTileSourceWidthAsInt { set; }
-    int OutdoorCropTileSourceHeightAsInt { set; }
-
-    void OutdoorInvalidateIsMouseDragging();
-
-    float OutdoorZoomMinAsFloat { get; }
-    float OutdoorZoomMaxAsFloat { get; }
-
     void IndoorCropCursorRefreshCanvasTrick(string codePlace);
 
 

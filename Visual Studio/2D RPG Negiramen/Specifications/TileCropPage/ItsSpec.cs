@@ -42,7 +42,7 @@
             this.IndoorCultureInfo = new InnerCultureInfo(this);
             this.Zoom = new InnerZoom(this, this);
             this.GridUnit = new GridUnit(this);
-            this.PointingDevice = new InnerPointingDevice(this);
+            this.PointingDevice = new InnerPointingDevice(this, this);
             this.CropCursor = new CropCursor(this, this);
             this.CropTile = new CropTile(this, this);
             this.AddsButton = new AddsButton(this, this);
@@ -83,15 +83,15 @@
             }
         }
 
-        public bool OutdoorTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
+        public bool TilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
             return this.OutdoorTilesetSettingsVM.SaveCsv(tileSetSettingsFile);
         }
-        public bool OutdoorTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        public bool TilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
             return this.OutdoorTilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
         }
-        public void OutdoorTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
+        public void TilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
             Zoom zoom,
             TileTitle title,
@@ -99,7 +99,7 @@
         {
             this.OutdoorTilesetSettingsVM.AddTileVisually(id, rect, zoom, title, logicalDelete);
         }
-        public bool OutdoorTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        public bool TilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
             return this.OutdoorTilesetSettingsVM.TryRemoveTileById(tileId, out resultVisuallyOrNull);
         }
@@ -170,14 +170,14 @@
         }
         #endregion
 
-        public float OutdoorZoomMinAsFloat
+        public float ZoomMinAsFloat
         {
             get
             {
                 return this.OutdoorPageVM.ZoomMinAsFloat;
             }
         }
-        public float OutdoorZoomMaxAsFloat
+        public float ZoomMaxAsFloat
         {
             get
             {
@@ -226,7 +226,7 @@
         /// <summary>
         ///     切抜きタイル・元画像左（整数として）
         /// </summary>
-        public int OutdoorCropTileSourceLeftAsInt
+        public int CropTileSourceLeftAsInt
         {
             set
             {
@@ -237,21 +237,21 @@
         /// <summary>
         ///     切抜きタイル・元画像上（整数として）
         /// </summary>
-        public int OutdoorCropTileSourceTopAsInt
+        public int CropTileSourceTopAsInt
         {
             set
             {
                 this.OutdoorPageVM.CropTileSourceTopAsInt = value;
             }
         }
-        public int OutdoorCropTileSourceWidthAsInt
+        public int CropTileSourceWidthAsInt
         {
             set
             {
                 this.OutdoorPageVM.CropTileSourceWidthAsInt = value;
             }
         }
-        public int OutdoorCropTileSourceHeightAsInt
+        public int CropTileSourceHeightAsInt
         {
             set
             {
@@ -259,7 +259,7 @@
             }
         }
 
-        public bool OutdoorCropTileLogicalDeleteAsBool
+        public bool CropTileLogicalDeleteAsBool
         {
             set
             {
@@ -267,7 +267,7 @@
             }
         }
 
-        public void OutdoorInvalidateWorkingTargetTile()
+        public void InvalidateWorkingTargetTile()
         {
             this.OutdoorPageVM.InvalidateWorkingTargetTile();
         }
@@ -276,24 +276,24 @@
         {
             this.OutdoorPageVM.InvalidateAddsButton();
         }
-        public string OutdoorAddsButtonText
+        public string AddsButtonText
         {
             get => this.OutdoorPageVM.AddsButtonText;
             set => this.OutdoorPageVM.AddsButtonText = value;
         }
-        public string OutdoorAddsButtonHint
+        public string AddsButtonHint
         {
             get => this.OutdoorPageVM.AddsButtonHint;
         }
 
-        public float OutdorrWorkingGridTileWidthAsFloat
+        public float WorkingGridTileWidthAsFloat
         {
             set
             {
                 this.OutdoorPageVM.WorkingGridTileWidthAsFloat = value;
             }
         }
-        public float OutdoorWorkingGridTileHeightAsFloat
+        public float WorkingGridTileHeightAsFloat
         {
             set
             {
@@ -301,7 +301,7 @@
             }
         }
 
-        public void OutdoorInvalidateIsMouseDragging()
+        public void InvalidateIsMouseDragging()
         {
             this.OutdoorPageVM.InvalidateIsMouseDragging();
         }

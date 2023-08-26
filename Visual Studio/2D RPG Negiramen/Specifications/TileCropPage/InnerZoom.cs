@@ -60,7 +60,7 @@ internal class InnerZoom
         {
             if (this.value.AsFloat != value)
             {
-                if (this.Spec.OutdoorZoomMinAsFloat <= value && value <= this.Spec.OutdoorZoomMaxAsFloat)
+                if (this.Outdoor.ZoomMinAsFloat <= value && value <= this.Outdoor.ZoomMaxAsFloat)
                 {
                     Zoom oldValue = this.value;
                     Zoom newValue = new Zoom(value);
