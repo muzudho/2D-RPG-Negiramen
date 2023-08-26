@@ -110,9 +110,9 @@ internal class CropTile
                 this.IdOrEmpty = newValue.Id;
                 this.Spec.OutdoorCropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
                 this.Spec.OutdoorCropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.Spec.WholePageVMCroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.Spec.WholePageVMCroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
-                // this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
+                this.Spec.WholePageVMCropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.Spec.WholePageVMCropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                // this.CropTileTitleAsStr = newValue.Title.AsStr;
             }
 
             // 変更通知を送りたい

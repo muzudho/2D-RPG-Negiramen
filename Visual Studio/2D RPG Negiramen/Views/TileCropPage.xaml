@@ -584,14 +584,14 @@
                         <Label Grid.Row="1" Grid.Column="4"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileSourceWidthAsInt}"
+                               Text="{Binding CropTileSourceWidthAsInt}"
                                FontSize="24"/>
 
                         <!-- 元画像：　［切抜きカーソル］が指すタイル。縦幅 -->
                         <Label Grid.Row="1" Grid.Column="5"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileSourceHeightAsInt}"
+                               Text="{Binding CropTileSourceHeightAsInt}"
                                FontSize="24"/>
 
                         <!--    ◆３段目 読み仮名部
@@ -622,8 +622,8 @@
                         <!-- タイル タイトル -->
                         <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                                Placeholder="草原"
-                               Text="{Binding CroppedCursorPointedTileTitleAsStr}"
-                               IsEnabled="{Binding IsEnabledCroppedCursorPointedTileTitleAsStr}"
+                               Text="{Binding CropTileTitleAsStr}"
+                               IsEnabled="{Binding IsEnabledCropTileTitleAsStr}"
                                Completed="TileTitleEntry_Completed"/>
 
                         <!--    ◆５段目 ヒント部

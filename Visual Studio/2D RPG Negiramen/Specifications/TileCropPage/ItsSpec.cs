@@ -205,18 +205,18 @@
                 this.WholePageVM.CropTileSourceTopAsInt = value;
             }
         }
-        public int WholePageVMCroppedCursorPointedTileSourceWidthAsInt
+        public int WholePageVMCropTileSourceWidthAsInt
         {
             set
             {
-                this.WholePageVM.CroppedCursorPointedTileSourceWidthAsInt = value;
+                this.WholePageVM.CropTileSourceWidthAsInt = value;
             }
         }
-        public int WholePageVMCroppedCursorPointedTileSourceHeightAsInt
+        public int WholePageVMCropTileSourceHeightAsInt
         {
             set
             {
-                this.WholePageVM.CroppedCursorPointedTileSourceHeightAsInt = value;
+                this.WholePageVM.CropTileSourceHeightAsInt = value;
             }
         }
 

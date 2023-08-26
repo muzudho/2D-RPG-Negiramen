@@ -67,8 +67,8 @@ interface IItsSpec
 
     int OutdoorCropTileSourceLeftAsInt { set; }
     int OutdoorCropTileSourceTopAsInt { set; }
-    int WholePageVMCroppedCursorPointedTileSourceWidthAsInt { set; }
-    int WholePageVMCroppedCursorPointedTileSourceHeightAsInt { set; }
+    int WholePageVMCropTileSourceWidthAsInt { set; }
+    int WholePageVMCropTileSourceHeightAsInt { set; }
 
     void WholePageVMInvalidateIsMouseDragging();
 

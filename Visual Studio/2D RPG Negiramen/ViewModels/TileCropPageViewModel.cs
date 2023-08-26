@@ -786,8 +786,8 @@
                 // 選択タイルの横幅と縦幅
                 // ======================
                 //
-                this.CroppedCursorPointedTileSourceWidthAsInt = value.Width.AsInt;
-                this.CroppedCursorPointedTileSourceHeightAsInt = value.Height.AsInt;
+                this.CropTileSourceWidthAsInt = value.Width.AsInt;
+                this.CropTileSourceHeightAsInt = value.Height.AsInt;
 
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceRect));
             }
@@ -796,7 +796,7 @@
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］の元画像ベースの横幅
         /// </summary>
-        public int CroppedCursorPointedTileSourceWidthAsInt
+        public int CropTileSourceWidthAsInt
         {
             get
             {
@@ -823,7 +823,7 @@
                             logicalDelete: Models.LogicalDelete.False),
                         zoom: this.SpecObj.Zoom.Value
 #if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceWidthAsInt 1]"
+                        , hint: "[TileCropPageViewModel.cs CropTileSourceWidthAsInt 1]"
 #endif
                         );
                 }
@@ -841,7 +841,7 @@
                             logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.SpecObj.Zoom.Value
 #if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceWidthAsInt 2]"
+                        , hint: "[TileCropPageViewModel.cs CropTileSourceWidthAsInt 2]"
 #endif
                         );
                 }
@@ -849,7 +849,7 @@
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
                 CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * value;
 
-                OnPropertyChanged(nameof(CroppedCursorPointedTileSourceWidthAsInt));
+                OnPropertyChanged(nameof(CropTileSourceWidthAsInt));
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceSize));
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceRect));
             }
@@ -858,7 +858,7 @@
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］の元画像ベースの縦幅
         /// </summary>
-        public int CroppedCursorPointedTileSourceHeightAsInt
+        public int CropTileSourceHeightAsInt
         {
             get
             {
@@ -885,7 +885,7 @@
                             logicalDelete: Models.LogicalDelete.False),
                         zoom: this.SpecObj.Zoom.Value
 #if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceHeightAsInt 1]"
+                        , hint: "[TileCropPageViewModel.cs CropTileSourceHeightAsInt 1]"
 #endif
                         );
                 }
@@ -903,7 +903,7 @@
                             logicalDelete: currentTileVisually.LogicalDelete),
                         zoom: this.SpecObj.Zoom.Value
 #if DEBUG
-                        , hint: "[TileCropPageViewModel.cs CroppedCursorPointedTileSourceHeightAsInt 2]"
+                        , hint: "[TileCropPageViewModel.cs CropTileSourceHeightAsInt 2]"
 #endif
                         );
                 }
@@ -911,7 +911,7 @@
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
                 CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * value;
 
-                OnPropertyChanged(nameof(CroppedCursorPointedTileSourceHeightAsInt));
+                OnPropertyChanged(nameof(CropTileSourceHeightAsInt));
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceSize));
                 OnPropertyChanged(nameof(CroppedCursorPointedTileSourceRect));
             }
@@ -1174,12 +1174,12 @@
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCroppedCursorPointedTileTitleAsStr => !this.SpecObj.CropTile.TargetTileRecordVisually.IsNone && !this.SpecObj.CropTile.IdOrEmpty.IsEmpty && !this.SpecObj.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool;
+        public bool IsEnabledCropTileTitleAsStr => !this.SpecObj.CropTile.TargetTileRecordVisually.IsNone && !this.SpecObj.CropTile.IdOrEmpty.IsEmpty && !this.SpecObj.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
         /// </summary>
-        public string CroppedCursorPointedTileTitleAsStr
+        public string CropTileTitleAsStr
         {
             get => this.SpecObj.CropTile.SavesRecordVisually.Title.AsStr;
             set
@@ -1480,7 +1480,7 @@
         {
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
+            OnPropertyChanged(nameof(CropTileTitleAsStr));
             OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
         }
 
@@ -1491,7 +1491,7 @@
         {
             OnPropertyChanged(nameof(AddsButtonHint));
             OnPropertyChanged(nameof(AddsButtonText));
-            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+            OnPropertyChanged(nameof(IsEnabledCropTileTitleAsStr));
 
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
@@ -1510,8 +1510,8 @@
         /// </summary>
         internal void InvalidateTileTitle()
         {
-            OnPropertyChanged(nameof(CroppedCursorPointedTileTitleAsStr));
-            OnPropertyChanged(nameof(IsEnabledCroppedCursorPointedTileTitleAsStr));
+            OnPropertyChanged(nameof(CropTileTitleAsStr));
+            OnPropertyChanged(nameof(IsEnabledCropTileTitleAsStr));
         }
         #endregion
 
