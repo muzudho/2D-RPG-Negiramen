@@ -15,9 +15,8 @@ internal class InnerCultureInfo
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal InnerCultureInfo(ItsSpec owner, IItsSpec spec)
+    internal InnerCultureInfo(IItsSpec spec)
     {
-        this.SpecObj = owner;
         Spec = spec;
     }
     #endregion
@@ -39,11 +38,11 @@ internal class InnerCultureInfo
                 CultureInfo newValue = value;
 
                 LocalizationResourceManager.Instance.SetCulture(value);
-                this.SpecObj.WholePageVM.InvalidateCultureInfo();
+                this.Spec.WholePageVMInvalidateCultureInfo();
 
                 // 再帰的
                 App.History.Do(new SetCultureInfoProcessing(
-                    inner: this.SpecObj,
+                    spec: this.Spec,
                     oldValue: oldValue,
                     newValue: newValue));
             }
@@ -53,6 +52,5 @@ internal class InnerCultureInfo
 
     // - プライベート・プロパティ
 
-    ItsSpec SpecObj { get; }
     IItsSpec Spec { get; }
 }

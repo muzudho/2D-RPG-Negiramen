@@ -61,8 +61,8 @@
         /// </summary>
         public CultureInfo SelectedCultureInfo
         {
-            get => this.Spec.CultureInfo.Selected;
-            set => this.Spec.CultureInfo.Selected = value;
+            get => this.Spec.CultureInfoObj.Selected;
+            set => this.Spec.CultureInfoObj.Selected = value;
         }
 
         /// <summary>

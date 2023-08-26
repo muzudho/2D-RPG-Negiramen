@@ -3,6 +3,7 @@
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.Visually;
+using System.Globalization;
 using TheFileEntryLocations = Models.FileEntries.Locations;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
@@ -12,6 +13,8 @@ using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 interface IItsSpec
 {
     // - パブリック・プロパティ
+
+    CultureInfo CultureInfoSelected { set; }
 
     void WholePageVMInvalidateAddsButton();
 
@@ -87,6 +90,8 @@ interface IItsSpec
     void WholeInvalidateForHistory();
 
     void WholePageVMInvalidateDeletesButton();
+
+    void WholePageVMInvalidateCultureInfo();
 
 
     bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }

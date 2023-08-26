@@ -10,6 +10,7 @@
     using TheFileEntryLocations = Models.FileEntries.Locations;
     using TheGraphics = Microsoft.Maui.Graphics;
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
+    using System.Globalization;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -38,7 +39,7 @@
         {
             WholePageVM = wholePageVM;
 
-            this.CultureInfo = new InnerCultureInfo(this,this);
+            this.CultureInfoObj = new InnerCultureInfo(this);
             this.Zoom = new InnerZoom(this,this);
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this,this);
@@ -244,7 +245,17 @@
 
 
         /// <summary>文化情報</summary>
-        internal InnerCultureInfo CultureInfo { get; }
+        internal InnerCultureInfo CultureInfoObj { get; }
+
+
+        public CultureInfo CultureInfoSelected
+        {
+            set
+            {
+                this.CultureInfoObj.Selected = value;
+            }
+        }
+
 
         #region プロパティ（［タイルセット元画像］　関連）
         /// <summary>
@@ -368,6 +379,8 @@
         #endregion
 
         public void WholePageVMInvalidateDeletesButton() => WholePageVM.InvalidateDeletesButton();
+
+        public void WholePageVMInvalidateCultureInfo() => this.WholePageVM.InvalidateCultureInfo();
 
         // - インターナル・メソッド
 
