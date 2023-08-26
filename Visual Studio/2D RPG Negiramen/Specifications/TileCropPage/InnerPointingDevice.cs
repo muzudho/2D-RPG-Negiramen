@@ -53,7 +53,7 @@ internal class InnerPointingDevice
             if (isMouseDragging != value)
             {
                 isMouseDragging = value;
-                this.Spec.WholePageVMInvalidateIsMouseDragging();
+                this.Spec.OutdoorInvalidateIsMouseDragging();
             }
         }
     }

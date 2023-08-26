@@ -37,9 +37,9 @@
         /// <param name="wholePageVM">全体ページビュー・モデル</param>
         internal ItsSpec(TileCropPageViewModel wholePageVM)
         {
-            WholePageVM = wholePageVM;
+            OutdoorPageVM = wholePageVM;
 
-            this.CultureInfoObj = new InnerCultureInfo(this);
+            this.IndoorCultureInfo = new InnerCultureInfo(this);
             this.Zoom = new InnerZoom(this);
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this);
@@ -56,42 +56,42 @@
         /// <summary>
         ///     タイルセット設定ビューモデル
         /// </summary>
-        public TilesetDatatableVisually WholeTilesetSettingsVM => WholePageVM.TilesetSettingsVM;
+        public TilesetDatatableVisually OutdoorTilesetSettingsVM => OutdoorPageVM.TilesetSettingsVM;
 
-        public void WholeTilesetSettingsVMIncreaseUsableId()
+        public void OutdoorTilesetSettingsVMIncreaseUsableId()
         {
-            this.WholeTilesetSettingsVM.IncreaseUsableId();
+            this.OutdoorTilesetSettingsVM.IncreaseUsableId();
         }
 
-        public TileIdOrEmpty WholeTilesetSettingsVMUsableId => this.WholeTilesetSettingsVM.UsableId;
+        public TileIdOrEmpty OutdoorTilesetSettingsVMUsableId => this.OutdoorTilesetSettingsVM.UsableId;
 
-        public List<TileRecordVisually> WholeTilesetSettingsVMTileRecordVisuallyList
+        public List<TileRecordVisually> OutdoorTilesetSettingsVMTileRecordVisuallyList
         {
             get
             {
-                return this.WholeTilesetSettingsVM.TileRecordVisuallyList;
+                return this.OutdoorTilesetSettingsVM.TileRecordVisuallyList;
             }
         }
 
-        public bool WholeTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
+        public bool OutdoorTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
-            return this.WholeTilesetSettingsVM.SaveCSV(tileSetSettingsFile);
+            return this.OutdoorTilesetSettingsVM.SaveCSV(tileSetSettingsFile);
         }
-        public bool WholeTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        public bool OutdoorTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
-            return this.WholeTilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
+            return this.OutdoorTilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
         }
-        public void WholeTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
+        public void OutdoorTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
             Zoom zoom,
             TileTitle title,
             LogicalDelete logicalDelete)
         {
-            this.WholeTilesetSettingsVM.AddTileVisually(id, rect, zoom, title, logicalDelete);
+            this.OutdoorTilesetSettingsVM.AddTileVisually(id, rect, zoom, title, logicalDelete);
         }
-        public bool WholeTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        public bool OutdoorTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
-            return this.WholeTilesetSettingsVM.TryRemoveTileById(tileId, out resultVisuallyOrNull);
+            return this.OutdoorTilesetSettingsVM.TryRemoveTileById(tileId, out resultVisuallyOrNull);
         }
         #endregion
 
@@ -102,22 +102,22 @@
         ///         <item>ページの引数として使用</item>
         ///     </list>
         /// </summary>
-        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv WholeTilesetDatatableFileLocation
+        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv OutdoorTilesetDatatableFileLocation
         {
-            get => WholePageVM.TilesetDatatableFileLocation;
+            get => OutdoorPageVM.TilesetDatatableFileLocation;
             set
             {
-                WholePageVM.TilesetDatatableFileLocation = value;
+                OutdoorPageVM.TilesetDatatableFileLocation = value;
             }
         }
         #endregion
 
-        public HeightFloat WholeCroppedCursorPointedTileWorkingHeight
+        public HeightFloat OutdoorCroppedCursorPointedTileWorkingHeight
         {
-            get => WholePageVM.CroppedCursorPointedTileWorkingHeight;
+            get => OutdoorPageVM.CroppedCursorPointedTileWorkingHeight;
             set
             {
-                WholePageVM.CroppedCursorPointedTileWorkingHeight = value;
+                OutdoorPageVM.CroppedCursorPointedTileWorkingHeight = value;
             }
         }
 
@@ -129,17 +129,17 @@
         ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
         ///     </list>
         /// </summary>
-        public RectangleInt WholeCroppedCursorPointedTileSourceRect
+        public RectangleInt OutdoorCroppedCursorPointedTileSourceRect
         {
-            get => WholePageVM.CroppedCursorPointedTileSourceRect;
+            get => OutdoorPageVM.CroppedCursorPointedTileSourceRect;
             set
             {
-                WholePageVM.CroppedCursorPointedTileSourceRect = value;
+                OutdoorPageVM.CroppedCursorPointedTileSourceRect = value;
             }
         }
         #endregion
 
-        public void CropCursorRefreshCanvasTrick(string codePlace)
+        public void IndoorCropCursorRefreshCanvasTrick(string codePlace)
         {
             this.CropCursor.RefreshCanvasTrick(codePlace);
         }
@@ -153,17 +153,46 @@
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
         ///     </list>
         /// </summary>
-        public float WholeZoomAsFloat
+        public float OutdoorZoomAsFloat
         {
-            get => WholePageVM.ZoomAsFloat;
-            set
-            {
-                WholePageVM.ZoomAsFloat = value;
-            }
+            get => this.OutdoorPageVM.ZoomAsFloat;
+            set => this.OutdoorPageVM.ZoomAsFloat = value;
         }
         #endregion
 
-        public int GridUnitSourceValueWidthAsInt
+        public float OutdoorZoomMinAsFloat
+        {
+            get
+            {
+                return this.OutdoorPageVM.ZoomMinAsFloat;
+            }
+        }
+        public float OutdoorZoomMaxAsFloat
+        {
+            get
+            {
+                return this.OutdoorPageVM.ZoomMaxAsFloat;
+            }
+        }
+
+        /// <summary>ズーム</summary>
+        internal InnerZoom Zoom { get; }
+
+        public Zoom IndoorZoomValue
+        {
+            get
+            {
+                return this.Zoom.Value;
+            }
+            set
+            {
+                this.Zoom.Value = value;
+            }
+        }
+
+
+
+        public int IndoorGridUnitSourceValueWidthAsInt
         {
             get
             {
@@ -171,7 +200,7 @@
             }
         }
 
-        public int GridUnitSourceValueHeightAsInt
+        public int IndoorGridUnitSourceValueHeightAsInt
         {
             get
             {
@@ -182,7 +211,7 @@
         // - インターナル・プロパティ
 
         /// <summary>全体ページ・ビューモデル</summary>
-        internal TileCropPageViewModel WholePageVM { get; }
+        internal TileCropPageViewModel OutdoorPageVM { get; }
 
         /// <summary>
         ///     切抜きタイル・元画像左（整数として）
@@ -191,7 +220,7 @@
         {
             set
             {
-                this.WholePageVM.CropTileSourceLeftAsInt = value;
+                this.OutdoorPageVM.CropTileSourceLeftAsInt = value;
             }
         }
 
@@ -202,82 +231,82 @@
         {
             set
             {
-                this.WholePageVM.CropTileSourceTopAsInt = value;
+                this.OutdoorPageVM.CropTileSourceTopAsInt = value;
             }
         }
-        public int WholePageVMCropTileSourceWidthAsInt
+        public int OutdoorCropTileSourceWidthAsInt
         {
             set
             {
-                this.WholePageVM.CropTileSourceWidthAsInt = value;
+                this.OutdoorPageVM.CropTileSourceWidthAsInt = value;
             }
         }
-        public int WholePageVMCropTileSourceHeightAsInt
+        public int OutdoorCropTileSourceHeightAsInt
         {
             set
             {
-                this.WholePageVM.CropTileSourceHeightAsInt = value;
+                this.OutdoorPageVM.CropTileSourceHeightAsInt = value;
             }
         }
 
-        public bool WholePageVMCroppedCursorPointedTileLogicalDeleteAsBool
+        public bool OutdoorCropTileLogicalDeleteAsBool
         {
             set
             {
-                this.WholePageVM.CroppedCursorPointedTileLogicalDeleteAsBool = value;
+                this.OutdoorPageVM.CropTileLogicalDeleteAsBool = value;
             }
         }
 
-        public void WholePageVMInvalidateWorkingTargetTile()
+        public void OutdoorInvalidateWorkingTargetTile()
         {
-            this.WholePageVM.InvalidateWorkingTargetTile();
+            this.OutdoorPageVM.InvalidateWorkingTargetTile();
         }
 
-        public void WholePageVMInvalidateAddsButton()
+        public void OutdoorInvalidateAddsButton()
         {
-            this.WholePageVM.InvalidateAddsButton();
+            this.OutdoorPageVM.InvalidateAddsButton();
         }
-        public string WholePageVMAddsButtonText
+        public string OutdoorAddsButtonText
         {
-            get => this.WholePageVM.AddsButtonText;
-            set => this.WholePageVM.AddsButtonText = value;
+            get => this.OutdoorPageVM.AddsButtonText;
+            set => this.OutdoorPageVM.AddsButtonText = value;
         }
-        public string WholePageVMAddsButtonHint
+        public string OutdoorAddsButtonHint
         {
-            get => this.WholePageVM.AddsButtonHint;
+            get => this.OutdoorPageVM.AddsButtonHint;
         }
 
-        public float WholePageVMWorkingGridTileWidthAsFloat
+        public float OutdorrWorkingGridTileWidthAsFloat
         {
             set
             {
-                this.WholePageVM.WorkingGridTileWidthAsFloat = value;
+                this.OutdoorPageVM.WorkingGridTileWidthAsFloat = value;
             }
         }
-        public float WholePageVMWorkingGridTileHeightAsFloat
+        public float OutdoorWorkingGridTileHeightAsFloat
         {
             set
             {
-                this.WholePageVM.WorkingGridTileHeightAsFloat = value;
+                this.OutdoorPageVM.WorkingGridTileHeightAsFloat = value;
             }
         }
 
-        public void WholePageVMInvalidateIsMouseDragging()
+        public void OutdoorInvalidateIsMouseDragging()
         {
-            this.WholePageVM.InvalidateIsMouseDragging();
+            this.OutdoorPageVM.InvalidateIsMouseDragging();
         }
 
 
 
         /// <summary>文化情報</summary>
-        internal InnerCultureInfo CultureInfoObj { get; }
+        internal InnerCultureInfo IndoorCultureInfo { get; }
 
 
-        public CultureInfo CultureInfoSelected
+        public CultureInfo IndoorCultureInfoSelected
         {
             set
             {
-                this.CultureInfoObj.Selected = value;
+                this.IndoorCultureInfo.Selected = value;
             }
         }
 
@@ -286,7 +315,7 @@
         /// <summary>
         ///     ［タイルセット元画像］のサイズ
         /// </summary>
-        internal SizeInt TilesetSourceImageSize
+        internal SizeInt IndoorTilesetSourceImageSize
         {
             get => tilesetSourceImageSize;
             set
@@ -300,7 +329,7 @@
         /// <summary>
         ///     ［タイルセット作業画像］ファイルへのパス（文字列形式）
         /// </summary>
-        public string TilesetWorkingImageFilePathAsStr => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
+        public string IndoorTilesetWorkingImageFilePathAsStr => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
         #endregion
 
         /// <summary>切抜きカーソル</summary>
@@ -311,7 +340,7 @@
         internal CropTile CropTile { get; }
         #endregion
 
-        public TileRecordVisually CropTileSavesRecordVisually
+        public TileRecordVisually IndoorCropTileSavesRecordVisually
         {
             get
             {
@@ -319,8 +348,8 @@
             }
         }
 
-        public TileRecordVisually CropTileTargetTileRecordVisually => this.CropTile.TargetTileRecordVisually;
-        public TileIdOrEmpty CropTileIdOrEmpty
+        public TileRecordVisually IndoorCropTileTargetTileRecordVisually => this.CropTile.TargetTileRecordVisually;
+        public TileIdOrEmpty IndoorCropTileIdOrEmpty
         {
             get
             {
@@ -347,21 +376,6 @@
         /// <returns>そうだ</returns>
         public bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
         #endregion
-
-        /// <summary>ズーム</summary>
-        internal InnerZoom Zoom { get; }
-
-        public Zoom ZoomValue
-        {
-            get
-            {
-                return this.Zoom.Value;
-            }
-            set
-            {
-                this.Zoom.Value = value;
-            }
-        }
 
         /// <summary>グリッド単位</summary>
         internal GridUnit GridUnit { get; }
@@ -390,52 +404,31 @@
         /// <summary>
         ///     ［選択タイル］Ｉｄの再描画
         /// </summary>
-        public void WholeInvalidateTileIdChange() => WholePageVM.InvalidateTileIdChange();
+        public void WholeInvalidateTileIdChange() => OutdoorPageVM.InvalidateTileIdChange();
         #endregion
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
         /// <summary>
         ///     ［タイルセット設定］ビューモデルに変更あり
         /// </summary>
-        internal void WholeInvalidateTilesetSettingsVM() => WholePageVM.InvalidateTilesetSettingsVM();
+        internal void WholeInvalidateTilesetSettingsVM() => OutdoorPageVM.InvalidateTilesetSettingsVM();
         #endregion
 
         #region 変更通知メソッド（［履歴］）
         /// <summary>
         ///     ［履歴］
         /// </summary>
-        public void WholeInvalidateForHistory() => WholePageVM.InvalidateForHistory();
+        public void WholeInvalidateForHistory() => OutdoorPageVM.InvalidateForHistory();
         #endregion
 
 
 
 
 
-        public void WholePageVMInvalidateDeletesButton() => WholePageVM.InvalidateDeletesButton();
+        public void OutdoorInvalidateDeletesButton() => OutdoorPageVM.InvalidateDeletesButton();
 
-        public void WholePageVMInvalidateCultureInfo() => this.WholePageVM.InvalidateCultureInfo();
+        public void OutdoorInvalidateCultureInfo() => this.OutdoorPageVM.InvalidateCultureInfo();
 
-        public float WholePageVMZoomAsFloat
-        {
-            set
-            {
-                this.WholePageVM.ZoomAsFloat = value;
-            }
-        }
-        public float WholePageVMZoomMinAsFloat
-        {
-            get
-            {
-                return this.WholePageVM.ZoomMinAsFloat;
-            }
-        }
-        public float WholePageVMZoomMaxAsFloat
-        {
-            get
-            {
-                return this.WholePageVM.ZoomMaxAsFloat;
-            }
-        }
 
 
 
@@ -458,8 +451,8 @@
         /// </summary>
         internal void LoadCroppedCursorPointedTile()
         {
-            WholeTilesetSettingsVM.MatchByRectangle(
-                sourceRect: WholeCroppedCursorPointedTileSourceRect,
+            OutdoorTilesetSettingsVM.MatchByRectangle(
+                sourceRect: OutdoorCroppedCursorPointedTileSourceRect,
                 some: (tileVisually) =>
                 {
                     // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
@@ -480,7 +473,7 @@
                     this.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
-                            rect: WholeCroppedCursorPointedTileSourceRect,
+                            rect: OutdoorCroppedCursorPointedTileSourceRect,
                             title: TileTitle.Empty,
                             logicalDelete: LogicalDelete.False),
                         zoom: this.Zoom.Value
@@ -501,15 +494,15 @@
         internal void ReactOnVisited()
         {
             // ロケールが変わってるかもしれないので反映
-            WholePageVM.InvalidateCultureInfo();
+            OutdoorPageVM.InvalidateCultureInfo();
 
             // グリッド・キャンバス
             {
                 // グリッドの左上位置（初期値）
-                WholePageVM.GridPhaseSourceLocation = new PointInt(new XInt(0), new YInt(0));
+                OutdoorPageVM.GridPhaseSourceLocation = new PointInt(new XInt(0), new YInt(0));
 
                 // グリッドのタイルサイズ（初期値）
-                WholePageVM.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
+                OutdoorPageVM.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
                 WholeRemakeGridCanvasImage();
@@ -528,24 +521,24 @@
         public void WholeRemakeWorkingTilesetImage()
         {
             // 元画像をベースに、作業画像を複製
-            var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(WholePageVM.TilesetSourceBitmap));
+            var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(OutdoorPageVM.TilesetSourceBitmap));
 
             // 画像処理（明度を下げる）
             FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
 
             // 作業画像のサイズ計算
-            WholePageVM.workingImageSize = new SizeInt(
-                width: new WidthInt((int)(WholeZoomAsFloat * TilesetSourceImageSize.Width.AsInt)),
-                height: new HeightInt((int)(WholeZoomAsFloat * TilesetSourceImageSize.Height.AsInt)));
+            OutdoorPageVM.workingImageSize = new SizeInt(
+                width: new WidthInt((int)(OutdoorZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt)),
+                height: new HeightInt((int)(OutdoorZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
-            WholePageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
+            OutdoorPageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
                 size: new SKSizeI(
-                    width: WholePageVM.workingImageSize.Width.AsInt,
-                    height: WholePageVM.workingImageSize.Height.AsInt),
+                    width: OutdoorPageVM.workingImageSize.Width.AsInt,
+                    height: OutdoorPageVM.workingImageSize.Height.AsInt),
                 quality: SKFilterQuality.Medium);
 
-            WholePageVM.InvalidateTilesetWorkingImage();
+            OutdoorPageVM.InvalidateTilesetWorkingImage();
         }
 
         /// <summary>
@@ -559,27 +552,27 @@
         /// </summary>
         public void WholeRefreshForTileAdd()
         {
-            if (WholePageVM.TilesetWorkingImageWidthAsInt % 2 == 1)
+            if (OutdoorPageVM.TilesetWorkingImageWidthAsInt % 2 == 1)
             {
-                WholePageVM.workingImageSize = new SizeInt(
-                    width: new WidthInt(WholePageVM.workingImageSize.Width.AsInt - 1),
-                    height: new HeightInt(WholePageVM.workingImageSize.Height.AsInt));
+                OutdoorPageVM.workingImageSize = new SizeInt(
+                    width: new WidthInt(OutdoorPageVM.workingImageSize.Width.AsInt - 1),
+                    height: new HeightInt(OutdoorPageVM.workingImageSize.Height.AsInt));
             }
             else
             {
-                WholePageVM.workingImageSize = new SizeInt(
-                    width: new WidthInt(WholePageVM.workingImageSize.Width.AsInt + 1),
-                    height: new HeightInt(WholePageVM.workingImageSize.Height.AsInt));
+                OutdoorPageVM.workingImageSize = new SizeInt(
+                    width: new WidthInt(OutdoorPageVM.workingImageSize.Width.AsInt + 1),
+                    height: new HeightInt(OutdoorPageVM.workingImageSize.Height.AsInt));
             }
 
             // タイル タイトル
-            WholePageVM.InvalidateTileTitle();
+            OutdoorPageVM.InvalidateTileTitle();
 
             // 追加・削除ボタンの表示状態を更新したい
-            WholePageVM.InvalidateAddsButton();
+            OutdoorPageVM.InvalidateAddsButton();
 
             // タイルセット作業画像
-            WholePageVM.InvalidateTilesetWorkingImage();
+            OutdoorPageVM.InvalidateTilesetWorkingImage();
         }
         #endregion
 
@@ -594,9 +587,9 @@
         /// </summary>
         public void WholeRemakeGridCanvasImage()
         {
-            WholePageVM.GridCanvasImageSize = new SizeInt(
-                width: new WidthInt((int)(WholeZoomAsFloat * TilesetSourceImageSize.Width.AsInt) + 2 * WholePageVM.HalfThicknessOfGridLineAsInt),
-                height: new HeightInt((int)(WholeZoomAsFloat * TilesetSourceImageSize.Height.AsInt) + 2 * WholePageVM.HalfThicknessOfGridLineAsInt));
+            OutdoorPageVM.GridCanvasImageSize = new SizeInt(
+                width: new WidthInt((int)(OutdoorZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt) + 2 * OutdoorPageVM.HalfThicknessOfGridLineAsInt),
+                height: new HeightInt((int)(OutdoorZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt) + 2 * OutdoorPageVM.HalfThicknessOfGridLineAsInt));
         }
         #endregion
 
@@ -610,7 +603,7 @@
         /// </summary>
         internal void WholeRecalculateBetweenCropCursorAndRegisteredTile()
         {
-            if (WholeCroppedCursorPointedTileSourceRect == RectangleInt.Empty)
+            if (OutdoorCroppedCursorPointedTileSourceRect == RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
                 HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
@@ -619,8 +612,8 @@
             }
 
             // 軽くはない処理
-            HasIntersectionBetweenCroppedCursorAndRegisteredTile = WholeTilesetSettingsVM.HasIntersection(WholeCroppedCursorPointedTileSourceRect);
-            IsCongruenceBetweenCroppedCursorAndRegisteredTile = WholeTilesetSettingsVM.IsCongruence(WholeCroppedCursorPointedTileSourceRect);
+            HasIntersectionBetweenCroppedCursorAndRegisteredTile = OutdoorTilesetSettingsVM.HasIntersection(OutdoorCroppedCursorPointedTileSourceRect);
+            IsCongruenceBetweenCroppedCursorAndRegisteredTile = OutdoorTilesetSettingsVM.IsCongruence(OutdoorCroppedCursorPointedTileSourceRect);
 
             Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
@@ -641,24 +634,24 @@
             RectangleFloat workingRect = CoordinateHelper.GetCursorRectangle(
                 startPoint: this.PointingDevice.StartPoint,
                 endPoint: this.PointingDevice.CurrentPoint,
-                gridLeftTop: WholePageVM.WorkingGridPhase,
-                gridTile: WholePageVM.WorkingGridUnit);
+                gridLeftTop: OutdoorPageVM.WorkingGridPhase,
+                gridTile: OutdoorPageVM.WorkingGridUnit);
 
             // ズームを除去
             var sourceRect = new RectangleInt(
                 location: new PointInt(
-                    x: new XInt((int)(workingRect.Location.X.AsFloat / WholeZoomAsFloat)),
-                    y: new YInt((int)(workingRect.Location.Y.AsFloat / WholeZoomAsFloat))),
+                    x: new XInt((int)(workingRect.Location.X.AsFloat / OutdoorZoomAsFloat)),
+                    y: new YInt((int)(workingRect.Location.Y.AsFloat / OutdoorZoomAsFloat))),
                 size: new SizeInt(
-                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / WholeZoomAsFloat)),
-                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / WholeZoomAsFloat))));
+                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / OutdoorZoomAsFloat)),
+                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / OutdoorZoomAsFloat))));
 
             //
             // 計算値の反映
             // ============
             //
             // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
-            WholeCroppedCursorPointedTileSourceRect = sourceRect;
+            OutdoorCroppedCursorPointedTileSourceRect = sourceRect;
 
             //
             // 登録済みのタイルと被っていないか判定
@@ -681,10 +674,10 @@
             this.DeletesButton.Refresh();
 
             // ［追加／復元］ボタン
-            WholePageVM.InvalidateAddsButton();
+            OutdoorPageVM.InvalidateAddsButton();
 
             // タイル・タイトル
-            WholePageVM.InvalidateTileTitle();
+            OutdoorPageVM.InvalidateTileTitle();
         }
         #endregion
 
@@ -722,21 +715,21 @@
             // ========================
             //
             if (TilesetDatatableVisually.LoadCSV(
-                tilesetDatatableFileLocation: WholeTilesetDatatableFileLocation,
+                tilesetDatatableFileLocation: OutdoorTilesetDatatableFileLocation,
                 zoom: this.Zoom.Value,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
-                WholePageVM.TilesetSettingsVM = tilesetDatatableVisually;
+                OutdoorPageVM.TilesetSettingsVM = tilesetDatatableVisually;
 
 #if DEBUG
                 // ファイルの整合性チェック（重い処理）
-                if (WholeTilesetSettingsVM.IsValid())
+                if (OutdoorTilesetSettingsVM.IsValid())
                 {
-                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {WholeTilesetDatatableFileLocation.Path.AsStr}");
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {OutdoorTilesetDatatableFileLocation.Path.AsStr}");
                 }
                 else
                 {
-                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {WholeTilesetDatatableFileLocation.Path.AsStr}");
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {OutdoorTilesetDatatableFileLocation.Path.AsStr}");
                 }
 #endif
 
@@ -750,7 +743,7 @@
             //
             // タイルセット画像ファイルへのパスを取得
             //
-            var tilesetImageFilePathAsStr = WholePageVM.TilesetImageFilePathAsStr;
+            var tilesetImageFilePathAsStr = OutdoorPageVM.TilesetImageFilePathAsStr;
 
             //
             // タイルセット画像の読込、作業中タイルセット画像の書出
@@ -806,13 +799,13 @@
                             memStream.Seek(0, SeekOrigin.Begin);
 
                             // 元画像
-                            WholePageVM.SetTilesetSourceBitmap(SKBitmap.Decode(memStream));
+                            OutdoorPageVM.SetTilesetSourceBitmap(SKBitmap.Decode(memStream));
 
                             // 複製
-                            WholePageVM.TilesetWorkingBitmap = SKBitmap.FromImage(SKImage.FromBitmap(WholePageVM.TilesetSourceBitmap));
+                            OutdoorPageVM.TilesetWorkingBitmap = SKBitmap.FromImage(SKImage.FromBitmap(OutdoorPageVM.TilesetSourceBitmap));
 
                             // 画像処理（明度を下げる）
-                            FeatSkia.ReduceBrightness.DoItInPlace(WholePageVM.TilesetWorkingBitmap);
+                            FeatSkia.ReduceBrightness.DoItInPlace(OutdoorPageVM.TilesetWorkingBitmap);
                         };
 
                         // 再描画
@@ -859,9 +852,9 @@
         public void OnTilesetImageTapped(Point tappedPoint)
         {
             // 反転
-            WholePageVM.IsMouseDragging = !WholePageVM.IsMouseDragging;
+            OutdoorPageVM.IsMouseDragging = !OutdoorPageVM.IsMouseDragging;
 
-            if (WholePageVM.IsMouseDragging)
+            if (OutdoorPageVM.IsMouseDragging)
             {
                 //
                 // 疑似マウス・ダウン
@@ -910,7 +903,7 @@
         /// <param name="tappedPoint"></param>
         public void OnTilesetImagePointerMove(Point tappedPoint)
         {
-            if (WholePageVM.IsMouseDragging)
+            if (OutdoorPageVM.IsMouseDragging)
             {
                 //
                 // 疑似マウス・ドラッグ

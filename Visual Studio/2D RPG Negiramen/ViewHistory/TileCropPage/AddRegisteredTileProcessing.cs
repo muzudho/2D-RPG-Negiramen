@@ -41,16 +41,16 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.Spec.CropTileIdOrEmpty = this.TileIdOrEmpty;
+        this.Spec.IndoorCropTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.Spec.WholeInvalidateTileIdChange();
 
         // リストに登録済みか確認
-        if (!this.Spec.WholeTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
+        if (!this.Spec.OutdoorTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
         {
             // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.Spec.WholeTilesetSettingsVMAddTileVisually(
+            this.Spec.OutdoorTilesetSettingsVMAddTileVisually(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 zoom: Zoom.IdentityElement,
@@ -63,7 +63,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         //
 
         // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.Spec.WholeTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
+        if (this.Spec.OutdoorTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
         {
             TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
@@ -71,7 +71,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.Spec.ZoomValue;
+            registeredTileVisually.Zoom = this.Spec.IndoorZoomValue;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
@@ -84,7 +84,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Spec.WholeTilesetSettingsVMSaveCsv(this.Spec.WholeTilesetDatatableFileLocation))
+        if (!this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Spec.OutdoorTilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -105,13 +105,13 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.Spec.CropTileIdOrEmpty = TileIdOrEmpty.Empty;
+        this.Spec.IndoorCropTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.Spec.WholeInvalidateTileIdChange();
 
         // リストから削除
-        if (!this.Spec.WholeTilesetSettingsVMTryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
+        if (!this.Spec.OutdoorTilesetSettingsVMTryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
         {
             // TODO 成功しなかったら異常
             throw new Exception();
@@ -121,7 +121,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Spec.WholeTilesetSettingsVMSaveCsv(this.Spec.WholeTilesetDatatableFileLocation))
+        if (!this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Spec.OutdoorTilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }

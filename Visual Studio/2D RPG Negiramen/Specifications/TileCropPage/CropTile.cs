@@ -76,10 +76,10 @@ internal class CropTile
                     this.IdOrEmpty = TileIdOrEmpty.Empty;
 
                     // 元画像の位置とサイズ
-                    this.Spec.WholeCroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+                    this.Spec.OutdoorCroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                     // 論理削除
-                    this.Spec.WholePageVMCroppedCursorPointedTileLogicalDeleteAsBool = false;
+                    this.Spec.OutdoorCropTileLogicalDeleteAsBool = false;
 
                     // 空にする
                     this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
@@ -110,8 +110,8 @@ internal class CropTile
                 this.IdOrEmpty = newValue.Id;
                 this.Spec.OutdoorCropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
                 this.Spec.OutdoorCropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.Spec.WholePageVMCropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.Spec.WholePageVMCropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                this.Spec.OutdoorCropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.Spec.OutdoorCropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
                 // this.CropTileTitleAsStr = newValue.Title.AsStr;
             }
 

@@ -39,7 +39,7 @@ internal class InnerZoom
                 return;
 
             // TODO 循環参照しやすいから、良くないコード
-            this.Spec.WholePageVMZoomAsFloat = value.AsFloat;
+            this.Spec.OutdoorZoomAsFloat = value.AsFloat;
         }
     }
 
@@ -57,13 +57,13 @@ internal class InnerZoom
         {
             if (this.value.AsFloat != value)
             {
-                if (this.Spec.WholePageVMZoomMinAsFloat <= value && value <= this.Spec.WholePageVMZoomMaxAsFloat)
+                if (this.Spec.OutdoorZoomMinAsFloat <= value && value <= this.Spec.OutdoorZoomMaxAsFloat)
                 {
                     Zoom oldValue = this.value;
                     Zoom newValue = new Zoom(value);
 
                     this.value = newValue;
-                    this.Spec.CropCursorRefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+                    this.Spec.IndoorCropCursorRefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(

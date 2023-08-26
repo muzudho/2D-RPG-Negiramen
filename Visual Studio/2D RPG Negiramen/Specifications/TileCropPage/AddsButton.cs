@@ -28,7 +28,7 @@ internal class AddsButton
     /// </summary>
     internal void AddTile()
     {
-        var contents = this.Spec.CropTileTargetTileRecordVisually;
+        var contents = this.Spec.IndoorCropTileTargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -40,8 +40,8 @@ internal class AddsButton
             return;
 
         // 新しいタイルＩｄを発行
-        tileIdOrEmpty = Spec.WholeTilesetSettingsVMUsableId;
-        this.Spec.WholeTilesetSettingsVMIncreaseUsableId();
+        tileIdOrEmpty = Spec.OutdoorTilesetSettingsVMUsableId;
+        this.Spec.OutdoorTilesetSettingsVMIncreaseUsableId();
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
@@ -49,7 +49,7 @@ internal class AddsButton
             spec: this.Spec,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Spec.ZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.Spec.IndoorZoomValue)));
 
         Spec.WholeInvalidateForHistory();
     }
@@ -59,7 +59,7 @@ internal class AddsButton
     /// </summary>
     public void OverwriteTile()
     {
-        var contents = this.Spec.CropTileTargetTileRecordVisually;
+        var contents = this.Spec.IndoorCropTileTargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -69,7 +69,7 @@ internal class AddsButton
 
         // Ｉｄが空欄でない
         // ［上書き］（更新）だ
-        tileIdOrEmpty = this.Spec.CropTileIdOrEmpty;
+        tileIdOrEmpty = this.Spec.IndoorCropTileIdOrEmpty;
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
@@ -77,7 +77,7 @@ internal class AddsButton
             spec: this.Spec,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Spec.ZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.Spec.IndoorZoomValue)));
 
         Spec.WholeInvalidateForHistory();
     }
@@ -96,42 +96,42 @@ internal class AddsButton
                 // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
-                this.Spec.WholePageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
+                this.Spec.OutdoorAddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
                 return;
             }
         }
 
-        var contents = this.Spec.CropTileSavesRecordVisually;
+        var contents = this.Spec.IndoorCropTileSavesRecordVisually;
 
         if (contents.IsNone)
         {
             // ［切抜きカーソル］の指すタイル無し時
 
             // 「追加」
-            this.Spec.WholePageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+            this.Spec.OutdoorAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
         }
         else
         {
             // 切抜きカーソル有り時
             // Ｉｄ未設定時
 
-            if (this.Spec.CropTileIdOrEmpty == TileIdOrEmpty.Empty)
+            if (this.Spec.IndoorCropTileIdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
 
                 // ［追加」
-                this.Spec.WholePageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                this.Spec.OutdoorAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
             }
             else
             {
                 // ［復元」
-                this.Spec.WholePageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
+                this.Spec.OutdoorAddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
             }
         }
 
         // ［追加／復元］ボタンの活性性
-        this.Spec.WholePageVMInvalidateAddsButton();
+        this.Spec.OutdoorInvalidateAddsButton();
     }
 
     // - プライベート・プロパティ

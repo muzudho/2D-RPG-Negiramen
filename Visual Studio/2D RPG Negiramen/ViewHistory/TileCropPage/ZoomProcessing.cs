@@ -35,7 +35,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.Spec.ZoomValue = this.NewValue;
+        this.Spec.IndoorZoomValue = this.NewValue;
 
         this.AfterChanged();
     }
@@ -45,7 +45,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.Spec.ZoomValue = this.OldValue;
+        this.Spec.IndoorZoomValue = this.OldValue;
 
         this.AfterChanged();
     }
@@ -102,15 +102,15 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Spec.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Spec.WholeZoomAsFloat * this.Spec.WholeCroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.Spec.WholeCroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Spec.WholeZoomAsFloat * this.Spec.WholeCroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Spec.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Spec.OutdoorZoomAsFloat * this.Spec.OutdoorCroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.Spec.OutdoorCroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Spec.OutdoorZoomAsFloat * this.Spec.OutdoorCroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.Spec.WholeTilesetSettingsVMTileRecordVisuallyList)
+        foreach (var registeredTileVM in this.Spec.OutdoorTilesetSettingsVMTileRecordVisuallyList)
         {
             // ズーム
-            registeredTileVM.Zoom = this.Spec.ZoomValue;
+            registeredTileVM.Zoom = this.Spec.IndoorZoomValue;
         }
 
         // 変更通知

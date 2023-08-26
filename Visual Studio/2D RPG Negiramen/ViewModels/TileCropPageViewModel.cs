@@ -61,8 +61,8 @@
         /// </summary>
         public CultureInfo SelectedCultureInfo
         {
-            get => this.SpecObj.CultureInfoObj.Selected;
-            set => this.SpecObj.CultureInfoObj.Selected = value;
+            get => this.SpecObj.IndoorCultureInfo.Selected;
+            set => this.SpecObj.IndoorCultureInfo.Selected = value;
         }
 
         /// <summary>
@@ -108,12 +108,12 @@
         /// <summary>
         ///     ［タイルセット元画像］の横幅。読取専用
         /// </summary>
-        public int TilesetSourceImageWidthAsInt => this.SpecObj.TilesetSourceImageSize.Width.AsInt;
+        public int TilesetSourceImageWidthAsInt => this.SpecObj.IndoorTilesetSourceImageSize.Width.AsInt;
 
         /// <summary>
         ///     ［タイルセット元画像］の縦幅。読取専用
         /// </summary>
-        public int TilesetSourceImageHeightAsInt => this.SpecObj.TilesetSourceImageSize.Height.AsInt;
+        public int TilesetSourceImageHeightAsInt => this.SpecObj.IndoorTilesetSourceImageSize.Height.AsInt;
         #endregion
 
         #region 変更通知プロパティ（［タイルセット作業画像］　関連）
@@ -1151,7 +1151,7 @@
         ///     
         ///     <see cref="CroppedCursorPointedTileIdOrEmpty"/>
         /// </summary>
-        public string CroppedCursorPointedTileIdAsPhoneticCode
+        public string CropTileIdAsPhoneticCode
         {
             get
             {
@@ -1196,7 +1196,7 @@
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］の論理削除
         /// </summary>
-        public bool CroppedCursorPointedTileLogicalDeleteAsBool
+        public bool CropTileLogicalDeleteAsBool
         {
             get => this.SpecObj.CropTile.SavesRecordVisually.LogicalDelete.AsBool;
             set
@@ -1389,7 +1389,7 @@
             this.tilesetSourceBitmap = bitmap;
 
             // タイルセット画像のサイズ設定（画像の再作成）
-            this.SpecObj.TilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+            this.SpecObj.IndoorTilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
             OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
@@ -1479,9 +1479,9 @@
         internal void InvalidateTarget()
         {
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
+            OnPropertyChanged(nameof(CropTileIdAsPhoneticCode));
             OnPropertyChanged(nameof(CropTileTitleAsStr));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileLogicalDeleteAsBool));
+            OnPropertyChanged(nameof(CropTileLogicalDeleteAsBool));
         }
 
         /// <summary>
@@ -1494,7 +1494,7 @@
             OnPropertyChanged(nameof(IsEnabledCropTileTitleAsStr));
 
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsPhoneticCode));
+            OnPropertyChanged(nameof(CropTileIdAsPhoneticCode));
         }
 
         internal void InvalidateWorkingTargetTile()

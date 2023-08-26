@@ -14,17 +14,17 @@ interface IItsSpec
 {
     // - パブリック・プロパティ
 
-    CultureInfo CultureInfoSelected { set; }
+    CultureInfo IndoorCultureInfoSelected { set; }
 
-    void WholePageVMInvalidateAddsButton();
+    void OutdoorInvalidateAddsButton();
 
-    TileRecordVisually CropTileSavesRecordVisually { get; }
+    TileRecordVisually IndoorCropTileSavesRecordVisually { get; }
 
-    TileRecordVisually CropTileTargetTileRecordVisually { get; }
+    TileRecordVisually IndoorCropTileTargetTileRecordVisually { get; }
 
-    TileIdOrEmpty CropTileIdOrEmpty { set; get; }
+    TileIdOrEmpty IndoorCropTileIdOrEmpty { set; get; }
 
-    Zoom ZoomValue { get; set; }
+    Zoom IndoorZoomValue { get; set; }
 
     /// <summary>
     ///     ［タイルセット・データテーブル］ファイルの場所
@@ -32,7 +32,7 @@ interface IItsSpec
     ///         <item>ページの引数として使用</item>
     ///     </list>
     /// </summary>
-    TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv WholeTilesetDatatableFileLocation { get; }
+    TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv OutdoorTilesetDatatableFileLocation { get; }
 
     #region 変更通知メソッド（［選択タイル］　関連）
     /// <summary>
@@ -41,49 +41,48 @@ interface IItsSpec
     void WholeInvalidateTileIdChange();
     #endregion
 
-    void WholeTilesetSettingsVMIncreaseUsableId();
-    TileIdOrEmpty WholeTilesetSettingsVMUsableId { get; }
+    void OutdoorTilesetSettingsVMIncreaseUsableId();
+    TileIdOrEmpty OutdoorTilesetSettingsVMUsableId { get; }
 
-    bool WholeTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile);
+    bool OutdoorTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile);
 
-    bool WholeTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
+    bool OutdoorTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
 
-    void WholeTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
+    void OutdoorTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
         TheGeometric.RectangleInt rect,
         Zoom zoom,
         TileTitle title,
         LogicalDelete logicalDelete);
 
-    bool WholeTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
+    bool OutdoorTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
 
-    string WholePageVMAddsButtonText { get; set; }
-    string WholePageVMAddsButtonHint { get; }
-    void WholePageVMInvalidateWorkingTargetTile();
+    string OutdoorAddsButtonText { get; set; }
+    string OutdoorAddsButtonHint { get; }
+    void OutdoorInvalidateWorkingTargetTile();
 
-    float WholePageVMWorkingGridTileWidthAsFloat { set; }
-    float WholePageVMWorkingGridTileHeightAsFloat { set; }
+    float OutdorrWorkingGridTileWidthAsFloat { set; }
+    float OutdoorWorkingGridTileHeightAsFloat { set; }
 
-    bool WholePageVMCroppedCursorPointedTileLogicalDeleteAsBool { set; }
+    bool OutdoorCropTileLogicalDeleteAsBool { set; }
 
     int OutdoorCropTileSourceLeftAsInt { set; }
     int OutdoorCropTileSourceTopAsInt { set; }
-    int WholePageVMCropTileSourceWidthAsInt { set; }
-    int WholePageVMCropTileSourceHeightAsInt { set; }
+    int OutdoorCropTileSourceWidthAsInt { set; }
+    int OutdoorCropTileSourceHeightAsInt { set; }
 
-    void WholePageVMInvalidateIsMouseDragging();
+    void OutdoorInvalidateIsMouseDragging();
 
-    float WholePageVMZoomAsFloat { set; }
-    float WholePageVMZoomMinAsFloat { get; }
-    float WholePageVMZoomMaxAsFloat { get; }
+    float OutdoorZoomMinAsFloat { get; }
+    float OutdoorZoomMaxAsFloat { get; }
 
-    void CropCursorRefreshCanvasTrick(string codePlace);
-
+    void IndoorCropCursorRefreshCanvasTrick(string codePlace);
 
 
-    float WholeZoomAsFloat { get; set; }
 
-    int GridUnitSourceValueWidthAsInt { get; }
-    int GridUnitSourceValueHeightAsInt { get; }
+    float OutdoorZoomAsFloat { get; set; }
+
+    int IndoorGridUnitSourceValueWidthAsInt { get; }
+    int IndoorGridUnitSourceValueHeightAsInt { get; }
 
 
     /// <summary>
@@ -93,14 +92,14 @@ interface IItsSpec
     ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
     ///     </list>
     /// </summary>
-    RectangleInt WholeCroppedCursorPointedTileSourceRect { get; set; }
+    RectangleInt OutdoorCroppedCursorPointedTileSourceRect { get; set; }
 
 
     void WholeInvalidateForHistory();
 
-    void WholePageVMInvalidateDeletesButton();
+    void OutdoorInvalidateDeletesButton();
 
-    void WholePageVMInvalidateCultureInfo();
+    void OutdoorInvalidateCultureInfo();
 
 
     bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
@@ -124,8 +123,8 @@ interface IItsSpec
     void CropCursorRecalculateWorkingGridTileHeight();
 
     TheGeometric.WidthFloat CropCursorWorkingWidthWithoutTrick { set; }
-    HeightFloat WholeCroppedCursorPointedTileWorkingHeight { set; }
+    HeightFloat OutdoorCroppedCursorPointedTileWorkingHeight { set; }
 
-    List<TileRecordVisually> WholeTilesetSettingsVMTileRecordVisuallyList { get; }
+    List<TileRecordVisually> OutdoorTilesetSettingsVMTileRecordVisuallyList { get; }
 
 }
