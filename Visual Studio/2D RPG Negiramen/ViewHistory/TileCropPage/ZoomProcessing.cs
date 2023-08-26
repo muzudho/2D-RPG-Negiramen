@@ -2,7 +2,7 @@
 
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+using _2D_RPG_Negiramen.Specifications.TileCropPage;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
@@ -17,7 +17,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
-    internal ZoomProcessing(TileCropPageViewInnerModel inner, Zoom oldValue, Zoom newValue)
+    internal ZoomProcessing(ItsSpec inner, Zoom oldValue, Zoom newValue)
     {
         this.Inner = inner;
         this.OldValue = oldValue;
@@ -51,7 +51,7 @@ internal class ZoomProcessing : IProcessing
     /// <summary>
     ///     内部クラス
     /// </summary>
-    TileCropPageViewInnerModel Inner { get; }
+    ItsSpec Inner { get; }
 
     /// <summary>
     ///     変更前の値
@@ -73,13 +73,13 @@ internal class ZoomProcessing : IProcessing
         // ［タイルセット作業画像］の更新
         {
             // 画像の再作成
-            this.Inner.RemakeWorkingTilesetImage();
+            this.Inner.WholeRemakeWorkingTilesetImage();
         }
 
         // ［元画像グリッド］の更新
         {
             // キャンバス画像の再作成
-            this.Inner.RemakeGridCanvasImage();
+            this.Inner.WholeRemakeGridCanvasImage();
         }
 
         // ［作業グリッド］の再計算
@@ -98,18 +98,18 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Inner.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Inner.OwnerZoomAsFloat * this.Inner.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.Inner.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Inner.OwnerZoomAsFloat * this.Inner.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Inner.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Inner.WholeZoomAsFloat * this.Inner.WholeCroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.Inner.WholeCroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Inner.WholeZoomAsFloat * this.Inner.WholeCroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.Inner.TilesetSettingsVM.TileRecordVisuallyList)
+        foreach (var registeredTileVM in this.Inner.WholeTilesetSettingsVM.TileRecordVisuallyList)
         {
             // ズーム
             registeredTileVM.Zoom = this.Inner.Zoom.Value;
         }
 
         // 変更通知
-        this.Inner.InvalidateForHistory();
+        this.Inner.WholeInvalidateForHistory();
     }
 }

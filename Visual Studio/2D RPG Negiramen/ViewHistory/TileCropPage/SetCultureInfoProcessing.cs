@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+using _2D_RPG_Negiramen.Specifications.TileCropPage;
 using System.Globalization;
 
 /// <summary>
@@ -15,7 +15,7 @@ internal class SetCultureInfoProcessing : IProcessing
     ///     生成
     /// </summary>
     internal SetCultureInfoProcessing(
-        TileCropPageViewInnerModel inner,
+        ItsSpec inner,
         CultureInfo oldValue,
         CultureInfo newValue)
     {
@@ -45,7 +45,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// <summary>
     ///     内部クラス
     /// </summary>
-    TileCropPageViewInnerModel Inner { get; }
+    ItsSpec Inner { get; }
 
     CultureInfo OldValue { get; }
 

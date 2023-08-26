@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
@@ -17,7 +17,7 @@ internal class CropTile
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal CropTile(TileCropPageViewInnerModel owner)
+    internal CropTile(ItsSpec owner)
     {
         this.Owner = owner;
     }
@@ -76,10 +76,10 @@ internal class CropTile
                     this.IdOrEmpty = TileIdOrEmpty.Empty;
 
                     // 元画像の位置とサイズ
-                    Owner.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+                    Owner.WholeCroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                     // 論理削除
-                    this.Owner.Owner.CroppedCursorPointedTileLogicalDeleteAsBool = false;
+                    this.Owner.WholePageVM.CroppedCursorPointedTileLogicalDeleteAsBool = false;
 
                     // 空にする
                     this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
@@ -108,15 +108,15 @@ internal class CropTile
 
                 // （変更通知を送っている）
                 this.IdOrEmpty = newValue.Id;
-                this.Owner.Owner.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                this.Owner.Owner.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.Owner.Owner.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.Owner.Owner.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                this.Owner.WholePageVM.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                this.Owner.WholePageVM.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                this.Owner.WholePageVM.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.Owner.WholePageVM.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
                 // this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
             }
 
             // 変更通知を送りたい
-            Owner.InvalidateTileIdChange();
+            Owner.WholeInvalidateTileIdChange();
         }
     }
     #endregion
@@ -189,7 +189,7 @@ internal class CropTile
         }
 
         // 変更通知を送る
-        Owner.InvalidateTileIdChange();
+        Owner.WholeInvalidateTileIdChange();
 
         Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
     }
@@ -197,5 +197,5 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
-    TileCropPageViewInnerModel Owner { get; }
+    ItsSpec Owner { get; }
 }

@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 using System.Globalization;
@@ -15,7 +15,7 @@ internal class InnerCultureInfo
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal InnerCultureInfo(TileCropPageViewInnerModel owner)
+    internal InnerCultureInfo(ItsSpec owner)
     {
         this.Owner = owner;
     }
@@ -38,7 +38,7 @@ internal class InnerCultureInfo
                 CultureInfo newValue = value;
 
                 LocalizationResourceManager.Instance.SetCulture(value);
-                this.Owner.Owner.InvalidateCultureInfo();
+                this.Owner.WholePageVM.InvalidateCultureInfo();
 
                 // 再帰的
                 App.History.Do(new SetCultureInfoProcessing(
@@ -52,5 +52,5 @@ internal class InnerCultureInfo
 
     // - プライベート・プロパティ
 
-    TileCropPageViewInnerModel Owner { get; }
+    ItsSpec Owner { get; }
 }

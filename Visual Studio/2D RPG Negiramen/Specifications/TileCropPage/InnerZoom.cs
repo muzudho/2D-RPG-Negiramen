@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
@@ -15,7 +15,7 @@ internal class InnerZoom
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal InnerZoom(TileCropPageViewInnerModel owner)
+    internal InnerZoom(ItsSpec owner)
     {
         this.Owner = owner;
     }
@@ -39,7 +39,7 @@ internal class InnerZoom
                 return;
 
             // TODO 循環参照しやすいから、良くないコード
-            this.Owner.Owner.ZoomAsFloat = value.AsFloat;
+            this.Owner.WholePageVM.ZoomAsFloat = value.AsFloat;
         }
     }
 
@@ -57,7 +57,7 @@ internal class InnerZoom
         {
             if (this.value.AsFloat != value)
             {
-                if (this.Owner.Owner.ZoomMinAsFloat <= value && value <= this.Owner.Owner.ZoomMaxAsFloat)
+                if (this.Owner.WholePageVM.ZoomMinAsFloat <= value && value <= this.Owner.WholePageVM.ZoomMaxAsFloat)
                 {
                     Zoom oldValue = this.value;
                     Zoom newValue = new Zoom(value);
@@ -84,7 +84,7 @@ internal class InnerZoom
 
     // - プライベート・プロパティ
 
-    TileCropPageViewInnerModel Owner { get; }
+    ItsSpec Owner { get; }
 
     // - プライベート・フィールド
 

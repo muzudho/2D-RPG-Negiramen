@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
@@ -15,7 +15,7 @@ internal class DeletesButton
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal DeletesButton(TileCropPageViewInnerModel owner)
+    internal DeletesButton(ItsSpec owner)
     {
         this.Owner = owner;
     }
@@ -36,7 +36,7 @@ internal class DeletesButton
                 return;
 
             this.isEnabled = value;
-            this.Owner.Owner.InvalidateDeletesButton();
+            this.Owner.WholePageVM.InvalidateDeletesButton();
         }
     }
     #endregion
@@ -82,7 +82,7 @@ internal class DeletesButton
             inner: this.Owner,
             tileIdOrEmpty: this.Owner.CropTile.IdOrEmpty));
 
-        this.Owner.InvalidateForHistory();
+        this.Owner.WholeInvalidateForHistory();
     }
     #endregion
 
@@ -97,5 +97,5 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    TileCropPageViewInnerModel Owner { get; }
+    ItsSpec Owner { get; }
 }

@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 /// <summary>
 ///     グリッド単位
@@ -12,7 +12,7 @@ internal class GridUnit
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal GridUnit(TileCropPageViewInnerModel owner)
+    internal GridUnit(ItsSpec owner)
     {
         this.Owner = owner;
     }
@@ -27,5 +27,5 @@ internal class GridUnit
 
     // - プライベート・プロパティ
 
-    TileCropPageViewInnerModel Owner { get; }
+    ItsSpec Owner { get; }
 }

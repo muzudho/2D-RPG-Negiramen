@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.Geometric;
 
@@ -14,7 +14,7 @@ internal class InnerPointingDevice
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal InnerPointingDevice(TileCropPageViewInnerModel owner)
+    internal InnerPointingDevice(ItsSpec owner)
     {
         this.Owner = owner;
     }
@@ -53,7 +53,7 @@ internal class InnerPointingDevice
             if (isMouseDragging != value)
             {
                 isMouseDragging = value;
-                this.Owner.Owner.InvalidateIsMouseDragging();
+                this.Owner.WholePageVM.InvalidateIsMouseDragging();
             }
         }
     }
@@ -61,7 +61,7 @@ internal class InnerPointingDevice
 
     // - プライベート・プロパティ
 
-    TileCropPageViewInnerModel Owner { get; }
+    ItsSpec Owner { get; }
 
     #region プロパティ（ポインティング・デバイス押下中か？）
     /// <summary>

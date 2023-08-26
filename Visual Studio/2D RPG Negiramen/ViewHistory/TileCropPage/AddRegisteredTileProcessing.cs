@@ -4,7 +4,7 @@ using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using _2D_RPG_Negiramen.Models.Visually;
-using _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+using _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 /// <summary>
 ///     ［登録タイル追加］処理
@@ -21,7 +21,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="tileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
-        TileCropPageViewInnerModel inner,
+        ItsSpec inner,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
@@ -44,13 +44,13 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Inner.CropTile.IdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.Inner.InvalidateTileIdChange();
+        this.Inner.WholeInvalidateTileIdChange();
 
         // リストに登録済みか確認
-        if (!this.Inner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
+        if (!this.Inner.WholeTilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
         {
             // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.Inner.TilesetSettingsVM.AddTileVisually(
+            this.Inner.WholeTilesetSettingsVM.AddTileVisually(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 zoom: Zoom.IdentityElement,
@@ -63,7 +63,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         //
 
         // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.Inner.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
+        if (this.Inner.WholeTilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
         {
             TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
@@ -84,7 +84,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Inner.TilesetSettingsVM.SaveCSV(this.Inner.TilesetDatatableFileLocation))
+        if (!this.Inner.WholeTilesetSettingsVM.SaveCSV(this.Inner.WholeTilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -93,7 +93,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Inner.RefreshForTileAdd();
+        this.Inner.WholeRefreshForTileAdd();
     }
     #endregion
 
@@ -108,10 +108,10 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Inner.CropTile.IdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.Inner.InvalidateTileIdChange();
+        this.Inner.WholeInvalidateTileIdChange();
 
         // リストから削除
-        if (!this.Inner.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
+        if (!this.Inner.WholeTilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
         {
             // TODO 成功しなかったら異常
             throw new Exception();
@@ -121,7 +121,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Inner.TilesetSettingsVM.SaveCSV(this.Inner.TilesetDatatableFileLocation))
+        if (!this.Inner.WholeTilesetSettingsVM.SaveCSV(this.Inner.WholeTilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -134,7 +134,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ====================
         //
         //this.coloredMapGraphicsView1.Invalidate();
-        this.Inner.RefreshForTileAdd();
+        this.Inner.WholeRefreshForTileAdd();
     }
     #endregion
 
@@ -143,7 +143,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <summary>
     ///     内部モデル
     /// </summary>
-    TileCropPageViewInnerModel Inner { get; }
+    ItsSpec Inner { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

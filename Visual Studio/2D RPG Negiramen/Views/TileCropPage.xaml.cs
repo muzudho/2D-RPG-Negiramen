@@ -77,7 +77,7 @@ public partial class TileCropPage : ContentPage
         //
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Inner.OnNavigatedTo(this.skiaTilesetCanvas1);
+        context.Spec.OnNavigatedTo(this.skiaTilesetCanvas1);
     }
     #endregion
 
@@ -92,7 +92,7 @@ public partial class TileCropPage : ContentPage
         // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
         var context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Inner.InvalidateByLocale();
+        context.Spec.InvalidateByLocale();
     }
     #endregion
 
@@ -122,7 +122,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Inner.OnTilesetImageTapped(tappedPoint);
+        context.Spec.OnTilesetImageTapped(tappedPoint);
     }
 
     /// <summary>
@@ -136,7 +136,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Inner.OnTilesetImagePointerMove(tappedPoint);
+        context.Spec.OnTilesetImagePointerMove(tappedPoint);
     }
 
     /// <summary>
@@ -173,7 +173,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Inner.OnAddsButtonClicked();
+        context.Spec.OnAddsButtonClicked();
     }
     #endregion
 
@@ -190,7 +190,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 登録タイル削除
-        context.Inner.DeletesButton.RemoveTile();
+        context.Spec.DeletesButton.RemoveTile();
     }
     #endregion
 
@@ -260,7 +260,7 @@ public partial class TileCropPage : ContentPage
 
         Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
 
-        context.Inner.AddsButton.OverwriteTile();
+        context.Spec.AddsButton.OverwriteTile();
     }
     #endregion
 }

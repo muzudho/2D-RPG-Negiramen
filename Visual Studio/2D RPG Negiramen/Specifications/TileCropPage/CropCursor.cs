@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewInnerModels.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.Geometric;
 
@@ -14,7 +14,7 @@ internal class CropCursor
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal CropCursor(TileCropPageViewInnerModel owner)
+    internal CropCursor(ItsSpec owner)
     {
         this.Owner = owner;
     }
@@ -58,7 +58,7 @@ internal class CropCursor
         }
 
         // TRICK CODE:
-        this.Owner.Owner.InvalidateWorkingTargetTile();
+        this.Owner.WholePageVM.InvalidateWorkingTargetTile();
     }
 
     #region メソッド（［作業グリッド］　関連）
@@ -71,7 +71,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileWidth()
     {
-        this.Owner.Owner.WorkingGridTileWidthAsFloat = this.Owner.OwnerZoomAsFloat * this.Owner.GridUnit.SourceValue.Width.AsInt;
+        this.Owner.WholePageVM.WorkingGridTileWidthAsFloat = this.Owner.WholeZoomAsFloat * this.Owner.GridUnit.SourceValue.Width.AsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -85,7 +85,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileHeight()
     {
-        this.Owner.Owner.WorkingGridTileHeightAsFloat = this.Owner.OwnerZoomAsFloat * this.Owner.GridUnit.SourceValue.Height.AsInt;
+        this.Owner.WholePageVM.WorkingGridTileHeightAsFloat = this.Owner.WholeZoomAsFloat * this.Owner.GridUnit.SourceValue.Height.AsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -106,5 +106,5 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
-    TileCropPageViewInnerModel Owner { get; }
+    ItsSpec Owner { get; }
 }
