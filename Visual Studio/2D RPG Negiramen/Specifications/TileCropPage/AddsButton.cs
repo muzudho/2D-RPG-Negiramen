@@ -31,7 +31,7 @@ internal class AddsButton
     /// </summary>
     internal void AddTile()
     {
-        var contents = this.Indoor.IndoorCropTileTargetTileRecordVisually;
+        var contents = this.Indoor.CropTileTargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -53,7 +53,7 @@ internal class AddsButton
             spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Indoor.IndoorZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.Indoor.ZoomValue)));
 
         Outdoor.InvalidateForHistory();
     }
@@ -63,7 +63,7 @@ internal class AddsButton
     /// </summary>
     public void OverwriteTile()
     {
-        var contents = this.Indoor.IndoorCropTileTargetTileRecordVisually;
+        var contents = this.Indoor.CropTileTargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -73,7 +73,7 @@ internal class AddsButton
 
         // Ｉｄが空欄でない
         // ［上書き］（更新）だ
-        tileIdOrEmpty = this.Indoor.IndoorCropTileIdOrEmpty;
+        tileIdOrEmpty = this.Indoor.CropTileIdOrEmpty;
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
@@ -82,7 +82,7 @@ internal class AddsButton
             spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Indoor.IndoorZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.Indoor.ZoomValue)));
 
         Outdoor.InvalidateForHistory();
     }
@@ -106,7 +106,7 @@ internal class AddsButton
             }
         }
 
-        var contents = this.Indoor.IndoorCropTileSavesRecordVisually;
+        var contents = this.Indoor.CropTileSavesRecordVisually;
 
         if (contents.IsNone)
         {
@@ -120,7 +120,7 @@ internal class AddsButton
             // 切抜きカーソル有り時
             // Ｉｄ未設定時
 
-            if (this.Indoor.IndoorCropTileIdOrEmpty == TileIdOrEmpty.Empty)
+            if (this.Indoor.CropTileIdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ

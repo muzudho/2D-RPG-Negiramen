@@ -105,6 +105,9 @@
         }
         #endregion
 
+        public int TilesetSourceImageWidthAsInt => this.IndoorTilesetSourceImageSize.Width.AsInt;
+        public int TilesetSourceImageHeightAsInt => this.IndoorTilesetSourceImageSize.Height.AsInt;
+
         #region プロパティ（［タイルセット・データテーブル］　関連）
         /// <summary>
         ///     ［タイルセット・データテーブル］ファイルの場所
@@ -149,7 +152,7 @@
         }
         #endregion
 
-        public void IndoorCropCursorRefreshCanvasTrick(string codePlace)
+        public void CropCursorRefreshCanvasTrick(string codePlace)
         {
             this.CropCursor.RefreshCanvasTrick(codePlace);
         }
@@ -188,7 +191,7 @@
         /// <summary>ズーム</summary>
         internal InnerZoom Zoom { get; }
 
-        public Zoom IndoorZoomValue
+        public Zoom ZoomValue
         {
             get
             {
@@ -202,7 +205,7 @@
 
 
 
-        public int IndoorGridUnitSourceValueWidthAsInt
+        public int GridUnitSourceValueWidthAsInt
         {
             get
             {
@@ -210,7 +213,7 @@
             }
         }
 
-        public int IndoorGridUnitSourceValueHeightAsInt
+        public int GridUnitSourceValueHeightAsInt
         {
             get
             {
@@ -312,12 +315,10 @@
         internal InnerCultureInfo IndoorCultureInfo { get; }
 
 
-        public CultureInfo IndoorCultureInfoSelected
+        public CultureInfo CultureInfoSelected
         {
-            set
-            {
-                this.IndoorCultureInfo.Selected = value;
-            }
+            get => this.IndoorCultureInfo.Selected;
+            set => this.IndoorCultureInfo.Selected = value;
         }
 
 
@@ -350,7 +351,7 @@
         internal CropTile CropTile { get; }
         #endregion
 
-        public TileRecordVisually IndoorCropTileSavesRecordVisually
+        public TileRecordVisually CropTileSavesRecordVisually
         {
             get
             {
@@ -358,8 +359,8 @@
             }
         }
 
-        public TileRecordVisually IndoorCropTileTargetTileRecordVisually => this.CropTile.TargetTileRecordVisually;
-        public TileIdOrEmpty IndoorCropTileIdOrEmpty
+        public TileRecordVisually CropTileTargetTileRecordVisually => this.CropTile.TargetTileRecordVisually;
+        public TileIdOrEmpty CropTileIdOrEmpty
         {
             get
             {

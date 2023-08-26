@@ -61,8 +61,8 @@
         /// </summary>
         public CultureInfo SelectedCultureInfo
         {
-            get => this.SpecObj.IndoorCultureInfo.Selected;
-            set => this.SpecObj.IndoorCultureInfo.Selected = value;
+            get => this.Indoor.CultureInfoSelected;
+            set => this.Indoor.CultureInfoSelected = value;
         }
 
         /// <summary>
@@ -108,12 +108,12 @@
         /// <summary>
         ///     ［タイルセット元画像］の横幅。読取専用
         /// </summary>
-        public int TilesetSourceImageWidthAsInt => this.SpecObj.IndoorTilesetSourceImageSize.Width.AsInt;
+        public int TilesetSourceImageWidthAsInt => this.Indoor.TilesetSourceImageWidthAsInt;
 
         /// <summary>
         ///     ［タイルセット元画像］の縦幅。読取専用
         /// </summary>
-        public int TilesetSourceImageHeightAsInt => this.SpecObj.IndoorTilesetSourceImageSize.Height.AsInt;
+        public int TilesetSourceImageHeightAsInt => this.Indoor.TilesetSourceImageHeightAsInt;
         #endregion
 
         #region 変更通知プロパティ（［タイルセット作業画像］　関連）

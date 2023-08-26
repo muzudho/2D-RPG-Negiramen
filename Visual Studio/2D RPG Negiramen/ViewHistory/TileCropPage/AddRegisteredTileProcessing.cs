@@ -43,7 +43,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.Indoor.IndoorCropTileIdOrEmpty = this.TileIdOrEmpty;
+        this.Indoor.CropTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.Outdoor.InvalidateTileIdChange();
@@ -73,7 +73,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.Indoor.IndoorZoomValue;
+            registeredTileVisually.Zoom = this.Indoor.ZoomValue;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
@@ -107,7 +107,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.Indoor.IndoorCropTileIdOrEmpty = TileIdOrEmpty.Empty;
+        this.Indoor.CropTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.Outdoor.InvalidateTileIdChange();

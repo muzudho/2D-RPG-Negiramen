@@ -52,7 +52,7 @@ internal class DeletesButton
     /// </summary>
     internal void Refresh()
     {
-        var contents = this.Indoor.IndoorCropTileSavesRecordVisually;
+        var contents = this.Indoor.CropTileSavesRecordVisually;
 
         if (contents.IsNone)
         {
@@ -84,7 +84,7 @@ internal class DeletesButton
         App.History.Do(new RemoveRegisteredTileProcessing(
             outdoor: this.Outdoor,
             indoor: this.Indoor,
-            tileIdOrEmpty: this.Indoor.IndoorCropTileIdOrEmpty));
+            tileIdOrEmpty: this.Indoor.CropTileIdOrEmpty));
 
         this.Outdoor.InvalidateForHistory();
     }

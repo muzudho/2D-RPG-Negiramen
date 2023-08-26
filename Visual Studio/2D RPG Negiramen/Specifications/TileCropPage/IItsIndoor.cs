@@ -13,20 +13,20 @@ interface IItsIndoor
 {
     // - パブリック・プロパティ
 
-    CultureInfo IndoorCultureInfoSelected { set; }
+    CultureInfo CultureInfoSelected { get;  set; }
 
-    TileRecordVisually IndoorCropTileSavesRecordVisually { get; }
+    TileRecordVisually CropTileSavesRecordVisually { get; }
 
-    TileRecordVisually IndoorCropTileTargetTileRecordVisually { get; }
+    TileRecordVisually CropTileTargetTileRecordVisually { get; }
 
-    TileIdOrEmpty IndoorCropTileIdOrEmpty { set; get; }
+    TileIdOrEmpty CropTileIdOrEmpty { set; get; }
 
-    Zoom IndoorZoomValue { get; set; }
+    Zoom ZoomValue { get; set; }
 
-    void IndoorCropCursorRefreshCanvasTrick(string codePlace);
+    void CropCursorRefreshCanvasTrick(string codePlace);
 
-    int IndoorGridUnitSourceValueWidthAsInt { get; }
-    int IndoorGridUnitSourceValueHeightAsInt { get; }
+    int GridUnitSourceValueWidthAsInt { get; }
+    int GridUnitSourceValueHeightAsInt { get; }
 
 
     bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
@@ -46,4 +46,7 @@ interface IItsIndoor
     void CropCursorRecalculateWorkingGridTileHeight();
 
     TheGeometric.WidthFloat CropCursorWorkingWidthWithoutTrick { set; }
+
+    int TilesetSourceImageWidthAsInt { get; }
+    int TilesetSourceImageHeightAsInt { get; }
 }
