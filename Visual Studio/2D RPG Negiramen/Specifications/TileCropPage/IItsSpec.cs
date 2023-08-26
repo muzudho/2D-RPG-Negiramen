@@ -60,10 +60,28 @@ interface IItsSpec
     float WholePageVMWorkingGridTileWidthAsFloat { set; }
     float WholePageVMWorkingGridTileHeightAsFloat { set; }
 
+    bool WholePageVMCroppedCursorPointedTileLogicalDeleteAsBool { set; }
+
+    int WholePageVMCroppedCursorPointedTileSourceLeftAsInt { set; }
+    int WholePageVMCroppedCursorPointedTileSourceTopAsInt { set; }
+    int WholePageVMCroppedCursorPointedTileSourceWidthAsInt { set; }
+    int WholePageVMCroppedCursorPointedTileSourceHeightAsInt { set; }
+
+
     float WholeZoomAsFloat { get; set; }
 
     int GridUnitSourceValueWidthAsInt { get; }
     int GridUnitSourceValueHeightAsInt { get; }
+
+
+    /// <summary>
+    ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
+    ///     
+    ///     <list type="bullet">
+    ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
+    ///     </list>
+    /// </summary>
+    RectangleInt WholeCroppedCursorPointedTileSourceRect { get; set; }
 
 
     void WholeInvalidateForHistory();
@@ -75,6 +93,8 @@ interface IItsSpec
     // - パブリック・メソッド
 
     void WholeRefreshForTileAdd();
+
+    void AddsButtonRefresh();
 
     void DeletesButtonRefresh();
 

@@ -43,7 +43,7 @@
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this,this);
             this.CropCursor = new CropCursor(this);
-            this.CropTile = new CropTile(this,this);
+            this.CropTile = new CropTile(this);
             this.AddsButton = new AddsButton(this);
             this.DeletesButton = new DeletesButton(this,this);
         }
@@ -168,6 +168,43 @@
 
         /// <summary>全体ページ・ビューモデル</summary>
         internal TileCropPageViewModel WholePageVM { get; }
+
+        public int WholePageVMCroppedCursorPointedTileSourceLeftAsInt
+        {
+            set
+            {
+                this.WholePageVM.CroppedCursorPointedTileSourceLeftAsInt = value;
+            }
+        }
+        public int WholePageVMCroppedCursorPointedTileSourceTopAsInt
+        {
+            set
+            {
+                this.WholePageVM.CroppedCursorPointedTileSourceTopAsInt = value;
+            }
+        }
+        public int WholePageVMCroppedCursorPointedTileSourceWidthAsInt
+        {
+            set
+            {
+                this.WholePageVM.CroppedCursorPointedTileSourceWidthAsInt = value;
+            }
+        }
+        public int WholePageVMCroppedCursorPointedTileSourceHeightAsInt
+        {
+            set
+            {
+                this.WholePageVM.CroppedCursorPointedTileSourceHeightAsInt = value;
+            }
+        }
+
+        public bool WholePageVMCroppedCursorPointedTileLogicalDeleteAsBool
+        {
+            set
+            {
+                this.WholePageVM.CroppedCursorPointedTileLogicalDeleteAsBool = value;
+            }
+        }
 
         public void WholePageVMInvalidateWorkingTargetTile()
         {
@@ -294,6 +331,11 @@
 
         /// <summary>追加ボタン</summary>
         internal AddsButton AddsButton { get; }
+
+        public void AddsButtonRefresh()
+        {
+            this.AddsButton.Refresh();
+        }
 
         /// <summary>削除ボタン</summary>
         internal DeletesButton DeletesButton { get; }
