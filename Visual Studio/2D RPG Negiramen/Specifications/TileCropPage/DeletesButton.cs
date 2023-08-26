@@ -39,7 +39,7 @@ internal class DeletesButton
                 return;
 
             this.isEnabled = value;
-            this.Spec.OutdoorInvalidateDeletesButton();
+            this.Outdoor.InvalidateDeletesButton();
         }
     }
     #endregion

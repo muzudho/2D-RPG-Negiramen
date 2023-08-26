@@ -95,7 +95,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Spec.WholeRefreshForTileAdd();
+        this.Outdoor.RefreshForTileAdd();
     }
     #endregion
 
@@ -136,7 +136,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ====================
         //
         //this.coloredMapGraphicsView1.Invalidate();
-        this.Spec.WholeRefreshForTileAdd();
+        this.Outdoor.RefreshForTileAdd();
     }
     #endregion
 

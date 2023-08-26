@@ -59,4 +59,27 @@ interface IItsOutdoor
 
     float ZoomMinAsFloat { get; }
     float ZoomMaxAsFloat { get; }
+
+
+
+    float ZoomAsFloat { get; set; }
+
+    /// <summary>
+    ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
+    ///     
+    ///     <list type="bullet">
+    ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
+    ///     </list>
+    /// </summary>
+    RectangleInt CroppedCursorPointedTileSourceRect { get; set; }
+
+    void InvalidateDeletesButton();
+
+    void InvalidateCultureInfo();
+
+    HeightFloat CroppedCursorPointedTileWorkingHeight { set; }
+
+    List<TileRecordVisually> TilesetSettingsVMTileRecordVisuallyList { get; }
+
+    void RefreshForTileAdd();
 }

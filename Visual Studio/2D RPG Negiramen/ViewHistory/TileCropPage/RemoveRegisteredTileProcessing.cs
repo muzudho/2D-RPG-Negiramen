@@ -59,7 +59,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Spec.WholeRefreshForTileAdd();
+        this.Outdoor.RefreshForTileAdd();
     }
 
     public void Undo()
@@ -97,7 +97,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Spec.WholeRefreshForTileAdd();
+        this.Outdoor.RefreshForTileAdd();
     }
 
     // - プライベート・プロパティ

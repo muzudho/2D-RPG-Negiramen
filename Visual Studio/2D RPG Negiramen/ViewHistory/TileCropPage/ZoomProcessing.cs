@@ -105,12 +105,12 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Spec.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Spec.OutdoorZoomAsFloat * this.Spec.OutdoorCroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.Spec.OutdoorCroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Spec.OutdoorZoomAsFloat * this.Spec.OutdoorCroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Spec.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Outdoor.ZoomAsFloat * this.Outdoor.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.Outdoor.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Outdoor.ZoomAsFloat * this.Outdoor.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.Spec.OutdoorTilesetSettingsVMTileRecordVisuallyList)
+        foreach (var registeredTileVM in this.Outdoor.TilesetSettingsVMTileRecordVisuallyList)
         {
             // ズーム
             registeredTileVM.Zoom = this.Spec.IndoorZoomValue;

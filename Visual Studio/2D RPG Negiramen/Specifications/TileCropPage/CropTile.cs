@@ -80,7 +80,7 @@ internal class CropTile
                     this.IdOrEmpty = TileIdOrEmpty.Empty;
 
                     // 元画像の位置とサイズ
-                    this.Spec.OutdoorCroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+                    this.Outdoor.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                     // 論理削除
                     this.Outdoor.CropTileLogicalDeleteAsBool = false;

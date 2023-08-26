@@ -15,8 +15,11 @@ internal class InnerCultureInfo
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal InnerCultureInfo(IItsSpec spec)
+    internal InnerCultureInfo(
+        IItsOutdoor outdoor,
+        IItsSpec spec)
     {
+        this.Outdoor = outdoor;
         Spec = spec;
     }
     #endregion
@@ -38,7 +41,7 @@ internal class InnerCultureInfo
                 CultureInfo newValue = value;
 
                 LocalizationResourceManager.Instance.SetCulture(value);
-                this.Spec.OutdoorInvalidateCultureInfo();
+                this.Outdoor.InvalidateCultureInfo();
 
                 // 再帰的
                 App.History.Do(new SetCultureInfoProcessing(
@@ -52,5 +55,6 @@ internal class InnerCultureInfo
 
     // - プライベート・プロパティ
 
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 }

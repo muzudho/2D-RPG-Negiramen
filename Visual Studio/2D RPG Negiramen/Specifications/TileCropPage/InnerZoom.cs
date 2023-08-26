@@ -42,7 +42,7 @@ internal class InnerZoom
                 return;
 
             // TODO 循環参照しやすいから、良くないコード
-            this.Spec.OutdoorZoomAsFloat = value.AsFloat;
+            this.Outdoor.ZoomAsFloat = value.AsFloat;
         }
     }
 

@@ -26,26 +26,8 @@ interface IItsSpec
 
     void IndoorCropCursorRefreshCanvasTrick(string codePlace);
 
-
-
-    float OutdoorZoomAsFloat { get; set; }
-
     int IndoorGridUnitSourceValueWidthAsInt { get; }
     int IndoorGridUnitSourceValueHeightAsInt { get; }
-
-
-    /// <summary>
-    ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
-    ///     
-    ///     <list type="bullet">
-    ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
-    ///     </list>
-    /// </summary>
-    RectangleInt OutdoorCroppedCursorPointedTileSourceRect { get; set; }
-
-    void OutdoorInvalidateDeletesButton();
-
-    void OutdoorInvalidateCultureInfo();
 
 
     bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
@@ -53,8 +35,6 @@ interface IItsSpec
     bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
 
     // - パブリック・メソッド
-
-    void WholeRefreshForTileAdd();
 
     void AddsButtonRefresh();
 
@@ -69,8 +49,4 @@ interface IItsSpec
     void CropCursorRecalculateWorkingGridTileHeight();
 
     TheGeometric.WidthFloat CropCursorWorkingWidthWithoutTrick { set; }
-    HeightFloat OutdoorCroppedCursorPointedTileWorkingHeight { set; }
-
-    List<TileRecordVisually> OutdoorTilesetSettingsVMTileRecordVisuallyList { get; }
-
 }
