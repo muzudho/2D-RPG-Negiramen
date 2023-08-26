@@ -367,6 +367,8 @@
         public void WholeInvalidateForHistory() => WholePageVM.InvalidateForHistory();
         #endregion
 
+        public void WholePageVMInvalidateDeletesButton() => WholePageVM.InvalidateDeletesButton();
+
         // - インターナル・メソッド
 
         #region 変更通知メソッド（ロケール変更による再描画）

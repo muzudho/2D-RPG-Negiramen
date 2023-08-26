@@ -86,6 +86,9 @@ interface IItsSpec
 
     void WholeInvalidateForHistory();
 
+    void WholePageVMInvalidateDeletesButton();
+
+
     bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
 
     bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }

@@ -37,7 +37,7 @@ internal class DeletesButton
                 return;
 
             this.isEnabled = value;
-            this.SpecObj.WholePageVM.InvalidateDeletesButton();
+            this.Spec.WholePageVMInvalidateDeletesButton();
         }
     }
     #endregion
@@ -50,7 +50,7 @@ internal class DeletesButton
     /// </summary>
     internal void Refresh()
     {
-        var contents = this.SpecObj.CropTile.SavesRecordVisually;
+        var contents = this.Spec.CropTileSavesRecordVisually;
 
         if (contents.IsNone)
         {
@@ -80,10 +80,11 @@ internal class DeletesButton
     public void RemoveTile()
     {
         App.History.Do(new RemoveRegisteredTileProcessing(
-            inner: this.SpecObj,
-            tileIdOrEmpty: this.SpecObj.CropTile.IdOrEmpty));
+            specObj: this.SpecObj,
+            spec: this.Spec,
+            tileIdOrEmpty: this.Spec.CropTileIdOrEmpty));
 
-        this.SpecObj.WholeInvalidateForHistory();
+        this.Spec.WholeInvalidateForHistory();
     }
     #endregion
 
