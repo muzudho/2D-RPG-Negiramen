@@ -1,4 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage
+﻿using Microsoft.Maui.Controls.Shapes;
+
+namespace _2D_RPG_Negiramen.Specifications.TileCropPage
 {
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
@@ -9,6 +11,7 @@
     using System.Diagnostics;
     using TheFileEntryLocations = Models.FileEntries.Locations;
     using TheGraphics = Microsoft.Maui.Graphics;
+    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -24,7 +27,7 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class ItsSpec
+    class ItsSpec : IItsSpec
     {
         // - その他
 
@@ -43,7 +46,7 @@
             this.PointingDevice = new InnerPointingDevice(this);
             this.CropCursor = new CropCursor(this);
             this.CropTile = new CropTile(this);
-            this.AddsButton = new AddsButton(this);
+            this.AddsButton = new AddsButton(this, this);
             this.DeletesButton = new DeletesButton(this);
         }
         #endregion
@@ -55,6 +58,27 @@
         ///     タイルセット設定ビューモデル
         /// </summary>
         public TilesetDatatableVisually WholeTilesetSettingsVM => WholePageVM.TilesetSettingsVM;
+
+        public bool WholeTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
+        {
+            return this.WholeTilesetSettingsVM.SaveCSV(tileSetSettingsFile);
+        }
+        public bool WholeTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        {
+            return this.WholeTilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
+        }
+        public void WholeTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
+            TheGeometric.RectangleInt rect,
+            Zoom zoom,
+            TileTitle title,
+            LogicalDelete logicalDelete)
+        {
+            this.WholeTilesetSettingsVM.AddTileVisually(id, rect, zoom, title, logicalDelete);
+        }
+        public bool WholeTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        {
+            return this.WholeTilesetSettingsVM.TryRemoveTileById(tileId, out resultVisuallyOrNull);
+        }
         #endregion
 
         #region プロパティ（［タイルセット・データテーブル］　関連）
@@ -151,8 +175,19 @@
         /// <summary>切抜きカーソル</summary>
         internal CropCursor CropCursor { get; }
 
+        #region プロパティ（切抜きカーソルが指すタイル）
         /// <summary>切抜きカーソルが指すタイル</summary>
         internal CropTile CropTile { get; }
+        #endregion
+
+        public TileRecordVisually CropTileTargetTileRecordVisually => this.CropTile.TargetTileRecordVisually;
+        public TileIdOrEmpty CropTileIdOrEmpty
+        {
+            set
+            {
+                this.CropTile.IdOrEmpty = value;
+            }
+        }
 
         #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
         /// <summary>
@@ -173,6 +208,14 @@
         /// <summary>ズーム</summary>
         internal InnerZoom Zoom { get; }
 
+        public Zoom ZoomValue
+        {
+            get
+            {
+                return this.Zoom.Value;
+            }
+        }
+
         /// <summary>グリッド単位</summary>
         internal GridUnit GridUnit { get; }
 
@@ -184,14 +227,18 @@
 
         /// <summary>削除ボタン</summary>
         internal DeletesButton DeletesButton { get; }
+        public void DeletesButtonRefresh()
+        {
+            this.DeletesButton.Refresh();
+        }
 
         // - インターナル変更通知メソッド
 
-        #region 変更通知メソッド（［選択タイル］　関連）
+        #region パブリック変更通知メソッド（［選択タイル］　関連）
         /// <summary>
         ///     ［選択タイル］Ｉｄの再描画
         /// </summary>
-        internal void WholeInvalidateTileIdChange() => WholePageVM.InvalidateTileIdChange();
+        public void WholeInvalidateTileIdChange() => WholePageVM.InvalidateTileIdChange();
         #endregion
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
@@ -326,7 +373,7 @@
         ///                 振動させることで、再描画を呼び起こすことにする
         ///     </pre>
         /// </summary>
-        internal void WholeRefreshForTileAdd()
+        public void WholeRefreshForTileAdd()
         {
             if (WholePageVM.TilesetWorkingImageWidthAsInt % 2 == 1)
             {
