@@ -11,10 +11,10 @@ internal class GridUnit
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="spec"></param>
-    internal GridUnit(IItsSpec spec)
+    /// <param name="indoor"></param>
+    internal GridUnit(IItsIndoor indoor)
     {
-        this.Spec = spec;
+        this.Indoor = indoor;
     }
     #endregion
 
@@ -27,5 +27,5 @@ internal class GridUnit
 
     // - プライベート・プロパティ
 
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 }

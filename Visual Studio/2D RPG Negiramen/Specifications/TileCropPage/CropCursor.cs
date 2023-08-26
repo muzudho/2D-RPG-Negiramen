@@ -16,10 +16,10 @@ internal class CropCursor
     /// <param name="specObj"></param>
     internal CropCursor(
         IItsOutdoor outdoor,
-        IItsSpec spec)
+        IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
-        this.Spec = spec;
+        this.Indoor = indoor;
     }
     #endregion
 
@@ -74,7 +74,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileWidth()
     {
-        this.Outdoor.WorkingGridTileWidthAsFloat = this.Outdoor.ZoomAsFloat * this.Spec.IndoorGridUnitSourceValueWidthAsInt;
+        this.Outdoor.WorkingGridTileWidthAsFloat = this.Outdoor.ZoomAsFloat * this.Indoor.IndoorGridUnitSourceValueWidthAsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -88,7 +88,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileHeight()
     {
-        this.Outdoor.WorkingGridTileHeightAsFloat = this.Outdoor.ZoomAsFloat * this.Spec.IndoorGridUnitSourceValueHeightAsInt;
+        this.Outdoor.WorkingGridTileHeightAsFloat = this.Outdoor.ZoomAsFloat * this.Indoor.IndoorGridUnitSourceValueHeightAsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -110,5 +110,5 @@ internal class CropCursor
     // - プライベート・プロパティ
 
     IItsOutdoor Outdoor { get; }
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 }

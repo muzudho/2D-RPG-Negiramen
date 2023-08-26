@@ -17,10 +17,10 @@ internal class AddsButton
     /// <param name="specObj"></param>
     internal AddsButton(
         IItsOutdoor outdoor,
-        IItsSpec spec)
+        IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
-        this.Spec = spec;
+        this.Indoor = indoor;
     }
     #endregion
 
@@ -31,7 +31,7 @@ internal class AddsButton
     /// </summary>
     internal void AddTile()
     {
-        var contents = this.Spec.IndoorCropTileTargetTileRecordVisually;
+        var contents = this.Indoor.IndoorCropTileTargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -50,10 +50,10 @@ internal class AddsButton
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
             outdoor: this.Outdoor,
-            spec: this.Spec,
+            spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Spec.IndoorZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.Indoor.IndoorZoomValue)));
 
         Outdoor.InvalidateForHistory();
     }
@@ -63,7 +63,7 @@ internal class AddsButton
     /// </summary>
     public void OverwriteTile()
     {
-        var contents = this.Spec.IndoorCropTileTargetTileRecordVisually;
+        var contents = this.Indoor.IndoorCropTileTargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -73,16 +73,16 @@ internal class AddsButton
 
         // Ｉｄが空欄でない
         // ［上書き］（更新）だ
-        tileIdOrEmpty = this.Spec.IndoorCropTileIdOrEmpty;
+        tileIdOrEmpty = this.Indoor.IndoorCropTileIdOrEmpty;
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
             outdoor: this.Outdoor,
-            spec: this.Spec,
+            spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Spec.IndoorZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.Indoor.IndoorZoomValue)));
 
         Outdoor.InvalidateForHistory();
     }
@@ -93,10 +93,10 @@ internal class AddsButton
     internal void Refresh()
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-        if (this.Spec.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        if (this.Indoor.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
         {
             // 合同のときは「交差中」とは表示しない
-            if (!this.Spec.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            if (!this.Indoor.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
                 // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
@@ -106,7 +106,7 @@ internal class AddsButton
             }
         }
 
-        var contents = this.Spec.IndoorCropTileSavesRecordVisually;
+        var contents = this.Indoor.IndoorCropTileSavesRecordVisually;
 
         if (contents.IsNone)
         {
@@ -120,7 +120,7 @@ internal class AddsButton
             // 切抜きカーソル有り時
             // Ｉｄ未設定時
 
-            if (this.Spec.IndoorCropTileIdOrEmpty == TileIdOrEmpty.Empty)
+            if (this.Indoor.IndoorCropTileIdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
@@ -142,5 +142,5 @@ internal class AddsButton
     // - プライベート・プロパティ
 
     IItsOutdoor Outdoor { get; }
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 }

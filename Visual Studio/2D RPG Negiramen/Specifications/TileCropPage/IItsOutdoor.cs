@@ -82,4 +82,7 @@ interface IItsOutdoor
     List<TileRecordVisually> TilesetSettingsVMTileRecordVisuallyList { get; }
 
     void RefreshForTileAdd();
+
+    void RemakeWorkingTilesetImage();
+    void RemakeGridCanvasImage();
 }

@@ -17,10 +17,10 @@ internal class InnerZoom
     /// <param name="specObj"></param>
     internal InnerZoom(
         IItsOutdoor outdoor,
-        IItsSpec spec)
+        IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
-        this.Spec = spec;
+        this.Indoor = indoor;
     }
     #endregion
 
@@ -66,12 +66,12 @@ internal class InnerZoom
                     Zoom newValue = new Zoom(value);
 
                     this.value = newValue;
-                    this.Spec.IndoorCropCursorRefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+                    this.Indoor.IndoorCropCursorRefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
                         this.Outdoor,
-                        this.Spec,
+                        this.Indoor,
                         oldValue,
                         newValue));
                 }
@@ -92,7 +92,7 @@ internal class InnerZoom
     // - プライベート・プロパティ
 
     IItsOutdoor Outdoor { get; }
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 
     // - プライベート・フィールド
 

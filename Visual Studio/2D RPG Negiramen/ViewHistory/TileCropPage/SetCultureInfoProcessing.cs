@@ -15,11 +15,11 @@ internal class SetCultureInfoProcessing : IProcessing
     ///     生成
     /// </summary>
     internal SetCultureInfoProcessing(
-        IItsSpec spec,
+        IItsIndoor indoor,
         CultureInfo oldValue,
         CultureInfo newValue)
     {
-        this.Spec = spec;
+        this.Indoor = indoor;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -29,7 +29,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.Spec.IndoorCultureInfoSelected = this.NewValue;
+        this.Indoor.IndoorCultureInfoSelected = this.NewValue;
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.Spec.IndoorCultureInfoSelected = this.OldValue;
+        this.Indoor.IndoorCultureInfoSelected = this.OldValue;
     }
 
     // - プライベート・プロパティ
@@ -45,7 +45,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// <summary>
     ///     内部クラス
     /// </summary>
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 
     CultureInfo OldValue { get; }
 

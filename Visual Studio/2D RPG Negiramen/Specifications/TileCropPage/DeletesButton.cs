@@ -17,10 +17,10 @@ internal class DeletesButton
     /// <param name="specObj"></param>
     internal DeletesButton(
         IItsOutdoor outdoor,
-        IItsSpec spec)
+        IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
-        this.Spec = spec;
+        this.Indoor = indoor;
     }
     #endregion
 
@@ -52,7 +52,7 @@ internal class DeletesButton
     /// </summary>
     internal void Refresh()
     {
-        var contents = this.Spec.IndoorCropTileSavesRecordVisually;
+        var contents = this.Indoor.IndoorCropTileSavesRecordVisually;
 
         if (contents.IsNone)
         {
@@ -83,8 +83,8 @@ internal class DeletesButton
     {
         App.History.Do(new RemoveRegisteredTileProcessing(
             outdoor: this.Outdoor,
-            spec: this.Spec,
-            tileIdOrEmpty: this.Spec.IndoorCropTileIdOrEmpty));
+            indoor: this.Indoor,
+            tileIdOrEmpty: this.Indoor.IndoorCropTileIdOrEmpty));
 
         this.Outdoor.InvalidateForHistory();
     }
@@ -102,5 +102,5 @@ internal class DeletesButton
     // - プライベート・プロパティ
 
     IItsOutdoor Outdoor { get; }
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 }

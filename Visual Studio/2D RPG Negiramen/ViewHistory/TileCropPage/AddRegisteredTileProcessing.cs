@@ -22,13 +22,13 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         IItsOutdoor outdoor,
-        IItsSpec spec,
+        IItsIndoor spec,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
         this.Outdoor = outdoor;
-        this.Spec = spec;
+        this.Indoor = spec;
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
         this.WorkingRectangle = workingRectangle;
@@ -43,7 +43,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.Spec.IndoorCropTileIdOrEmpty = this.TileIdOrEmpty;
+        this.Indoor.IndoorCropTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.Outdoor.InvalidateTileIdChange();
@@ -73,7 +73,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.Spec.IndoorZoomValue;
+            registeredTileVisually.Zoom = this.Indoor.IndoorZoomValue;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
@@ -107,7 +107,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.Spec.IndoorCropTileIdOrEmpty = TileIdOrEmpty.Empty;
+        this.Indoor.IndoorCropTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.Outdoor.InvalidateTileIdChange();
@@ -129,7 +129,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         }
 
         //  ［削除］ボタンの再描画
-        this.Spec.DeletesButtonRefresh();
+        this.Indoor.DeletesButtonRefresh();
 
         //
         // カラーマップの再描画
@@ -146,7 +146,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     ///     内部モデル
     /// </summary>
     IItsOutdoor Outdoor { get; }
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

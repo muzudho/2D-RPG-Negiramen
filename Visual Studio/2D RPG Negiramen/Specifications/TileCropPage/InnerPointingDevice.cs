@@ -16,10 +16,10 @@ internal class InnerPointingDevice
     /// <param name="owner"></param>
     internal InnerPointingDevice(
         IItsOutdoor outdoor,
-        IItsSpec spec)
+        IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
-        this.Spec = spec;
+        this.Indoor = indoor;
     }
     #endregion
 
@@ -65,7 +65,7 @@ internal class InnerPointingDevice
     // - プライベート・プロパティ
 
     IItsOutdoor Outdoor { get; }
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 
     #region プロパティ（ポインティング・デバイス押下中か？）
     /// <summary>

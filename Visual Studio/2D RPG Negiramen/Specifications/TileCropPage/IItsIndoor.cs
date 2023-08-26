@@ -4,13 +4,12 @@ using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.Visually;
 using System.Globalization;
-using TheFileEntryLocations = Models.FileEntries.Locations;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
 ///     タイル切抜きページ
 /// </summary>
-interface IItsSpec
+interface IItsIndoor
 {
     // - パブリック・プロパティ
 
@@ -42,8 +41,6 @@ interface IItsSpec
 
 
 
-    void WholeRemakeWorkingTilesetImage();
-    void WholeRemakeGridCanvasImage();
 
     void CropCursorRecalculateWorkingGridTileWidth();
     void CropCursorRecalculateWorkingGridTileHeight();

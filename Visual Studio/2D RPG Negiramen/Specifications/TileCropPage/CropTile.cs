@@ -19,10 +19,10 @@ internal class CropTile
     /// <param name="specObj"></param>
     internal CropTile(
         IItsOutdoor outdoor,
-        IItsSpec spec)
+        IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
-        this.Spec = spec;
+        this.Indoor = indoor;
     }
     #endregion
 
@@ -173,10 +173,10 @@ internal class CropTile
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
             // ［追加／上書き］ボタン再描画
-            this.Spec.AddsButtonRefresh();
+            this.Indoor.AddsButtonRefresh();
 
             // ［削除］ボタン再描画
-            this.Spec.DeletesButtonRefresh();
+            this.Indoor.DeletesButtonRefresh();
         }
 
         // タイル・タイトル
@@ -201,5 +201,5 @@ internal class CropTile
     // - プライベート・プロパティ
 
     IItsOutdoor Outdoor { get; }
-    IItsSpec Spec { get; }
+    IItsIndoor Indoor { get; }
 }

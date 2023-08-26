@@ -42,7 +42,7 @@
         /// </summary>
         public TileCropPageViewModel()
         {
-            this.Spec = this.SpecObj = new ItsSpec(this);
+            this.Indoor = this.SpecObj = new ItsSpec(this);
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
@@ -1394,10 +1394,10 @@
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
             // 作業画像の再作成
-            this.SpecObj.WholeRemakeWorkingTilesetImage();
+            this.SpecObj.RemakeWorkingTilesetImage();
 
             // グリッド・キャンバス画像の再作成
-            this.SpecObj.WholeRemakeGridCanvasImage();
+            this.SpecObj.RemakeGridCanvasImage();
         }
         #endregion
 
@@ -1419,7 +1419,7 @@
         ///     内部モデル
         /// </summary>
         internal ItsSpec SpecObj { get; }
-        internal IItsSpec Spec { get; }
+        internal IItsIndoor Indoor { get; }
         #endregion
 
         // - インターナル変更通知メソッド

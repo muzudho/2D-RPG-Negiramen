@@ -26,7 +26,7 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class ItsSpec : IItsSpec, IItsOutdoor
+    class ItsSpec : IItsIndoor, IItsOutdoor
     {
         // - その他
 
@@ -515,7 +515,7 @@
                 OutdoorPageVM.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
-                WholeRemakeGridCanvasImage();
+                RemakeGridCanvasImage();
             }
         }
         #endregion
@@ -528,7 +528,7 @@
         ///         <item>アンドゥ・リドゥで利用</item>
         ///     </list>
         /// </summary>
-        public void WholeRemakeWorkingTilesetImage()
+        public void RemakeWorkingTilesetImage()
         {
             // 元画像をベースに、作業画像を複製
             var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(OutdoorPageVM.TilesetSourceBitmap));
@@ -595,7 +595,7 @@
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
-        public void WholeRemakeGridCanvasImage()
+        public void RemakeGridCanvasImage()
         {
             OutdoorPageVM.GridCanvasImageSize = new SizeInt(
                 width: new WidthInt((int)(ZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt) + 2 * OutdoorPageVM.HalfThicknessOfGridLineAsInt),
