@@ -24,7 +24,7 @@ interface IItsSpec
 
     TileIdOrEmpty CropTileIdOrEmpty { set; get; }
 
-    Zoom ZoomValue { get; }
+    Zoom ZoomValue { get; set; }
 
     /// <summary>
     ///     ［タイルセット・データテーブル］ファイルの場所
@@ -72,6 +72,13 @@ interface IItsSpec
 
     void WholePageVMInvalidateIsMouseDragging();
 
+    float WholePageVMZoomAsFloat { set; }
+    float WholePageVMZoomMinAsFloat { get; }
+    float WholePageVMZoomMaxAsFloat { get; }
+
+    void CropCursorRefreshCanvasTrick(string codePlace);
+
+
 
     float WholeZoomAsFloat { get; set; }
 
@@ -107,5 +114,18 @@ interface IItsSpec
     void AddsButtonRefresh();
 
     void DeletesButtonRefresh();
+
+
+
+    void WholeRemakeWorkingTilesetImage();
+    void WholeRemakeGridCanvasImage();
+
+    void CropCursorRecalculateWorkingGridTileWidth();
+    void CropCursorRecalculateWorkingGridTileHeight();
+
+    TheGeometric.WidthFloat CropCursorWorkingWidthWithoutTrick { set; }
+    HeightFloat WholeCroppedCursorPointedTileWorkingHeight { set; }
+
+    List<TileRecordVisually> WholeTilesetSettingsVMTileRecordVisuallyList { get; }
 
 }

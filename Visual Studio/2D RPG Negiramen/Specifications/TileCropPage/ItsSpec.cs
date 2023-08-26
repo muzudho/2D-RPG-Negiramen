@@ -40,7 +40,7 @@
             WholePageVM = wholePageVM;
 
             this.CultureInfoObj = new InnerCultureInfo(this);
-            this.Zoom = new InnerZoom(this,this);
+            this.Zoom = new InnerZoom(this);
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this);
             this.CropCursor = new CropCursor(this);
@@ -64,6 +64,14 @@
         }
 
         public TileIdOrEmpty WholeTilesetSettingsVMUsableId => this.WholeTilesetSettingsVM.UsableId;
+
+        public List<TileRecordVisually> WholeTilesetSettingsVMTileRecordVisuallyList
+        {
+            get
+            {
+                return this.WholeTilesetSettingsVM.TileRecordVisuallyList;
+            }
+        }
 
         public bool WholeTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
@@ -130,6 +138,12 @@
             }
         }
         #endregion
+
+        public void CropCursorRefreshCanvasTrick(string codePlace)
+        {
+            this.CropCursor.RefreshCanvasTrick(codePlace);
+        }
+
 
         #region 変更通知プロパティ（［ズーム］　関連）
         /// <summary>
@@ -336,6 +350,10 @@
             {
                 return this.Zoom.Value;
             }
+            set
+            {
+                this.Zoom.Value = value;
+            }
         }
 
         /// <summary>グリッド単位</summary>
@@ -382,9 +400,37 @@
         public void WholeInvalidateForHistory() => WholePageVM.InvalidateForHistory();
         #endregion
 
+
+
+
+
         public void WholePageVMInvalidateDeletesButton() => WholePageVM.InvalidateDeletesButton();
 
         public void WholePageVMInvalidateCultureInfo() => this.WholePageVM.InvalidateCultureInfo();
+
+        public float WholePageVMZoomAsFloat
+        {
+            set
+            {
+                this.WholePageVM.ZoomAsFloat = value;
+            }
+        }
+        public float WholePageVMZoomMinAsFloat
+        {
+            get
+            {
+                return this.WholePageVM.ZoomMinAsFloat;
+            }
+        }
+        public float WholePageVMZoomMaxAsFloat
+        {
+            get
+            {
+                return this.WholePageVM.ZoomMaxAsFloat;
+            }
+        }
+
+
 
         // - インターナル・メソッド
 
@@ -472,7 +518,7 @@
         ///         <item>アンドゥ・リドゥで利用</item>
         ///     </list>
         /// </summary>
-        internal void WholeRemakeWorkingTilesetImage()
+        public void WholeRemakeWorkingTilesetImage()
         {
             // 元画像をベースに、作業画像を複製
             var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(WholePageVM.TilesetSourceBitmap));
@@ -539,7 +585,7 @@
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
-        internal void WholeRemakeGridCanvasImage()
+        public void WholeRemakeGridCanvasImage()
         {
             WholePageVM.GridCanvasImageSize = new SizeInt(
                 width: new WidthInt((int)(WholeZoomAsFloat * TilesetSourceImageSize.Width.AsInt) + 2 * WholePageVM.HalfThicknessOfGridLineAsInt),
@@ -634,6 +680,23 @@
             WholePageVM.InvalidateTileTitle();
         }
         #endregion
+
+        public void CropCursorRecalculateWorkingGridTileWidth()
+        {
+            this.CropCursor.RecalculateWorkingGridTileWidth();
+        }
+        public void CropCursorRecalculateWorkingGridTileHeight()
+        {
+            this.CropCursor.RecalculateWorkingGridTileHeight();
+        }
+
+        public TheGeometric.WidthFloat CropCursorWorkingWidthWithoutTrick
+        {
+            set
+            {
+                this.CropCursor.WorkingWidthWithoutTrick = value;
+            }
+        }
 
         // - インターナル・イベントハンドラ
 
