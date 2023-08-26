@@ -14,10 +14,11 @@ internal class InnerZoom
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="owner"></param>
-    internal InnerZoom(ItsSpec owner)
+    /// <param name="specObj"></param>
+    internal InnerZoom(ItsSpec specObj, IItsSpec spec)
     {
-        this.Owner = owner;
+        this.SpecObj = specObj;
+        this.Spec = spec;
     }
     #endregion
 
@@ -39,7 +40,7 @@ internal class InnerZoom
                 return;
 
             // TODO 循環参照しやすいから、良くないコード
-            this.Owner.WholePageVM.ZoomAsFloat = value.AsFloat;
+            this.SpecObj.WholePageVM.ZoomAsFloat = value.AsFloat;
         }
     }
 
@@ -57,16 +58,16 @@ internal class InnerZoom
         {
             if (this.value.AsFloat != value)
             {
-                if (this.Owner.WholePageVM.ZoomMinAsFloat <= value && value <= this.Owner.WholePageVM.ZoomMaxAsFloat)
+                if (this.SpecObj.WholePageVM.ZoomMinAsFloat <= value && value <= this.SpecObj.WholePageVM.ZoomMaxAsFloat)
                 {
                     Zoom oldValue = this.value;
                     Zoom newValue = new Zoom(value);
 
                     this.value = newValue;
-                    this.Owner.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+                    this.SpecObj.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
-                    App.History.Do(new ZoomProcessing(this.Owner, oldValue, newValue));
+                    App.History.Do(new ZoomProcessing(this.SpecObj, oldValue, newValue));
                 }
             }
         }
@@ -84,7 +85,8 @@ internal class InnerZoom
 
     // - プライベート・プロパティ
 
-    ItsSpec Owner { get; }
+    ItsSpec SpecObj { get; }
+    IItsSpec Spec { get; }
 
     // - プライベート・フィールド
 

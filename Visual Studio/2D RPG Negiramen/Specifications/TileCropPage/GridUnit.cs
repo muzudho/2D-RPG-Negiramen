@@ -11,10 +11,10 @@ internal class GridUnit
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="owner"></param>
-    internal GridUnit(ItsSpec owner)
+    /// <param name="spec"></param>
+    internal GridUnit(IItsSpec spec)
     {
-        this.Owner = owner;
+        this.Spec = spec;
     }
     #endregion
 
@@ -27,5 +27,5 @@ internal class GridUnit
 
     // - プライベート・プロパティ
 
-    ItsSpec Owner { get; }
+    IItsSpec Spec { get; }
 }

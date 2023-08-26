@@ -13,10 +13,11 @@ internal class CropCursor
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="owner"></param>
-    internal CropCursor(ItsSpec owner)
+    /// <param name="specObj"></param>
+    internal CropCursor(ItsSpec specObj, IItsSpec spec)
     {
-        this.Owner = owner;
+        this.SpecObj = specObj;
+        this.Spec = spec;
     }
     #endregion
 
@@ -58,7 +59,7 @@ internal class CropCursor
         }
 
         // TRICK CODE:
-        this.Owner.WholePageVM.InvalidateWorkingTargetTile();
+        this.SpecObj.WholePageVM.InvalidateWorkingTargetTile();
     }
 
     #region メソッド（［作業グリッド］　関連）
@@ -71,7 +72,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileWidth()
     {
-        this.Owner.WholePageVM.WorkingGridTileWidthAsFloat = this.Owner.WholeZoomAsFloat * this.Owner.GridUnit.SourceValue.Width.AsInt;
+        this.SpecObj.WholePageVM.WorkingGridTileWidthAsFloat = this.SpecObj.WholeZoomAsFloat * this.SpecObj.GridUnit.SourceValue.Width.AsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -85,7 +86,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileHeight()
     {
-        this.Owner.WholePageVM.WorkingGridTileHeightAsFloat = this.Owner.WholeZoomAsFloat * this.Owner.GridUnit.SourceValue.Height.AsInt;
+        this.SpecObj.WholePageVM.WorkingGridTileHeightAsFloat = this.SpecObj.WholeZoomAsFloat * this.SpecObj.GridUnit.SourceValue.Height.AsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -106,5 +107,6 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
-    ItsSpec Owner { get; }
+    ItsSpec SpecObj { get; }
+    IItsSpec Spec { get; }
 }

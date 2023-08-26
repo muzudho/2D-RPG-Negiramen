@@ -14,10 +14,11 @@ internal class DeletesButton
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="owner"></param>
-    internal DeletesButton(ItsSpec owner)
+    /// <param name="specObj"></param>
+    internal DeletesButton(ItsSpec specObj, IItsSpec spec)
     {
-        this.Owner = owner;
+        this.SpecObj = specObj;
+        this.Spec = spec;
     }
     #endregion
 
@@ -36,7 +37,7 @@ internal class DeletesButton
                 return;
 
             this.isEnabled = value;
-            this.Owner.WholePageVM.InvalidateDeletesButton();
+            this.SpecObj.WholePageVM.InvalidateDeletesButton();
         }
     }
     #endregion
@@ -49,7 +50,7 @@ internal class DeletesButton
     /// </summary>
     internal void Refresh()
     {
-        var contents = this.Owner.CropTile.SavesRecordVisually;
+        var contents = this.SpecObj.CropTile.SavesRecordVisually;
 
         if (contents.IsNone)
         {
@@ -79,10 +80,10 @@ internal class DeletesButton
     public void RemoveTile()
     {
         App.History.Do(new RemoveRegisteredTileProcessing(
-            inner: this.Owner,
-            tileIdOrEmpty: this.Owner.CropTile.IdOrEmpty));
+            inner: this.SpecObj,
+            tileIdOrEmpty: this.SpecObj.CropTile.IdOrEmpty));
 
-        this.Owner.WholeInvalidateForHistory();
+        this.SpecObj.WholeInvalidateForHistory();
     }
     #endregion
 
@@ -97,5 +98,6 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    ItsSpec Owner { get; }
+    ItsSpec SpecObj { get; }
+    IItsSpec Spec { get; }
 }

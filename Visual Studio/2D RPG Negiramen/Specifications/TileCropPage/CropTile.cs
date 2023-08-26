@@ -16,10 +16,11 @@ internal class CropTile
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="owner"></param>
-    internal CropTile(ItsSpec owner)
+    /// <param name="specObj"></param>
+    internal CropTile(ItsSpec specObj, IItsSpec spec)
     {
-        this.Owner = owner;
+        this.SpecObj = specObj;
+        this.Spec = spec;
     }
     #endregion
 
@@ -76,10 +77,10 @@ internal class CropTile
                     this.IdOrEmpty = TileIdOrEmpty.Empty;
 
                     // 元画像の位置とサイズ
-                    Owner.WholeCroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+                    SpecObj.WholeCroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                     // 論理削除
-                    this.Owner.WholePageVM.CroppedCursorPointedTileLogicalDeleteAsBool = false;
+                    this.SpecObj.WholePageVM.CroppedCursorPointedTileLogicalDeleteAsBool = false;
 
                     // 空にする
                     this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
@@ -108,15 +109,15 @@ internal class CropTile
 
                 // （変更通知を送っている）
                 this.IdOrEmpty = newValue.Id;
-                this.Owner.WholePageVM.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                this.Owner.WholePageVM.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.Owner.WholePageVM.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.Owner.WholePageVM.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                this.SpecObj.WholePageVM.CroppedCursorPointedTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                this.SpecObj.WholePageVM.CroppedCursorPointedTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                this.SpecObj.WholePageVM.CroppedCursorPointedTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.SpecObj.WholePageVM.CroppedCursorPointedTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
                 // this.CroppedCursorPointedTileTitleAsStr = newValue.Title.AsStr;
             }
 
             // 変更通知を送りたい
-            Owner.WholeInvalidateTileIdChange();
+            SpecObj.WholeInvalidateTileIdChange();
         }
     }
     #endregion
@@ -170,10 +171,10 @@ internal class CropTile
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
             // ［追加／上書き］ボタン再描画
-            this.Owner.AddsButton.Refresh();
+            this.SpecObj.AddsButton.Refresh();
 
             // ［削除］ボタン再描画
-            this.Owner.DeletesButton.Refresh();
+            this.SpecObj.DeletesButton.Refresh();
         }
 
         // タイル・タイトル
@@ -189,7 +190,7 @@ internal class CropTile
         }
 
         // 変更通知を送る
-        Owner.WholeInvalidateTileIdChange();
+        SpecObj.WholeInvalidateTileIdChange();
 
         Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
     }
@@ -197,5 +198,6 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
-    ItsSpec Owner { get; }
+    ItsSpec SpecObj { get; }
+    IItsSpec Spec { get; }
 }

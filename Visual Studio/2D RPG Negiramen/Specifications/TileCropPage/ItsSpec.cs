@@ -1,6 +1,4 @@
-﻿using Microsoft.Maui.Controls.Shapes;
-
-namespace _2D_RPG_Negiramen.Specifications.TileCropPage
+﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage
 {
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
@@ -40,14 +38,14 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
         {
             WholePageVM = wholePageVM;
 
-            this.CultureInfo = new InnerCultureInfo(this);
-            this.Zoom = new InnerZoom(this);
+            this.CultureInfo = new InnerCultureInfo(this,this);
+            this.Zoom = new InnerZoom(this,this);
             this.GridUnit = new GridUnit(this);
-            this.PointingDevice = new InnerPointingDevice(this);
-            this.CropCursor = new CropCursor(this);
-            this.CropTile = new CropTile(this);
+            this.PointingDevice = new InnerPointingDevice(this,this);
+            this.CropCursor = new CropCursor(this,this);
+            this.CropTile = new CropTile(this,this);
             this.AddsButton = new AddsButton(this);
-            this.DeletesButton = new DeletesButton(this);
+            this.DeletesButton = new DeletesButton(this,this);
         }
         #endregion
 
