@@ -15,7 +15,7 @@ interface IItsSpec
 
     TileRecordVisually CropTileTargetTileRecordVisually { get; }
 
-    TileIdOrEmpty CropTileIdOrEmpty { set; }
+    TileIdOrEmpty CropTileIdOrEmpty { set; get; }
 
     Zoom ZoomValue { get; }
 
@@ -44,7 +44,10 @@ interface IItsSpec
         TileTitle title,
         LogicalDelete logicalDelete);
 
-    public bool WholeTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
+    bool WholeTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
+
+    string WholePageVMAddsButtonText { get; set; }
+    string WholePageVMAddsButtonHint { get; }
 
     // - パブリック・メソッド
 

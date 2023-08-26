@@ -147,6 +147,15 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
 
         /// <summary>全体ページ・ビューモデル</summary>
         internal TileCropPageViewModel WholePageVM { get; }
+        public string WholePageVMAddsButtonText
+        {
+            get => this.WholePageVM.AddsButtonText;
+            set => this.WholePageVM.AddsButtonText = value;
+        }
+        public string WholePageVMAddsButtonHint
+        {
+            get => this.WholePageVM.AddsButtonHint;
+        }
 
         /// <summary>文化情報</summary>
         internal InnerCultureInfo CultureInfo { get; }
@@ -183,6 +192,10 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
         public TileRecordVisually CropTileTargetTileRecordVisually => this.CropTile.TargetTileRecordVisually;
         public TileIdOrEmpty CropTileIdOrEmpty
         {
+            get
+            {
+                return this.CropTile.IdOrEmpty;
+            }
             set
             {
                 this.CropTile.IdOrEmpty = value;

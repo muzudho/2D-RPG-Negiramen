@@ -50,7 +50,7 @@ internal class AddsButton
             spec: this.Spec,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.SpecObj.Zoom.Value)));
+            workingRectangle: contents.SourceRectangle.Do(this.Spec.ZoomValue)));
 
         SpecObj.WholeInvalidateForHistory();
     }
@@ -70,7 +70,7 @@ internal class AddsButton
 
         // Ｉｄが空欄でない
         // ［上書き］（更新）だ
-        tileIdOrEmpty = this.SpecObj.CropTile.IdOrEmpty;
+        tileIdOrEmpty = this.Spec.CropTileIdOrEmpty;
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
@@ -78,7 +78,7 @@ internal class AddsButton
             spec: this.Spec,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.SpecObj.Zoom.Value)));
+            workingRectangle: contents.SourceRectangle.Do(this.Spec.ZoomValue)));
 
         SpecObj.WholeInvalidateForHistory();
     }
@@ -116,7 +116,7 @@ internal class AddsButton
             // 切抜きカーソル有り時
             // Ｉｄ未設定時
 
-            if (this.SpecObj.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
+            if (this.Spec.CropTileIdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
