@@ -50,11 +50,11 @@
         }
         #endregion
 
-        public bool OutdoorTilesetSettingsVMDeleteLogical(TileIdOrEmpty id)
+        public bool TilesetSettingsVMDeleteLogical(TileIdOrEmpty id)
         {
             return this.OutdoorTilesetSettingsVM.DeleteLogical(id);
         }
-        public bool OutdoorTilesetSettingsVMUndeleteLogical(TileIdOrEmpty id)
+        public bool TilesetSettingsVMUndeleteLogical(TileIdOrEmpty id)
         {
             return this.OutdoorTilesetSettingsVM.UndeleteLogical(id);
         }
@@ -112,7 +112,7 @@
         ///         <item>ページの引数として使用</item>
         ///     </list>
         /// </summary>
-        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv OutdoorTilesetDatatableFileLocation
+        public TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetDatatableFileLocation
         {
             get => OutdoorPageVM.TilesetDatatableFileLocation;
             set
@@ -725,7 +725,7 @@
             // ========================
             //
             if (TilesetDatatableVisually.LoadCSV(
-                tilesetDatatableFileLocation: OutdoorTilesetDatatableFileLocation,
+                tilesetDatatableFileLocation: TilesetDatatableFileLocation,
                 zoom: this.Zoom.Value,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
@@ -735,11 +735,11 @@
                 // ファイルの整合性チェック（重い処理）
                 if (OutdoorTilesetSettingsVM.IsValid())
                 {
-                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {OutdoorTilesetDatatableFileLocation.Path.AsStr}");
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {TilesetDatatableFileLocation.Path.AsStr}");
                 }
                 else
                 {
-                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {OutdoorTilesetDatatableFileLocation.Path.AsStr}");
+                    Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容に異常あり　File: {TilesetDatatableFileLocation.Path.AsStr}");
                 }
 #endif
 

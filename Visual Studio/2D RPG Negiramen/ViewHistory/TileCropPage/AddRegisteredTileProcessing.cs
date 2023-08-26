@@ -21,11 +21,13 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="tileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
+        IItsOutdoor outdoor,
         IItsSpec spec,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
+        this.Outdoor = outdoor;
         this.Spec = spec;
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
@@ -84,7 +86,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Spec.OutdoorTilesetDatatableFileLocation))
+        if (!this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -121,7 +123,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Spec.OutdoorTilesetDatatableFileLocation))
+        if (!this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -143,6 +145,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <summary>
     ///     内部モデル
     /// </summary>
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 
     /// <summary>

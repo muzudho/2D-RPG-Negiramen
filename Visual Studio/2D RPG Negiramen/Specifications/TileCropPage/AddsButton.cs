@@ -49,6 +49,7 @@ internal class AddsButton
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
+            outdoor: this.Outdoor,
             spec: this.Spec,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
@@ -77,6 +78,7 @@ internal class AddsButton
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
+            outdoor: this.Outdoor,
             spec: this.Spec,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,

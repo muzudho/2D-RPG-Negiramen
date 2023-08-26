@@ -32,7 +32,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルを論理削除
         //
-        if (this.Spec.OutdoorTilesetSettingsVMDeleteLogical(
+        if (this.Outdoor.TilesetSettingsVMDeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
@@ -46,7 +46,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Spec.OutdoorTilesetDatatableFileLocation))
+        if (this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -70,7 +70,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルの論理削除の取消
         //
-        if (this.Spec.OutdoorTilesetSettingsVMUndeleteLogical(
+        if (this.Outdoor.TilesetSettingsVMDeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
@@ -84,7 +84,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Spec.OutdoorTilesetDatatableFileLocation))
+        if (this.Spec.OutdoorTilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
         {
             // 保存成功
         }

@@ -14,9 +14,6 @@ interface IItsSpec
 {
     // - パブリック・プロパティ
 
-    bool OutdoorTilesetSettingsVMDeleteLogical(TileIdOrEmpty id);
-    bool OutdoorTilesetSettingsVMUndeleteLogical(TileIdOrEmpty id);
-
     CultureInfo IndoorCultureInfoSelected { set; }
 
     TileRecordVisually IndoorCropTileSavesRecordVisually { get; }
@@ -26,14 +23,6 @@ interface IItsSpec
     TileIdOrEmpty IndoorCropTileIdOrEmpty { set; get; }
 
     Zoom IndoorZoomValue { get; set; }
-
-    /// <summary>
-    ///     ［タイルセット・データテーブル］ファイルの場所
-    ///     <list type="bullet">
-    ///         <item>ページの引数として使用</item>
-    ///     </list>
-    /// </summary>
-    TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv OutdoorTilesetDatatableFileLocation { get; }
 
     #region 変更通知メソッド（［選択タイル］　関連）
     /// <summary>
