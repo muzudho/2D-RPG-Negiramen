@@ -24,15 +24,6 @@ interface IItsSpec
 
     Zoom IndoorZoomValue { get; set; }
 
-    #region 変更通知メソッド（［選択タイル］　関連）
-    /// <summary>
-    ///     ［選択タイル］Ｉｄの再描画
-    /// </summary>
-    void WholeInvalidateTileIdChange();
-    #endregion
-
-    void OutdoorTilesetSettingsVMIncreaseUsableId();
-    TileIdOrEmpty OutdoorTilesetSettingsVMUsableId { get; }
 
     bool OutdoorTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile);
 

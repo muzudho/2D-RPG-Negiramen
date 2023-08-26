@@ -46,7 +46,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Spec.IndoorCropTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.Spec.WholeInvalidateTileIdChange();
+        this.Outdoor.InvalidateTileIdChange();
 
         // リストに登録済みか確認
         if (!this.Spec.OutdoorTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
@@ -110,7 +110,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Spec.IndoorCropTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.Spec.WholeInvalidateTileIdChange();
+        this.Outdoor.InvalidateTileIdChange();
 
         // リストから削除
         if (!this.Spec.OutdoorTilesetSettingsVMTryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))

@@ -43,8 +43,8 @@ internal class AddsButton
             return;
 
         // 新しいタイルＩｄを発行
-        tileIdOrEmpty = Spec.OutdoorTilesetSettingsVMUsableId;
-        this.Spec.OutdoorTilesetSettingsVMIncreaseUsableId();
+        tileIdOrEmpty = this.Outdoor.TilesetSettingsVMUsableId;
+        this.Outdoor.TilesetSettingsVMIncreaseUsableId();
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理

@@ -18,4 +18,14 @@ interface IItsOutdoor
     ///     </list>
     /// </summary>
     TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetDatatableFileLocation { get; }
+
+    #region 変更通知メソッド（［選択タイル］　関連）
+    /// <summary>
+    ///     ［選択タイル］Ｉｄの再描画
+    /// </summary>
+    void InvalidateTileIdChange();
+    #endregion
+
+    void TilesetSettingsVMIncreaseUsableId();
+    TileIdOrEmpty TilesetSettingsVMUsableId { get; }
 }

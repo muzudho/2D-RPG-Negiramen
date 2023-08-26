@@ -68,12 +68,12 @@
         /// </summary>
         public TilesetDatatableVisually OutdoorTilesetSettingsVM => OutdoorPageVM.TilesetSettingsVM;
 
-        public void OutdoorTilesetSettingsVMIncreaseUsableId()
+        public void TilesetSettingsVMIncreaseUsableId()
         {
             this.OutdoorTilesetSettingsVM.IncreaseUsableId();
         }
 
-        public TileIdOrEmpty OutdoorTilesetSettingsVMUsableId => this.OutdoorTilesetSettingsVM.UsableId;
+        public TileIdOrEmpty TilesetSettingsVMUsableId => this.OutdoorTilesetSettingsVM.UsableId;
 
         public List<TileRecordVisually> OutdoorTilesetSettingsVMTileRecordVisuallyList
         {
@@ -414,7 +414,7 @@
         /// <summary>
         ///     ［選択タイル］Ｉｄの再描画
         /// </summary>
-        public void WholeInvalidateTileIdChange() => OutdoorPageVM.InvalidateTileIdChange();
+        public void InvalidateTileIdChange() => OutdoorPageVM.InvalidateTileIdChange();
         #endregion
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
