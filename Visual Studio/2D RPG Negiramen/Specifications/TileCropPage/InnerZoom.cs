@@ -15,8 +15,11 @@ internal class InnerZoom
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    internal InnerZoom(IItsSpec spec)
+    internal InnerZoom(
+        IItsOutdoor outdoor,
+        IItsSpec spec)
     {
+        this.Outdoor = outdoor;
         this.Spec = spec;
     }
     #endregion
@@ -67,6 +70,7 @@ internal class InnerZoom
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
+                        this.Outdoor,
                         this.Spec,
                         oldValue,
                         newValue));
@@ -87,6 +91,7 @@ internal class InnerZoom
 
     // - プライベート・プロパティ
 
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 
     // - プライベート・フィールド

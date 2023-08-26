@@ -19,10 +19,12 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
+        IItsOutdoor outdoor,
         IItsSpec spec,
         Zoom oldValue,
         Zoom newValue)
     {
+        this.Outdoor = outdoor;
         this.Spec = spec;
         this.OldValue = oldValue;
         this.NewValue = newValue;
@@ -55,6 +57,7 @@ internal class ZoomProcessing : IProcessing
     /// <summary>
     ///     内部クラス
     /// </summary>
+    IItsOutdoor Outdoor { get; }
     IItsSpec Spec { get; }
 
     /// <summary>
@@ -114,6 +117,6 @@ internal class ZoomProcessing : IProcessing
         }
 
         // 変更通知
-        this.Spec.WholeInvalidateForHistory();
+        this.Outdoor.InvalidateForHistory();
     }
 }

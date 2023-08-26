@@ -86,7 +86,7 @@ internal class DeletesButton
             spec: this.Spec,
             tileIdOrEmpty: this.Spec.IndoorCropTileIdOrEmpty));
 
-        this.Spec.WholeInvalidateForHistory();
+        this.Outdoor.InvalidateForHistory();
     }
     #endregion
 

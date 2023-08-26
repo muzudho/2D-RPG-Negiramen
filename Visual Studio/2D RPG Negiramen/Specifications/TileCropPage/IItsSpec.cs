@@ -14,9 +14,6 @@ interface IItsSpec
 {
     // - パブリック・プロパティ
 
-    void WholeInvalidateTilesetSettingsVM();
-    void WholeInvalidateForHistory();
-
     bool OutdoorTilesetSettingsVMDeleteLogical(TileIdOrEmpty id);
     bool OutdoorTilesetSettingsVMUndeleteLogical(TileIdOrEmpty id);
 

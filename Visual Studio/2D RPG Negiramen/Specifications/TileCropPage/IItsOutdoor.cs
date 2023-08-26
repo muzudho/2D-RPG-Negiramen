@@ -3,4 +3,6 @@
 interface IItsOutdoor
 {
     void InvalidateAddsButton();
+    void InvalidateTilesetSettingsVM();
+    void InvalidateForHistory();
 }

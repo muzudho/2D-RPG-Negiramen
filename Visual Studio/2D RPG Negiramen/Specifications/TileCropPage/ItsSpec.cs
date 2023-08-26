@@ -40,7 +40,7 @@
             OutdoorPageVM = wholePageVM;
 
             this.IndoorCultureInfo = new InnerCultureInfo(this);
-            this.Zoom = new InnerZoom(this);
+            this.Zoom = new InnerZoom(this, this);
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this);
             this.CropCursor = new CropCursor(this, this);
@@ -421,14 +421,14 @@
         /// <summary>
         ///     ［タイルセット設定］ビューモデルに変更あり
         /// </summary>
-        public void WholeInvalidateTilesetSettingsVM() => OutdoorPageVM.InvalidateTilesetSettingsVM();
+        public void InvalidateTilesetSettingsVM() => OutdoorPageVM.InvalidateTilesetSettingsVM();
         #endregion
 
         #region 変更通知メソッド（［履歴］）
         /// <summary>
         ///     ［履歴］
         /// </summary>
-        public void WholeInvalidateForHistory() => OutdoorPageVM.InvalidateForHistory();
+        public void InvalidateForHistory() => OutdoorPageVM.InvalidateForHistory();
         #endregion
 
 

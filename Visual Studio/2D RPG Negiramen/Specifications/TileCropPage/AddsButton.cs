@@ -54,7 +54,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.Spec.IndoorZoomValue)));
 
-        Spec.WholeInvalidateForHistory();
+        Outdoor.InvalidateForHistory();
     }
 
     /// <summary>
@@ -82,7 +82,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.Spec.IndoorZoomValue)));
 
-        Spec.WholeInvalidateForHistory();
+        Outdoor.InvalidateForHistory();
     }
 
     /// <summary>
