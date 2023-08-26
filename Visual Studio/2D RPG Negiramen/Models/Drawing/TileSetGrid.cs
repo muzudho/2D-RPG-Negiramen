@@ -75,7 +75,7 @@
             // これを含んでいるクラス
             declaringType: typeof(TilesetGrid),
             // ヌルだと不具合が出る
-            defaultValue: Geometric.PointFloat.Empty);
+            defaultValue: Geometric.PointFloat.Zero);
         #endregion
 
         #region 束縛可能プロパティ（グリッド単位）

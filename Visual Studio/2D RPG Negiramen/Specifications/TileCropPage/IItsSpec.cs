@@ -70,6 +70,8 @@ interface IItsSpec
     int WholePageVMCroppedCursorPointedTileSourceWidthAsInt { set; }
     int WholePageVMCroppedCursorPointedTileSourceHeightAsInt { set; }
 
+    void WholePageVMInvalidateIsMouseDragging();
+
 
     float WholeZoomAsFloat { get; set; }
 

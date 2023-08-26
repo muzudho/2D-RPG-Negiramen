@@ -1625,7 +1625,7 @@
         /// <summary>
         ///     ［作業グリッド］の位相の左上表示位置
         /// </summary>
-        Models.Geometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Empty;
+        Models.Geometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Zero;
         #endregion
 
         #region 変更通知フィールド（［切抜きカーソル］　関連）

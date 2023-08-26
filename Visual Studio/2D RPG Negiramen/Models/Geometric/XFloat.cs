@@ -174,7 +174,7 @@
         /// <summary>
         ///     ゼロ・オブジェクト
         /// </summary>
-        internal static XFloat Empty = new(0);
+        internal static XFloat Zero = new(0);
         #endregion
 
         // - その他

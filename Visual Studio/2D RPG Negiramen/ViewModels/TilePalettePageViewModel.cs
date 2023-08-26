@@ -209,7 +209,7 @@
         #endregion
 
         #region 変更通知プロパティ（グリッド全体の左上表示位置）
-        Models.Geometric.PointFloat workingGridLeftTop = Models.Geometric.PointFloat.Empty;
+        Models.Geometric.PointFloat workingGridLeftTop = Models.Geometric.PointFloat.Zero;
 
         /// <summary>
         ///     グリッド全体の左上表示位置

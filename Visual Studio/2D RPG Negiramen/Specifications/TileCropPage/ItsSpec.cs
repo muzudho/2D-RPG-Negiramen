@@ -42,7 +42,7 @@
             this.CultureInfoObj = new InnerCultureInfo(this);
             this.Zoom = new InnerZoom(this,this);
             this.GridUnit = new GridUnit(this);
-            this.PointingDevice = new InnerPointingDevice(this,this);
+            this.PointingDevice = new InnerPointingDevice(this);
             this.CropCursor = new CropCursor(this);
             this.CropTile = new CropTile(this);
             this.AddsButton = new AddsButton(this);
@@ -241,6 +241,10 @@
             }
         }
 
+        public void WholePageVMInvalidateIsMouseDragging()
+        {
+            this.WholePageVM.InvalidateIsMouseDragging();
+        }
 
 
 

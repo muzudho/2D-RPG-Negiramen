@@ -14,9 +14,8 @@ internal class InnerPointingDevice
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal InnerPointingDevice(ItsSpec owner, IItsSpec spec)
+    internal InnerPointingDevice(IItsSpec spec)
     {
-        this.SpecObj = owner;
         this.Spec = spec;
     }
     #endregion
@@ -27,14 +26,14 @@ internal class InnerPointingDevice
     /// <summary>
     ///     ポインティング・デバイス押下開始位置
     /// </summary>
-    internal PointFloat StartPoint { get; set; }
+    internal PointFloat StartPoint { get; set; } = PointFloat.Zero;
     #endregion
 
     #region プロパティ（ポインティング・デバイス現在位置）
     /// <summary>
     ///     ポインティング・デバイス現在位置
     /// </summary>
-    internal PointFloat CurrentPoint { get; set; }
+    internal PointFloat CurrentPoint { get; set; } = PointFloat.Zero;
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）
@@ -54,7 +53,7 @@ internal class InnerPointingDevice
             if (isMouseDragging != value)
             {
                 isMouseDragging = value;
-                this.SpecObj.WholePageVM.InvalidateIsMouseDragging();
+                this.Spec.WholePageVMInvalidateIsMouseDragging();
             }
         }
     }
@@ -62,7 +61,6 @@ internal class InnerPointingDevice
 
     // - プライベート・プロパティ
 
-    ItsSpec SpecObj { get; }
     IItsSpec Spec { get; }
 
     #region プロパティ（ポインティング・デバイス押下中か？）
