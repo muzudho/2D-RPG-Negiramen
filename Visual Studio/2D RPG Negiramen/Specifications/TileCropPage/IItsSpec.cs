@@ -13,6 +13,10 @@ interface IItsSpec
 {
     // - パブリック・プロパティ
 
+    void WholePageVMInvalidateAddsButton();
+
+    TileRecordVisually CropTileSavesRecordVisually { get; }
+
     TileRecordVisually CropTileTargetTileRecordVisually { get; }
 
     TileIdOrEmpty CropTileIdOrEmpty { set; get; }
@@ -34,6 +38,9 @@ interface IItsSpec
     void WholeInvalidateTileIdChange();
     #endregion
 
+    void WholeTilesetSettingsVMIncreaseUsableId();
+    TileIdOrEmpty WholeTilesetSettingsVMUsableId { get; }
+
     bool WholeTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile);
 
     bool WholeTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
@@ -48,6 +55,12 @@ interface IItsSpec
 
     string WholePageVMAddsButtonText { get; set; }
     string WholePageVMAddsButtonHint { get; }
+
+    void WholeInvalidateForHistory();
+
+    bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
+
+    bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
 
     // - パブリック・メソッド
 

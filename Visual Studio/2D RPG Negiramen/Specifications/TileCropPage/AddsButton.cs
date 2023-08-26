@@ -15,9 +15,8 @@ internal class AddsButton
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    internal AddsButton(ItsSpec specObj, IItsSpec specDelivery)
+    internal AddsButton(IItsSpec specDelivery)
     {
-        this.SpecObj = specObj;
         this.Spec = specDelivery;
     }
     #endregion
@@ -41,8 +40,8 @@ internal class AddsButton
             return;
 
         // 新しいタイルＩｄを発行
-        tileIdOrEmpty = SpecObj.WholeTilesetSettingsVM.UsableId;
-        SpecObj.WholeTilesetSettingsVM.IncreaseUsableId();
+        tileIdOrEmpty = Spec.WholeTilesetSettingsVMUsableId;
+        this.Spec.WholeTilesetSettingsVMIncreaseUsableId();
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
@@ -52,7 +51,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.Spec.ZoomValue)));
 
-        SpecObj.WholeInvalidateForHistory();
+        Spec.WholeInvalidateForHistory();
     }
 
     /// <summary>
@@ -60,7 +59,7 @@ internal class AddsButton
     /// </summary>
     public void OverwriteTile()
     {
-        var contents = this.SpecObj.CropTile.TargetTileRecordVisually;
+        var contents = this.Spec.CropTileTargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -80,7 +79,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.Spec.ZoomValue)));
 
-        SpecObj.WholeInvalidateForHistory();
+        Spec.WholeInvalidateForHistory();
     }
 
     /// <summary>
@@ -89,27 +88,27 @@ internal class AddsButton
     internal void Refresh()
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-        if (this.SpecObj.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        if (this.Spec.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
         {
             // 合同のときは「交差中」とは表示しない
-            if (!this.SpecObj.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            if (!this.Spec.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
                 // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
-                this.SpecObj.WholePageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
+                this.Spec.WholePageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
                 return;
             }
         }
 
-        var contents = this.SpecObj.CropTile.SavesRecordVisually;
+        var contents = this.Spec.CropTileSavesRecordVisually;
 
         if (contents.IsNone)
         {
             // ［切抜きカーソル］の指すタイル無し時
 
             // 「追加」
-            this.SpecObj.WholePageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+            this.Spec.WholePageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
         }
         else
         {
@@ -122,21 +121,20 @@ internal class AddsButton
                 // ［追加］（新規作成）だ
 
                 // ［追加」
-                this.SpecObj.WholePageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                this.Spec.WholePageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
             }
             else
             {
                 // ［復元」
-                this.SpecObj.WholePageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
+                this.Spec.WholePageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
             }
         }
 
         // ［追加／復元］ボタンの活性性
-        this.SpecObj.WholePageVM.InvalidateAddsButton();
+        this.Spec.WholePageVMInvalidateAddsButton();
     }
 
     // - プライベート・プロパティ
 
-    ItsSpec SpecObj { get; }
     IItsSpec Spec { get; }
 }

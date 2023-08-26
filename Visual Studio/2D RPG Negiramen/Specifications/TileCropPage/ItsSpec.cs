@@ -46,7 +46,7 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
             this.PointingDevice = new InnerPointingDevice(this);
             this.CropCursor = new CropCursor(this);
             this.CropTile = new CropTile(this);
-            this.AddsButton = new AddsButton(this, this);
+            this.AddsButton = new AddsButton(this);
             this.DeletesButton = new DeletesButton(this);
         }
         #endregion
@@ -58,6 +58,13 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
         ///     タイルセット設定ビューモデル
         /// </summary>
         public TilesetDatatableVisually WholeTilesetSettingsVM => WholePageVM.TilesetSettingsVM;
+
+        public void WholeTilesetSettingsVMIncreaseUsableId()
+        {
+            this.WholeTilesetSettingsVM.IncreaseUsableId();
+        }
+
+        public TileIdOrEmpty WholeTilesetSettingsVMUsableId => this.WholeTilesetSettingsVM.UsableId;
 
         public bool WholeTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
@@ -147,6 +154,10 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
 
         /// <summary>全体ページ・ビューモデル</summary>
         internal TileCropPageViewModel WholePageVM { get; }
+        public void WholePageVMInvalidateAddsButton()
+        {
+            this.WholePageVM.InvalidateAddsButton();
+        }
         public string WholePageVMAddsButtonText
         {
             get => this.WholePageVM.AddsButtonText;
@@ -189,6 +200,14 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
         internal CropTile CropTile { get; }
         #endregion
 
+        public TileRecordVisually CropTileSavesRecordVisually
+        {
+            get
+            {
+                return this.CropTile.SavesRecordVisually;
+            }
+        }
+
         public TileRecordVisually CropTileTargetTileRecordVisually => this.CropTile.TargetTileRecordVisually;
         public TileIdOrEmpty CropTileIdOrEmpty
         {
@@ -207,7 +226,7 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
         ///     切抜きカーソルと、既存タイルが交差しているか？
         /// </summary>
         /// <returns>そうだ</returns>
-        internal bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
+        public bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
         #endregion
 
         #region プロパティ（切抜きカーソルと、既存タイルは合同か？）
@@ -215,7 +234,7 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
         ///     切抜きカーソルと、既存タイルは合同か？
         /// </summary>
         /// <returns>そうだ</returns>
-        internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
+        public bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
         #endregion
 
         /// <summary>ズーム</summary>
@@ -265,7 +284,7 @@ namespace _2D_RPG_Negiramen.Specifications.TileCropPage
         /// <summary>
         ///     ［履歴］
         /// </summary>
-        internal void WholeInvalidateForHistory() => WholePageVM.InvalidateForHistory();
+        public void WholeInvalidateForHistory() => WholePageVM.InvalidateForHistory();
         #endregion
 
         // - インターナル・メソッド
