@@ -1,9 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.Visually;
-using System.Globalization;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
@@ -15,10 +13,6 @@ interface IItsIndoor
     ItsRoomsideDoors RoomsideDoors { get; }
 
     // - パブリック・プロパティ
-
-    TileRecordVisually RoomsideDoorsCropTileSavesRecordVisually { get; }
-
-    TileRecordVisually RoomsideDoorsCropTileTargetTileRecordVisually { get; }
 
     TileIdOrEmpty RoomsideDoorsCropTileIdOrEmpty { set; get; }
 
@@ -36,7 +30,7 @@ interface IItsIndoor
 
     void AddsButtonRefresh();
 
-    void DeletesButtonRefresh();
+    void RoomsideDoorsDeletesButtonRefresh();
 
 
 

@@ -1296,10 +1296,10 @@
         ///         <item>透過メソッド</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledDeletesButton
+        public bool IsEnabledRoomsideDoorsDeletesButton
         {
-            get => this.PageObj.DeletesButton.IsEnabled;
-            set => this.PageObj.DeletesButton.IsEnabled = value;
+            get => this.PageObj.RoomsideDoors.DeletesButton.IsEnabled;
+            set => this.PageObj.RoomsideDoors.DeletesButton.IsEnabled = value;
         }
         #endregion
 
@@ -1569,7 +1569,7 @@
         /// </summary>
         internal void InvalidateDeletesButton()
         {
-            OnPropertyChanged(nameof(IsEnabledDeletesButton));
+            OnPropertyChanged(nameof(IsEnabledRoomsideDoorsDeletesButton));
         }
         #endregion
 

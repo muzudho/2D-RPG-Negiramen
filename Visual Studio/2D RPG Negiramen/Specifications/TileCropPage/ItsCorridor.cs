@@ -63,7 +63,6 @@
             this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
             this.CropCursor = new CropCursor(this.GardensideDoor, this);
             this.AddsButton = new AddsButton(this.GardensideDoor, this.RoomsideDoors, this);
-            this.DeletesButton = new DeletesButton(this.GardensideDoor, this.RoomsideDoors);
         }
         #endregion
 
@@ -123,15 +122,6 @@
         /// <summary>切抜きカーソル</summary>
         internal CropCursor CropCursor { get; }
 
-        public TileRecordVisually RoomsideDoorsCropTileSavesRecordVisually
-        {
-            get
-            {
-                return this.RoomsideDoors.CropTile.SavesRecordVisually;
-            }
-        }
-
-        public TileRecordVisually RoomsideDoorsCropTileTargetTileRecordVisually => this.RoomsideDoors.CropTile.TargetTileRecordVisually;
         public TileIdOrEmpty RoomsideDoorsCropTileIdOrEmpty
         {
             get
@@ -174,11 +164,9 @@
             this.AddsButton.Refresh();
         }
 
-        /// <summary>削除ボタン</summary>
-        internal DeletesButton DeletesButton { get; }
-        public void DeletesButtonRefresh()
+        public void RoomsideDoorsDeletesButtonRefresh()
         {
-            this.DeletesButton.Refresh();
+            this.RoomsideDoors.DeletesButton.Refresh();
         }
 
         // - インターナル・メソッド
@@ -337,7 +325,7 @@
             this.AddsButton.Refresh();
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
-            this.DeletesButton.Refresh();
+            this.RoomsideDoors.DeletesButton.Refresh();
 
             // ［追加／復元］ボタン
             ObsoletedOutdoorPageVM.InvalidateAddsButton();

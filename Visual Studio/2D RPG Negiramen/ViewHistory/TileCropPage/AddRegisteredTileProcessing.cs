@@ -22,14 +22,16 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         ItsGardensideDoor gardensideDoor,
-        IItsIndoor spec,
+        ItsRoomsideDoors roomsideDoors,
+        IItsIndoor obsoletedIndoor,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
         this.GardensideDoor = gardensideDoor;
+        this.RoomsideDoors = roomsideDoors;
+        this.ObsoletedIndoor = obsoletedIndoor;
 
-        this.Indoor = spec;
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
         this.WorkingRectangle = workingRectangle;
@@ -44,7 +46,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.Indoor.RoomsideDoorsCropTileIdOrEmpty = this.TileIdOrEmpty;
+        this.ObsoletedIndoor.RoomsideDoorsCropTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.GardensideDoor.PageVM.InvalidateTileIdChange();
@@ -74,7 +76,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.Indoor.RoomsideDoors.ZoomProperties.Value;
+            registeredTileVisually.Zoom = this.ObsoletedIndoor.RoomsideDoors.ZoomProperties.Value;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
@@ -108,7 +110,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.Indoor.RoomsideDoorsCropTileIdOrEmpty = TileIdOrEmpty.Empty;
+        this.ObsoletedIndoor.RoomsideDoorsCropTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
         this.GardensideDoor.PageVM.InvalidateTileIdChange();
@@ -130,7 +132,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         }
 
         //  ［削除］ボタンの再描画
-        this.Indoor.DeletesButtonRefresh();
+        this.ObsoletedIndoor.RoomsideDoorsDeletesButtonRefresh();
 
         //
         // カラーマップの再描画
@@ -145,7 +147,8 @@ internal class AddRegisteredTileProcessing : IProcessing
 
     /// <summary>内部モデル</summary>
     ItsGardensideDoor GardensideDoor { get; }
-    IItsIndoor Indoor { get; }
+    ItsRoomsideDoors RoomsideDoors { get; }
+    IItsIndoor ObsoletedIndoor { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

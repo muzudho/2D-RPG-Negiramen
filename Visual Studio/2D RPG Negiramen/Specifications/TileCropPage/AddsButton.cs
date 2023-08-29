@@ -43,7 +43,7 @@ internal class AddsButton
     /// </summary>
     internal void AddTile()
     {
-        var contents = this.Indoor.RoomsideDoorsCropTileTargetTileRecordVisually;
+        var contents = this.RoomsideDoors.CropTile.TargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -62,7 +62,8 @@ internal class AddsButton
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
-            spec: this.Indoor,
+            roomsideDoors: this.RoomsideDoors,
+            obsoletedIndoor: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
@@ -75,7 +76,7 @@ internal class AddsButton
     /// </summary>
     public void OverwriteTile()
     {
-        var contents = this.Indoor.RoomsideDoorsCropTileTargetTileRecordVisually;
+        var contents = this.RoomsideDoors.CropTile.TargetTileRecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -91,7 +92,8 @@ internal class AddsButton
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
-            spec: this.Indoor,
+            roomsideDoors: this.RoomsideDoors,
+            obsoletedIndoor: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.Indoor.RoomsideDoors.ZoomProperties.Value)));
@@ -118,7 +120,7 @@ internal class AddsButton
             }
         }
 
-        var contents = this.Indoor.RoomsideDoorsCropTileSavesRecordVisually;
+        var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
 
         if (contents.IsNone)
         {

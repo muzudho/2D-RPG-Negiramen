@@ -176,7 +176,7 @@ internal class CropTile
             this.Indoor.AddsButtonRefresh();
 
             // ［削除］ボタン再描画
-            this.Indoor.DeletesButtonRefresh();
+            this.Indoor.RoomsideDoorsDeletesButtonRefresh();
         }
 
         // タイル・タイトル

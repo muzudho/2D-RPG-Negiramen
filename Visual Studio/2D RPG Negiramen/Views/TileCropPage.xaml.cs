@@ -190,7 +190,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 登録タイル削除
-        context.PageObj.DeletesButton.RemoveTile();
+        context.PageObj.RoomsideDoors.DeletesButton.RemoveTile();
     }
     #endregion
 
