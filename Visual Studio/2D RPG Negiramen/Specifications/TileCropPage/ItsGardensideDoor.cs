@@ -17,7 +17,7 @@ internal class ItsGardensideDoor
     ItsCorridor Corridor { get; }
 
     /// <summary>全体ページ・ビューモデル</summary>
-    internal TileCropPageViewModel PageVM => this.Corridor.PageVM;
+    internal TileCropPageViewModel PageVM => this.Corridor.OwnerPageVM;
 
     /// <summary>タイルセット設定ビューモデル</summary>
     public TilesetDatatableVisually TilesetSettingsVM => PageVM.TilesetSettingsVM;

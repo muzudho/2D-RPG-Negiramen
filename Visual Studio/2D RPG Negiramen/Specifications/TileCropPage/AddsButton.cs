@@ -21,6 +21,11 @@ internal class AddsButton
     // - その他
 
     #region その他（生成）
+    private AddsButton()
+    {
+
+    }
+
     /// <summary>
     ///     生成
     /// </summary>

@@ -43,24 +43,24 @@ class ItsTwoWayDoor
     public void RemakeWorkingTilesetImage()
     {
         // 元画像をベースに、作業画像を複製
-        var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(this.Corridor.PageVM.TilesetSourceBitmap));
+        var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(this.Corridor.OwnerPageVM.TilesetSourceBitmap));
 
         // 画像処理（明度を下げる）
         FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
 
         // 作業画像のサイズ計算
-        this.Corridor.PageVM.workingImageSize = new SizeInt(
-            width: new WidthInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Width.AsInt)),
-            height: new HeightInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Height.AsInt)));
+        this.Corridor.OwnerPageVM.workingImageSize = new SizeInt(
+            width: new WidthInt((int)(this.Corridor.OwnerPageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Width.AsInt)),
+            height: new HeightInt((int)(this.Corridor.OwnerPageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Height.AsInt)));
 
         // 作業画像のリサイズ
-        this.Corridor.PageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
+        this.Corridor.OwnerPageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
             size: new SKSizeI(
-                width: this.Corridor.PageVM.workingImageSize.Width.AsInt,
-                height: this.Corridor.PageVM.workingImageSize.Height.AsInt),
+                width: this.Corridor.OwnerPageVM.workingImageSize.Width.AsInt,
+                height: this.Corridor.OwnerPageVM.workingImageSize.Height.AsInt),
             quality: SKFilterQuality.Medium);
 
-        this.Corridor.PageVM.InvalidateTilesetWorkingImage();
+        this.Corridor.OwnerPageVM.InvalidateTilesetWorkingImage();
     }
     #endregion
 
@@ -75,9 +75,9 @@ class ItsTwoWayDoor
     /// </summary>
     public void RemakeGridCanvasImage()
     {
-        this.Corridor.PageVM.GridCanvasImageSize = new SizeInt(
-            width: new WidthInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Width.AsInt) + 2 * this.Corridor.PageVM.HalfThicknessOfGridLineAsInt),
-            height: new HeightInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Height.AsInt) + 2 * this.Corridor.PageVM.HalfThicknessOfGridLineAsInt));
+        this.Corridor.OwnerPageVM.GridCanvasImageSize = new SizeInt(
+            width: new WidthInt((int)(this.Corridor.OwnerPageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Width.AsInt) + 2 * this.Corridor.OwnerPageVM.HalfThicknessOfGridLineAsInt),
+            height: new HeightInt((int)(this.Corridor.OwnerPageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Height.AsInt) + 2 * this.Corridor.OwnerPageVM.HalfThicknessOfGridLineAsInt));
     }
     #endregion
 }

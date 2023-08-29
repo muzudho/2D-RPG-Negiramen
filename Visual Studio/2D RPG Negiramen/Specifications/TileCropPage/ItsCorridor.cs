@@ -27,6 +27,30 @@
     /// </summary>
     class ItsCorridor
     {
+        // - その他
+
+        #region その他（生成）
+        /// <summary>
+        ///     生成
+        /// </summary>
+        /// <param name="ownerPageVM">全体ページビュー・モデル</param>
+        internal ItsCorridor(TileCropPageViewModel ownerPageVM)
+        {
+            this.OwnerPageVM = ownerPageVM;
+
+            this.TwoWayDoor = new ItsTwoWayDoor(this);
+            this.GardensideDoor = new ItsGardensideDoor(this);
+            this.RoomsideDoors = new ItsRoomsideDoors(this);
+
+            this.PointingDevice = new InnerPointingDevice(this.GardensideDoor);
+        }
+        #endregion
+
+        // - インターナル・プロパティ
+
+        /// <summary>全体ページ・ビューモデル</summary>
+        internal TileCropPageViewModel OwnerPageVM { get; }
+
         /// <summary>
         ///     双方向ドア
         /// </summary>
@@ -42,30 +66,7 @@
         /// </summary>
         public ItsRoomsideDoors RoomsideDoors { get; }
 
-        // - その他
-
-        #region その他（生成）
-        /// <summary>
-        ///     生成
-        /// </summary>
-        /// <param name="wholePageVM">全体ページビュー・モデル</param>
-        internal ItsCorridor(TileCropPageViewModel wholePageVM)
-        {
-            this.PageVM = wholePageVM;
-
-            this.TwoWayDoor = new ItsTwoWayDoor(this);
-            this.GardensideDoor = new ItsGardensideDoor(this);
-            this.RoomsideDoors = new ItsRoomsideDoors(this);
-
-            this.PointingDevice = new InnerPointingDevice(this.GardensideDoor);
-        }
-        #endregion
-
-        // - インターナル・プロパティ
-
-        /// <summary>全体ページ・ビューモデル</summary>
-        internal TileCropPageViewModel PageVM { get; }
-        internal TileCropPageViewModel ObsoletedOutdoorPageVM => this.PageVM;
+        internal TileCropPageViewModel ObsoletedOutdoorPageVM => this.OwnerPageVM;
 
         #region プロパティ（［タイルセット作業画像］　関連）
         /// <summary>
@@ -139,15 +140,15 @@
         internal void ReactOnVisited()
         {
             // ロケールが変わってるかもしれないので反映
-            ObsoletedOutdoorPageVM.InvalidateCultureInfo();
+            this.OwnerPageVM.InvalidateCultureInfo();
 
             // グリッド・キャンバス
             {
                 // グリッドの左上位置（初期値）
-                ObsoletedOutdoorPageVM.GridPhaseSourceLocation = new PointInt(new XInt(0), new YInt(0));
+                this.OwnerPageVM.GridPhaseSourceLocation = new PointInt(new XInt(0), new YInt(0));
 
                 // グリッドのタイルサイズ（初期値）
-                ObsoletedOutdoorPageVM.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
+                this.OwnerPageVM.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
                 this.TwoWayDoor.RemakeGridCanvasImage();
@@ -196,8 +197,8 @@
             RectangleFloat workingRect = CoordinateHelper.GetCursorRectangle(
                 startPoint: this.PointingDevice.StartPoint,
                 endPoint: this.PointingDevice.CurrentPoint,
-                gridLeftTop: ObsoletedOutdoorPageVM.WorkingGridPhase,
-                gridTile: ObsoletedOutdoorPageVM.WorkingGridUnit);
+                gridLeftTop: this.OwnerPageVM.WorkingGridPhase,
+                gridTile: this.OwnerPageVM.WorkingGridUnit);
 
             // ズームを除去
             var sourceRect = new RectangleInt(
@@ -236,10 +237,10 @@
             this.RoomsideDoors.DeletesButton.Refresh();
 
             // ［追加／復元］ボタン
-            ObsoletedOutdoorPageVM.InvalidateAddsButton();
+            this.OwnerPageVM.InvalidateAddsButton();
 
             // タイル・タイトル
-            ObsoletedOutdoorPageVM.InvalidateTileTitle();
+            this.OwnerPageVM.InvalidateTileTitle();
         }
         #endregion
 
@@ -264,7 +265,7 @@
                 zoom: this.RoomsideDoors.ZoomProperties.Value,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
-                ObsoletedOutdoorPageVM.TilesetSettingsVM = tilesetDatatableVisually;
+                this.OwnerPageVM.TilesetSettingsVM = tilesetDatatableVisually;
 
 #if DEBUG
                 // ファイルの整合性チェック（重い処理）
@@ -288,7 +289,7 @@
             //
             // タイルセット画像ファイルへのパスを取得
             //
-            var tilesetImageFilePathAsStr = ObsoletedOutdoorPageVM.TilesetImageFilePathAsStr;
+            var tilesetImageFilePathAsStr = this.OwnerPageVM.TilesetImageFilePathAsStr;
 
             //
             // タイルセット画像の読込、作業中タイルセット画像の書出
@@ -344,13 +345,13 @@
                             memStream.Seek(0, SeekOrigin.Begin);
 
                             // 元画像
-                            ObsoletedOutdoorPageVM.SetTilesetSourceBitmap(SKBitmap.Decode(memStream));
+                            this.OwnerPageVM.SetTilesetSourceBitmap(SKBitmap.Decode(memStream));
 
                             // 複製
-                            ObsoletedOutdoorPageVM.TilesetWorkingBitmap = SKBitmap.FromImage(SKImage.FromBitmap(ObsoletedOutdoorPageVM.TilesetSourceBitmap));
+                            this.OwnerPageVM.TilesetWorkingBitmap = SKBitmap.FromImage(SKImage.FromBitmap(this.OwnerPageVM.TilesetSourceBitmap));
 
                             // 画像処理（明度を下げる）
-                            FeatSkia.ReduceBrightness.DoItInPlace(ObsoletedOutdoorPageVM.TilesetWorkingBitmap);
+                            FeatSkia.ReduceBrightness.DoItInPlace(this.OwnerPageVM.TilesetWorkingBitmap);
                         };
 
                         // 再描画
@@ -397,9 +398,9 @@
         public void OnTilesetImageTapped(Point tappedPoint)
         {
             // 反転
-            ObsoletedOutdoorPageVM.IsMouseDragging = !ObsoletedOutdoorPageVM.IsMouseDragging;
+            this.OwnerPageVM.IsMouseDragging = !this.OwnerPageVM.IsMouseDragging;
 
-            if (ObsoletedOutdoorPageVM.IsMouseDragging)
+            if (this.OwnerPageVM.IsMouseDragging)
             {
                 //
                 // 疑似マウス・ダウン
@@ -448,7 +449,7 @@
         /// <param name="tappedPoint"></param>
         public void OnTilesetImagePointerMove(Point tappedPoint)
         {
-            if (ObsoletedOutdoorPageVM.IsMouseDragging)
+            if (this.OwnerPageVM.IsMouseDragging)
             {
                 //
                 // 疑似マウス・ドラッグ
