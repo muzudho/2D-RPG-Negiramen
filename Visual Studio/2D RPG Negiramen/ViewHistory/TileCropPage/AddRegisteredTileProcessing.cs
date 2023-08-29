@@ -23,14 +23,12 @@ internal class AddRegisteredTileProcessing : IProcessing
     internal AddRegisteredTileProcessing(
         ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors,
-        IItsIndoor obsoletedIndoor,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
         this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
-        this.ObsoletedIndoor = obsoletedIndoor;
 
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
@@ -76,7 +74,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.ObsoletedIndoor.RoomsideDoors.ZoomProperties.Value;
+            registeredTileVisually.Zoom = this.RoomsideDoors.ZoomProperties.Value;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
@@ -148,7 +146,6 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <summary>内部モデル</summary>
     ItsGardensideDoor GardensideDoor { get; }
     ItsRoomsideDoors RoomsideDoors { get; }
-    IItsIndoor ObsoletedIndoor { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

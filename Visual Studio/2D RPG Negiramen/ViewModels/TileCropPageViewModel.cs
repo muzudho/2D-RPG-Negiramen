@@ -319,10 +319,10 @@
         /// </summary>
         public Models.Geometric.SizeInt SourceGridUnit
         {
-            get => this.PageObj.GridUnit.SourceValue;
+            get => this.PageObj.RoomsideDoors.GridUnit.SourceValue;
             set
             {
-                if (this.PageObj.GridUnit.SourceValue != value)
+                if (this.PageObj.RoomsideDoors.GridUnit.SourceValue != value)
                 {
                     this.SourceGridTileWidthAsInt = value.Width.AsInt;
                     this.SourceGridTileHeightAsInt = value.Height.AsInt;
@@ -335,20 +335,20 @@
         /// </summary>
         public int SourceGridTileWidthAsInt
         {
-            get => this.PageObj.GridUnit.SourceValue.Width.AsInt;
+            get => this.PageObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
             set
             {
-                if (this.PageObj.GridUnit.SourceValue.Width.AsInt != value &&
+                if (this.PageObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.PageObj.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.PageObj.GridUnit.SourceValue.Height);
+                    this.PageObj.RoomsideDoors.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.PageObj.RoomsideDoors.GridUnit.SourceValue.Height);
 
                     // 作業グリッド・タイル横幅の再計算
                     this.PageObj.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
 
                     // カーソルの線の幅を含まない
-                    this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.PageObj.GridUnit.SourceValue.Width.AsInt;
+                    this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.PageObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
@@ -366,20 +366,20 @@
         /// </summary>
         public int SourceGridTileHeightAsInt
         {
-            get => this.PageObj.GridUnit.SourceValue.Height.AsInt;
+            get => this.PageObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;
             set
             {
-                if (this.PageObj.GridUnit.SourceValue.Height.AsInt != value &&
+                if (this.PageObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.PageObj.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.PageObj.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
+                    this.PageObj.RoomsideDoors.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.PageObj.RoomsideDoors.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
                     this.PageObj.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
 
                     // カーソルの線の幅を含まない
-                    this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.PageObj.GridUnit.SourceValue.Height.AsInt;
+                    this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.PageObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();

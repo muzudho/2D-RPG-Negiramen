@@ -19,6 +19,8 @@ internal class ItsRoomsideDoors
             gardensideDoor: corridor.GardensideDoor,
             roomsideDoors: corridor.RoomsideDoors);
 
+        this.GridUnit = new GridUnit(corridor);
+
         this.CropCursor = new CropCursor(corridor.GardensideDoor, corridor);
 
         this.CropTile = new CropTile(
@@ -36,6 +38,9 @@ internal class ItsRoomsideDoors
     /// <summary>ズーム</summary>
     internal ZoomProperties ZoomProperties { get; }
 
+    /// <summary>グリッド単位</summary>
+    internal GridUnit GridUnit { get; }
+
     /// <summary>切抜きカーソル</summary>
     internal CropCursor CropCursor { get; }
 
@@ -49,4 +54,20 @@ internal class ItsRoomsideDoors
 
     /// <summary>削除ボタン</summary>
     internal DeletesButton DeletesButton { get; }
+
+    #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
+    /// <summary>
+    ///     切抜きカーソルと、既存タイルが交差しているか？
+    /// </summary>
+    /// <returns>そうだ</returns>
+    public bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
+    #endregion
+
+    #region プロパティ（切抜きカーソルと、既存タイルは合同か？）
+    /// <summary>
+    ///     切抜きカーソルと、既存タイルは合同か？
+    /// </summary>
+    /// <returns>そうだ</returns>
+    public bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
+    #endregion
 }

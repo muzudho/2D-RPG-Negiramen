@@ -59,7 +59,6 @@
             this.GardensideDoor = new ItsGardensideDoor(this);
             this.RoomsideDoors = new ItsRoomsideDoors(this);
 
-            this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
         }
         #endregion
@@ -68,22 +67,6 @@
 
         public int TilesetSourceImageWidthAsInt => this.IndoorTilesetSourceImageSize.Width.AsInt;
         public int TilesetSourceImageHeightAsInt => this.IndoorTilesetSourceImageSize.Height.AsInt;
-
-        public int GridUnitSourceValueWidthAsInt
-        {
-            get
-            {
-                return this.GridUnit.SourceValue.Width.AsInt;
-            }
-        }
-
-        public int GridUnitSourceValueHeightAsInt
-        {
-            get
-            {
-                return this.GridUnit.SourceValue.Height.AsInt;
-            }
-        }
 
         // - インターナル・プロパティ
 
@@ -111,25 +94,6 @@
         /// </summary>
         public string IndoorTilesetWorkingImageFilePathAsStr => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
         #endregion
-
-        #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
-        /// <summary>
-        ///     切抜きカーソルと、既存タイルが交差しているか？
-        /// </summary>
-        /// <returns>そうだ</returns>
-        public bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
-        #endregion
-
-        #region プロパティ（切抜きカーソルと、既存タイルは合同か？）
-        /// <summary>
-        ///     切抜きカーソルと、既存タイルは合同か？
-        /// </summary>
-        /// <returns>そうだ</returns>
-        public bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
-        #endregion
-
-        /// <summary>グリッド単位</summary>
-        internal GridUnit GridUnit { get; }
 
         /// <summary>ポインティング・デバイス</summary>
         internal InnerPointingDevice PointingDevice { get; }
@@ -225,16 +189,16 @@
             if (this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
-                HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
-                IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
+                this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
                 return;
             }
 
             // 軽くはない処理
-            HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.HasIntersection(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
-            IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.IsCongruence(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
+            this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.HasIntersection(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
+            this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.IsCongruence(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
 
-            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
+            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
         #endregion
 
@@ -299,23 +263,6 @@
             ObsoletedOutdoorPageVM.InvalidateTileTitle();
         }
         #endregion
-
-        public void RoomsideDoorsCropCursorRecalculateWorkingGridTileWidth()
-        {
-            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
-        }
-        public void RoomsideDoorsCropCursorRecalculateWorkingGridTileHeight()
-        {
-            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
-        }
-
-        public TheGeometric.WidthFloat RoomsideDoorsCropCursorWorkingWidthWithoutTrick
-        {
-            set
-            {
-                this.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = value;
-            }
-        }
 
         // - インターナル・イベントハンドラ
 

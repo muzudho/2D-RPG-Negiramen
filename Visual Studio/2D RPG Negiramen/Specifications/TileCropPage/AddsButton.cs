@@ -28,11 +28,11 @@ internal class AddsButton
     internal AddsButton(
         ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors,
-        IItsIndoor indoor) // TODO これを削除したい
+        IItsIndoor obsoletedIndoor) // TODO これを削除したい
     {
         this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
-        this.Indoor = indoor; // TODO これを削除したい
+        this.ObsoletedIndoor = obsoletedIndoor; // TODO これを削除したい
     }
     #endregion
 
@@ -63,7 +63,6 @@ internal class AddsButton
         App.History.Do(new AddRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
             roomsideDoors: this.RoomsideDoors,
-            obsoletedIndoor: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
@@ -93,10 +92,9 @@ internal class AddsButton
         App.History.Do(new AddRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
             roomsideDoors: this.RoomsideDoors,
-            obsoletedIndoor: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Indoor.RoomsideDoors.ZoomProperties.Value)));
+            workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
 
         this.GardensideDoor.PageVM.InvalidateForHistory();
     }
@@ -107,10 +105,10 @@ internal class AddsButton
     internal void Refresh()
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-        if (this.Indoor.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        if (this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
         {
             // 合同のときは「交差中」とは表示しない
-            if (!this.Indoor.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            if (!this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
                 // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
@@ -155,5 +153,5 @@ internal class AddsButton
 
     // - プライベート・プロパティ
 
-    IItsIndoor Indoor { get; }
+    IItsIndoor ObsoletedIndoor { get; }
 }
