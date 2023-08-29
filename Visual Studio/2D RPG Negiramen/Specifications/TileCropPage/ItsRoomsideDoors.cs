@@ -19,6 +19,8 @@ internal class ItsRoomsideDoors
             gardensideDoor: corridor.GardensideDoor,
             indoor: corridor);
 
+        this.CropCursor = new CropCursor(corridor.GardensideDoor, corridor);
+
         this.CropTile = new CropTile(
             gardensideDoor: corridor.GardensideDoor,
             roomsideDoors: corridor.RoomsideDoors,
@@ -33,6 +35,9 @@ internal class ItsRoomsideDoors
 
     /// <summary>ズーム</summary>
     internal ZoomProperties ZoomProperties { get; }
+
+    /// <summary>切抜きカーソル</summary>
+    internal CropCursor CropCursor { get; }
 
     #region プロパティ（切抜きカーソルが指すタイル）
     /// <summary>切抜きカーソルが指すタイル</summary>

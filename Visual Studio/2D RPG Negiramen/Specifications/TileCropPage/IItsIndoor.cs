@@ -13,7 +13,7 @@ interface IItsIndoor
 
     // - パブリック・プロパティ
 
-    void CropCursorRefreshCanvasTrick(string codePlace);
+    void RoomsideDoorsCropCursorRefreshCanvasTrick(string codePlace);
 
     int GridUnitSourceValueWidthAsInt { get; }
     int GridUnitSourceValueHeightAsInt { get; }
@@ -25,10 +25,10 @@ interface IItsIndoor
 
     // - パブリック・メソッド
 
-    void CropCursorRecalculateWorkingGridTileWidth();
-    void CropCursorRecalculateWorkingGridTileHeight();
+    void RoomsideDoorsCropCursorRecalculateWorkingGridTileWidth();
+    void RoomsideDoorsCropCursorRecalculateWorkingGridTileHeight();
 
-    TheGeometric.WidthFloat CropCursorWorkingWidthWithoutTrick { set; }
+    TheGeometric.WidthFloat RoomsideDoorsCropCursorWorkingWidthWithoutTrick { set; }
 
     int TilesetSourceImageWidthAsInt { get; }
     int TilesetSourceImageHeightAsInt { get; }

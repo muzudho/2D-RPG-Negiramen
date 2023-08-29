@@ -345,7 +345,7 @@
                     this.PageObj.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.PageObj.GridUnit.SourceValue.Height);
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.PageObj.CropCursor.RecalculateWorkingGridTileWidth();
+                    this.PageObj.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.PageObj.GridUnit.SourceValue.Width.AsInt;
@@ -376,7 +376,7 @@
                     this.PageObj.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.PageObj.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.PageObj.CropCursor.RecalculateWorkingGridTileHeight();
+                    this.PageObj.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.PageObj.GridUnit.SourceValue.Height.AsInt;
@@ -951,7 +951,7 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfCroppedCursorWorkingWidthAsFloat => this.PageObj.CropCursor.WorkingWidthWithoutTrick.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
+        public float CanvasOfCroppedCursorWorkingWidthAsFloat => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
@@ -986,11 +986,11 @@
         /// </summary>
         public Models.Geometric.WidthFloat TrickWidth
         {
-            get => this.PageObj.CropCursor.TrickWidth;
-            set => this.PageObj.CropCursor.TrickWidth = value;
+            get => this.PageObj.RoomsideDoors.CropCursor.TrickWidth;
+            set => this.PageObj.RoomsideDoors.CropCursor.TrickWidth = value;
         }
 
-        public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithTrick => new WidthFloat(this.PageObj.CropCursor.WorkingWidthWithoutTrick.AsFloat + this.TrickWidth.AsFloat);
+        public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithTrick => new WidthFloat(this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat + this.TrickWidth.AsFloat);
 
         /// <summary>
         ///     <list type="bullet">
@@ -999,8 +999,8 @@
         /// </summary>
         public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithoutTrick
         {
-            get => this.PageObj.CropCursor.WorkingWidthWithoutTrick;
-            set => this.PageObj.CropCursor.WorkingWidthWithoutTrick = value;
+            get => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick;
+            set => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = value;
         }
 
         public Models.Geometric.HeightFloat CroppedCursorPointedTileWorkingHeight
@@ -1019,12 +1019,12 @@
         /// </summary>
         public float CroppedCursorPointedTileWorkingWidthAsFloat
         {
-            get => this.PageObj.CropCursor.WorkingWidthWithoutTrick.AsFloat;
+            get => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat;
             set
             {
-                if (this.PageObj.CropCursor.WorkingWidthWithoutTrick.AsFloat != value)
+                if (this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat != value)
                 {
-                    this.PageObj.CropCursor.WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(value);
+                    this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(value);
 
                     // キャンバスを再描画
                     // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel CroppedCursorPointedTileWorkingWidthAsFloat set]");
@@ -1099,7 +1099,7 @@
         ///         <item>表示用テキスト</item>
         ///     </list>
         /// </summary>
-        public string CroppedCursorPointedTileWorkingWidthAsPresentableText => this.PageObj.CropCursor.WorkingWidthWithoutTrick.AsFloat.ToString("F1");
+        public string CroppedCursorPointedTileWorkingWidthAsPresentableText => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat.ToString("F1");
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅

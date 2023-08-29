@@ -93,9 +93,9 @@ internal class ZoomProcessing : IProcessing
         // ［作業グリッド］の再計算
         {
             // 横幅
-            this.Indoor.CropCursorRecalculateWorkingGridTileWidth();
+            this.Indoor.RoomsideDoorsCropCursorRecalculateWorkingGridTileWidth();
             // 縦幅
-            this.Indoor.CropCursorRecalculateWorkingGridTileHeight();
+            this.Indoor.RoomsideDoorsCropCursorRecalculateWorkingGridTileHeight();
         }
 
         // ［切抜きカーソルが指すタイル］更新
@@ -106,7 +106,7 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.Indoor.RoomsideDoorsCropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
             this.GardensideDoor.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 

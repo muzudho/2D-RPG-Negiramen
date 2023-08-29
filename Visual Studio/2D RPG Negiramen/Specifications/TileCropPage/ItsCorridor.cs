@@ -61,7 +61,6 @@
 
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
-            this.CropCursor = new CropCursor(this.GardensideDoor, this);
         }
         #endregion
 
@@ -70,9 +69,9 @@
         public int TilesetSourceImageWidthAsInt => this.IndoorTilesetSourceImageSize.Width.AsInt;
         public int TilesetSourceImageHeightAsInt => this.IndoorTilesetSourceImageSize.Height.AsInt;
 
-        public void CropCursorRefreshCanvasTrick(string codePlace)
+        public void RoomsideDoorsCropCursorRefreshCanvasTrick(string codePlace)
         {
-            this.CropCursor.RefreshCanvasTrick(codePlace);
+            this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace);
         }
 
         public int GridUnitSourceValueWidthAsInt
@@ -117,9 +116,6 @@
         /// </summary>
         public string IndoorTilesetWorkingImageFilePathAsStr => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
         #endregion
-
-        /// <summary>切抜きカーソル</summary>
-        internal CropCursor CropCursor { get; }
 
         #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
         /// <summary>
@@ -309,20 +305,20 @@
         }
         #endregion
 
-        public void CropCursorRecalculateWorkingGridTileWidth()
+        public void RoomsideDoorsCropCursorRecalculateWorkingGridTileWidth()
         {
-            this.CropCursor.RecalculateWorkingGridTileWidth();
+            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
         }
-        public void CropCursorRecalculateWorkingGridTileHeight()
+        public void RoomsideDoorsCropCursorRecalculateWorkingGridTileHeight()
         {
-            this.CropCursor.RecalculateWorkingGridTileHeight();
+            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
         }
 
-        public TheGeometric.WidthFloat CropCursorWorkingWidthWithoutTrick
+        public TheGeometric.WidthFloat RoomsideDoorsCropCursorWorkingWidthWithoutTrick
         {
             set
             {
-                this.CropCursor.WorkingWidthWithoutTrick = value;
+                this.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = value;
             }
         }
 
@@ -499,7 +495,7 @@
                 // タイル・フォームの表示更新
                 RefreshTileForm();
 
-                this.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+                this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
             }
             else
             {
@@ -519,7 +515,7 @@
                 // タイル・フォームの表示更新
                 RefreshTileForm();
 
-                this.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+                this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
             }
         }
         #endregion
@@ -547,7 +543,7 @@
                 // タイル・フォームの表示更新
                 RefreshTileForm();
 
-                this.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+                this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
         }
         #endregion
