@@ -17,8 +17,12 @@ internal class ItsRoomsideDoors
             gardensideDoor: corridor.GardensideDoor,
             indoor: corridor);
 
-        this.Zoom = new InnerZoom(
+        this.ZoomProperties = new ZoomProperties(
             twoWayDoor: corridor.TwoWayDoor,
+            gardensideDoor: corridor.GardensideDoor,
+            indoor: corridor);
+
+        this.CropTile = new CropTile(
             gardensideDoor: corridor.GardensideDoor,
             indoor: corridor);
     }
@@ -27,11 +31,10 @@ internal class ItsRoomsideDoors
     internal InnerCultureInfo IndoorCultureInfo { get; }
 
     /// <summary>ズーム</summary>
-    internal InnerZoom Zoom { get; }
+    internal ZoomProperties ZoomProperties { get; }
 
-    public Zoom ZoomValue
-    {
-        get => this.Zoom.Value;
-        set => this.Zoom.Value = value;
-    }
+    #region プロパティ（切抜きカーソルが指すタイル）
+    /// <summary>切抜きカーソルが指すタイル</summary>
+    internal CropTile CropTile { get; }
+    #endregion
 }

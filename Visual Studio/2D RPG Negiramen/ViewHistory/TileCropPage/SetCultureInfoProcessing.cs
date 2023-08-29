@@ -29,7 +29,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.Indoor.CultureInfoSelected = this.NewValue;
+        this.Indoor.RoomsideDoorsIndoorCultureInfoSelected = this.NewValue;
     }
 
     /// <summary>
@@ -37,7 +37,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.Indoor.CultureInfoSelected = this.OldValue;
+        this.Indoor.RoomsideDoorsIndoorCultureInfoSelected = this.OldValue;
     }
 
     // - プライベート・プロパティ

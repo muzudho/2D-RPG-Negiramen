@@ -16,13 +16,13 @@ interface IItsIndoor
 
     // - パブリック・プロパティ
 
-    CultureInfo CultureInfoSelected { get;  set; }
+    CultureInfo RoomsideDoorsIndoorCultureInfoSelected { get;  set; }
 
-    TileRecordVisually CropTileSavesRecordVisually { get; }
+    TileRecordVisually RoomsideDoorsCropTileSavesRecordVisually { get; }
 
-    TileRecordVisually CropTileTargetTileRecordVisually { get; }
+    TileRecordVisually RoomsideDoorsCropTileTargetTileRecordVisually { get; }
 
-    TileIdOrEmpty CropTileIdOrEmpty { set; get; }
+    TileIdOrEmpty RoomsideDoorsCropTileIdOrEmpty { set; get; }
 
     void CropCursorRefreshCanvasTrick(string codePlace);
 

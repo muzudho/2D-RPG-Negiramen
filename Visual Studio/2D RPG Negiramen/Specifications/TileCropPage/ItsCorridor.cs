@@ -62,7 +62,6 @@
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
             this.CropCursor = new CropCursor(this.GardensideDoor, this);
-            this.CropTile = new CropTile(this.GardensideDoor, this);
             this.AddsButton = new AddsButton(this.GardensideDoor, this.RoomsideDoors, this);
             this.DeletesButton = new DeletesButton(this.GardensideDoor, this);
         }
@@ -103,7 +102,7 @@
 
 
 
-        public CultureInfo CultureInfoSelected
+        public CultureInfo RoomsideDoorsIndoorCultureInfoSelected
         {
             get => this.RoomsideDoors.IndoorCultureInfo.Selected;
             set => this.RoomsideDoors.IndoorCultureInfo.Selected = value;
@@ -134,29 +133,24 @@
         /// <summary>切抜きカーソル</summary>
         internal CropCursor CropCursor { get; }
 
-        #region プロパティ（切抜きカーソルが指すタイル）
-        /// <summary>切抜きカーソルが指すタイル</summary>
-        internal CropTile CropTile { get; }
-        #endregion
-
-        public TileRecordVisually CropTileSavesRecordVisually
+        public TileRecordVisually RoomsideDoorsCropTileSavesRecordVisually
         {
             get
             {
-                return this.CropTile.SavesRecordVisually;
+                return this.RoomsideDoors.CropTile.SavesRecordVisually;
             }
         }
 
-        public TileRecordVisually CropTileTargetTileRecordVisually => this.CropTile.TargetTileRecordVisually;
-        public TileIdOrEmpty CropTileIdOrEmpty
+        public TileRecordVisually RoomsideDoorsCropTileTargetTileRecordVisually => this.RoomsideDoors.CropTile.TargetTileRecordVisually;
+        public TileIdOrEmpty RoomsideDoorsCropTileIdOrEmpty
         {
             get
             {
-                return this.CropTile.IdOrEmpty;
+                return this.RoomsideDoors.CropTile.IdOrEmpty;
             }
             set
             {
-                this.CropTile.IdOrEmpty = value;
+                this.RoomsideDoors.CropTile.IdOrEmpty = value;
             }
         }
 
@@ -214,7 +208,7 @@
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］の読込
         /// </summary>
-        internal void LoadCroppedCursorPointedTile()
+        internal void CorridorLoadCroppedCursorPointedTile()
         {
             this.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
                 sourceRect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
@@ -223,7 +217,7 @@
                     // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
 
                     // タイルを指す（論理削除されているものも含む）
-                    this.CropTile.TargetTileRecordVisually = tileVisually;
+                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = tileVisually;
                 },
                 none: () =>
                 {
@@ -235,13 +229,13 @@
                     //
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
                             title: TileTitle.Empty,
                             logicalDelete: LogicalDelete.False),
-                        zoom: this.RoomsideDoors.Zoom.Value
+                        zoom: this.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
 #endif
@@ -347,7 +341,7 @@
             // 切抜きカーソル更新
             // ==================
             //
-            LoadCroppedCursorPointedTile();
+            CorridorLoadCroppedCursorPointedTile();
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
             this.AddsButton.Refresh();
@@ -398,7 +392,7 @@
             //
             if (TilesetDatatableVisually.LoadCSV(
                 tilesetDatatableFileLocation: this.GardensideDoor.PageVM.TilesetDatatableFileLocation,
-                zoom: this.RoomsideDoors.Zoom.Value,
+                zoom: this.RoomsideDoors.ZoomProperties.Value,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
                 ObsoletedOutdoorPageVM.TilesetSettingsVM = tilesetDatatableVisually;
@@ -510,7 +504,7 @@
         /// </summary>
         internal void OnAddsButtonClicked()
         {
-            if (this.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
+            if (this.RoomsideDoors.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ

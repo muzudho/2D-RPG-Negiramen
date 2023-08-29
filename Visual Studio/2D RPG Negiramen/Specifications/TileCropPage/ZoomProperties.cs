@@ -4,9 +4,9 @@ using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 /// <summary>
-///     ズーム
+///     ズーム関連
 /// </summary>
-internal class InnerZoom
+internal class ZoomProperties
 {
     // - その他
 
@@ -15,7 +15,7 @@ internal class InnerZoom
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    internal InnerZoom(
+    internal ZoomProperties(
         ItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
         IItsIndoor indoor)
