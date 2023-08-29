@@ -37,7 +37,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.Indoor.ZoomValue = this.NewValue;
+        this.Indoor.RoomsideDoors.ZoomValue = this.NewValue;
 
         this.AfterChanged();
     }
@@ -47,7 +47,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.Indoor.ZoomValue = this.OldValue;
+        this.Indoor.RoomsideDoors.ZoomValue = this.OldValue;
 
         this.AfterChanged();
     }
@@ -113,7 +113,7 @@ internal class ZoomProcessing : IProcessing
         foreach (var registeredTileVM in this.Outdoor.TilesetSettingsVMTileRecordVisuallyList)
         {
             // ズーム
-            registeredTileVM.Zoom = this.Indoor.ZoomValue;
+            registeredTileVM.Zoom = this.Indoor.RoomsideDoors.ZoomValue;
         }
 
         // 変更通知

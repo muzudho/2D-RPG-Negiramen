@@ -31,7 +31,7 @@
         /// <summary>
         ///     屋内（ページの各要素）
         /// </summary>
-        ItsRooms Rooms { get; }
+        public ItsRoomsideDoors RoomsideDoors { get; }
 
         // - その他
 
@@ -44,9 +44,8 @@
         {
             OutdoorPageVM = wholePageVM;
 
-            this.Rooms = new ItsRooms(this);
+            this.RoomsideDoors = new ItsRoomsideDoors(this);
 
-            this.Zoom = new InnerZoom(this, this);
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this, this);
             this.CropCursor = new CropCursor(this, this);
@@ -194,22 +193,6 @@
             }
         }
 
-        /// <summary>ズーム</summary>
-        internal InnerZoom Zoom { get; }
-
-        public Zoom ZoomValue
-        {
-            get
-            {
-                return this.Zoom.Value;
-            }
-            set
-            {
-                this.Zoom.Value = value;
-            }
-        }
-
-
 
         public int GridUnitSourceValueWidthAsInt
         {
@@ -321,8 +304,8 @@
 
         public CultureInfo CultureInfoSelected
         {
-            get => this.Rooms.IndoorCultureInfo.Selected;
-            set => this.Rooms.IndoorCultureInfo.Selected = value;
+            get => this.RoomsideDoors.IndoorCultureInfo.Selected;
+            set => this.RoomsideDoors.IndoorCultureInfo.Selected = value;
         }
 
 
@@ -491,7 +474,7 @@
                             rect: CroppedCursorPointedTileSourceRect,
                             title: TileTitle.Empty,
                             logicalDelete: LogicalDelete.False),
-                        zoom: this.Zoom.Value
+                        zoom: this.RoomsideDoors.Zoom.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
 #endif
@@ -731,7 +714,7 @@
             //
             if (TilesetDatatableVisually.LoadCSV(
                 tilesetDatatableFileLocation: TilesetDatatableFileLocation,
-                zoom: this.Zoom.Value,
+                zoom: this.RoomsideDoors.Zoom.Value,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
                 OutdoorPageVM.TilesetSettingsVM = tilesetDatatableVisually;

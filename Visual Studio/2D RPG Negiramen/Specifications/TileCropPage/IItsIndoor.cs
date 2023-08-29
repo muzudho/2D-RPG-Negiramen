@@ -11,6 +11,9 @@ using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 /// </summary>
 interface IItsIndoor
 {
+    /// <summary>屋内（ページの各要素）</summary>
+    ItsRoomsideDoors RoomsideDoors { get; }
+
     // - パブリック・プロパティ
 
     CultureInfo CultureInfoSelected { get;  set; }
@@ -20,8 +23,6 @@ interface IItsIndoor
     TileRecordVisually CropTileTargetTileRecordVisually { get; }
 
     TileIdOrEmpty CropTileIdOrEmpty { set; get; }
-
-    Zoom ZoomValue { get; set; }
 
     float ZoomAsFloat { get; set; }
 

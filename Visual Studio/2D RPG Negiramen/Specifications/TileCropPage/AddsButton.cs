@@ -53,7 +53,7 @@ internal class AddsButton
             spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Indoor.ZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.Indoor.RoomsideDoors.ZoomValue)));
 
         Outdoor.InvalidateForHistory();
     }
@@ -82,7 +82,7 @@ internal class AddsButton
             spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Indoor.ZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.Indoor.RoomsideDoors.ZoomValue)));
 
         Outdoor.InvalidateForHistory();
     }
