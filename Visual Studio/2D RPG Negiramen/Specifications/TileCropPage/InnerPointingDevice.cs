@@ -15,11 +15,9 @@ internal class InnerPointingDevice
     /// </summary>
     /// <param name="owner"></param>
     internal InnerPointingDevice(
-        ItsGardensideDoor gardensideDoor,
-        IItsIndoor indoor)
+        ItsGardensideDoor gardensideDoor)
     {
         this.GardensideDoor = gardensideDoor;
-        this.Indoor = indoor;
     }
     #endregion
 
@@ -65,7 +63,6 @@ internal class InnerPointingDevice
     // - プライベート・プロパティ
 
     ItsGardensideDoor GardensideDoor { get; }
-    IItsIndoor Indoor { get; }
 
     #region プロパティ（ポインティング・デバイス押下中か？）
     /// <summary>

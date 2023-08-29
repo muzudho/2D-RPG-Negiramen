@@ -50,8 +50,8 @@ class ItsTwoWayDoor
 
         // 作業画像のサイズ計算
         this.Corridor.PageVM.workingImageSize = new SizeInt(
-            width: new WidthInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.IndoorTilesetSourceImageSize.Width.AsInt)),
-            height: new HeightInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.IndoorTilesetSourceImageSize.Height.AsInt)));
+            width: new WidthInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Width.AsInt)),
+            height: new HeightInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Height.AsInt)));
 
         // 作業画像のリサイズ
         this.Corridor.PageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
@@ -76,8 +76,8 @@ class ItsTwoWayDoor
     public void RemakeGridCanvasImage()
     {
         this.Corridor.PageVM.GridCanvasImageSize = new SizeInt(
-            width: new WidthInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.IndoorTilesetSourceImageSize.Width.AsInt) + 2 * this.Corridor.PageVM.HalfThicknessOfGridLineAsInt),
-            height: new HeightInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.IndoorTilesetSourceImageSize.Height.AsInt) + 2 * this.Corridor.PageVM.HalfThicknessOfGridLineAsInt));
+            width: new WidthInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Width.AsInt) + 2 * this.Corridor.PageVM.HalfThicknessOfGridLineAsInt),
+            height: new HeightInt((int)(this.Corridor.PageVM.ZoomAsFloat * this.Corridor.RoomsideDoors.TilesetSourceImageSize.Height.AsInt) + 2 * this.Corridor.PageVM.HalfThicknessOfGridLineAsInt));
     }
     #endregion
 }

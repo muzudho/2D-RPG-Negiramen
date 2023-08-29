@@ -1,4 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
+
+using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
+
 /// <summary>
 ///     各部屋
 ///     
@@ -19,14 +22,13 @@ internal class ItsRoomsideDoors
             gardensideDoor: corridor.GardensideDoor,
             roomsideDoors: corridor.RoomsideDoors);
 
-        this.GridUnit = new GridUnit(corridor);
+        this.GridUnit = new GridUnit();
 
-        this.CropCursor = new CropCursor(corridor.GardensideDoor, corridor);
+        this.CropCursor = new CropCursor(corridor.GardensideDoor, corridor.RoomsideDoors);
 
         this.CropTile = new CropTile(
             gardensideDoor: corridor.GardensideDoor,
-            roomsideDoors: corridor.RoomsideDoors,
-            indoor: corridor);
+            roomsideDoors: corridor.RoomsideDoors);
 
         this.AddsButton = new AddsButton(corridor.GardensideDoor, corridor.RoomsideDoors, corridor);
         this.DeletesButton = new DeletesButton(corridor.GardensideDoor, corridor.RoomsideDoors);
@@ -69,5 +71,12 @@ internal class ItsRoomsideDoors
     /// </summary>
     /// <returns>そうだ</returns>
     public bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
+    #endregion
+
+    #region プロパティ（［タイルセット元画像］　関連）
+    /// <summary>
+    ///     ［タイルセット元画像］のサイズ
+    /// </summary>
+    internal TheGeometric.SizeInt TilesetSourceImageSize { get; set; } = TheGeometric.SizeInt.Empty;
     #endregion
 }

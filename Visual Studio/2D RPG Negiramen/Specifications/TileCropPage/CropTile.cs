@@ -19,12 +19,10 @@ internal class CropTile
     /// <param name="specObj"></param>
     internal CropTile(
         ItsGardensideDoor gardensideDoor,
-        ItsRoomsideDoors roomsideDoors,
-        IItsIndoor indoor)
+        ItsRoomsideDoors roomsideDoors)
     {
         this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
-        this.ObsoletedIndoor = indoor;
     }
     #endregion
 
@@ -204,5 +202,4 @@ internal class CropTile
 
     ItsGardensideDoor GardensideDoor { get; }
     ItsRoomsideDoors RoomsideDoors { get; }
-    IItsIndoor ObsoletedIndoor { get; }
 }

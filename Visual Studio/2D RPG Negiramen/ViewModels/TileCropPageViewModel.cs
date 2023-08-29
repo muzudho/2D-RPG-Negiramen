@@ -42,7 +42,7 @@
         /// </summary>
         public TileCropPageViewModel()
         {
-            this.Indoor = this.PageObj = new ItsCorridor(this);
+            this.CorridorObj = new ItsCorridor(this);
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
@@ -61,8 +61,8 @@
         /// </summary>
         public CultureInfo SelectedCultureInfo
         {
-            get => this.PageObj.RoomsideDoors.IndoorCultureInfo.Selected;
-            set => this.PageObj.RoomsideDoors.IndoorCultureInfo.Selected = value;
+            get => this.CorridorObj.RoomsideDoors.IndoorCultureInfo.Selected;
+            set => this.CorridorObj.RoomsideDoors.IndoorCultureInfo.Selected = value;
         }
 
         /// <summary>
@@ -108,12 +108,12 @@
         /// <summary>
         ///     ［タイルセット元画像］の横幅。読取専用
         /// </summary>
-        public int TilesetSourceImageWidthAsInt => this.Indoor.TilesetSourceImageWidthAsInt;
+        public int TilesetSourceImageWidthAsInt => this.CorridorObj.RoomsideDoors.TilesetSourceImageSize.Width.AsInt;
 
         /// <summary>
         ///     ［タイルセット元画像］の縦幅。読取専用
         /// </summary>
-        public int TilesetSourceImageHeightAsInt => this.Indoor.TilesetSourceImageHeightAsInt;
+        public int TilesetSourceImageHeightAsInt => this.CorridorObj.RoomsideDoors.TilesetSourceImageSize.Height.AsInt;
         #endregion
 
         #region 変更通知プロパティ（［タイルセット作業画像］　関連）
@@ -138,8 +138,8 @@
         /// </summary>
         public float ZoomAsFloat
         {
-            get => this.PageObj.RoomsideDoors.ZoomProperties.AsFloat;
-            set => this.PageObj.RoomsideDoors.ZoomProperties.AsFloat = value;
+            get => this.CorridorObj.RoomsideDoors.ZoomProperties.AsFloat;
+            set => this.CorridorObj.RoomsideDoors.ZoomProperties.AsFloat = value;
         }
 
         /// <summary>
@@ -149,7 +149,7 @@
         ///         <item>透過メソッド</item>
         ///     </list>
         /// </summary>
-        public float ZoomMaxAsFloat => this.PageObj.RoomsideDoors.ZoomProperties.MaxAsFloat;
+        public float ZoomMaxAsFloat => this.CorridorObj.RoomsideDoors.ZoomProperties.MaxAsFloat;
 
         /// <summary>
         ///     ズーム最小
@@ -158,7 +158,7 @@
         ///         <item>透過メソッド</item>
         ///     </list>
         /// </summary>
-        public float ZoomMinAsFloat => this.PageObj.RoomsideDoors.ZoomProperties.MinAsFloat;
+        public float ZoomMinAsFloat => this.CorridorObj.RoomsideDoors.ZoomProperties.MinAsFloat;
         #endregion
 
         #region 変更通知プロパティ（［元画像グリッド］　関連）
@@ -319,10 +319,10 @@
         /// </summary>
         public Models.Geometric.SizeInt SourceGridUnit
         {
-            get => this.PageObj.RoomsideDoors.GridUnit.SourceValue;
+            get => this.CorridorObj.RoomsideDoors.GridUnit.SourceValue;
             set
             {
-                if (this.PageObj.RoomsideDoors.GridUnit.SourceValue != value)
+                if (this.CorridorObj.RoomsideDoors.GridUnit.SourceValue != value)
                 {
                     this.SourceGridTileWidthAsInt = value.Width.AsInt;
                     this.SourceGridTileHeightAsInt = value.Height.AsInt;
@@ -335,20 +335,20 @@
         /// </summary>
         public int SourceGridTileWidthAsInt
         {
-            get => this.PageObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
+            get => this.CorridorObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
             set
             {
-                if (this.PageObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt != value &&
+                if (this.CorridorObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.PageObj.RoomsideDoors.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.PageObj.RoomsideDoors.GridUnit.SourceValue.Height);
+                    this.CorridorObj.RoomsideDoors.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.CorridorObj.RoomsideDoors.GridUnit.SourceValue.Height);
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.PageObj.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
+                    this.CorridorObj.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
 
                     // カーソルの線の幅を含まない
-                    this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.PageObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
+                    this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.CorridorObj.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
@@ -366,20 +366,20 @@
         /// </summary>
         public int SourceGridTileHeightAsInt
         {
-            get => this.PageObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;
+            get => this.CorridorObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;
             set
             {
-                if (this.PageObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt != value &&
+                if (this.CorridorObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.PageObj.RoomsideDoors.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.PageObj.RoomsideDoors.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
+                    this.CorridorObj.RoomsideDoors.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.CorridorObj.RoomsideDoors.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.PageObj.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
+                    this.CorridorObj.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
 
                     // カーソルの線の幅を含まない
-                    this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.PageObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;
+                    this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.CorridorObj.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
@@ -527,8 +527,8 @@
         /// </summary>
         public bool IsMouseDragging
         {
-            get => this.PageObj.PointingDevice.IsMouseDragging;
-            set => this.PageObj.PointingDevice.IsMouseDragging = value;
+            get => this.CorridorObj.PointingDevice.IsMouseDragging;
+            set => this.CorridorObj.PointingDevice.IsMouseDragging = value;
         }
         #endregion
 
@@ -544,7 +544,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -556,7 +556,7 @@
             }
             set
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -597,7 +597,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -609,13 +609,13 @@
             }
             set
             {
-                var currentTileVisually = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var currentTileVisually = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -624,7 +624,7 @@
                                 size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.PageObj.RoomsideDoors.ZoomProperties.Value
+                        zoom: this.CorridorObj.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 1]"
 #endif
@@ -636,7 +636,7 @@
                     if (currentTileVisually.SourceRectangle.Location.X.AsInt == value)
                         return;
 
-                    this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -645,7 +645,7 @@
                                 size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.PageObj.RoomsideDoors.ZoomProperties.Value
+                        zoom: this.CorridorObj.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 2]"
 #endif
@@ -677,7 +677,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -687,13 +687,13 @@
             }
             set
             {
-                var currentTileVisually = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var currentTileVisually = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -702,7 +702,7 @@
                             size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.PageObj.RoomsideDoors.ZoomProperties.Value
+                        zoom: this.CorridorObj.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceTopAsInt 1]"
 #endif
@@ -714,7 +714,7 @@
                     if (currentTileVisually.SourceRectangle.Location.Y.AsInt == value)
                         return;
 
-                    this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -723,7 +723,7 @@
                             size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.PageObj.RoomsideDoors.ZoomProperties.Value
+                        zoom: this.CorridorObj.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceTopAsInt 2]"
 #endif
@@ -759,7 +759,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -769,7 +769,7 @@
             }
             set
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -800,7 +800,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -810,18 +810,18 @@
             }
             set
             {
-                var currentTileVisually = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var currentTileVisually = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.PageObj.RoomsideDoors.ZoomProperties.Value
+                        zoom: this.CorridorObj.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceWidthAsInt 1]"
 #endif
@@ -833,13 +833,13 @@
                     if (currentTileVisually.SourceRectangle.Size.Width.AsInt == value)
                         return;
 
-                    this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.PageObj.RoomsideDoors.ZoomProperties.Value
+                        zoom: this.CorridorObj.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceWidthAsInt 2]"
 #endif
@@ -862,7 +862,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -872,18 +872,18 @@
             }
             set
             {
-                var currentTileVisually = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var currentTileVisually = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
                             title: Models.TileTitle.Empty,
                             logicalDelete: Models.LogicalDelete.False),
-                        zoom: this.PageObj.RoomsideDoors.ZoomProperties.Value
+                        zoom: this.CorridorObj.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceHeightAsInt 1]"
 #endif
@@ -895,13 +895,13 @@
                     if (currentTileVisually.SourceRectangle.Size.Height.AsInt == value)
                         return;
 
-                    this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
                             title: currentTileVisually.Title,
                             logicalDelete: currentTileVisually.LogicalDelete),
-                        zoom: this.PageObj.RoomsideDoors.ZoomProperties.Value
+                        zoom: this.CorridorObj.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceHeightAsInt 2]"
 #endif
@@ -951,7 +951,7 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfCroppedCursorWorkingWidthAsFloat => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
+        public float CanvasOfCroppedCursorWorkingWidthAsFloat => this.CorridorObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat + (4 * this.HalfThicknessOfTileCursorLine.AsInt);
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
@@ -986,11 +986,11 @@
         /// </summary>
         public Models.Geometric.WidthFloat TrickWidth
         {
-            get => this.PageObj.RoomsideDoors.CropCursor.TrickWidth;
-            set => this.PageObj.RoomsideDoors.CropCursor.TrickWidth = value;
+            get => this.CorridorObj.RoomsideDoors.CropCursor.TrickWidth;
+            set => this.CorridorObj.RoomsideDoors.CropCursor.TrickWidth = value;
         }
 
-        public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithTrick => new WidthFloat(this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat + this.TrickWidth.AsFloat);
+        public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithTrick => new WidthFloat(this.CorridorObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat + this.TrickWidth.AsFloat);
 
         /// <summary>
         ///     <list type="bullet">
@@ -999,8 +999,8 @@
         /// </summary>
         public Models.Geometric.WidthFloat CroppedCursorPointedTileWorkingWidthWithoutTrick
         {
-            get => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick;
-            set => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = value;
+            get => this.CorridorObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick;
+            set => this.CorridorObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = value;
         }
 
         public Models.Geometric.HeightFloat CroppedCursorPointedTileWorkingHeight
@@ -1019,12 +1019,12 @@
         /// </summary>
         public float CroppedCursorPointedTileWorkingWidthAsFloat
         {
-            get => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat;
+            get => this.CorridorObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat;
             set
             {
-                if (this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat != value)
+                if (this.CorridorObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat != value)
                 {
-                    this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(value);
+                    this.CorridorObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(value);
 
                     // キャンバスを再描画
                     // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel CroppedCursorPointedTileWorkingWidthAsFloat set]");
@@ -1099,7 +1099,7 @@
         ///         <item>表示用テキスト</item>
         ///     </list>
         /// </summary>
-        public string CroppedCursorPointedTileWorkingWidthAsPresentableText => this.PageObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat.ToString("F1");
+        public string CroppedCursorPointedTileWorkingWidthAsPresentableText => this.CorridorObj.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick.AsFloat.ToString("F1");
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
@@ -1136,7 +1136,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1155,7 +1155,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1174,21 +1174,21 @@
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCropTileTitleAsStr => !this.PageObj.RoomsideDoors.CropTile.TargetTileRecordVisually.IsNone && !this.PageObj.RoomsideDoors.CropTile.IdOrEmpty.IsEmpty && !this.PageObj.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool;
+        public bool IsEnabledCropTileTitleAsStr => !this.CorridorObj.RoomsideDoors.CropTile.TargetTileRecordVisually.IsNone && !this.CorridorObj.RoomsideDoors.CropTile.IdOrEmpty.IsEmpty && !this.CorridorObj.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
         /// </summary>
         public string CropTileTitleAsStr
         {
-            get => this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually.Title.AsStr;
+            get => this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually.Title.AsStr;
             set
             {
-                if (this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually.Title.AsStr == value)
+                if (this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually.Title.AsStr == value)
                     return;
 
                 // 差分更新
-                this.PageObj.RoomsideDoors.CropTile.UpdateByDifference(
+                this.CorridorObj.RoomsideDoors.CropTile.UpdateByDifference(
                     tileTitle: TileTitle.FromString(value));
             }
         }
@@ -1198,14 +1198,14 @@
         /// </summary>
         public bool CropTileLogicalDeleteAsBool
         {
-            get => this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually.LogicalDelete.AsBool;
+            get => this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually.LogicalDelete.AsBool;
             set
             {
-                if (this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually.LogicalDelete.AsBool == value)
+                if (this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually.LogicalDelete.AsBool == value)
                     return;
 
                 // 差分更新
-                this.PageObj.RoomsideDoors.CropTile.UpdateByDifference(
+                this.CorridorObj.RoomsideDoors.CropTile.UpdateByDifference(
                     logicalDelete: LogicalDelete.FromBool(value));
             }
         }
@@ -1235,7 +1235,7 @@
         {
             get
             {
-                var contents = this.PageObj.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.CorridorObj.RoomsideDoors.CropTile.SavesRecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1274,14 +1274,14 @@
             get
             {
                 // ※１
-                var isEnabled = !this.PageObj.RoomsideDoors.CropTile.TargetTileRecordVisually.IsNone && (
+                var isEnabled = !this.CorridorObj.RoomsideDoors.CropTile.TargetTileRecordVisually.IsNone && (
                 // ※２
-                (this.PageObj.RoomsideDoors.CropTile.TargetTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.PageObj.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool)
+                (this.CorridorObj.RoomsideDoors.CropTile.TargetTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.CorridorObj.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool)
                 ||
                 // ※３
-                (this.PageObj.RoomsideDoors.CropTile.TargetTileRecordVisually.Id != TileIdOrEmpty.Empty && this.PageObj.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool));
+                (this.CorridorObj.RoomsideDoors.CropTile.TargetTileRecordVisually.Id != TileIdOrEmpty.Empty && this.CorridorObj.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool));
 
-                Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.PageObj.RoomsideDoors.CropTile.TargetTileRecordVisually.Dump()}");
+                Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.CorridorObj.RoomsideDoors.CropTile.TargetTileRecordVisually.Dump()}");
 
                 return isEnabled;
             }
@@ -1298,8 +1298,8 @@
         /// </summary>
         public bool IsEnabledRoomsideDoorsDeletesButton
         {
-            get => this.PageObj.RoomsideDoors.DeletesButton.IsEnabled;
-            set => this.PageObj.RoomsideDoors.DeletesButton.IsEnabled = value;
+            get => this.CorridorObj.RoomsideDoors.DeletesButton.IsEnabled;
+            set => this.CorridorObj.RoomsideDoors.DeletesButton.IsEnabled = value;
         }
         #endregion
 
@@ -1389,15 +1389,15 @@
             this.tilesetSourceBitmap = bitmap;
 
             // タイルセット画像のサイズ設定（画像の再作成）
-            this.PageObj.IndoorTilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
+            this.CorridorObj.RoomsideDoors.TilesetSourceImageSize = Models.FileEntries.PNGHelper.GetImageSize(this.TilesetImageFile);
             OnPropertyChanged(nameof(TilesetSourceImageWidthAsInt));
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
             // 作業画像の再作成
-            this.PageObj.TwoWayDoor.RemakeWorkingTilesetImage();
+            this.CorridorObj.TwoWayDoor.RemakeWorkingTilesetImage();
 
             // グリッド・キャンバス画像の再作成
-            this.PageObj.TwoWayDoor.RemakeGridCanvasImage();
+            this.CorridorObj.TwoWayDoor.RemakeGridCanvasImage();
         }
         #endregion
 
@@ -1450,12 +1450,11 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（内部モデル）
+        #region プロパティ（廊下モデル）
         /// <summary>
-        ///     内部モデル
+        ///     廊下モデル
         /// </summary>
-        internal ItsCorridor PageObj { get; }
-        internal IItsIndoor Indoor { get; }
+        internal ItsCorridor CorridorObj { get; }
         #endregion
 
         // - インターナル変更通知メソッド
@@ -1669,7 +1668,7 @@
         /// <summary>
         ///     ［切抜きカーソル］の線の半分の太さ
         /// </summary>
-        ThicknessOfLine halfThicknessOfTileCursorLine;
+        ThicknessOfLine halfThicknessOfTileCursorLine = new Models.ThicknessOfLine(0);
         #endregion
 
         #region 変更通知フィールド（［追加／上書き］ボタン　関連）

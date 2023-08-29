@@ -77,7 +77,7 @@ public partial class TileCropPage : ContentPage
         //
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.PageObj.OnNavigatedTo(this.skiaTilesetCanvas1);
+        context.CorridorObj.OnNavigatedTo(this.skiaTilesetCanvas1);
     }
     #endregion
 
@@ -92,7 +92,7 @@ public partial class TileCropPage : ContentPage
         // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
         var context = (TileCropPageViewModel)this.BindingContext;
 
-        context.PageObj.InvalidateByLocale();
+        context.CorridorObj.InvalidateByLocale();
     }
     #endregion
 
@@ -122,7 +122,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.PageObj.OnTilesetImageTapped(tappedPoint);
+        context.CorridorObj.OnTilesetImageTapped(tappedPoint);
     }
 
     /// <summary>
@@ -136,7 +136,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.PageObj.OnTilesetImagePointerMove(tappedPoint);
+        context.CorridorObj.OnTilesetImagePointerMove(tappedPoint);
     }
 
     /// <summary>
@@ -173,7 +173,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.PageObj.OnAddsButtonClicked();
+        context.CorridorObj.OnAddsButtonClicked();
     }
     #endregion
 
@@ -190,7 +190,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 登録タイル削除
-        context.PageObj.RoomsideDoors.DeletesButton.RemoveTile();
+        context.CorridorObj.RoomsideDoors.DeletesButton.RemoveTile();
     }
     #endregion
 
@@ -260,7 +260,7 @@ public partial class TileCropPage : ContentPage
 
         Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
 
-        context.PageObj.RoomsideDoors.AddsButton.OverwriteTile();
+        context.CorridorObj.RoomsideDoors.AddsButton.OverwriteTile();
     }
     #endregion
 }

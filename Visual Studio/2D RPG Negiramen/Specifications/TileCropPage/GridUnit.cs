@@ -11,10 +11,8 @@ internal class GridUnit
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="indoor"></param>
-    internal GridUnit(IItsIndoor indoor)
+    internal GridUnit()
     {
-        this.Indoor = indoor;
     }
     #endregion
 
@@ -24,8 +22,4 @@ internal class GridUnit
     ///     ［元画像グリッド］の単位
     /// </summary>
     internal Models.Geometric.SizeInt SourceValue { get; set; } = new(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
-
-    // - プライベート・プロパティ
-
-    IItsIndoor Indoor { get; }
 }

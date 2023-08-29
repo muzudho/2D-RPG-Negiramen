@@ -9,9 +9,4 @@ interface IItsIndoor
 {
     /// <summary>屋内（ページの各要素）</summary>
     ItsRoomsideDoors RoomsideDoors { get; }
-
-    // - パブリック・メソッド
-
-    int TilesetSourceImageWidthAsInt { get; }
-    int TilesetSourceImageHeightAsInt { get; }
 }

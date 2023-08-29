@@ -59,34 +59,15 @@
             this.GardensideDoor = new ItsGardensideDoor(this);
             this.RoomsideDoors = new ItsRoomsideDoors(this);
 
-            this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
+            this.PointingDevice = new InnerPointingDevice(this.GardensideDoor);
         }
         #endregion
-
-        // - パブリック変更通知プロパティ
-
-        public int TilesetSourceImageWidthAsInt => this.IndoorTilesetSourceImageSize.Width.AsInt;
-        public int TilesetSourceImageHeightAsInt => this.IndoorTilesetSourceImageSize.Height.AsInt;
 
         // - インターナル・プロパティ
 
         /// <summary>全体ページ・ビューモデル</summary>
         internal TileCropPageViewModel PageVM { get; }
         internal TileCropPageViewModel ObsoletedOutdoorPageVM => this.PageVM;
-
-        #region プロパティ（［タイルセット元画像］　関連）
-        /// <summary>
-        ///     ［タイルセット元画像］のサイズ
-        /// </summary>
-        internal SizeInt IndoorTilesetSourceImageSize
-        {
-            get => tilesetSourceImageSize;
-            set
-            {
-                tilesetSourceImageSize = value;
-            }
-        }
-        #endregion
 
         #region プロパティ（［タイルセット作業画像］　関連）
         /// <summary>
@@ -488,15 +469,6 @@
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
         }
-        #endregion
-
-        // - プライベート・フィールド
-
-        #region フィールド（［タイルセット元画像］　関連）
-        /// <summary>
-        ///     ［タイルセット元画像］サイズ
-        /// </summary>
-        SizeInt tilesetSourceImageSize = SizeInt.Empty;
         #endregion
     }
 }

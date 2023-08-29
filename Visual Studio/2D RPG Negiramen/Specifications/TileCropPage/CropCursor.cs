@@ -16,10 +16,10 @@ internal class CropCursor
     /// <param name="specObj"></param>
     internal CropCursor(
         ItsGardensideDoor gardensideDoor,
-        IItsIndoor indoor)
+        ItsRoomsideDoors roomsideDoors)
     {
         this.GardensideDoor = gardensideDoor;
-        this.Indoor = indoor;
+        this.RoomsideDoors = roomsideDoors;
     }
     #endregion
 
@@ -74,7 +74,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileWidth()
     {
-        this.GardensideDoor.PageVM.WorkingGridTileWidthAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * this.Indoor.RoomsideDoorsGridUnitSourceValueWidthAsInt;
+        this.GardensideDoor.PageVM.WorkingGridTileWidthAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * this.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -88,7 +88,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileHeight()
     {
-        this.GardensideDoor.PageVM.WorkingGridTileHeightAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * this.Indoor.RoomsideDoorsGridUnitSourceValueHeightAsInt;
+        this.GardensideDoor.PageVM.WorkingGridTileHeightAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * this.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -110,5 +110,5 @@ internal class CropCursor
     // - プライベート・プロパティ
 
     ItsGardensideDoor GardensideDoor { get; }
-    IItsIndoor Indoor { get; }
+    ItsRoomsideDoors RoomsideDoors { get; }
 }
