@@ -21,14 +21,12 @@ internal class ZoomProcessing : IProcessing
     internal ZoomProcessing(
         ItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
-        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor indoor,
         Zoom oldValue,
         Zoom newValue)
     {
         this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
-        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = indoor;
         this.OldValue = oldValue;
         this.NewValue = newValue;
@@ -61,7 +59,6 @@ internal class ZoomProcessing : IProcessing
     /// <summary>内部クラス</summary>
     ItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
-    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 
     /// <summary>

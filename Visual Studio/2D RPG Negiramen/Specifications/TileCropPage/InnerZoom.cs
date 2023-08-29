@@ -18,12 +18,10 @@ internal class InnerZoom
     internal InnerZoom(
         ItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
-        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor indoor)
     {
         this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
-        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = indoor;
     }
     #endregion
@@ -46,7 +44,7 @@ internal class InnerZoom
                 return;
 
             // TODO 循環参照しやすいから、良くないコード
-            this.ObsoletedOutdoor.ObsoletedPageVMZoomAsFloat = value.AsFloat;
+            this.GardensideDoor.PageVM.ZoomAsFloat = value.AsFloat;
         }
     }
 
@@ -76,7 +74,6 @@ internal class InnerZoom
                     App.History.Do(new ZoomProcessing(
                         this.TwoWayDoor,
                         this.GardensideDoor,
-                        this.ObsoletedOutdoor,
                         this.Indoor,
                         oldValue,
                         newValue));
@@ -99,7 +96,6 @@ internal class InnerZoom
 
     ItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
-    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 
     // - プライベート・フィールド

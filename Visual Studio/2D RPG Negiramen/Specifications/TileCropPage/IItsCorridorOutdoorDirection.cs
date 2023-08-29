@@ -1,11 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
-using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.Geometric;
-using _2D_RPG_Negiramen.Models.Visually;
-using TheFileEntryLocations = Models.FileEntries.Locations;
-using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
-
 /// <summary>
 ///     廊下の、屋外への向き
 /// </summary>
