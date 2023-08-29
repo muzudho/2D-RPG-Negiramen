@@ -74,26 +74,6 @@
 
         // - パブリック変更通知プロパティ
 
-        #region プロパティ（タイルセット設定ビューモデル）
-
-        public bool ObsoletedTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
-        {
-            return this.GardensideDoor.TilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
-        }
-        public void ObsoletedTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
-            TheGeometric.RectangleInt rect,
-            Zoom zoom,
-            TileTitle title,
-            LogicalDelete logicalDelete)
-        {
-            this.GardensideDoor.TilesetSettingsVM.AddTileVisually(id, rect, zoom, title, logicalDelete);
-        }
-        public bool ObsoletedTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
-        {
-            return this.GardensideDoor.TilesetSettingsVM.TryRemoveTileById(tileId, out resultVisuallyOrNull);
-        }
-        #endregion
-
         public int TilesetSourceImageWidthAsInt => this.IndoorTilesetSourceImageSize.Width.AsInt;
         public int TilesetSourceImageHeightAsInt => this.IndoorTilesetSourceImageSize.Height.AsInt;
 

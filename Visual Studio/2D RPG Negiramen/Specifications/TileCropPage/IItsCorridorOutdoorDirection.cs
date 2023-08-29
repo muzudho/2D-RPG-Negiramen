@@ -27,15 +27,6 @@ interface IItsCorridorOutdoorDirection
     void ObsoletedInvalidateTileIdChange();
     #endregion
 
-    bool ObsoletedTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
-    void ObsoletedTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
-        TheGeometric.RectangleInt rect,
-        Zoom zoom,
-        TileTitle title,
-        LogicalDelete logicalDelete);
-
-    bool ObsoletedTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
-
     string AddsButtonText { get; set; }
     string AddsButtonHint { get; }
     void InvalidateWorkingTargetTile();

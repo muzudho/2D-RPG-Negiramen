@@ -52,10 +52,10 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.ObsoletedOutdoor.ObsoletedInvalidateTileIdChange();
 
         // リストに登録済みか確認
-        if (!this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
+        if (!this.GardensideDoor.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
         {
             // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMAddTileVisually(
+            this.GardensideDoor.TilesetSettingsVM.AddTileVisually(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 zoom: Zoom.IdentityElement,
@@ -68,7 +68,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         //
 
         // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
+        if (this.GardensideDoor.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
         {
             TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
@@ -116,7 +116,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.ObsoletedOutdoor.ObsoletedInvalidateTileIdChange();
 
         // リストから削除
-        if (!this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMTryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
+        if (!this.GardensideDoor.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
         {
             // TODO 成功しなかったら異常
             throw new Exception();
