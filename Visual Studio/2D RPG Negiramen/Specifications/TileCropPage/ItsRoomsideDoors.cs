@@ -13,49 +13,125 @@ internal class ItsRoomsideDoors
 {
     internal ItsRoomsideDoors(ItsCorridor corridor)
     {
-        this.IndoorCultureInfo = new InnerCultureInfo(
-            gardensideDoor: corridor.GardensideDoor,
-            roomsideDoors: corridor.RoomsideDoors);
-
-        this.ZoomProperties = new ZoomProperties(
-            twoWayDoor: corridor.TwoWayDoor,
-            gardensideDoor: corridor.GardensideDoor,
-            roomsideDoors: corridor.RoomsideDoors);
-
-        this.GridUnit = new GridUnit();
-
-        this.CropCursor = new CropCursor(corridor.GardensideDoor, corridor.RoomsideDoors);
-
-        this.CropTile = new CropTile(
-            gardensideDoor: corridor.GardensideDoor,
-            roomsideDoors: corridor.RoomsideDoors);
-
-        this.AddsButton = new AddsButton(corridor.GardensideDoor, corridor.RoomsideDoors);
-        this.DeletesButton = new DeletesButton(corridor.GardensideDoor, corridor.RoomsideDoors);
+        this.Corridor = corridor;
     }
 
+    /// <summary>廊下</summary>
+    ItsCorridor Corridor { get; }
+
     /// <summary>文化情報</summary>
-    internal InnerCultureInfo IndoorCultureInfo { get; }
+    internal InnerCultureInfo IndoorCultureInfo
+    {
+        get
+        {
+            if (this.indoorCultureInfo == null)
+            {
+                this.indoorCultureInfo = new InnerCultureInfo(
+                    gardensideDoor: this.Corridor.GardensideDoor,
+                    roomsideDoors: this.Corridor.RoomsideDoors);
+            }
+
+            return this.indoorCultureInfo;
+        }
+    }
+    InnerCultureInfo indoorCultureInfo;
 
     /// <summary>ズーム</summary>
-    internal ZoomProperties ZoomProperties { get; }
+    internal ZoomProperties ZoomProperties
+    {
+        get
+        {
+            if (this.zoomProperties == null)
+            {
+                this.zoomProperties = new ZoomProperties(
+                    twoWayDoor: this.Corridor.TwoWayDoor,
+                    gardensideDoor: this.Corridor.GardensideDoor,
+                    roomsideDoors: this.Corridor.RoomsideDoors);
+            }
+
+            return this.zoomProperties;
+        }
+    }
+    ZoomProperties zoomProperties;
 
     /// <summary>グリッド単位</summary>
-    internal GridUnit GridUnit { get; }
+    internal GridUnit GridUnit
+    {
+        get
+        {
+            if (this.gridUnit==null)
+            {
+                this.gridUnit = new GridUnit();
+            }
+
+            return this.gridUnit;
+        }
+    }
+    GridUnit gridUnit;
 
     /// <summary>切抜きカーソル</summary>
-    internal CropCursor CropCursor { get; }
+    internal CropCursor CropCursor
+    {
+        get
+        {
+            if (this.cropCursor==null)
+            {
+                this.cropCursor = new CropCursor(this.Corridor.GardensideDoor, this);
+            }
+
+            return this.cropCursor;
+        }
+    }
+    CropCursor cropCursor;
 
     #region プロパティ（切抜きカーソルが指すタイル）
     /// <summary>切抜きカーソルが指すタイル</summary>
-    internal CropTile CropTile { get; }
+    internal CropTile CropTile
+    {
+        get
+        {
+            if (this.cropTile == null)
+            {
+                this.cropTile = new CropTile(
+                    gardensideDoor: this.Corridor.GardensideDoor,
+                    roomsideDoors: this);
+            }
+
+            return this.cropTile;
+        }
+    }
+    CropTile cropTile;
     #endregion
 
     /// <summary>追加ボタン</summary>
-    internal AddsButton AddsButton { get; }
+    internal AddsButton AddsButton
+    {
+        get
+        {
+            if (this.addsButton == null)
+            {
+                this.addsButton = new AddsButton(this.Corridor.GardensideDoor, this);
+            }
+
+            return this.addsButton;
+        }
+    }
+    AddsButton addsButton;
 
     /// <summary>削除ボタン</summary>
-    internal DeletesButton DeletesButton { get; }
+    internal DeletesButton DeletesButton
+    {
+        get
+        {
+            if (this.deletesButton == null)
+            {
+                this.deletesButton = new DeletesButton(this.Corridor.GardensideDoor, this);
+            }
+
+            return this.deletesButton;
+        }
+    }
+    DeletesButton deletesButton;
 
     #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
     /// <summary>
