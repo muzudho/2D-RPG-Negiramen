@@ -50,7 +50,7 @@
         /// <param name="wholePageVM">全体ページビュー・モデル</param>
         internal ItsCorridor(TileCropPageViewModel wholePageVM)
         {
-            OutdoorPageVM = wholePageVM;
+            this.OutdoorPageVM = wholePageVM;
 
             this.GardensideDoor = new ItsGardensideDoor(this);
             this.SiblingDoors = new ItsSiblingDoors(this);
@@ -79,9 +79,7 @@
         // - パブリック変更通知プロパティ
 
         #region プロパティ（タイルセット設定ビューモデル）
-        /// <summary>
-        ///     タイルセット設定ビューモデル
-        /// </summary>
+        /// <summary>タイルセット設定ビューモデル</summary>
         public TilesetDatatableVisually OutdoorTilesetSettingsVM => OutdoorPageVM.TilesetSettingsVM;
 
         public void TilesetSettingsVMIncreaseUsableId()
