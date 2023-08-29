@@ -64,7 +64,6 @@ internal class AddsButton
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
-            obsoletedOutdoor: this.Outdoor,
             spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
@@ -94,7 +93,6 @@ internal class AddsButton
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
-            obsoletedOutdoor: this.Outdoor,
             spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,

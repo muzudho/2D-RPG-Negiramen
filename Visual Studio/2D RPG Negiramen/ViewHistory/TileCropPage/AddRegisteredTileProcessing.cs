@@ -22,7 +22,6 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         ItsGardensideDoor gardensideDoor,
-        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor spec,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
@@ -30,7 +29,6 @@ internal class AddRegisteredTileProcessing : IProcessing
     {
         this.GardensideDoor = gardensideDoor;
 
-        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = spec;
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
@@ -49,7 +47,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Indoor.CropTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.ObsoletedOutdoor.ObsoletedPageVMInvalidateTileIdChange();
+        this.GardensideDoor.PageVM.InvalidateTileIdChange();
 
         // リストに登録済みか確認
         if (!this.GardensideDoor.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
@@ -113,7 +111,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Indoor.CropTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.ObsoletedOutdoor.ObsoletedPageVMInvalidateTileIdChange();
+        this.GardensideDoor.PageVM.InvalidateTileIdChange();
 
         // リストから削除
         if (!this.GardensideDoor.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
@@ -147,7 +145,6 @@ internal class AddRegisteredTileProcessing : IProcessing
 
     /// <summary>内部モデル</summary>
     ItsGardensideDoor GardensideDoor { get; }
-    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 
     /// <summary>

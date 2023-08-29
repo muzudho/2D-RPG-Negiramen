@@ -16,13 +16,9 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// <param name="owner"></param>
     internal RemoveRegisteredTileProcessing(
         ItsGardensideDoor gardensideDoor,
-        IItsCorridorOutdoorDirection obsoletedOutdoor,
-        IItsIndoor indoor,
         TileIdOrEmpty tileIdOrEmpty)
     {
         this.GardensideDoor = gardensideDoor;
-        this.ObsoletedOutdoor = obsoletedOutdoor;
-        this.Indoor = indoor;
         TileIdOrEmpty = tileIdOrEmpty;
     }
 
@@ -39,7 +35,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.ObsoletedOutdoor.ObsoletedPageVMInvalidateTilesetSettingsVM();
+            this.GardensideDoor.PageVM.InvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -77,7 +73,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.ObsoletedOutdoor.ObsoletedPageVMInvalidateTilesetSettingsVM();
+            this.GardensideDoor.PageVM.InvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -106,8 +102,6 @@ internal class RemoveRegisteredTileProcessing : IProcessing
 
     /// <summary>内部クラス</summary>
     ItsGardensideDoor GardensideDoor { get; }
-    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
-    IItsIndoor Indoor { get; }
 
     /// <summary>
     ///     ［タイル］のＩｄ
