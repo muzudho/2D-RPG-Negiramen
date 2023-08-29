@@ -9,8 +9,4 @@ interface IItsCorridorOutdoorDirection
     ///     屋外側のドア
     /// </summary>
     ItsGardensideDoor GardensideDoor { get; }
-
-    void ObsoletedPageVMInvalidateDeletesButton();
-
-    void ObsoletedPageVMInvalidateCultureInfo();
 }

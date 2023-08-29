@@ -201,19 +201,6 @@
             this.DeletesButton.Refresh();
         }
 
-        // - インターナル変更通知メソッド
-
-
-
-
-
-        public void ObsoletedPageVMInvalidateDeletesButton() => ObsoletedOutdoorPageVM.InvalidateDeletesButton();
-
-        public void ObsoletedPageVMInvalidateCultureInfo() => this.ObsoletedOutdoorPageVM.InvalidateCultureInfo();
-
-
-
-
         // - インターナル・メソッド
 
         #region 変更通知メソッド（ロケール変更による再描画）
