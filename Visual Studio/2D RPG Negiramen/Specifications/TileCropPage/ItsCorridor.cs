@@ -68,42 +68,40 @@
 
         public bool TilesetSettingsVMDeleteLogical(TileIdOrEmpty id)
         {
-            return this.OutdoorTilesetSettingsVM.DeleteLogical(id);
+            return this.GardensideDoor.TilesetSettingsVM.DeleteLogical(id);
         }
         public bool TilesetSettingsVMUndeleteLogical(TileIdOrEmpty id)
         {
-            return this.OutdoorTilesetSettingsVM.UndeleteLogical(id);
+            return this.GardensideDoor.TilesetSettingsVM.UndeleteLogical(id);
         }
 
 
         // - パブリック変更通知プロパティ
 
         #region プロパティ（タイルセット設定ビューモデル）
-        /// <summary>タイルセット設定ビューモデル</summary>
-        public TilesetDatatableVisually OutdoorTilesetSettingsVM => OutdoorPageVM.TilesetSettingsVM;
 
         public void TilesetSettingsVMIncreaseUsableId()
         {
-            this.OutdoorTilesetSettingsVM.IncreaseUsableId();
+            this.GardensideDoor.TilesetSettingsVM.IncreaseUsableId();
         }
 
-        public TileIdOrEmpty TilesetSettingsVMUsableId => this.OutdoorTilesetSettingsVM.UsableId;
+        public TileIdOrEmpty TilesetSettingsVMUsableId => this.GardensideDoor.TilesetSettingsVM.UsableId;
 
         public List<TileRecordVisually> TilesetSettingsVMTileRecordVisuallyList
         {
             get
             {
-                return this.OutdoorTilesetSettingsVM.TileRecordVisuallyList;
+                return this.GardensideDoor.TilesetSettingsVM.TileRecordVisuallyList;
             }
         }
 
         public bool TilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
-            return this.OutdoorTilesetSettingsVM.SaveCsv(tileSetSettingsFile);
+            return this.GardensideDoor.TilesetSettingsVM.SaveCsv(tileSetSettingsFile);
         }
         public bool TilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
-            return this.OutdoorTilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
+            return this.GardensideDoor.TilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
         }
         public void TilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
@@ -111,11 +109,11 @@
             TileTitle title,
             LogicalDelete logicalDelete)
         {
-            this.OutdoorTilesetSettingsVM.AddTileVisually(id, rect, zoom, title, logicalDelete);
+            this.GardensideDoor.TilesetSettingsVM.AddTileVisually(id, rect, zoom, title, logicalDelete);
         }
         public bool TilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
-            return this.OutdoorTilesetSettingsVM.TryRemoveTileById(tileId, out resultVisuallyOrNull);
+            return this.GardensideDoor.TilesetSettingsVM.TryRemoveTileById(tileId, out resultVisuallyOrNull);
         }
         #endregion
 
@@ -449,7 +447,7 @@
         /// </summary>
         internal void LoadCroppedCursorPointedTile()
         {
-            OutdoorTilesetSettingsVM.MatchByRectangle(
+            this.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
                 sourceRect: CroppedCursorPointedTileSourceRect,
                 some: (tileVisually) =>
                 {
@@ -610,8 +608,8 @@
             }
 
             // 軽くはない処理
-            HasIntersectionBetweenCroppedCursorAndRegisteredTile = OutdoorTilesetSettingsVM.HasIntersection(CroppedCursorPointedTileSourceRect);
-            IsCongruenceBetweenCroppedCursorAndRegisteredTile = OutdoorTilesetSettingsVM.IsCongruence(CroppedCursorPointedTileSourceRect);
+            HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.HasIntersection(CroppedCursorPointedTileSourceRect);
+            IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.IsCongruence(CroppedCursorPointedTileSourceRect);
 
             Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
@@ -721,7 +719,7 @@
 
 #if DEBUG
                 // ファイルの整合性チェック（重い処理）
-                if (OutdoorTilesetSettingsVM.IsValid())
+                if (this.GardensideDoor.TilesetSettingsVM.IsValid())
                 {
                     Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {TilesetDatatableFileLocation.Path.AsStr}");
                 }

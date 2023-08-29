@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
+using _2D_RPG_Negiramen.Models.Visually;
 using _2D_RPG_Negiramen.ViewModels;
 
 /// <summary>
@@ -16,6 +17,8 @@ internal class ItsGardensideDoor
     ItsCorridor Corridor { get; }
 
     /// <summary>全体ページ・ビューモデル</summary>
-    internal TileCropPageViewModel OutdoorPageVM => this.Corridor.OutdoorPageVM
+    internal TileCropPageViewModel PageVM => this.Corridor.OutdoorPageVM;
 
+    /// <summary>タイルセット設定ビューモデル</summary>
+    public TilesetDatatableVisually TilesetSettingsVM => PageVM.TilesetSettingsVM;
 }
