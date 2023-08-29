@@ -59,7 +59,7 @@ internal class ItsRoomsideDoors
             if (this.zoomProperties == null)
             {
                 this.zoomProperties = new ZoomProperties(
-                    twoWayDoor: this.Corridor.TwoWayDoor,
+                    twoWayDoor: this.Corridor,
                     gardensideDoor: this.Corridor.GardensideDoor,
                     roomsideDoors: this.Corridor.RoomsideDoors);
             }

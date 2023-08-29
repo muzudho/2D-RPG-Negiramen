@@ -19,7 +19,7 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
-        ItsTwoWayDoor twoWayDoor,
+        IItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors,
         Zoom oldValue,
@@ -57,7 +57,7 @@ internal class ZoomProcessing : IProcessing
     // - プライベート・プロパティ
 
     /// <summary>内部クラス</summary>
-    ItsTwoWayDoor TwoWayDoor { get; }
+    IItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
     ItsRoomsideDoors RoomsideDoors { get; }
 

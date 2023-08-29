@@ -16,7 +16,7 @@ internal class ZoomProperties
     /// </summary>
     /// <param name="specObj"></param>
     internal ZoomProperties(
-        ItsTwoWayDoor twoWayDoor,
+        IItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors)
     {
@@ -94,7 +94,7 @@ internal class ZoomProperties
 
     // - プライベート・プロパティ
 
-    ItsTwoWayDoor TwoWayDoor { get; }
+    IItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
     ItsRoomsideDoors RoomsideDoors { get; }
 
