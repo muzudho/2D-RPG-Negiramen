@@ -66,7 +66,7 @@
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this, this);
             this.CropCursor = new CropCursor(this, this);
-            this.CropTile = new CropTile(this.GardensideDoor, this, this);
+            this.CropTile = new CropTile(this.GardensideDoor, this);
             this.AddsButton = new AddsButton(this.GardensideDoor, this.SiblingDoors, this, this);
             this.DeletesButton = new DeletesButton(this.GardensideDoor, this, this);
         }

@@ -19,11 +19,9 @@ internal class CropTile
     /// <param name="specObj"></param>
     internal CropTile(
         ItsGardensideDoor gardensideDoor,
-        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor indoor)
     {
         this.GardensideDoor = gardensideDoor;
-        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = indoor;
     }
     #endregion
@@ -85,7 +83,7 @@ internal class CropTile
                     this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                     // 論理削除
-                    this.ObsoletedOutdoor.ObsoletedPageVMCropTileLogicalDeleteAsBool = false;
+                    this.GardensideDoor.PageVM.CropTileLogicalDeleteAsBool = false;
 
                     // 空にする
                     this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
@@ -114,10 +112,10 @@ internal class CropTile
 
                 // （変更通知を送っている）
                 this.IdOrEmpty = newValue.Id;
-                this.ObsoletedOutdoor.ObsoletedPageVMCropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                this.ObsoletedOutdoor.ObsoletedPageVMCropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.ObsoletedOutdoor.ObsoletedPageVMCropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.ObsoletedOutdoor.ObsoletedPageVMCropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                this.GardensideDoor.PageVM.CropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                this.GardensideDoor.PageVM.CropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                this.GardensideDoor.PageVM.CropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.GardensideDoor.PageVM.CropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
                 // this.CropTileTitleAsStr = newValue.Title.AsStr;
             }
 
@@ -203,6 +201,5 @@ internal class CropTile
     // - プライベート・プロパティ
 
     ItsGardensideDoor GardensideDoor { get; }
-    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 }
