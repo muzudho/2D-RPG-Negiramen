@@ -19,7 +19,7 @@
 #endif
 
     /// <summary>
-    ///     廊下モデル
+    ///     コーリダー（Corridor；廊下）アーキテクチャー
     ///     
     ///     <list type="bullet">
     ///         <item>ミュータブル</item>
@@ -41,8 +41,6 @@
             this.TwoWayDoor = new ItsTwoWayDoor(this);
             this.GardensideDoor = new ItsGardensideDoor(this);
             this.RoomsideDoors = new ItsRoomsideDoors(this);
-
-            this.PointingDevice = new InnerPointingDevice(this.GardensideDoor);
         }
         #endregion
 
@@ -75,9 +73,6 @@
         public string IndoorTilesetWorkingImageFilePathAsStr => App.CacheFolder.YourCircleFolder.YourWorkFolder.ImagesFolder.WorkingTilesetPng.Path.AsStr;
         #endregion
 
-        /// <summary>ポインティング・デバイス</summary>
-        internal InnerPointingDevice PointingDevice { get; }
-
         // - インターナル・メソッド
 
         #region 変更通知メソッド（ロケール変更による再描画）
@@ -89,159 +84,6 @@
         ///     </list>
         /// </summary>
         internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.Refresh();
-        #endregion
-
-        #region メソッド（［切抜きカーソル］と［切抜きカーソルが指すタイル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］の読込
-        /// </summary>
-        internal void CorridorLoadCroppedCursorPointedTile()
-        {
-            this.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
-                sourceRect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
-                some: (tileVisually) =>
-                {
-                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
-
-                    // タイルを指す（論理削除されているものも含む）
-                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = tileVisually;
-                },
-                none: () =>
-                {
-                    // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
-
-                    //
-                    // 空欄にする
-                    // ==========
-                    //
-
-                    // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new TileRecord(
-                            id: TileIdOrEmpty.Empty,
-                            rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
-                            title: TileTitle.Empty,
-                            logicalDelete: LogicalDelete.False),
-                        zoom: this.RoomsideDoors.ZoomProperties.Value
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
-#endif
-                        );
-                },
-                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
-                includeLogicalDelete: true);
-        }
-        #endregion
-
-        #region メソッド（画面遷移でこの画面に戻ってきた時）
-        /// <summary>
-        ///     画面遷移でこの画面に戻ってきた時
-        /// </summary>
-        internal void ReactOnVisited()
-        {
-            // ロケールが変わってるかもしれないので反映
-            this.OwnerPageVM.InvalidateCultureInfo();
-
-            // グリッド・キャンバス
-            {
-                // グリッドの左上位置（初期値）
-                this.OwnerPageVM.GridPhaseSourceLocation = new PointInt(new XInt(0), new YInt(0));
-
-                // グリッドのタイルサイズ（初期値）
-                this.OwnerPageVM.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
-
-                // グリッド・キャンバス画像の再作成
-                this.TwoWayDoor.RemakeGridCanvasImage();
-            }
-        }
-        #endregion
-
-        #region メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
-        /// <summary>
-        ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>軽くはない処理</item>
-        ///     </list>
-        /// </summary>
-        internal void WholeRecalculateBetweenCropCursorAndRegisteredTile()
-        {
-            if (this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
-            {
-                // カーソルが無ければ、交差も無い。合同ともしない
-                this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
-                this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
-                return;
-            }
-
-            // 軽くはない処理
-            this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.HasIntersection(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
-            this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.IsCongruence(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
-
-            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
-        }
-        #endregion
-
-        #region メソッド（タイル・フォーム更新）
-        /// <summary>
-        ///     タイル・フォーム更新
-        /// </summary>
-        internal void RefreshTileForm()
-        {
-            //
-            // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
-            // ====================================================================
-            //
-
-            // ズームしたまま
-            RectangleFloat workingRect = CoordinateHelper.GetCursorRectangle(
-                startPoint: this.PointingDevice.StartPoint,
-                endPoint: this.PointingDevice.CurrentPoint,
-                gridLeftTop: this.OwnerPageVM.WorkingGridPhase,
-                gridTile: this.OwnerPageVM.WorkingGridUnit);
-
-            // ズームを除去
-            var sourceRect = new RectangleInt(
-                location: new PointInt(
-                    x: new XInt((int)(workingRect.Location.X.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat)),
-                    y: new YInt((int)(workingRect.Location.Y.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat))),
-                size: new SizeInt(
-                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat)),
-                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat))));
-
-            //
-            // 計算値の反映
-            // ============
-            //
-            // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
-            this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = sourceRect;
-
-            //
-            // 登録済みのタイルと被っていないか判定
-            // ====================================
-            //
-            //      - （軽くない処理）
-            //
-            WholeRecalculateBetweenCropCursorAndRegisteredTile();
-
-            //
-            // 切抜きカーソル更新
-            // ==================
-            //
-            CorridorLoadCroppedCursorPointedTile();
-
-            // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.RoomsideDoors.AddsButton.Refresh();
-
-            // （切抜きカーソル更新後）［削除］ボタン活性化
-            this.RoomsideDoors.DeletesButton.Refresh();
-
-            // ［追加／復元］ボタン
-            this.OwnerPageVM.InvalidateAddsButton();
-
-            // タイル・タイトル
-            this.OwnerPageVM.InvalidateTileTitle();
-        }
         #endregion
 
         // - インターナル・イベントハンドラ
@@ -409,7 +251,7 @@
                 Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・ダウン");
 
                 // ポイントしている位置
-                this.PointingDevice.CurrentPoint = this.PointingDevice.StartPoint = new PointFloat(
+                this.RoomsideDoors.PointingDevice.CurrentPoint = this.RoomsideDoors.PointingDevice.StartPoint = new PointFloat(
                     new XFloat((float)tappedPoint.X),
                     new YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
@@ -429,7 +271,7 @@
                 Trace.WriteLine("[TileCropPage.xml.cs TileImage_OnTapped] 疑似マウス・アップ");
 
                 // ポイントしている位置
-                this.PointingDevice.CurrentPoint = new PointFloat(
+                this.RoomsideDoors.PointingDevice.CurrentPoint = new PointFloat(
                     new XFloat((float)tappedPoint.X),
                     new YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
@@ -457,7 +299,7 @@
                 //
 
                 // ポイントしている位置
-                this.PointingDevice.CurrentPoint = new PointFloat(
+                this.RoomsideDoors.PointingDevice.CurrentPoint = new PointFloat(
                     new XFloat((float)tappedPoint.X),
                     new YFloat((float)tappedPoint.Y));
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
@@ -467,6 +309,161 @@
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
+        }
+        #endregion
+
+        // - プライベート・メソッド
+
+        #region メソッド（画面遷移でこの画面に戻ってきた時）
+        /// <summary>
+        ///     画面遷移でこの画面に戻ってきた時
+        /// </summary>
+        void ReactOnVisited()
+        {
+            // ロケールが変わってるかもしれないので反映
+            this.OwnerPageVM.InvalidateCultureInfo();
+
+            // グリッド・キャンバス
+            {
+                // グリッドの左上位置（初期値）
+                this.OwnerPageVM.GridPhaseSourceLocation = new PointInt(new XInt(0), new YInt(0));
+
+                // グリッドのタイルサイズ（初期値）
+                this.OwnerPageVM.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
+
+                // グリッド・キャンバス画像の再作成
+                this.TwoWayDoor.RemakeGridCanvasImage();
+            }
+        }
+        #endregion
+
+        #region メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
+        /// <summary>
+        ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算
+        ///     
+        ///     <list type="bullet">
+        ///         <item>軽くはない処理</item>
+        ///     </list>
+        /// </summary>
+        void RecalculateBetweenCropCursorAndRegisteredTile()
+        {
+            if (this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
+            {
+                // カーソルが無ければ、交差も無い。合同ともしない
+                this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
+                return;
+            }
+
+            // 軽くはない処理
+            this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.HasIntersection(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
+            this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.IsCongruence(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
+
+            Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
+        }
+        #endregion
+
+        #region メソッド（［切抜きカーソル］と［切抜きカーソルが指すタイル］　関連）
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］の読込
+        /// </summary>
+        void LoadCroppedCursorPointedTile()
+        {
+            this.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
+                sourceRect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
+                some: (tileVisually) =>
+                {
+                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
+
+                    // タイルを指す（論理削除されているものも含む）
+                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = tileVisually;
+                },
+                none: () =>
+                {
+                    // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+
+                    //
+                    // 空欄にする
+                    // ==========
+                    //
+
+                    // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
+                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
+                        tileRecord: new TileRecord(
+                            id: TileIdOrEmpty.Empty,
+                            rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
+                            title: TileTitle.Empty,
+                            logicalDelete: LogicalDelete.False),
+                        zoom: this.RoomsideDoors.ZoomProperties.Value
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
+#endif
+                        );
+                },
+                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
+                includeLogicalDelete: true);
+        }
+        #endregion
+
+        #region メソッド（タイル・フォーム更新）
+        /// <summary>
+        ///     タイル・フォーム更新
+        /// </summary>
+        void RefreshTileForm()
+        {
+            //
+            // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
+            // ====================================================================
+            //
+
+            // ズームしたまま
+            RectangleFloat workingRect = CoordinateHelper.GetCursorRectangle(
+                startPoint: this.RoomsideDoors.PointingDevice.StartPoint,
+                endPoint: this.RoomsideDoors.PointingDevice.CurrentPoint,
+                gridLeftTop: this.OwnerPageVM.WorkingGridPhase,
+                gridTile: this.OwnerPageVM.WorkingGridUnit);
+
+            // ズームを除去
+            var sourceRect = new RectangleInt(
+                location: new PointInt(
+                    x: new XInt((int)(workingRect.Location.X.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat)),
+                    y: new YInt((int)(workingRect.Location.Y.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat))),
+                size: new SizeInt(
+                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat)),
+                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat))));
+
+            //
+            // 計算値の反映
+            // ============
+            //
+            // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
+            this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = sourceRect;
+
+            //
+            // 登録済みのタイルと被っていないか判定
+            // ====================================
+            //
+            //      - （軽くない処理）
+            //
+            RecalculateBetweenCropCursorAndRegisteredTile();
+
+            //
+            // 切抜きカーソル更新
+            // ==================
+            //
+            this.LoadCroppedCursorPointedTile();
+
+            // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
+            this.RoomsideDoors.AddsButton.Refresh();
+
+            // （切抜きカーソル更新後）［削除］ボタン活性化
+            this.RoomsideDoors.DeletesButton.Refresh();
+
+            // ［追加／復元］ボタン
+            this.OwnerPageVM.InvalidateAddsButton();
+
+            // タイル・タイトル
+            this.OwnerPageVM.InvalidateTileTitle();
         }
         #endregion
     }

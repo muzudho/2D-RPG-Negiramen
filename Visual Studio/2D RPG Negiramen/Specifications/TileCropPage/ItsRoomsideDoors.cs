@@ -36,6 +36,21 @@ internal class ItsRoomsideDoors
     }
     InnerCultureInfo indoorCultureInfo;
 
+    /// <summary>ポインティング・デバイス</summary>
+    internal InnerPointingDevice PointingDevice
+    {
+        get
+        {
+            if (this.pointingDevice==null)
+            {
+                this.pointingDevice = new InnerPointingDevice(this.Corridor.GardensideDoor);
+            }
+
+            return this.pointingDevice;
+        }
+    }
+    InnerPointingDevice pointingDevice;
+
     /// <summary>ズーム</summary>
     internal ZoomProperties ZoomProperties
     {

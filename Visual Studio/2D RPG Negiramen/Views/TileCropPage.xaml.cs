@@ -1,9 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Views;
 
 using _2D_RPG_Negiramen.ViewModels;
-using System.IO;
 using System.Diagnostics;
-using TheGraphics = Microsoft.Maui.Graphics;
 
 #if IOS || ANDROID || MACCATALYST
 using Microsoft.Maui.Graphics.Platform;
@@ -77,7 +75,7 @@ public partial class TileCropPage : ContentPage
         //
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.CorridorObj.OnNavigatedTo(this.skiaTilesetCanvas1);
+        context.Corridor.OnNavigatedTo(this.skiaTilesetCanvas1);
     }
     #endregion
 
@@ -92,7 +90,7 @@ public partial class TileCropPage : ContentPage
         // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
         var context = (TileCropPageViewModel)this.BindingContext;
 
-        context.CorridorObj.InvalidateByLocale();
+        context.Corridor.InvalidateByLocale();
     }
     #endregion
 
@@ -122,7 +120,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.CorridorObj.OnTilesetImageTapped(tappedPoint);
+        context.Corridor.OnTilesetImageTapped(tappedPoint);
     }
 
     /// <summary>
@@ -136,7 +134,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.CorridorObj.OnTilesetImagePointerMove(tappedPoint);
+        context.Corridor.OnTilesetImagePointerMove(tappedPoint);
     }
 
     /// <summary>
@@ -173,7 +171,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.CorridorObj.OnAddsButtonClicked();
+        context.Corridor.OnAddsButtonClicked();
     }
     #endregion
 
@@ -190,7 +188,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 登録タイル削除
-        context.CorridorObj.RoomsideDoors.DeletesButton.RemoveTile();
+        context.Corridor.RoomsideDoors.DeletesButton.RemoveTile();
     }
     #endregion
 
@@ -260,7 +258,7 @@ public partial class TileCropPage : ContentPage
 
         Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
 
-        context.CorridorObj.RoomsideDoors.AddsButton.OverwriteTile();
+        context.Corridor.RoomsideDoors.AddsButton.OverwriteTile();
     }
     #endregion
 }
