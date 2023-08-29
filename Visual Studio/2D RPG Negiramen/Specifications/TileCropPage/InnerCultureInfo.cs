@@ -17,10 +17,10 @@ internal class InnerCultureInfo
     /// <param name="owner"></param>
     internal InnerCultureInfo(
         ItsGardensideDoor gardensideDoor,
-        IItsIndoor indoor)
+        ItsRoomsideDoors roomsideDoors)
     {
         this.GardensideDoor = gardensideDoor;
-        this.Indoor = indoor;
+        this.RoomsideDoors = roomsideDoors;
     }
     #endregion
 
@@ -45,7 +45,7 @@ internal class InnerCultureInfo
 
                 // 再帰的
                 App.History.Do(new SetCultureInfoProcessing(
-                    indoor: this.Indoor,
+                    roomsideDoors: this.RoomsideDoors,
                     oldValue: oldValue,
                     newValue: newValue));
             }
@@ -55,6 +55,6 @@ internal class InnerCultureInfo
 
     // - プライベート・プロパティ
 
+    ItsRoomsideDoors RoomsideDoors { get; }
     ItsGardensideDoor GardensideDoor { get; }
-    IItsIndoor Indoor { get; }
 }

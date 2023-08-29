@@ -1,7 +1,4 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
-
-using _2D_RPG_Negiramen.Models.Geometric;
-
 /// <summary>
 ///     各部屋
 ///     
@@ -15,7 +12,7 @@ internal class ItsRoomsideDoors
     {
         this.IndoorCultureInfo = new InnerCultureInfo(
             gardensideDoor: corridor.GardensideDoor,
-            indoor: corridor);
+            roomsideDoors: corridor.RoomsideDoors);
 
         this.ZoomProperties = new ZoomProperties(
             twoWayDoor: corridor.TwoWayDoor,
