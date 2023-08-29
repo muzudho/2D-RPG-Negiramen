@@ -16,8 +16,6 @@ interface IItsIndoor
 
     // - パブリック・プロパティ
 
-    CultureInfo RoomsideDoorsIndoorCultureInfoSelected { get;  set; }
-
     TileRecordVisually RoomsideDoorsCropTileSavesRecordVisually { get; }
 
     TileRecordVisually RoomsideDoorsCropTileTargetTileRecordVisually { get; }

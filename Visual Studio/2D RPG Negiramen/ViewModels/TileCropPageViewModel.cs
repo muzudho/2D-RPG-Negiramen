@@ -61,8 +61,8 @@
         /// </summary>
         public CultureInfo SelectedCultureInfo
         {
-            get => this.Indoor.RoomsideDoorsIndoorCultureInfoSelected;
-            set => this.Indoor.RoomsideDoorsIndoorCultureInfoSelected = value;
+            get => this.PageObj.RoomsideDoors.IndoorCultureInfo.Selected;
+            set => this.PageObj.RoomsideDoors.IndoorCultureInfo.Selected = value;
         }
 
         /// <summary>

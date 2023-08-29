@@ -17,10 +17,10 @@ internal class DeletesButton
     /// <param name="specObj"></param>
     internal DeletesButton(
         ItsGardensideDoor gardensideDoor,
-        IItsIndoor indoor)
+        ItsRoomsideDoors roomsideDoors)
     {
         this.GardensideDoor = gardensideDoor;
-        this.Indoor = indoor;
+        this.RoomsideDoors = roomsideDoors;
     }
     #endregion
 
@@ -52,7 +52,7 @@ internal class DeletesButton
     /// </summary>
     internal void Refresh()
     {
-        var contents = this.Indoor.RoomsideDoorsCropTileSavesRecordVisually;
+        var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
 
         if (contents.IsNone)
         {
@@ -83,7 +83,7 @@ internal class DeletesButton
     {
         App.History.Do(new RemoveRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
-            tileIdOrEmpty: this.Indoor.RoomsideDoorsCropTileIdOrEmpty));
+            tileIdOrEmpty: this.RoomsideDoors.CropTile.IdOrEmpty));
 
         this.GardensideDoor.PageVM.InvalidateForHistory();
     }
@@ -101,5 +101,5 @@ internal class DeletesButton
     // - プライベート・プロパティ
 
     ItsGardensideDoor GardensideDoor { get; }
-    IItsIndoor Indoor { get; }
+    ItsRoomsideDoors RoomsideDoors { get; }
 }

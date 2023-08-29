@@ -63,7 +63,7 @@
             this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
             this.CropCursor = new CropCursor(this.GardensideDoor, this);
             this.AddsButton = new AddsButton(this.GardensideDoor, this.RoomsideDoors, this);
-            this.DeletesButton = new DeletesButton(this.GardensideDoor, this);
+            this.DeletesButton = new DeletesButton(this.GardensideDoor, this.RoomsideDoors);
         }
         #endregion
 
@@ -98,16 +98,6 @@
         /// <summary>全体ページ・ビューモデル</summary>
         internal TileCropPageViewModel PageVM { get; }
         internal TileCropPageViewModel ObsoletedOutdoorPageVM => this.PageVM;
-
-
-
-
-        public CultureInfo RoomsideDoorsIndoorCultureInfoSelected
-        {
-            get => this.RoomsideDoors.IndoorCultureInfo.Selected;
-            set => this.RoomsideDoors.IndoorCultureInfo.Selected = value;
-        }
-
 
         #region プロパティ（［タイルセット元画像］　関連）
         /// <summary>
