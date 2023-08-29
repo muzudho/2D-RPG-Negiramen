@@ -60,7 +60,7 @@
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this, this);
             this.CropCursor = new CropCursor(this, this);
-            this.CropTile = new CropTile(this, this);
+            this.CropTile = new CropTile(this.GardensideDoor, this, this);
             this.AddsButton = new AddsButton(this.GardensideDoor, this.SiblingDoors, this, this);
             this.DeletesButton = new DeletesButton(this.GardensideDoor, this, this);
         }
@@ -144,18 +144,18 @@
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
         ///     </list>
         /// </summary>
-        public float ZoomAsFloat
+        public float ObsoletedZoomAsFloat
         {
-            get => this.ObsoletedOutdoorPageVM.ZoomAsFloat;
-            set => this.ObsoletedOutdoorPageVM.ZoomAsFloat = value;
+            get => this.GardensideDoor.PageVM.ZoomAsFloat;
+            set => this.GardensideDoor.PageVM.ZoomAsFloat = value;
         }
         #endregion
 
         /// <summary>変更通知プロパティへのアクセッサ―</summary>
-        public float ZoomMinAsFloat => this.ObsoletedOutdoorPageVM.ZoomMinAsFloat;
+        public float ObsoletedZoomMinAsFloat => this.ObsoletedOutdoorPageVM.ZoomMinAsFloat;
 
         /// <summary>変更通知プロパティへのアクセッサ―</summary>
-        public float ZoomMaxAsFloat => this.ObsoletedOutdoorPageVM.ZoomMaxAsFloat;
+        public float ObsoletedZoomMaxAsFloat => this.ObsoletedOutdoorPageVM.ZoomMaxAsFloat;
 
 
         public int GridUnitSourceValueWidthAsInt
@@ -484,24 +484,24 @@
         public void RemakeWorkingTilesetImage()
         {
             // 元画像をベースに、作業画像を複製
-            var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(ObsoletedOutdoorPageVM.TilesetSourceBitmap));
+            var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(this.GardensideDoor.PageVM.TilesetSourceBitmap));
 
             // 画像処理（明度を下げる）
             FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
 
             // 作業画像のサイズ計算
-            ObsoletedOutdoorPageVM.workingImageSize = new SizeInt(
-                width: new WidthInt((int)(ZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt)),
-                height: new HeightInt((int)(ZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt)));
+            this.GardensideDoor.PageVM.workingImageSize = new SizeInt(
+                width: new WidthInt((int)(ObsoletedZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt)),
+                height: new HeightInt((int)(ObsoletedZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
-            ObsoletedOutdoorPageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
+            this.GardensideDoor.PageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
                 size: new SKSizeI(
-                    width: ObsoletedOutdoorPageVM.workingImageSize.Width.AsInt,
-                    height: ObsoletedOutdoorPageVM.workingImageSize.Height.AsInt),
+                    width: this.GardensideDoor.PageVM.workingImageSize.Width.AsInt,
+                    height: this.GardensideDoor.PageVM.workingImageSize.Height.AsInt),
                 quality: SKFilterQuality.Medium);
 
-            ObsoletedOutdoorPageVM.InvalidateTilesetWorkingImage();
+            this.GardensideDoor.PageVM.InvalidateTilesetWorkingImage();
         }
 
         /// <summary>
@@ -551,8 +551,8 @@
         public void RemakeGridCanvasImage()
         {
             ObsoletedOutdoorPageVM.GridCanvasImageSize = new SizeInt(
-                width: new WidthInt((int)(ZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt),
-                height: new HeightInt((int)(ZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt));
+                width: new WidthInt((int)(ObsoletedZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt),
+                height: new HeightInt((int)(ObsoletedZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt));
         }
         #endregion
 
@@ -603,11 +603,11 @@
             // ズームを除去
             var sourceRect = new RectangleInt(
                 location: new PointInt(
-                    x: new XInt((int)(workingRect.Location.X.AsFloat / ZoomAsFloat)),
-                    y: new YInt((int)(workingRect.Location.Y.AsFloat / ZoomAsFloat))),
+                    x: new XInt((int)(workingRect.Location.X.AsFloat / ObsoletedZoomAsFloat)),
+                    y: new YInt((int)(workingRect.Location.Y.AsFloat / ObsoletedZoomAsFloat))),
                 size: new SizeInt(
-                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / ZoomAsFloat)),
-                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / ZoomAsFloat))));
+                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / ObsoletedZoomAsFloat)),
+                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / ObsoletedZoomAsFloat))));
 
             //
             // 計算値の反映

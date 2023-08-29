@@ -44,7 +44,7 @@ internal class InnerZoom
                 return;
 
             // TODO 循環参照しやすいから、良くないコード
-            this.Outdoor.ZoomAsFloat = value.AsFloat;
+            this.Outdoor.ObsoletedZoomAsFloat = value.AsFloat;
         }
     }
 
@@ -62,7 +62,7 @@ internal class InnerZoom
         {
             if (this.value.AsFloat != value)
             {
-                if (this.Outdoor.ZoomMinAsFloat <= value && value <= this.Outdoor.ZoomMaxAsFloat)
+                if (this.Outdoor.ObsoletedZoomMinAsFloat <= value && value <= this.Outdoor.ObsoletedZoomMaxAsFloat)
                 {
                     Zoom oldValue = this.value;
                     Zoom newValue = new Zoom(value);

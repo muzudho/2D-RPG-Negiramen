@@ -53,12 +53,12 @@ interface IItsCorridorOutdoorDirection
 
     void InvalidateIsMouseDragging();
 
-    float ZoomMinAsFloat { get; }
-    float ZoomMaxAsFloat { get; }
+    float ObsoletedZoomMinAsFloat { get; }
+    float ObsoletedZoomMaxAsFloat { get; }
 
 
 
-    float ZoomAsFloat { get; set; }
+    float ObsoletedZoomAsFloat { get; set; }
 
     /// <summary>
     ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形

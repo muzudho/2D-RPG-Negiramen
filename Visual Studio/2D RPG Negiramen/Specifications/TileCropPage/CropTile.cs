@@ -18,10 +18,12 @@ internal class CropTile
     /// </summary>
     /// <param name="specObj"></param>
     internal CropTile(
-        IItsCorridorOutdoorDirection outdoor,
+        ItsGardensideDoor gardensideDoor,
+        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor indoor)
     {
-        this.Outdoor = outdoor;
+        this.GardensideDoor = gardensideDoor;
+        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = indoor;
     }
     #endregion
@@ -80,10 +82,10 @@ internal class CropTile
                     this.IdOrEmpty = TileIdOrEmpty.Empty;
 
                     // 元画像の位置とサイズ
-                    this.Outdoor.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+                    this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                     // 論理削除
-                    this.Outdoor.CropTileLogicalDeleteAsBool = false;
+                    this.ObsoletedOutdoor.CropTileLogicalDeleteAsBool = false;
 
                     // 空にする
                     this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
@@ -112,15 +114,15 @@ internal class CropTile
 
                 // （変更通知を送っている）
                 this.IdOrEmpty = newValue.Id;
-                this.Outdoor.CropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                this.Outdoor.CropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.Outdoor.CropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.Outdoor.CropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                this.ObsoletedOutdoor.CropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                this.ObsoletedOutdoor.CropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                this.ObsoletedOutdoor.CropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.ObsoletedOutdoor.CropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
                 // this.CropTileTitleAsStr = newValue.Title.AsStr;
             }
 
             // 変更通知を送りたい
-            this.Outdoor.ObsoletedInvalidateTileIdChange();
+            this.ObsoletedOutdoor.ObsoletedInvalidateTileIdChange();
         }
     }
     #endregion
@@ -192,7 +194,7 @@ internal class CropTile
         }
 
         // 変更通知を送る
-        this.Outdoor.ObsoletedInvalidateTileIdChange();
+        this.ObsoletedOutdoor.ObsoletedInvalidateTileIdChange();
 
         Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
     }
@@ -200,6 +202,7 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
-    IItsCorridorOutdoorDirection Outdoor { get; }
+    ItsGardensideDoor GardensideDoor { get; }
+    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 }

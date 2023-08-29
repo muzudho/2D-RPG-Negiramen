@@ -20,13 +20,13 @@ internal class ZoomProcessing : IProcessing
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
         ItsGardensideDoor gardensideDoor,
-        IItsCorridorOutdoorDirection outdoor,
+        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor indoor,
         Zoom oldValue,
         Zoom newValue)
     {
         this.GardensideDoor = gardensideDoor;
-        this.ObsoletedOutdoor = outdoor;
+        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = indoor;
         this.OldValue = oldValue;
         this.NewValue = newValue;
@@ -108,12 +108,12 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ObsoletedOutdoor.ZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.ObsoletedOutdoor.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.ObsoletedOutdoor.ZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ObsoletedOutdoor.ObsoletedZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.ObsoletedOutdoor.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.ObsoletedOutdoor.ObsoletedZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMTileRecordVisuallyList)
+        foreach (var registeredTileVM in this.GardensideDoor.TilesetSettingsVM.TileRecordVisuallyList)
         {
             // ズーム
             registeredTileVM.Zoom = this.Indoor.RoomsideDoors.ZoomValue;
