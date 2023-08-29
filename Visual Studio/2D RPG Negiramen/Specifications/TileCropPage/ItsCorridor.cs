@@ -62,7 +62,6 @@
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
             this.CropCursor = new CropCursor(this.GardensideDoor, this);
-            this.AddsButton = new AddsButton(this.GardensideDoor, this.RoomsideDoors, this);
         }
         #endregion
 
@@ -144,19 +143,6 @@
         /// <summary>ポインティング・デバイス</summary>
         internal InnerPointingDevice PointingDevice { get; }
 
-        /// <summary>追加ボタン</summary>
-        internal AddsButton AddsButton { get; }
-
-        public void AddsButtonRefresh()
-        {
-            this.AddsButton.Refresh();
-        }
-
-        public void RoomsideDoorsDeletesButtonRefresh()
-        {
-            this.RoomsideDoors.DeletesButton.Refresh();
-        }
-
         // - インターナル・メソッド
 
         #region 変更通知メソッド（ロケール変更による再描画）
@@ -167,7 +153,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateByLocale() => this.AddsButton.Refresh();
+        internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.Refresh();
         #endregion
 
         #region メソッド（［切抜きカーソル］と［切抜きカーソルが指すタイル］　関連）
@@ -310,7 +296,7 @@
             CorridorLoadCroppedCursorPointedTile();
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.AddsButton.Refresh();
+            this.RoomsideDoors.AddsButton.Refresh();
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
             this.RoomsideDoors.DeletesButton.Refresh();
@@ -476,12 +462,12 @@
                 // ［追加］（新規作成）だ
 
                 // 登録タイル追加
-                this.AddsButton.AddTile();
+                this.RoomsideDoors.AddsButton.AddTile();
             }
             else
             {
                 // 上書きボタンだが、［上書き］処理をする
-                this.AddsButton.OverwriteTile();
+                this.RoomsideDoors.AddsButton.OverwriteTile();
             }
         }
         #endregion

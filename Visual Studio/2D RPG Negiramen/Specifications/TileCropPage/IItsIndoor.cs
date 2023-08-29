@@ -25,13 +25,6 @@ interface IItsIndoor
 
     // - パブリック・メソッド
 
-    void AddsButtonRefresh();
-
-    void RoomsideDoorsDeletesButtonRefresh();
-
-
-
-
     void CropCursorRecalculateWorkingGridTileWidth();
     void CropCursorRecalculateWorkingGridTileHeight();
 

@@ -260,7 +260,7 @@ public partial class TileCropPage : ContentPage
 
         Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
 
-        context.PageObj.AddsButton.OverwriteTile();
+        context.PageObj.RoomsideDoors.AddsButton.OverwriteTile();
     }
     #endregion
 }

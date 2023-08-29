@@ -132,7 +132,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         }
 
         //  ［削除］ボタンの再描画
-        this.ObsoletedIndoor.RoomsideDoorsDeletesButtonRefresh();
+        this.RoomsideDoors.DeletesButton.Refresh();
 
         //
         // カラーマップの再描画

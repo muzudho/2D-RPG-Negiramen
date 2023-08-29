@@ -21,8 +21,10 @@ internal class ItsRoomsideDoors
 
         this.CropTile = new CropTile(
             gardensideDoor: corridor.GardensideDoor,
+            roomsideDoors: corridor.RoomsideDoors,
             indoor: corridor);
 
+        this.AddsButton = new AddsButton(corridor.GardensideDoor, corridor.RoomsideDoors, corridor);
         this.DeletesButton = new DeletesButton(corridor.GardensideDoor, corridor.RoomsideDoors);
     }
 
@@ -36,6 +38,9 @@ internal class ItsRoomsideDoors
     /// <summary>切抜きカーソルが指すタイル</summary>
     internal CropTile CropTile { get; }
     #endregion
+
+    /// <summary>追加ボタン</summary>
+    internal AddsButton AddsButton { get; }
 
     /// <summary>削除ボタン</summary>
     internal DeletesButton DeletesButton { get; }
