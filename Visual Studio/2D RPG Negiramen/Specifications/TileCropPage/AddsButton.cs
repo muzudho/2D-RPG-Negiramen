@@ -27,12 +27,10 @@ internal class AddsButton
     /// <param name="specObj"></param>
     internal AddsButton(
         ItsGardensideDoor gardensideDoor,
-        ItsRoomsideDoors roomsideDoors,
-        IItsIndoor obsoletedIndoor) // TODO これを削除したい
+        ItsRoomsideDoors roomsideDoors)
     {
         this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
-        this.ObsoletedIndoor = obsoletedIndoor; // TODO これを削除したい
     }
     #endregion
 
@@ -150,8 +148,4 @@ internal class AddsButton
         // ［追加／復元］ボタンの活性性
         this.GardensideDoor.PageVM.InvalidateAddsButton();
     }
-
-    // - プライベート・プロパティ
-
-    IItsIndoor ObsoletedIndoor { get; }
 }

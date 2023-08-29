@@ -30,7 +30,7 @@ internal class ItsRoomsideDoors
             gardensideDoor: corridor.GardensideDoor,
             roomsideDoors: corridor.RoomsideDoors);
 
-        this.AddsButton = new AddsButton(corridor.GardensideDoor, corridor.RoomsideDoors, corridor);
+        this.AddsButton = new AddsButton(corridor.GardensideDoor, corridor.RoomsideDoors);
         this.DeletesButton = new DeletesButton(corridor.GardensideDoor, corridor.RoomsideDoors);
     }
 

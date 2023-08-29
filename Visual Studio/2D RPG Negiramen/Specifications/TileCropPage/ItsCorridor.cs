@@ -8,8 +8,6 @@
     using SkiaSharp.Views.Maui.Controls;
     using System.Diagnostics;
     using TheGraphics = Microsoft.Maui.Graphics;
-    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
-    using System.Globalization;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -27,7 +25,7 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class ItsCorridor : IItsIndoor
+    class ItsCorridor
     {
         /// <summary>
         ///     双方向ドア
