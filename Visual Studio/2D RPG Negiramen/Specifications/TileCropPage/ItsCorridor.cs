@@ -21,6 +21,7 @@
 
     /// <summary>
     ///     内部モデル
+    ///     廊下
     ///     
     ///     <list type="bullet">
     ///         <item>ミュータブル</item>
@@ -28,6 +29,8 @@
     /// </summary>
     class ItsCorridor : IItsIndoor, IItsOutdoor
     {
+        public ItsSiblingDoors SiblingDoors { get; }
+
         /// <summary>
         ///     屋内（ページの各要素）
         /// </summary>
@@ -44,13 +47,14 @@
         {
             OutdoorPageVM = wholePageVM;
 
+            this.SiblingDoors = new ItsSiblingDoors(this);
             this.RoomsideDoors = new ItsRoomsideDoors(this);
 
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this, this);
             this.CropCursor = new CropCursor(this, this);
             this.CropTile = new CropTile(this, this);
-            this.AddsButton = new AddsButton(this, this);
+            this.AddsButton = new AddsButton(this.SiblingDoors, this, this);
             this.DeletesButton = new DeletesButton(this, this);
         }
         #endregion

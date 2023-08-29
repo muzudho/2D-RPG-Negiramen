@@ -8,6 +8,11 @@ using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 /// </summary>
 internal class AddsButton
 {
+    /// <summary>
+    ///     兄弟ドア
+    /// </summary>
+    ItsSiblingDoors SiblingDoors { get; }
+
     // - その他
 
     #region その他（生成）
@@ -16,11 +21,13 @@ internal class AddsButton
     /// </summary>
     /// <param name="specObj"></param>
     internal AddsButton(
-        IItsOutdoor outdoor,
-        IItsIndoor indoor)
+        ItsSiblingDoors siblingDoors,
+        IItsOutdoor outdoor, // TODO これを削除したい
+        IItsIndoor indoor) // TODO これを削除したい
     {
-        this.Outdoor = outdoor;
-        this.Indoor = indoor;
+        this.SiblingDoors = siblingDoors;
+        this.Outdoor = outdoor; // TODO これを削除したい
+        this.Indoor = indoor; // TODO これを削除したい
     }
     #endregion
 
@@ -53,7 +60,7 @@ internal class AddsButton
             spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.Indoor.RoomsideDoors.ZoomValue)));
+            workingRectangle: contents.SourceRectangle.Do(this.SiblingDoors.Zoom.Value)));
 
         Outdoor.InvalidateForHistory();
     }
