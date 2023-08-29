@@ -98,7 +98,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.ObsoletedOutdoor.RefreshForTileAdd();
+        this.GardensideDoor.PageVM.RefreshForTileAdd();
     }
     #endregion
 
@@ -139,7 +139,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ====================
         //
         //this.coloredMapGraphicsView1.Invalidate();
-        this.ObsoletedOutdoor.RefreshForTileAdd();
+        this.GardensideDoor.PageVM.RefreshForTileAdd();
     }
     #endregion
 
