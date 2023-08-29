@@ -26,8 +26,13 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class ItsSpec : IItsIndoor, IItsOutdoor
+    class ItsCorridor : IItsIndoor, IItsOutdoor
     {
+        /// <summary>
+        ///     屋内（ページの各要素）
+        /// </summary>
+        ItsRooms Rooms { get; }
+
         // - その他
 
         #region その他（生成）
@@ -35,11 +40,12 @@
         ///     生成
         /// </summary>
         /// <param name="wholePageVM">全体ページビュー・モデル</param>
-        internal ItsSpec(TileCropPageViewModel wholePageVM)
+        internal ItsCorridor(TileCropPageViewModel wholePageVM)
         {
             OutdoorPageVM = wholePageVM;
 
-            this.IndoorCultureInfo = new InnerCultureInfo(this, this);
+            this.Rooms = new ItsRooms(this);
+
             this.Zoom = new InnerZoom(this, this);
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this, this);
@@ -311,14 +317,12 @@
 
 
 
-        /// <summary>文化情報</summary>
-        internal InnerCultureInfo IndoorCultureInfo { get; }
 
 
         public CultureInfo CultureInfoSelected
         {
-            get => this.IndoorCultureInfo.Selected;
-            set => this.IndoorCultureInfo.Selected = value;
+            get => this.Rooms.IndoorCultureInfo.Selected;
+            set => this.Rooms.IndoorCultureInfo.Selected = value;
         }
 
 

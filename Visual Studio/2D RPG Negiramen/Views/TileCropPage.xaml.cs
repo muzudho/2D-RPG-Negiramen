@@ -77,7 +77,7 @@ public partial class TileCropPage : ContentPage
         //
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.SpecObj.OnNavigatedTo(this.skiaTilesetCanvas1);
+        context.PageObj.OnNavigatedTo(this.skiaTilesetCanvas1);
     }
     #endregion
 
@@ -92,7 +92,7 @@ public partial class TileCropPage : ContentPage
         // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
         var context = (TileCropPageViewModel)this.BindingContext;
 
-        context.SpecObj.InvalidateByLocale();
+        context.PageObj.InvalidateByLocale();
     }
     #endregion
 
@@ -122,7 +122,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.SpecObj.OnTilesetImageTapped(tappedPoint);
+        context.PageObj.OnTilesetImageTapped(tappedPoint);
     }
 
     /// <summary>
@@ -136,7 +136,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.SpecObj.OnTilesetImagePointerMove(tappedPoint);
+        context.PageObj.OnTilesetImagePointerMove(tappedPoint);
     }
 
     /// <summary>
@@ -173,7 +173,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.SpecObj.OnAddsButtonClicked();
+        context.PageObj.OnAddsButtonClicked();
     }
     #endregion
 
@@ -190,7 +190,7 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 登録タイル削除
-        context.SpecObj.DeletesButton.RemoveTile();
+        context.PageObj.DeletesButton.RemoveTile();
     }
     #endregion
 
@@ -260,7 +260,7 @@ public partial class TileCropPage : ContentPage
 
         Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
 
-        context.SpecObj.AddsButton.OverwriteTile();
+        context.PageObj.AddsButton.OverwriteTile();
     }
     #endregion
 }

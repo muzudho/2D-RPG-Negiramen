@@ -23,6 +23,8 @@ interface IItsIndoor
 
     Zoom ZoomValue { get; set; }
 
+    float ZoomAsFloat { get; set; }
+
     void CropCursorRefreshCanvasTrick(string codePlace);
 
     int GridUnitSourceValueWidthAsInt { get; }
