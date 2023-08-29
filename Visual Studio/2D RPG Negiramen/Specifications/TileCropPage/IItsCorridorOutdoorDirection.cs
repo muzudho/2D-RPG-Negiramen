@@ -53,7 +53,4 @@ interface IItsCorridorOutdoorDirection
     void ObsoletedPageVMInvalidateDeletesButton();
 
     void ObsoletedPageVMInvalidateCultureInfo();
-
-    void RemakeWorkingTilesetImage();
-    void RemakeGridCanvasImage();
 }

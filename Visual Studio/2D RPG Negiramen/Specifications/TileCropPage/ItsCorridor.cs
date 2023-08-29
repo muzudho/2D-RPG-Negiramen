@@ -415,57 +415,8 @@
                 ObsoletedOutdoorPageVM.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
-                RemakeGridCanvasImage();
+                this.TwoWayDoor.RemakeGridCanvasImage();
             }
-        }
-        #endregion
-
-        #region メソッド（［タイルセット作業画像］　関連）
-        /// <summary>
-        ///     ［タイルセット作業画像］の再作成
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        public void RemakeWorkingTilesetImage()
-        {
-            // 元画像をベースに、作業画像を複製
-            var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(this.GardensideDoor.PageVM.TilesetSourceBitmap));
-
-            // 画像処理（明度を下げる）
-            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
-
-            // 作業画像のサイズ計算
-            this.GardensideDoor.PageVM.workingImageSize = new SizeInt(
-                width: new WidthInt((int)(ObsoletedPageVMZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt)),
-                height: new HeightInt((int)(ObsoletedPageVMZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt)));
-
-            // 作業画像のリサイズ
-            this.GardensideDoor.PageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
-                size: new SKSizeI(
-                    width: this.GardensideDoor.PageVM.workingImageSize.Width.AsInt,
-                    height: this.GardensideDoor.PageVM.workingImageSize.Height.AsInt),
-                quality: SKFilterQuality.Medium);
-
-            this.GardensideDoor.PageVM.InvalidateTilesetWorkingImage();
-        }
-        #endregion
-
-        #region メソッド（［元画像グリッド］　関連）
-        /// <summary>
-        ///     ［元画像グリッド］のキャンバス画像の再作成
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
-        ///     </list>
-        /// </summary>
-        public void RemakeGridCanvasImage()
-        {
-            ObsoletedOutdoorPageVM.GridCanvasImageSize = new SizeInt(
-                width: new WidthInt((int)(ObsoletedPageVMZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt),
-                height: new HeightInt((int)(ObsoletedPageVMZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt));
         }
         #endregion
 

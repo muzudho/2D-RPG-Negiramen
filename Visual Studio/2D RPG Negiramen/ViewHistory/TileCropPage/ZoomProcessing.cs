@@ -84,13 +84,13 @@ internal class ZoomProcessing : IProcessing
         // ［タイルセット作業画像］の更新
         {
             // 画像の再作成
-            this.ObsoletedOutdoor.RemakeWorkingTilesetImage();
+            this.TwoWayDoor.RemakeWorkingTilesetImage();
         }
 
         // ［元画像グリッド］の更新
         {
             // キャンバス画像の再作成
-            this.ObsoletedOutdoor.RemakeGridCanvasImage();
+            this.TwoWayDoor.RemakeGridCanvasImage();
         }
 
         // ［作業グリッド］の再計算
@@ -121,6 +121,6 @@ internal class ZoomProcessing : IProcessing
         }
 
         // 変更通知
-        this.ObsoletedOutdoor.ObsoletedPageVMInvalidateForHistory();
+        this.GardensideDoor.PageVM.InvalidateForHistory();
     }
 }

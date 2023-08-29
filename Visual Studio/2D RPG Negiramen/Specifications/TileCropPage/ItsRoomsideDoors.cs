@@ -19,7 +19,7 @@ internal class ItsRoomsideDoors
         this.Zoom = new InnerZoom(
             twoWayDoor: corridor.TwoWayDoor,
             gardensideDoor: corridor.GardensideDoor,
-            outdoor: corridor,
+            obsoletedOutdoor: corridor,
             indoor: corridor);
     }
 

@@ -18,12 +18,12 @@ internal class InnerZoom
     internal InnerZoom(
         ItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
-        IItsCorridorOutdoorDirection outdoor,
+        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor indoor)
     {
         this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
-        this.ObsoletedOutdoor = outdoor;
+        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = indoor;
     }
     #endregion

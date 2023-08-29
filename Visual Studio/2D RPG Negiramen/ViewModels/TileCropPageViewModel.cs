@@ -1394,10 +1394,10 @@
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
             // 作業画像の再作成
-            this.PageObj.RemakeWorkingTilesetImage();
+            this.PageObj.TwoWayDoor.RemakeWorkingTilesetImage();
 
             // グリッド・キャンバス画像の再作成
-            this.PageObj.RemakeGridCanvasImage();
+            this.PageObj.TwoWayDoor.RemakeGridCanvasImage();
         }
         #endregion
 
