@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.Visually;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
@@ -13,8 +12,6 @@ interface IItsIndoor
     ItsRoomsideDoors RoomsideDoors { get; }
 
     // - パブリック・プロパティ
-
-    TileIdOrEmpty RoomsideDoorsCropTileIdOrEmpty { set; get; }
 
     void CropCursorRefreshCanvasTrick(string codePlace);
 

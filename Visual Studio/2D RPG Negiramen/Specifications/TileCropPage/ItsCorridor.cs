@@ -122,18 +122,6 @@
         /// <summary>切抜きカーソル</summary>
         internal CropCursor CropCursor { get; }
 
-        public TileIdOrEmpty RoomsideDoorsCropTileIdOrEmpty
-        {
-            get
-            {
-                return this.RoomsideDoors.CropTile.IdOrEmpty;
-            }
-            set
-            {
-                this.RoomsideDoors.CropTile.IdOrEmpty = value;
-            }
-        }
-
         #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
         /// <summary>
         ///     切抜きカーソルと、既存タイルが交差しているか？

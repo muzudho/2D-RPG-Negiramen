@@ -86,7 +86,7 @@ internal class AddsButton
 
         // Ｉｄが空欄でない
         // ［上書き］（更新）だ
-        tileIdOrEmpty = this.Indoor.RoomsideDoorsCropTileIdOrEmpty;
+        tileIdOrEmpty = this.RoomsideDoors.CropTile.IdOrEmpty;
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
@@ -134,7 +134,7 @@ internal class AddsButton
             // 切抜きカーソル有り時
             // Ｉｄ未設定時
 
-            if (this.Indoor.RoomsideDoorsCropTileIdOrEmpty == TileIdOrEmpty.Empty)
+            if (this.RoomsideDoors.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
