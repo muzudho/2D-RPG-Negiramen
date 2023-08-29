@@ -66,24 +66,11 @@
         }
         #endregion
 
-        public bool TilesetSettingsVMUndeleteLogical(TileIdOrEmpty id)
-        {
-            return this.GardensideDoor.TilesetSettingsVM.UndeleteLogical(id);
-        }
-
-
         // - パブリック変更通知プロパティ
 
         #region プロパティ（タイルセット設定ビューモデル）
 
-        public void TilesetSettingsVMIncreaseUsableId()
-        {
-            this.GardensideDoor.TilesetSettingsVM.IncreaseUsableId();
-        }
-
-        public TileIdOrEmpty TilesetSettingsVMUsableId => this.GardensideDoor.TilesetSettingsVM.UsableId;
-
-        public List<TileRecordVisually> TilesetSettingsVMTileRecordVisuallyList
+        public List<TileRecordVisually> ObsoletedTilesetSettingsVMTileRecordVisuallyList
         {
             get
             {
@@ -91,15 +78,15 @@
             }
         }
 
-        public bool TilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
+        public bool ObsoletedTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
             return this.GardensideDoor.TilesetSettingsVM.SaveCsv(tileSetSettingsFile);
         }
-        public bool TilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        public bool ObsoletedTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
             return this.GardensideDoor.TilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
         }
-        public void TilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
+        public void ObsoletedTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
             Zoom zoom,
             TileTitle title,
@@ -107,7 +94,7 @@
         {
             this.GardensideDoor.TilesetSettingsVM.AddTileVisually(id, rect, zoom, title, logicalDelete);
         }
-        public bool TilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        public bool ObsoletedTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
             return this.GardensideDoor.TilesetSettingsVM.TryRemoveTileById(tileId, out resultVisuallyOrNull);
         }
@@ -380,30 +367,30 @@
         /// <summary>
         ///     ［選択タイル］Ｉｄの再描画
         /// </summary>
-        public void InvalidateTileIdChange() => ObsoletedOutdoorPageVM.InvalidateTileIdChange();
+        public void ObsoletedInvalidateTileIdChange() => ObsoletedOutdoorPageVM.InvalidateTileIdChange();
         #endregion
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
         /// <summary>
         ///     ［タイルセット設定］ビューモデルに変更あり
         /// </summary>
-        public void InvalidateTilesetSettingsVM() => ObsoletedOutdoorPageVM.InvalidateTilesetSettingsVM();
+        public void ObsoletedInvalidateTilesetSettingsVM() => ObsoletedOutdoorPageVM.InvalidateTilesetSettingsVM();
         #endregion
 
         #region 変更通知メソッド（［履歴］）
         /// <summary>
         ///     ［履歴］
         /// </summary>
-        public void InvalidateForHistory() => ObsoletedOutdoorPageVM.InvalidateForHistory();
+        public void ObsoletedInvalidateForHistory() => ObsoletedOutdoorPageVM.InvalidateForHistory();
         #endregion
 
 
 
 
 
-        public void InvalidateDeletesButton() => ObsoletedOutdoorPageVM.InvalidateDeletesButton();
+        public void ObsoletedInvalidateDeletesButton() => ObsoletedOutdoorPageVM.InvalidateDeletesButton();
 
-        public void InvalidateCultureInfo() => this.ObsoletedOutdoorPageVM.InvalidateCultureInfo();
+        public void ObsoletedInvalidateCultureInfo() => this.ObsoletedOutdoorPageVM.InvalidateCultureInfo();
 
 
 

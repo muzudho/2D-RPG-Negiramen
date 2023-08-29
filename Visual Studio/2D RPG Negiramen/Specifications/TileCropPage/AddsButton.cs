@@ -57,8 +57,8 @@ internal class AddsButton
             return;
 
         // 新しいタイルＩｄを発行
-        tileIdOrEmpty = this.Outdoor.TilesetSettingsVMUsableId;
-        this.Outdoor.TilesetSettingsVMIncreaseUsableId();
+        tileIdOrEmpty = this.GardensideDoor.TilesetSettingsVM.UsableId;
+        this.GardensideDoor.TilesetSettingsVM.IncreaseUsableId();
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
@@ -70,7 +70,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.SiblingDoors.Zoom.Value)));
 
-        Outdoor.InvalidateForHistory();
+        Outdoor.ObsoletedInvalidateForHistory();
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.Indoor.RoomsideDoors.ZoomValue)));
 
-        Outdoor.InvalidateForHistory();
+        Outdoor.ObsoletedInvalidateForHistory();
     }
 
     /// <summary>

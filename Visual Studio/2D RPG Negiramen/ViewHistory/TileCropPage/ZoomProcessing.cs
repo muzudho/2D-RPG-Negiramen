@@ -19,12 +19,14 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
+        ItsGardensideDoor gardensideDoor,
         IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor,
         Zoom oldValue,
         Zoom newValue)
     {
-        this.Outdoor = outdoor;
+        this.GardensideDoor = gardensideDoor;
+        this.ObsoletedOutdoor = outdoor;
         this.Indoor = indoor;
         this.OldValue = oldValue;
         this.NewValue = newValue;
@@ -57,7 +59,8 @@ internal class ZoomProcessing : IProcessing
     /// <summary>
     ///     内部クラス
     /// </summary>
-    IItsCorridorOutdoorDirection Outdoor { get; }
+    ItsGardensideDoor GardensideDoor { get; }
+    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 
     /// <summary>
@@ -80,13 +83,13 @@ internal class ZoomProcessing : IProcessing
         // ［タイルセット作業画像］の更新
         {
             // 画像の再作成
-            this.Outdoor.RemakeWorkingTilesetImage();
+            this.ObsoletedOutdoor.RemakeWorkingTilesetImage();
         }
 
         // ［元画像グリッド］の更新
         {
             // キャンバス画像の再作成
-            this.Outdoor.RemakeGridCanvasImage();
+            this.ObsoletedOutdoor.RemakeGridCanvasImage();
         }
 
         // ［作業グリッド］の再計算
@@ -105,18 +108,18 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Outdoor.ZoomAsFloat * this.Outdoor.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.Outdoor.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Outdoor.ZoomAsFloat * this.Outdoor.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ObsoletedOutdoor.ZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.ObsoletedOutdoor.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.ObsoletedOutdoor.ZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.Outdoor.TilesetSettingsVMTileRecordVisuallyList)
+        foreach (var registeredTileVM in this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMTileRecordVisuallyList)
         {
             // ズーム
             registeredTileVM.Zoom = this.Indoor.RoomsideDoors.ZoomValue;
         }
 
         // 変更通知
-        this.Outdoor.InvalidateForHistory();
+        this.ObsoletedOutdoor.ObsoletedInvalidateForHistory();
     }
 }

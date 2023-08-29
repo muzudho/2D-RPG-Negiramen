@@ -14,7 +14,7 @@ internal class ItsRoomsideDoors
     internal ItsRoomsideDoors(ItsCorridor corridor)
     {
         this.IndoorCultureInfo = new InnerCultureInfo(corridor, corridor);
-        this.Zoom = new InnerZoom(corridor, corridor);
+        this.Zoom = new InnerZoom(corridor.GardensideDoor, corridor, corridor);
     }
 
     /// <summary>文化情報</summary>

@@ -41,7 +41,7 @@ internal class DeletesButton
                 return;
 
             this.isEnabled = value;
-            this.ObsoletedOutdoor.InvalidateDeletesButton();
+            this.ObsoletedOutdoor.ObsoletedInvalidateDeletesButton();
         }
     }
     #endregion
@@ -89,7 +89,7 @@ internal class DeletesButton
             indoor: this.Indoor,
             tileIdOrEmpty: this.Indoor.CropTileIdOrEmpty));
 
-        this.ObsoletedOutdoor.InvalidateForHistory();
+        this.ObsoletedOutdoor.ObsoletedInvalidateForHistory();
     }
     #endregion
 

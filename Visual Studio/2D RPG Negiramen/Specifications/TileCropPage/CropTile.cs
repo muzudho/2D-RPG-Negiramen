@@ -120,7 +120,7 @@ internal class CropTile
             }
 
             // 変更通知を送りたい
-            this.Outdoor.InvalidateTileIdChange();
+            this.Outdoor.ObsoletedInvalidateTileIdChange();
         }
     }
     #endregion
@@ -192,7 +192,7 @@ internal class CropTile
         }
 
         // 変更通知を送る
-        this.Outdoor.InvalidateTileIdChange();
+        this.Outdoor.ObsoletedInvalidateTileIdChange();
 
         Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
     }

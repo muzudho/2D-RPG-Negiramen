@@ -39,7 +39,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.ObsoletedOutdoor.InvalidateTilesetSettingsVM();
+            this.ObsoletedOutdoor.ObsoletedInvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -48,7 +48,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.ObsoletedOutdoor.TilesetSettingsVMSaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
+        if (this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMSaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -77,7 +77,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.ObsoletedOutdoor.InvalidateTilesetSettingsVM();
+            this.ObsoletedOutdoor.ObsoletedInvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -86,7 +86,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.ObsoletedOutdoor.TilesetSettingsVMSaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
+        if (this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMSaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
         {
             // 保存成功
         }

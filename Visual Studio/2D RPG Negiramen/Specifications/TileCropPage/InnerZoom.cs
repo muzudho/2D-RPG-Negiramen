@@ -16,9 +16,11 @@ internal class InnerZoom
     /// </summary>
     /// <param name="specObj"></param>
     internal InnerZoom(
+        ItsGardensideDoor gardensideDoor,
         IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor)
     {
+        this.GardensideDoor = gardensideDoor;
         this.Outdoor = outdoor;
         this.Indoor = indoor;
     }
@@ -70,6 +72,7 @@ internal class InnerZoom
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
+                        this.GardensideDoor,
                         this.Outdoor,
                         this.Indoor,
                         oldValue,
@@ -91,6 +94,7 @@ internal class InnerZoom
 
     // - プライベート・プロパティ
 
+    ItsGardensideDoor GardensideDoor { get; }
     IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 

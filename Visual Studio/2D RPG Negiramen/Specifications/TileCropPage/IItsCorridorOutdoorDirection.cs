@@ -17,28 +17,25 @@ interface IItsCorridorOutdoorDirection
     ItsGardensideDoor GardensideDoor { get; }
 
     void InvalidateAddsButton();
-    void InvalidateTilesetSettingsVM();
-    void InvalidateForHistory();
-    bool TilesetSettingsVMUndeleteLogical(TileIdOrEmpty id);
+    void ObsoletedInvalidateTilesetSettingsVM();
+    void ObsoletedInvalidateForHistory();
 
     #region 変更通知メソッド（［選択タイル］　関連）
     /// <summary>
     ///     ［選択タイル］Ｉｄの再描画
     /// </summary>
-    void InvalidateTileIdChange();
+    void ObsoletedInvalidateTileIdChange();
     #endregion
 
-    void TilesetSettingsVMIncreaseUsableId();
-    TileIdOrEmpty TilesetSettingsVMUsableId { get; }
-    bool TilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile);
-    bool TilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
-    void TilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
+    bool ObsoletedTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile);
+    bool ObsoletedTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
+    void ObsoletedTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
         TheGeometric.RectangleInt rect,
         Zoom zoom,
         TileTitle title,
         LogicalDelete logicalDelete);
 
-    bool TilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
+    bool ObsoletedTilesetSettingsVMTryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
 
     string AddsButtonText { get; set; }
     string AddsButtonHint { get; }
@@ -72,13 +69,13 @@ interface IItsCorridorOutdoorDirection
     /// </summary>
     RectangleInt CroppedCursorPointedTileSourceRect { get; set; }
 
-    void InvalidateDeletesButton();
+    void ObsoletedInvalidateDeletesButton();
 
-    void InvalidateCultureInfo();
+    void ObsoletedInvalidateCultureInfo();
 
     HeightFloat CroppedCursorPointedTileWorkingHeight { set; }
 
-    List<TileRecordVisually> TilesetSettingsVMTileRecordVisuallyList { get; }
+    List<TileRecordVisually> ObsoletedTilesetSettingsVMTileRecordVisuallyList { get; }
 
     void RefreshForTileAdd();
 
