@@ -15,19 +15,19 @@ internal class ZoomProcessing : IProcessing
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="indoor"></param>
+    /// <param name="obsoletedIndoor"></param>
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
         ItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
-        IItsIndoor indoor,
+        ItsRoomsideDoors roomsideDoors,
         Zoom oldValue,
         Zoom newValue)
     {
         this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
-        this.Indoor = indoor;
+        this.RoomsideDoors = roomsideDoors;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -39,7 +39,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.Indoor.RoomsideDoors.ZoomProperties.Value = this.NewValue;
+        this.RoomsideDoors.ZoomProperties.Value = this.NewValue;
 
         this.AfterChanged();
     }
@@ -49,7 +49,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.Indoor.RoomsideDoors.ZoomProperties.Value = this.OldValue;
+        this.RoomsideDoors.ZoomProperties.Value = this.OldValue;
 
         this.AfterChanged();
     }
@@ -59,7 +59,7 @@ internal class ZoomProcessing : IProcessing
     /// <summary>内部クラス</summary>
     ItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
-    IItsIndoor Indoor { get; }
+    ItsRoomsideDoors RoomsideDoors { get; }
 
     /// <summary>
     ///     変更前の値
@@ -93,9 +93,9 @@ internal class ZoomProcessing : IProcessing
         // ［作業グリッド］の再計算
         {
             // 横幅
-            this.Indoor.RoomsideDoorsCropCursorRecalculateWorkingGridTileWidth();
+            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
             // 縦幅
-            this.Indoor.RoomsideDoorsCropCursorRecalculateWorkingGridTileHeight();
+            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
         }
 
         // ［切抜きカーソルが指すタイル］更新
@@ -106,7 +106,7 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Indoor.RoomsideDoorsCropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
             this.GardensideDoor.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
@@ -114,7 +114,7 @@ internal class ZoomProcessing : IProcessing
         foreach (var registeredTileVM in this.GardensideDoor.TilesetSettingsVM.TileRecordVisuallyList)
         {
             // ズーム
-            registeredTileVM.Zoom = this.Indoor.RoomsideDoors.ZoomProperties.Value;
+            registeredTileVM.Zoom = this.RoomsideDoors.ZoomProperties.Value;
         }
 
         // 変更通知

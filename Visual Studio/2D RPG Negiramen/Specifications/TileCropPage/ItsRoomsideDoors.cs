@@ -17,7 +17,7 @@ internal class ItsRoomsideDoors
         this.ZoomProperties = new ZoomProperties(
             twoWayDoor: corridor.TwoWayDoor,
             gardensideDoor: corridor.GardensideDoor,
-            indoor: corridor);
+            roomsideDoors: corridor.RoomsideDoors);
 
         this.CropCursor = new CropCursor(corridor.GardensideDoor, corridor);
 

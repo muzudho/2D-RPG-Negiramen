@@ -18,11 +18,11 @@ internal class ZoomProperties
     internal ZoomProperties(
         ItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
-        IItsIndoor indoor)
+        ItsRoomsideDoors roomsideDoors)
     {
         this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
-        this.Indoor = indoor;
+        this.RoomsideDoors = roomsideDoors;
     }
     #endregion
 
@@ -68,13 +68,13 @@ internal class ZoomProperties
                     Zoom newValue = new Zoom(value);
 
                     this.value = newValue;
-                    this.Indoor.RoomsideDoorsCropCursorRefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+                    this.RoomsideDoors.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
                         this.TwoWayDoor,
                         this.GardensideDoor,
-                        this.Indoor,
+                        this.RoomsideDoors,
                         oldValue,
                         newValue));
                 }
@@ -96,7 +96,7 @@ internal class ZoomProperties
 
     ItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
-    IItsIndoor Indoor { get; }
+    ItsRoomsideDoors RoomsideDoors { get; }
 
     // - プライベート・フィールド
 

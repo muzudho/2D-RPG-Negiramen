@@ -69,11 +69,6 @@
         public int TilesetSourceImageWidthAsInt => this.IndoorTilesetSourceImageSize.Width.AsInt;
         public int TilesetSourceImageHeightAsInt => this.IndoorTilesetSourceImageSize.Height.AsInt;
 
-        public void RoomsideDoorsCropCursorRefreshCanvasTrick(string codePlace)
-        {
-            this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace);
-        }
-
         public int GridUnitSourceValueWidthAsInt
         {
             get

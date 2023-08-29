@@ -13,8 +13,6 @@ interface IItsIndoor
 
     // - パブリック・プロパティ
 
-    void RoomsideDoorsCropCursorRefreshCanvasTrick(string codePlace);
-
     int GridUnitSourceValueWidthAsInt { get; }
     int GridUnitSourceValueHeightAsInt { get; }
 
