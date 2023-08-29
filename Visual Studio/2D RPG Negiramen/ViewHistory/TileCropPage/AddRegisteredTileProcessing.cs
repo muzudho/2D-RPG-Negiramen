@@ -21,13 +21,16 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="tileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
-        IItsCorridorOutdoorDirection outdoor,
+        ItsGardensideDoor gardensideDoor,
+        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor spec,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
-        this.Outdoor = outdoor;
+        this.GardensideDoor = gardensideDoor;
+
+        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = spec;
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
@@ -46,13 +49,13 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Indoor.CropTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.Outdoor.InvalidateTileIdChange();
+        this.ObsoletedOutdoor.InvalidateTileIdChange();
 
         // リストに登録済みか確認
-        if (!this.Outdoor.TilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
+        if (!this.ObsoletedOutdoor.TilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
         {
             // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.Outdoor.TilesetSettingsVMAddTileVisually(
+            this.ObsoletedOutdoor.TilesetSettingsVMAddTileVisually(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 zoom: Zoom.IdentityElement,
@@ -65,7 +68,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         //
 
         // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.Outdoor.TilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
+        if (this.ObsoletedOutdoor.TilesetSettingsVMTryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
         {
             TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
@@ -86,7 +89,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Outdoor.TilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
+        if (!this.ObsoletedOutdoor.TilesetSettingsVMSaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -95,7 +98,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.Outdoor.RefreshForTileAdd();
+        this.ObsoletedOutdoor.RefreshForTileAdd();
     }
     #endregion
 
@@ -110,10 +113,10 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Indoor.CropTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.Outdoor.InvalidateTileIdChange();
+        this.ObsoletedOutdoor.InvalidateTileIdChange();
 
         // リストから削除
-        if (!this.Outdoor.TilesetSettingsVMTryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
+        if (!this.ObsoletedOutdoor.TilesetSettingsVMTryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
         {
             // TODO 成功しなかったら異常
             throw new Exception();
@@ -123,7 +126,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.Outdoor.TilesetSettingsVMSaveCsv(this.Outdoor.TilesetDatatableFileLocation))
+        if (!this.ObsoletedOutdoor.TilesetSettingsVMSaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -136,16 +139,15 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ====================
         //
         //this.coloredMapGraphicsView1.Invalidate();
-        this.Outdoor.RefreshForTileAdd();
+        this.ObsoletedOutdoor.RefreshForTileAdd();
     }
     #endregion
 
     // - プライベート・プロパティ
 
-    /// <summary>
-    ///     内部モデル
-    /// </summary>
-    IItsCorridorOutdoorDirection Outdoor { get; }
+    /// <summary>内部モデル</summary>
+    ItsGardensideDoor GardensideDoor { get; }
+    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 
     /// <summary>

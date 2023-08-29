@@ -22,14 +22,6 @@ interface IItsCorridorOutdoorDirection
     bool TilesetSettingsVMDeleteLogical(TileIdOrEmpty id);
     bool TilesetSettingsVMUndeleteLogical(TileIdOrEmpty id);
 
-    /// <summary>
-    ///     ［タイルセット・データテーブル］ファイルの場所
-    ///     <list type="bullet">
-    ///         <item>ページの引数として使用</item>
-    ///     </list>
-    /// </summary>
-    TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv TilesetDatatableFileLocation { get; }
-
     #region 変更通知メソッド（［選択タイル］　関連）
     /// <summary>
     ///     ［選択タイル］Ｉｄの再描画

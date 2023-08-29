@@ -16,10 +16,12 @@ internal class DeletesButton
     /// </summary>
     /// <param name="specObj"></param>
     internal DeletesButton(
-        IItsCorridorOutdoorDirection outdoor,
+        ItsGardensideDoor gardensideDoor,
+        IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor indoor)
     {
-        this.Outdoor = outdoor;
+        this.GardensideDoor = gardensideDoor;
+        this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = indoor;
     }
     #endregion
@@ -39,7 +41,7 @@ internal class DeletesButton
                 return;
 
             this.isEnabled = value;
-            this.Outdoor.InvalidateDeletesButton();
+            this.ObsoletedOutdoor.InvalidateDeletesButton();
         }
     }
     #endregion
@@ -82,11 +84,12 @@ internal class DeletesButton
     public void RemoveTile()
     {
         App.History.Do(new RemoveRegisteredTileProcessing(
-            outdoor: this.Outdoor,
+            gardensideDoor: this.GardensideDoor,
+            obsoletedOutdoor: this.ObsoletedOutdoor,
             indoor: this.Indoor,
             tileIdOrEmpty: this.Indoor.CropTileIdOrEmpty));
 
-        this.Outdoor.InvalidateForHistory();
+        this.ObsoletedOutdoor.InvalidateForHistory();
     }
     #endregion
 
@@ -101,6 +104,7 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    IItsCorridorOutdoorDirection Outdoor { get; }
+    ItsGardensideDoor GardensideDoor { get; }
+    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 }
