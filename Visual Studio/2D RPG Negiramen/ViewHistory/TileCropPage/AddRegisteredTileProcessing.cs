@@ -89,7 +89,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMSaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
+        if (!this.GardensideDoor.TilesetSettingsVM.SaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -126,7 +126,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.ObsoletedOutdoor.ObsoletedTilesetSettingsVMSaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
+        if (!this.GardensideDoor.TilesetSettingsVM.SaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }

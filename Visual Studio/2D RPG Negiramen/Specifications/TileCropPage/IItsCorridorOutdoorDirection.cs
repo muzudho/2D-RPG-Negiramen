@@ -27,7 +27,6 @@ interface IItsCorridorOutdoorDirection
     void ObsoletedInvalidateTileIdChange();
     #endregion
 
-    bool ObsoletedTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile);
     bool ObsoletedTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull);
     void ObsoletedTilesetSettingsVMAddTileVisually(TileIdOrEmpty id,
         TheGeometric.RectangleInt rect,
@@ -53,12 +52,12 @@ interface IItsCorridorOutdoorDirection
 
     void InvalidateIsMouseDragging();
 
-    float ObsoletedZoomMinAsFloat { get; }
-    float ObsoletedZoomMaxAsFloat { get; }
+    float ObsoletedPageVMZoomMinAsFloat { get; }
+    float ObsoletedPageVMZoomMaxAsFloat { get; }
 
 
 
-    float ObsoletedZoomAsFloat { get; set; }
+    float ObsoletedPageVMZoomAsFloat { get; set; }
 
     /// <summary>
     ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
@@ -74,8 +73,6 @@ interface IItsCorridorOutdoorDirection
     void ObsoletedInvalidateCultureInfo();
 
     HeightFloat CroppedCursorPointedTileWorkingHeight { set; }
-
-    List<TileRecordVisually> ObsoletedTilesetSettingsVMTileRecordVisuallyList { get; }
 
     void RefreshForTileAdd();
 

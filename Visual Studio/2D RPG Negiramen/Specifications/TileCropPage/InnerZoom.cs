@@ -16,12 +16,14 @@ internal class InnerZoom
     /// </summary>
     /// <param name="specObj"></param>
     internal InnerZoom(
+        ItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
         IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor)
     {
+        this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
-        this.Outdoor = outdoor;
+        this.ObsoletedOutdoor = outdoor;
         this.Indoor = indoor;
     }
     #endregion
@@ -44,7 +46,7 @@ internal class InnerZoom
                 return;
 
             // TODO 循環参照しやすいから、良くないコード
-            this.Outdoor.ObsoletedZoomAsFloat = value.AsFloat;
+            this.ObsoletedOutdoor.ObsoletedPageVMZoomAsFloat = value.AsFloat;
         }
     }
 
@@ -62,7 +64,7 @@ internal class InnerZoom
         {
             if (this.value.AsFloat != value)
             {
-                if (this.Outdoor.ObsoletedZoomMinAsFloat <= value && value <= this.Outdoor.ObsoletedZoomMaxAsFloat)
+                if (this.GardensideDoor.PageVM.ZoomMinAsFloat <= value && value <= this.GardensideDoor.PageVM.ZoomMaxAsFloat)
                 {
                     Zoom oldValue = this.value;
                     Zoom newValue = new Zoom(value);
@@ -72,8 +74,9 @@ internal class InnerZoom
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
+                        this.TwoWayDoor,
                         this.GardensideDoor,
-                        this.Outdoor,
+                        this.ObsoletedOutdoor,
                         this.Indoor,
                         oldValue,
                         newValue));
@@ -94,8 +97,9 @@ internal class InnerZoom
 
     // - プライベート・プロパティ
 
+    ItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
-    IItsCorridorOutdoorDirection Outdoor { get; }
+    IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
 
     // - プライベート・フィールド

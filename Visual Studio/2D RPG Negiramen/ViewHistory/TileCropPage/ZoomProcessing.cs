@@ -19,12 +19,14 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
+        ItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
         IItsCorridorOutdoorDirection obsoletedOutdoor,
         IItsIndoor indoor,
         Zoom oldValue,
         Zoom newValue)
     {
+        this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
         this.ObsoletedOutdoor = obsoletedOutdoor;
         this.Indoor = indoor;
@@ -56,9 +58,8 @@ internal class ZoomProcessing : IProcessing
 
     // - プライベート・プロパティ
 
-    /// <summary>
-    ///     内部クラス
-    /// </summary>
+    /// <summary>内部クラス</summary>
+    ItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
     IItsCorridorOutdoorDirection ObsoletedOutdoor { get; }
     IItsIndoor Indoor { get; }
@@ -108,8 +109,8 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ObsoletedOutdoor.ObsoletedZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.ObsoletedOutdoor.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.ObsoletedOutdoor.ObsoletedZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ObsoletedOutdoor.ObsoletedPageVMZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.ObsoletedOutdoor.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.ObsoletedOutdoor.ObsoletedPageVMZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新

@@ -74,7 +74,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileWidth()
     {
-        this.Outdoor.WorkingGridTileWidthAsFloat = this.Outdoor.ObsoletedZoomAsFloat * this.Indoor.GridUnitSourceValueWidthAsInt;
+        this.Outdoor.WorkingGridTileWidthAsFloat = this.Outdoor.ObsoletedPageVMZoomAsFloat * this.Indoor.GridUnitSourceValueWidthAsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -88,7 +88,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileHeight()
     {
-        this.Outdoor.WorkingGridTileHeightAsFloat = this.Outdoor.ObsoletedZoomAsFloat * this.Indoor.GridUnitSourceValueHeightAsInt;
+        this.Outdoor.WorkingGridTileHeightAsFloat = this.Outdoor.ObsoletedPageVMZoomAsFloat * this.Indoor.GridUnitSourceValueHeightAsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }

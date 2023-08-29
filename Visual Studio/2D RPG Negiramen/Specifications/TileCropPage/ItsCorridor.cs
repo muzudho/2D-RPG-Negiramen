@@ -32,6 +32,11 @@
         public ItsSiblingDoors SiblingDoors { get; }
 
         /// <summary>
+        ///     双方向ドア
+        /// </summary>
+        public ItsTwoWayDoor TwoWayDoor { get; }
+
+        /// <summary>
         ///     屋外側のドア
         /// </summary>
         public ItsGardensideDoor GardensideDoor { get; }
@@ -52,6 +57,7 @@
         {
             this.PageVM = wholePageVM;
 
+            this.TwoWayDoor = new ItsTwoWayDoor(this);
             this.GardensideDoor = new ItsGardensideDoor(this);
             this.SiblingDoors = new ItsSiblingDoors(this);
 
@@ -70,18 +76,6 @@
 
         #region プロパティ（タイルセット設定ビューモデル）
 
-        public List<TileRecordVisually> ObsoletedTilesetSettingsVMTileRecordVisuallyList
-        {
-            get
-            {
-                return this.GardensideDoor.TilesetSettingsVM.TileRecordVisuallyList;
-            }
-        }
-
-        public bool ObsoletedTilesetSettingsVMSaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
-        {
-            return this.GardensideDoor.TilesetSettingsVM.SaveCsv(tileSetSettingsFile);
-        }
         public bool ObsoletedTilesetSettingsVMTryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
         {
             return this.GardensideDoor.TilesetSettingsVM.TryGetTileById(tileId, out resultVisuallyOrNull);
@@ -144,7 +138,7 @@
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
         ///     </list>
         /// </summary>
-        public float ObsoletedZoomAsFloat
+        public float ObsoletedPageVMZoomAsFloat
         {
             get => this.GardensideDoor.PageVM.ZoomAsFloat;
             set => this.GardensideDoor.PageVM.ZoomAsFloat = value;
@@ -152,10 +146,10 @@
         #endregion
 
         /// <summary>変更通知プロパティへのアクセッサ―</summary>
-        public float ObsoletedZoomMinAsFloat => this.ObsoletedOutdoorPageVM.ZoomMinAsFloat;
+        public float ObsoletedPageVMZoomMinAsFloat => this.ObsoletedOutdoorPageVM.ZoomMinAsFloat;
 
         /// <summary>変更通知プロパティへのアクセッサ―</summary>
-        public float ObsoletedZoomMaxAsFloat => this.ObsoletedOutdoorPageVM.ZoomMaxAsFloat;
+        public float ObsoletedPageVMZoomMaxAsFloat => this.ObsoletedOutdoorPageVM.ZoomMaxAsFloat;
 
 
         public int GridUnitSourceValueWidthAsInt
@@ -491,8 +485,8 @@
 
             // 作業画像のサイズ計算
             this.GardensideDoor.PageVM.workingImageSize = new SizeInt(
-                width: new WidthInt((int)(ObsoletedZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt)),
-                height: new HeightInt((int)(ObsoletedZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt)));
+                width: new WidthInt((int)(ObsoletedPageVMZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt)),
+                height: new HeightInt((int)(ObsoletedPageVMZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.GardensideDoor.PageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
@@ -551,8 +545,8 @@
         public void RemakeGridCanvasImage()
         {
             ObsoletedOutdoorPageVM.GridCanvasImageSize = new SizeInt(
-                width: new WidthInt((int)(ObsoletedZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt),
-                height: new HeightInt((int)(ObsoletedZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt));
+                width: new WidthInt((int)(ObsoletedPageVMZoomAsFloat * IndoorTilesetSourceImageSize.Width.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt),
+                height: new HeightInt((int)(ObsoletedPageVMZoomAsFloat * IndoorTilesetSourceImageSize.Height.AsInt) + 2 * ObsoletedOutdoorPageVM.HalfThicknessOfGridLineAsInt));
         }
         #endregion
 
@@ -603,11 +597,11 @@
             // ズームを除去
             var sourceRect = new RectangleInt(
                 location: new PointInt(
-                    x: new XInt((int)(workingRect.Location.X.AsFloat / ObsoletedZoomAsFloat)),
-                    y: new YInt((int)(workingRect.Location.Y.AsFloat / ObsoletedZoomAsFloat))),
+                    x: new XInt((int)(workingRect.Location.X.AsFloat / ObsoletedPageVMZoomAsFloat)),
+                    y: new YInt((int)(workingRect.Location.Y.AsFloat / ObsoletedPageVMZoomAsFloat))),
                 size: new SizeInt(
-                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / ObsoletedZoomAsFloat)),
-                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / ObsoletedZoomAsFloat))));
+                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / ObsoletedPageVMZoomAsFloat)),
+                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / ObsoletedPageVMZoomAsFloat))));
 
             //
             // 計算値の反映
