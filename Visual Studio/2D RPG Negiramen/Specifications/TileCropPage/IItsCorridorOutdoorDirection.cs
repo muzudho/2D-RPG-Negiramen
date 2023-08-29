@@ -19,7 +19,6 @@ interface IItsCorridorOutdoorDirection
     void InvalidateAddsButton();
     void InvalidateTilesetSettingsVM();
     void InvalidateForHistory();
-    bool TilesetSettingsVMDeleteLogical(TileIdOrEmpty id);
     bool TilesetSettingsVMUndeleteLogical(TileIdOrEmpty id);
 
     #region 変更通知メソッド（［選択タイル］　関連）

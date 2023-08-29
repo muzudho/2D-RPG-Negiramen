@@ -66,10 +66,6 @@
         }
         #endregion
 
-        public bool TilesetSettingsVMDeleteLogical(TileIdOrEmpty id)
-        {
-            return this.GardensideDoor.TilesetSettingsVM.DeleteLogical(id);
-        }
         public bool TilesetSettingsVMUndeleteLogical(TileIdOrEmpty id)
         {
             return this.GardensideDoor.TilesetSettingsVM.UndeleteLogical(id);

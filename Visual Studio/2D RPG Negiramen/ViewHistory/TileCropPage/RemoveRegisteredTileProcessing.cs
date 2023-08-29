@@ -34,7 +34,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルを論理削除
         //
-        if (this.ObsoletedOutdoor.TilesetSettingsVMDeleteLogical(
+        if (this.GardensideDoor.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
@@ -72,7 +72,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルの論理削除の取消
         //
-        if (this.ObsoletedOutdoor.TilesetSettingsVMDeleteLogical(
+        if (this.GardensideDoor.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
