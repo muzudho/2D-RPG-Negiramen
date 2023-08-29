@@ -14,9 +14,9 @@ internal class AddsButton
     ItsGardensideDoor GardensideDoor { get; }
 
     /// <summary>
-    ///     兄弟ドア
+    ///     室内側ドア
     /// </summary>
-    ItsSiblingDoors SiblingDoors { get; }
+    ItsRoomsideDoors RoomsideDoors { get; }
 
     // - その他
 
@@ -27,11 +27,11 @@ internal class AddsButton
     /// <param name="specObj"></param>
     internal AddsButton(
         ItsGardensideDoor gardensideDoor,
-        ItsSiblingDoors siblingDoors,
+        ItsRoomsideDoors roomsideDoors,
         IItsIndoor indoor) // TODO これを削除したい
     {
         this.GardensideDoor = gardensideDoor;
-        this.SiblingDoors = siblingDoors;
+        this.RoomsideDoors = roomsideDoors;
         this.Indoor = indoor; // TODO これを削除したい
     }
     #endregion
@@ -65,7 +65,7 @@ internal class AddsButton
             spec: this.Indoor,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
-            workingRectangle: contents.SourceRectangle.Do(this.SiblingDoors.Zoom.Value)));
+            workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.Zoom.Value)));
 
         this.GardensideDoor.PageVM.InvalidateForHistory();
     }

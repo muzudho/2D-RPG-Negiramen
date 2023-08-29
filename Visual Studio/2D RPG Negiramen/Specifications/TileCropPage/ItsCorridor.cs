@@ -13,14 +13,15 @@
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
+    using _2D_RPG_Negiramen.Specifications.TileCropPage;
 #elif WINDOWS
     using Microsoft.Maui.Graphics.Win2D;
     using System.Net;
+    using _2D_RPG_Negiramen.Specifications.TileCropPage;
 #endif
 
     /// <summary>
-    ///     内部モデル
-    ///     廊下
+    ///     廊下モデル
     ///     
     ///     <list type="bullet">
     ///         <item>ミュータブル</item>
@@ -28,8 +29,6 @@
     /// </summary>
     class ItsCorridor : IItsIndoor
     {
-        public ItsSiblingDoors SiblingDoors { get; }
-
         /// <summary>
         ///     双方向ドア
         /// </summary>
@@ -58,15 +57,13 @@
 
             this.TwoWayDoor = new ItsTwoWayDoor(this);
             this.GardensideDoor = new ItsGardensideDoor(this);
-            this.SiblingDoors = new ItsSiblingDoors(this);
-
             this.RoomsideDoors = new ItsRoomsideDoors(this);
 
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
             this.CropCursor = new CropCursor(this.GardensideDoor, this);
             this.CropTile = new CropTile(this.GardensideDoor, this);
-            this.AddsButton = new AddsButton(this.GardensideDoor, this.SiblingDoors, this);
+            this.AddsButton = new AddsButton(this.GardensideDoor, this.RoomsideDoors, this);
             this.DeletesButton = new DeletesButton(this.GardensideDoor, this);
         }
         #endregion

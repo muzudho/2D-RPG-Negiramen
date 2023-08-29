@@ -16,6 +16,7 @@ internal class ItsRoomsideDoors
         this.IndoorCultureInfo = new InnerCultureInfo(
             gardensideDoor: corridor.GardensideDoor,
             indoor: corridor);
+
         this.Zoom = new InnerZoom(
             twoWayDoor: corridor.TwoWayDoor,
             gardensideDoor: corridor.GardensideDoor,
