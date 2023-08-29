@@ -501,9 +501,10 @@
         /// </summary>
         public void RemakeGridCanvasImage()
         {
+            // ズームが屋外
             this.OwnerPageVM.GridCanvasImageSize = new SizeInt(
-                width: new WidthInt((int)(this.OwnerPageVM.ZoomAsFloat * this.RoomsideDoors.TilesetSourceImageSize.Width.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt),
-                height: new HeightInt((int)(this.OwnerPageVM.ZoomAsFloat * this.RoomsideDoors.TilesetSourceImageSize.Height.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt));
+                width: new WidthInt((int)(this.RoomsideDoors.ZoomProperties.AsFloat * this.RoomsideDoors.TilesetSourceImageSize.Width.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt),
+                height: new HeightInt((int)(this.RoomsideDoors.ZoomProperties.AsFloat * this.RoomsideDoors.TilesetSourceImageSize.Height.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt));
         }
         #endregion
     }
