@@ -16,7 +16,7 @@ internal class DeletesButton
     /// </summary>
     /// <param name="specObj"></param>
     internal DeletesButton(
-        IItsOutdoor outdoor,
+        IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
@@ -101,6 +101,6 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 }

@@ -21,7 +21,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="tileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
-        IItsOutdoor outdoor,
+        IItsCorridorOutdoorDirection outdoor,
         IItsIndoor spec,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
@@ -145,7 +145,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <summary>
     ///     内部モデル
     /// </summary>
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 
     /// <summary>

@@ -15,7 +15,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// </summary>
     /// <param name="owner"></param>
     internal RemoveRegisteredTileProcessing(
-        IItsOutdoor outdoor,
+        IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor,
         TileIdOrEmpty tileIdOrEmpty)
     {
@@ -105,7 +105,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// <summary>
     ///     内部クラス
     /// </summary>
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 
     /// <summary>

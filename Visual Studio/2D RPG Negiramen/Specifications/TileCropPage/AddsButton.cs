@@ -9,6 +9,11 @@ using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 internal class AddsButton
 {
     /// <summary>
+    ///     屋外側ドア
+    /// </summary>
+    ItsGardensideDoor GardensideDoor { get; }
+
+    /// <summary>
     ///     兄弟ドア
     /// </summary>
     ItsSiblingDoors SiblingDoors { get; }
@@ -21,10 +26,12 @@ internal class AddsButton
     /// </summary>
     /// <param name="specObj"></param>
     internal AddsButton(
+        ItsGardensideDoor gardensideDoor,
         ItsSiblingDoors siblingDoors,
-        IItsOutdoor outdoor, // TODO これを削除したい
+        IItsCorridorOutdoorDirection outdoor, // TODO これを削除したい
         IItsIndoor indoor) // TODO これを削除したい
     {
+        this.GardensideDoor = gardensideDoor;
         this.SiblingDoors = siblingDoors;
         this.Outdoor = outdoor; // TODO これを削除したい
         this.Indoor = indoor; // TODO これを削除したい
@@ -148,6 +155,6 @@ internal class AddsButton
 
     // - プライベート・プロパティ
 
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 }

@@ -16,7 +16,7 @@ internal class InnerZoom
     /// </summary>
     /// <param name="specObj"></param>
     internal InnerZoom(
-        IItsOutdoor outdoor,
+        IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
@@ -91,7 +91,7 @@ internal class InnerZoom
 
     // - プライベート・プロパティ
 
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 
     // - プライベート・フィールド

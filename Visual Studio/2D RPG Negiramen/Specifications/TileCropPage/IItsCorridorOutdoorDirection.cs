@@ -6,8 +6,16 @@ using _2D_RPG_Negiramen.Models.Visually;
 using TheFileEntryLocations = Models.FileEntries.Locations;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
-interface IItsOutdoor
+/// <summary>
+///     廊下の、屋外への向き
+/// </summary>
+interface IItsCorridorOutdoorDirection
 {
+    /// <summary>
+    ///     屋外側のドア
+    /// </summary>
+    ItsGardensideDoor GardensideDoor { get; }
+
     void InvalidateAddsButton();
     void InvalidateTilesetSettingsVM();
     void InvalidateForHistory();

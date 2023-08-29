@@ -15,7 +15,7 @@ internal class CropCursor
     /// </summary>
     /// <param name="specObj"></param>
     internal CropCursor(
-        IItsOutdoor outdoor,
+        IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
@@ -109,6 +109,6 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 }

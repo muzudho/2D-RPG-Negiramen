@@ -27,12 +27,17 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class ItsCorridor : IItsIndoor, IItsOutdoor
+    class ItsCorridor : IItsIndoor, IItsCorridorOutdoorDirection
     {
         public ItsSiblingDoors SiblingDoors { get; }
 
         /// <summary>
-        ///     屋内（ページの各要素）
+        ///     屋外側のドア
+        /// </summary>
+        public ItsGardensideDoor GardensideDoor { get; }
+
+        /// <summary>
+        ///     屋内側のドア
         /// </summary>
         public ItsRoomsideDoors RoomsideDoors { get; }
 
@@ -47,14 +52,16 @@
         {
             OutdoorPageVM = wholePageVM;
 
+            this.GardensideDoor = new ItsGardensideDoor(this);
             this.SiblingDoors = new ItsSiblingDoors(this);
+
             this.RoomsideDoors = new ItsRoomsideDoors(this);
 
             this.GridUnit = new GridUnit(this);
             this.PointingDevice = new InnerPointingDevice(this, this);
             this.CropCursor = new CropCursor(this, this);
             this.CropTile = new CropTile(this, this);
-            this.AddsButton = new AddsButton(this.SiblingDoors, this, this);
+            this.AddsButton = new AddsButton(this.GardensideDoor, this.SiblingDoors, this, this);
             this.DeletesButton = new DeletesButton(this, this);
         }
         #endregion
@@ -167,9 +174,9 @@
         }
 
 
-        #region 変更通知プロパティ（［ズーム］　関連）
+        #region 変更通知プロパティへのアクセッサ―（［ズーム］　関連）
         /// <summary>
-        ///     ［ズーム］整数形式
+        ///     変更通知プロパティへのアクセッサ―。［ズーム］整数形式
         ///     
         ///     <list type="bullet">
         ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
@@ -182,20 +189,11 @@
         }
         #endregion
 
-        public float ZoomMinAsFloat
-        {
-            get
-            {
-                return this.OutdoorPageVM.ZoomMinAsFloat;
-            }
-        }
-        public float ZoomMaxAsFloat
-        {
-            get
-            {
-                return this.OutdoorPageVM.ZoomMaxAsFloat;
-            }
-        }
+        /// <summary>変更通知プロパティへのアクセッサ―</summary>
+        public float ZoomMinAsFloat => this.OutdoorPageVM.ZoomMinAsFloat;
+
+        /// <summary>変更通知プロパティへのアクセッサ―</summary>
+        public float ZoomMaxAsFloat => this.OutdoorPageVM.ZoomMaxAsFloat;
 
 
         public int GridUnitSourceValueWidthAsInt

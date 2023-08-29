@@ -18,7 +18,7 @@ internal class CropTile
     /// </summary>
     /// <param name="specObj"></param>
     internal CropTile(
-        IItsOutdoor outdoor,
+        IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
@@ -200,6 +200,6 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 }

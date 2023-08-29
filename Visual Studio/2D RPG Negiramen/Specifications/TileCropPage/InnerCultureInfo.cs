@@ -16,7 +16,7 @@ internal class InnerCultureInfo
     /// </summary>
     /// <param name="owner"></param>
     internal InnerCultureInfo(
-        IItsOutdoor outdoor,
+        IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor)
     {
         this.Outdoor = outdoor;
@@ -55,6 +55,6 @@ internal class InnerCultureInfo
 
     // - プライベート・プロパティ
 
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 }

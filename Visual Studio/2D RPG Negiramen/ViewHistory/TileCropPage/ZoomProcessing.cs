@@ -19,7 +19,7 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
-        IItsOutdoor outdoor,
+        IItsCorridorOutdoorDirection outdoor,
         IItsIndoor indoor,
         Zoom oldValue,
         Zoom newValue)
@@ -57,7 +57,7 @@ internal class ZoomProcessing : IProcessing
     /// <summary>
     ///     内部クラス
     /// </summary>
-    IItsOutdoor Outdoor { get; }
+    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 
     /// <summary>
