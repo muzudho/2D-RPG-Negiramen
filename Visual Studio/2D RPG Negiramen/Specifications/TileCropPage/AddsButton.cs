@@ -28,12 +28,10 @@ internal class AddsButton
     internal AddsButton(
         ItsGardensideDoor gardensideDoor,
         ItsSiblingDoors siblingDoors,
-        IItsCorridorOutdoorDirection outdoor, // TODO これを削除したい
         IItsIndoor indoor) // TODO これを削除したい
     {
         this.GardensideDoor = gardensideDoor;
         this.SiblingDoors = siblingDoors;
-        this.Outdoor = outdoor; // TODO これを削除したい
         this.Indoor = indoor; // TODO これを削除したい
     }
     #endregion
@@ -69,7 +67,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.SiblingDoors.Zoom.Value)));
 
-        Outdoor.ObsoletedPageVMInvalidateForHistory();
+        this.GardensideDoor.PageVM.InvalidateForHistory();
     }
 
     /// <summary>
@@ -98,7 +96,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.Indoor.RoomsideDoors.ZoomValue)));
 
-        Outdoor.ObsoletedPageVMInvalidateForHistory();
+        this.GardensideDoor.PageVM.InvalidateForHistory();
     }
 
     /// <summary>
@@ -115,7 +113,7 @@ internal class AddsButton
                 // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
-                this.Outdoor.ObsoletedPageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
+                this.GardensideDoor.PageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
                 return;
             }
         }
@@ -127,7 +125,7 @@ internal class AddsButton
             // ［切抜きカーソル］の指すタイル無し時
 
             // 「追加」
-            this.Outdoor.ObsoletedPageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+            this.GardensideDoor.PageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
         }
         else
         {
@@ -140,21 +138,20 @@ internal class AddsButton
                 // ［追加］（新規作成）だ
 
                 // ［追加」
-                this.Outdoor.ObsoletedPageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                this.GardensideDoor.PageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
             }
             else
             {
                 // ［復元」
-                this.Outdoor.ObsoletedPageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
+                this.GardensideDoor.PageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
             }
         }
 
         // ［追加／復元］ボタンの活性性
-        this.Outdoor.ObsoletedPageVMInvalidateAddsButton();
+        this.GardensideDoor.PageVM.InvalidateAddsButton();
     }
 
     // - プライベート・プロパティ
 
-    IItsCorridorOutdoorDirection Outdoor { get; }
     IItsIndoor Indoor { get; }
 }

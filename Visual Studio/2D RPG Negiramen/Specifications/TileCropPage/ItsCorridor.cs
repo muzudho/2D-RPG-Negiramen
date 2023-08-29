@@ -67,7 +67,7 @@
             this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
             this.CropCursor = new CropCursor(this.GardensideDoor, this);
             this.CropTile = new CropTile(this.GardensideDoor, this);
-            this.AddsButton = new AddsButton(this.GardensideDoor, this.SiblingDoors, this, this);
+            this.AddsButton = new AddsButton(this.GardensideDoor, this.SiblingDoors, this);
             this.DeletesButton = new DeletesButton(this.GardensideDoor, this);
         }
         #endregion
@@ -176,10 +176,6 @@
             this.ObsoletedOutdoorPageVM.InvalidateWorkingTargetTile();
         }
 
-        public void ObsoletedPageVMInvalidateAddsButton()
-        {
-            this.ObsoletedOutdoorPageVM.InvalidateAddsButton();
-        }
         public string ObsoletedPageVMAddsButtonText
         {
             get => this.ObsoletedOutdoorPageVM.AddsButtonText;

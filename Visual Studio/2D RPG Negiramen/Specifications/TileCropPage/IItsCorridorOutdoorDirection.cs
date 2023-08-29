@@ -10,7 +10,6 @@ interface IItsCorridorOutdoorDirection
     /// </summary>
     ItsGardensideDoor GardensideDoor { get; }
 
-    void ObsoletedPageVMInvalidateAddsButton();
     void ObsoletedPageVMInvalidateTilesetSettingsVM();
     void ObsoletedPageVMInvalidateForHistory();
 
