@@ -45,7 +45,7 @@
             this.Corridor = new ItsCorridor(this);
 
             // 循環参照しないように注意
-            this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.HalfThicknessOfGridLine.AsInt);
+            this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.RoomsideDoors.HalfThicknessOfGridLine.AsInt);
         }
         #endregion
 
@@ -224,27 +224,14 @@
             }
         }
 
-        /// <summary>
-        ///     ［元画像グリッド］の線の太さの半分
-        /// </summary>
-        public int HalfThicknessOfGridLineAsInt => this.HalfThicknessOfGridLine.AsInt;
+        /// <summary>［元画像グリッド］の線の太さの半分</summary>
+        public int HalfThicknessOfGridLineAsInt => this.RoomsideDoors.HalfThicknessOfGridLine.AsInt;
 
-        /// <summary>
-        ///     ［元画像グリッド］の線の半分の太さ
-        /// </summary>
-        internal ThicknessOfLine HalfThicknessOfGridLine
+        public void InvalidateHalfThicknessOfGridLineAsInt()
         {
-            get => this.halfThicknessOfGridLine;
-            set
-            {
-                if (this.halfThicknessOfGridLine != value)
-                {
-                    this.halfThicknessOfGridLine = value;
-                    OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
-                    OnPropertyChanged(nameof(HalfThicknessOfGridLine));
-                }
-            }
+            OnPropertyChanged(nameof(HalfThicknessOfGridLineAsInt));
         }
+
 
         /// <summary>
         ///     ［元画像グリッド］の位相の左上表示位置。元画像ベース
@@ -331,6 +318,7 @@
         }
 
         /// <summary>
+        ///     変更通知プロパティ
         ///     ［元画像グリッド］のタイルの横幅。元画像ベース
         /// </summary>
         public int SourceGridTileWidthAsInt
@@ -1650,11 +1638,6 @@
         ///     ［元画像グリッド］の位相の左上表示位置
         /// </summary>
         Models.Geometric.PointInt gridPhaseSourceLocation = Models.Geometric.PointInt.Empty;
-
-        /// <summary>
-        ///     ［元画像グリッド］の線の太さの半分
-        /// </summary>
-        ThicknessOfLine halfThicknessOfGridLine = new(1);
         #endregion
 
         #region 変更通知フィールド（［作業グリッド］　関連）

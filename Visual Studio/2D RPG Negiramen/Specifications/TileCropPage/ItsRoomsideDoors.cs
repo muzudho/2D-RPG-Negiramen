@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
+using _2D_RPG_Negiramen.Models;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
@@ -170,4 +171,25 @@ internal class ItsRoomsideDoors
     /// </summary>
     internal TheGeometric.SizeInt TilesetSourceImageSize { get; set; } = TheGeometric.SizeInt.Empty;
     #endregion
+
+    /// <summary>
+    ///     変更通知プロパティ <see cref="HalfThicknessOfGridLineAsInt"/> に関わる
+    ///     ［元画像グリッド］の線の半分の太さ
+    /// </summary>
+    internal ThicknessOfLine HalfThicknessOfGridLine
+    {
+        get => this.halfThicknessOfGridLine;
+        set
+        {
+            if (this.halfThicknessOfGridLine != value)
+            {
+                this.halfThicknessOfGridLine = value;
+
+                // 屋外を更新
+                this.Corridor.OwnerPageVM.InvalidateHalfThicknessOfGridLineAsInt();
+            }
+        }
+    }
+    /// <summary>［元画像グリッド］の線の太さの半分</summary>
+    ThicknessOfLine halfThicknessOfGridLine = new(1);
 }
