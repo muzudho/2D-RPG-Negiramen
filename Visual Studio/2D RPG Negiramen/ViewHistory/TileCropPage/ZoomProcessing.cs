@@ -109,8 +109,8 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ObsoletedOutdoor.ObsoletedPageVMZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.ObsoletedOutdoor.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.ObsoletedOutdoor.ObsoletedPageVMZoomAsFloat * this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Indoor.CropCursorWorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.GardensideDoor.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
@@ -121,6 +121,6 @@ internal class ZoomProcessing : IProcessing
         }
 
         // 変更通知
-        this.ObsoletedOutdoor.ObsoletedInvalidateForHistory();
+        this.ObsoletedOutdoor.ObsoletedPageVMInvalidateForHistory();
     }
 }

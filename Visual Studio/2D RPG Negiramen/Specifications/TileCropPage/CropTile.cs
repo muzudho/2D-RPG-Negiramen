@@ -82,10 +82,10 @@ internal class CropTile
                     this.IdOrEmpty = TileIdOrEmpty.Empty;
 
                     // 元画像の位置とサイズ
-                    this.ObsoletedOutdoor.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+                    this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                     // 論理削除
-                    this.ObsoletedOutdoor.CropTileLogicalDeleteAsBool = false;
+                    this.ObsoletedOutdoor.ObsoletedPageVMCropTileLogicalDeleteAsBool = false;
 
                     // 空にする
                     this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
@@ -114,15 +114,15 @@ internal class CropTile
 
                 // （変更通知を送っている）
                 this.IdOrEmpty = newValue.Id;
-                this.ObsoletedOutdoor.CropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                this.ObsoletedOutdoor.CropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.ObsoletedOutdoor.CropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.ObsoletedOutdoor.CropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+                this.ObsoletedOutdoor.ObsoletedPageVMCropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+                this.ObsoletedOutdoor.ObsoletedPageVMCropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+                this.ObsoletedOutdoor.ObsoletedPageVMCropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+                this.ObsoletedOutdoor.ObsoletedPageVMCropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
                 // this.CropTileTitleAsStr = newValue.Title.AsStr;
             }
 
             // 変更通知を送りたい
-            this.ObsoletedOutdoor.ObsoletedInvalidateTileIdChange();
+            this.GardensideDoor.PageVM.InvalidateTileIdChange();
         }
     }
     #endregion
@@ -194,7 +194,7 @@ internal class CropTile
         }
 
         // 変更通知を送る
-        this.ObsoletedOutdoor.ObsoletedInvalidateTileIdChange();
+        this.GardensideDoor.PageVM.InvalidateTileIdChange();
 
         Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
     }

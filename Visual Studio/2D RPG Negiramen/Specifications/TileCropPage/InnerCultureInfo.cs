@@ -41,7 +41,7 @@ internal class InnerCultureInfo
                 CultureInfo newValue = value;
 
                 LocalizationResourceManager.Instance.SetCulture(value);
-                this.Outdoor.ObsoletedInvalidateCultureInfo();
+                this.Outdoor.ObsoletedPageVMInvalidateCultureInfo();
 
                 // 再帰的
                 App.History.Do(new SetCultureInfoProcessing(

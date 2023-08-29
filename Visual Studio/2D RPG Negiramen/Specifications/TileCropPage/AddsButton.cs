@@ -70,7 +70,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.SiblingDoors.Zoom.Value)));
 
-        Outdoor.ObsoletedInvalidateForHistory();
+        Outdoor.ObsoletedPageVMInvalidateForHistory();
     }
 
     /// <summary>
@@ -100,7 +100,7 @@ internal class AddsButton
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.Indoor.RoomsideDoors.ZoomValue)));
 
-        Outdoor.ObsoletedInvalidateForHistory();
+        Outdoor.ObsoletedPageVMInvalidateForHistory();
     }
 
     /// <summary>
@@ -117,7 +117,7 @@ internal class AddsButton
                 // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
-                this.Outdoor.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
+                this.Outdoor.ObsoletedPageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
                 return;
             }
         }
@@ -129,7 +129,7 @@ internal class AddsButton
             // ［切抜きカーソル］の指すタイル無し時
 
             // 「追加」
-            this.Outdoor.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+            this.Outdoor.ObsoletedPageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
         }
         else
         {
@@ -142,17 +142,17 @@ internal class AddsButton
                 // ［追加］（新規作成）だ
 
                 // ［追加」
-                this.Outdoor.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                this.Outdoor.ObsoletedPageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
             }
             else
             {
                 // ［復元」
-                this.Outdoor.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
+                this.Outdoor.ObsoletedPageVMAddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
             }
         }
 
         // ［追加／復元］ボタンの活性性
-        this.Outdoor.InvalidateAddsButton();
+        this.Outdoor.ObsoletedPageVMInvalidateAddsButton();
     }
 
     // - プライベート・プロパティ

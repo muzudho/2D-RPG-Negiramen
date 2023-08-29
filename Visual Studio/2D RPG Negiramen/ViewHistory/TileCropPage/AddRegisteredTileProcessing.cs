@@ -49,7 +49,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Indoor.CropTileIdOrEmpty = this.TileIdOrEmpty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.ObsoletedOutdoor.ObsoletedInvalidateTileIdChange();
+        this.ObsoletedOutdoor.ObsoletedPageVMInvalidateTileIdChange();
 
         // リストに登録済みか確認
         if (!this.GardensideDoor.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
@@ -113,7 +113,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Indoor.CropTileIdOrEmpty = TileIdOrEmpty.Empty;
 
         // ビューの再描画（タイルＩｄ更新）
-        this.ObsoletedOutdoor.ObsoletedInvalidateTileIdChange();
+        this.ObsoletedOutdoor.ObsoletedPageVMInvalidateTileIdChange();
 
         // リストから削除
         if (!this.GardensideDoor.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))

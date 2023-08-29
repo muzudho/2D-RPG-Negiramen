@@ -16,32 +16,32 @@ interface IItsCorridorOutdoorDirection
     /// </summary>
     ItsGardensideDoor GardensideDoor { get; }
 
-    void InvalidateAddsButton();
-    void ObsoletedInvalidateTilesetSettingsVM();
-    void ObsoletedInvalidateForHistory();
+    void ObsoletedPageVMInvalidateAddsButton();
+    void ObsoletedPageVMInvalidateTilesetSettingsVM();
+    void ObsoletedPageVMInvalidateForHistory();
 
     #region 変更通知メソッド（［選択タイル］　関連）
     /// <summary>
     ///     ［選択タイル］Ｉｄの再描画
     /// </summary>
-    void ObsoletedInvalidateTileIdChange();
+    void ObsoletedPageVMInvalidateTileIdChange();
     #endregion
 
-    string AddsButtonText { get; set; }
-    string AddsButtonHint { get; }
-    void InvalidateWorkingTargetTile();
+    string ObsoletedPageVMAddsButtonText { get; set; }
+    string ObsoletedPageVMAddsButtonHint { get; }
+    void ObsoletedPageVMInvalidateWorkingTargetTile();
 
-    float WorkingGridTileWidthAsFloat { set; }
-    float WorkingGridTileHeightAsFloat { set; }
+    float ObsoletedPageVMWorkingGridTileWidthAsFloat { set; }
+    float ObsoletedPageVMWorkingGridTileHeightAsFloat { set; }
 
-    bool CropTileLogicalDeleteAsBool { set; }
+    bool ObsoletedPageVMCropTileLogicalDeleteAsBool { set; }
 
-    int CropTileSourceLeftAsInt { set; }
-    int CropTileSourceTopAsInt { set; }
-    int CropTileSourceWidthAsInt { set; }
-    int CropTileSourceHeightAsInt { set; }
+    int ObsoletedPageVMCropTileSourceLeftAsInt { set; }
+    int ObsoletedPageVMCropTileSourceTopAsInt { set; }
+    int ObsoletedPageVMCropTileSourceWidthAsInt { set; }
+    int ObsoletedPageVMCropTileSourceHeightAsInt { set; }
 
-    void InvalidateIsMouseDragging();
+    void ObsoletedPageVMInvalidateIsMouseDragging();
 
     float ObsoletedPageVMZoomMinAsFloat { get; }
     float ObsoletedPageVMZoomMaxAsFloat { get; }
@@ -50,20 +50,9 @@ interface IItsCorridorOutdoorDirection
 
     float ObsoletedPageVMZoomAsFloat { get; set; }
 
-    /// <summary>
-    ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
-    ///     
-    ///     <list type="bullet">
-    ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
-    ///     </list>
-    /// </summary>
-    RectangleInt CroppedCursorPointedTileSourceRect { get; set; }
+    void ObsoletedPageVMInvalidateDeletesButton();
 
-    void ObsoletedInvalidateDeletesButton();
-
-    void ObsoletedInvalidateCultureInfo();
-
-    HeightFloat CroppedCursorPointedTileWorkingHeight { set; }
+    void ObsoletedPageVMInvalidateCultureInfo();
 
     void RefreshForTileAdd();
 

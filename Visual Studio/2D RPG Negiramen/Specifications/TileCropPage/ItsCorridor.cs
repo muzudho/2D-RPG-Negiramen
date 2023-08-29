@@ -77,33 +77,6 @@
         public int TilesetSourceImageWidthAsInt => this.IndoorTilesetSourceImageSize.Width.AsInt;
         public int TilesetSourceImageHeightAsInt => this.IndoorTilesetSourceImageSize.Height.AsInt;
 
-        public HeightFloat CroppedCursorPointedTileWorkingHeight
-        {
-            get => ObsoletedOutdoorPageVM.CroppedCursorPointedTileWorkingHeight;
-            set
-            {
-                ObsoletedOutdoorPageVM.CroppedCursorPointedTileWorkingHeight = value;
-            }
-        }
-
-        #region 変更通知プロパティ（［切抜きカーソルが指すタイル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
-        ///     
-        ///     <list type="bullet">
-        ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
-        ///     </list>
-        /// </summary>
-        public RectangleInt CroppedCursorPointedTileSourceRect
-        {
-            get => ObsoletedOutdoorPageVM.CroppedCursorPointedTileSourceRect;
-            set
-            {
-                ObsoletedOutdoorPageVM.CroppedCursorPointedTileSourceRect = value;
-            }
-        }
-        #endregion
-
         public void CropCursorRefreshCanvasTrick(string codePlace)
         {
             this.CropCursor.RefreshCanvasTrick(codePlace);
@@ -157,7 +130,7 @@
         /// <summary>
         ///     切抜きタイル・元画像左（整数として）
         /// </summary>
-        public int CropTileSourceLeftAsInt
+        public int ObsoletedPageVMCropTileSourceLeftAsInt
         {
             set
             {
@@ -168,21 +141,21 @@
         /// <summary>
         ///     切抜きタイル・元画像上（整数として）
         /// </summary>
-        public int CropTileSourceTopAsInt
+        public int ObsoletedPageVMCropTileSourceTopAsInt
         {
             set
             {
                 this.ObsoletedOutdoorPageVM.CropTileSourceTopAsInt = value;
             }
         }
-        public int CropTileSourceWidthAsInt
+        public int ObsoletedPageVMCropTileSourceWidthAsInt
         {
             set
             {
                 this.ObsoletedOutdoorPageVM.CropTileSourceWidthAsInt = value;
             }
         }
-        public int CropTileSourceHeightAsInt
+        public int ObsoletedPageVMCropTileSourceHeightAsInt
         {
             set
             {
@@ -190,7 +163,7 @@
             }
         }
 
-        public bool CropTileLogicalDeleteAsBool
+        public bool ObsoletedPageVMCropTileLogicalDeleteAsBool
         {
             set
             {
@@ -198,33 +171,33 @@
             }
         }
 
-        public void InvalidateWorkingTargetTile()
+        public void ObsoletedPageVMInvalidateWorkingTargetTile()
         {
             this.ObsoletedOutdoorPageVM.InvalidateWorkingTargetTile();
         }
 
-        public void InvalidateAddsButton()
+        public void ObsoletedPageVMInvalidateAddsButton()
         {
             this.ObsoletedOutdoorPageVM.InvalidateAddsButton();
         }
-        public string AddsButtonText
+        public string ObsoletedPageVMAddsButtonText
         {
             get => this.ObsoletedOutdoorPageVM.AddsButtonText;
             set => this.ObsoletedOutdoorPageVM.AddsButtonText = value;
         }
-        public string AddsButtonHint
+        public string ObsoletedPageVMAddsButtonHint
         {
             get => this.ObsoletedOutdoorPageVM.AddsButtonHint;
         }
 
-        public float WorkingGridTileWidthAsFloat
+        public float ObsoletedPageVMWorkingGridTileWidthAsFloat
         {
             set
             {
                 this.ObsoletedOutdoorPageVM.WorkingGridTileWidthAsFloat = value;
             }
         }
-        public float WorkingGridTileHeightAsFloat
+        public float ObsoletedPageVMWorkingGridTileHeightAsFloat
         {
             set
             {
@@ -232,7 +205,7 @@
             }
         }
 
-        public void InvalidateIsMouseDragging()
+        public void ObsoletedPageVMInvalidateIsMouseDragging()
         {
             this.ObsoletedOutdoorPageVM.InvalidateIsMouseDragging();
         }
@@ -341,30 +314,30 @@
         /// <summary>
         ///     ［選択タイル］Ｉｄの再描画
         /// </summary>
-        public void ObsoletedInvalidateTileIdChange() => ObsoletedOutdoorPageVM.InvalidateTileIdChange();
+        public void ObsoletedPageVMInvalidateTileIdChange() => ObsoletedOutdoorPageVM.InvalidateTileIdChange();
         #endregion
 
         #region 変更通知メソッド（［タイルセット設定］　関連）
         /// <summary>
         ///     ［タイルセット設定］ビューモデルに変更あり
         /// </summary>
-        public void ObsoletedInvalidateTilesetSettingsVM() => ObsoletedOutdoorPageVM.InvalidateTilesetSettingsVM();
+        public void ObsoletedPageVMInvalidateTilesetSettingsVM() => ObsoletedOutdoorPageVM.InvalidateTilesetSettingsVM();
         #endregion
 
         #region 変更通知メソッド（［履歴］）
         /// <summary>
         ///     ［履歴］
         /// </summary>
-        public void ObsoletedInvalidateForHistory() => ObsoletedOutdoorPageVM.InvalidateForHistory();
+        public void ObsoletedPageVMInvalidateForHistory() => ObsoletedOutdoorPageVM.InvalidateForHistory();
         #endregion
 
 
 
 
 
-        public void ObsoletedInvalidateDeletesButton() => ObsoletedOutdoorPageVM.InvalidateDeletesButton();
+        public void ObsoletedPageVMInvalidateDeletesButton() => ObsoletedOutdoorPageVM.InvalidateDeletesButton();
 
-        public void ObsoletedInvalidateCultureInfo() => this.ObsoletedOutdoorPageVM.InvalidateCultureInfo();
+        public void ObsoletedPageVMInvalidateCultureInfo() => this.ObsoletedOutdoorPageVM.InvalidateCultureInfo();
 
 
 
@@ -389,7 +362,7 @@
         internal void LoadCroppedCursorPointedTile()
         {
             this.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
-                sourceRect: CroppedCursorPointedTileSourceRect,
+                sourceRect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
                 some: (tileVisually) =>
                 {
                     // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
@@ -410,7 +383,7 @@
                     this.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
-                            rect: CroppedCursorPointedTileSourceRect,
+                            rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
                             title: TileTitle.Empty,
                             logicalDelete: LogicalDelete.False),
                         zoom: this.RoomsideDoors.Zoom.Value
@@ -540,7 +513,7 @@
         /// </summary>
         internal void WholeRecalculateBetweenCropCursorAndRegisteredTile()
         {
-            if (CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
+            if (this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
                 HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
@@ -549,8 +522,8 @@
             }
 
             // 軽くはない処理
-            HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.HasIntersection(CroppedCursorPointedTileSourceRect);
-            IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.IsCongruence(CroppedCursorPointedTileSourceRect);
+            HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.HasIntersection(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
+            IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.IsCongruence(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
 
             Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
@@ -588,7 +561,7 @@
             // ============
             //
             // Trace.WriteLine($"[TileCropPage.xaml.cs RefreshTileForm] context.IsMouseDragging: {context.IsMouseDragging}, context.HalfThicknessOfTileCursorLine.AsInt: {context.HalfThicknessOfTileCursorLine.AsInt}, rect x:{rect.Point.X.AsInt} y:{rect.Point.Y.AsInt} width:{rect.Size.Width.AsInt} height:{rect.Size.Height.AsInt}");
-            CroppedCursorPointedTileSourceRect = sourceRect;
+            this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = sourceRect;
 
             //
             // 登録済みのタイルと被っていないか判定

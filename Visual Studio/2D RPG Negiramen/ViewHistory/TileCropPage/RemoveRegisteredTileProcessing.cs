@@ -39,7 +39,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.ObsoletedOutdoor.ObsoletedInvalidateTilesetSettingsVM();
+            this.ObsoletedOutdoor.ObsoletedPageVMInvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -77,7 +77,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.ObsoletedOutdoor.ObsoletedInvalidateTilesetSettingsVM();
+            this.ObsoletedOutdoor.ObsoletedPageVMInvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
