@@ -7,7 +7,6 @@
     using SkiaSharp;
     using SkiaSharp.Views.Maui.Controls;
     using System.Diagnostics;
-    using TheFileEntryLocations = Models.FileEntries.Locations;
     using TheGraphics = Microsoft.Maui.Graphics;
     using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
     using System.Globalization;
@@ -27,7 +26,7 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class ItsCorridor : IItsIndoor, IItsCorridorOutdoorDirection
+    class ItsCorridor : IItsIndoor
     {
         public ItsSiblingDoors SiblingDoors { get; }
 
