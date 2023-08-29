@@ -64,8 +64,8 @@
             this.RoomsideDoors = new ItsRoomsideDoors(this);
 
             this.GridUnit = new GridUnit(this);
-            this.PointingDevice = new InnerPointingDevice(this, this);
-            this.CropCursor = new CropCursor(this, this);
+            this.PointingDevice = new InnerPointingDevice(this.GardensideDoor, this);
+            this.CropCursor = new CropCursor(this.GardensideDoor, this);
             this.CropTile = new CropTile(this.GardensideDoor, this);
             this.AddsButton = new AddsButton(this.GardensideDoor, this.SiblingDoors, this, this);
             this.DeletesButton = new DeletesButton(this.GardensideDoor, this, this);

@@ -15,10 +15,10 @@ internal class CropCursor
     /// </summary>
     /// <param name="specObj"></param>
     internal CropCursor(
-        IItsCorridorOutdoorDirection outdoor,
+        ItsGardensideDoor gardensideDoor,
         IItsIndoor indoor)
     {
-        this.Outdoor = outdoor;
+        this.GardensideDoor = gardensideDoor;
         this.Indoor = indoor;
     }
     #endregion
@@ -61,7 +61,7 @@ internal class CropCursor
         }
 
         // TRICK CODE:
-        this.Outdoor.ObsoletedPageVMInvalidateWorkingTargetTile();
+        this.GardensideDoor.PageVM.InvalidateWorkingTargetTile();
     }
 
     #region メソッド（［作業グリッド］　関連）
@@ -74,7 +74,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileWidth()
     {
-        this.Outdoor.ObsoletedPageVMWorkingGridTileWidthAsFloat = this.Outdoor.ObsoletedPageVMZoomAsFloat * this.Indoor.GridUnitSourceValueWidthAsInt;
+        this.GardensideDoor.PageVM.WorkingGridTileWidthAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * this.Indoor.GridUnitSourceValueWidthAsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -88,7 +88,7 @@ internal class CropCursor
     /// </summary>
     internal void RecalculateWorkingGridTileHeight()
     {
-        this.Outdoor.ObsoletedPageVMWorkingGridTileHeightAsFloat = this.Outdoor.ObsoletedPageVMZoomAsFloat * this.Indoor.GridUnitSourceValueHeightAsInt;
+        this.GardensideDoor.PageVM.WorkingGridTileHeightAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * this.Indoor.GridUnitSourceValueHeightAsInt;
 
         // this.Owner.Owner.InvalidateWorkingGrid();
     }
@@ -109,6 +109,6 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
-    IItsCorridorOutdoorDirection Outdoor { get; }
+    ItsGardensideDoor GardensideDoor { get; }
     IItsIndoor Indoor { get; }
 }

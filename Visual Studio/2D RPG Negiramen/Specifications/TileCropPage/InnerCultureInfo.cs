@@ -16,10 +16,10 @@ internal class InnerCultureInfo
     /// </summary>
     /// <param name="owner"></param>
     internal InnerCultureInfo(
-        IItsCorridorOutdoorDirection outdoor,
+        ItsGardensideDoor gardensideDoor,
         IItsIndoor indoor)
     {
-        this.Outdoor = outdoor;
+        this.GardensideDoor = gardensideDoor;
         this.Indoor = indoor;
     }
     #endregion
@@ -41,7 +41,7 @@ internal class InnerCultureInfo
                 CultureInfo newValue = value;
 
                 LocalizationResourceManager.Instance.SetCulture(value);
-                this.Outdoor.ObsoletedPageVMInvalidateCultureInfo();
+                this.GardensideDoor.PageVM.InvalidateCultureInfo();
 
                 // 再帰的
                 App.History.Do(new SetCultureInfoProcessing(
@@ -55,6 +55,6 @@ internal class InnerCultureInfo
 
     // - プライベート・プロパティ
 
-    IItsCorridorOutdoorDirection Outdoor { get; }
+    ItsGardensideDoor GardensideDoor { get; }
     IItsIndoor Indoor { get; }
 }

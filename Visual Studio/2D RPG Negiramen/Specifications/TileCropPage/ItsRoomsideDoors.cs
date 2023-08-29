@@ -13,7 +13,9 @@ internal class ItsRoomsideDoors
 {
     internal ItsRoomsideDoors(ItsCorridor corridor)
     {
-        this.IndoorCultureInfo = new InnerCultureInfo(corridor, corridor);
+        this.IndoorCultureInfo = new InnerCultureInfo(
+            gardensideDoor: corridor.GardensideDoor,
+            indoor: corridor);
         this.Zoom = new InnerZoom(
             twoWayDoor: corridor.TwoWayDoor,
             gardensideDoor: corridor.GardensideDoor,
@@ -29,13 +31,7 @@ internal class ItsRoomsideDoors
 
     public Zoom ZoomValue
     {
-        get
-        {
-            return this.Zoom.Value;
-        }
-        set
-        {
-            this.Zoom.Value = value;
-        }
+        get => this.Zoom.Value;
+        set => this.Zoom.Value = value;
     }
 }

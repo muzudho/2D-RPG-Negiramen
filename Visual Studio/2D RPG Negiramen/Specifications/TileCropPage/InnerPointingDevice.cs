@@ -15,10 +15,10 @@ internal class InnerPointingDevice
     /// </summary>
     /// <param name="owner"></param>
     internal InnerPointingDevice(
-        IItsCorridorOutdoorDirection outdoor,
+        ItsGardensideDoor gardensideDoor,
         IItsIndoor indoor)
     {
-        this.Outdoor = outdoor;
+        this.GardensideDoor = gardensideDoor;
         this.Indoor = indoor;
     }
     #endregion
@@ -56,7 +56,7 @@ internal class InnerPointingDevice
             if (isMouseDragging != value)
             {
                 isMouseDragging = value;
-                this.Outdoor.ObsoletedPageVMInvalidateIsMouseDragging();
+                this.GardensideDoor.PageVM.InvalidateIsMouseDragging();
             }
         }
     }
@@ -64,7 +64,7 @@ internal class InnerPointingDevice
 
     // - プライベート・プロパティ
 
-    IItsCorridorOutdoorDirection Outdoor { get; }
+    ItsGardensideDoor GardensideDoor { get; }
     IItsIndoor Indoor { get; }
 
     #region プロパティ（ポインティング・デバイス押下中か？）
