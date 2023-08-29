@@ -82,29 +82,6 @@
             this.CropCursor.RefreshCanvasTrick(codePlace);
         }
 
-
-        #region 変更通知プロパティへのアクセッサ―（［ズーム］　関連）
-        /// <summary>
-        ///     変更通知プロパティへのアクセッサ―。［ズーム］整数形式
-        ///     
-        ///     <list type="bullet">
-        ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
-        ///     </list>
-        /// </summary>
-        public float ObsoletedPageVMZoomAsFloat
-        {
-            get => this.GardensideDoor.PageVM.ZoomAsFloat;
-            set => this.GardensideDoor.PageVM.ZoomAsFloat = value;
-        }
-        #endregion
-
-        /// <summary>変更通知プロパティへのアクセッサ―</summary>
-        public float ObsoletedPageVMZoomMinAsFloat => this.ObsoletedOutdoorPageVM.ZoomMinAsFloat;
-
-        /// <summary>変更通知プロパティへのアクセッサ―</summary>
-        public float ObsoletedPageVMZoomMaxAsFloat => this.ObsoletedOutdoorPageVM.ZoomMaxAsFloat;
-
-
         public int GridUnitSourceValueWidthAsInt
         {
             get
@@ -126,86 +103,6 @@
         /// <summary>全体ページ・ビューモデル</summary>
         internal TileCropPageViewModel PageVM { get; }
         internal TileCropPageViewModel ObsoletedOutdoorPageVM => this.PageVM;
-
-        /// <summary>
-        ///     切抜きタイル・元画像左（整数として）
-        /// </summary>
-        public int ObsoletedPageVMCropTileSourceLeftAsInt
-        {
-            set
-            {
-                this.ObsoletedOutdoorPageVM.CropTileSourceLeftAsInt = value;
-            }
-        }
-
-        /// <summary>
-        ///     切抜きタイル・元画像上（整数として）
-        /// </summary>
-        public int ObsoletedPageVMCropTileSourceTopAsInt
-        {
-            set
-            {
-                this.ObsoletedOutdoorPageVM.CropTileSourceTopAsInt = value;
-            }
-        }
-        public int ObsoletedPageVMCropTileSourceWidthAsInt
-        {
-            set
-            {
-                this.ObsoletedOutdoorPageVM.CropTileSourceWidthAsInt = value;
-            }
-        }
-        public int ObsoletedPageVMCropTileSourceHeightAsInt
-        {
-            set
-            {
-                this.ObsoletedOutdoorPageVM.CropTileSourceHeightAsInt = value;
-            }
-        }
-
-        public bool ObsoletedPageVMCropTileLogicalDeleteAsBool
-        {
-            set
-            {
-                this.ObsoletedOutdoorPageVM.CropTileLogicalDeleteAsBool = value;
-            }
-        }
-
-        public void ObsoletedPageVMInvalidateWorkingTargetTile()
-        {
-            this.ObsoletedOutdoorPageVM.InvalidateWorkingTargetTile();
-        }
-
-        public string ObsoletedPageVMAddsButtonText
-        {
-            get => this.ObsoletedOutdoorPageVM.AddsButtonText;
-            set => this.ObsoletedOutdoorPageVM.AddsButtonText = value;
-        }
-        public string ObsoletedPageVMAddsButtonHint
-        {
-            get => this.ObsoletedOutdoorPageVM.AddsButtonHint;
-        }
-
-        public float ObsoletedPageVMWorkingGridTileWidthAsFloat
-        {
-            set
-            {
-                this.ObsoletedOutdoorPageVM.WorkingGridTileWidthAsFloat = value;
-            }
-        }
-        public float ObsoletedPageVMWorkingGridTileHeightAsFloat
-        {
-            set
-            {
-                this.ObsoletedOutdoorPageVM.WorkingGridTileHeightAsFloat = value;
-            }
-        }
-
-        public void ObsoletedPageVMInvalidateIsMouseDragging()
-        {
-            this.ObsoletedOutdoorPageVM.InvalidateIsMouseDragging();
-        }
-
 
 
 
@@ -305,27 +202,6 @@
         }
 
         // - インターナル変更通知メソッド
-
-        #region パブリック変更通知メソッド（［選択タイル］　関連）
-        /// <summary>
-        ///     ［選択タイル］Ｉｄの再描画
-        /// </summary>
-        public void ObsoletedPageVMInvalidateTileIdChange() => ObsoletedOutdoorPageVM.InvalidateTileIdChange();
-        #endregion
-
-        #region 変更通知メソッド（［タイルセット設定］　関連）
-        /// <summary>
-        ///     ［タイルセット設定］ビューモデルに変更あり
-        /// </summary>
-        public void ObsoletedPageVMInvalidateTilesetSettingsVM() => ObsoletedOutdoorPageVM.InvalidateTilesetSettingsVM();
-        #endregion
-
-        #region 変更通知メソッド（［履歴］）
-        /// <summary>
-        ///     ［履歴］
-        /// </summary>
-        public void ObsoletedPageVMInvalidateForHistory() => ObsoletedOutdoorPageVM.InvalidateForHistory();
-        #endregion
 
 
 
@@ -463,11 +339,11 @@
             // ズームを除去
             var sourceRect = new RectangleInt(
                 location: new PointInt(
-                    x: new XInt((int)(workingRect.Location.X.AsFloat / ObsoletedPageVMZoomAsFloat)),
-                    y: new YInt((int)(workingRect.Location.Y.AsFloat / ObsoletedPageVMZoomAsFloat))),
+                    x: new XInt((int)(workingRect.Location.X.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat)),
+                    y: new YInt((int)(workingRect.Location.Y.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat))),
                 size: new SizeInt(
-                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / ObsoletedPageVMZoomAsFloat)),
-                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / ObsoletedPageVMZoomAsFloat))));
+                    width: new WidthInt((int)(workingRect.Size.Width.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat)),
+                    height: new HeightInt((int)(workingRect.Size.Height.AsFloat / this.GardensideDoor.PageVM.ZoomAsFloat))));
 
             //
             // 計算値の反映

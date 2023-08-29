@@ -24,8 +24,6 @@ interface IItsIndoor
 
     TileIdOrEmpty CropTileIdOrEmpty { set; get; }
 
-    float ObsoletedPageVMZoomAsFloat { get; set; }
-
     void CropCursorRefreshCanvasTrick(string codePlace);
 
     int GridUnitSourceValueWidthAsInt { get; }
