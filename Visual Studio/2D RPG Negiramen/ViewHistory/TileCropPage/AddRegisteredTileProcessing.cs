@@ -55,7 +55,11 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ［タイル］のＩｄ変更
         this.RoomsideDoors.CropTile.SetIdOrEmpty(
             value: this.TileIdOrEmpty,
-            setAddsButtonText: this.SetAddsButtonText);
+            setAddsButtonText: this.SetAddsButtonText,
+            onDeleteButtonEnableChanged: () =>
+            {
+                this.GardensideDoor.PageVM.InvalidateDeletesButton();
+            });
 
         // ビューの再描画（タイルＩｄ更新）
         this.GardensideDoor.PageVM.InvalidateTileIdChange();
@@ -121,7 +125,11 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ［タイル］のＩｄ消去
         this.RoomsideDoors.CropTile.SetIdOrEmpty(
             value: TileIdOrEmpty.Empty,
-            setAddsButtonText: this.SetAddsButtonText);
+            setAddsButtonText: this.SetAddsButtonText,
+            onDeleteButtonEnableChanged: () =>
+            {
+                this.GardensideDoor.PageVM.InvalidateDeletesButton();
+            });
 
         // ビューの再描画（タイルＩｄ更新）
         this.GardensideDoor.PageVM.InvalidateTileIdChange();
@@ -143,7 +151,11 @@ internal class AddRegisteredTileProcessing : IProcessing
         }
 
         //  ［削除］ボタンの再描画
-        this.RoomsideDoors.DeletesButton.Refresh();
+        this.RoomsideDoors.DeletesButton.Refresh(
+            onEnableChanged: () =>
+            {
+                this.GardensideDoor.PageVM.InvalidateDeletesButton();
+            });
 
         //
         // カラーマップの再描画

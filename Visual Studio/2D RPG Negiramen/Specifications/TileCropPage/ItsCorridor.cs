@@ -514,7 +514,11 @@
                             // 変更通知を送りたい
                             this.GardensideDoor.PageVM.InvalidateTileIdChange();
                         },
-                        setAddsButtonText: setAddsButtonText);
+                        setAddsButtonText: setAddsButtonText,
+                        onDeleteButtonEnableChanged: () =>
+                        {
+                            this.GardensideDoor.PageVM.InvalidateDeletesButton();
+                        });
                 },
                 none: () =>
                 {
@@ -567,7 +571,11 @@
                             // 変更通知を送りたい
                             this.GardensideDoor.PageVM.InvalidateTileIdChange();
                         },
-                        setAddsButtonText: setAddsButtonText);
+                        setAddsButtonText: setAddsButtonText,
+                        onDeleteButtonEnableChanged: () =>
+                        {
+                            this.GardensideDoor.PageVM.InvalidateDeletesButton();
+                        });
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);
@@ -577,7 +585,11 @@
                 setAddsButtonText: setAddsButtonText);
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
-            this.RoomsideDoors.DeletesButton.Refresh();
+            this.RoomsideDoors.DeletesButton.Refresh(
+                onEnableChanged: () =>
+                {
+                    this.GardensideDoor.PageVM.InvalidateDeletesButton();
+                });
 
             // ［追加／復元］ボタン
             this.OwnerPageVM.InvalidateAddsButton();

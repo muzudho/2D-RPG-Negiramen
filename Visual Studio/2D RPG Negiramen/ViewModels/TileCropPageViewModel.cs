@@ -1183,6 +1183,10 @@
                         this.AddsButtonText = text;
                         this.InvalidateAddsButton();
                     },
+                    onDeleteButtonEnableChanged: () =>
+                    {
+                        this.InvalidateDeletesButton();
+                    },
                     tileTitle: TileTitle.FromString(value));
 
                 // 変更通知を送る
@@ -1207,6 +1211,10 @@
                     {
                         this.AddsButtonText = text;
                         this.InvalidateAddsButton();
+                    },
+                    onDeleteButtonEnableChanged: () =>
+                    {
+                        this.InvalidateDeletesButton();
                     },
                     logicalDelete: LogicalDelete.FromBool(value));
 
@@ -1304,7 +1312,6 @@
         public bool IsEnabledRoomsideDoorsDeletesButton
         {
             get => this.RoomsideDoors.DeletesButton.IsEnabled;
-            set => this.RoomsideDoors.DeletesButton.IsEnabled = value;
         }
         #endregion
 

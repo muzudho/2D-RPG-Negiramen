@@ -33,16 +33,20 @@ internal class DeletesButton
     public bool IsEnabled
     {
         get => this.isEnabled;
-        set
-        {
-            if (this.isEnabled == value)
-                return;
-
-            this.isEnabled = value;
-            this.GardensideDoor.PageVM.InvalidateDeletesButton();
-        }
     }
     #endregion
+
+    internal void SetEnabled(
+        bool value,
+        Action onChanged)
+    {
+        if (this.isEnabled == value)
+            return;
+
+        this.isEnabled = value;
+
+        onChanged();
+    }
 
     // - インターナル・メソッド
 
@@ -50,14 +54,17 @@ internal class DeletesButton
     /// <summary>
     ///     再描画
     /// </summary>
-    internal void Refresh()
+    internal void Refresh(
+        Action onEnableChanged)
     {
         var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
         if (contents.IsNone)
         {
             // 切抜きカーソル無し時
-            this.IsEnabled = false;
+            this.SetEnabled(
+                value: false,
+                onChanged: onEnableChanged);
             return;
         }
 
@@ -65,12 +72,16 @@ internal class DeletesButton
         if (contents.Id == TileIdOrEmpty.Empty)
         {
             // Ｉｄ未設定時
-            this.IsEnabled = false;
+            this.SetEnabled(
+                value: false,
+                onChanged: onEnableChanged);
         }
         else
         {
             // タイル登録済み時
-            this.IsEnabled = true;
+            this.SetEnabled(
+                value: true,
+                onChanged: onEnableChanged);
         }
     }
     #endregion
