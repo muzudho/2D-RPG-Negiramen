@@ -417,7 +417,7 @@
                     }
 
                     // タイルを指す（論理削除されているものも含む）
-                    this.RoomsideDoors.CropTile.RecordVisually = tileVisually;
+                    this.RoomsideDoors.CropTile.SetRecordVisually(tileVisually);
                 },
                 none: () =>
                 {
@@ -432,7 +432,7 @@
                     //
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.RoomsideDoors.CropTile.RecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisually(TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
@@ -442,7 +442,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
 #endif
-                        );
+                        ));
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);

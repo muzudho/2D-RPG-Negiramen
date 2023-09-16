@@ -3,7 +3,6 @@
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.Visually;
-using System.Diagnostics;
 
 /// <summary>
 ///     切抜きカーソルが指すタイル
@@ -40,82 +39,83 @@ internal class CropTile
     public TileRecordVisually RecordVisually
     {
         get => this.recordVisually;
-        set
-        {
-            var oldTileVisually = this.recordVisually;
-
-            // 値に変化がない
-            if (oldTileVisually == value)
-                return;
-
-            if (value.IsNone)
-            {
-                // ［切抜きカーソルが指すタイル］を無しに設定する
-
-                if (oldTileVisually.IsNone)
-                {
-                    // ［切抜きカーソルが指すタイル］がもともと無く、［切抜きカーソルが指すタイル］を無しに設定するのだから、何もしなくてよい
-                }
-                else
-                {
-                    // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
-                    this.UpdateByDifference(
-                        // タイトル
-                        tileTitle: TileTitle.Empty);
-
-                    // 末端にセット（変更通知を呼ぶために）
-                    // Ｉｄ
-                    this.IdOrEmpty = TileIdOrEmpty.Empty;
-
-                    // 元画像の位置とサイズ
-                    this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
-
-                    // 論理削除
-                    this.GardensideDoor.PageVM.CropTileLogicalDeleteAsBool = false;
-
-                    // 空にする
-                    this.recordVisually = TileRecordVisually.CreateEmpty();
-                }
-            }
-            else
-            {
-                var newValue = value;
-
-                if (oldTileVisually.IsNone)
-                {
-                    // ［切抜きカーソル］の指すタイル無し時
-
-                    // 新規作成
-                    this.recordVisually = TileRecordVisually.CreateEmpty();
-                }
-                else
-                {
-                    // ［切抜きカーソル］の指すタイルが有るなら構わない
-                }
-
-                // （変更通知を送っている）
-                this.UpdateByDifference(
-                    // タイトル
-                    tileTitle: newValue.Title);
-
-                // （変更通知を送っている）
-                this.IdOrEmpty = newValue.Id;
-                this.GardensideDoor.PageVM.CropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-                this.GardensideDoor.PageVM.CropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-                this.GardensideDoor.PageVM.CropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-                this.GardensideDoor.PageVM.CropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
-                // this.CropTileTitleAsStr = newValue.Title.AsStr;
-            }
-
-            // 変更通知を送りたい
-            this.GardensideDoor.PageVM.InvalidateTileIdChange();
-        }
     }
     #endregion
 
-    internal void SetRecordVisuallyNoGuiUpdate(TileRecordVisually recordVisually)
+    internal void SetRecordVisually(TileRecordVisually value)
     {
-        this.recordVisually = recordVisually;
+        var oldTileVisually = this.recordVisually;
+
+        // 値に変化がない
+        if (oldTileVisually == value)
+            return;
+
+        if (value.IsNone)
+        {
+            // ［切抜きカーソルが指すタイル］を無しに設定する
+
+            if (oldTileVisually.IsNone)
+            {
+                // ［切抜きカーソルが指すタイル］がもともと無く、［切抜きカーソルが指すタイル］を無しに設定するのだから、何もしなくてよい
+            }
+            else
+            {
+                // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
+                this.UpdateByDifference(
+                    // タイトル
+                    tileTitle: TileTitle.Empty);
+
+                // 末端にセット（変更通知を呼ぶために）
+                // Ｉｄ
+                this.IdOrEmpty = TileIdOrEmpty.Empty;
+
+                // 元画像の位置とサイズ
+                this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+
+                // 論理削除
+                this.GardensideDoor.PageVM.CropTileLogicalDeleteAsBool = false;
+
+                // 空にする
+                this.recordVisually = TileRecordVisually.CreateEmpty();
+            }
+        }
+        else
+        {
+            var newValue = value;
+
+            if (oldTileVisually.IsNone)
+            {
+                // ［切抜きカーソル］の指すタイル無し時
+
+                // 新規作成
+                this.recordVisually = TileRecordVisually.CreateEmpty();
+            }
+            else
+            {
+                // ［切抜きカーソル］の指すタイルが有るなら構わない
+            }
+
+            // （変更通知を送っている）
+            this.UpdateByDifference(
+                // タイトル
+                tileTitle: newValue.Title);
+
+            // （変更通知を送っている）
+            this.IdOrEmpty = newValue.Id;
+            this.GardensideDoor.PageVM.CropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
+            this.GardensideDoor.PageVM.CropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
+            this.GardensideDoor.PageVM.CropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
+            this.GardensideDoor.PageVM.CropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+            // this.CropTileTitleAsStr = newValue.Title.AsStr;
+        }
+
+        // 変更通知を送りたい
+        this.GardensideDoor.PageVM.InvalidateTileIdChange();
+    }
+
+    internal void SetRecordVisuallyNoGuiUpdate(TileRecordVisually value)
+    {
+        this.recordVisually = value;
     }
 
     #region プロパティ（Ｉｄ）
@@ -195,7 +195,11 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
+    /// <summary>
+    ///     子要素が、親要素を変更できるのは良くない
+    /// </summary>
     ItsGardensideDoor GardensideDoor { get; }
+
     ItsRoomsideDoors RoomsideDoors { get; }
 
     #region プロパティ（保存データ）
