@@ -357,55 +357,6 @@
         }
         #endregion
 
-        #region メソッド（［切抜きカーソル］と［切抜きカーソルが指すタイル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］の読込
-        /// </summary>
-        void LoadCroppedCursorPointedTile(
-            MouseDrawingOperationState mouseDrawingOperationState)
-        {
-            this.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
-                sourceRect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
-                some: (tileVisually) =>
-                {
-                    if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
-                    {
-                        Trace.WriteLine($"［選択タイル調査］　タイル登録済　Id:{tileVisually.Id.AsInt}, {tileVisually.Id.AsBASE64} Title:{tileVisually.Title.AsStr}");
-                    }
-
-                    // タイルを指す（論理削除されているものも含む）
-                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = tileVisually;
-                },
-                none: () =>
-                {
-                    if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
-                    {
-                        Trace.WriteLine("［選択タイル調査］　タイル未登録");
-                    }
-
-                    //
-                    // 空欄にする
-                    // ==========
-                    //
-
-                    // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
-                        tileRecord: new TileRecord(
-                            id: TileIdOrEmpty.Empty,
-                            rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
-                            title: TileTitle.Empty,
-                            logicalDelete: LogicalDelete.False),
-                        zoom: this.RoomsideDoors.ZoomProperties.Value
-#if DEBUG
-                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
-#endif
-                        );
-                },
-                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
-                includeLogicalDelete: true);
-        }
-        #endregion
-
         #region メソッド（タイル・フォーム更新）
         /// <summary>
         ///     タイル・フォーム更新
@@ -456,7 +407,45 @@
             // 切抜きカーソル更新
             // ==================
             //
-            this.LoadCroppedCursorPointedTile(mouseDrawingOperationState);
+            this.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
+                sourceRect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
+                some: (tileVisually) =>
+                {
+                    if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
+                    {
+                        Trace.WriteLine($"［選択タイル調査］　タイル登録済　Id:{tileVisually.Id.AsInt}, {tileVisually.Id.AsBASE64} Title:{tileVisually.Title.AsStr}");
+                    }
+
+                    // タイルを指す（論理削除されているものも含む）
+                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = tileVisually;
+                },
+                none: () =>
+                {
+                    if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
+                    {
+                        Trace.WriteLine("［選択タイル調査］　タイル未登録");
+                    }
+
+                    //
+                    // 空欄にする
+                    // ==========
+                    //
+
+                    // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
+                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
+                        tileRecord: new TileRecord(
+                            id: TileIdOrEmpty.Empty,
+                            rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
+                            title: TileTitle.Empty,
+                            logicalDelete: LogicalDelete.False),
+                        zoom: this.RoomsideDoors.ZoomProperties.Value
+#if DEBUG
+                        , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
+#endif
+                        );
+                },
+                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
+                includeLogicalDelete: true);
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
             this.RoomsideDoors.AddsButton.Refresh();
