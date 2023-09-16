@@ -1,5 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
+using _2D_RPG_Negiramen.Coding;
+
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
@@ -22,18 +24,23 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         ItsGardensideDoor gardensideDoor,
+        LazyArgs.Set<string> setAddsButtonText,
         ItsRoomsideDoors roomsideDoors,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
         this.GardensideDoor = gardensideDoor;
+        this.SetAddsButtonText = setAddsButtonText;
+
         this.RoomsideDoors = roomsideDoors;
 
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
         this.WorkingRectangle = workingRectangle;
     }
+
+    LazyArgs.Set<string> SetAddsButtonText { get; }
 
     // - パブリック・メソッド
 
@@ -46,11 +53,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ［タイル］のＩｄ変更
         this.RoomsideDoors.CropTile.SetIdOrEmpty(
             value: this.TileIdOrEmpty,
-            setAddsButtonText: (text) =>
-            {
-                this.GardensideDoor.PageVM.AddsButtonText = text;
-                this.GardensideDoor.PageVM.InvalidateAddsButton();
-            });
+            setAddsButtonText: this.SetAddsButtonText);
 
         // ビューの再描画（タイルＩｄ更新）
         this.GardensideDoor.PageVM.InvalidateTileIdChange();
@@ -116,11 +119,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ［タイル］のＩｄ消去
         this.RoomsideDoors.CropTile.SetIdOrEmpty(
             value: TileIdOrEmpty.Empty,
-            setAddsButtonText: (text) =>
-            {
-                this.GardensideDoor.PageVM.AddsButtonText = text;
-                this.GardensideDoor.PageVM.InvalidateAddsButton();
-            });
+            setAddsButtonText: this.SetAddsButtonText);
 
         // ビューの再描画（タイルＩｄ更新）
         this.GardensideDoor.PageVM.InvalidateTileIdChange();

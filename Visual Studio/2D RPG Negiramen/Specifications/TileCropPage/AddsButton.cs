@@ -46,7 +46,9 @@ internal class AddsButton
     /// <summary>
     ///     ［追加］
     /// </summary>
-    internal void AddTile()
+    internal void AddTile(
+        LazyArgs.Get<TileIdOrEmpty> getNewTileId,
+        Action invalidateForHistory)
     {
         var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
@@ -60,19 +62,23 @@ internal class AddsButton
             return;
 
         // 新しいタイルＩｄを発行
-        tileIdOrEmpty = this.GardensideDoor.TilesetSettingsVM.UsableId;
-        this.GardensideDoor.TilesetSettingsVM.IncreaseUsableId();
+        tileIdOrEmpty = getNewTileId();
 
         // 追加でも、上書きでも、同じ処理でいける
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
+            setAddsButtonText: (text) =>
+            {
+                this.GardensideDoor.PageVM.AddsButtonText = text;
+                this.GardensideDoor.PageVM.InvalidateAddsButton();
+            },
             roomsideDoors: this.RoomsideDoors,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,
             workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
 
-        this.GardensideDoor.PageVM.InvalidateForHistory();
+        invalidateForHistory();
     }
 
     /// <summary>
@@ -96,6 +102,11 @@ internal class AddsButton
         // ［登録タイル追加］処理
         App.History.Do(new AddRegisteredTileProcessing(
             gardensideDoor: this.GardensideDoor,
+            setAddsButtonText: (text) =>
+            {
+                this.GardensideDoor.PageVM.AddsButtonText = text;
+                this.GardensideDoor.PageVM.InvalidateAddsButton();
+            },
             roomsideDoors: this.RoomsideDoors,
             croppedCursorVisually: contents,
             tileIdOrEmpty: tileIdOrEmpty,

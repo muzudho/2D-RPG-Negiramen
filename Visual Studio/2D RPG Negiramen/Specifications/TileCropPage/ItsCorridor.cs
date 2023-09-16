@@ -219,7 +219,18 @@
                 // ［追加］（新規作成）だ
 
                 // 登録タイル追加
-                this.RoomsideDoors.AddsButton.AddTile();
+                this.RoomsideDoors.AddsButton.AddTile(
+                    getNewTileId: () =>
+                    {
+                        // 新しいタイルＩｄを発行
+                        var tileIdOrEmpty = this.GardensideDoor.TilesetSettingsVM.UsableId;
+                        this.GardensideDoor.TilesetSettingsVM.IncreaseUsableId();
+                        return tileIdOrEmpty;
+                    },
+                    invalidateForHistory: () =>
+                    {
+                        this.GardensideDoor.PageVM.InvalidateForHistory();
+                    });
             }
             else
             {
