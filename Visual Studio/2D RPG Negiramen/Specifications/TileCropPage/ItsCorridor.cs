@@ -361,20 +361,27 @@
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］の読込
         /// </summary>
-        void LoadCroppedCursorPointedTile()
+        void LoadCroppedCursorPointedTile(
+            MouseDrawingOperationState mouseDrawingOperationState)
         {
             this.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
                 sourceRect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
                 some: (tileVisually) =>
                 {
-                    // Trace.WriteLine($"[TileCropPage.xml.cs TapGestureRecognizer_Tapped] タイルは登録済みだ。 Id:{tileVisually.Id.AsInt}, X:{tileVisually.SourceRectangle.Location.X.AsInt}, Y:{recordVM.SourceRectangle.Location.Y.AsInt}, Width:{recordVM.SourceRectangle.Size.Width.AsInt}, Height:{recordVM.SourceRectangle.Size.Height.AsInt}, Title:{recordVM.Title.AsStr}");
+                    if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
+                    {
+                        Trace.WriteLine($"［選択タイル調査］　タイル登録済　Id:{tileVisually.Id.AsInt}, {tileVisually.Id.AsBASE64} Title:{tileVisually.Title.AsStr}");
+                    }
 
                     // タイルを指す（論理削除されているものも含む）
                     this.RoomsideDoors.CropTile.TargetTileRecordVisually = tileVisually;
                 },
                 none: () =>
                 {
-                    // Trace.WriteLine("[TileCropPage.xml.cs TapGestureRecognizer_Tapped] 未登録のタイルだ");
+                    if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
+                    {
+                        Trace.WriteLine("［選択タイル調査］　タイル未登録");
+                    }
 
                     //
                     // 空欄にする
@@ -449,7 +456,7 @@
             // 切抜きカーソル更新
             // ==================
             //
-            this.LoadCroppedCursorPointedTile();
+            this.LoadCroppedCursorPointedTile(mouseDrawingOperationState);
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
             this.RoomsideDoors.AddsButton.Refresh();
