@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.Geometric;
-using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 /// <summary>
 ///     ズーム関連
@@ -14,19 +13,22 @@ internal class ZoomProperties
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="specObj"></param>
+    /// <param name="roomsideDoors"></param>
     internal ZoomProperties(
-        IItsTwoWayDoor twoWayDoor,
-        ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors)
     {
-        this.TwoWayDoor = twoWayDoor;
-        this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
     }
     #endregion
 
+    // - インターナル・デリゲート
+
+    internal delegate void DoZoomProcessing(
+        Zoom oldValue,
+        Zoom newValue);
+
     // - インターナル・プロパティ
+
     /// <summary>
     ///     ズーム
     ///     
@@ -44,29 +46,26 @@ internal class ZoomProperties
     ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
     ///     </list>
     /// </summary>
-    public float AsFloat
+    public float AsFloat => value.AsFloat;
+
+    internal void SetFloat(
+        float value,
+        DoZoomProcessing doZoomProcessing)
     {
-        get => value.AsFloat;
-        set
+        if (this.value.AsFloat != value)
         {
-            if (this.value.AsFloat != value)
+            if (this.MinAsFloat <= value && value <= this.MaxAsFloat)
             {
-                if (this.GardensideDoor.PageVM.ZoomMinAsFloat <= value && value <= this.GardensideDoor.PageVM.ZoomMaxAsFloat)
-                {
-                    Zoom oldValue = this.value;
-                    Zoom newValue = new Zoom(value);
+                Zoom oldValue = this.value;
+                Zoom newValue = new Zoom(value);
 
-                    this.value = newValue;
-                    this.RoomsideDoors.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+                this.value = newValue;
+                this.RoomsideDoors.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
-                    // 再帰的にズーム再変更、かつ変更後の影響を処理
-                    App.History.Do(new ZoomProcessing(
-                        this.TwoWayDoor,
-                        this.GardensideDoor,
-                        this.RoomsideDoors,
-                        oldValue,
-                        newValue));
-                }
+                // 再帰的にズーム再変更、かつ変更後の影響を処理
+                doZoomProcessing(
+                    oldValue: oldValue,
+                    newValue: newValue);
             }
         }
     }
@@ -83,8 +82,6 @@ internal class ZoomProperties
 
     // - プライベート・プロパティ
 
-    IItsTwoWayDoor TwoWayDoor { get; }
-    ItsGardensideDoor GardensideDoor { get; }
     ItsRoomsideDoors RoomsideDoors { get; }
 
     // - プライベート・フィールド

@@ -21,6 +21,7 @@
     using SkiaSharp.Views.Maui.Controls;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.Specifications.TileCropPage;
+    using static _2D_RPG_Negiramen.Specifications.TileCropPage.ZoomProperties;
 #endif
 
     /// <summary>
@@ -139,7 +140,18 @@
         public float ZoomAsFloat
         {
             get => this.RoomsideDoors.ZoomProperties.AsFloat;
-            set => this.RoomsideDoors.ZoomProperties.AsFloat = value;
+            set => this.RoomsideDoors.ZoomProperties.SetFloat(
+                value: value,
+                doZoomProcessing: (Zoom oldValue, Zoom newValue) =>
+                {
+                    // 再帰的にズーム再変更、かつ変更後の影響を処理
+                    App.History.Do(new ZoomProcessing(
+                        this.Corridor,
+                        this.Corridor.GardensideDoor,
+                        this.RoomsideDoors,
+                        oldValue,
+                        newValue));
+                });
         }
 
         /// <summary>
@@ -804,7 +816,7 @@
                 {
                     // ［切抜きカーソル］無し時
                     // TODO ★ 循環参照注意
-                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate( TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
