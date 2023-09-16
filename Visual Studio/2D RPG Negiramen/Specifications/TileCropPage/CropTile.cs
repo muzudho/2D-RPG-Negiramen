@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
+using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.Visually;
 
 /// <summary>
@@ -43,7 +43,8 @@ internal class CropTile
     internal void SetRecordVisually(
         TileRecordVisually value,
         Action onVanished,
-        Action onUpdated)
+        Action onUpdated,
+        LazyArgs.Set<string> setAddsButtonText)
     {
         var oldTileVisually = this.recordVisually;
 
@@ -63,12 +64,15 @@ internal class CropTile
             {
                 // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
                 this.UpdateByDifference(
+                    setAddsButtonText: setAddsButtonText,
                     // タイトル
                     tileTitle: TileTitle.Empty);
 
                 // 末端にセット（変更通知を呼ぶために）
                 // Ｉｄ
-                this.SetIdOrEmpty(TileIdOrEmpty.Empty);
+                this.SetIdOrEmpty(
+                    value: TileIdOrEmpty.Empty,
+                    setAddsButtonText: setAddsButtonText);
 
                 // 空にする
                 this.recordVisually = TileRecordVisually.CreateEmpty();
@@ -94,10 +98,13 @@ internal class CropTile
 
             // （変更通知を送っている）
             this.UpdateByDifference(
+                setAddsButtonText: setAddsButtonText,
                 // タイトル
                 tileTitle: newValue.Title);
 
-            this.SetIdOrEmpty(newValue.Id);
+            this.SetIdOrEmpty(
+                value: newValue.Id,
+                setAddsButtonText: setAddsButtonText);
             // this.CropTileTitleAsStr = newValue.Title.AsStr;
 
             onUpdated();
@@ -128,13 +135,16 @@ internal class CropTile
     }
     #endregion
 
-    internal void SetIdOrEmpty(TileIdOrEmpty value)
+    internal void SetIdOrEmpty(
+        TileIdOrEmpty value,
+        LazyArgs.Set<string> setAddsButtonText)
     {
         if (this.RecordVisually.Id == value)
             return;
 
         // 差分更新
         this.UpdateByDifference(
+            setAddsButtonText: setAddsButtonText,
             tileId: value);
     }
 
@@ -146,6 +156,7 @@ internal class CropTile
     /// </summary>
     /// <returns></returns>
     public void UpdateByDifference(
+        LazyArgs.Set<string> setAddsButtonText,
         TileIdOrEmpty? tileId = null,
         TileTitle? tileTitle = null,
         LogicalDelete? logicalDelete = null)
@@ -160,7 +171,8 @@ internal class CropTile
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
             // ［追加／上書き］ボタン再描画
-            this.RoomsideDoors.AddsButton.Refresh();
+            this.RoomsideDoors.AddsButton.Refresh(
+                setAddsButtonText: setAddsButtonText);
 
             // ［削除］ボタン再描画
             this.RoomsideDoors.DeletesButton.Refresh();

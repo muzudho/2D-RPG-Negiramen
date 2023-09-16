@@ -1,7 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
+using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+using static System.Net.Mime.MediaTypeNames;
 
 /// <summary>
 ///     追加ボタン
@@ -105,7 +107,8 @@ internal class AddsButton
     /// <summary>
     ///     再描画
     /// </summary>
-    internal void Refresh()
+    internal void Refresh(
+        LazyArgs.Set<string> setAddsButtonText)
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
         if (this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
@@ -116,7 +119,7 @@ internal class AddsButton
                 // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
-                this.GardensideDoor.PageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Intersecting"];
+                setAddsButtonText((string)LocalizationResourceManager.Instance["Intersecting"]);
                 return;
             }
         }
@@ -128,7 +131,7 @@ internal class AddsButton
             // ［切抜きカーソル］の指すタイル無し時
 
             // 「追加」
-            this.GardensideDoor.PageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+            setAddsButtonText((string)LocalizationResourceManager.Instance["Add"]);
         }
         else
         {
@@ -141,16 +144,13 @@ internal class AddsButton
                 // ［追加］（新規作成）だ
 
                 // ［追加」
-                this.GardensideDoor.PageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Add"];
+                setAddsButtonText((string)LocalizationResourceManager.Instance["Add"]);
             }
             else
             {
                 // ［復元」
-                this.GardensideDoor.PageVM.AddsButtonText = (string)LocalizationResourceManager.Instance["Restore"];
+                setAddsButtonText((string)LocalizationResourceManager.Instance["Restore"]);
             }
         }
-
-        // ［追加／復元］ボタンの活性性
-        this.GardensideDoor.PageVM.InvalidateAddsButton();
     }
 }

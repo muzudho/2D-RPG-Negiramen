@@ -8,6 +8,7 @@
     using SkiaSharp.Views.Maui.Controls;
     using System.Diagnostics;
     using TheGraphics = Microsoft.Maui.Graphics;
+    using _2D_RPG_Negiramen.Coding;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -74,7 +75,12 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.Refresh();
+        internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.Refresh(
+            setAddsButtonText: (text) =>
+            {
+                this.GardensideDoor.PageVM.AddsButtonText = text;
+                this.GardensideDoor.PageVM.InvalidateAddsButton();
+            });
         #endregion
 
         // - インターナル・イベントハンドラ
@@ -249,7 +255,12 @@
 
                 // タイル・フォームの表示更新
                 RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonDown);
+                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonDown,
+                    setAddsButtonText: (text) =>
+                    {
+                        this.GardensideDoor.PageVM.AddsButtonText = text;
+                        this.GardensideDoor.PageVM.InvalidateAddsButton();
+                    });
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
             }
@@ -270,7 +281,12 @@
 
                 // タイル・フォームの表示更新
                 RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonUp);
+                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonUp,
+                    setAddsButtonText: (text) =>
+                    {
+                        this.GardensideDoor.PageVM.AddsButtonText = text;
+                        this.GardensideDoor.PageVM.InvalidateAddsButton();
+                    });
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
             }
@@ -299,7 +315,12 @@
 
                 // タイル・フォームの表示更新
                 RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.PointerMove);
+                    mouseDrawingOperationState: MouseDrawingOperationState.PointerMove,
+                    setAddsButtonText: (text) =>
+                    {
+                        this.GardensideDoor.PageVM.AddsButtonText = text;
+                        this.GardensideDoor.PageVM.InvalidateAddsButton();
+                    });
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
             }
@@ -362,7 +383,8 @@
         ///     タイル・フォーム更新
         /// </summary>
         void RefreshTileForm(
-            MouseDrawingOperationState mouseDrawingOperationState)
+            MouseDrawingOperationState mouseDrawingOperationState,
+            LazyArgs.Set<string> setAddsButtonText)
         {
             //
             // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
@@ -433,7 +455,8 @@
 
                             // 変更通知を送りたい
                             this.GardensideDoor.PageVM.InvalidateTileIdChange();
-                        });
+                        },
+                        setAddsButtonText: setAddsButtonText);
                 },
                 none: () =>
                 {
@@ -485,13 +508,15 @@
 
                             // 変更通知を送りたい
                             this.GardensideDoor.PageVM.InvalidateTileIdChange();
-                        });
+                        },
+                        setAddsButtonText: setAddsButtonText);
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.RoomsideDoors.AddsButton.Refresh();
+            this.RoomsideDoors.AddsButton.Refresh(
+                setAddsButtonText: setAddsButtonText);
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
             this.RoomsideDoors.DeletesButton.Refresh();

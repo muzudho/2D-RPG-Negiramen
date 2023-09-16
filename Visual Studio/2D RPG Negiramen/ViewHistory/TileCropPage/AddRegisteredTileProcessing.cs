@@ -44,7 +44,13 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.RoomsideDoors.CropTile.SetIdOrEmpty(this.TileIdOrEmpty);
+        this.RoomsideDoors.CropTile.SetIdOrEmpty(
+            value: this.TileIdOrEmpty,
+            setAddsButtonText: (text) =>
+            {
+                this.GardensideDoor.PageVM.AddsButtonText = text;
+                this.GardensideDoor.PageVM.InvalidateAddsButton();
+            });
 
         // ビューの再描画（タイルＩｄ更新）
         this.GardensideDoor.PageVM.InvalidateTileIdChange();
@@ -108,7 +114,13 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.RoomsideDoors.CropTile.SetIdOrEmpty(TileIdOrEmpty.Empty);
+        this.RoomsideDoors.CropTile.SetIdOrEmpty(
+            value: TileIdOrEmpty.Empty,
+            setAddsButtonText: (text) =>
+            {
+                this.GardensideDoor.PageVM.AddsButtonText = text;
+                this.GardensideDoor.PageVM.InvalidateAddsButton();
+            });
 
         // ビューの再描画（タイルＩｄ更新）
         this.GardensideDoor.PageVM.InvalidateTileIdChange();

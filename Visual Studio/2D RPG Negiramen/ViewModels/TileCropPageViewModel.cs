@@ -1178,6 +1178,11 @@
 
                 // 差分更新
                 this.RoomsideDoors.CropTile.UpdateByDifference(
+                    setAddsButtonText: (text) =>
+                    {
+                        this.AddsButtonText = text;
+                        this.InvalidateAddsButton();
+                    },
                     tileTitle: TileTitle.FromString(value));
 
                 // 変更通知を送る
@@ -1198,6 +1203,11 @@
 
                 // 差分更新
                 this.RoomsideDoors.CropTile.UpdateByDifference(
+                    setAddsButtonText: (text) =>
+                    {
+                        this.AddsButtonText = text;
+                        this.InvalidateAddsButton();
+                    },
                     logicalDelete: LogicalDelete.FromBool(value));
 
                 // 変更通知を送る
