@@ -63,7 +63,8 @@
         public CultureInfo SelectedCultureInfo
         {
             get => this.RoomsideDoors.IndoorCultureInfo.Selected;
-            set => this.RoomsideDoors.IndoorCultureInfo.Selected = value;
+            // TODO これが未使用なのはおかしくない？
+            // set => this.RoomsideDoors.IndoorCultureInfo.SetSelected(value);
         }
 
         /// <summary>

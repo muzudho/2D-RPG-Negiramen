@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
-using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 using System.Globalization;
 
 /// <summary>
@@ -14,15 +13,16 @@ internal class InnerCultureInfo
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="owner"></param>
-    internal InnerCultureInfo(
-        ItsGardensideDoor gardensideDoor,
-        ItsRoomsideDoors roomsideDoors)
+    internal InnerCultureInfo()
     {
-        this.GardensideDoor = gardensideDoor;
-        this.RoomsideDoors = roomsideDoors;
     }
     #endregion
+
+    // - インターナル・デリゲート
+
+    //internal delegate void DoSetCultureInfoProcessing(
+    //    CultureInfo oldValue,
+    //    CultureInfo newValue);
 
     // - インターナル・プロパティ
 
@@ -30,31 +30,26 @@ internal class InnerCultureInfo
     /// <summary>
     ///     現在選択中の文化情報。文字列形式
     /// </summary>
-    internal CultureInfo Selected
-    {
-        get => LocalizationResourceManager.Instance.CultureInfo;
-        set
-        {
-            if (LocalizationResourceManager.Instance.CultureInfo != value)
-            {
-                CultureInfo oldValue = LocalizationResourceManager.Instance.CultureInfo;
-                CultureInfo newValue = value;
-
-                LocalizationResourceManager.Instance.SetCulture(value);
-                this.GardensideDoor.PageVM.InvalidateCultureInfo();
-
-                // 再帰的
-                App.History.Do(new SetCultureInfoProcessing(
-                    roomsideDoors: this.RoomsideDoors,
-                    oldValue: oldValue,
-                    newValue: newValue));
-            }
-        }
-    }
+    internal CultureInfo Selected => LocalizationResourceManager.Instance.CultureInfo;
     #endregion
 
-    // - プライベート・プロパティ
+    // TODO これが未使用なのはおかしくない？
+    //internal void SetSelected(
+    //    CultureInfo value)
+    //{
+    //    if (LocalizationResourceManager.Instance.CultureInfo != value)
+    //    {
+    //        CultureInfo oldValue = LocalizationResourceManager.Instance.CultureInfo;
+    //        CultureInfo newValue = value;
 
-    ItsRoomsideDoors RoomsideDoors { get; }
-    ItsGardensideDoor GardensideDoor { get; }
+    //        LocalizationResourceManager.Instance.SetCulture(value);
+    //        this.ＧardensideDoor.PageVM.InvalidateCultureInfo();
+
+    //        // 再帰的
+    //        App.History.Do(new SetCultureInfoProcessing(
+    //            roomsideDoors: this.RoomsideDoors,
+    //            oldValue: oldValue,
+    //            newValue: newValue));
+    //    }
+    //}
 }

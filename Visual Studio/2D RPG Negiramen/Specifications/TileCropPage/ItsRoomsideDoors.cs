@@ -27,9 +27,7 @@ internal class ItsRoomsideDoors
         {
             if (this.indoorCultureInfo == null)
             {
-                this.indoorCultureInfo = new InnerCultureInfo(
-                    gardensideDoor: this.Corridor.GardensideDoor,
-                    roomsideDoors: this.Corridor.RoomsideDoors);
+                this.indoorCultureInfo = new InnerCultureInfo();
             }
 
             return this.indoorCultureInfo;
