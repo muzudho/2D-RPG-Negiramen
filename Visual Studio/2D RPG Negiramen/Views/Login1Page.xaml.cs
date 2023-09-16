@@ -66,12 +66,14 @@ public partial class Login1Page : ContentPage
         this.Login1PageVM.YourWorkFolderName = App.GetOrLoadConfiguration().CurrentYourWorkFolderName;
 
         // TODO ページ読込完了（★２回来訪しても呼び出されないから注意）
-        Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了（★２回来訪しても呼び出されないから注意） Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, ProjectIdList.Count: {App.GetOrLoadConfiguration().ProjectIdList.Count}");
+        // Trace.WriteLine($"[Login1Page ContentPage_Loaded] ページ読込完了（★２回来訪しても呼び出されないから注意） Circle: {this.Login1PageVM.YourCircleFolderName.AsStr}, Work: {this.Login1PageVM.YourWorkFolderName.AsStr}, ProjectIdList.Count: {App.GetOrLoadConfiguration().ProjectIdList.Count}");
 
-        foreach (var projectId in App.GetOrLoadConfiguration().ProjectIdList)
-        {
-            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {projectId.YourCircleFolderName}, Work: {projectId.YourWorkFolderName}");
-        }
+//#if DEBUG
+//        foreach (var projectId in App.GetOrLoadConfiguration().ProjectIdList)
+//        {
+//            Trace.WriteLine($"[Login1Page ContentPage_Loaded] Circle: {projectId.YourCircleFolderName}, Work: {projectId.YourWorkFolderName}");
+//        }
+//#endif
     }
     #endregion
 

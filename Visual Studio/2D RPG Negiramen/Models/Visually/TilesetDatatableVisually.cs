@@ -147,7 +147,7 @@
 
                 if (tileVisually.Id == id)
                 {
-                    Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{tileVisually.Id.AsBASE64}]");
+                    // Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{tileVisually.Id.AsBASE64}]");
 
                     // 論理削除フラグの差替え
                     TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
@@ -186,7 +186,7 @@
 
                 if (tileVisually.Id == id)
                 {
-                    Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除の取消　id: [{tileVisually.Id.AsBASE64}]");
+                    // Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除の取消　id: [{tileVisually.Id.AsBASE64}]");
 
                     // 論理削除フラグの差替え
                     TileRecordVisuallyList[i] = TileRecordVisually.FromModel(

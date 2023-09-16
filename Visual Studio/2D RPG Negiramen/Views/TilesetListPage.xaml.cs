@@ -246,7 +246,7 @@ public partial class TilesetListPage : ContentPage
         {
             var originalTilesetPngLocation = tilesetFolder.CreateTilesetPng(System.IO.Path.GetFileNameWithoutExtension(originalPngPathAsStr));
 
-            Trace.WriteLine($"[TilesetListPage.xaml.cs ContentPage_Loaded] path: [{originalPngPathAsStr}], location: [{originalTilesetPngLocation.Path.AsStr}]");
+            // Trace.WriteLine($"[TilesetListPage.xaml.cs ContentPage_Loaded] path: [{originalPngPathAsStr}], location: [{originalTilesetPngLocation.Path.AsStr}]");
 
             // タスクだけリストに詰め込み、あとで、まとめて行う
             var task = Task.Run(() => this.FollowAutomaticallyAsync(
@@ -692,6 +692,7 @@ public partial class TilesetListPage : ContentPage
         }
         else
         {
+            // TODO エラー対応
             Trace.WriteLine("キーワードが違います。 result: " + result);
         }
     }

@@ -39,7 +39,7 @@ internal class ColoredMap : BindableObject, IDrawable
     /// <param name="dirtyRect">位置とサイズ</param>
     public void Draw(ICanvas canvas, RectF dirtyRect)
     {
-        Trace.WriteLine($"[ColoredMap.cs Draw] 開始");
+        // Trace.WriteLine($"[ColoredMap.cs Draw] 開始");
 
         if (this.TilesetSettingsVM == null)
         {

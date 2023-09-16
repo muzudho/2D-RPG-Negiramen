@@ -43,11 +43,11 @@
                 LogicalDelete = tileRecord.LogicalDelete,
             };
 
-#if DEBUG
-            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}, hint: {hint}");
-#else
-            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}");
-#endif
+//#if DEBUG
+//            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}, hint: {hint}");
+//#else
+//            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}");
+//#endif
 
             return tileVisually;
         }
@@ -126,7 +126,7 @@
                     return;
 
                 this.logicalDelete = value;
-                Trace.WriteLine($"[TileRecordVisually.cs LogicalDelete] this.logicalDelete.AsBool: {this.logicalDelete.AsBool}");
+                // Trace.WriteLine($"[TileRecordVisually.cs LogicalDelete] this.logicalDelete.AsBool: {this.logicalDelete.AsBool}");
             }
         }
         #endregion
@@ -211,11 +211,11 @@
                 this.Zoom = zoom;
             }
 
-#if DEBUG
-            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}, hint: {hint}");
-#else
-            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}");
-#endif
+//#if DEBUG
+//            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}, hint: {hint}");
+//#else
+//            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}");
+//#endif
         }
 
         // - プライベート・フィールド

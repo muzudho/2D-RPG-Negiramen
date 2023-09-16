@@ -1269,7 +1269,7 @@
                 // ※３
                 (this.RoomsideDoors.CropTile.TargetTileRecordVisually.Id != TileIdOrEmpty.Empty && this.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool));
 
-                Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.RoomsideDoors.CropTile.TargetTileRecordVisually.Dump()}");
+                // Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.RoomsideDoors.CropTile.TargetTileRecordVisually.Dump()}");
 
                 return isEnabled;
             }

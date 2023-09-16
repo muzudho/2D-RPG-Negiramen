@@ -112,7 +112,7 @@
         /// <exception cref="NotImplementedException"></exception>
         public void Draw(ICanvas canvas, RectF dirtyRect)
         {
-            Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridPhaseSourceLocation: {this.GridPhaseWorkingLocation.Dump()}, this.GridUnit: {this.GridUnit.Dump()} dirtyRect: ({dirtyRect.Width:.2}, {dirtyRect.Height:.2})");
+            // Trace.WriteLine($"[TilesetGrid Draw] this.HalfThicknessOfGridLineAsInt: {this.HalfThicknessOfGridLineAsInt}, this.GridPhaseSourceLocation: {this.GridPhaseWorkingLocation.Dump()}, this.GridUnit: {this.GridUnit.Dump()} dirtyRect: ({dirtyRect.Width:.2}, {dirtyRect.Height:.2})");
 
             // 線の色
             canvas.StrokeColor = new Color((int)(0.7 * 255), (int)(0.7 * 255), (int)(0.7 * 255));

@@ -194,7 +194,7 @@ internal class CropTile
         // 変更通知を送る
         this.GardensideDoor.PageVM.InvalidateTileIdChange();
 
-        Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
+        // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
     }
     #endregion
 

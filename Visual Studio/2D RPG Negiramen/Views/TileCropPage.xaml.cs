@@ -256,7 +256,7 @@ public partial class TileCropPage : ContentPage
 
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
+        // Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
 
         context.Corridor.RoomsideDoors.AddsButton.OverwriteTile();
     }

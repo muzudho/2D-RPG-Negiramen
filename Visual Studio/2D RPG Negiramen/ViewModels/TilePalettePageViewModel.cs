@@ -257,7 +257,7 @@
             var tapped = new Models.Geometric.PointFloat(
                 new Models.Geometric.XFloat((float)tappedPosition.X),
                 new Models.Geometric.YFloat((float)tappedPosition.Y));
-            Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tapped.X.AsFloat} y:{tapped.Y.AsFloat}");
+            // Trace.WriteLine($"[TilePalettePage TapGestureRecognizer_Tapped] tapped x:{tapped.X.AsFloat} y:{tapped.Y.AsFloat}");
 
             // タイル・カーソルの位置
             var tileCursor = Models.CoordinateHelper.TranslateTappedPointToTileCursorPoint(

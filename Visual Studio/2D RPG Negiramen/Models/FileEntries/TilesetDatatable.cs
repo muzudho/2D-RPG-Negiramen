@@ -193,13 +193,13 @@ public class TilesetDatatable
                 if (recordI.Id == recordJ.Id)
                 {
                     // 同じＩｄが含まれていたらエラー
-                    Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。同じＩｄが含まれていた。 (1) [{recordI.Id.AsInt}][{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsInt}][{recordJ.Id.AsBASE64}]");
+                    // Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。同じＩｄが含まれていた。 (1) [{recordI.Id.AsInt}][{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsInt}][{recordJ.Id.AsBASE64}]");
                     errorCount++;
                 }
                 else if (recordI.Rectangle == recordJ.Rectangle)
                 {
                     // 合同の矩形が含まれていたらエラー
-                    Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。合同の矩形が含まれていた。 (1) [{recordI.Id.AsInt}][{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsInt}][{recordJ.Id.AsBASE64}]");
+                    // Trace.WriteLine($"[TilesetSettings.cs IsValid] ({errorCount + 1}) エラー。合同の矩形が含まれていた。 (1) [{recordI.Id.AsInt}][{recordI.Id.AsBASE64}] (2) [{recordJ.Id.AsInt}][{recordJ.Id.AsBASE64}]");
                     errorCount++;
                 }
             }

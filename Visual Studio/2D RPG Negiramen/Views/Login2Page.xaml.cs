@@ -107,7 +107,7 @@ public partial class Login2Page : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     private void ContentPage_Loaded(object sender, EventArgs e)
     {
-        Trace.WriteLine($"[Login2Page ContentPage_Loaded] ページ読込完了");
+        // Trace.WriteLine($"[Login2Page ContentPage_Loaded] ページ読込完了");
 
         this.Login2PageVM.StarterKitFolderLocation = this.Login2PageVM.StarterKitFolderLocation;
         this.Login2PageVM.UnityAssetsFolderLocation = this.Login2PageVM.UnityAssetsFolderLocation;
