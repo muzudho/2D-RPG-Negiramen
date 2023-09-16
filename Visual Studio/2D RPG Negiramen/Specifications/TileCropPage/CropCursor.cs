@@ -13,12 +13,10 @@ internal class CropCursor
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="specObj"></param>
+    /// <param name="roomsideDoors"></param>
     internal CropCursor(
-        ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors)
     {
-        this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
     }
     #endregion
@@ -108,6 +106,5 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
-    ItsGardensideDoor GardensideDoor { get; }
     ItsRoomsideDoors RoomsideDoors { get; }
 }

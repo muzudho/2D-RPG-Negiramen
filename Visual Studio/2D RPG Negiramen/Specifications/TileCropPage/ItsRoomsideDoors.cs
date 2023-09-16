@@ -88,7 +88,7 @@ internal class ItsRoomsideDoors
         {
             if (this.cropCursor==null)
             {
-                this.cropCursor = new CropCursor(this.Corridor.GardensideDoor, this);
+                this.cropCursor = new CropCursor(this);
             }
 
             return this.cropCursor;
