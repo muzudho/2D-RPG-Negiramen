@@ -321,6 +321,8 @@
                     });
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+                // TRICK CODE:
+                this.GardensideDoor.PageVM.InvalidateWorkingTargetTile();
             }
             else
             {
@@ -347,6 +349,8 @@
                     });
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+                // TRICK CODE:
+                this.GardensideDoor.PageVM.InvalidateWorkingTargetTile();
             }
         }
         #endregion
@@ -381,6 +385,8 @@
                     });
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+                // TRICK CODE:
+                this.GardensideDoor.PageVM.InvalidateWorkingTargetTile();
             }
         }
         #endregion

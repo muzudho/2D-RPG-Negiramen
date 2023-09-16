@@ -93,9 +93,20 @@ internal class ZoomProcessing : IProcessing
         // ［作業グリッド］の再計算
         {
             // 横幅
-            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
+            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth(
+                setValue: (value) =>
+                {
+                    this.GardensideDoor.PageVM.WorkingGridTileWidthAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * value;
+                    // this.Owner.Owner.InvalidateWorkingGrid();
+                });
+
             // 縦幅
-            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
+            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight(
+                setValue: (value) =>
+                {
+                    this.GardensideDoor.PageVM.WorkingGridTileHeightAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * value;
+                    // this.Owner.Owner.InvalidateWorkingGrid();
+                });
         }
 
         // ［切抜きカーソルが指すタイル］更新

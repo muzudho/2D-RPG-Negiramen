@@ -20,9 +20,9 @@ internal class InnerCultureInfo
 
     // - インターナル・デリゲート
 
-    //internal delegate void DoSetCultureInfoProcessing(
-    //    CultureInfo oldValue,
-    //    CultureInfo newValue);
+    internal delegate void DoSetCultureInfoProcessing(
+        CultureInfo oldValue,
+        CultureInfo newValue);
 
     // - インターナル・プロパティ
 
@@ -33,23 +33,17 @@ internal class InnerCultureInfo
     internal CultureInfo Selected => LocalizationResourceManager.Instance.CultureInfo;
     #endregion
 
-    // TODO これが未使用なのはおかしくない？
-    //internal void SetSelected(
-    //    CultureInfo value)
-    //{
-    //    if (LocalizationResourceManager.Instance.CultureInfo != value)
-    //    {
-    //        CultureInfo oldValue = LocalizationResourceManager.Instance.CultureInfo;
-    //        CultureInfo newValue = value;
-
-    //        LocalizationResourceManager.Instance.SetCulture(value);
-    //        this.ＧardensideDoor.PageVM.InvalidateCultureInfo();
-
-    //        // 再帰的
-    //        App.History.Do(new SetCultureInfoProcessing(
-    //            roomsideDoors: this.RoomsideDoors,
-    //            oldValue: oldValue,
-    //            newValue: newValue));
-    //    }
-    //}
+    internal void SetSelected(
+        CultureInfo value,
+        DoSetCultureInfoProcessing doSetCultureInfoProcessing)
+    {
+        if (LocalizationResourceManager.Instance.CultureInfo != value)
+        {
+            CultureInfo oldValue = LocalizationResourceManager.Instance.CultureInfo;
+            CultureInfo newValue = value;
+            doSetCultureInfoProcessing(
+                oldValue: oldValue,
+                newValue: newValue);
+        }
+    }
 }

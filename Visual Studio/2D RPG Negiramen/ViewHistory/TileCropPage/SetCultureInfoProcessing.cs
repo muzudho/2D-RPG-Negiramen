@@ -15,11 +15,11 @@ internal class SetCultureInfoProcessing : IProcessing
     ///     生成
     /// </summary>
     internal SetCultureInfoProcessing(
-        ItsRoomsideDoors roomsideDoors,
+        ItsGardensideDoor gardensideDoor,
         CultureInfo oldValue,
         CultureInfo newValue)
     {
-        this.RoomsideDoors = roomsideDoors;
+        this.GardensideDoor = gardensideDoor;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -29,7 +29,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.RoomsideDoors.IndoorCultureInfo.Selected = this.NewValue;
+        this.GardensideDoor.PageVM.SelectedCultureInfo = this.NewValue;
     }
 
     /// <summary>
@@ -37,13 +37,13 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.RoomsideDoors.IndoorCultureInfo.Selected = this.OldValue;
+        this.GardensideDoor.PageVM.SelectedCultureInfo = this.OldValue;
     }
 
     // - プライベート・プロパティ
 
-    /// <summary>内部クラス</summary>
-    ItsRoomsideDoors RoomsideDoors { get; }
+    /// <summary>内部モデル</summary>
+    ItsGardensideDoor GardensideDoor { get; }
 
     CultureInfo OldValue { get; }
 

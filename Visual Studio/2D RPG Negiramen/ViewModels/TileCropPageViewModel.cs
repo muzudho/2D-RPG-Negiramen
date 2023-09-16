@@ -22,6 +22,7 @@
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.Specifications.TileCropPage;
     using static _2D_RPG_Negiramen.Specifications.TileCropPage.ZoomProperties;
+    using static _2D_RPG_Negiramen.Specifications.TileCropPage.InnerCultureInfo;
 #endif
 
     /// <summary>
@@ -63,8 +64,19 @@
         public CultureInfo SelectedCultureInfo
         {
             get => this.RoomsideDoors.IndoorCultureInfo.Selected;
-            // TODO これが未使用なのはおかしくない？
-            // set => this.RoomsideDoors.IndoorCultureInfo.SetSelected(value);
+            set => this.RoomsideDoors.IndoorCultureInfo.SetSelected(
+                value: value,
+                doSetCultureInfoProcessing: (CultureInfo oldValue, CultureInfo newValue) =>
+                {
+                    LocalizationResourceManager.Instance.SetCulture(value);
+                    this.InvalidateCultureInfo();
+
+                    // 再帰的
+                    App.History.Do(new SetCultureInfoProcessing(
+                        gardensideDoor: this.Corridor.GardensideDoor,
+                        oldValue: oldValue,
+                        newValue: newValue));
+                });
         }
 
         /// <summary>
@@ -145,6 +157,9 @@
                 value: value,
                 doZoomProcessing: (Zoom oldValue, Zoom newValue) =>
                 {
+                    // TRICK CODE:
+                    this.InvalidateWorkingTargetTile();
+
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
                         this.Corridor,
@@ -346,7 +361,12 @@
                     this.RoomsideDoors.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.RoomsideDoors.GridUnit.SourceValue.Height);
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth();
+                    this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth(
+                        setValue: (value) =>
+                        {
+                            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * value;
+                            // this.Owner.Owner.InvalidateWorkingGrid();
+                        });
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
@@ -377,7 +397,12 @@
                     this.RoomsideDoors.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.RoomsideDoors.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight();
+                    this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight(
+                        setValue: (value) =>
+                        {
+                            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * value;
+                            // this.Owner.Owner.InvalidateWorkingGrid();
+                        });
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;

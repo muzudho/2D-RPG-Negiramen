@@ -60,6 +60,7 @@ internal class ZoomProperties
                 Zoom newValue = new Zoom(value);
 
                 this.value = newValue;
+
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                 // 再帰的にズーム再変更、かつ変更後の影響を処理

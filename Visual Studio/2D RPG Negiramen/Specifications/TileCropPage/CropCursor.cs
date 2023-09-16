@@ -23,6 +23,10 @@ internal class CropCursor
     }
     #endregion
 
+    // - インターナル・デリゲート
+
+    internal delegate void SetValue(float value);
+
     // - インターナル・プロパティ
 
     #region プロパティ（トリック幅）
@@ -59,9 +63,6 @@ internal class CropCursor
         {
             this.TrickWidth = WidthFloat.One;
         }
-
-        // TRICK CODE:
-        this.GardensideDoor.PageVM.InvalidateWorkingTargetTile();
     }
 
     #region メソッド（［作業グリッド］　関連）
@@ -72,11 +73,10 @@ internal class CropCursor
     ///         <item>アンドゥ・リドゥで利用</item>
     ///     </list>
     /// </summary>
-    internal void RecalculateWorkingGridTileWidth()
+    internal void RecalculateWorkingGridTileWidth(
+        SetValue setValue)
     {
-        this.GardensideDoor.PageVM.WorkingGridTileWidthAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * this.RoomsideDoors.GridUnit.SourceValue.Width.AsInt;
-
-        // this.Owner.Owner.InvalidateWorkingGrid();
+        setValue(this.RoomsideDoors.GridUnit.SourceValue.Width.AsInt);
     }
 
     /// <summary>
@@ -86,11 +86,10 @@ internal class CropCursor
     ///         <item>アンドゥ・リドゥで利用</item>
     ///     </list>
     /// </summary>
-    internal void RecalculateWorkingGridTileHeight()
+    internal void RecalculateWorkingGridTileHeight(
+        SetValue setValue)
     {
-        this.GardensideDoor.PageVM.WorkingGridTileHeightAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * this.RoomsideDoors.GridUnit.SourceValue.Height.AsInt;
-
-        // this.Owner.Owner.InvalidateWorkingGrid();
+        setValue(this.RoomsideDoors.GridUnit.SourceValue.Height.AsInt);
     }
     #endregion
 
