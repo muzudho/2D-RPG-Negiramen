@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 using _2D_RPG_Negiramen.Coding;
-
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
@@ -24,14 +23,17 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         ItsGardensideDoor gardensideDoor,
-        LazyArgs.Set<string> setAddsButtonText,
         ItsRoomsideDoors roomsideDoors,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
         this.GardensideDoor = gardensideDoor;
-        this.SetAddsButtonText = setAddsButtonText;
+        this.SetAddsButtonText = (text) =>
+        {
+            this.GardensideDoor.PageVM.AddsButtonText = text;
+            this.GardensideDoor.PageVM.InvalidateAddsButton();
+        };
 
         this.RoomsideDoors = roomsideDoors;
 

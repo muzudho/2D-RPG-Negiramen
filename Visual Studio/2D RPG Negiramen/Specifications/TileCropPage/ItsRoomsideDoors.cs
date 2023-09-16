@@ -125,7 +125,7 @@ internal class ItsRoomsideDoors
         {
             if (this.addsButton == null)
             {
-                this.addsButton = new AddsButton(this.Corridor.GardensideDoor, this);
+                this.addsButton = new AddsButton(this);
             }
 
             return this.addsButton;
