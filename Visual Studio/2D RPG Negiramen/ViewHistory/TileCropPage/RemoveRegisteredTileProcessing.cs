@@ -19,7 +19,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         TileIdOrEmpty tileIdOrEmpty)
     {
         this.GardensideDoor = gardensideDoor;
-        TileIdOrEmpty = tileIdOrEmpty;
+        this.TileIdOrEmpty = tileIdOrEmpty;
     }
 
     public void Do()
@@ -38,7 +38,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             this.GardensideDoor.PageVM.InvalidateTilesetSettingsVM();
         }
 
-        Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
+        Trace.WriteLine($"［タイル削除］ 　Do　タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
 
         //
         // 設定ファイルの保存
@@ -68,7 +68,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルの論理削除の取消
         //
-        if (this.GardensideDoor.TilesetSettingsVM.DeleteLogical(
+        if (this.GardensideDoor.TilesetSettingsVM.UndeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
@@ -76,7 +76,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             this.GardensideDoor.PageVM.InvalidateTilesetSettingsVM();
         }
 
-        Trace.WriteLine($"[TileCropPage.xml.cs DeletesButton_Clicked] タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
+        Trace.WriteLine($"［タイル削除］　Undo　タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
 
         //
         // 設定ファイルの保存

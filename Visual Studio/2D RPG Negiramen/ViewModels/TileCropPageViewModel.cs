@@ -73,7 +73,7 @@
 
                     // 再帰的
                     App.History.Do(new SetCultureInfoProcessing(
-                        gardensideDoor: this.Corridor.GardensideDoor,
+                        gardensideDoor: this.Corridor.GardensideDoor,    // 権限を委譲
                         oldValue: oldValue,
                         newValue: newValue));
                 });
@@ -163,7 +163,7 @@
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
                         this.Corridor,
-                        this.Corridor.GardensideDoor,
+                        this.Corridor.GardensideDoor,    // 権限を委譲
                         this.RoomsideDoors,
                         oldValue,
                         newValue));
