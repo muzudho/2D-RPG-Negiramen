@@ -15,12 +15,10 @@ internal class CropTile
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="specObj"></param>
+    /// <param name="roomsideDoors"></param>
     internal CropTile(
-        ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors)
     {
-        this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
     }
     #endregion
@@ -42,7 +40,10 @@ internal class CropTile
     }
     #endregion
 
-    internal void SetRecordVisually(TileRecordVisually value)
+    internal void SetRecordVisually(
+        TileRecordVisually value,
+        Action onVanished,
+        Action onUpdated)
     {
         var oldTileVisually = this.recordVisually;
 
@@ -67,16 +68,12 @@ internal class CropTile
 
                 // 末端にセット（変更通知を呼ぶために）
                 // Ｉｄ
-                this.IdOrEmpty = TileIdOrEmpty.Empty;
-
-                // 元画像の位置とサイズ
-                this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
-
-                // 論理削除
-                this.GardensideDoor.PageVM.CropTileLogicalDeleteAsBool = false;
+                this.SetIdOrEmpty(TileIdOrEmpty.Empty);
 
                 // 空にする
                 this.recordVisually = TileRecordVisually.CreateEmpty();
+
+                onVanished();
             }
         }
         else
@@ -100,17 +97,11 @@ internal class CropTile
                 // タイトル
                 tileTitle: newValue.Title);
 
-            // （変更通知を送っている）
-            this.IdOrEmpty = newValue.Id;
-            this.GardensideDoor.PageVM.CropTileSourceLeftAsInt = newValue.SourceRectangle.Location.X.AsInt;
-            this.GardensideDoor.PageVM.CropTileSourceTopAsInt = newValue.SourceRectangle.Location.Y.AsInt;
-            this.GardensideDoor.PageVM.CropTileSourceWidthAsInt = newValue.SourceRectangle.Size.Width.AsInt;
-            this.GardensideDoor.PageVM.CropTileSourceHeightAsInt = newValue.SourceRectangle.Size.Height.AsInt;
+            this.SetIdOrEmpty(newValue.Id);
             // this.CropTileTitleAsStr = newValue.Title.AsStr;
-        }
 
-        // 変更通知を送りたい
-        this.GardensideDoor.PageVM.InvalidateTileIdChange();
+            onUpdated();
+        }
     }
 
     internal void SetRecordVisuallyNoGuiUpdate(TileRecordVisually value)
@@ -134,17 +125,18 @@ internal class CropTile
 
             return contents.Id;
         }
-        set
-        {
-            if (this.RecordVisually.Id == value)
-                return;
-
-            // 差分更新
-            this.UpdateByDifference(
-                tileId: value);
-        }
     }
     #endregion
+
+    internal void SetIdOrEmpty(TileIdOrEmpty value)
+    {
+        if (this.RecordVisually.Id == value)
+            return;
+
+        // 差分更新
+        this.UpdateByDifference(
+            tileId: value);
+    }
 
     // - インターナル・メソッド
 
@@ -186,19 +178,11 @@ internal class CropTile
             this.RecordVisually.LogicalDelete = logicalDelete;
         }
 
-        // 変更通知を送る
-        this.GardensideDoor.PageVM.InvalidateTileIdChange();
-
         // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
     }
     #endregion
 
     // - プライベート・プロパティ
-
-    /// <summary>
-    ///     子要素が、親要素を変更できるのは良くない
-    /// </summary>
-    ItsGardensideDoor GardensideDoor { get; }
 
     ItsRoomsideDoors RoomsideDoors { get; }
 

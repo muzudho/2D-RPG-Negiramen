@@ -109,7 +109,6 @@ internal class ItsRoomsideDoors
             if (this.cropTile == null)
             {
                 this.cropTile = new CropTile(
-                    gardensideDoor: this.Corridor.GardensideDoor,
                     roomsideDoors: this);
             }
 

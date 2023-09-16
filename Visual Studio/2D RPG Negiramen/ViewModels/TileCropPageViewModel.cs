@@ -1179,6 +1179,9 @@
                 // 差分更新
                 this.RoomsideDoors.CropTile.UpdateByDifference(
                     tileTitle: TileTitle.FromString(value));
+
+                // 変更通知を送る
+                this.InvalidateTileIdChange();
             }
         }
 
@@ -1196,6 +1199,9 @@
                 // 差分更新
                 this.RoomsideDoors.CropTile.UpdateByDifference(
                     logicalDelete: LogicalDelete.FromBool(value));
+
+                // 変更通知を送る
+                this.InvalidateTileIdChange();
             }
         }
         #endregion

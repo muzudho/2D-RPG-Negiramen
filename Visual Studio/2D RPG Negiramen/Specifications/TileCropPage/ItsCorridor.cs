@@ -417,7 +417,23 @@
                     }
 
                     // タイルを指す（論理削除されているものも含む）
-                    this.RoomsideDoors.CropTile.SetRecordVisually(tileVisually);
+                    this.RoomsideDoors.CropTile.SetRecordVisually(
+                        tileVisually,
+                        onVanished: () =>
+                        {
+                            Debug.Fail("ここには来ない");
+                        },
+                        onUpdated: () =>
+                        {
+                            // （変更通知を送っている）
+                            this.GardensideDoor.PageVM.CropTileSourceLeftAsInt = tileVisually.SourceRectangle.Location.X.AsInt;
+                            this.GardensideDoor.PageVM.CropTileSourceTopAsInt = tileVisually.SourceRectangle.Location.Y.AsInt;
+                            this.GardensideDoor.PageVM.CropTileSourceWidthAsInt = tileVisually.SourceRectangle.Size.Width.AsInt;
+                            this.GardensideDoor.PageVM.CropTileSourceHeightAsInt = tileVisually.SourceRectangle.Size.Height.AsInt;
+
+                            // 変更通知を送りたい
+                            this.GardensideDoor.PageVM.InvalidateTileIdChange();
+                        });
                 },
                 none: () =>
                 {
@@ -431,18 +447,45 @@
                     // ==========
                     //
 
+                    var sourceRectangle = this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect;
+
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
                     this.RoomsideDoors.CropTile.SetRecordVisually(TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
-                            rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,
+                            rect: sourceRectangle,
                             title: TileTitle.Empty,
                             logicalDelete: LogicalDelete.False),
                         zoom: this.RoomsideDoors.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs LoadCroppedCursorPointedTile]"
 #endif
-                        ));
+                        ),
+                        onVanished: () =>
+                        {
+                            Debug.Fail("ここには来ない");
+                            // 元画像の位置とサイズ
+                            this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
+
+                            // 論理削除
+                            this.GardensideDoor.PageVM.CropTileLogicalDeleteAsBool = false;
+
+                            // 変更通知を送りたい
+                            this.GardensideDoor.PageVM.InvalidateTileIdChange();
+                        },
+                        onUpdated: () =>
+                        {
+                            // ここにはくる
+
+                            // （変更通知を送っている）
+                            this.GardensideDoor.PageVM.CropTileSourceLeftAsInt = sourceRectangle.Location.X.AsInt;
+                            this.GardensideDoor.PageVM.CropTileSourceTopAsInt = sourceRectangle.Location.Y.AsInt;
+                            this.GardensideDoor.PageVM.CropTileSourceWidthAsInt = sourceRectangle.Size.Width.AsInt;
+                            this.GardensideDoor.PageVM.CropTileSourceHeightAsInt = sourceRectangle.Size.Height.AsInt;
+
+                            // 変更通知を送りたい
+                            this.GardensideDoor.PageVM.InvalidateTileIdChange();
+                        });
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);
