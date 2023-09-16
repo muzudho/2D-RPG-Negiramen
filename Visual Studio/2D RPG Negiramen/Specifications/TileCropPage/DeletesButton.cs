@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
 
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 /// <summary>
 ///     削除ボタン
@@ -14,15 +13,20 @@ internal class DeletesButton
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="specObj"></param>
+    /// <param name="roomsideDoors"></param>
     internal DeletesButton(
-        ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors)
     {
-        this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
     }
     #endregion
+
+    // - インターナル・デリゲート
+
+    /// <summary>
+    ///     上書きする
+    /// </summary>
+    internal delegate void DoRemoveRegisteredTIle(TileIdOrEmpty tileIdOrEmpty);
 
     // - インターナル・プロパティ
 
@@ -90,13 +94,11 @@ internal class DeletesButton
     /// <summary>
     ///     タイル削除
     /// </summary>
-    public void RemoveTile()
+    public void RemoveTile(
+        DoRemoveRegisteredTIle doRemoveRegisteredTIle)
     {
-        App.History.Do(new RemoveRegisteredTileProcessing(
-            gardensideDoor: this.GardensideDoor,
-            tileIdOrEmpty: this.RoomsideDoors.CropTile.IdOrEmpty));
-
-        this.GardensideDoor.PageVM.InvalidateForHistory();
+        doRemoveRegisteredTIle(
+            tileIdOrEmpty: this.RoomsideDoors.CropTile.IdOrEmpty);
     }
     #endregion
 
@@ -111,6 +113,5 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    ItsGardensideDoor GardensideDoor { get; }
     ItsRoomsideDoors RoomsideDoors { get; }
 }

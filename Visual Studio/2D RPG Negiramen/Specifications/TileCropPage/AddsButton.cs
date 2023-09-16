@@ -33,30 +33,32 @@ internal class AddsButton
     }
     #endregion
 
+    // - インターナル・デリゲート
+
+    /// <summary>
+    ///     上書きする
+    /// </summary>
+    internal delegate void DoAddRegisteredTIle(TileRecordVisually contents);
+
     // - インターナル・メソッド
 
     /// <summary>
     ///     ［追加］
     /// </summary>
     internal void AddTile(
-        DoRegisteredTIle doRegisteredTIle)
+        DoAddRegisteredTIle doAddRegisteredTIle)
     {
-        doRegisteredTIle(
+        doAddRegisteredTIle(
             contents: this.RoomsideDoors.CropTile.RecordVisually);
     }
-
-    /// <summary>
-    ///     上書きする
-    /// </summary>
-    internal delegate void DoRegisteredTIle(TileRecordVisually contents);
 
     /// <summary>
     ///     ［上書き］
     /// </summary>
     public void OverwriteTile(
-        DoRegisteredTIle doRegisteredTIle)
+        DoAddRegisteredTIle doAddRegisteredTIle)
     {
-        doRegisteredTIle(
+        doAddRegisteredTIle(
             contents: this.RoomsideDoors.CropTile.RecordVisually);
     }
 

@@ -222,7 +222,7 @@
 
                 // 登録タイル追加
                 this.RoomsideDoors.AddsButton.AddTile(
-                    doRegisteredTIle: (TileRecordVisually contents) =>
+                    doAddRegisteredTIle: (TileRecordVisually contents) =>
                     {
                         // Ｉｄが空欄
                         // ［追加］（新規作成）だ
@@ -261,7 +261,7 @@
         internal void OverwriteTile()
         {
             this.RoomsideDoors.AddsButton.OverwriteTile(
-                doRegisteredTIle: (TileRecordVisually contents) =>
+                doAddRegisteredTIle: (TileRecordVisually contents) =>
                 {
                     TileIdOrEmpty tileIdOrEmpty;
 

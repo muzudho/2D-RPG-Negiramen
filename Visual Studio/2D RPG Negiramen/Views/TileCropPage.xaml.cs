@@ -2,6 +2,8 @@
 
 using _2D_RPG_Negiramen.ViewModels;
 using System.Diagnostics;
+using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+using _2D_RPG_Negiramen.Models;
 
 #if IOS || ANDROID || MACCATALYST
 using Microsoft.Maui.Graphics.Platform;
@@ -9,7 +11,6 @@ using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.Visually;
 #elif WINDOWS
 using Microsoft.Maui.Graphics.Win2D;
-using _2D_RPG_Negiramen.Models;
 using System.Net;
 using SkiaSharp;
 using _2D_RPG_Negiramen.FeatSkia;
@@ -188,7 +189,15 @@ public partial class TileCropPage : ContentPage
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
         // 登録タイル削除
-        context.Corridor.RoomsideDoors.DeletesButton.RemoveTile();
+        context.Corridor.RoomsideDoors.DeletesButton.RemoveTile(
+            doRemoveRegisteredTIle: (TileIdOrEmpty tileIdOrEmpty) =>
+            {
+                App.History.Do(new RemoveRegisteredTileProcessing(
+                    gardensideDoor: context.Corridor.GardensideDoor,
+                    tileIdOrEmpty: tileIdOrEmpty));
+
+                ((TileCropPageViewModel)this.BindingContext).InvalidateForHistory();
+            });
     }
     #endregion
 

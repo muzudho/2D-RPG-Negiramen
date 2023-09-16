@@ -140,7 +140,7 @@ internal class ItsRoomsideDoors
         {
             if (this.deletesButton == null)
             {
-                this.deletesButton = new DeletesButton(this.Corridor.GardensideDoor, this);
+                this.deletesButton = new DeletesButton(this);
             }
 
             return this.deletesButton;
