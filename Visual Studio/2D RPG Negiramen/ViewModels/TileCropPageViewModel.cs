@@ -528,7 +528,12 @@
         public bool IsMouseDragging
         {
             get => this.RoomsideDoors.PointingDevice.IsMouseDragging;
-            set => this.RoomsideDoors.PointingDevice.IsMouseDragging = value;
+            set => this.RoomsideDoors.PointingDevice.SetMouseDragging(
+                value: value,
+                onChanged: () =>
+                {
+                    this.InvalidateIsMouseDragging();
+                });
         }
         #endregion
 

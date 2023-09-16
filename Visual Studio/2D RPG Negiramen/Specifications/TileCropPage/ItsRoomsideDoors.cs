@@ -44,7 +44,7 @@ internal class ItsRoomsideDoors
         {
             if (this.pointingDevice==null)
             {
-                this.pointingDevice = new InnerPointingDevice(this.Corridor.GardensideDoor);
+                this.pointingDevice = new InnerPointingDevice();
             }
 
             return this.pointingDevice;

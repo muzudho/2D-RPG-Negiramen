@@ -13,11 +13,8 @@ internal class InnerPointingDevice
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="owner"></param>
-    internal InnerPointingDevice(
-        ItsGardensideDoor gardensideDoor)
+    internal InnerPointingDevice()
     {
-        this.GardensideDoor = gardensideDoor;
     }
     #endregion
 
@@ -46,23 +43,20 @@ internal class InnerPointingDevice
     ///         <item>マウスじゃないと思うけど</item>
     ///     </list>
     /// </summary>
-    internal bool IsMouseDragging
-    {
-        get => isMouseDragging;
-        set
-        {
-            if (isMouseDragging != value)
-            {
-                isMouseDragging = value;
-                this.GardensideDoor.PageVM.InvalidateIsMouseDragging();
-            }
-        }
-    }
+    internal bool IsMouseDragging => isMouseDragging;
     #endregion
 
-    // - プライベート・プロパティ
+    internal void SetMouseDragging(
+        bool value,
+        Action onChanged)
+    {
+        if (isMouseDragging == value) return;
 
-    ItsGardensideDoor GardensideDoor { get; }
+        isMouseDragging = value;
+        onChanged();
+    }
+
+    // - プライベート・プロパティ
 
     #region プロパティ（ポインティング・デバイス押下中か？）
     /// <summary>
