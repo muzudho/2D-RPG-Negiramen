@@ -417,7 +417,7 @@
                     }
 
                     // タイルを指す（論理削除されているものも含む）
-                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = tileVisually;
+                    this.RoomsideDoors.CropTile.RecordVisually = tileVisually;
                 },
                 none: () =>
                 {
@@ -432,7 +432,7 @@
                     //
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.RoomsideDoors.CropTile.TargetTileRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.RecordVisually = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect,

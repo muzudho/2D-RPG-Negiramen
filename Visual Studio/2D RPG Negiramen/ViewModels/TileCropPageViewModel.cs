@@ -532,7 +532,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -544,7 +544,7 @@
             }
             set
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -585,7 +585,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -597,13 +597,13 @@
             }
             set
             {
-                var currentTileVisually = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var currentTileVisually = this.RoomsideDoors.CropTile.RecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -616,7 +616,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 1]"
 #endif
-                        );
+                        ));
                 }
                 else
                 {
@@ -624,7 +624,7 @@
                     if (currentTileVisually.SourceRectangle.Location.X.AsInt == value)
                         return;
 
-                    this.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -637,7 +637,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 2]"
 #endif
-                        );
+                        ));
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -665,7 +665,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -675,13 +675,13 @@
             }
             set
             {
-                var currentTileVisually = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var currentTileVisually = this.RoomsideDoors.CropTile.RecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -694,7 +694,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceTopAsInt 1]"
 #endif
-                        );
+                        ));
                 }
                 else
                 {
@@ -702,7 +702,7 @@
                     if (currentTileVisually.SourceRectangle.Location.Y.AsInt == value)
                         return;
 
-                    this.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -715,7 +715,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceTopAsInt 2]"
 #endif
-                        );
+                        ));
                 }
 
                 // 切抜きカーソル。ズーム済み
@@ -747,7 +747,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -757,7 +757,7 @@
             }
             set
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -788,7 +788,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -798,12 +798,13 @@
             }
             set
             {
-                var currentTileVisually = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var currentTileVisually = this.RoomsideDoors.CropTile.RecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    // TODO ★ 循環参照注意
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate( TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
@@ -813,7 +814,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceWidthAsInt 1]"
 #endif
-                        );
+                        ));
                 }
                 else
                 {
@@ -821,7 +822,7 @@
                     if (currentTileVisually.SourceRectangle.Size.Width.AsInt == value)
                         return;
 
-                    this.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
@@ -831,7 +832,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceWidthAsInt 2]"
 #endif
-                        );
+                        ));
                 }
 
                 // 矩形カーソル。ズーム済み（カーソルの線の幅を含まない）
@@ -850,7 +851,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -860,12 +861,12 @@
             }
             set
             {
-                var currentTileVisually = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var currentTileVisually = this.RoomsideDoors.CropTile.RecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
@@ -875,7 +876,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceHeightAsInt 1]"
 #endif
-                        );
+                        ));
                 }
                 else
                 {
@@ -883,7 +884,7 @@
                     if (currentTileVisually.SourceRectangle.Size.Height.AsInt == value)
                         return;
 
-                    this.RoomsideDoors.CropTile.SavesRecordVisually = TileRecordVisually.FromModel(
+                    this.RoomsideDoors.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
@@ -893,7 +894,7 @@
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceHeightAsInt 2]"
 #endif
-                        );
+                        ));
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
@@ -1124,7 +1125,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1143,7 +1144,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1162,17 +1163,17 @@
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCropTileTitleAsStr => !this.RoomsideDoors.CropTile.TargetTileRecordVisually.IsNone && !this.RoomsideDoors.CropTile.IdOrEmpty.IsEmpty && !this.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool;
+        public bool IsEnabledCropTileTitleAsStr => !this.RoomsideDoors.CropTile.RecordVisually.IsNone && !this.RoomsideDoors.CropTile.IdOrEmpty.IsEmpty && !this.RoomsideDoors.CropTile.RecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
         /// </summary>
         public string CropTileTitleAsStr
         {
-            get => this.RoomsideDoors.CropTile.SavesRecordVisually.Title.AsStr;
+            get => this.RoomsideDoors.CropTile.RecordVisually.Title.AsStr;
             set
             {
-                if (this.RoomsideDoors.CropTile.SavesRecordVisually.Title.AsStr == value)
+                if (this.RoomsideDoors.CropTile.RecordVisually.Title.AsStr == value)
                     return;
 
                 // 差分更新
@@ -1186,10 +1187,10 @@
         /// </summary>
         public bool CropTileLogicalDeleteAsBool
         {
-            get => this.RoomsideDoors.CropTile.SavesRecordVisually.LogicalDelete.AsBool;
+            get => this.RoomsideDoors.CropTile.RecordVisually.LogicalDelete.AsBool;
             set
             {
-                if (this.RoomsideDoors.CropTile.SavesRecordVisually.LogicalDelete.AsBool == value)
+                if (this.RoomsideDoors.CropTile.RecordVisually.LogicalDelete.AsBool == value)
                     return;
 
                 // 差分更新
@@ -1223,7 +1224,7 @@
         {
             get
             {
-                var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+                var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1262,12 +1263,12 @@
             get
             {
                 // ※１
-                var isEnabled = !this.RoomsideDoors.CropTile.TargetTileRecordVisually.IsNone && (
+                var isEnabled = !this.RoomsideDoors.CropTile.RecordVisually.IsNone && (
                 // ※２
-                (this.RoomsideDoors.CropTile.TargetTileRecordVisually.Id == TileIdOrEmpty.Empty && !this.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool)
+                (this.RoomsideDoors.CropTile.RecordVisually.Id == TileIdOrEmpty.Empty && !this.RoomsideDoors.CropTile.RecordVisually.LogicalDelete.AsBool)
                 ||
                 // ※３
-                (this.RoomsideDoors.CropTile.TargetTileRecordVisually.Id != TileIdOrEmpty.Empty && this.RoomsideDoors.CropTile.TargetTileRecordVisually.LogicalDelete.AsBool));
+                (this.RoomsideDoors.CropTile.RecordVisually.Id != TileIdOrEmpty.Empty && this.RoomsideDoors.CropTile.RecordVisually.LogicalDelete.AsBool));
 
                 // Trace.WriteLine($"[TileCropPageViewModel.cs IsEnabledAddsButton] this.CroppedCursorPointedTileRecordVisually.Dump(): {this.RoomsideDoors.CropTile.TargetTileRecordVisually.Dump()}");
 

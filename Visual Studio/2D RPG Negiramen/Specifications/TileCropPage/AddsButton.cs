@@ -46,7 +46,7 @@ internal class AddsButton
     /// </summary>
     internal void AddTile()
     {
-        var contents = this.RoomsideDoors.CropTile.TargetTileRecordVisually;
+        var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -78,7 +78,7 @@ internal class AddsButton
     /// </summary>
     public void OverwriteTile()
     {
-        var contents = this.RoomsideDoors.CropTile.TargetTileRecordVisually;
+        var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
         TileIdOrEmpty tileIdOrEmpty;
 
@@ -121,7 +121,7 @@ internal class AddsButton
             }
         }
 
-        var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+        var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
         if (contents.IsNone)
         {

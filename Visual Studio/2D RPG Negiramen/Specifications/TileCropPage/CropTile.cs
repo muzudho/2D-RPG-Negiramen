@@ -28,18 +28,6 @@ internal class CropTile
 
     // - インターナル・プロパティ
 
-    #region プロパティ（保存データ）
-    /// <summary>
-    ///     保存データ
-    ///     
-    ///     <list type="bullet">
-    ///         <item>★循環参照しやすいので注意</item>
-    ///         <item>［切抜きカーソル］が指すタイルが未確定のときも、指しているタイルにアクセスできることに注意</item>
-    ///     </list>
-    /// </summary>
-    internal TileRecordVisually SavesRecordVisually { get; set; } = TileRecordVisually.CreateEmpty();
-    #endregion
-
     #region プロパティ（［切抜きカーソルが指すタイル］　関連）
     /// <summary>
     ///     ［切抜きカーソル］が指すタイル
@@ -49,12 +37,12 @@ internal class CropTile
     ///         <item>TODO ★ ［切抜きカーソル］が指すタイルが無いとき、無いということをセットするのを忘れている？</item>
     ///     </list>
     /// </summary>
-    public TileRecordVisually TargetTileRecordVisually
+    public TileRecordVisually RecordVisually
     {
-        get => this.SavesRecordVisually;
+        get => this.recordVisually;
         set
         {
-            var oldTileVisually = this.SavesRecordVisually;
+            var oldTileVisually = this.recordVisually;
 
             // 値に変化がない
             if (oldTileVisually == value)
@@ -86,7 +74,7 @@ internal class CropTile
                     this.GardensideDoor.PageVM.CropTileLogicalDeleteAsBool = false;
 
                     // 空にする
-                    this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
+                    this.recordVisually = TileRecordVisually.CreateEmpty();
                 }
             }
             else
@@ -98,7 +86,7 @@ internal class CropTile
                     // ［切抜きカーソル］の指すタイル無し時
 
                     // 新規作成
-                    this.SavesRecordVisually = TileRecordVisually.CreateEmpty();
+                    this.recordVisually = TileRecordVisually.CreateEmpty();
                 }
                 else
                 {
@@ -125,6 +113,12 @@ internal class CropTile
     }
     #endregion
 
+    internal void SetRecordVisuallyNoGuiUpdate(TileRecordVisually recordVisually)
+    {
+        this.recordVisually = recordVisually;
+    }
+
+    #region プロパティ（Ｉｄ）
     /// <summary>
     ///     Ｉｄ
     /// </summary>
@@ -132,7 +126,7 @@ internal class CropTile
     {
         get
         {
-            var contents = this.SavesRecordVisually;
+            var contents = this.RecordVisually;
 
             // ［切抜きカーソル］の指すタイル無し時
             if (contents.IsNone)
@@ -142,7 +136,7 @@ internal class CropTile
         }
         set
         {
-            if (this.SavesRecordVisually.Id == value)
+            if (this.RecordVisually.Id == value)
                 return;
 
             // 差分更新
@@ -150,6 +144,7 @@ internal class CropTile
                 tileId: value);
         }
     }
+    #endregion
 
     // - インターナル・メソッド
 
@@ -163,12 +158,12 @@ internal class CropTile
         TileTitle? tileTitle = null,
         LogicalDelete? logicalDelete = null)
     {
-        var currentTileVisually = this.SavesRecordVisually;
+        var currentTileVisually = this.RecordVisually;
 
         // タイルＩｄ
         if (!(tileId is null) && currentTileVisually.Id != tileId)
         {
-            this.SavesRecordVisually.Id = tileId;
+            this.RecordVisually.Id = tileId;
 
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
@@ -182,13 +177,13 @@ internal class CropTile
         // タイル・タイトル
         if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
         {
-            this.SavesRecordVisually.Title = tileTitle;
+            this.RecordVisually.Title = tileTitle;
         }
 
         // 論理削除フラグ
         if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
         {
-            this.SavesRecordVisually.LogicalDelete = logicalDelete;
+            this.RecordVisually.LogicalDelete = logicalDelete;
         }
 
         // 変更通知を送る
@@ -202,4 +197,16 @@ internal class CropTile
 
     ItsGardensideDoor GardensideDoor { get; }
     ItsRoomsideDoors RoomsideDoors { get; }
+
+    #region プロパティ（保存データ）
+    /// <summary>
+    ///     保存データ
+    ///     
+    ///     <list type="bullet">
+    ///         <item>★循環参照しやすいので注意</item>
+    ///         <item>［切抜きカーソル］が指すタイルが未確定のときも、指しているタイルにアクセスできることに注意</item>
+    ///     </list>
+    /// </summary>
+    TileRecordVisually recordVisually = TileRecordVisually.CreateEmpty();
+    #endregion
 }

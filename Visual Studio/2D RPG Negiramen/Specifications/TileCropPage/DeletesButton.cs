@@ -52,7 +52,7 @@ internal class DeletesButton
     /// </summary>
     internal void Refresh()
     {
-        var contents = this.RoomsideDoors.CropTile.SavesRecordVisually;
+        var contents = this.RoomsideDoors.CropTile.RecordVisually;
 
         if (contents.IsNone)
         {
