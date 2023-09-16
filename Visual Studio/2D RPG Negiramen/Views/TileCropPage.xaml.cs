@@ -193,7 +193,7 @@ public partial class TileCropPage : ContentPage
             doRemoveRegisteredTIle: (TileIdOrEmpty tileIdOrEmpty) =>
             {
                 App.History.Do(new RemoveRegisteredTileProcessing(
-                    gardensideDoor: context.Corridor.GardensideDoor,
+                    gardensideDoor: context.Corridor.GardensideDoor,    // 権限を委譲
                     tileIdOrEmpty: tileIdOrEmpty));
 
                 ((TileCropPageViewModel)this.BindingContext).InvalidateForHistory();

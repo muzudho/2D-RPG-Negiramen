@@ -35,18 +35,7 @@ internal class ZoomProperties
     ///         <item>コード・ビハインドで使用</item>
     ///     </list>
     /// </summary>
-    public Zoom Value
-    {
-        get => value;
-        set
-        {
-            if (this.value == value)
-                return;
-
-            // TODO 循環参照しやすいから、良くないコード
-            this.GardensideDoor.PageVM.ZoomAsFloat = value.AsFloat;
-        }
-    }
+    public Zoom Value => value;
 
     /// <summary>
     ///     ［ズーム］整数形式

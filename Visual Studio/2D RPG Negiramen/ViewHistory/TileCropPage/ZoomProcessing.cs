@@ -39,7 +39,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.RoomsideDoors.ZoomProperties.Value = this.NewValue;
+        this.GardensideDoor.PageVM.ZoomAsFloat = this.NewValue.AsFloat;
 
         this.AfterChanged();
     }
@@ -49,7 +49,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.RoomsideDoors.ZoomProperties.Value = this.OldValue;
+        this.GardensideDoor.PageVM.ZoomAsFloat = this.OldValue.AsFloat;
 
         this.AfterChanged();
     }
