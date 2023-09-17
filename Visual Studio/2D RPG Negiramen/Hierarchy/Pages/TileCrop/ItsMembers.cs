@@ -248,8 +248,7 @@ internal class ItsMembers
     /// <summary>
     ///     追加ボタンのラベル算出
     /// </summary>
-    internal void CalculateLabelOfAddsButton(
-        LazyArgs.Set<string> setAddsButtonText)
+    internal string CalculateLabelOfAddsButton()
     {
         var addsButtonState = this.GetStateOfAddsButton();
 
@@ -257,18 +256,19 @@ internal class ItsMembers
         {
             case AddsButtonState.Intersecting:
                 // 「交差中」
-                setAddsButtonText((string)LocalizationResourceManager.Instance["Intersecting"]);
-                return;
+                return (string)LocalizationResourceManager.Instance["Intersecting"];
 
             case AddsButtonState.Adds:
-                setAddsButtonText((string)LocalizationResourceManager.Instance["Add"]);
-                return;
+                // 「追加」
+                return (string)LocalizationResourceManager.Instance["Add"];
 
             case AddsButtonState.Restore:
                 // ［復元」
-                setAddsButtonText((string)LocalizationResourceManager.Instance["Restore"]);
-                return;
+                return (string)LocalizationResourceManager.Instance["Restore"];
         }
+
+        // それ以外
+        return string.Empty;
     }
     #endregion
 

@@ -1698,8 +1698,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateByLocale() => this.Subordinates.CalculateLabelOfAddsButton(
-            setAddsButtonText: this.SetAddsButtonText);
+        internal void InvalidateByLocale() => this.SetAddsButtonText(this.Subordinates.CalculateLabelOfAddsButton());
         #endregion
 
         // - インターナル・イベントハンドラ
@@ -2154,8 +2153,7 @@
                 includeLogicalDelete: true);
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.Subordinates.CalculateLabelOfAddsButton(
-                setAddsButtonText: this.SetAddsButtonText);
+            this.SetAddsButtonText(this.Subordinates.CalculateLabelOfAddsButton());
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
             this.Subordinates.DeletesButtonRefreshEnabled(
