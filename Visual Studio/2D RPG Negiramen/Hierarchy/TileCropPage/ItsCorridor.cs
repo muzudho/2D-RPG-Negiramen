@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage
+﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage
 {
     using _2D_RPG_Negiramen.Models.Geometric;
     using _2D_RPG_Negiramen.ViewModels;
@@ -7,12 +7,12 @@
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
-    using _2D_RPG_Negiramen.Specifications.TileCropPage;
+    using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 #elif WINDOWS
     using Microsoft.Maui.Graphics.Win2D;
     using System.Net;
-    using _2D_RPG_Negiramen.Specifications.TileCropPage;
-    using static _2D_RPG_Negiramen.Specifications.TileCropPage.AddsButton;
+    using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+    using static _2D_RPG_Negiramen.Hierarchy.TileCropPage.AddsButton;
 #endif
 
     /// <summary>
@@ -68,7 +68,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.MonitorState(
+        internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.MonitorStateOfAddsButton(
             setAddsButtonText: this.SetAddsButtonText);
         #endregion
 

@@ -15,15 +15,15 @@
     using Microsoft.Maui.Graphics.Platform;
     using SkiaSharp.Views.Maui.Controls;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
-    using _2D_RPG_Negiramen.Specifications.TileCropPage;
+    using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 #elif WINDOWS
     using Microsoft.Maui.Graphics.Win2D;
     using System.Net;
     using SkiaSharp.Views.Maui.Controls;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
-    using _2D_RPG_Negiramen.Specifications.TileCropPage;
-    using static _2D_RPG_Negiramen.Specifications.TileCropPage.ZoomProperties;
-    using static _2D_RPG_Negiramen.Specifications.TileCropPage.InnerCultureInfo;
+    using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+    using static _2D_RPG_Negiramen.Hierarchy.TileCropPage.ZoomProperties;
+    using static _2D_RPG_Negiramen.Hierarchy.TileCropPage.InnerCultureInfo;
 #endif
 
     /// <summary>
@@ -1913,32 +1913,35 @@
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
 
+                // 操作対象のタイル
+                TileRecordVisually targetTile = this.RoomsideDoors.CropTile.RecordVisually;
+
+                //
                 // 登録タイル追加
-                this.RoomsideDoors.AddsButton.AddTile(
-                    doAddRegisteredTIle: (TileRecordVisually contents) =>
-                    {
-                        // Ｉｄが空欄
-                        // ［追加］（新規作成）だ
+                // ==============
+                //
 
-                        // ［切抜きカーソル］にサイズがなければ、何もしない
-                        if (contents.IsNone)
-                            return;
+                // Ｉｄが空欄
+                // ［追加］（新規作成）だ
 
-                        // 新しいタイルＩｄを発行
-                        TileIdOrEmpty tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
-                        this.TilesetSettingsVM.IncreaseUsableId();
+                // ［切抜きカーソル］にサイズがなければ、何もしない
+                if (targetTile.IsNone)
+                    return;
 
-                        // 追加でも、上書きでも、同じ処理でいける
-                        // ［登録タイル追加］処理
-                        App.History.Do(new AddRegisteredTileProcessing(
-                            gardensideDoor: this.GardensideDoor,
-                            roomsideDoors: this.RoomsideDoors,
-                            croppedCursorVisually: contents,
-                            tileIdOrEmpty: tileIdOrEmpty,
-                            workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
+                // 新しいタイルＩｄを発行
+                TileIdOrEmpty tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
+                this.TilesetSettingsVM.IncreaseUsableId();
 
-                        this.InvalidateForHistory();
-                    });
+                // 追加でも、上書きでも、同じ処理でいける
+                // ［登録タイル追加］処理
+                App.History.Do(new AddRegisteredTileProcessing(
+                    gardensideDoor: this.GardensideDoor,
+                    roomsideDoors: this.RoomsideDoors,
+                    croppedCursorVisually: targetTile,
+                    tileIdOrEmpty: tileIdOrEmpty,
+                    workingRectangle: targetTile.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
+
+                this.InvalidateForHistory();
             }
             else
             {
@@ -1954,7 +1957,6 @@
         internal void OnDeletesButtonRemoveTile()
         {
             // 登録タイル削除
-            // OnDeletesButtonRemoveTile
             this.RoomsideDoors.DeletesButton.RemoveTile(
                 doRemoveRegisteredTIle: (TileIdOrEmpty tileIdOrEmpty) =>
                 {
@@ -1974,31 +1976,30 @@
         /// </summary>
         internal void OverwriteTile()
         {
-            this.RoomsideDoors.AddsButton.OverwriteTile(
-                doAddRegisteredTIle: (TileRecordVisually contents) =>
-                {
-                    TileIdOrEmpty tileIdOrEmpty;
+            // 操作対象のタイル
+            TileRecordVisually targetTile = this.RoomsideDoors.CropTile.RecordVisually;
 
-                    // ［切抜きカーソル］にサイズがなければ、何もしない
-                    if (contents.IsNone)
-                        return;
+            TileIdOrEmpty tileIdOrEmpty;
 
-                    // Ｉｄが空欄でない
-                    // ［上書き］（更新）だ
-                    tileIdOrEmpty = this.RoomsideDoors.CropTile.IdOrEmpty;
+            // ［切抜きカーソル］にサイズがなければ、何もしない
+            if (targetTile.IsNone)
+                return;
 
-                    // 追加でも、上書きでも、同じ処理でいける
-                    // ［登録タイル追加］処理
-                    App.History.Do(new AddRegisteredTileProcessing(
-                        // 上位の権限を委譲する
-                        gardensideDoor: this.GardensideDoor,
-                        roomsideDoors: this.RoomsideDoors,
-                        croppedCursorVisually: contents,
-                        tileIdOrEmpty: tileIdOrEmpty,
-                        workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
+            // Ｉｄが空欄でない
+            // ［上書き］（更新）だ
+            tileIdOrEmpty = this.RoomsideDoors.CropTile.IdOrEmpty;
 
-                    this.InvalidateForHistory();
-                });
+            // 追加でも、上書きでも、同じ処理でいける
+            // ［登録タイル追加］処理
+            App.History.Do(new AddRegisteredTileProcessing(
+                // 上位の権限を委譲する
+                gardensideDoor: this.GardensideDoor,
+                roomsideDoors: this.RoomsideDoors,
+                croppedCursorVisually: targetTile,
+                tileIdOrEmpty: tileIdOrEmpty,
+                workingRectangle: targetTile.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
+
+            this.InvalidateForHistory();
         }
         #endregion
 
@@ -2146,7 +2147,7 @@
                 includeLogicalDelete: true);
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.RoomsideDoors.AddsButton.MonitorState(
+            this.RoomsideDoors.AddsButton.MonitorStateOfAddsButton(
                 setAddsButtonText: this.Corridor.SetAddsButtonText);
 
             // （切抜きカーソル更新後）［削除］ボタン活性化

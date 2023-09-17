@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.Geometric;
 

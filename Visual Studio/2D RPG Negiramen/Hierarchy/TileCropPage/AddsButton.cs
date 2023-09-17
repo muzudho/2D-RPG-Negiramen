@@ -1,19 +1,13 @@
-﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.Visually;
 
 /// <summary>
 ///     追加ボタン
 /// </summary>
 internal class AddsButton
 {
-    /// <summary>
-    ///     室内側ドア
-    /// </summary>
-    ItsRoomsideDoors RoomsideDoors { get; }
-
     // - その他
 
     #region その他（生成）
@@ -33,39 +27,12 @@ internal class AddsButton
     }
     #endregion
 
-    // - インターナル・デリゲート
-
-    /// <summary>
-    ///     上書きする
-    /// </summary>
-    internal delegate void DoAddRegisteredTIle(TileRecordVisually contents);
-
     // - インターナル・メソッド
-
-    /// <summary>
-    ///     ［追加］
-    /// </summary>
-    internal void AddTile(
-        DoAddRegisteredTIle doAddRegisteredTIle)
-    {
-        doAddRegisteredTIle(
-            contents: this.RoomsideDoors.CropTile.RecordVisually);
-    }
-
-    /// <summary>
-    ///     ［上書き］
-    /// </summary>
-    public void OverwriteTile(
-        DoAddRegisteredTIle doAddRegisteredTIle)
-    {
-        doAddRegisteredTIle(
-            contents: this.RoomsideDoors.CropTile.RecordVisually);
-    }
 
     /// <summary>
     ///     状態監視
     /// </summary>
-    internal void MonitorState(
+    internal void MonitorStateOfAddsButton(
         LazyArgs.Set<string> setAddsButtonText)
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
@@ -111,4 +78,11 @@ internal class AddsButton
             }
         }
     }
+
+    // - プライベート・プロパティ
+
+    /// <summary>
+    ///     室内側ドア
+    /// </summary>
+    ItsRoomsideDoors RoomsideDoors { get; }
 }
