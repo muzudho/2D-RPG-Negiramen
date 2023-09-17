@@ -1948,6 +1948,24 @@
         }
         #endregion
 
+        /// <summary>
+        ///     ［削除］ボタン　クリック時
+        /// </summary>
+        internal void OnDeletesButtonRemoveTile()
+        {
+            // 登録タイル削除
+            // OnDeletesButtonRemoveTile
+            this.RoomsideDoors.DeletesButton.RemoveTile(
+                doRemoveRegisteredTIle: (TileIdOrEmpty tileIdOrEmpty) =>
+                {
+                    App.History.Do(new RemoveRegisteredTileProcessing(
+                        gardensideDoor: this.GardensideDoor,    // 権限を委譲
+                        tileIdOrEmpty: tileIdOrEmpty));
+
+                    this.InvalidateForHistory();
+                });
+        }
+
         // - インターナル・メソッド
 
         #region インターナル・メソッド（上書きボタンだが、［上書き］処理をする）

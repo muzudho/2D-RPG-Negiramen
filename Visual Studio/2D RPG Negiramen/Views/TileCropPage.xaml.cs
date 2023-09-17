@@ -161,18 +161,7 @@ public partial class TileCropPage : ContentPage
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
-
-        // 登録タイル削除
-        context.Corridor.RoomsideDoors.DeletesButton.RemoveTile(
-            doRemoveRegisteredTIle: (TileIdOrEmpty tileIdOrEmpty) =>
-            {
-                App.History.Do(new RemoveRegisteredTileProcessing(
-                    gardensideDoor: context.GardensideDoor,    // 権限を委譲
-                    tileIdOrEmpty: tileIdOrEmpty));
-
-                ((TileCropPageViewModel)this.BindingContext).InvalidateForHistory();
-            });
+        ((TileCropPageViewModel)this.BindingContext).OnDeletesButtonRemoveTile();
     }
     #endregion
 
