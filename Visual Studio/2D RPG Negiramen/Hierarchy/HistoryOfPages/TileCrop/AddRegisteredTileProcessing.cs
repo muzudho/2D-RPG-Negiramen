@@ -25,7 +25,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     internal AddRegisteredTileProcessing(
         TheHistoryOfTileCropPage.Common commonOfHierarchy,
         MemberNetworkOfTileCropPage memberNetwork,
-        TheTileCropPage.ItsMemberNetwork roomsideDoors,
+        TheTileCropPage.ItsMemberNetwork memberNetworkForSubordinate,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
@@ -38,7 +38,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             this.MemberNetwork.PageVM.InvalidateAddsButton();
         };
 
-        this.RoomsideDoors = roomsideDoors;
+        this.MemberNetworkForSubordinate = memberNetworkForSubordinate;
 
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
@@ -56,7 +56,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.RoomsideDoors.CropTile.SetIdOrEmpty(
+        this.MemberNetworkForSubordinate.CropTile.SetIdOrEmpty(
             value: this.TileIdOrEmpty,
             setAddsButtonText: this.SetAddsButtonText,
             onDeleteButtonEnableChanged: () =>
@@ -92,7 +92,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.RoomsideDoors.ZoomProperties.Value;
+            registeredTileVisually.Zoom = this.MemberNetworkForSubordinate.ZoomProperties.Value;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
@@ -126,7 +126,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.RoomsideDoors.CropTile.SetIdOrEmpty(
+        this.MemberNetworkForSubordinate.CropTile.SetIdOrEmpty(
             value: TileIdOrEmpty.Empty,
             setAddsButtonText: this.SetAddsButtonText,
             onDeleteButtonEnableChanged: () =>
@@ -154,7 +154,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         }
 
         //  ［削除］ボタンの再描画
-        this.RoomsideDoors.DeletesButton.Refresh(
+        this.MemberNetworkForSubordinate.DeletesButton.Refresh(
             onEnableChanged: () =>
             {
                 this.MemberNetwork.PageVM.InvalidateDeletesButton();
@@ -175,7 +175,7 @@ internal class AddRegisteredTileProcessing : IProcessing
 
     /// <summary>メンバー・ネットワーク</summary>
     MemberNetworkOfTileCropPage MemberNetwork { get; }
-    TheTileCropPage.ItsMemberNetwork RoomsideDoors { get; }
+    TheTileCropPage.ItsMemberNetwork MemberNetworkForSubordinate { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

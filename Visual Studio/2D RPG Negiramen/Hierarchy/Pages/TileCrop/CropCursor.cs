@@ -13,11 +13,11 @@ internal class CropCursor
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="roomsideDoors"></param>
+    /// <param name="memberNetwork"></param>
     internal CropCursor(
-        ItsMemberNetwork roomsideDoors)
+        ItsMemberNetwork memberNetwork)
     {
-        RoomsideDoors = roomsideDoors;
+        this.MemberNetwork = memberNetwork;
     }
     #endregion
 
@@ -74,7 +74,7 @@ internal class CropCursor
     internal void RecalculateWorkingGridTileWidth(
         SetValue setValue)
     {
-        setValue(RoomsideDoors.GridUnit.SourceValue.Width.AsInt);
+        setValue(MemberNetwork.GridUnit.SourceValue.Width.AsInt);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ internal class CropCursor
     internal void RecalculateWorkingGridTileHeight(
         SetValue setValue)
     {
-        setValue(RoomsideDoors.GridUnit.SourceValue.Height.AsInt);
+        setValue(MemberNetwork.GridUnit.SourceValue.Height.AsInt);
     }
     #endregion
 
@@ -106,5 +106,5 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
-    ItsMemberNetwork RoomsideDoors { get; }
+    ItsMemberNetwork MemberNetwork { get; }
 }

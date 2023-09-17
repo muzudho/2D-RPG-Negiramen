@@ -13,16 +13,9 @@ using TheGeometric = Models.Geometric;
 internal class ItsMemberNetwork
 {
     internal ItsMemberNetwork(
-
-        /* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
-        前:
-                TheHierarchyTileCropPage.ItsCommon hierarchyCommon)
-        後:
-                ItsCommon hierarchyCommon)
-        */
-        ItsCommon hierarchyCommon)
+        ItsCommon commonOfHierarchy)
     {
-        CommonOfHierarchy = hierarchyCommon;
+        CommonOfHierarchy = commonOfHierarchy;
     }
 
     /// <summary>文化情報</summary>
@@ -110,7 +103,7 @@ internal class ItsMemberNetwork
             if (cropTile == null)
             {
                 cropTile = new CropTile(
-                    roomsideDoors: this);
+                    memberNetwork: this);
             }
 
             return cropTile;
@@ -128,7 +121,7 @@ internal class ItsMemberNetwork
             {
                 addsButton = new AddsButton(
                     commonOfHierarchy: CommonOfHierarchy,
-                    roomsideDoors: this);
+                    memberNetwork: this);
             }
 
             return addsButton;

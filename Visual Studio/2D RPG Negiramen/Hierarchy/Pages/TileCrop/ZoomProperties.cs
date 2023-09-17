@@ -17,7 +17,7 @@ internal class ZoomProperties
     internal ZoomProperties(
         ItsMemberNetwork memberNetwork)
     {
-        RoomsideDoors = memberNetwork;
+        this.Membernetwork = memberNetwork;
     }
     #endregion
 
@@ -61,7 +61,7 @@ internal class ZoomProperties
 
                 this.value = newValue;
 
-                RoomsideDoors.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+                Membernetwork.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                 // 再帰的にズーム再変更、かつ変更後の影響を処理
                 doZoomProcessing(
@@ -83,7 +83,7 @@ internal class ZoomProperties
 
     // - プライベート・プロパティ
 
-    ItsMemberNetwork RoomsideDoors { get; }
+    ItsMemberNetwork Membernetwork { get; }
 
     // - プライベート・フィールド
 
