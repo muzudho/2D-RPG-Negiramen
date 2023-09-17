@@ -53,7 +53,7 @@
                     this.InvalidateAddsButton();
                 });
 
-            this.GardensideDoor = new ItsGardensideDoor(this.Corridor);
+            this.GardensideDoor = new ItsGardensideDoor(this);
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.RoomsideDoors.HalfThicknessOfGridLine.AsInt);

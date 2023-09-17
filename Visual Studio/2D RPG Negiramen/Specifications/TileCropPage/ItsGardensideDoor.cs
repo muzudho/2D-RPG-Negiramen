@@ -8,17 +8,18 @@ using _2D_RPG_Negiramen.ViewModels;
 /// </summary>
 internal class ItsGardensideDoor
 {
-    internal ItsGardensideDoor(ItsCorridor corridor)
+    internal ItsGardensideDoor(TileCropPageViewModel tileCropPageViewModel)
     {
-        this.Corridor = corridor;
+        this.PageVM = tileCropPageViewModel;
     }
 
-    /// <summary>廊下</summary>
-    ItsCorridor Corridor { get; }
-
-    /// <summary>全体ページ・ビューモデル</summary>
-    internal TileCropPageViewModel PageVM => this.Corridor.OwnerPageVM;
+    // - パブリック・プロパティ
 
     /// <summary>タイルセット設定ビューモデル</summary>
     public TilesetDatatableVisually TilesetSettingsVM => PageVM.TilesetSettingsVM;
+
+    // - インターナル・プロパティ
+
+    /// <summary>全体ページ・ビューモデル</summary>
+    internal TileCropPageViewModel PageVM { get; }
 }
