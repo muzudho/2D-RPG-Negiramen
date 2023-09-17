@@ -22,13 +22,13 @@ internal class AddsButton
     ///     生成
     /// </summary>
     /// <param name="commonOfHierarchy"></param>
-    /// <param name="memberNetwork"></param>
+    /// <param name="colleagues"></param>
     internal AddsButton(
         ItsCommon commonOfHierarchy,
-        ItsMemberNetwork memberNetwork)
+        ItsMemberNetwork colleagues)
     {
         CommonOfHierarchy = commonOfHierarchy;
-        this.MemberNetwork = memberNetwork;
+        this.Colleagues = colleagues;
     }
     #endregion
 
@@ -54,7 +54,7 @@ internal class AddsButton
             }
         }
 
-        var contents = MemberNetwork.CropTile.RecordVisually;
+        var contents = Colleagues.CropTile.RecordVisually;
 
         if (contents.IsNone)
         {
@@ -68,7 +68,7 @@ internal class AddsButton
             // 切抜きカーソル有り時
             // Ｉｄ未設定時
 
-            if (MemberNetwork.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
+            if (Colleagues.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
@@ -91,5 +91,5 @@ internal class AddsButton
     /// <summary>
     ///     室内側ドア
     /// </summary>
-    ItsMemberNetwork MemberNetwork { get; }
+    ItsMemberNetwork Colleagues { get; }
 }

@@ -103,7 +103,7 @@ internal class ItsMemberNetwork
             if (cropTile == null)
             {
                 cropTile = new CropTile(
-                    memberNetwork: this);
+                    colleagues: this);
             }
 
             return cropTile;
@@ -121,7 +121,7 @@ internal class ItsMemberNetwork
             {
                 addsButton = new AddsButton(
                     commonOfHierarchy: CommonOfHierarchy,
-                    memberNetwork: this);
+                    colleagues: this);
             }
 
             return addsButton;

@@ -13,11 +13,11 @@ internal class DeletesButton
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="memberNetwork"></param>
+    /// <param name="colleagues"></param>
     internal DeletesButton(
-        ItsMemberNetwork memberNetwork)
+        ItsMemberNetwork colleagues)
     {
-        this.MemberNetwork = memberNetwork;
+        this.Colleagues = colleagues;
     }
     #endregion
 
@@ -61,7 +61,7 @@ internal class DeletesButton
     internal void Refresh(
         Action onEnableChanged)
     {
-        var contents = MemberNetwork.CropTile.RecordVisually;
+        var contents = Colleagues.CropTile.RecordVisually;
 
         if (contents.IsNone)
         {
@@ -98,7 +98,7 @@ internal class DeletesButton
         DoRemoveRegisteredTIle doRemoveRegisteredTIle)
     {
         doRemoveRegisteredTIle(
-            tileIdOrEmpty: MemberNetwork.CropTile.IdOrEmpty);
+            tileIdOrEmpty: Colleagues.CropTile.IdOrEmpty);
     }
     #endregion
 
@@ -113,5 +113,5 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    ItsMemberNetwork MemberNetwork { get; }
+    ItsMemberNetwork Colleagues { get; }
 }

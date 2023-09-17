@@ -15,11 +15,11 @@ internal class CropTile
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="memberNetwork"></param>
+    /// <param name="colleagues"></param>
     internal CropTile(
-        ItsMemberNetwork memberNetwork)
+        ItsMemberNetwork colleagues)
     {
-        MemberNetwork = memberNetwork;
+        this.Colleagues = colleagues;
     }
     #endregion
 
@@ -179,11 +179,11 @@ internal class CropTile
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
             // ［追加／上書き］ボタン再描画
-            MemberNetwork.AddsButton.MonitorStateOfAddsButton(
+            Colleagues.AddsButton.MonitorStateOfAddsButton(
                 setAddsButtonText: setAddsButtonText);
 
             // ［削除］ボタン再描画
-            MemberNetwork.DeletesButton.Refresh(
+            Colleagues.DeletesButton.Refresh(
                 onEnableChanged: onDeleteButtonEnableChanged);
         }
 
@@ -205,7 +205,7 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
-    ItsMemberNetwork MemberNetwork { get; }
+    ItsMemberNetwork Colleagues { get; }
 
     #region プロパティ（保存データ）
     /// <summary>

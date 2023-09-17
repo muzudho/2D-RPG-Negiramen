@@ -20,14 +20,14 @@ internal class ZoomProcessing : IProcessing
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
         Hierarchy.Pages.TileCrop.ItsCommon commonOfHierarchy,
-        MemberNetworkOfTileCropPage memberNetwork,
-        TheTileCropPage.ItsMemberNetwork memberNetworkForSubordinate,
+        MemberNetworkOfTileCropPage colleagues,
+        TheTileCropPage.ItsMemberNetwork subordinates,
         Zoom oldValue,
         Zoom newValue)
     {
         this.CommonOfHierarchy = commonOfHierarchy;
-        this.MemberNetwork = memberNetwork;
-        this.MemberNetworkForSubordinate = memberNetworkForSubordinate;
+        this.Colleagues = colleagues;
+        this.Subordinates = subordinates;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -39,7 +39,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.MemberNetwork.PageVM.ZoomAsFloat = this.NewValue.AsFloat;
+        this.Colleagues.PageVM.ZoomAsFloat = this.NewValue.AsFloat;
 
         this.AfterChanged();
     }
@@ -49,7 +49,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.MemberNetwork.PageVM.ZoomAsFloat = this.OldValue.AsFloat;
+        this.Colleagues.PageVM.ZoomAsFloat = this.OldValue.AsFloat;
 
         this.AfterChanged();
     }
@@ -58,8 +58,8 @@ internal class ZoomProcessing : IProcessing
 
     Hierarchy.Pages.TileCrop.ItsCommon CommonOfHierarchy { get; }
 
-    MemberNetworkOfTileCropPage MemberNetwork { get; }
-    TheTileCropPage.ItsMemberNetwork MemberNetworkForSubordinate { get; }
+    MemberNetworkOfTileCropPage Colleagues { get; }
+    TheTileCropPage.ItsMemberNetwork Subordinates { get; }
 
     /// <summary>
     ///     変更前の値
@@ -81,30 +81,30 @@ internal class ZoomProcessing : IProcessing
         // ［タイルセット作業画像］の更新
         {
             // 画像の再作成
-            this.MemberNetwork.PageVM.RemakeWorkingTilesetImage();
+            this.Colleagues.PageVM.RemakeWorkingTilesetImage();
         }
 
         // ［元画像グリッド］の更新
         {
             // キャンバス画像の再作成
-            this.MemberNetwork.PageVM.RemakeGridCanvasImage();
+            this.Colleagues.PageVM.RemakeGridCanvasImage();
         }
 
         // ［作業グリッド］の再計算
         {
             // 横幅
-            this.MemberNetworkForSubordinate.CropCursor.RecalculateWorkingGridTileWidth(
+            this.Subordinates.CropCursor.RecalculateWorkingGridTileWidth(
                 setValue: (value) =>
                 {
-                    this.MemberNetwork.PageVM.WorkingGridTileWidthAsFloat = this.MemberNetwork.PageVM.ZoomAsFloat * value;
+                    this.Colleagues.PageVM.WorkingGridTileWidthAsFloat = this.Colleagues.PageVM.ZoomAsFloat * value;
                     // this.Owner.Owner.InvalidateWorkingGrid();
                 });
 
             // 縦幅
-            this.MemberNetworkForSubordinate.CropCursor.RecalculateWorkingGridTileHeight(
+            this.Subordinates.CropCursor.RecalculateWorkingGridTileHeight(
                 setValue: (value) =>
                 {
-                    this.MemberNetwork.PageVM.WorkingGridTileHeightAsFloat = this.MemberNetwork.PageVM.ZoomAsFloat * value;
+                    this.Colleagues.PageVM.WorkingGridTileHeightAsFloat = this.Colleagues.PageVM.ZoomAsFloat * value;
                     // this.Owner.Owner.InvalidateWorkingGrid();
                 });
         }
@@ -117,18 +117,18 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.MemberNetworkForSubordinate.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.MemberNetwork.PageVM.ZoomAsFloat * this.MemberNetwork.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.MemberNetwork.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.MemberNetwork.PageVM.ZoomAsFloat * this.MemberNetwork.PageVM.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Subordinates.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.Colleagues.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.MemberNetwork.PageVM.TilesetSettingsVM.TileRecordVisuallyList)
+        foreach (var registeredTileVM in this.Colleagues.PageVM.TilesetSettingsVM.TileRecordVisuallyList)
         {
             // ズーム
-            registeredTileVM.Zoom = this.MemberNetworkForSubordinate.ZoomProperties.Value;
+            registeredTileVM.Zoom = this.Subordinates.ZoomProperties.Value;
         }
 
         // 変更通知
-        this.MemberNetwork.PageVM.InvalidateForHistory();
+        this.Colleagues.PageVM.InvalidateForHistory();
     }
 }

@@ -14,11 +14,11 @@ internal class SetCultureInfoProcessing : IProcessing
     ///     生成
     /// </summary>
     internal SetCultureInfoProcessing(
-        MemberNetworkOfTileCropPage memberNetwork,
+        MemberNetworkOfTileCropPage colleagues,
         CultureInfo oldValue,
         CultureInfo newValue)
     {
-        this.MemberNetwork = memberNetwork;
+        this.Colleagues = colleagues;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -28,7 +28,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.MemberNetwork.PageVM.SelectedCultureInfo = this.NewValue;
+        this.Colleagues.PageVM.SelectedCultureInfo = this.NewValue;
     }
 
     /// <summary>
@@ -36,13 +36,13 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.MemberNetwork.PageVM.SelectedCultureInfo = this.OldValue;
+        this.Colleagues.PageVM.SelectedCultureInfo = this.OldValue;
     }
 
     // - プライベート・プロパティ
 
     /// <summary>メンバー・ネットワーク</summary>
-    MemberNetworkOfTileCropPage MemberNetwork { get; }
+    MemberNetworkOfTileCropPage Colleagues { get; }
 
     CultureInfo OldValue { get; }
 
