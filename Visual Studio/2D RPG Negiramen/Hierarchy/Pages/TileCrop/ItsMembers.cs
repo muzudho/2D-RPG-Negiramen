@@ -119,7 +119,7 @@ internal class ItsMembers
         {
             if (cropCursor == null)
             {
-                cropCursor = new CropCursor(this);
+                cropCursor = new CropCursor();
             }
 
             return cropCursor;

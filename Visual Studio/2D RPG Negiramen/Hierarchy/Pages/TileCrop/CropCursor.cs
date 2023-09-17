@@ -13,17 +13,10 @@ internal class CropCursor
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="colleagues"></param>
-    internal CropCursor(
-        ItsMembers colleagues)
+    internal CropCursor()
     {
-        this.Colleagues = colleagues;
     }
     #endregion
-
-    // - インターナル・デリゲート
-
-    internal delegate void SetValue(float value);
 
     // - インターナル・プロパティ
 
@@ -63,34 +56,6 @@ internal class CropCursor
         }
     }
 
-    #region メソッド（［作業グリッド］　関連）
-    /// <summary>
-    ///     ［作業グリッド］タイル横幅の再計算
-    ///     
-    ///     <list type="bullet">
-    ///         <item>アンドゥ・リドゥで利用</item>
-    ///     </list>
-    /// </summary>
-    internal void RecalculateWorkingGridTileWidth(
-        SetValue setValue)
-    {
-        setValue(Colleagues.GridUnit.SourceValue.Width.AsInt);
-    }
-
-    /// <summary>
-    ///     ［作業グリッド］タイル縦幅の再計算
-    ///     
-    ///     <list type="bullet">
-    ///         <item>アンドゥ・リドゥで利用</item>
-    ///     </list>
-    /// </summary>
-    internal void RecalculateWorkingGridTileHeight(
-        SetValue setValue)
-    {
-        setValue(Colleagues.GridUnit.SourceValue.Height.AsInt);
-    }
-    #endregion
-
     // - プライベート・フィールド
 
     /// <summary>
@@ -103,8 +68,4 @@ internal class CropCursor
     ///     </list>
     /// </summary>
     internal WidthFloat workingWidthWithoutTrick = WidthFloat.Zero;
-
-    // - プライベート・プロパティ
-
-    ItsMembers Colleagues { get; }
 }

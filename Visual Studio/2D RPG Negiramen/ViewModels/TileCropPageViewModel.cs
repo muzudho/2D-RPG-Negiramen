@@ -367,12 +367,9 @@
                     this.Subordinates.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.Subordinates.GridUnit.SourceValue.Height);
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.Subordinates.CropCursor.RecalculateWorkingGridTileWidth(
-                        setValue: (value) =>
-                        {
-                            this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * value;
-                            // this.Owner.Owner.InvalidateWorkingGrid();
-                        });
+                    var width = this.Subordinates.GridUnit.SourceValue.Width.AsInt;
+                    this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * width;
+                    // this.Owner.Owner.InvalidateWorkingGrid();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingWidthAsFloat = this.ZoomAsFloat * this.Subordinates.GridUnit.SourceValue.Width.AsInt;
@@ -403,12 +400,9 @@
                     this.Subordinates.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.Subordinates.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
-                    this.Subordinates.CropCursor.RecalculateWorkingGridTileHeight(
-                        setValue: (value) =>
-                        {
-                            this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * value;
-                            // this.Owner.Owner.InvalidateWorkingGrid();
-                        });
+                    var height = this.Subordinates.GridUnit.SourceValue.Height.AsInt;
+                    this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * height;
+                    // this.Owner.Owner.InvalidateWorkingGrid();
 
                     // カーソルの線の幅を含まない
                     this.CroppedCursorPointedTileWorkingHeightAsFloat = this.ZoomAsFloat * this.Subordinates.GridUnit.SourceValue.Height.AsInt;
