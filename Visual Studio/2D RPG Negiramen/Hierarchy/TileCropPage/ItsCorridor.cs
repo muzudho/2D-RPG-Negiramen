@@ -81,38 +81,6 @@
 
         // - プライベート・メソッド
 
-        #region メソッド（［タイルセット作業画像］　関連）
-        /// <summary>
-        ///     ［タイルセット作業画像］の再作成
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///     </list>
-        /// </summary>
-        public void RemakeWorkingTilesetImage()
-        {
-            // 元画像をベースに、作業画像を複製
-            var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(this.OwnerPageVM.TilesetSourceBitmap));
-
-            // 画像処理（明度を下げる）
-            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
-
-            // 作業画像のサイズ計算
-            this.OwnerPageVM.workingImageSize = new SizeInt(
-                width: new WidthInt((int)(this.OwnerPageVM.ZoomAsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt)),
-                height: new HeightInt((int)(this.OwnerPageVM.ZoomAsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt)));
-
-            // 作業画像のリサイズ
-            this.OwnerPageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
-                size: new SKSizeI(
-                    width: this.OwnerPageVM.workingImageSize.Width.AsInt,
-                    height: this.OwnerPageVM.workingImageSize.Height.AsInt),
-                quality: SKFilterQuality.Medium);
-
-            this.OwnerPageVM.InvalidateTilesetWorkingImage();
-        }
-        #endregion
-
         #region メソッド（［元画像グリッド］　関連）
         /// <summary>
         ///     ［元画像グリッド］のキャンバス画像の再作成

@@ -2,18 +2,7 @@
 
 interface IItsTwoWayDoor
 {
-    #region メソッド（［タイルセット作業画像］　関連）
-    /// <summary>
-    ///     ［タイルセット作業画像］の再作成
-    ///     
-    ///     <list type="bullet">
-    ///         <item>アンドゥ・リドゥで利用</item>
-    ///     </list>
-    /// </summary>
-    void RemakeWorkingTilesetImage();
-    #endregion
-
-    #region メソッド（［元画像グリッド］　関連）
+     #region メソッド（［元画像グリッド］　関連）
     /// <summary>
     ///     ［元画像グリッド］のキャンバス画像の再作成
     ///     

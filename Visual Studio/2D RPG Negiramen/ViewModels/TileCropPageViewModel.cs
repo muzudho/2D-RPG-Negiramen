@@ -1465,7 +1465,7 @@
             OnPropertyChanged(nameof(TilesetSourceImageHeightAsInt));
 
             // 作業画像の再作成
-            this.Corridor.RemakeWorkingTilesetImage();
+            this.RemakeWorkingTilesetImage();
 
             // グリッド・キャンバス画像の再作成
             this.Corridor.RemakeGridCanvasImage();
@@ -2197,6 +2197,38 @@
             this.CommonOfHierarchyForSubordinate.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
 
             // Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
+        }
+        #endregion
+
+        #region メソッド（［タイルセット作業画像］　関連）
+        /// <summary>
+        ///     ［タイルセット作業画像］の再作成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///     </list>
+        /// </summary>
+        internal void RemakeWorkingTilesetImage()
+        {
+            // 元画像をベースに、作業画像を複製
+            var temporaryBitmap = SKBitmap.FromImage(SKImage.FromBitmap(this.TilesetSourceBitmap));
+
+            // 画像処理（明度を下げる）
+            FeatSkia.ReduceBrightness.DoItInPlace(temporaryBitmap);
+
+            // 作業画像のサイズ計算
+            this.workingImageSize = new SizeInt(
+                width: new WidthInt((int)(this.ZoomAsFloat * this.Corridor.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt)),
+                height: new HeightInt((int)(this.ZoomAsFloat * this.Corridor.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt)));
+
+            // 作業画像のリサイズ
+            this.TilesetWorkingBitmap = temporaryBitmap.Resize(
+                size: new SKSizeI(
+                    width: this.workingImageSize.Width.AsInt,
+                    height: this.workingImageSize.Height.AsInt),
+                quality: SKFilterQuality.Medium);
+
+            this.InvalidateTilesetWorkingImage();
         }
         #endregion
 

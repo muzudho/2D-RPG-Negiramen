@@ -86,7 +86,7 @@ internal class ZoomProcessing : IProcessing
         // ［タイルセット作業画像］の更新
         {
             // 画像の再作成
-            this.TwoWayDoor.RemakeWorkingTilesetImage();
+            this.GardensideDoor.PageVM.RemakeWorkingTilesetImage();
         }
 
         // ［元画像グリッド］の更新
