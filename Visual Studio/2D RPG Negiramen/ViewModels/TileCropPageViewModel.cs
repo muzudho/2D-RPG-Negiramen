@@ -178,7 +178,6 @@
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
                         commonOfHierarchy: this.CommonOfHierarchyForSubordinate,
-                        twoWayDoor: this.Corridor,
                         gardensideDoor: this.GardensideDoor,    // 権限を委譲
                         roomsideDoors: this.RoomsideDoors,
                         oldValue: oldValue,
@@ -1468,7 +1467,7 @@
             this.RemakeWorkingTilesetImage();
 
             // グリッド・キャンバス画像の再作成
-            this.Corridor.RemakeGridCanvasImage();
+            this.RemakeGridCanvasImage();
         }
         #endregion
 
@@ -2366,8 +2365,26 @@
                 this.SourceGridUnit = new SizeInt(new WidthInt(32), new HeightInt(32));
 
                 // グリッド・キャンバス画像の再作成
-                this.Corridor.RemakeGridCanvasImage();
+                this.RemakeGridCanvasImage();
             }
+        }
+        #endregion
+
+        #region メソッド（［元画像グリッド］　関連）
+        /// <summary>
+        ///     ［元画像グリッド］のキャンバス画像の再作成
+        ///     
+        ///     <list type="bullet">
+        ///         <item>アンドゥ・リドゥで利用</item>
+        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
+        ///     </list>
+        /// </summary>
+        public void RemakeGridCanvasImage()
+        {
+            // ズームが屋外
+            this.GridCanvasImageSize = new SizeInt(
+                width: new WidthInt((int)(this.Corridor.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.Corridor.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt) + 2 * this.HalfThicknessOfGridLineAsInt),
+                height: new HeightInt((int)(this.Corridor.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.Corridor.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt) + 2 * this.HalfThicknessOfGridLineAsInt));
         }
         #endregion
     }

@@ -23,7 +23,7 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    class ItsCorridor : IItsTwoWayDoor
+    class ItsCorridor
     {
         // - その他
 
@@ -78,25 +78,5 @@
         // - インターナル・プロパティ
 
         internal LazyArgs.Set<string> SetAddsButtonText { get; }
-
-        // - プライベート・メソッド
-
-        #region メソッド（［元画像グリッド］　関連）
-        /// <summary>
-        ///     ［元画像グリッド］のキャンバス画像の再作成
-        ///     
-        ///     <list type="bullet">
-        ///         <item>アンドゥ・リドゥで利用</item>
-        ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的キャンバス・サイズを 2px 広げる</item>
-        ///     </list>
-        /// </summary>
-        public void RemakeGridCanvasImage()
-        {
-            // ズームが屋外
-            this.OwnerPageVM.GridCanvasImageSize = new SizeInt(
-                width: new WidthInt((int)(this.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt),
-                height: new HeightInt((int)(this.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt));
-        }
-        #endregion
     }
 }

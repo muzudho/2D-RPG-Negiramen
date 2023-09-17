@@ -21,14 +21,12 @@ internal class ZoomProcessing : IProcessing
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
         TheHistoryTileCropPage.ItsCommon commonOfHierarchy,
-        IItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
         ItsMemberNetwork roomsideDoors,
         Zoom oldValue,
         Zoom newValue)
     {
         this.CommonOfHierarchy = commonOfHierarchy;
-        this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
         this.OldValue = oldValue;
@@ -61,8 +59,6 @@ internal class ZoomProcessing : IProcessing
 
     TheHistoryTileCropPage.ItsCommon CommonOfHierarchy { get; }
 
-    /// <summary>内部クラス</summary>
-    IItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
     ItsMemberNetwork RoomsideDoors { get; }
 
@@ -92,7 +88,7 @@ internal class ZoomProcessing : IProcessing
         // ［元画像グリッド］の更新
         {
             // キャンバス画像の再作成
-            this.TwoWayDoor.RemakeGridCanvasImage();
+            this.GardensideDoor.PageVM.RemakeGridCanvasImage();
         }
 
         // ［作業グリッド］の再計算
