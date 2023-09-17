@@ -183,7 +183,7 @@ internal class CropTile
                 setAddsButtonText: setAddsButtonText);
 
             // ［削除］ボタン再描画
-            Colleagues.DeletesButton.Refresh(
+            this.Colleagues.DeletesButton.RefreshEnabled(
                 onEnableChanged: onDeleteButtonEnableChanged);
         }
 

@@ -34,23 +34,8 @@ internal class DeletesButton
     /// <summary>
     ///     活性性
     /// </summary>
-    public bool IsEnabled
-    {
-        get => isEnabled;
-    }
+    public bool IsEnabled => isEnabled;
     #endregion
-
-    internal void SetEnabled(
-        bool value,
-        Action onChanged)
-    {
-        if (isEnabled == value)
-            return;
-
-        isEnabled = value;
-
-        onChanged();
-    }
 
     // - インターナル・メソッド
 
@@ -58,47 +43,37 @@ internal class DeletesButton
     /// <summary>
     ///     再描画
     /// </summary>
-    internal void Refresh(
+    internal void RefreshEnabled(
         Action onEnableChanged)
     {
-        var contents = Colleagues.CropTile.RecordVisually;
+        var contents = this.Colleagues.CropTile.RecordVisually;
 
-        if (contents.IsNone)
-        {
+        if (
             // 切抜きカーソル無し時
+            contents.IsNone
+            // 論理削除時
+            || contents.LogicalDelete.AsBool)
+        {
+            // 不活性
             SetEnabled(
                 value: false,
                 onChanged: onEnableChanged);
             return;
         }
 
-        // 切抜きカーソル有り時
         if (contents.Id == TileIdOrEmpty.Empty)
         {
             // Ｉｄ未設定時
             SetEnabled(
                 value: false,
                 onChanged: onEnableChanged);
+            return;
         }
-        else
-        {
-            // タイル登録済み時
-            SetEnabled(
-                value: true,
-                onChanged: onEnableChanged);
-        }
-    }
-    #endregion
 
-    #region メソッド（タイル削除）
-    /// <summary>
-    ///     タイル削除
-    /// </summary>
-    public void RemoveTile(
-        DoRemoveRegisteredTIle doRemoveRegisteredTIle)
-    {
-        doRemoveRegisteredTIle(
-            tileIdOrEmpty: Colleagues.CropTile.IdOrEmpty);
+        // タイル登録済み時
+        SetEnabled(
+            value: true,
+            onChanged: onEnableChanged);
     }
     #endregion
 
@@ -114,4 +89,17 @@ internal class DeletesButton
     // - プライベート・プロパティ
 
     ItsMembers Colleagues { get; }
+
+    // - プライベート・メソッド
+
+    void SetEnabled(
+        bool value,
+        Action onChanged)
+    {
+        if (isEnabled == value) return;
+
+        isEnabled = value;
+
+        onChanged();
+    }
 }

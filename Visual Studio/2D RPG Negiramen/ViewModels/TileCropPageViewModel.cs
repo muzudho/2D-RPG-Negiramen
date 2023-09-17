@@ -1955,20 +1955,14 @@
 
         /// <summary>
         ///     ［削除］ボタン　クリック時
+        ///     
+        ///     <list type="bullet">
+        ///         <item>登録タイル削除</item>
+        ///     </list>
         /// </summary>
-        internal void OnDeletesButtonRemoveTile()
-        {
-            // 登録タイル削除
-            this.Subordinates.DeletesButton.RemoveTile(
-                doRemoveRegisteredTIle: (TileIdOrEmpty tileIdOrEmpty) =>
-                {
-                    App.History.Do(new TheHistoryTileCropPage.RemoveRegisteredTileProcessing(
-                        colleagues: this.Colleagues,    // 権限を委譲
-                        tileIdOrEmpty: tileIdOrEmpty));
-
-                    this.InvalidateForHistory();
-                });
-        }
+        internal void OnDeletesButtonRemoveTile() => App.History.Do(new TheHistoryTileCropPage.RemoveRegisteredTileProcessing(
+            colleagues: this.Colleagues,
+            tileIdOrEmpty: this.Subordinates.CropTile.IdOrEmpty));
 
         // - インターナル・メソッド
 
@@ -2153,7 +2147,7 @@
                 setAddsButtonText: this.SetAddsButtonText);
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
-            this.Subordinates.DeletesButton.Refresh(
+            this.Subordinates.DeletesButton.RefreshEnabled(
                 onEnableChanged: () =>
                 {
                     this.InvalidateDeletesButton();

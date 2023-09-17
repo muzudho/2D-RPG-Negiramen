@@ -57,6 +57,9 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // ====================
         //
         this.Colleagues.PageVM.RefreshForTileAdd();
+
+        // 履歴ボタンの変更通知
+        this.Colleagues.PageVM.InvalidateForHistory();
     }
 
     public void Undo()
@@ -95,6 +98,9 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // ====================
         //
         this.Colleagues.PageVM.RefreshForTileAdd();
+
+        // 履歴ボタンの変更通知
+        this.Colleagues.PageVM.InvalidateForHistory();
     }
 
     // - プライベート・プロパティ

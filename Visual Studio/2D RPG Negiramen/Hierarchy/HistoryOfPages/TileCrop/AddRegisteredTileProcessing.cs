@@ -152,7 +152,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         }
 
         //  ［削除］ボタンの再描画
-        this.Subordinates.DeletesButton.Refresh(
+        this.Subordinates.DeletesButton.RefreshEnabled(
             onEnableChanged: () =>
             {
                 this.Colleagues.PageVM.InvalidateDeletesButton();
