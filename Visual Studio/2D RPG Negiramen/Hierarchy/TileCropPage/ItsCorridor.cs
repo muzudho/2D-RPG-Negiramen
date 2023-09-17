@@ -38,7 +38,6 @@
         {
             this.OwnerPageVM = ownerPageVM;
 
-            this.TwoWayDoor = new ItsTwoWayDoor(this);
             this.MemberNetworkForSubordinate = new ItsMemberNetwork(
                 hierarchyCommon: common);
         }
@@ -50,27 +49,8 @@
         internal TileCropPageViewModel OwnerPageVM { get; }
 
         /// <summary>
-        ///     双方向ドア
-        /// </summary>
-        public ItsTwoWayDoor TwoWayDoor { get; }
-
-        /// <summary>
         ///     メンバー・ネットワーク
         /// </summary>
         public ItsMemberNetwork MemberNetworkForSubordinate { get; }
-
-        // - インターナル・メソッド
-
-        #region 変更通知メソッド（ロケール変更による再描画）
-        /// <summary>
-        ///     ロケール変更による再描画
-        ///     
-        ///     <list type="bullet">
-        ///         <item>動的にテキストを変えている部分に対応するため</item>
-        ///     </list>
-        /// </summary>
-        internal void InvalidateByLocale() => this.MemberNetworkForSubordinate.AddsButton.MonitorStateOfAddsButton(
-            setAddsButtonText: this.OwnerPageVM.SetAddsButtonText);
-        #endregion
     }
 }

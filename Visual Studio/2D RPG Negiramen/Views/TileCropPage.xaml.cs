@@ -81,7 +81,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    void LocalePicker_SelectedIndexChanged(object sender, EventArgs e) => ((TileCropPageViewModel)this.BindingContext).Corridor.InvalidateByLocale();
+    void LocalePicker_SelectedIndexChanged(object sender, EventArgs e) => ((TileCropPageViewModel)this.BindingContext).InvalidateByLocale();
     #endregion
 
     #region イベントハンドラ（［タイルセット一覧］ボタン　関連）

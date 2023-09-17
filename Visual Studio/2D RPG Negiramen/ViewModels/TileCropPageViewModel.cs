@@ -1699,6 +1699,18 @@
         }
         #endregion
 
+        #region 変更通知メソッド（ロケール変更による再描画）
+        /// <summary>
+        ///     ロケール変更による再描画
+        ///     
+        ///     <list type="bullet">
+        ///         <item>動的にテキストを変えている部分に対応するため</item>
+        ///     </list>
+        /// </summary>
+        internal void InvalidateByLocale() => this.Corridor.MemberNetworkForSubordinate.AddsButton.MonitorStateOfAddsButton(
+            setAddsButtonText: this.SetAddsButtonText);
+        #endregion
+
         // - インターナル・イベントハンドラ
 
         #region イベントハンドラ（別ページから、このページに訪れたときに呼び出される）
