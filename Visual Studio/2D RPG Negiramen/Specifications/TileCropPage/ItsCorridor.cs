@@ -86,52 +86,6 @@
 
         // - インターナル・イベントハンドラ
 
-        #region イベントハンドラ（［追加］ボタン　クリック時）
-        /// <summary>
-        ///     ［追加］ボタン　クリック時
-        /// </summary>
-        internal void OnAddsButtonClicked()
-        {
-            if (this.RoomsideDoors.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
-            {
-                // Ｉｄが空欄
-                // ［追加］（新規作成）だ
-
-                // 登録タイル追加
-                this.RoomsideDoors.AddsButton.AddTile(
-                    doAddRegisteredTIle: (TileRecordVisually contents) =>
-                    {
-                        // Ｉｄが空欄
-                        // ［追加］（新規作成）だ
-
-                        // ［切抜きカーソル］にサイズがなければ、何もしない
-                        if (contents.IsNone)
-                            return;
-
-                        // 新しいタイルＩｄを発行
-                        TileIdOrEmpty tileIdOrEmpty = this.GardensideDoor.TilesetSettingsVM.UsableId;
-                        this.GardensideDoor.TilesetSettingsVM.IncreaseUsableId();
-
-                        // 追加でも、上書きでも、同じ処理でいける
-                        // ［登録タイル追加］処理
-                        App.History.Do(new AddRegisteredTileProcessing(
-                            gardensideDoor: this.GardensideDoor,
-                            roomsideDoors: this.RoomsideDoors,
-                            croppedCursorVisually: contents,
-                            tileIdOrEmpty: tileIdOrEmpty,
-                            workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
-
-                        this.GardensideDoor.PageVM.InvalidateForHistory();
-                    });
-            }
-            else
-            {
-                // 上書きボタンだが、［上書き］処理をする
-                this.OverwriteTile();
-            }
-        }
-        #endregion
-
         /// <summary>
         ///     上書きボタンだが、［上書き］処理をする
         /// </summary>

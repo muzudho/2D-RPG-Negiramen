@@ -147,7 +147,7 @@ public partial class TileCropPage : ContentPage
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        ((TileCropPageViewModel)this.BindingContext).Corridor.OnAddsButtonClicked();
+        ((TileCropPageViewModel)this.BindingContext).OnAddsButtonClicked();
     }
     #endregion
 
