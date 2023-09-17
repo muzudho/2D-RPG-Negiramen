@@ -7,6 +7,8 @@ using _2D_RPG_Negiramen.Models.History;
 using _2D_RPG_Negiramen.Models.Visually;
 using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 
+using TheHistoryOfTileCropPage = _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+
 /// <summary>
 ///     ［登録タイル追加］処理
 /// </summary>
@@ -22,12 +24,14 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="tileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
+        TheHistoryOfTileCropPage.Common common,
         ItsGardensideDoor gardensideDoor,
         ItsRoomsideDoors roomsideDoors,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
+        this.Common = common;
         this.GardensideDoor = gardensideDoor;
         this.SetAddsButtonText = (text) =>
         {
@@ -167,6 +171,8 @@ internal class AddRegisteredTileProcessing : IProcessing
     #endregion
 
     // - プライベート・プロパティ
+
+    TheHistoryOfTileCropPage.Common Common { get; }
 
     /// <summary>内部モデル</summary>
     ItsGardensideDoor GardensideDoor { get; }

@@ -10,6 +10,7 @@
     using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGraphics = Microsoft.Maui.Graphics;
+    using TheHistoryOfTileCropPage = _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -57,6 +58,8 @@
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.RoomsideDoors.HalfThicknessOfGridLine.AsInt);
+
+            this.CommonForSubordinate = new TheHistoryOfTileCropPage.Common();
         }
         #endregion
 
@@ -1935,6 +1938,7 @@
                 // 追加でも、上書きでも、同じ処理でいける
                 // ［登録タイル追加］処理
                 App.History.Do(new AddRegisteredTileProcessing(
+                    common: this.CommonForSubordinate,
                     gardensideDoor: this.GardensideDoor,
                     roomsideDoors: this.RoomsideDoors,
                     croppedCursorVisually: targetTile,
@@ -1992,6 +1996,7 @@
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
             App.History.Do(new AddRegisteredTileProcessing(
+                common: this.CommonForSubordinate,
                 // 上位の権限を委譲する
                 gardensideDoor: this.GardensideDoor,
                 roomsideDoors: this.RoomsideDoors,
@@ -2276,6 +2281,10 @@
         /// </summary>
         Models.Geometric.HeightFloat croppedCursorPointedTileWorkingHeight = Models.Geometric.HeightFloat.Zero;
         #endregion
+
+        // - プライベート・プロパティ
+
+        TheHistoryOfTileCropPage.Common CommonForSubordinate { get; }
 
         // - プライベート・メソッド
 
