@@ -1577,10 +1577,15 @@
         }
         #endregion
 
+        #region 変更通知メソッド（マウス・ドラッグ中）
+        /// <summary>
+        ///     マウス・ドラッグ中
+        /// </summary>
         internal void InvalidateIsMouseDragging()
         {
             OnPropertyChanged(nameof(IsMouseDragging));
         }
+        #endregion
 
         #region 変更通知メソッド（［切抜きカーソルが指すタイル］　関連）
         /// <summary>
@@ -1936,6 +1941,9 @@
         }
         #endregion
 
+        // - インターナル・メソッド
+
+        #region インターナル・メソッド（上書きボタンだが、［上書き］処理をする）
         /// <summary>
         ///     上書きボタンだが、［上書き］処理をする
         /// </summary>
@@ -1967,6 +1975,7 @@
                     this.InvalidateForHistory();
                 });
         }
+        #endregion
 
         // - プライベート変更通知フィールド
 
