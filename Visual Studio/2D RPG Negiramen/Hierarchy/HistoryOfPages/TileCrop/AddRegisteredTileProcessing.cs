@@ -23,14 +23,12 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="tileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
-        TheHistoryOfTileCropPage.Common commonOfHierarchy,
         MemberNetworkOfTileCropPage colleagues,
         TheTileCropPage.ItsMemberNetwork subordinates,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
-        this.CommonOfHierarchy = commonOfHierarchy;
         this.Colleagues = colleagues;
         this.SetAddsButtonText = (text) =>
         {
@@ -170,8 +168,6 @@ internal class AddRegisteredTileProcessing : IProcessing
     #endregion
 
     // - プライベート・プロパティ
-
-    TheHistoryOfTileCropPage.Common CommonOfHierarchy { get; }
 
     /// <summary>メンバー・ネットワーク</summary>
     MemberNetworkOfTileCropPage Colleagues { get; }

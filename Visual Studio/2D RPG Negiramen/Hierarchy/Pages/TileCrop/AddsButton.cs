@@ -41,7 +41,7 @@ internal class AddsButton
         LazyArgs.Set<string> setAddsButtonText)
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-        if (CommonOfHierarchy.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        if (this.CommonOfHierarchy.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
         {
             // 合同のときは「交差中」とは表示しない
             if (!CommonOfHierarchy.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
@@ -54,7 +54,7 @@ internal class AddsButton
             }
         }
 
-        var contents = Colleagues.CropTile.RecordVisually;
+        var contents = this.Colleagues.CropTile.RecordVisually;
 
         if (contents.IsNone)
         {

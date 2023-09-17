@@ -46,7 +46,6 @@
             this.Colleagues = new TheHierarchy.MemberNetworkOfTileCropPage(this);
 
             this.CommonOfHierarchyForSubordinate = new TheTileCropPage.ItsCommon();
-            this.CommonOfViewHistoryForSubordinate = new TheHistoryTileCropPage.Common();
 
             this.SetAddsButtonText = (text) =>
             {
@@ -1942,7 +1941,6 @@
                 // 追加でも、上書きでも、同じ処理でいける
                 // ［登録タイル追加］処理
                 App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
-                    commonOfHierarchy: this.CommonOfViewHistoryForSubordinate,
                     colleagues: this.Colleagues,
                     subordinates: this.Subordinates,
                     croppedCursorVisually: targetTile,
@@ -2000,7 +1998,6 @@
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
             App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
-                commonOfHierarchy: this.CommonOfViewHistoryForSubordinate,
                 // 上位の権限を委譲する
                 colleagues: this.Colleagues,
                 subordinates: this.Subordinates,
@@ -2318,15 +2315,7 @@
 
         // - プライベート・プロパティ
 
-
-/* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
-前:
-        TheHierarchyTileCropPage.ItsCommon CommonOfHierarchyForSubordinate { get; }
-後:
-        ItsCommon CommonOfHierarchyForSubordinate { get; }
-*/
         Hierarchy.Pages.TileCrop.ItsCommon CommonOfHierarchyForSubordinate { get; }
-        TheHistoryTileCropPage.Common CommonOfViewHistoryForSubordinate { get; }
 
         // - プライベート・メソッド
 
