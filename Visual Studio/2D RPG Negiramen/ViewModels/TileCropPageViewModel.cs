@@ -12,6 +12,7 @@
     using TheGraphics = Microsoft.Maui.Graphics;
     using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
     using TheViewHistoryTileCropPage = _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+    using _2D_RPG_Negiramen.Coding;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -50,14 +51,15 @@
             this.CommonOfHierarchyForSubordinate = new TheHierarchyTileCropPage.ItsCommon();
             this.CommonOfViewHistoryForSubordinate = new TheViewHistoryTileCropPage.Common();
 
+            this.SetAddsButtonText = (text) =>
+            {
+                this.AddsButtonText = text;
+                this.InvalidateAddsButton();
+            };
+
             this.Corridor = new ItsCorridor(
                 common: this.CommonOfHierarchyForSubordinate,
-                ownerPageVM: this,
-                setAddsButtonText: (text) =>
-                {
-                    this.AddsButtonText = text;
-                    this.InvalidateAddsButton();
-                });
+                ownerPageVM: this);
 
             this.GardensideDoor = new ItsGardensideDoor(this);
 
@@ -1545,6 +1547,8 @@
         /// </summary>
         internal ItsGardensideDoor GardensideDoor { get; }
 
+        internal LazyArgs.Set<string> SetAddsButtonText { get; }
+
         // - インターナル変更通知メソッド
 
         #region 変更通知メソッド（［文化情報］）
@@ -2088,7 +2092,7 @@
                             // 変更通知を送りたい
                             this.InvalidateTileIdChange();
                         },
-                        setAddsButtonText: this.Corridor.SetAddsButtonText,
+                        setAddsButtonText: this.SetAddsButtonText,
                         onDeleteButtonEnableChanged: () =>
                         {
                             this.InvalidateDeletesButton();
@@ -2145,7 +2149,7 @@
                             // 変更通知を送りたい
                             this.InvalidateTileIdChange();
                         },
-                        setAddsButtonText: this.Corridor.SetAddsButtonText,
+                        setAddsButtonText: this.SetAddsButtonText,
                         onDeleteButtonEnableChanged: () =>
                         {
                             this.InvalidateDeletesButton();
@@ -2156,7 +2160,7 @@
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
             this.RoomsideDoors.AddsButton.MonitorStateOfAddsButton(
-                setAddsButtonText: this.Corridor.SetAddsButtonText);
+                setAddsButtonText: this.SetAddsButtonText);
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
             this.RoomsideDoors.DeletesButton.Refresh(

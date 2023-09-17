@@ -34,11 +34,9 @@
         /// <param name="ownerPageVM">全体ページビュー・モデル</param>
         internal ItsCorridor(
             TheHierarchyTileCropPage.ItsCommon common,
-            TileCropPageViewModel ownerPageVM,
-            LazyArgs.Set<string> setAddsButtonText)
+            TileCropPageViewModel ownerPageVM)
         {
             this.OwnerPageVM = ownerPageVM;
-            this.SetAddsButtonText = setAddsButtonText;
 
             this.TwoWayDoor = new ItsTwoWayDoor(this);
             this.MemberNetworkForSubordinate = new ItsMemberNetwork(
@@ -72,11 +70,7 @@
         ///     </list>
         /// </summary>
         internal void InvalidateByLocale() => this.MemberNetworkForSubordinate.AddsButton.MonitorStateOfAddsButton(
-            setAddsButtonText: this.SetAddsButtonText);
+            setAddsButtonText: this.OwnerPageVM.SetAddsButtonText);
         #endregion
-
-        // - インターナル・プロパティ
-
-        internal LazyArgs.Set<string> SetAddsButtonText { get; }
     }
 }
