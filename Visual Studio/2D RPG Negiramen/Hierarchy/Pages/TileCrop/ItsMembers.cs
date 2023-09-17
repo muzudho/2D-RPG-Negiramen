@@ -148,19 +148,19 @@ internal class ItsMembers
 
     #region プロパティ（削除ボタン）
     /// <summary>削除ボタン</summary>
-    internal DeletesButton DeletesButton
+    internal Button DeletesButton
     {
         get
         {
             if (deletesButton == null)
             {
-                deletesButton = new DeletesButton(this);
+                deletesButton = new Button();
             }
 
             return deletesButton;
         }
     }
-    DeletesButton deletesButton;
+    Button deletesButton;
     #endregion
 
     #region プロパティ（［タイルセット元画像］　関連）
@@ -249,6 +249,44 @@ internal class ItsMembers
                 setAddsButtonText((string)LocalizationResourceManager.Instance["Restore"]);
             }
         }
+    }
+    #endregion
+
+    #region メソッド（削除ボタンの活性性の再更新）
+    /// <summary>
+    ///     削除ボタンの活性性の再更新
+    /// </summary>
+    internal void DeletesButtonRefreshEnabled(
+        Action onEnableChanged)
+    {
+        var contents = this.CropTile.RecordVisually;
+
+        if (
+            // 切抜きカーソル無し時
+            contents.IsNone
+            // 論理削除時
+            || contents.LogicalDelete.AsBool)
+        {
+            // 不活性
+            this.DeletesButton.SetEnabled(
+                value: false,
+                onChanged: onEnableChanged);
+            return;
+        }
+
+        if (contents.Id == TileIdOrEmpty.Empty)
+        {
+            // Ｉｄ未設定時
+            this.DeletesButton.SetEnabled(
+                value: false,
+                onChanged: onEnableChanged);
+            return;
+        }
+
+        // タイル登録済み時
+        this.DeletesButton.SetEnabled(
+            value: true,
+            onChanged: onEnableChanged);
     }
     #endregion
 }

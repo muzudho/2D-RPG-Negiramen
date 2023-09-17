@@ -1356,7 +1356,7 @@
         ///         <item>透過メソッド</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledRoomsideDoorsDeletesButton
+        public bool IsEnabledDeletesButton
         {
             get => this.Subordinates.DeletesButton.IsEnabled;
         }
@@ -1645,7 +1645,7 @@
         /// </summary>
         internal void InvalidateDeletesButton()
         {
-            OnPropertyChanged(nameof(IsEnabledRoomsideDoorsDeletesButton));
+            OnPropertyChanged(nameof(IsEnabledDeletesButton));
         }
         #endregion
 
@@ -1966,7 +1966,7 @@
 
         // - インターナル・メソッド
 
-        #region インターナル・メソッド（上書きボタンだが、［上書き］処理をする）
+        #region メソッド（上書きボタンだが、［上書き］処理をする）
         /// <summary>
         ///     上書きボタンだが、［上書き］処理をする
         /// </summary>
@@ -1999,7 +1999,7 @@
         }
         #endregion
 
-        #region インターナル・メソッド（タイル・フォーム更新）
+        #region メソッド（タイル・フォーム更新）
         /// <summary>
         ///     タイル・フォーム更新
         /// </summary>
@@ -2147,7 +2147,7 @@
                 setAddsButtonText: this.SetAddsButtonText);
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
-            this.Subordinates.DeletesButton.RefreshEnabled(
+            this.Subordinates.DeletesButtonRefreshEnabled(
                 onEnableChanged: () =>
                 {
                     this.InvalidateDeletesButton();
@@ -2161,7 +2161,7 @@
         }
         #endregion
 
-        #region インターナル・メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
+        #region メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
         /// <summary>
         ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算
         ///     
