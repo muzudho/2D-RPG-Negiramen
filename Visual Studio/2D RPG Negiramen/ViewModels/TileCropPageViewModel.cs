@@ -27,6 +27,7 @@
     using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
     using static _2D_RPG_Negiramen.Hierarchy.TileCropPage.ZoomProperties;
     using static _2D_RPG_Negiramen.Hierarchy.TileCropPage.InnerCultureInfo;
+    using Microsoft.Maui.Controls;
 #endif
 
     /// <summary>
@@ -57,9 +58,8 @@
                 this.InvalidateAddsButton();
             };
 
-            this.Corridor = new ItsCorridor(
-                common: this.CommonOfHierarchyForSubordinate,
-                ownerPageVM: this);
+            this.MemberNetworkForSubordinate = new ItsMemberNetwork(
+                hierarchyCommon: this.CommonOfHierarchyForSubordinate);
 
             this.GardensideDoor = new ItsGardensideDoor(this);
 
@@ -1530,16 +1530,11 @@
 
         // - インターナル・プロパティ
 
-        #region プロパティ（廊下モデル）
+        #region プロパティ（メンバー・ネットワーク）
         /// <summary>
-        ///     廊下モデル
+        ///     メンバー・ネットワーク
         /// </summary>
-        internal ItsCorridor Corridor { get; }
-
-        /// <summary>
-        ///     廊下側のドア
-        /// </summary>
-        ItsMemberNetwork RoomsideDoors => this.Corridor.MemberNetworkForSubordinate;
+        ItsMemberNetwork RoomsideDoors => this.MemberNetworkForSubordinate;
         #endregion
 
         /// <summary>
@@ -1548,6 +1543,11 @@
         internal ItsGardensideDoor GardensideDoor { get; }
 
         internal LazyArgs.Set<string> SetAddsButtonText { get; }
+
+        /// <summary>
+        ///     メンバー・ネットワーク
+        /// </summary>
+        internal ItsMemberNetwork MemberNetworkForSubordinate { get; }
 
         // - インターナル変更通知メソッド
 
@@ -1707,7 +1707,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateByLocale() => this.Corridor.MemberNetworkForSubordinate.AddsButton.MonitorStateOfAddsButton(
+        internal void InvalidateByLocale() => this.MemberNetworkForSubordinate.AddsButton.MonitorStateOfAddsButton(
             setAddsButtonText: this.SetAddsButtonText);
         #endregion
 
@@ -2233,8 +2233,8 @@
 
             // 作業画像のサイズ計算
             this.workingImageSize = new SizeInt(
-                width: new WidthInt((int)(this.ZoomAsFloat * this.Corridor.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt)),
-                height: new HeightInt((int)(this.ZoomAsFloat * this.Corridor.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt)));
+                width: new WidthInt((int)(this.ZoomAsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt)),
+                height: new HeightInt((int)(this.ZoomAsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.TilesetWorkingBitmap = temporaryBitmap.Resize(
@@ -2399,8 +2399,8 @@
         {
             // ズームが屋外
             this.GridCanvasImageSize = new SizeInt(
-                width: new WidthInt((int)(this.Corridor.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.Corridor.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt) + 2 * this.HalfThicknessOfGridLineAsInt),
-                height: new HeightInt((int)(this.Corridor.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.Corridor.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt) + 2 * this.HalfThicknessOfGridLineAsInt));
+                width: new WidthInt((int)(this.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt) + 2 * this.HalfThicknessOfGridLineAsInt),
+                height: new HeightInt((int)(this.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt) + 2 * this.HalfThicknessOfGridLineAsInt));
         }
         #endregion
     }
