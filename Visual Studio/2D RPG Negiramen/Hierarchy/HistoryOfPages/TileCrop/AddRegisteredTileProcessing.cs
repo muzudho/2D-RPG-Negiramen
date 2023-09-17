@@ -56,10 +56,15 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ［タイル］のＩｄ変更
         this.Subordinates.CropTile.SetIdOrEmpty(
             value: this.TileIdOrEmpty,
-            setAddsButtonText: this.SetAddsButtonText,
-            onDeleteButtonEnableChanged: () =>
+            onTileIdOrEmpty: (TileIdOrEmpty tileIdOrEmpty) =>
             {
-                this.Colleagues.PageVM.InvalidateDeletesButton();
+                this.Colleagues.PageVM.UpdateByDifference(
+                    setAddsButtonText: this.SetAddsButtonText,
+                    onDeleteButtonEnableChanged: () =>
+                    {
+                        this.Colleagues.PageVM.InvalidateDeletesButton();
+                    },
+                    tileId: tileIdOrEmpty);
             });
 
         // ビューの再描画（タイルＩｄ更新）
@@ -126,10 +131,15 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ［タイル］のＩｄ消去
         this.Subordinates.CropTile.SetIdOrEmpty(
             value: TileIdOrEmpty.Empty,
-            setAddsButtonText: this.SetAddsButtonText,
-            onDeleteButtonEnableChanged: () =>
+            onTileIdOrEmpty: (TileIdOrEmpty tileIdOrEmpty) =>
             {
-                this.Colleagues.PageVM.InvalidateDeletesButton();
+                this.Colleagues.PageVM.UpdateByDifference(
+                    setAddsButtonText: this.SetAddsButtonText,
+                    onDeleteButtonEnableChanged: () =>
+                    {
+                        this.Colleagues.PageVM.InvalidateDeletesButton();
+                    },
+                    tileId: tileIdOrEmpty);
             });
 
         // ビューの再描画（タイルＩｄ更新）

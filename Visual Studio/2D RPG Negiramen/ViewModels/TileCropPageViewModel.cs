@@ -1220,7 +1220,7 @@
                     return;
 
                 // 差分更新
-                this.Subordinates.CropTile.UpdateByDifference(
+                this.UpdateByDifference(
                     setAddsButtonText: (text) =>
                     {
                         this.AddsButtonText = text;
@@ -1249,7 +1249,7 @@
                     return;
 
                 // 差分更新
-                this.Subordinates.CropTile.UpdateByDifference(
+                this.UpdateByDifference(
                     setAddsButtonText: (text) =>
                     {
                         this.AddsButtonText = text;
@@ -2068,6 +2068,11 @@
                         Trace.WriteLine($"［選択タイル調査］　タイル登録済　Id:{tileVisually.Id.AsInt}, {tileVisually.Id.AsBASE64} Title:{tileVisually.Title.AsStr}");
                     }
 
+                    void onDeleteButtonEnableChanged()
+                    {
+                        this.InvalidateDeletesButton();
+                    }
+
                     // タイルを指す（論理削除されているものも含む）
                     this.Subordinates.CropTile.SetRecordVisually(
                         tileVisually,
@@ -2087,9 +2092,21 @@
                             this.InvalidateTileIdChange();
                         },
                         setAddsButtonText: this.SetAddsButtonText,
-                        onDeleteButtonEnableChanged: () =>
+                        onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
+                        onUpdateByDifference: (TileTitle tileTitle) =>
                         {
-                            this.InvalidateDeletesButton();
+                            UpdateByDifference(
+                                setAddsButtonText: this.SetAddsButtonText,
+                                onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
+                                // タイトル
+                                tileTitle: tileTitle);
+                        },
+                        onTileIdOrEmpty: (TileIdOrEmpty tileIdOrEmpty) =>
+                        {
+                            UpdateByDifference(
+                                setAddsButtonText: this.SetAddsButtonText,
+                                onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
+                                tileId: tileIdOrEmpty);
                         });
                 },
                 none: () =>
@@ -2105,6 +2122,11 @@
                     //
 
                     var sourceRectangle = this.CroppedCursorPointedTileSourceRect;
+
+                    void onDeleteButtonEnableChanged()
+                    {
+                        this.InvalidateDeletesButton();
+                    }
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
                     this.Subordinates.CropTile.SetRecordVisually(TileRecordVisually.FromModel(
@@ -2144,9 +2166,21 @@
                             this.InvalidateTileIdChange();
                         },
                         setAddsButtonText: this.SetAddsButtonText,
-                        onDeleteButtonEnableChanged: () =>
+                        onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
+                        onUpdateByDifference: (TileTitle tileTitle) =>
                         {
-                            this.InvalidateDeletesButton();
+                            UpdateByDifference(
+                                setAddsButtonText: this.SetAddsButtonText,
+                                onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
+                                // タイトル
+                                tileTitle: tileTitle);
+                        },
+                        onTileIdOrEmpty: (TileIdOrEmpty tileIdOrEmpty) =>
+                        {
+                            UpdateByDifference(
+                                setAddsButtonText: this.SetAddsButtonText,
+                                onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
+                                tileId: tileIdOrEmpty);
                         });
                 },
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
@@ -2223,6 +2257,51 @@
                 quality: SKFilterQuality.Medium);
 
             this.InvalidateTilesetWorkingImage();
+        }
+        #endregion
+
+        #region メソッド（［切抜きカーソルが指すタイル］を差分更新）
+        /// <summary>
+        ///     ［切抜きカーソルが指すタイル］を差分更新
+        /// </summary>
+        /// <returns></returns>
+        internal void UpdateByDifference(
+            LazyArgs.Set<string> setAddsButtonText,
+            Action onDeleteButtonEnableChanged,
+            TileIdOrEmpty? tileId = null,
+            TileTitle? tileTitle = null,
+            LogicalDelete? logicalDelete = null)
+        {
+            var currentTileVisually = this.Subordinates.CropTile.RecordVisually;
+
+            // タイルＩｄ
+            if (!(tileId is null) && currentTileVisually.Id != tileId)
+            {
+                this.Subordinates.CropTile.RecordVisually.Id = tileId;
+
+                // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
+
+                // ［追加／上書き］ボタン再描画
+                setAddsButtonText(this.Subordinates.GetLabelOfAddsButton());
+
+                // ［削除］ボタン再描画
+                this.Subordinates.DeletesButtonRefreshEnabled(
+                    onEnableChanged: onDeleteButtonEnableChanged);
+            }
+
+            // タイル・タイトル
+            if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
+            {
+                this.Subordinates.CropTile.RecordVisually.Title = tileTitle;
+            }
+
+            // 論理削除フラグ
+            if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
+            {
+                this.Subordinates.CropTile.RecordVisually.LogicalDelete = logicalDelete;
+            }
+
+            // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
         }
         #endregion
 
