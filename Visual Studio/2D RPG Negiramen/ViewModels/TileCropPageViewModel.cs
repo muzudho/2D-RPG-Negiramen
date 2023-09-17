@@ -10,7 +10,7 @@
     using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGraphics = Microsoft.Maui.Graphics;
-    using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+    using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
     using TheViewHistoryTileCropPage = _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using _2D_RPG_Negiramen.Coding;
 
@@ -18,15 +18,13 @@
     using Microsoft.Maui.Graphics.Platform;
     using SkiaSharp.Views.Maui.Controls;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
-    using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 #elif WINDOWS
     using Microsoft.Maui.Graphics.Win2D;
     using System.Net;
     using SkiaSharp.Views.Maui.Controls;
     using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
-    using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
-    using static _2D_RPG_Negiramen.Hierarchy.TileCropPage.ZoomProperties;
-    using static _2D_RPG_Negiramen.Hierarchy.TileCropPage.InnerCultureInfo;
+    using static _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop.ZoomProperties;
+    using static _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop.InnerCultureInfo;
     using Microsoft.Maui.Controls;
 #endif
 
@@ -58,10 +56,10 @@
                 this.InvalidateAddsButton();
             };
 
-            this.MemberNetworkForSubordinate = new ItsMemberNetwork(
+            this.MemberNetworkForSubordinate = new TheHierarchyTileCropPage.ItsMemberNetwork(
                 hierarchyCommon: this.CommonOfHierarchyForSubordinate);
 
-            this.GardensideDoor = new ItsGardensideDoor(this);
+            this.GardensideDoor = new TheHierarchyTileCropPage.ItsGardensideDoor(this);
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.RoomsideDoors.HalfThicknessOfGridLine.AsInt);
@@ -1534,20 +1532,20 @@
         /// <summary>
         ///     メンバー・ネットワーク
         /// </summary>
-        ItsMemberNetwork RoomsideDoors => this.MemberNetworkForSubordinate;
+        TheHierarchyTileCropPage.ItsMemberNetwork RoomsideDoors => this.MemberNetworkForSubordinate;
         #endregion
 
         /// <summary>
         ///     屋外側のドア
         /// </summary>
-        internal ItsGardensideDoor GardensideDoor { get; }
+        internal TheHierarchyTileCropPage.ItsGardensideDoor GardensideDoor { get; }
 
         internal LazyArgs.Set<string> SetAddsButtonText { get; }
 
         /// <summary>
         ///     メンバー・ネットワーク
         /// </summary>
-        internal ItsMemberNetwork MemberNetworkForSubordinate { get; }
+        internal TheHierarchyTileCropPage.ItsMemberNetwork MemberNetworkForSubordinate { get; }
 
         // - インターナル変更通知メソッド
 
@@ -2335,7 +2333,14 @@
 
         // - プライベート・プロパティ
 
+
+/* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
+前:
         TheHierarchyTileCropPage.ItsCommon CommonOfHierarchyForSubordinate { get; }
+後:
+        ItsCommon CommonOfHierarchyForSubordinate { get; }
+*/
+        Hierarchy.Pages.TileCrop.ItsCommon CommonOfHierarchyForSubordinate { get; }
         TheViewHistoryTileCropPage.Common CommonOfViewHistoryForSubordinate { get; }
 
         // - プライベート・メソッド

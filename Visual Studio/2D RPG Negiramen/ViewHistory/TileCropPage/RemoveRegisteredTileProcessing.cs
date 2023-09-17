@@ -2,8 +2,8 @@
 
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 using System.Diagnostics;
+using _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［登録タイル削除］処理

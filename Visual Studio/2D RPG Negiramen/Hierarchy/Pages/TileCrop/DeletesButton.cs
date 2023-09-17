@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Models;
 
@@ -17,7 +17,7 @@ internal class DeletesButton
     internal DeletesButton(
         ItsMemberNetwork roomsideDoors)
     {
-        this.RoomsideDoors = roomsideDoors;
+        RoomsideDoors = roomsideDoors;
     }
     #endregion
 
@@ -36,7 +36,7 @@ internal class DeletesButton
     /// </summary>
     public bool IsEnabled
     {
-        get => this.isEnabled;
+        get => isEnabled;
     }
     #endregion
 
@@ -44,10 +44,10 @@ internal class DeletesButton
         bool value,
         Action onChanged)
     {
-        if (this.isEnabled == value)
+        if (isEnabled == value)
             return;
 
-        this.isEnabled = value;
+        isEnabled = value;
 
         onChanged();
     }
@@ -61,12 +61,12 @@ internal class DeletesButton
     internal void Refresh(
         Action onEnableChanged)
     {
-        var contents = this.RoomsideDoors.CropTile.RecordVisually;
+        var contents = RoomsideDoors.CropTile.RecordVisually;
 
         if (contents.IsNone)
         {
             // 切抜きカーソル無し時
-            this.SetEnabled(
+            SetEnabled(
                 value: false,
                 onChanged: onEnableChanged);
             return;
@@ -76,14 +76,14 @@ internal class DeletesButton
         if (contents.Id == TileIdOrEmpty.Empty)
         {
             // Ｉｄ未設定時
-            this.SetEnabled(
+            SetEnabled(
                 value: false,
                 onChanged: onEnableChanged);
         }
         else
         {
             // タイル登録済み時
-            this.SetEnabled(
+            SetEnabled(
                 value: true,
                 onChanged: onEnableChanged);
         }
@@ -98,7 +98,7 @@ internal class DeletesButton
         DoRemoveRegisteredTIle doRemoveRegisteredTIle)
     {
         doRemoveRegisteredTIle(
-            tileIdOrEmpty: this.RoomsideDoors.CropTile.IdOrEmpty);
+            tileIdOrEmpty: RoomsideDoors.CropTile.IdOrEmpty);
     }
     #endregion
 

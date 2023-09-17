@@ -1,9 +1,9 @@
-﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
-using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     追加ボタン
@@ -26,11 +26,11 @@ internal class AddsButton
     /// <param name="commonOfHierarchy"></param>
     /// <param name="roomsideDoors"></param>
     internal AddsButton(
-        TheHierarchyTileCropPage.ItsCommon commonOfHierarchy,
+        ItsCommon commonOfHierarchy,
         ItsMemberNetwork roomsideDoors)
     {
-        this.CommonOfHierarchy = commonOfHierarchy;
-        this.RoomsideDoors = roomsideDoors;
+        CommonOfHierarchy = commonOfHierarchy;
+        RoomsideDoors = roomsideDoors;
     }
     #endregion
 
@@ -43,10 +43,10 @@ internal class AddsButton
         LazyArgs.Set<string> setAddsButtonText)
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-        if (this.CommonOfHierarchy.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        if (CommonOfHierarchy.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
         {
             // 合同のときは「交差中」とは表示しない
-            if (!this.CommonOfHierarchy.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            if (!CommonOfHierarchy.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
@@ -56,7 +56,7 @@ internal class AddsButton
             }
         }
 
-        var contents = this.RoomsideDoors.CropTile.RecordVisually;
+        var contents = RoomsideDoors.CropTile.RecordVisually;
 
         if (contents.IsNone)
         {
@@ -70,7 +70,7 @@ internal class AddsButton
             // 切抜きカーソル有り時
             // Ｉｄ未設定時
 
-            if (this.RoomsideDoors.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
+            if (RoomsideDoors.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
@@ -88,7 +88,7 @@ internal class AddsButton
 
     // - プライベート・プロパティ
 
-    TheHierarchyTileCropPage.ItsCommon CommonOfHierarchy { get; }
+    ItsCommon CommonOfHierarchy { get; }
 
     /// <summary>
     ///     室内側ドア

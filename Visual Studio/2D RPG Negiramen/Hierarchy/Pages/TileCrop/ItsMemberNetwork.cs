@@ -1,8 +1,8 @@
-﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Models;
-using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
-using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+using TheGeometric = Models.Geometric;
+using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     メンバー・ネットワーク
@@ -14,9 +14,16 @@ using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 internal class ItsMemberNetwork
 {
     internal ItsMemberNetwork(
-        TheHierarchyTileCropPage.ItsCommon hierarchyCommon)
+
+        /* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
+        前:
+                TheHierarchyTileCropPage.ItsCommon hierarchyCommon)
+        後:
+                ItsCommon hierarchyCommon)
+        */
+        ItsCommon hierarchyCommon)
     {
-        this.CommonOfHierarchy = hierarchyCommon;
+        CommonOfHierarchy = hierarchyCommon;
     }
 
     /// <summary>文化情報</summary>
@@ -24,12 +31,12 @@ internal class ItsMemberNetwork
     {
         get
         {
-            if (this.indoorCultureInfo == null)
+            if (indoorCultureInfo == null)
             {
-                this.indoorCultureInfo = new InnerCultureInfo();
+                indoorCultureInfo = new InnerCultureInfo();
             }
 
-            return this.indoorCultureInfo;
+            return indoorCultureInfo;
         }
     }
     InnerCultureInfo indoorCultureInfo;
@@ -39,12 +46,12 @@ internal class ItsMemberNetwork
     {
         get
         {
-            if (this.pointingDevice == null)
+            if (pointingDevice == null)
             {
-                this.pointingDevice = new InnerPointingDevice();
+                pointingDevice = new InnerPointingDevice();
             }
 
-            return this.pointingDevice;
+            return pointingDevice;
         }
     }
     InnerPointingDevice pointingDevice;
@@ -54,13 +61,13 @@ internal class ItsMemberNetwork
     {
         get
         {
-            if (this.zoomProperties == null)
+            if (zoomProperties == null)
             {
-                this.zoomProperties = new ZoomProperties(
+                zoomProperties = new ZoomProperties(
                     memberNetwork: this);
             }
 
-            return this.zoomProperties;
+            return zoomProperties;
         }
     }
     ZoomProperties zoomProperties;
@@ -70,12 +77,12 @@ internal class ItsMemberNetwork
     {
         get
         {
-            if (this.gridUnit == null)
+            if (gridUnit == null)
             {
-                this.gridUnit = new GridUnit();
+                gridUnit = new GridUnit();
             }
 
-            return this.gridUnit;
+            return gridUnit;
         }
     }
     GridUnit gridUnit;
@@ -85,12 +92,12 @@ internal class ItsMemberNetwork
     {
         get
         {
-            if (this.cropCursor == null)
+            if (cropCursor == null)
             {
-                this.cropCursor = new CropCursor(this);
+                cropCursor = new CropCursor(this);
             }
 
-            return this.cropCursor;
+            return cropCursor;
         }
     }
     CropCursor cropCursor;
@@ -101,13 +108,13 @@ internal class ItsMemberNetwork
     {
         get
         {
-            if (this.cropTile == null)
+            if (cropTile == null)
             {
-                this.cropTile = new CropTile(
+                cropTile = new CropTile(
                     roomsideDoors: this);
             }
 
-            return this.cropTile;
+            return cropTile;
         }
     }
     CropTile cropTile;
@@ -118,14 +125,14 @@ internal class ItsMemberNetwork
     {
         get
         {
-            if (this.addsButton == null)
+            if (addsButton == null)
             {
-                this.addsButton = new AddsButton(
-                    commonOfHierarchy: this.CommonOfHierarchy,
+                addsButton = new AddsButton(
+                    commonOfHierarchy: CommonOfHierarchy,
                     roomsideDoors: this);
             }
 
-            return this.addsButton;
+            return addsButton;
         }
     }
     AddsButton addsButton;
@@ -135,12 +142,12 @@ internal class ItsMemberNetwork
     {
         get
         {
-            if (this.deletesButton == null)
+            if (deletesButton == null)
             {
-                this.deletesButton = new DeletesButton(this);
+                deletesButton = new DeletesButton(this);
             }
 
-            return this.deletesButton;
+            return deletesButton;
         }
     }
     DeletesButton deletesButton;
@@ -158,7 +165,7 @@ internal class ItsMemberNetwork
     /// </summary>
     internal ThicknessOfLine HalfThicknessOfGridLine
     {
-        get => this.halfThicknessOfGridLine;
+        get => halfThicknessOfGridLine;
     }
 
     //internal void SetHalfThicknessOfGridLine(ThicknessOfLine value)
@@ -177,5 +184,12 @@ internal class ItsMemberNetwork
 
     // - プライベート・プロパティ
 
-    TheHierarchyTileCropPage.ItsCommon CommonOfHierarchy { get; }
+
+    /* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
+    前:
+        TheHierarchyTileCropPage.ItsCommon CommonOfHierarchy { get; }
+    後:
+        ItsCommon CommonOfHierarchy { get; }
+    */
+    ItsCommon CommonOfHierarchy { get; }
 }

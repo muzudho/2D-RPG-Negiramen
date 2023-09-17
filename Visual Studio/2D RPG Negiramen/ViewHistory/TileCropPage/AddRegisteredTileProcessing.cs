@@ -5,8 +5,8 @@ using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using _2D_RPG_Negiramen.Models.Visually;
-using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 using TheHistoryOfTileCropPage = _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+using _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［登録タイル追加］処理

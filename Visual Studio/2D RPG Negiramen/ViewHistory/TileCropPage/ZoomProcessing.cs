@@ -2,9 +2,9 @@
 
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
-using TheHistoryTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
+using _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［ズーム］処理
@@ -20,7 +20,14 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
+
+/* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
+前:
         TheHistoryTileCropPage.ItsCommon commonOfHierarchy,
+後:
+        ItsCommon commonOfHierarchy,
+*/
+        Hierarchy.Pages.TileCrop.ItsCommon commonOfHierarchy,
         ItsGardensideDoor gardensideDoor,
         ItsMemberNetwork roomsideDoors,
         Zoom oldValue,
@@ -57,7 +64,14 @@ internal class ZoomProcessing : IProcessing
 
     // - プライベート・プロパティ
 
+
+/* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
+前:
     TheHistoryTileCropPage.ItsCommon CommonOfHierarchy { get; }
+後:
+    ItsCommon CommonOfHierarchy { get; }
+*/
+    Hierarchy.Pages.TileCrop.ItsCommon CommonOfHierarchy { get; }
 
     ItsGardensideDoor GardensideDoor { get; }
     ItsMemberNetwork RoomsideDoors { get; }

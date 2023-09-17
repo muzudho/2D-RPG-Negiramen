@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Models.Geometric;
 
@@ -17,7 +17,7 @@ internal class ZoomProperties
     internal ZoomProperties(
         ItsMemberNetwork memberNetwork)
     {
-        this.RoomsideDoors = memberNetwork;
+        RoomsideDoors = memberNetwork;
     }
     #endregion
 
@@ -54,14 +54,14 @@ internal class ZoomProperties
     {
         if (this.value.AsFloat != value)
         {
-            if (this.MinAsFloat <= value && value <= this.MaxAsFloat)
+            if (MinAsFloat <= value && value <= MaxAsFloat)
             {
                 Zoom oldValue = this.value;
                 Zoom newValue = new Zoom(value);
 
                 this.value = newValue;
 
-                this.RoomsideDoors.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+                RoomsideDoors.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                 // 再帰的にズーム再変更、かつ変更後の影響を処理
                 doZoomProcessing(

@@ -1,8 +1,8 @@
 ﻿namespace _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 using System.Globalization;
+using _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［文化情報設定］処理

@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Models.Geometric;
 
@@ -17,7 +17,7 @@ internal class CropCursor
     internal CropCursor(
         ItsMemberNetwork roomsideDoors)
     {
-        this.RoomsideDoors = roomsideDoors;
+        RoomsideDoors = roomsideDoors;
     }
     #endregion
 
@@ -34,10 +34,10 @@ internal class CropCursor
     internal WidthFloat TrickWidth { get; set; } = WidthFloat.Zero;
     #endregion
 
-    public Models.Geometric.WidthFloat WorkingWidthWithoutTrick
+    public WidthFloat WorkingWidthWithoutTrick
     {
-        get => this.workingWidthWithoutTrick;
-        set => this.workingWidthWithoutTrick = value;
+        get => workingWidthWithoutTrick;
+        set => workingWidthWithoutTrick = value;
     }
 
     // - インターナル・メソッド
@@ -53,13 +53,13 @@ internal class CropCursor
     /// </summary>
     internal void RefreshCanvasTrick(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
     {
-        if (this.TrickWidth.AsFloat == 1.0f)
+        if (TrickWidth.AsFloat == 1.0f)
         {
-            this.TrickWidth = WidthFloat.Zero;
+            TrickWidth = WidthFloat.Zero;
         }
         else
         {
-            this.TrickWidth = WidthFloat.One;
+            TrickWidth = WidthFloat.One;
         }
     }
 
@@ -74,7 +74,7 @@ internal class CropCursor
     internal void RecalculateWorkingGridTileWidth(
         SetValue setValue)
     {
-        setValue(this.RoomsideDoors.GridUnit.SourceValue.Width.AsInt);
+        setValue(RoomsideDoors.GridUnit.SourceValue.Width.AsInt);
     }
 
     /// <summary>
@@ -87,7 +87,7 @@ internal class CropCursor
     internal void RecalculateWorkingGridTileHeight(
         SetValue setValue)
     {
-        setValue(this.RoomsideDoors.GridUnit.SourceValue.Height.AsInt);
+        setValue(RoomsideDoors.GridUnit.SourceValue.Height.AsInt);
     }
     #endregion
 
@@ -102,7 +102,7 @@ internal class CropCursor
     ///         <item>仕様変更するときは、TRICK CODE に注意</item>
     ///     </list>
     /// </summary>
-    internal Models.Geometric.WidthFloat workingWidthWithoutTrick = Models.Geometric.WidthFloat.Zero;
+    internal WidthFloat workingWidthWithoutTrick = WidthFloat.Zero;
 
     // - プライベート・プロパティ
 

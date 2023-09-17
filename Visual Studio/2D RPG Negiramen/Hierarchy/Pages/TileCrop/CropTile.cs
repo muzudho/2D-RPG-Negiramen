@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
@@ -19,7 +19,7 @@ internal class CropTile
     internal CropTile(
         ItsMemberNetwork roomsideDoors)
     {
-        this.RoomsideDoors = roomsideDoors;
+        RoomsideDoors = roomsideDoors;
     }
     #endregion
 
@@ -36,7 +36,7 @@ internal class CropTile
     /// </summary>
     public TileRecordVisually RecordVisually
     {
-        get => this.recordVisually;
+        get => recordVisually;
     }
     #endregion
 
@@ -47,7 +47,7 @@ internal class CropTile
         LazyArgs.Set<string> setAddsButtonText,
         Action onDeleteButtonEnableChanged)
     {
-        var oldTileVisually = this.recordVisually;
+        var oldTileVisually = recordVisually;
 
         // 値に変化がない
         if (oldTileVisually == value)
@@ -64,7 +64,7 @@ internal class CropTile
             else
             {
                 // ［切抜きカーソルが指すタイル］がもともと有って、［切抜きカーソルが指すタイル］を無しに設定するのなら、消すという操作がいる
-                this.UpdateByDifference(
+                UpdateByDifference(
                     setAddsButtonText: setAddsButtonText,
                     onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
                     // タイトル
@@ -72,13 +72,13 @@ internal class CropTile
 
                 // 末端にセット（変更通知を呼ぶために）
                 // Ｉｄ
-                this.SetIdOrEmpty(
+                SetIdOrEmpty(
                     value: TileIdOrEmpty.Empty,
                     setAddsButtonText: setAddsButtonText,
                     onDeleteButtonEnableChanged: onDeleteButtonEnableChanged);
 
                 // 空にする
-                this.recordVisually = TileRecordVisually.CreateEmpty();
+                recordVisually = TileRecordVisually.CreateEmpty();
 
                 onVanished();
             }
@@ -92,7 +92,7 @@ internal class CropTile
                 // ［切抜きカーソル］の指すタイル無し時
 
                 // 新規作成
-                this.recordVisually = TileRecordVisually.CreateEmpty();
+                recordVisually = TileRecordVisually.CreateEmpty();
             }
             else
             {
@@ -100,13 +100,13 @@ internal class CropTile
             }
 
             // （変更通知を送っている）
-            this.UpdateByDifference(
+            UpdateByDifference(
                 setAddsButtonText: setAddsButtonText,
                 onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
                 // タイトル
                 tileTitle: newValue.Title);
 
-            this.SetIdOrEmpty(
+            SetIdOrEmpty(
                 value: newValue.Id,
                 setAddsButtonText: setAddsButtonText,
                 onDeleteButtonEnableChanged: onDeleteButtonEnableChanged);
@@ -118,7 +118,7 @@ internal class CropTile
 
     internal void SetRecordVisuallyNoGuiUpdate(TileRecordVisually value)
     {
-        this.recordVisually = value;
+        recordVisually = value;
     }
 
     #region プロパティ（Ｉｄ）
@@ -129,7 +129,7 @@ internal class CropTile
     {
         get
         {
-            var contents = this.RecordVisually;
+            var contents = RecordVisually;
 
             // ［切抜きカーソル］の指すタイル無し時
             if (contents.IsNone)
@@ -145,11 +145,11 @@ internal class CropTile
         LazyArgs.Set<string> setAddsButtonText,
         Action onDeleteButtonEnableChanged)
     {
-        if (this.RecordVisually.Id == value)
+        if (RecordVisually.Id == value)
             return;
 
         // 差分更新
-        this.UpdateByDifference(
+        UpdateByDifference(
             setAddsButtonText: setAddsButtonText,
             onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
             tileId: value);
@@ -169,34 +169,34 @@ internal class CropTile
         TileTitle? tileTitle = null,
         LogicalDelete? logicalDelete = null)
     {
-        var currentTileVisually = this.RecordVisually;
+        var currentTileVisually = RecordVisually;
 
         // タイルＩｄ
         if (!(tileId is null) && currentTileVisually.Id != tileId)
         {
-            this.RecordVisually.Id = tileId;
+            RecordVisually.Id = tileId;
 
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
             // ［追加／上書き］ボタン再描画
-            this.RoomsideDoors.AddsButton.MonitorStateOfAddsButton(
+            RoomsideDoors.AddsButton.MonitorStateOfAddsButton(
                 setAddsButtonText: setAddsButtonText);
 
             // ［削除］ボタン再描画
-            this.RoomsideDoors.DeletesButton.Refresh(
+            RoomsideDoors.DeletesButton.Refresh(
                 onEnableChanged: onDeleteButtonEnableChanged);
         }
 
         // タイル・タイトル
         if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
         {
-            this.RecordVisually.Title = tileTitle;
+            RecordVisually.Title = tileTitle;
         }
 
         // 論理削除フラグ
         if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
         {
-            this.RecordVisually.LogicalDelete = logicalDelete;
+            RecordVisually.LogicalDelete = logicalDelete;
         }
 
         // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
