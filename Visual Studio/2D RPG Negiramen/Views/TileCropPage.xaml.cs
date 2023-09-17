@@ -104,7 +104,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    void TilesetImage_OnTapped(object sender, TappedEventArgs e) => ((TileCropPageViewModel)this.BindingContext).Corridor.OnTilesetImageTapped(
+    void TilesetImage_OnTapped(object sender, TappedEventArgs e) => ((TileCropPageViewModel)this.BindingContext).OnTilesetImageTapped(
             tappedPoint: e.GetPosition((Element)sender) ?? Point.Zero);
 
     /// <summary>

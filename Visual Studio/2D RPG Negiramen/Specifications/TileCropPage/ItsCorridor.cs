@@ -164,64 +164,6 @@
                 });
         }
 
-        #region イベントハンドラ（タイルセット画像上でタップ時）
-        /// <summary>
-        ///     タイルセット画像上でタップ時
-        /// </summary>
-        /// <param name="tappedPoint"></param>
-        public void OnTilesetImageTapped(Point tappedPoint)
-        {
-            // 反転
-            this.OwnerPageVM.IsMouseDragging = !this.OwnerPageVM.IsMouseDragging;
-
-            if (this.OwnerPageVM.IsMouseDragging)
-            {
-                //
-                // 疑似マウス・ダウン
-                // ==================
-                //
-                Trace.WriteLine("［操作］　疑似マウス・ダウン");
-
-                // ポイントしている位置
-                this.RoomsideDoors.PointingDevice.CurrentPoint = this.RoomsideDoors.PointingDevice.StartPoint = new PointFloat(
-                    new XFloat((float)tappedPoint.X),
-                    new YFloat((float)tappedPoint.Y));
-                // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
-
-                // タイル・フォームの表示更新
-                this.RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonDown);
-
-                this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
-                // TRICK CODE:
-                this.GardensideDoor.PageVM.InvalidateWorkingTargetTile();
-            }
-            else
-            {
-                //
-                // 疑似マウス・アップ
-                // ==================
-                //
-
-                Trace.WriteLine("［操作］　疑似マウス・アップ");
-
-                // ポイントしている位置
-                this.RoomsideDoors.PointingDevice.CurrentPoint = new PointFloat(
-                    new XFloat((float)tappedPoint.X),
-                    new YFloat((float)tappedPoint.Y));
-                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
-
-                // タイル・フォームの表示更新
-                this.RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonUp);
-
-                this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
-                // TRICK CODE:
-                this.GardensideDoor.PageVM.InvalidateWorkingTargetTile();
-            }
-        }
-        #endregion
-
         #region イベントハンドラ（タイルセット画像上でポインター移動）
         /// <summary>
         ///     タイルセット画像上でポインター移動
@@ -285,11 +227,11 @@
         }
         #endregion
 
-        #region メソッド（タイル・フォーム更新）
+        #region インターナル・メソッド（タイル・フォーム更新）
         /// <summary>
         ///     タイル・フォーム更新
         /// </summary>
-        void RefreshTileForm(
+        internal void RefreshTileForm(
             MouseDrawingOperationState mouseDrawingOperationState)
         {
             //
