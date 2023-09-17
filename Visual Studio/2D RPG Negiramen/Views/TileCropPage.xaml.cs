@@ -76,7 +76,7 @@ public partial class TileCropPage : ContentPage
         //
         TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
 
-        context.Corridor.OnNavigatedTo(this.skiaTilesetCanvas1);
+        context.OnNavigatedTo(this.skiaTilesetCanvas1);
     }
     #endregion
 
