@@ -53,6 +53,8 @@
                     this.InvalidateAddsButton();
                 });
 
+            this.GardensideDoor = new ItsGardensideDoor(this.Corridor);
+
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.RoomsideDoors.HalfThicknessOfGridLine.AsInt);
         }
@@ -80,7 +82,7 @@
 
                     // 再帰的
                     App.History.Do(new SetCultureInfoProcessing(
-                        gardensideDoor: this.Corridor.GardensideDoor,    // 権限を委譲
+                        gardensideDoor: this.GardensideDoor,    // 権限を委譲
                         oldValue: oldValue,
                         newValue: newValue));
                 });
@@ -170,7 +172,7 @@
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
                         this.Corridor,
-                        this.Corridor.GardensideDoor,    // 権限を委譲
+                        this.GardensideDoor,    // 権限を委譲
                         this.RoomsideDoors,
                         oldValue,
                         newValue));
@@ -1532,6 +1534,11 @@
         ItsRoomsideDoors RoomsideDoors => this.Corridor.RoomsideDoors;
         #endregion
 
+        /// <summary>
+        ///     屋外側のドア
+        /// </summary>
+        internal ItsGardensideDoor GardensideDoor { get; }
+
         // - インターナル変更通知メソッド
 
         #region 変更通知メソッド（［文化情報］）
@@ -1707,7 +1714,7 @@
 
 #if DEBUG
                 // ファイルの整合性チェック（重い処理）
-                if (this.Corridor.GardensideDoor.TilesetSettingsVM.IsValid())
+                if (this.TilesetSettingsVM.IsValid())
                 {
                     Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] ファイルの内容は妥当　File: {this.TilesetDatatableFileLocation.Path.AsStr}");
                 }
@@ -1924,7 +1931,7 @@
                         // 追加でも、上書きでも、同じ処理でいける
                         // ［登録タイル追加］処理
                         App.History.Do(new AddRegisteredTileProcessing(
-                            gardensideDoor: this.Corridor.GardensideDoor,
+                            gardensideDoor: this.GardensideDoor,
                             roomsideDoors: this.RoomsideDoors,
                             croppedCursorVisually: contents,
                             tileIdOrEmpty: tileIdOrEmpty,
@@ -1966,7 +1973,7 @@
                     // ［登録タイル追加］処理
                     App.History.Do(new AddRegisteredTileProcessing(
                         // 上位の権限を委譲する
-                        gardensideDoor: this.Corridor.GardensideDoor,
+                        gardensideDoor: this.GardensideDoor,
                         roomsideDoors: this.RoomsideDoors,
                         croppedCursorVisually: contents,
                         tileIdOrEmpty: tileIdOrEmpty,
@@ -2021,13 +2028,13 @@
             //
             //      - （軽くない処理）
             //
-            this.Corridor.RecalculateBetweenCropCursorAndRegisteredTile();
+            this.RecalculateBetweenCropCursorAndRegisteredTile();
 
             //
             // 切抜きカーソル更新
             // ==================
             //
-            this.Corridor.GardensideDoor.TilesetSettingsVM.MatchByRectangle(
+            this.TilesetSettingsVM.MatchByRectangle(
                 sourceRect: this.CroppedCursorPointedTileSourceRect,
                 some: (tileVisually) =>
                 {
@@ -2136,6 +2143,32 @@
 
             // タイル・タイトル
             this.InvalidateTileTitle();
+        }
+        #endregion
+
+        #region インターナル・メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
+        /// <summary>
+        ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算
+        ///     
+        ///     <list type="bullet">
+        ///         <item>軽くはない処理</item>
+        ///     </list>
+        /// </summary>
+        internal void RecalculateBetweenCropCursorAndRegisteredTile()
+        {
+            if (this.CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
+            {
+                // カーソルが無ければ、交差も無い。合同ともしない
+                this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
+                return;
+            }
+
+            // 軽くはない処理
+            this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
+            this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
+
+            // Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
         #endregion
 

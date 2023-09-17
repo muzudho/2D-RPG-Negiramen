@@ -1,15 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Specifications.TileCropPage
 {
-    using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
-    using _2D_RPG_Negiramen.Models.Visually;
     using _2D_RPG_Negiramen.ViewModels;
     using SkiaSharp;
-    using SkiaSharp.Views.Maui.Controls;
-    using System.Diagnostics;
-    using TheGraphics = Microsoft.Maui.Graphics;
     using _2D_RPG_Negiramen.Coding;
-    using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -45,7 +39,6 @@
             this.SetAddsButtonText = setAddsButtonText;
 
             this.TwoWayDoor = new ItsTwoWayDoor(this);
-            this.GardensideDoor = new ItsGardensideDoor(this);
             this.RoomsideDoors = new ItsRoomsideDoors(this);
         }
         #endregion
@@ -59,11 +52,6 @@
         ///     双方向ドア
         /// </summary>
         public ItsTwoWayDoor TwoWayDoor { get; }
-
-        /// <summary>
-        ///     屋外側のドア
-        /// </summary>
-        public ItsGardensideDoor GardensideDoor { get; }
 
         /// <summary>
         ///     屋内側のドア
@@ -89,32 +77,6 @@
         internal LazyArgs.Set<string> SetAddsButtonText { get; }
 
         // - プライベート・メソッド
-
-        #region インターナル・メソッド（切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算）
-        /// <summary>
-        ///     切抜きカーソルと、既存タイルが交差しているか？合同か？　を再計算
-        ///     
-        ///     <list type="bullet">
-        ///         <item>軽くはない処理</item>
-        ///     </list>
-        /// </summary>
-        internal void RecalculateBetweenCropCursorAndRegisteredTile()
-        {
-            if (this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
-            {
-                // カーソルが無ければ、交差も無い。合同ともしない
-                this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
-                this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
-                return;
-            }
-
-            // 軽くはない処理
-            this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.HasIntersection(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
-            this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.GardensideDoor.TilesetSettingsVM.IsCongruence(this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect);
-
-            // Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
-        }
-        #endregion
 
         #region メソッド（［タイルセット作業画像］　関連）
         /// <summary>
