@@ -1322,28 +1322,45 @@
         ///     <list type="bullet">
         ///         <item>［切抜きカーソルが指すタイル］が有る</item>
         ///     </list>
-        ///     ※２　［追加］ボタンは、以下の条件で活性
+        ///     
+        ///     ※２　［追加］ボタンは、３状態ある。以下の条件で活性
         ///     <list type="bullet">
         ///         <item>Ｉｄが未設定時、かつ、論理削除フラグがＯｆｆ</item>
         ///     </list>
+        ///     
         ///     ※３　［復元］ボタンは、以下の条件で活性
         ///     <list type="bullet">
         ///         <item>Ｉｄが設定時、かつ、論理削除フラグがＯｎ</item>
         ///     </list>
+        ///     
+        ///     ※４　［交差中］ボタンは、常に不活性
         /// </summary>
         public bool IsEnabledAddsButton
         {
             get
             {
                 // ※１
-                var isEnabled = !this.Subordinates.CropTile.RecordVisually.IsNone && (
-                // ※２
-                (this.Subordinates.CropTile.RecordVisually.Id == TileIdOrEmpty.Empty && !this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool)
-                ||
-                // ※３
-                (this.Subordinates.CropTile.RecordVisually.Id != TileIdOrEmpty.Empty && this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool));
+                if (this.Subordinates.CropTile.RecordVisually.IsNone)
+                {
+                    return false;
+                }
 
-                return isEnabled;
+                var addsButtonState = this.Subordinates.GetStateOfAddsButton();
+
+                switch (addsButtonState)
+                {
+                    case TheTileCropPage.AddsButtonState.Adds:
+                        // ※２
+                        return this.Subordinates.CropTile.RecordVisually.Id == TileIdOrEmpty.Empty && !this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
+
+                    case TheTileCropPage.AddsButtonState.Restore:
+                        // ※３
+                        return this.Subordinates.CropTile.RecordVisually.Id != TileIdOrEmpty.Empty && this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
+
+                    default:
+                        // ※４
+                        return false;
+                }
             }
         }
         #endregion

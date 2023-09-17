@@ -200,12 +200,11 @@ internal class ItsMembers
 
     // - インターナル・メソッド
 
-    #region メソッド（追加ボタンのラベル算出）
+    #region メソッド（追加ボタンの状態取得）
     /// <summary>
-    ///     追加ボタンのラベル算出
+    ///     追加ボタンの状態取得
     /// </summary>
-    internal void CalculateLabelOfAddsButton(
-        LazyArgs.Set<string> setAddsButtonText)
+    internal AddsButtonState GetStateOfAddsButton()
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
         if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
@@ -214,10 +213,8 @@ internal class ItsMembers
             if (!this.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
-
                 // 「交差中」
-                setAddsButtonText((string)LocalizationResourceManager.Instance["Intersecting"]);
-                return;
+                return AddsButtonState.Intersecting;
             }
         }
 
@@ -228,26 +225,49 @@ internal class ItsMembers
             // ［切抜きカーソル］の指すタイル無し時
 
             // 「追加」
-            setAddsButtonText((string)LocalizationResourceManager.Instance["Add"]);
+            return AddsButtonState.Adds;
         }
-        else
+
+        // 切抜きカーソル有り時
+        // Ｉｄ未設定時
+        if (this.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
         {
-            // 切抜きカーソル有り時
-            // Ｉｄ未設定時
+            // Ｉｄが空欄
+            // ［追加］（新規作成）だ
 
-            if (this.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
-            {
-                // Ｉｄが空欄
-                // ［追加］（新規作成）だ
+            // ［追加」
+            return AddsButtonState.Adds;
+        }
 
-                // ［追加」
+        // ［復元」
+        return AddsButtonState.Restore;
+    }
+    #endregion
+
+    #region メソッド（追加ボタンのラベル算出）
+    /// <summary>
+    ///     追加ボタンのラベル算出
+    /// </summary>
+    internal void CalculateLabelOfAddsButton(
+        LazyArgs.Set<string> setAddsButtonText)
+    {
+        var addsButtonState = this.GetStateOfAddsButton();
+
+        switch (addsButtonState)
+        {
+            case AddsButtonState.Intersecting:
+                // 「交差中」
+                setAddsButtonText((string)LocalizationResourceManager.Instance["Intersecting"]);
+                return;
+
+            case AddsButtonState.Adds:
                 setAddsButtonText((string)LocalizationResourceManager.Instance["Add"]);
-            }
-            else
-            {
+                return;
+
+            case AddsButtonState.Restore:
                 // ［復元」
                 setAddsButtonText((string)LocalizationResourceManager.Instance["Restore"]);
-            }
+                return;
         }
     }
     #endregion
