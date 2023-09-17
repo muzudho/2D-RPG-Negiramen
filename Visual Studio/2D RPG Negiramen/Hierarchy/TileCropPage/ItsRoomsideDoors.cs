@@ -2,6 +2,7 @@
 
 using _2D_RPG_Negiramen.Models;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
+using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 
 /// <summary>
 ///     各部屋
@@ -12,9 +13,13 @@ using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 /// </summary>
 internal class ItsRoomsideDoors
 {
-    internal ItsRoomsideDoors(ItsCorridor corridor)
+    internal ItsRoomsideDoors(
+        TheHierarchyTileCropPage.Common hierarchyCommon,
+        ItsCorridor corridor)
     {
         this.Corridor = corridor;
+
+        this.HierarchyCommon = hierarchyCommon;
     }
 
     /// <summary>廊下</summary>
@@ -40,7 +45,7 @@ internal class ItsRoomsideDoors
     {
         get
         {
-            if (this.pointingDevice==null)
+            if (this.pointingDevice == null)
             {
                 this.pointingDevice = new InnerPointingDevice();
             }
@@ -71,7 +76,7 @@ internal class ItsRoomsideDoors
     {
         get
         {
-            if (this.gridUnit==null)
+            if (this.gridUnit == null)
             {
                 this.gridUnit = new GridUnit();
             }
@@ -86,7 +91,7 @@ internal class ItsRoomsideDoors
     {
         get
         {
-            if (this.cropCursor==null)
+            if (this.cropCursor == null)
             {
                 this.cropCursor = new CropCursor(this);
             }
@@ -121,7 +126,9 @@ internal class ItsRoomsideDoors
         {
             if (this.addsButton == null)
             {
-                this.addsButton = new AddsButton(this);
+                this.addsButton = new AddsButton(
+                    common: this.HierarchyCommon,
+                    roomsideDoors: this);
             }
 
             return this.addsButton;
@@ -187,4 +194,8 @@ internal class ItsRoomsideDoors
     }
     /// <summary>［元画像グリッド］の線の太さの半分</summary>
     ThicknessOfLine halfThicknessOfGridLine = new(1);
+
+    // - プライベート・プロパティ
+
+    TheHierarchyTileCropPage.Common HierarchyCommon { get; }
 }

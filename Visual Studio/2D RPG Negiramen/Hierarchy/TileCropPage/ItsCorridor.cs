@@ -4,6 +4,7 @@
     using _2D_RPG_Negiramen.ViewModels;
     using SkiaSharp;
     using _2D_RPG_Negiramen.Coding;
+    using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -32,6 +33,7 @@
         /// </summary>
         /// <param name="ownerPageVM">全体ページビュー・モデル</param>
         internal ItsCorridor(
+            TheHierarchyTileCropPage.Common common,
             TileCropPageViewModel ownerPageVM,
             LazyArgs.Set<string> setAddsButtonText)
         {
@@ -39,7 +41,9 @@
             this.SetAddsButtonText = setAddsButtonText;
 
             this.TwoWayDoor = new ItsTwoWayDoor(this);
-            this.RoomsideDoors = new ItsRoomsideDoors(this);
+            this.RoomsideDoors = new ItsRoomsideDoors(
+                hierarchyCommon: common,
+                corridor: this);
         }
         #endregion
 

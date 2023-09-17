@@ -10,7 +10,8 @@
     using System.Globalization;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGraphics = Microsoft.Maui.Graphics;
-    using TheHistoryOfTileCropPage = _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+    using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
+    using TheViewHistoryTileCropPage = _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
@@ -46,7 +47,11 @@
         /// </summary>
         public TileCropPageViewModel()
         {
+            this.HierarchyCommonForSubordinate = new TheHierarchyTileCropPage.Common();
+            this.ViewHistoryCommonForSubordinate = new TheViewHistoryTileCropPage.Common();
+
             this.Corridor = new ItsCorridor(
+                common: this.HierarchyCommonForSubordinate,
                 ownerPageVM: this,
                 setAddsButtonText: (text) =>
                 {
@@ -58,8 +63,6 @@
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.RoomsideDoors.HalfThicknessOfGridLine.AsInt);
-
-            this.CommonForSubordinate = new TheHistoryOfTileCropPage.Common();
         }
         #endregion
 
@@ -1938,7 +1941,7 @@
                 // 追加でも、上書きでも、同じ処理でいける
                 // ［登録タイル追加］処理
                 App.History.Do(new AddRegisteredTileProcessing(
-                    common: this.CommonForSubordinate,
+                    common: this.ViewHistoryCommonForSubordinate,
                     gardensideDoor: this.GardensideDoor,
                     roomsideDoors: this.RoomsideDoors,
                     croppedCursorVisually: targetTile,
@@ -1996,7 +1999,7 @@
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
             App.History.Do(new AddRegisteredTileProcessing(
-                common: this.CommonForSubordinate,
+                common: this.ViewHistoryCommonForSubordinate,
                 // 上位の権限を委譲する
                 gardensideDoor: this.GardensideDoor,
                 roomsideDoors: this.RoomsideDoors,
@@ -2284,7 +2287,8 @@
 
         // - プライベート・プロパティ
 
-        TheHistoryOfTileCropPage.Common CommonForSubordinate { get; }
+        TheHierarchyTileCropPage.Common HierarchyCommonForSubordinate { get; }
+        TheViewHistoryTileCropPage.Common ViewHistoryCommonForSubordinate { get; }
 
         // - プライベート・メソッド
 

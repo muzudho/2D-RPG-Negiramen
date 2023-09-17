@@ -2,6 +2,8 @@
 
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
+using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 
 /// <summary>
 ///     追加ボタン
@@ -11,18 +13,23 @@ internal class AddsButton
     // - その他
 
     #region その他（生成）
+    /// <summary>
+    ///     生成
+    /// </summary>
     private AddsButton()
     {
-
     }
 
     /// <summary>
     ///     生成
     /// </summary>
+    /// <param name="common"></param>
     /// <param name="roomsideDoors"></param>
     internal AddsButton(
+        TheHierarchyTileCropPage.Common common,
         ItsRoomsideDoors roomsideDoors)
     {
+        this.Common = common;
         this.RoomsideDoors = roomsideDoors;
     }
     #endregion
@@ -80,6 +87,8 @@ internal class AddsButton
     }
 
     // - プライベート・プロパティ
+
+    TheHierarchyTileCropPage.Common Common { get; }
 
     /// <summary>
     ///     室内側ドア
