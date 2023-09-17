@@ -16,6 +16,9 @@ internal class ZoomProperties
     /// <param name="memberNetwork"></param>
     internal ZoomProperties()
     {
+        this.Value = Zoom.IdentityElement;
+        this.MaxValue = new(4.0f);
+        this.MinValue = new(0.5f);
     }
     #endregion
 
@@ -35,9 +38,7 @@ internal class ZoomProperties
     ///         <item>コード・ビハインドで使用</item>
     ///     </list>
     /// </summary>
-    internal Zoom Value => value;
-
-    internal void SetValue(Zoom value) => this.value = value;
+    internal Zoom Value { get; set; }
 
     /// <summary>
     ///     ［ズーム］整数形式
@@ -46,32 +47,25 @@ internal class ZoomProperties
     ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
     ///     </list>
     /// </summary>
-    internal float AsFloat => value.AsFloat;
-
-    /// <summary>
-    ///     ズーム最大
-    /// </summary>
-    internal float MaxAsFloat => maxValue.AsFloat;
-
-    /// <summary>
-    ///     ズーム最小
-    /// </summary>
-    internal float MinAsFloat => minValue.AsFloat;
-
-    // - プライベート・フィールド
-
-    /// <summary>
-    ///     ［ズーム］
-    /// </summary>
-    Zoom value = Zoom.IdentityElement;
+    internal float AsFloat => this.Value.AsFloat;
 
     /// <summary>
     ///     ［ズーム］最大
     /// </summary>
-    Zoom maxValue = new(4.0f);
+    internal Zoom MaxValue { get; }
+
+    /// <summary>
+    ///     ズーム最大
+    /// </summary>
+    internal float MaxAsFloat => this.MaxValue.AsFloat;
 
     /// <summary>
     ///     ［ズーム］最小
     /// </summary>
-    Zoom minValue = new(0.5f);
+    internal Zoom MinValue { get; }
+
+    /// <summary>
+    ///     ズーム最小
+    /// </summary>
+    internal float MinAsFloat => this.MinValue.AsFloat;
 }

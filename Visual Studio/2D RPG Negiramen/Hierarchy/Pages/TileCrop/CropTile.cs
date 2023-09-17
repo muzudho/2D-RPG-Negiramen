@@ -48,12 +48,10 @@ internal class CropTile
         TileRecordVisually value,
         Action onVanished,
         Action onUpdated,
-        LazyArgs.Set<string> setAddsButtonText,
-        Action onDeleteButtonEnableChanged,
         OnUpdateByDifference onUpdateByDifference,
         OnTileIdOrEmpty onTileIdOrEmpty)
     {
-        var oldTileVisually = recordVisually;
+        var oldTileVisually = this.recordVisually;
 
         // 値に変化がない
         if (oldTileVisually == value)
@@ -80,7 +78,7 @@ internal class CropTile
                     onTileIdOrEmpty: onTileIdOrEmpty);
 
                 // 空にする
-                recordVisually = TileRecordVisually.CreateEmpty();
+                this.recordVisually = TileRecordVisually.CreateEmpty();
 
                 onVanished();
             }
@@ -94,7 +92,7 @@ internal class CropTile
                 // ［切抜きカーソル］の指すタイル無し時
 
                 // 新規作成
-                recordVisually = TileRecordVisually.CreateEmpty();
+                this.recordVisually = TileRecordVisually.CreateEmpty();
             }
             else
             {
@@ -116,7 +114,7 @@ internal class CropTile
 
     internal void SetRecordVisuallyNoGuiUpdate(TileRecordVisually value)
     {
-        recordVisually = value;
+        this.recordVisually = value;
     }
 
     #region プロパティ（Ｉｄ）
@@ -127,7 +125,7 @@ internal class CropTile
     {
         get
         {
-            var contents = RecordVisually;
+            var contents = this.RecordVisually;
 
             // ［切抜きカーソル］の指すタイル無し時
             if (contents.IsNone)
@@ -142,7 +140,7 @@ internal class CropTile
         TileIdOrEmpty value,
         OnTileIdOrEmpty onTileIdOrEmpty)
     {
-        if (RecordVisually.Id == value)
+        if (this.RecordVisually.Id == value)
             return;
 
         // 差分更新

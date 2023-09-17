@@ -1557,7 +1557,7 @@
                     Zoom oldValue = this.Subordinates.ZoomProperties.Value;
                     Zoom newValue = new Zoom(value);
 
-                    this.Subordinates.ZoomProperties.SetValue(newValue);
+                    this.Subordinates.ZoomProperties.Value = newValue;
 
                     this.Subordinates.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
@@ -2121,8 +2121,6 @@
                             // 変更通知を送りたい
                             this.InvalidateTileIdChange();
                         },
-                        setAddsButtonText: this.SetAddsButtonText,
-                        onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
                         onUpdateByDifference: (TileTitle tileTitle) =>
                         {
                             UpdateByDifference(
@@ -2195,8 +2193,6 @@
                             // 変更通知を送りたい
                             this.InvalidateTileIdChange();
                         },
-                        setAddsButtonText: this.SetAddsButtonText,
-                        onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
                         onUpdateByDifference: (TileTitle tileTitle) =>
                         {
                             UpdateByDifference(

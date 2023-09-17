@@ -43,25 +43,16 @@ internal class PointingDevice
     ///         <item>マウスじゃないと思うけど</item>
     ///     </list>
     /// </summary>
-    internal bool IsMouseDragging => isMouseDragging;
+    internal bool IsMouseDragging { get; private set; }
     #endregion
 
     internal void SetMouseDragging(
         bool value,
         Action onChanged)
     {
-        if (isMouseDragging == value) return;
+        if (this.IsMouseDragging == value) return;
 
-        isMouseDragging = value;
+        this.IsMouseDragging = value;
         onChanged();
     }
-
-    // - プライベート・プロパティ
-
-    #region プロパティ（ポインティング・デバイス押下中か？）
-    /// <summary>
-    ///     ポインティング・デバイス押下中か？
-    /// </summary>
-    bool isMouseDragging { get; set; }
-    #endregion
 }

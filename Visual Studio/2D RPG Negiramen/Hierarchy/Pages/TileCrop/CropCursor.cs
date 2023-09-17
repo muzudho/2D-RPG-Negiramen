@@ -15,6 +15,7 @@ internal class CropCursor
     /// </summary>
     internal CropCursor()
     {
+        this.WorkingWidthWithoutTrick = WidthFloat.Zero;
     }
     #endregion
 
@@ -27,11 +28,16 @@ internal class CropCursor
     internal WidthFloat TrickWidth { get; set; } = WidthFloat.Zero;
     #endregion
 
-    public WidthFloat WorkingWidthWithoutTrick
-    {
-        get => workingWidthWithoutTrick;
-        set => workingWidthWithoutTrick = value;
-    }
+    /// <summary>
+    ///     ［切抜きカーソル］ズーム済みのサイズ
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
+    ///         <item>仕様変更するときは、TRICK CODE に注意</item>
+    ///     </list>
+    /// </summary>
+    internal WidthFloat WorkingWidthWithoutTrick { get; set; }
 
     // - インターナル・メソッド
 
@@ -55,17 +61,4 @@ internal class CropCursor
             TrickWidth = WidthFloat.One;
         }
     }
-
-    // - プライベート・フィールド
-
-    /// <summary>
-    ///     ［切抜きカーソル］ズーム済みのサイズ
-    ///         
-    ///     <list type="bullet">
-    ///         <item>カーソルの線の幅を含まない</item>
-    ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
-    ///         <item>仕様変更するときは、TRICK CODE に注意</item>
-    ///     </list>
-    /// </summary>
-    internal WidthFloat workingWidthWithoutTrick = WidthFloat.Zero;
 }

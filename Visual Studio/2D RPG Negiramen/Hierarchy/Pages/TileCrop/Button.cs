@@ -22,7 +22,7 @@ internal class Button
     /// <summary>
     ///     活性性
     /// </summary>
-    public bool IsEnabled => isEnabled;
+    internal bool IsEnabled { get; private set; }
     #endregion
 
     // - インターナル・メソッド
@@ -37,20 +37,11 @@ internal class Button
         bool value,
         Action onChanged)
     {
-        if (isEnabled == value) return;
+        if (this.IsEnabled == value) return;
 
-        isEnabled = value;
+        this.IsEnabled = value;
 
         onChanged();
     }
-    #endregion
-
-    // - プライベート・フィールド
-
-    #region フィールド（活性性）
-    /// <summary>
-    ///     活性性
-    /// </summary>
-    bool isEnabled;
     #endregion
 }
