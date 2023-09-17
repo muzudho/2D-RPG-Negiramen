@@ -68,31 +68,20 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender"></param>
     /// <param name="e"></param>
-    void thisContentPage_NavigatedTo(object sender, NavigatedToEventArgs e)
-    {
-        //
-        // ビューモデルの取得
-        // ==================
-        //
-        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
-
-        context.OnNavigatedTo(this.skiaTilesetCanvas1);
-    }
+    void thisContentPage_NavigatedTo(object sender, NavigatedToEventArgs e) => ((TileCropPageViewModel)this.BindingContext).OnNavigatedTo(this.skiaTilesetCanvas1);
     #endregion
 
     #region イベントハンドラ（ロケール変更時）
     /// <summary>
     ///     ロケール変更時
+    ///     
+    ///     <list type="bullet">
+    ///         <item>ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知</item>
+    ///     </list>
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    void LocalePicker_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        // ＸＡＭＬではなく、Ｃ＃で動的に翻訳を行っている場合のための変更通知
-        var context = (TileCropPageViewModel)this.BindingContext;
-
-        context.Corridor.InvalidateByLocale();
-    }
+    void LocalePicker_SelectedIndexChanged(object sender, EventArgs e) => ((TileCropPageViewModel)this.BindingContext).Corridor.InvalidateByLocale();
     #endregion
 
     #region イベントハンドラ（［タイルセット一覧］ボタン　関連）
@@ -115,28 +104,16 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    void TilesetImage_OnTapped(object sender, TappedEventArgs e)
-    {
-        Point tappedPoint = e.GetPosition((Element)sender) ?? Point.Zero;
-
-        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
-
-        context.Corridor.OnTilesetImageTapped(tappedPoint);
-    }
+    void TilesetImage_OnTapped(object sender, TappedEventArgs e) => ((TileCropPageViewModel)this.BindingContext).Corridor.OnTilesetImageTapped(
+            tappedPoint: e.GetPosition((Element)sender) ?? Point.Zero);
 
     /// <summary>
     ///     ［タイルセット］画像ポインター移動時
     /// </summary>
     /// <param name="sender">このイベントを送っているコントロール</param>
     /// <param name="e">イベント</param>
-    void TilesetImage_OnPointerMoved(object sender, PointerEventArgs e)
-    {
-        Point tappedPoint = e.GetPosition((Element)sender) ?? Point.Zero;
-
-        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
-
-        context.Corridor.OnTilesetImagePointerMove(tappedPoint);
-    }
+    void TilesetImage_OnPointerMoved(object sender, PointerEventArgs e) => ((TileCropPageViewModel)this.BindingContext).Corridor.OnTilesetImagePointerMove(
+            tappedPoint: e.GetPosition((Element)sender) ?? Point.Zero);
 
     /// <summary>
     ///     ［タイルセット］画像表面の描画時
@@ -170,9 +147,7 @@ public partial class TileCropPage : ContentPage
     {
         await PolicyOfView.ReactOnPushed((Button)sender);
 
-        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
-
-        context.Corridor.OnAddsButtonClicked();
+        ((TileCropPageViewModel)this.BindingContext).Corridor.OnAddsButtonClicked();
     }
     #endregion
 
@@ -235,10 +210,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void UndoImageButton_Clicked(object sender, EventArgs e)
-    {
-        App.History.Undo();
-    }
+    private void UndoImageButton_Clicked(object sender, EventArgs e) => App.History.Undo();
     #endregion
 
     #region イベントハンドラ（［リドゥ］ボタン・クリック時）
@@ -247,10 +219,7 @@ public partial class TileCropPage : ContentPage
     /// </summary>
     /// <param name="sender">このイベントを呼び出したコントロール</param>
     /// <param name="e">この発生イベントの制御変数</param>
-    private void RedoImageButton_Clicked(object sender, EventArgs e)
-    {
-        App.History.Redo();
-    }
+    private void RedoImageButton_Clicked(object sender, EventArgs e) => App.History.Redo();
     #endregion
 
     #region イベントハンドラ（［タイル・タイトル］エンター入力時）
@@ -261,13 +230,7 @@ public partial class TileCropPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     private void TileTitleEntry_Completed(object sender, EventArgs e)
     {
-        Entry entry = (Entry)sender;
-
-        TileCropPageViewModel context = (TileCropPageViewModel)this.BindingContext;
-
-        // Trace.WriteLine($"[TileCropPage.xaml.cs TileTitleEntry_Completed] entry.Text: {entry.Text}");
-
-        context.Corridor.OverwriteTile();
+        ((TileCropPageViewModel)this.BindingContext).Corridor.OverwriteTile();
     }
     #endregion
 }
