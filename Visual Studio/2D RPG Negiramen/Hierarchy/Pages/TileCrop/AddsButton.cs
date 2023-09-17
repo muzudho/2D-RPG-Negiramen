@@ -2,8 +2,6 @@
 
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
-using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     追加ボタン

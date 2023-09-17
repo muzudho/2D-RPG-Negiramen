@@ -11,18 +11,16 @@
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGraphics = Microsoft.Maui.Graphics;
     using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
-    using TheViewHistoryTileCropPage = _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+    using TheHistoryTileCropPage = _2D_RPG_Negiramen.Hierarchy.HistoryOfPages.TileCrop;
     using _2D_RPG_Negiramen.Coding;
 
 #if IOS || ANDROID || MACCATALYST
     using Microsoft.Maui.Graphics.Platform;
     using SkiaSharp.Views.Maui.Controls;
-    using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
 #elif WINDOWS
     using Microsoft.Maui.Graphics.Win2D;
     using System.Net;
     using SkiaSharp.Views.Maui.Controls;
-    using _2D_RPG_Negiramen.ViewHistory.TileCropPage;
     using static _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop.ZoomProperties;
     using static _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop.InnerCultureInfo;
     using Microsoft.Maui.Controls;
@@ -48,7 +46,7 @@
         public TileCropPageViewModel()
         {
             this.CommonOfHierarchyForSubordinate = new TheHierarchyTileCropPage.ItsCommon();
-            this.CommonOfViewHistoryForSubordinate = new TheViewHistoryTileCropPage.Common();
+            this.CommonOfViewHistoryForSubordinate = new TheHistoryTileCropPage.Common();
 
             this.SetAddsButtonText = (text) =>
             {
@@ -87,7 +85,7 @@
                     this.InvalidateCultureInfo();
 
                     // 再帰的
-                    App.History.Do(new SetCultureInfoProcessing(
+                    App.History.Do(new TheHistoryTileCropPage.SetCultureInfoProcessing(
                         gardensideDoor: this.GardensideDoor,    // 権限を委譲
                         oldValue: oldValue,
                         newValue: newValue));
@@ -176,7 +174,7 @@
                     this.InvalidateWorkingTargetTile();
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
-                    App.History.Do(new ZoomProcessing(
+                    App.History.Do(new TheHistoryTileCropPage.ZoomProcessing(
                         commonOfHierarchy: this.CommonOfHierarchyForSubordinate,
                         gardensideDoor: this.GardensideDoor,    // 権限を委譲
                         roomsideDoors: this.RoomsideDoors,
@@ -1954,7 +1952,7 @@
 
                 // 追加でも、上書きでも、同じ処理でいける
                 // ［登録タイル追加］処理
-                App.History.Do(new AddRegisteredTileProcessing(
+                App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                     commonOfHierarchy: this.CommonOfViewHistoryForSubordinate,
                     gardensideDoor: this.GardensideDoor,
                     roomsideDoors: this.RoomsideDoors,
@@ -1981,7 +1979,7 @@
             this.RoomsideDoors.DeletesButton.RemoveTile(
                 doRemoveRegisteredTIle: (TileIdOrEmpty tileIdOrEmpty) =>
                 {
-                    App.History.Do(new RemoveRegisteredTileProcessing(
+                    App.History.Do(new TheHistoryTileCropPage.RemoveRegisteredTileProcessing(
                         gardensideDoor: this.GardensideDoor,    // 権限を委譲
                         tileIdOrEmpty: tileIdOrEmpty));
 
@@ -2012,7 +2010,7 @@
 
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
-            App.History.Do(new AddRegisteredTileProcessing(
+            App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                 commonOfHierarchy: this.CommonOfViewHistoryForSubordinate,
                 // 上位の権限を委譲する
                 gardensideDoor: this.GardensideDoor,
@@ -2341,7 +2339,7 @@
         ItsCommon CommonOfHierarchyForSubordinate { get; }
 */
         Hierarchy.Pages.TileCrop.ItsCommon CommonOfHierarchyForSubordinate { get; }
-        TheViewHistoryTileCropPage.Common CommonOfViewHistoryForSubordinate { get; }
+        TheHistoryTileCropPage.Common CommonOfViewHistoryForSubordinate { get; }
 
         // - プライベート・メソッド
 

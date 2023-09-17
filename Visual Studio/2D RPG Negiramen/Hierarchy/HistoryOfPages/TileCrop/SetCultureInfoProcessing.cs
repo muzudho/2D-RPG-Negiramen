@@ -1,4 +1,4 @@
-﻿namespace _2D_RPG_Negiramen.ViewHistory.TileCropPage;
+﻿namespace _2D_RPG_Negiramen.Hierarchy.HistoryOfPages.TileCrop;
 
 using _2D_RPG_Negiramen.Models.History;
 using System.Globalization;
