@@ -37,9 +37,12 @@
         ///     生成
         /// </summary>
         /// <param name="ownerPageVM">全体ページビュー・モデル</param>
-        internal ItsCorridor(TileCropPageViewModel ownerPageVM)
+        internal ItsCorridor(
+            TileCropPageViewModel ownerPageVM,
+            LazyArgs.Set<string> setAddsButtonText)
         {
             this.OwnerPageVM = ownerPageVM;
+            this.SetAddsButtonText = setAddsButtonText;
 
             this.TwoWayDoor = new ItsTwoWayDoor(this);
             this.GardensideDoor = new ItsGardensideDoor(this);
@@ -77,12 +80,8 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.Refresh(
-            setAddsButtonText: (text) =>
-            {
-                this.GardensideDoor.PageVM.AddsButtonText = text;
-                this.GardensideDoor.PageVM.InvalidateAddsButton();
-            });
+        internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.MonitorState(
+            setAddsButtonText: this.SetAddsButtonText);
         #endregion
 
         // - インターナル・イベントハンドラ
@@ -312,13 +311,8 @@
                 // Trace.WriteLine($"[TileCropPage TileImage_OnTapped] tapped x:{PointingDeviceStartPoint.X.AsInt} y:{PointingDeviceStartPoint.Y.AsInt}");
 
                 // タイル・フォームの表示更新
-                RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonDown,
-                    setAddsButtonText: (text) =>
-                    {
-                        this.GardensideDoor.PageVM.AddsButtonText = text;
-                        this.GardensideDoor.PageVM.InvalidateAddsButton();
-                    });
+                this.RefreshTileForm(
+                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonDown);
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
                 // TRICK CODE:
@@ -340,13 +334,8 @@
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerExited] exited x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
                 // タイル・フォームの表示更新
-                RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonUp,
-                    setAddsButtonText: (text) =>
-                    {
-                        this.GardensideDoor.PageVM.AddsButtonText = text;
-                        this.GardensideDoor.PageVM.InvalidateAddsButton();
-                    });
+                this.RefreshTileForm(
+                    mouseDrawingOperationState: MouseDrawingOperationState.ButtonUp);
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
                 // TRICK CODE:
@@ -376,13 +365,8 @@
                 // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
 
                 // タイル・フォームの表示更新
-                RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.PointerMove,
-                    setAddsButtonText: (text) =>
-                    {
-                        this.GardensideDoor.PageVM.AddsButtonText = text;
-                        this.GardensideDoor.PageVM.InvalidateAddsButton();
-                    });
+                this.RefreshTileForm(
+                    mouseDrawingOperationState: MouseDrawingOperationState.PointerMove);
 
                 this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
                 // TRICK CODE:
@@ -390,6 +374,10 @@
             }
         }
         #endregion
+
+        // - プライベート・プロパティ
+
+        LazyArgs.Set<string> SetAddsButtonText { get; }
 
         // - プライベート・メソッド
 
@@ -447,8 +435,7 @@
         ///     タイル・フォーム更新
         /// </summary>
         void RefreshTileForm(
-            MouseDrawingOperationState mouseDrawingOperationState,
-            LazyArgs.Set<string> setAddsButtonText)
+            MouseDrawingOperationState mouseDrawingOperationState)
         {
             //
             // ポインティング・デバイスの２箇所のタップ位置から、タイルの矩形を算出
@@ -520,7 +507,7 @@
                             // 変更通知を送りたい
                             this.GardensideDoor.PageVM.InvalidateTileIdChange();
                         },
-                        setAddsButtonText: setAddsButtonText,
+                        setAddsButtonText: this.SetAddsButtonText,
                         onDeleteButtonEnableChanged: () =>
                         {
                             this.GardensideDoor.PageVM.InvalidateDeletesButton();
@@ -577,7 +564,7 @@
                             // 変更通知を送りたい
                             this.GardensideDoor.PageVM.InvalidateTileIdChange();
                         },
-                        setAddsButtonText: setAddsButtonText,
+                        setAddsButtonText: this.SetAddsButtonText,
                         onDeleteButtonEnableChanged: () =>
                         {
                             this.GardensideDoor.PageVM.InvalidateDeletesButton();
@@ -587,8 +574,8 @@
                 includeLogicalDelete: true);
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.RoomsideDoors.AddsButton.Refresh(
-                setAddsButtonText: setAddsButtonText);
+            this.RoomsideDoors.AddsButton.MonitorState(
+                setAddsButtonText: this.SetAddsButtonText);
 
             // （切抜きカーソル更新後）［削除］ボタン活性化
             this.RoomsideDoors.DeletesButton.Refresh(

@@ -63,9 +63,9 @@ internal class AddsButton
     }
 
     /// <summary>
-    ///     再描画
+    ///     状態監視
     /// </summary>
-    internal void Refresh(
+    internal void MonitorState(
         LazyArgs.Set<string> setAddsButtonText)
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
@@ -74,9 +74,9 @@ internal class AddsButton
             // 合同のときは「交差中」とは表示しない
             if (!this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
-                // 「交差中」
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
+                // 「交差中」
                 setAddsButtonText((string)LocalizationResourceManager.Instance["Intersecting"]);
                 return;
             }

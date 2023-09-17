@@ -44,7 +44,13 @@
         /// </summary>
         public TileCropPageViewModel()
         {
-            this.Corridor = new ItsCorridor(this);
+            this.Corridor = new ItsCorridor(
+                ownerPageVM: this,
+                setAddsButtonText: (text) =>
+                {
+                    this.AddsButtonText = text;
+                    this.InvalidateAddsButton();
+                });
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.RoomsideDoors.HalfThicknessOfGridLine.AsInt);

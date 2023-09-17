@@ -179,7 +179,7 @@ internal class CropTile
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
             // ［追加／上書き］ボタン再描画
-            this.RoomsideDoors.AddsButton.Refresh(
+            this.RoomsideDoors.AddsButton.MonitorState(
                 setAddsButtonText: setAddsButtonText);
 
             // ［削除］ボタン再描画
