@@ -21,7 +21,7 @@ internal class ZoomProcessing : IProcessing
     internal ZoomProcessing(
         IItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
-        ItsRoomsideDoors roomsideDoors,
+        ItsMemberNetwork roomsideDoors,
         Zoom oldValue,
         Zoom newValue)
     {
@@ -59,7 +59,7 @@ internal class ZoomProcessing : IProcessing
     /// <summary>内部クラス</summary>
     IItsTwoWayDoor TwoWayDoor { get; }
     ItsGardensideDoor GardensideDoor { get; }
-    ItsRoomsideDoors RoomsideDoors { get; }
+    ItsMemberNetwork RoomsideDoors { get; }
 
     /// <summary>
     ///     変更前の値

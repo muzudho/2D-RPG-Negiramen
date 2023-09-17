@@ -15,7 +15,7 @@ internal class CropCursor
     /// </summary>
     /// <param name="roomsideDoors"></param>
     internal CropCursor(
-        ItsRoomsideDoors roomsideDoors)
+        ItsMemberNetwork roomsideDoors)
     {
         this.RoomsideDoors = roomsideDoors;
     }
@@ -106,5 +106,5 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
-    ItsRoomsideDoors RoomsideDoors { get; }
+    ItsMemberNetwork RoomsideDoors { get; }
 }

@@ -7,7 +7,7 @@
 ///         <item>Mutable</item>
 ///     </list>
 /// </summary>
-internal class Common
+internal class ItsCommon
 {
     // - インターナル・プロパティ
 

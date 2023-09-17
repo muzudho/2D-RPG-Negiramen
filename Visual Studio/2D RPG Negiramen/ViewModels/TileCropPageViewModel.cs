@@ -47,7 +47,7 @@
         /// </summary>
         public TileCropPageViewModel()
         {
-            this.CommonOfHierarchyForSubordinate = new TheHierarchyTileCropPage.Common();
+            this.CommonOfHierarchyForSubordinate = new TheHierarchyTileCropPage.ItsCommon();
             this.CommonOfViewHistoryForSubordinate = new TheViewHistoryTileCropPage.Common();
 
             this.Corridor = new ItsCorridor(
@@ -1537,7 +1537,7 @@
         /// <summary>
         ///     廊下側のドア
         /// </summary>
-        ItsRoomsideDoors RoomsideDoors => this.Corridor.RoomsideDoors;
+        ItsMemberNetwork RoomsideDoors => this.Corridor.MemberNetworkForSubordinate;
         #endregion
 
         /// <summary>
@@ -2287,7 +2287,7 @@
 
         // - プライベート・プロパティ
 
-        TheHierarchyTileCropPage.Common CommonOfHierarchyForSubordinate { get; }
+        TheHierarchyTileCropPage.ItsCommon CommonOfHierarchyForSubordinate { get; }
         TheViewHistoryTileCropPage.Common CommonOfViewHistoryForSubordinate { get; }
 
         // - プライベート・メソッド

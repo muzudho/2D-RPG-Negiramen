@@ -17,7 +17,7 @@ internal class CropTile
     /// </summary>
     /// <param name="roomsideDoors"></param>
     internal CropTile(
-        ItsRoomsideDoors roomsideDoors)
+        ItsMemberNetwork roomsideDoors)
     {
         this.RoomsideDoors = roomsideDoors;
     }
@@ -205,7 +205,7 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
-    ItsRoomsideDoors RoomsideDoors { get; }
+    ItsMemberNetwork RoomsideDoors { get; }
 
     #region プロパティ（保存データ）
     /// <summary>

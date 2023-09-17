@@ -15,7 +15,7 @@ internal class DeletesButton
     /// </summary>
     /// <param name="roomsideDoors"></param>
     internal DeletesButton(
-        ItsRoomsideDoors roomsideDoors)
+        ItsMemberNetwork roomsideDoors)
     {
         this.RoomsideDoors = roomsideDoors;
     }
@@ -113,5 +113,5 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    ItsRoomsideDoors RoomsideDoors { get; }
+    ItsMemberNetwork RoomsideDoors { get; }
 }

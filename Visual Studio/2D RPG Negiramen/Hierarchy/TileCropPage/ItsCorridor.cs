@@ -33,7 +33,7 @@
         /// </summary>
         /// <param name="ownerPageVM">全体ページビュー・モデル</param>
         internal ItsCorridor(
-            TheHierarchyTileCropPage.Common common,
+            TheHierarchyTileCropPage.ItsCommon common,
             TileCropPageViewModel ownerPageVM,
             LazyArgs.Set<string> setAddsButtonText)
         {
@@ -41,9 +41,8 @@
             this.SetAddsButtonText = setAddsButtonText;
 
             this.TwoWayDoor = new ItsTwoWayDoor(this);
-            this.RoomsideDoors = new ItsRoomsideDoors(
-                hierarchyCommon: common,
-                corridor: this);
+            this.MemberNetworkForSubordinate = new ItsMemberNetwork(
+                hierarchyCommon: common);
         }
         #endregion
 
@@ -58,9 +57,9 @@
         public ItsTwoWayDoor TwoWayDoor { get; }
 
         /// <summary>
-        ///     屋内側のドア
+        ///     メンバー・ネットワーク
         /// </summary>
-        public ItsRoomsideDoors RoomsideDoors { get; }
+        public ItsMemberNetwork MemberNetworkForSubordinate { get; }
 
         // - インターナル・メソッド
 
@@ -72,7 +71,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateByLocale() => this.RoomsideDoors.AddsButton.MonitorStateOfAddsButton(
+        internal void InvalidateByLocale() => this.MemberNetworkForSubordinate.AddsButton.MonitorStateOfAddsButton(
             setAddsButtonText: this.SetAddsButtonText);
         #endregion
 
@@ -100,8 +99,8 @@
 
             // 作業画像のサイズ計算
             this.OwnerPageVM.workingImageSize = new SizeInt(
-                width: new WidthInt((int)(this.OwnerPageVM.ZoomAsFloat * this.RoomsideDoors.TilesetSourceImageSize.Width.AsInt)),
-                height: new HeightInt((int)(this.OwnerPageVM.ZoomAsFloat * this.RoomsideDoors.TilesetSourceImageSize.Height.AsInt)));
+                width: new WidthInt((int)(this.OwnerPageVM.ZoomAsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt)),
+                height: new HeightInt((int)(this.OwnerPageVM.ZoomAsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt)));
 
             // 作業画像のリサイズ
             this.OwnerPageVM.TilesetWorkingBitmap = temporaryBitmap.Resize(
@@ -127,8 +126,8 @@
         {
             // ズームが屋外
             this.OwnerPageVM.GridCanvasImageSize = new SizeInt(
-                width: new WidthInt((int)(this.RoomsideDoors.ZoomProperties.AsFloat * this.RoomsideDoors.TilesetSourceImageSize.Width.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt),
-                height: new HeightInt((int)(this.RoomsideDoors.ZoomProperties.AsFloat * this.RoomsideDoors.TilesetSourceImageSize.Height.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt));
+                width: new WidthInt((int)(this.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Width.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt),
+                height: new HeightInt((int)(this.MemberNetworkForSubordinate.ZoomProperties.AsFloat * this.MemberNetworkForSubordinate.TilesetSourceImageSize.Height.AsInt) + 2 * this.OwnerPageVM.HalfThicknessOfGridLineAsInt));
         }
         #endregion
     }

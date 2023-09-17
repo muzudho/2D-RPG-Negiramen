@@ -13,11 +13,11 @@ internal class ZoomProperties
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="roomsideDoors"></param>
+    /// <param name="memberNetwork"></param>
     internal ZoomProperties(
-        ItsRoomsideDoors roomsideDoors)
+        ItsMemberNetwork memberNetwork)
     {
-        this.RoomsideDoors = roomsideDoors;
+        this.RoomsideDoors = memberNetwork;
     }
     #endregion
 
@@ -83,7 +83,7 @@ internal class ZoomProperties
 
     // - プライベート・プロパティ
 
-    ItsRoomsideDoors RoomsideDoors { get; }
+    ItsMemberNetwork RoomsideDoors { get; }
 
     // - プライベート・フィールド
 

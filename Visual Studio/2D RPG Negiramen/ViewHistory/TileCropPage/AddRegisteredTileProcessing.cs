@@ -26,7 +26,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     internal AddRegisteredTileProcessing(
         TheHistoryOfTileCropPage.Common common,
         ItsGardensideDoor gardensideDoor,
-        ItsRoomsideDoors roomsideDoors,
+        ItsMemberNetwork roomsideDoors,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
@@ -176,7 +176,7 @@ internal class AddRegisteredTileProcessing : IProcessing
 
     /// <summary>内部モデル</summary>
     ItsGardensideDoor GardensideDoor { get; }
-    ItsRoomsideDoors RoomsideDoors { get; }
+    ItsMemberNetwork RoomsideDoors { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

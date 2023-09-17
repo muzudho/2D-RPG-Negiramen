@@ -26,8 +26,8 @@ internal class AddsButton
     /// <param name="commonOfHierarchy"></param>
     /// <param name="roomsideDoors"></param>
     internal AddsButton(
-        TheHierarchyTileCropPage.Common commonOfHierarchy,
-        ItsRoomsideDoors roomsideDoors)
+        TheHierarchyTileCropPage.ItsCommon commonOfHierarchy,
+        ItsMemberNetwork roomsideDoors)
     {
         this.CommonOfHierarchy = commonOfHierarchy;
         this.RoomsideDoors = roomsideDoors;
@@ -88,10 +88,10 @@ internal class AddsButton
 
     // - プライベート・プロパティ
 
-    TheHierarchyTileCropPage.Common CommonOfHierarchy { get; }
+    TheHierarchyTileCropPage.ItsCommon CommonOfHierarchy { get; }
 
     /// <summary>
     ///     室内側ドア
     /// </summary>
-    ItsRoomsideDoors RoomsideDoors { get; }
+    ItsMemberNetwork RoomsideDoors { get; }
 }

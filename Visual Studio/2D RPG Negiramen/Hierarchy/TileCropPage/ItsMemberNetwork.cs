@@ -5,25 +5,19 @@ using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 
 /// <summary>
-///     各部屋
+///     メンバー・ネットワーク
 ///     
 ///     <list type="bullet">
-///         <item>各部屋（ページの各要素）を持つ</item>
+///         <item>密結合を認めるオブジェクトのコレクション</item>
 ///     </list>
 /// </summary>
-internal class ItsRoomsideDoors
+internal class ItsMemberNetwork
 {
-    internal ItsRoomsideDoors(
-        TheHierarchyTileCropPage.Common hierarchyCommon,
-        ItsCorridor corridor)
+    internal ItsMemberNetwork(
+        TheHierarchyTileCropPage.ItsCommon hierarchyCommon)
     {
-        this.Corridor = corridor;
-
-        this.HierarchyCommon = hierarchyCommon;
+        this.CommonOfHierarchy = hierarchyCommon;
     }
-
-    /// <summary>廊下</summary>
-    ItsCorridor Corridor { get; }
 
     /// <summary>文化情報</summary>
     internal InnerCultureInfo IndoorCultureInfo
@@ -63,7 +57,7 @@ internal class ItsRoomsideDoors
             if (this.zoomProperties == null)
             {
                 this.zoomProperties = new ZoomProperties(
-                    roomsideDoors: this.Corridor.RoomsideDoors);
+                    memberNetwork: this);
             }
 
             return this.zoomProperties;
@@ -127,7 +121,7 @@ internal class ItsRoomsideDoors
             if (this.addsButton == null)
             {
                 this.addsButton = new AddsButton(
-                    commonOfHierarchy: this.HierarchyCommon,
+                    commonOfHierarchy: this.CommonOfHierarchy,
                     roomsideDoors: this);
             }
 
@@ -165,21 +159,23 @@ internal class ItsRoomsideDoors
     internal ThicknessOfLine HalfThicknessOfGridLine
     {
         get => this.halfThicknessOfGridLine;
-        set
-        {
-            if (this.halfThicknessOfGridLine != value)
-            {
-                this.halfThicknessOfGridLine = value;
-
-                // 屋外を更新
-                this.Corridor.OwnerPageVM.InvalidateHalfThicknessOfGridLineAsInt();
-            }
-        }
     }
+
+    //internal void SetHalfThicknessOfGridLine(ThicknessOfLine value)
+    //{
+    //    if (this.halfThicknessOfGridLine != value)
+    //    {
+    //        this.halfThicknessOfGridLine = value;
+
+    //        // 屋外を更新
+    //        this.Corridor.OwnerPageVM.InvalidateHalfThicknessOfGridLineAsInt();
+    //    }
+    //}
+
     /// <summary>［元画像グリッド］の線の太さの半分</summary>
     ThicknessOfLine halfThicknessOfGridLine = new(1);
 
     // - プライベート・プロパティ
 
-    TheHierarchyTileCropPage.Common HierarchyCommon { get; }
+    TheHierarchyTileCropPage.ItsCommon CommonOfHierarchy { get; }
 }
