@@ -3,8 +3,7 @@
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
-using TheHierarchyTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
-using _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
+using TheTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［ズーム］処理
@@ -20,22 +19,15 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
-
-/* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
-前:
-        TheHistoryTileCropPage.ItsCommon commonOfHierarchy,
-後:
-        ItsCommon commonOfHierarchy,
-*/
         Hierarchy.Pages.TileCrop.ItsCommon commonOfHierarchy,
-        ItsGardensideDoor gardensideDoor,
-        ItsMemberNetwork roomsideDoors,
+        MemberNetworkOfTileCropPage memberNetwork,
+        TheTileCropPage.ItsMemberNetwork memberNetworkForSubordinate,
         Zoom oldValue,
         Zoom newValue)
     {
         this.CommonOfHierarchy = commonOfHierarchy;
-        this.GardensideDoor = gardensideDoor;
-        this.RoomsideDoors = roomsideDoors;
+        this.MemberNetwork = memberNetwork;
+        this.MemberNetworkForSubordinate = memberNetworkForSubordinate;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -47,7 +39,7 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.GardensideDoor.PageVM.ZoomAsFloat = this.NewValue.AsFloat;
+        this.MemberNetwork.PageVM.ZoomAsFloat = this.NewValue.AsFloat;
 
         this.AfterChanged();
     }
@@ -57,24 +49,17 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.GardensideDoor.PageVM.ZoomAsFloat = this.OldValue.AsFloat;
+        this.MemberNetwork.PageVM.ZoomAsFloat = this.OldValue.AsFloat;
 
         this.AfterChanged();
     }
 
     // - プライベート・プロパティ
 
-
-/* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
-前:
-    TheHistoryTileCropPage.ItsCommon CommonOfHierarchy { get; }
-後:
-    ItsCommon CommonOfHierarchy { get; }
-*/
     Hierarchy.Pages.TileCrop.ItsCommon CommonOfHierarchy { get; }
 
-    ItsGardensideDoor GardensideDoor { get; }
-    ItsMemberNetwork RoomsideDoors { get; }
+    MemberNetworkOfTileCropPage MemberNetwork { get; }
+    TheTileCropPage.ItsMemberNetwork MemberNetworkForSubordinate { get; }
 
     /// <summary>
     ///     変更前の値
@@ -96,30 +81,30 @@ internal class ZoomProcessing : IProcessing
         // ［タイルセット作業画像］の更新
         {
             // 画像の再作成
-            this.GardensideDoor.PageVM.RemakeWorkingTilesetImage();
+            this.MemberNetwork.PageVM.RemakeWorkingTilesetImage();
         }
 
         // ［元画像グリッド］の更新
         {
             // キャンバス画像の再作成
-            this.GardensideDoor.PageVM.RemakeGridCanvasImage();
+            this.MemberNetwork.PageVM.RemakeGridCanvasImage();
         }
 
         // ［作業グリッド］の再計算
         {
             // 横幅
-            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileWidth(
+            this.MemberNetworkForSubordinate.CropCursor.RecalculateWorkingGridTileWidth(
                 setValue: (value) =>
                 {
-                    this.GardensideDoor.PageVM.WorkingGridTileWidthAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * value;
+                    this.MemberNetwork.PageVM.WorkingGridTileWidthAsFloat = this.MemberNetwork.PageVM.ZoomAsFloat * value;
                     // this.Owner.Owner.InvalidateWorkingGrid();
                 });
 
             // 縦幅
-            this.RoomsideDoors.CropCursor.RecalculateWorkingGridTileHeight(
+            this.MemberNetworkForSubordinate.CropCursor.RecalculateWorkingGridTileHeight(
                 setValue: (value) =>
                 {
-                    this.GardensideDoor.PageVM.WorkingGridTileHeightAsFloat = this.GardensideDoor.PageVM.ZoomAsFloat * value;
+                    this.MemberNetwork.PageVM.WorkingGridTileHeightAsFloat = this.MemberNetwork.PageVM.ZoomAsFloat * value;
                     // this.Owner.Owner.InvalidateWorkingGrid();
                 });
         }
@@ -132,18 +117,18 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
 
             // サイズ
-            this.RoomsideDoors.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.GardensideDoor.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.GardensideDoor.PageVM.ZoomAsFloat * this.GardensideDoor.PageVM.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.MemberNetworkForSubordinate.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.MemberNetwork.PageVM.ZoomAsFloat * this.MemberNetwork.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
+            this.MemberNetwork.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.MemberNetwork.PageVM.ZoomAsFloat * this.MemberNetwork.PageVM.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.GardensideDoor.TilesetSettingsVM.TileRecordVisuallyList)
+        foreach (var registeredTileVM in this.MemberNetwork.PageVM.TilesetSettingsVM.TileRecordVisuallyList)
         {
             // ズーム
-            registeredTileVM.Zoom = this.RoomsideDoors.ZoomProperties.Value;
+            registeredTileVM.Zoom = this.MemberNetworkForSubordinate.ZoomProperties.Value;
         }
 
         // 変更通知
-        this.GardensideDoor.PageVM.InvalidateForHistory();
+        this.MemberNetwork.PageVM.InvalidateForHistory();
     }
 }

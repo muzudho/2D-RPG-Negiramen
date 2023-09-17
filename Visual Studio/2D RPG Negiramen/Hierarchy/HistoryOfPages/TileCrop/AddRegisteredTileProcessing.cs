@@ -6,7 +6,7 @@ using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using _2D_RPG_Negiramen.Models.Visually;
 using TheHistoryOfTileCropPage = _2D_RPG_Negiramen.Hierarchy.HistoryOfPages.TileCrop;
-using _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
+using TheTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［登録タイル追加］処理
@@ -24,18 +24,18 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         TheHistoryOfTileCropPage.Common commonOfHierarchy,
-        ItsGardensideDoor gardensideDoor,
-        ItsMemberNetwork roomsideDoors,
+        MemberNetworkOfTileCropPage memberNetwork,
+        TheTileCropPage.ItsMemberNetwork roomsideDoors,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
         this.CommonOfHierarchy = commonOfHierarchy;
-        this.GardensideDoor = gardensideDoor;
+        this.MemberNetwork = memberNetwork;
         this.SetAddsButtonText = (text) =>
         {
-            this.GardensideDoor.PageVM.AddsButtonText = text;
-            this.GardensideDoor.PageVM.InvalidateAddsButton();
+            this.MemberNetwork.PageVM.AddsButtonText = text;
+            this.MemberNetwork.PageVM.InvalidateAddsButton();
         };
 
         this.RoomsideDoors = roomsideDoors;
@@ -61,17 +61,17 @@ internal class AddRegisteredTileProcessing : IProcessing
             setAddsButtonText: this.SetAddsButtonText,
             onDeleteButtonEnableChanged: () =>
             {
-                this.GardensideDoor.PageVM.InvalidateDeletesButton();
+                this.MemberNetwork.PageVM.InvalidateDeletesButton();
             });
 
         // ビューの再描画（タイルＩｄ更新）
-        this.GardensideDoor.PageVM.InvalidateTileIdChange();
+        this.MemberNetwork.PageVM.InvalidateTileIdChange();
 
         // リストに登録済みか確認
-        if (!this.GardensideDoor.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
+        if (!this.MemberNetwork.PageVM.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
         {
             // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.GardensideDoor.TilesetSettingsVM.AddTileVisually(
+            this.MemberNetwork.PageVM.TilesetSettingsVM.AddTileVisually(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 zoom: Zoom.IdentityElement,
@@ -84,7 +84,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         //
 
         // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.GardensideDoor.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
+        if (this.MemberNetwork.PageVM.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
         {
             TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
@@ -105,7 +105,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.GardensideDoor.TilesetSettingsVM.SaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
+        if (!this.MemberNetwork.PageVM.TilesetSettingsVM.SaveCsv(this.MemberNetwork.PageVM.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -114,7 +114,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.GardensideDoor.PageVM.RefreshForTileAdd();
+        this.MemberNetwork.PageVM.RefreshForTileAdd();
     }
     #endregion
 
@@ -131,14 +131,14 @@ internal class AddRegisteredTileProcessing : IProcessing
             setAddsButtonText: this.SetAddsButtonText,
             onDeleteButtonEnableChanged: () =>
             {
-                this.GardensideDoor.PageVM.InvalidateDeletesButton();
+                this.MemberNetwork.PageVM.InvalidateDeletesButton();
             });
 
         // ビューの再描画（タイルＩｄ更新）
-        this.GardensideDoor.PageVM.InvalidateTileIdChange();
+        this.MemberNetwork.PageVM.InvalidateTileIdChange();
 
         // リストから削除
-        if (!this.GardensideDoor.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
+        if (!this.MemberNetwork.PageVM.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
         {
             // TODO 成功しなかったら異常
             throw new Exception();
@@ -148,7 +148,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (!this.GardensideDoor.TilesetSettingsVM.SaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
+        if (!this.MemberNetwork.PageVM.TilesetSettingsVM.SaveCsv(this.MemberNetwork.PageVM.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
@@ -157,7 +157,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.RoomsideDoors.DeletesButton.Refresh(
             onEnableChanged: () =>
             {
-                this.GardensideDoor.PageVM.InvalidateDeletesButton();
+                this.MemberNetwork.PageVM.InvalidateDeletesButton();
             });
 
         //
@@ -165,7 +165,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         // ====================
         //
         //this.coloredMapGraphicsView1.Invalidate();
-        this.GardensideDoor.PageVM.RefreshForTileAdd();
+        this.MemberNetwork.PageVM.RefreshForTileAdd();
     }
     #endregion
 
@@ -173,9 +173,9 @@ internal class AddRegisteredTileProcessing : IProcessing
 
     TheHistoryOfTileCropPage.Common CommonOfHierarchy { get; }
 
-    /// <summary>内部モデル</summary>
-    ItsGardensideDoor GardensideDoor { get; }
-    ItsMemberNetwork RoomsideDoors { get; }
+    /// <summary>メンバー・ネットワーク</summary>
+    MemberNetworkOfTileCropPage MemberNetwork { get; }
+    TheTileCropPage.ItsMemberNetwork RoomsideDoors { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

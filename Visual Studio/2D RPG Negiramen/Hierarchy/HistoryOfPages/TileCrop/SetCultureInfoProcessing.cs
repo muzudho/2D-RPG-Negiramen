@@ -2,7 +2,6 @@
 
 using _2D_RPG_Negiramen.Models.History;
 using System.Globalization;
-using _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［文化情報設定］処理
@@ -15,11 +14,11 @@ internal class SetCultureInfoProcessing : IProcessing
     ///     生成
     /// </summary>
     internal SetCultureInfoProcessing(
-        ItsGardensideDoor gardensideDoor,
+        MemberNetworkOfTileCropPage memberNetwork,
         CultureInfo oldValue,
         CultureInfo newValue)
     {
-        this.GardensideDoor = gardensideDoor;
+        this.MemberNetwork = memberNetwork;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -29,7 +28,7 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Do()
     {
-        this.GardensideDoor.PageVM.SelectedCultureInfo = this.NewValue;
+        this.MemberNetwork.PageVM.SelectedCultureInfo = this.NewValue;
     }
 
     /// <summary>
@@ -37,13 +36,13 @@ internal class SetCultureInfoProcessing : IProcessing
     /// </summary>
     public void Undo()
     {
-        this.GardensideDoor.PageVM.SelectedCultureInfo = this.OldValue;
+        this.MemberNetwork.PageVM.SelectedCultureInfo = this.OldValue;
     }
 
     // - プライベート・プロパティ
 
-    /// <summary>内部モデル</summary>
-    ItsGardensideDoor GardensideDoor { get; }
+    /// <summary>メンバー・ネットワーク</summary>
+    MemberNetworkOfTileCropPage MemberNetwork { get; }
 
     CultureInfo OldValue { get; }
 

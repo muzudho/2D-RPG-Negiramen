@@ -3,7 +3,6 @@
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.History;
 using System.Diagnostics;
-using _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［登録タイル削除］処理
@@ -15,10 +14,10 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// </summary>
     /// <param name="owner"></param>
     internal RemoveRegisteredTileProcessing(
-        ItsGardensideDoor gardensideDoor,
+        MemberNetworkOfTileCropPage memberNetwork,
         TileIdOrEmpty tileIdOrEmpty)
     {
-        this.GardensideDoor = gardensideDoor;
+        this.MemberNetwork = memberNetwork;
         this.TileIdOrEmpty = tileIdOrEmpty;
     }
 
@@ -30,12 +29,12 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルを論理削除
         //
-        if (this.GardensideDoor.TilesetSettingsVM.DeleteLogical(
+        if (this.MemberNetwork.PageVM.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.GardensideDoor.PageVM.InvalidateTilesetSettingsVM();
+            this.MemberNetwork.PageVM.InvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"［タイル削除］ 　Do　タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -44,7 +43,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.GardensideDoor.TilesetSettingsVM.SaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
+        if (this.MemberNetwork.PageVM.TilesetSettingsVM.SaveCsv(this.MemberNetwork.PageVM.TilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -57,7 +56,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.GardensideDoor.PageVM.RefreshForTileAdd();
+        this.MemberNetwork.PageVM.RefreshForTileAdd();
     }
 
     public void Undo()
@@ -68,12 +67,12 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         //
         //      - 選択中のタイルの論理削除の取消
         //
-        if (this.GardensideDoor.TilesetSettingsVM.UndeleteLogical(
+        if (this.MemberNetwork.PageVM.TilesetSettingsVM.UndeleteLogical(
             // 現在選択中のタイルのＩｄ
             id: this.TileIdOrEmpty))
         {
             // タイルセット設定ビューモデルに変更あり
-            this.GardensideDoor.PageVM.InvalidateTilesetSettingsVM();
+            this.MemberNetwork.PageVM.InvalidateTilesetSettingsVM();
         }
 
         Trace.WriteLine($"［タイル削除］　Undo　タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
@@ -82,7 +81,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの保存
         // ==================
         //
-        if (this.GardensideDoor.TilesetSettingsVM.SaveCsv(this.GardensideDoor.PageVM.TilesetDatatableFileLocation))
+        if (this.MemberNetwork.PageVM.TilesetSettingsVM.SaveCsv(this.MemberNetwork.PageVM.TilesetDatatableFileLocation))
         {
             // 保存成功
         }
@@ -95,13 +94,13 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップの再描画
         // ====================
         //
-        this.GardensideDoor.PageVM.RefreshForTileAdd();
+        this.MemberNetwork.PageVM.RefreshForTileAdd();
     }
 
     // - プライベート・プロパティ
 
-    /// <summary>内部クラス</summary>
-    ItsGardensideDoor GardensideDoor { get; }
+    /// <summary>メンバー・ネットワーク</summary>
+    MemberNetworkOfTileCropPage MemberNetwork { get; }
 
     /// <summary>
     ///     ［タイル］のＩｄ
