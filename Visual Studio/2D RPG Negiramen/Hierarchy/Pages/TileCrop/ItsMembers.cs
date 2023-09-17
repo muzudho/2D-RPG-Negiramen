@@ -248,7 +248,7 @@ internal class ItsMembers
     /// <summary>
     ///     追加ボタンのラベル算出
     /// </summary>
-    internal string CalculateLabelOfAddsButton()
+    internal string GetLabelOfAddsButton()
     {
         var addsButtonState = this.GetStateOfAddsButton();
 

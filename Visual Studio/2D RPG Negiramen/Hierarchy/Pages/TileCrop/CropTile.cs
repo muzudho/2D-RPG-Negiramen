@@ -169,17 +169,17 @@ internal class CropTile
         TileTitle? tileTitle = null,
         LogicalDelete? logicalDelete = null)
     {
-        var currentTileVisually = RecordVisually;
+        var currentTileVisually = this.RecordVisually;
 
         // タイルＩｄ
         if (!(tileId is null) && currentTileVisually.Id != tileId)
         {
-            RecordVisually.Id = tileId;
+            this.RecordVisually.Id = tileId;
 
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
             // ［追加／上書き］ボタン再描画
-            setAddsButtonText(this.Colleagues.CalculateLabelOfAddsButton());
+            setAddsButtonText(this.Colleagues.GetLabelOfAddsButton());
 
             // ［削除］ボタン再描画
             this.Colleagues.DeletesButtonRefreshEnabled(
@@ -189,13 +189,13 @@ internal class CropTile
         // タイル・タイトル
         if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
         {
-            RecordVisually.Title = tileTitle;
+            this.RecordVisually.Title = tileTitle;
         }
 
         // 論理削除フラグ
         if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
         {
-            RecordVisually.LogicalDelete = logicalDelete;
+            this.RecordVisually.LogicalDelete = logicalDelete;
         }
 
         // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
