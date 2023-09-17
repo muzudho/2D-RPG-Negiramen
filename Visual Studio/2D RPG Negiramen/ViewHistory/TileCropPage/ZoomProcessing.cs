@@ -4,6 +4,7 @@ using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
+using TheHistoryTileCropPage = _2D_RPG_Negiramen.Hierarchy.TileCropPage;
 
 /// <summary>
 ///     ［ズーム］処理
@@ -19,12 +20,14 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
+        TheHistoryTileCropPage.ItsCommon commonOfHierarchy,
         IItsTwoWayDoor twoWayDoor,
         ItsGardensideDoor gardensideDoor,
         ItsMemberNetwork roomsideDoors,
         Zoom oldValue,
         Zoom newValue)
     {
+        this.CommonOfHierarchy = commonOfHierarchy;
         this.TwoWayDoor = twoWayDoor;
         this.GardensideDoor = gardensideDoor;
         this.RoomsideDoors = roomsideDoors;
@@ -55,6 +58,8 @@ internal class ZoomProcessing : IProcessing
     }
 
     // - プライベート・プロパティ
+
+    TheHistoryTileCropPage.ItsCommon CommonOfHierarchy { get; }
 
     /// <summary>内部クラス</summary>
     IItsTwoWayDoor TwoWayDoor { get; }

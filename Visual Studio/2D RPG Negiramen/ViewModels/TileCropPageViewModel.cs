@@ -177,11 +177,12 @@
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new ZoomProcessing(
-                        this.Corridor,
-                        this.GardensideDoor,    // 権限を委譲
-                        this.RoomsideDoors,
-                        oldValue,
-                        newValue));
+                        commonOfHierarchy: this.CommonOfHierarchyForSubordinate,
+                        twoWayDoor: this.Corridor,
+                        gardensideDoor: this.GardensideDoor,    // 権限を委譲
+                        roomsideDoors: this.RoomsideDoors,
+                        oldValue: oldValue,
+                        newValue: newValue));
                 });
         }
 
@@ -1941,7 +1942,7 @@
                 // 追加でも、上書きでも、同じ処理でいける
                 // ［登録タイル追加］処理
                 App.History.Do(new AddRegisteredTileProcessing(
-                    common: this.CommonOfViewHistoryForSubordinate,
+                    commonOfHierarchy: this.CommonOfViewHistoryForSubordinate,
                     gardensideDoor: this.GardensideDoor,
                     roomsideDoors: this.RoomsideDoors,
                     croppedCursorVisually: targetTile,
@@ -1999,7 +2000,7 @@
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
             App.History.Do(new AddRegisteredTileProcessing(
-                common: this.CommonOfViewHistoryForSubordinate,
+                commonOfHierarchy: this.CommonOfViewHistoryForSubordinate,
                 // 上位の権限を委譲する
                 gardensideDoor: this.GardensideDoor,
                 roomsideDoors: this.RoomsideDoors,
