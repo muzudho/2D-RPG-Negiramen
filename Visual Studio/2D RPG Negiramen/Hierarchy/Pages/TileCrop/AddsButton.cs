@@ -24,10 +24,8 @@ internal class AddsButton
     /// <param name="commonOfHierarchy"></param>
     /// <param name="colleagues"></param>
     internal AddsButton(
-        ItsCommon commonOfHierarchy,
         ItsMemberNetwork colleagues)
     {
-        CommonOfHierarchy = commonOfHierarchy;
         this.Colleagues = colleagues;
     }
     #endregion
@@ -41,10 +39,10 @@ internal class AddsButton
         LazyArgs.Set<string> setAddsButtonText)
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-        if (this.CommonOfHierarchy.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        if (this.Colleagues.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
         {
             // 合同のときは「交差中」とは表示しない
-            if (!CommonOfHierarchy.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            if (!this.Colleagues.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
@@ -85,8 +83,6 @@ internal class AddsButton
     }
 
     // - プライベート・プロパティ
-
-    ItsCommon CommonOfHierarchy { get; }
 
     /// <summary>
     ///     室内側ドア

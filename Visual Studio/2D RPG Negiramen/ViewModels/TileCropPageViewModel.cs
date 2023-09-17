@@ -45,16 +45,13 @@
         {
             this.Colleagues = new TheHierarchy.MemberNetworkOfTileCropPage(this);
 
-            this.CommonOfHierarchyForSubordinate = new TheTileCropPage.ItsCommon();
-
             this.SetAddsButtonText = (text) =>
             {
                 this.AddsButtonText = text;
                 this.InvalidateAddsButton();
             };
 
-            this.Subordinates = new TheTileCropPage.ItsMemberNetwork(
-                commonOfHierarchy: this.CommonOfHierarchyForSubordinate);
+            this.Subordinates = new TheTileCropPage.ItsMemberNetwork();
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.Subordinates.HalfThicknessOfGridLine.AsInt);
@@ -172,7 +169,6 @@
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new TheHistoryTileCropPage.ZoomProcessing(
-                        commonOfHierarchy: this.CommonOfHierarchyForSubordinate,
                         colleagues: this.Colleagues,    // 権限を委譲
                         subordinates: this.Subordinates,
                         oldValue: oldValue,
@@ -2184,14 +2180,14 @@
             if (this.CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
-                this.CommonOfHierarchyForSubordinate.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
-                this.CommonOfHierarchyForSubordinate.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
+                this.Subordinates.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.Subordinates.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
                 return;
             }
 
             // 軽くはない処理
-            this.CommonOfHierarchyForSubordinate.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
-            this.CommonOfHierarchyForSubordinate.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
+            this.Subordinates.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
+            this.Subordinates.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
         }
         #endregion
 
@@ -2312,10 +2308,6 @@
         /// </summary>
         Models.Geometric.HeightFloat croppedCursorPointedTileWorkingHeight = Models.Geometric.HeightFloat.Zero;
         #endregion
-
-        // - プライベート・プロパティ
-
-        Hierarchy.Pages.TileCrop.ItsCommon CommonOfHierarchyForSubordinate { get; }
 
         // - プライベート・メソッド
 

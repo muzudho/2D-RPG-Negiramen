@@ -12,11 +12,34 @@ using TheGeometric = Models.Geometric;
 /// </summary>
 internal class ItsMemberNetwork
 {
-    internal ItsMemberNetwork(
-        ItsCommon commonOfHierarchy)
+    // - その他
+
+    #region その他（生成）
+    /// <summary>
+    ///     生成
+    /// </summary>
+    internal ItsMemberNetwork()
     {
-        CommonOfHierarchy = commonOfHierarchy;
     }
+    #endregion
+
+    // - インターナル・プロパティ
+
+    #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
+    /// <summary>
+    ///     切抜きカーソルと、既存タイルが交差しているか？
+    /// </summary>
+    /// <returns>そうだ</returns>
+    internal bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
+    #endregion
+
+    #region プロパティ（切抜きカーソルと、既存タイルは合同か？）
+    /// <summary>
+    ///     切抜きカーソルと、既存タイルは合同か？
+    /// </summary>
+    /// <returns>そうだ</returns>
+    internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
+    #endregion
 
     /// <summary>文化情報</summary>
     internal InnerCultureInfo IndoorCultureInfo
@@ -120,7 +143,6 @@ internal class ItsMemberNetwork
             if (addsButton == null)
             {
                 addsButton = new AddsButton(
-                    commonOfHierarchy: CommonOfHierarchy,
                     colleagues: this);
             }
 
@@ -173,15 +195,4 @@ internal class ItsMemberNetwork
 
     /// <summary>［元画像グリッド］の線の太さの半分</summary>
     ThicknessOfLine halfThicknessOfGridLine = new(1);
-
-    // - プライベート・プロパティ
-
-
-    /* プロジェクト '2D RPG Negiramen (net7.0-maccatalyst)' からのマージされていない変更
-    前:
-        TheHierarchyTileCropPage.ItsCommon CommonOfHierarchy { get; }
-    後:
-        ItsCommon CommonOfHierarchy { get; }
-    */
-    ItsCommon CommonOfHierarchy { get; }
 }

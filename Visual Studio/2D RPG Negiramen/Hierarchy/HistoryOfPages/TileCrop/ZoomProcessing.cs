@@ -19,13 +19,11 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
-        Hierarchy.Pages.TileCrop.ItsCommon commonOfHierarchy,
         MemberNetworkOfTileCropPage colleagues,
         TheTileCropPage.ItsMemberNetwork subordinates,
         Zoom oldValue,
         Zoom newValue)
     {
-        this.CommonOfHierarchy = commonOfHierarchy;
         this.Colleagues = colleagues;
         this.Subordinates = subordinates;
         this.OldValue = oldValue;
@@ -55,8 +53,6 @@ internal class ZoomProcessing : IProcessing
     }
 
     // - プライベート・プロパティ
-
-    Hierarchy.Pages.TileCrop.ItsCommon CommonOfHierarchy { get; }
 
     MemberNetworkOfTileCropPage Colleagues { get; }
     TheTileCropPage.ItsMemberNetwork Subordinates { get; }
