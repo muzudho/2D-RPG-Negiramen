@@ -47,11 +47,11 @@
         /// </summary>
         public TileCropPageViewModel()
         {
-            this.HierarchyCommonForSubordinate = new TheHierarchyTileCropPage.Common();
-            this.ViewHistoryCommonForSubordinate = new TheViewHistoryTileCropPage.Common();
+            this.CommonOfHierarchyForSubordinate = new TheHierarchyTileCropPage.Common();
+            this.CommonOfViewHistoryForSubordinate = new TheViewHistoryTileCropPage.Common();
 
             this.Corridor = new ItsCorridor(
-                common: this.HierarchyCommonForSubordinate,
+                common: this.CommonOfHierarchyForSubordinate,
                 ownerPageVM: this,
                 setAddsButtonText: (text) =>
                 {
@@ -1941,7 +1941,7 @@
                 // 追加でも、上書きでも、同じ処理でいける
                 // ［登録タイル追加］処理
                 App.History.Do(new AddRegisteredTileProcessing(
-                    common: this.ViewHistoryCommonForSubordinate,
+                    common: this.CommonOfViewHistoryForSubordinate,
                     gardensideDoor: this.GardensideDoor,
                     roomsideDoors: this.RoomsideDoors,
                     croppedCursorVisually: targetTile,
@@ -1999,7 +1999,7 @@
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
             App.History.Do(new AddRegisteredTileProcessing(
-                common: this.ViewHistoryCommonForSubordinate,
+                common: this.CommonOfViewHistoryForSubordinate,
                 // 上位の権限を委譲する
                 gardensideDoor: this.GardensideDoor,
                 roomsideDoors: this.RoomsideDoors,
@@ -2186,14 +2186,14 @@
             if (this.CroppedCursorPointedTileSourceRect == RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
-                this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
-                this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
+                this.CommonOfHierarchyForSubordinate.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
+                this.CommonOfHierarchyForSubordinate.IsCongruenceBetweenCroppedCursorAndRegisteredTile = false;
                 return;
             }
 
             // 軽くはない処理
-            this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
-            this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
+            this.CommonOfHierarchyForSubordinate.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.CroppedCursorPointedTileSourceRect);
+            this.CommonOfHierarchyForSubordinate.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.CroppedCursorPointedTileSourceRect);
 
             // Trace.WriteLine($"[TileCropPageViewModel.cs RecalculateBetweenCroppedCursorAndRegisteredTile] HasIntersectionBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile}, IsCongruenceBetweenCroppedCursorAndRegisteredTile: {this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile}");
         }
@@ -2287,8 +2287,8 @@
 
         // - プライベート・プロパティ
 
-        TheHierarchyTileCropPage.Common HierarchyCommonForSubordinate { get; }
-        TheViewHistoryTileCropPage.Common ViewHistoryCommonForSubordinate { get; }
+        TheHierarchyTileCropPage.Common CommonOfHierarchyForSubordinate { get; }
+        TheViewHistoryTileCropPage.Common CommonOfViewHistoryForSubordinate { get; }
 
         // - プライベート・メソッド
 

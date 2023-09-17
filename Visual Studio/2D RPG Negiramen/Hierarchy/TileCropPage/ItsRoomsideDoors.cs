@@ -127,7 +127,7 @@ internal class ItsRoomsideDoors
             if (this.addsButton == null)
             {
                 this.addsButton = new AddsButton(
-                    common: this.HierarchyCommon,
+                    commonOfHierarchy: this.HierarchyCommon,
                     roomsideDoors: this);
             }
 
@@ -150,22 +150,6 @@ internal class ItsRoomsideDoors
         }
     }
     DeletesButton deletesButton;
-
-    #region プロパティ（切抜きカーソルと、既存タイルが交差しているか？）
-    /// <summary>
-    ///     切抜きカーソルと、既存タイルが交差しているか？
-    /// </summary>
-    /// <returns>そうだ</returns>
-    public bool HasIntersectionBetweenCroppedCursorAndRegisteredTile { get; set; }
-    #endregion
-
-    #region プロパティ（切抜きカーソルと、既存タイルは合同か？）
-    /// <summary>
-    ///     切抜きカーソルと、既存タイルは合同か？
-    /// </summary>
-    /// <returns>そうだ</returns>
-    public bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
-    #endregion
 
     #region プロパティ（［タイルセット元画像］　関連）
     /// <summary>

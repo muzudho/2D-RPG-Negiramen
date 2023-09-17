@@ -23,13 +23,13 @@ internal class AddsButton
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="common"></param>
+    /// <param name="commonOfHierarchy"></param>
     /// <param name="roomsideDoors"></param>
     internal AddsButton(
-        TheHierarchyTileCropPage.Common common,
+        TheHierarchyTileCropPage.Common commonOfHierarchy,
         ItsRoomsideDoors roomsideDoors)
     {
-        this.Common = common;
+        this.CommonOfHierarchy = commonOfHierarchy;
         this.RoomsideDoors = roomsideDoors;
     }
     #endregion
@@ -43,10 +43,10 @@ internal class AddsButton
         LazyArgs.Set<string> setAddsButtonText)
     {
         // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-        if (this.RoomsideDoors.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        if (this.CommonOfHierarchy.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
         {
             // 合同のときは「交差中」とは表示しない
-            if (!this.RoomsideDoors.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            if (!this.CommonOfHierarchy.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
             {
                 // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
 
@@ -88,7 +88,7 @@ internal class AddsButton
 
     // - プライベート・プロパティ
 
-    TheHierarchyTileCropPage.Common Common { get; }
+    TheHierarchyTileCropPage.Common CommonOfHierarchy { get; }
 
     /// <summary>
     ///     室内側ドア
