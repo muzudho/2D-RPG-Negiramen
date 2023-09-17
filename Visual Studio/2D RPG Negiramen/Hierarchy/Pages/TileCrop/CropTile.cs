@@ -17,7 +17,7 @@ internal class CropTile
     /// </summary>
     /// <param name="colleagues"></param>
     internal CropTile(
-        ItsMemberNetwork colleagues)
+        ItsMembers colleagues)
     {
         this.Colleagues = colleagues;
     }
@@ -179,7 +179,7 @@ internal class CropTile
             // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
             // ［追加／上書き］ボタン再描画
-            Colleagues.AddsButton.MonitorStateOfAddsButton(
+            this.Colleagues.CalculateLabelOfAddsButton(
                 setAddsButtonText: setAddsButtonText);
 
             // ［削除］ボタン再描画
@@ -205,7 +205,7 @@ internal class CropTile
 
     // - プライベート・プロパティ
 
-    ItsMemberNetwork Colleagues { get; }
+    ItsMembers Colleagues { get; }
 
     #region プロパティ（保存データ）
     /// <summary>

@@ -15,7 +15,7 @@ internal class DeletesButton
     /// </summary>
     /// <param name="colleagues"></param>
     internal DeletesButton(
-        ItsMemberNetwork colleagues)
+        ItsMembers colleagues)
     {
         this.Colleagues = colleagues;
     }
@@ -113,5 +113,5 @@ internal class DeletesButton
 
     // - プライベート・プロパティ
 
-    ItsMemberNetwork Colleagues { get; }
+    ItsMembers Colleagues { get; }
 }

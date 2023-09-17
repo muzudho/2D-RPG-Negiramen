@@ -5,9 +5,9 @@ using _2D_RPG_Negiramen.ViewModels;
 /// <summary>
 ///     メンバー・ネットワーク
 /// </summary>
-internal class MemberNetworkOfTileCropPage
+internal class MembersOfTileCropPage
 {
-    internal MemberNetworkOfTileCropPage(TileCropPageViewModel tileCropPageViewModel)
+    internal MembersOfTileCropPage(TileCropPageViewModel tileCropPageViewModel)
     {
         PageVM = tileCropPageViewModel;
     }

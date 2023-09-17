@@ -15,7 +15,7 @@ internal class CropCursor
     /// </summary>
     /// <param name="colleagues"></param>
     internal CropCursor(
-        ItsMemberNetwork colleagues)
+        ItsMembers colleagues)
     {
         this.Colleagues = colleagues;
     }
@@ -106,5 +106,5 @@ internal class CropCursor
 
     // - プライベート・プロパティ
 
-    ItsMemberNetwork Colleagues { get; }
+    ItsMembers Colleagues { get; }
 }

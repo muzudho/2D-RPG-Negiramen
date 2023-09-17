@@ -19,8 +19,8 @@ internal class ZoomProcessing : IProcessing
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
-        MemberNetworkOfTileCropPage colleagues,
-        TheTileCropPage.ItsMemberNetwork subordinates,
+        MembersOfTileCropPage colleagues,
+        TheTileCropPage.ItsMembers subordinates,
         Zoom oldValue,
         Zoom newValue)
     {
@@ -54,8 +54,8 @@ internal class ZoomProcessing : IProcessing
 
     // - プライベート・プロパティ
 
-    MemberNetworkOfTileCropPage Colleagues { get; }
-    TheTileCropPage.ItsMemberNetwork Subordinates { get; }
+    MembersOfTileCropPage Colleagues { get; }
+    TheTileCropPage.ItsMembers Subordinates { get; }
 
     /// <summary>
     ///     変更前の値

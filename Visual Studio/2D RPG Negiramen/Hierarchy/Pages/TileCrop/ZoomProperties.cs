@@ -15,7 +15,7 @@ internal class ZoomProperties
     /// </summary>
     /// <param name="memberNetwork"></param>
     internal ZoomProperties(
-        ItsMemberNetwork memberNetwork)
+        ItsMembers memberNetwork)
     {
         this.Membernetwork = memberNetwork;
     }
@@ -83,7 +83,7 @@ internal class ZoomProperties
 
     // - プライベート・プロパティ
 
-    ItsMemberNetwork Membernetwork { get; }
+    ItsMembers Membernetwork { get; }
 
     // - プライベート・フィールド
 

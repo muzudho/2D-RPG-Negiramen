@@ -23,8 +23,8 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="tileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
-        MemberNetworkOfTileCropPage colleagues,
-        TheTileCropPage.ItsMemberNetwork subordinates,
+        MembersOfTileCropPage colleagues,
+        TheTileCropPage.ItsMembers subordinates,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
@@ -170,8 +170,8 @@ internal class AddRegisteredTileProcessing : IProcessing
     // - プライベート・プロパティ
 
     /// <summary>メンバー・ネットワーク</summary>
-    MemberNetworkOfTileCropPage Colleagues { get; }
-    TheTileCropPage.ItsMemberNetwork Subordinates { get; }
+    MembersOfTileCropPage Colleagues { get; }
+    TheTileCropPage.ItsMembers Subordinates { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

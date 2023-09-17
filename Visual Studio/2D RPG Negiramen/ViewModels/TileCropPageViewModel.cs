@@ -43,7 +43,7 @@
         /// </summary>
         public TileCropPageViewModel()
         {
-            this.Colleagues = new TheHierarchy.MemberNetworkOfTileCropPage(this);
+            this.Colleagues = new TheHierarchy.MembersOfTileCropPage(this);
 
             this.SetAddsButtonText = (text) =>
             {
@@ -51,7 +51,7 @@
                 this.InvalidateAddsButton();
             };
 
-            this.Subordinates = new TheTileCropPage.ItsMemberNetwork();
+            this.Subordinates = new TheTileCropPage.ItsMembers();
 
             // 循環参照しないように注意
             this.HalfThicknessOfTileCursorLine = new Models.ThicknessOfLine(2 * this.Subordinates.HalfThicknessOfGridLine.AsInt);
@@ -1520,14 +1520,14 @@
         /// <summary>
         ///     メンバー・ネットワーク
         /// </summary>
-        internal TheHierarchy.MemberNetworkOfTileCropPage Colleagues { get; }
+        internal TheHierarchy.MembersOfTileCropPage Colleagues { get; }
 
         internal LazyArgs.Set<string> SetAddsButtonText { get; }
 
         /// <summary>
         ///     メンバー・ネットワーク
         /// </summary>
-        internal TheTileCropPage.ItsMemberNetwork Subordinates { get; }
+        internal TheTileCropPage.ItsMembers Subordinates { get; }
 
         // - インターナル変更通知メソッド
 
@@ -1687,7 +1687,7 @@
         ///         <item>動的にテキストを変えている部分に対応するため</item>
         ///     </list>
         /// </summary>
-        internal void InvalidateByLocale() => this.Subordinates.AddsButton.MonitorStateOfAddsButton(
+        internal void InvalidateByLocale() => this.Subordinates.CalculateLabelOfAddsButton(
             setAddsButtonText: this.SetAddsButtonText);
         #endregion
 
@@ -2149,7 +2149,7 @@
                 includeLogicalDelete: true);
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
-            this.Subordinates.AddsButton.MonitorStateOfAddsButton(
+            this.Subordinates.CalculateLabelOfAddsButton(
                 setAddsButtonText: this.SetAddsButtonText);
 
             // （切抜きカーソル更新後）［削除］ボタン活性化

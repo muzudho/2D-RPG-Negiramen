@@ -1,5 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
+using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
 using TheGeometric = Models.Geometric;
 
@@ -10,7 +11,7 @@ using TheGeometric = Models.Geometric;
 ///         <item>密結合を認めるオブジェクトのコレクション</item>
 ///     </list>
 /// </summary>
-internal class ItsMemberNetwork
+internal class ItsMembers
 {
     // - その他
 
@@ -18,7 +19,7 @@ internal class ItsMemberNetwork
     /// <summary>
     ///     生成
     /// </summary>
-    internal ItsMemberNetwork()
+    internal ItsMembers()
     {
     }
     #endregion
@@ -41,6 +42,7 @@ internal class ItsMemberNetwork
     internal bool IsCongruenceBetweenCroppedCursorAndRegisteredTile { get; set; }
     #endregion
 
+    #region プロパティ（文化情報）
     /// <summary>文化情報</summary>
     internal InnerCultureInfo IndoorCultureInfo
     {
@@ -55,7 +57,9 @@ internal class ItsMemberNetwork
         }
     }
     InnerCultureInfo indoorCultureInfo;
+    #endregion
 
+    #region プロパティ（ポインティング・デバイス）
     /// <summary>ポインティング・デバイス</summary>
     internal InnerPointingDevice PointingDevice
     {
@@ -70,7 +74,9 @@ internal class ItsMemberNetwork
         }
     }
     InnerPointingDevice pointingDevice;
+    #endregion
 
+    #region プロパティ（ズーム）
     /// <summary>ズーム</summary>
     internal ZoomProperties ZoomProperties
     {
@@ -86,7 +92,9 @@ internal class ItsMemberNetwork
         }
     }
     ZoomProperties zoomProperties;
+    #endregion
 
+    #region プロパティ（グリッド単位）
     /// <summary>グリッド単位</summary>
     internal GridUnit GridUnit
     {
@@ -101,7 +109,9 @@ internal class ItsMemberNetwork
         }
     }
     GridUnit gridUnit;
+    #endregion
 
+    #region プロパティ（切抜きカーソル）
     /// <summary>切抜きカーソル</summary>
     internal CropCursor CropCursor
     {
@@ -116,6 +126,7 @@ internal class ItsMemberNetwork
         }
     }
     CropCursor cropCursor;
+    #endregion
 
     #region プロパティ（切抜きカーソルが指すタイル）
     /// <summary>切抜きカーソルが指すタイル</summary>
@@ -135,22 +146,7 @@ internal class ItsMemberNetwork
     CropTile cropTile;
     #endregion
 
-    /// <summary>追加ボタン</summary>
-    internal AddsButton AddsButton
-    {
-        get
-        {
-            if (addsButton == null)
-            {
-                addsButton = new AddsButton(
-                    colleagues: this);
-            }
-
-            return addsButton;
-        }
-    }
-    AddsButton addsButton;
-
+    #region プロパティ（削除ボタン）
     /// <summary>削除ボタン</summary>
     internal DeletesButton DeletesButton
     {
@@ -165,6 +161,7 @@ internal class ItsMemberNetwork
         }
     }
     DeletesButton deletesButton;
+    #endregion
 
     #region プロパティ（［タイルセット元画像］　関連）
     /// <summary>
@@ -173,9 +170,13 @@ internal class ItsMemberNetwork
     internal TheGeometric.SizeInt TilesetSourceImageSize { get; set; } = TheGeometric.SizeInt.Empty;
     #endregion
 
+    #region プロパティ（［元画像グリッド］の線の半分の太さ）
     /// <summary>
-    ///     変更通知プロパティ <see cref="HalfThicknessOfGridLineAsInt"/> に関わる
     ///     ［元画像グリッド］の線の半分の太さ
+    ///     
+    ///     <list type="bullet">
+    ///         <item>変更通知プロパティ <see cref="HalfThicknessOfGridLineAsInt"/> に関わる</item>
+    ///     </list>
     /// </summary>
     internal ThicknessOfLine HalfThicknessOfGridLine
     {
@@ -195,4 +196,59 @@ internal class ItsMemberNetwork
 
     /// <summary>［元画像グリッド］の線の太さの半分</summary>
     ThicknessOfLine halfThicknessOfGridLine = new(1);
+    #endregion
+
+    // - インターナル・メソッド
+
+    #region メソッド（追加ボタンのラベル算出）
+    /// <summary>
+    ///     追加ボタンのラベル算出
+    /// </summary>
+    internal void CalculateLabelOfAddsButton(
+        LazyArgs.Set<string> setAddsButtonText)
+    {
+        // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
+        if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        {
+            // 合同のときは「交差中」とは表示しない
+            if (!this.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            {
+                // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
+
+                // 「交差中」
+                setAddsButtonText((string)LocalizationResourceManager.Instance["Intersecting"]);
+                return;
+            }
+        }
+
+        var contents = this.CropTile.RecordVisually;
+
+        if (contents.IsNone)
+        {
+            // ［切抜きカーソル］の指すタイル無し時
+
+            // 「追加」
+            setAddsButtonText((string)LocalizationResourceManager.Instance["Add"]);
+        }
+        else
+        {
+            // 切抜きカーソル有り時
+            // Ｉｄ未設定時
+
+            if (this.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
+            {
+                // Ｉｄが空欄
+                // ［追加］（新規作成）だ
+
+                // ［追加」
+                setAddsButtonText((string)LocalizationResourceManager.Instance["Add"]);
+            }
+            else
+            {
+                // ［復元」
+                setAddsButtonText((string)LocalizationResourceManager.Instance["Restore"]);
+            }
+        }
+    }
+    #endregion
 }

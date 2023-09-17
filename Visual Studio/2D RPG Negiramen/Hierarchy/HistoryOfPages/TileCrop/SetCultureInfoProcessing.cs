@@ -14,7 +14,7 @@ internal class SetCultureInfoProcessing : IProcessing
     ///     生成
     /// </summary>
     internal SetCultureInfoProcessing(
-        MemberNetworkOfTileCropPage colleagues,
+        MembersOfTileCropPage colleagues,
         CultureInfo oldValue,
         CultureInfo newValue)
     {
@@ -42,7 +42,7 @@ internal class SetCultureInfoProcessing : IProcessing
     // - プライベート・プロパティ
 
     /// <summary>メンバー・ネットワーク</summary>
-    MemberNetworkOfTileCropPage Colleagues { get; }
+    MembersOfTileCropPage Colleagues { get; }
 
     CultureInfo OldValue { get; }
 

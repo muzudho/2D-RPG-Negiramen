@@ -14,7 +14,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// </summary>
     /// <param name="owner"></param>
     internal RemoveRegisteredTileProcessing(
-        MemberNetworkOfTileCropPage colleagues,
+        MembersOfTileCropPage colleagues,
         TileIdOrEmpty tileIdOrEmpty)
     {
         this.Colleagues = colleagues;
@@ -100,7 +100,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     // - プライベート・プロパティ
 
     /// <summary>メンバー・ネットワーク</summary>
-    MemberNetworkOfTileCropPage Colleagues { get; }
+    MembersOfTileCropPage Colleagues { get; }
 
     /// <summary>
     ///     ［タイル］のＩｄ
