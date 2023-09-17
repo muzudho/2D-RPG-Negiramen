@@ -70,8 +70,8 @@
         /// </summary>
         public CultureInfo SelectedCultureInfo
         {
-            get => this.Subordinates.IndoorCultureInfo.Selected;
-            set => this.Subordinates.IndoorCultureInfo.SetSelected(
+            get => this.Subordinates.InnerCultureInfo.Selected;
+            set => this.Subordinates.InnerCultureInfo.SetSelected(
                 value: value,
                 doSetCultureInfoProcessing: (CultureInfo oldValue, CultureInfo newValue) =>
                 {

@@ -5,7 +5,7 @@ using _2D_RPG_Negiramen.Models.Geometric;
 /// <summary>
 ///     ポインティング・デバイス
 /// </summary>
-internal class InnerPointingDevice
+internal class PointingDevice
 {
     // - その他
 
@@ -13,7 +13,7 @@ internal class InnerPointingDevice
     /// <summary>
     ///     生成
     /// </summary>
-    internal InnerPointingDevice()
+    internal PointingDevice()
     {
     }
     #endregion
