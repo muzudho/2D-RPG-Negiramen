@@ -1931,10 +1931,42 @@
             else
             {
                 // 上書きボタンだが、［上書き］処理をする
-                this.Corridor.OverwriteTile();
+                this.OverwriteTile();
             }
         }
         #endregion
+
+        /// <summary>
+        ///     上書きボタンだが、［上書き］処理をする
+        /// </summary>
+        internal void OverwriteTile()
+        {
+            this.RoomsideDoors.AddsButton.OverwriteTile(
+                doAddRegisteredTIle: (TileRecordVisually contents) =>
+                {
+                    TileIdOrEmpty tileIdOrEmpty;
+
+                    // ［切抜きカーソル］にサイズがなければ、何もしない
+                    if (contents.IsNone)
+                        return;
+
+                    // Ｉｄが空欄でない
+                    // ［上書き］（更新）だ
+                    tileIdOrEmpty = this.RoomsideDoors.CropTile.IdOrEmpty;
+
+                    // 追加でも、上書きでも、同じ処理でいける
+                    // ［登録タイル追加］処理
+                    App.History.Do(new AddRegisteredTileProcessing(
+                        // 上位の権限を委譲する
+                        gardensideDoor: this.Corridor.GardensideDoor,
+                        roomsideDoors: this.RoomsideDoors,
+                        croppedCursorVisually: contents,
+                        tileIdOrEmpty: tileIdOrEmpty,
+                        workingRectangle: contents.SourceRectangle.Do(this.RoomsideDoors.ZoomProperties.Value)));
+
+                    this.InvalidateForHistory();
+                });
+        }
 
         // - プライベート変更通知フィールド
 

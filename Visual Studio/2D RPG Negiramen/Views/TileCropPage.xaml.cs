@@ -230,7 +230,7 @@ public partial class TileCropPage : ContentPage
     /// <param name="e">この発生イベントの制御変数</param>
     private void TileTitleEntry_Completed(object sender, EventArgs e)
     {
-        ((TileCropPageViewModel)this.BindingContext).Corridor.OverwriteTile();
+        ((TileCropPageViewModel)this.BindingContext).OverwriteTile();
     }
     #endregion
 }
