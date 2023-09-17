@@ -164,37 +164,6 @@
                 });
         }
 
-        #region イベントハンドラ（タイルセット画像上でポインター移動）
-        /// <summary>
-        ///     タイルセット画像上でポインター移動
-        /// </summary>
-        /// <param name="tappedPoint"></param>
-        public void OnTilesetImagePointerMove(Point tappedPoint)
-        {
-            if (this.OwnerPageVM.IsMouseDragging)
-            {
-                //
-                // 疑似マウス・ドラッグ
-                // ====================
-                //
-
-                // ポイントしている位置
-                this.RoomsideDoors.PointingDevice.CurrentPoint = new PointFloat(
-                    new XFloat((float)tappedPoint.X),
-                    new YFloat((float)tappedPoint.Y));
-                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
-
-                // タイル・フォームの表示更新
-                this.RefreshTileForm(
-                    mouseDrawingOperationState: MouseDrawingOperationState.PointerMove);
-
-                this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
-                // TRICK CODE:
-                this.GardensideDoor.PageVM.InvalidateWorkingTargetTile();
-            }
-        }
-        #endregion
-
         // - プライベート・プロパティ
 
         LazyArgs.Set<string> SetAddsButtonText { get; }

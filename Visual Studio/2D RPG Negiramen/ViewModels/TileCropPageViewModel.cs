@@ -1859,6 +1859,37 @@
         }
         #endregion
 
+        #region イベントハンドラ（タイルセット画像上でポインター移動）
+        /// <summary>
+        ///     タイルセット画像上でポインター移動
+        /// </summary>
+        /// <param name="tappedPoint"></param>
+        internal void OnTilesetImagePointerMove(Point tappedPoint)
+        {
+            if (this.IsMouseDragging)
+            {
+                //
+                // 疑似マウス・ドラッグ
+                // ====================
+                //
+
+                // ポイントしている位置
+                this.RoomsideDoors.PointingDevice.CurrentPoint = new PointFloat(
+                    new XFloat((float)tappedPoint.X),
+                    new YFloat((float)tappedPoint.Y));
+                // Trace.WriteLine($"[TileCropPage PointerGestureRecognizer_PointerMoved] moved x:{PointingDeviceCurrentPoint.X.AsInt} y:{PointingDeviceCurrentPoint.Y.AsInt}");
+
+                // タイル・フォームの表示更新
+                this.Corridor.RefreshTileForm(
+                    mouseDrawingOperationState: MouseDrawingOperationState.PointerMove);
+
+                this.RoomsideDoors.CropCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+                // TRICK CODE:
+                this.InvalidateWorkingTargetTile();
+            }
+        }
+        #endregion
+
         // - プライベート変更通知フィールド
 
         #region 変更通知フィールド（［タイルセット設定］　関連）
