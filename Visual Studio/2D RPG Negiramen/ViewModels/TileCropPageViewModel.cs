@@ -160,7 +160,7 @@
         public float ZoomAsFloat
         {
             get => this.Subordinates.ZoomProperties.AsFloat;
-            set => this.Subordinates.ZoomProperties.SetFloat(
+            set => this.SetZoomPropertiesAsFloat(
                 value: value,
                 doZoomProcessing: (Zoom oldValue, Zoom newValue) =>
                 {
@@ -1539,6 +1539,36 @@
         ///     メンバー・ネットワーク
         /// </summary>
         internal TheTileCropPage.ItsMembers Subordinates { get; }
+
+        #region メソッド（ズーム設定）
+        /// <summary>
+        ///     ズーム設定
+        /// </summary>
+        /// <param name="value"></param>
+        /// <param name="doZoomProcessing"></param>
+        internal void SetZoomPropertiesAsFloat(
+            float value,
+            TheTileCropPage.ZoomProperties.DoZoomProcessing doZoomProcessing)
+        {
+            if (this.Subordinates.ZoomProperties.AsFloat != value)
+            {
+                if (this.Subordinates.ZoomProperties.MinAsFloat <= value && value <= this.Subordinates.ZoomProperties.MaxAsFloat)
+                {
+                    Zoom oldValue = this.Subordinates.ZoomProperties.Value;
+                    Zoom newValue = new Zoom(value);
+
+                    this.Subordinates.ZoomProperties.SetValue(newValue);
+
+                    this.Subordinates.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+
+                    // 再帰的にズーム再変更、かつ変更後の影響を処理
+                    doZoomProcessing(
+                        oldValue: oldValue,
+                        newValue: newValue);
+                }
+            }
+        }
+        #endregion
 
         // - インターナル変更通知メソッド
 

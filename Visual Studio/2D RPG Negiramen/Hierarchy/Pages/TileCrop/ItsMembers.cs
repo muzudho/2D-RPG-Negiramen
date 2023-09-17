@@ -1,6 +1,5 @@
 ﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
-using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
 using TheGeometric = Models.Geometric;
 
@@ -84,8 +83,7 @@ internal class ItsMembers
         {
             if (zoomProperties == null)
             {
-                zoomProperties = new ZoomProperties(
-                    memberNetwork: this);
+                zoomProperties = new ZoomProperties();
             }
 
             return zoomProperties;
@@ -136,8 +134,7 @@ internal class ItsMembers
         {
             if (cropTile == null)
             {
-                cropTile = new CropTile(
-                    colleagues: this);
+                cropTile = new CropTile();
             }
 
             return cropTile;

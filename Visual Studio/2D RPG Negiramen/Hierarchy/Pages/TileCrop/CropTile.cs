@@ -3,7 +3,6 @@
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Visually;
-using static _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop.CropTile;
 
 /// <summary>
 ///     切抜きカーソルが指すタイル
@@ -16,11 +15,8 @@ internal class CropTile
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="colleagues"></param>
-    internal CropTile(
-        ItsMembers colleagues)
+    internal CropTile()
     {
-        this.Colleagues = colleagues;
     }
     #endregion
 
@@ -155,8 +151,6 @@ internal class CropTile
     }
 
     // - プライベート・プロパティ
-
-    ItsMembers Colleagues { get; }
 
     #region プロパティ（保存データ）
     /// <summary>

@@ -14,10 +14,8 @@ internal class ZoomProperties
     ///     生成
     /// </summary>
     /// <param name="memberNetwork"></param>
-    internal ZoomProperties(
-        ItsMembers memberNetwork)
+    internal ZoomProperties()
     {
-        this.Membernetwork = memberNetwork;
     }
     #endregion
 
@@ -37,7 +35,9 @@ internal class ZoomProperties
     ///         <item>コード・ビハインドで使用</item>
     ///     </list>
     /// </summary>
-    public Zoom Value => value;
+    internal Zoom Value => value;
+
+    internal void SetValue(Zoom value) => this.value = value;
 
     /// <summary>
     ///     ［ズーム］整数形式
@@ -46,44 +46,17 @@ internal class ZoomProperties
     ///         <item>セッターは画像を再生成する重たい処理なので、スパムしないように注意</item>
     ///     </list>
     /// </summary>
-    public float AsFloat => value.AsFloat;
-
-    internal void SetFloat(
-        float value,
-        DoZoomProcessing doZoomProcessing)
-    {
-        if (this.value.AsFloat != value)
-        {
-            if (MinAsFloat <= value && value <= MaxAsFloat)
-            {
-                Zoom oldValue = this.value;
-                Zoom newValue = new Zoom(value);
-
-                this.value = newValue;
-
-                Membernetwork.CropCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
-
-                // 再帰的にズーム再変更、かつ変更後の影響を処理
-                doZoomProcessing(
-                    oldValue: oldValue,
-                    newValue: newValue);
-            }
-        }
-    }
+    internal float AsFloat => value.AsFloat;
 
     /// <summary>
     ///     ズーム最大
     /// </summary>
-    public float MaxAsFloat => maxValue.AsFloat;
+    internal float MaxAsFloat => maxValue.AsFloat;
 
     /// <summary>
     ///     ズーム最小
     /// </summary>
-    public float MinAsFloat => minValue.AsFloat;
-
-    // - プライベート・プロパティ
-
-    ItsMembers Membernetwork { get; }
+    internal float MinAsFloat => minValue.AsFloat;
 
     // - プライベート・フィールド
 
