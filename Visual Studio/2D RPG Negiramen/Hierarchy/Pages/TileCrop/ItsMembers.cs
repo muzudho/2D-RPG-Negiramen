@@ -235,4 +235,36 @@ internal class ItsMembers
         }
     }
     #endregion
+
+
+
+
+
+
+
+
+
+
+    // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
+    #region プロパティ（作業中の縦幅）
+    /// <summary>
+    ///     作業中の縦幅
+    ///     ［切抜きカーソル］ズーム済みのサイズ
+    ///     サイズが更新されていれば、カーソルのキャンバスを更新する必要がある
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
+    ///         <item>仕様変更するときは、TRICK CODE に注意</item>
+    ///     </list>
+    /// </summary>
+    internal TheGeometric.HeightFloat SelectedTile_GetWorkingHeight(TheGeometric.Zoom zoom) => this.selectedTile_workingHeight;
+
+    internal void SelectedTile_SetWorkingHeight(TheGeometric.HeightFloat height)
+    {
+        this.selectedTile_workingHeight = height;
+    }
+
+    TheGeometric.HeightFloat selectedTile_workingHeight = TheGeometric.HeightFloat.Zero;
+    #endregion
 }
