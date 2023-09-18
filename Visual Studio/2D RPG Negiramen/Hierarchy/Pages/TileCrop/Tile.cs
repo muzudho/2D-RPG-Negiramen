@@ -17,6 +17,7 @@ internal class Tile
     /// </summary>
     internal Tile()
     {
+        this.WorkingWidthWithoutTrick = WidthFloat.Zero;
     }
     #endregion
 
@@ -68,6 +69,17 @@ internal class Tile
     /// </summary>
     internal WidthFloat TrickWidth { get; set; } = WidthFloat.Zero;
     #endregion
+
+    /// <summary>
+    ///     ［切抜きカーソル］ズーム済みのサイズ
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
+    ///         <item>仕様変更するときは、TRICK CODE に注意</item>
+    ///     </list>
+    /// </summary>
+    internal WidthFloat WorkingWidthWithoutTrick { get; set; }
 
     // - インターナル・メソッド
 

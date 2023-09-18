@@ -580,7 +580,7 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfTileCursor_WorkingWidthAsFloat => this.Subordinates.TileCursor.SelectedTile_WorkingWidthWithoutTrick.AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
+        public float CanvasOfTileCursor_WorkingWidthAsFloat => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
 
         /// <summary>
         ///     ［切抜きカーソル］のズーム済みの縦幅
@@ -941,7 +941,7 @@
         ///         <item>表示用テキスト</item>
         ///     </list>
         /// </summary>
-        public string SelectedTile_WorkingWidthAsPresentableText => this.Subordinates.TileCursor.SelectedTile_WorkingWidthWithoutTrick.AsFloat.ToString("F1");
+        public string SelectedTile_WorkingWidthAsPresentableText => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat.ToString("F1");
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
@@ -1167,8 +1167,8 @@
         /// </summary>
         public Models.Geometric.WidthFloat SelectedTile_WorkingWidthWithoutTrick
         {
-            get => this.Subordinates.TileCursor.SelectedTile_WorkingWidthWithoutTrick;
-            set => this.Subordinates.TileCursor.SelectedTile_WorkingWidthWithoutTrick = value;
+            get => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick;
+            set => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = value;
         }
 
         public Models.Geometric.HeightFloat SelectedTile_WorkingHeight
@@ -1186,12 +1186,12 @@
         /// </summary>
         public float SelectedTile_WorkingWidthAsFloat
         {
-            get => this.Subordinates.TileCursor.SelectedTile_WorkingWidthWithoutTrick.AsFloat;
+            get => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat;
             set
             {
-                if (this.Subordinates.TileCursor.SelectedTile_WorkingWidthWithoutTrick.AsFloat != value)
+                if (this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat != value)
                 {
-                    this.Subordinates.TileCursor.SelectedTile_WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(value);
+                    this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(value);
 
                     // キャンバスを再描画
                     // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SelectedTile_WorkingWidthAsFloat set]");
