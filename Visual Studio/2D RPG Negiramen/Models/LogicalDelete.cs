@@ -1,6 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models
 {
     /// <summary>
+            // TODO 論理削除は難しいから廃止予定
     ///     😁 論理削除
     ///     
     ///     <list type="bullet">

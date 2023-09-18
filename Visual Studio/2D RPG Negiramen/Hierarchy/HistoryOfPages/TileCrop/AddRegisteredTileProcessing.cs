@@ -99,7 +99,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
 
-            // 新・論理削除
+            // TODO 論理削除は難しいから廃止予定
             registeredTileVisually.LogicalDelete = this.CroppedCursorVisually.LogicalDelete;
         }
 

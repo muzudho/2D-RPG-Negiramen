@@ -27,7 +27,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの編集
         // ==================
         //
-        //      - 選択中のタイルを論理削除
+        // TODO ★★ 論理削除は難しいから廃止予定。完全削除にしたい
         //
         if (this.Colleagues.PageVM.TilesetSettingsVM.DeleteLogical(
             // 現在選択中のタイルのＩｄ
@@ -37,6 +37,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
         }
 
+        // TODO 論理削除は難しいから廃止予定
         Trace.WriteLine($"［タイル削除］ 　Do　タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
 
         //
@@ -68,6 +69,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // 設定ファイルの編集
         // ==================
         //
+        // TODO 論理削除は難しいから廃止予定
         //      - 選択中のタイルの論理削除の取消
         //
         if (this.Colleagues.PageVM.TilesetSettingsVM.UndeleteLogical(
@@ -78,6 +80,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
         }
 
+        // TODO 論理削除は難しいから廃止予定
         Trace.WriteLine($"［タイル削除］　Undo　タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
 
         //

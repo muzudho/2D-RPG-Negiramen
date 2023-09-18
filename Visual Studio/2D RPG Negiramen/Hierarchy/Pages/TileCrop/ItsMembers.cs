@@ -185,11 +185,13 @@ internal class ItsMembers
     ///     </list>
     ///     
     ///     ※２　［追加］ボタンは、３状態ある。以下の条件で活性
+            // TODO 論理削除は難しいから廃止予定
     ///     <list type="bullet">
     ///         <item>Ｉｄが未設定時、かつ、論理削除フラグがＯｆｆ</item>
     ///     </list>
     ///     
     ///     ※３　［復元］ボタンは、以下の条件で活性
+            // TODO 論理削除は難しいから廃止予定
     ///     <list type="bullet">
     ///         <item>Ｉｄが設定時、かつ、論理削除フラグがＯｎ</item>
     ///     </list>
@@ -223,6 +225,7 @@ internal class ItsMembers
                     {
                         // ※３
 
+                        // TODO 論理削除は難しいから廃止予定
                         // 画面にマークが見えないのに、タイルＩｄが入っていて、論理削除が False になっているケースがある？
                         enabled = this.SelectedTile.RecordVisually.Id != TileIdOrEmpty.Empty && this.SelectedTile.RecordVisually.LogicalDelete.AsBool;
                         Trace.WriteLine($"［デバッグ］　復元ボタンの活性性を {enabled} へ。 selectedTile:{this.SelectedTile.RecordVisually.Dump()}");
@@ -258,6 +261,7 @@ internal class ItsMembers
             if (
                 // 切抜きカーソル無し時
                 contents.IsNone
+                // TODO 論理削除は難しいから廃止予定
                 // 論理削除時
                 || contents.LogicalDelete.AsBool
                 // Ｉｄ未設定時

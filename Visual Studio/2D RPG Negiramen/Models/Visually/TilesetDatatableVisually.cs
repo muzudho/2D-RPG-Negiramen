@@ -107,6 +107,7 @@
         /// <param name="id">タイルＩｄ</param>
         /// <param name="rect">位置とサイズ</param>
         /// <param name="title">タイトル</param>
+            // TODO 論理削除は難しいから廃止予定
         /// <param name="logicalDelete">論理削除</param>
         internal void AddTileVisually(
             TileIdOrEmpty id,
@@ -130,6 +131,7 @@
         }
         #endregion
 
+        // TODO ★★ 論理削除は難しいから廃止予定。完全削除にしたい
         #region メソッド（タイルの論理削除）
         /// <summary>
         ///     タイルの論理削除
@@ -146,8 +148,10 @@
 
                 if (tileVisually.Id == id)
                 {
+                    // TODO 論理削除は難しいから廃止予定
                     // Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{tileVisually.Id.AsBASE64}]");
 
+                    // TODO ★★ 論理削除は難しいから廃止予定。完全削除にしたい。リストから項目を引っこ抜きたい。（復元用のバックアップは残す）
                     // 論理削除フラグの差替え
                     TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
@@ -169,6 +173,7 @@
         }
         #endregion
 
+        // TODO 論理削除は難しいから廃止予定
         #region メソッド（タイルの論理削除の取消）
         /// <summary>
         ///     タイルの論理削除の取消
@@ -185,8 +190,10 @@
 
                 if (tileVisually.Id == id)
                 {
+                    // TODO 論理削除は難しいから廃止予定
                     // Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除の取消　id: [{tileVisually.Id.AsBASE64}]");
 
+                    // TODO 論理削除は難しいから廃止予定
                     // 論理削除フラグの差替え
                     TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
@@ -275,6 +282,7 @@
         {
             foreach (var tileVisually in TileRecordVisuallyList)
             {
+                // TODO 論理削除は難しいから廃止予定
                 // 論理削除されている要素は無視
                 if (tileVisually.LogicalDelete.AsBool && !includeLogicalDelete)
                     break;
@@ -299,6 +307,7 @@
         {
             foreach (var tileVisually in TileRecordVisuallyList)
             {
+                // TODO 論理削除は難しいから廃止予定
                 // 論理削除されているものは除く
                 if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
                 {
@@ -324,6 +333,7 @@
         {
             foreach (var tileVisually in TileRecordVisuallyList)
             {
+                // TODO 論理削除は難しいから廃止予定
                 // 論理削除されているものは除く
                 if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
                 {
@@ -371,6 +381,7 @@
         /// <returns></returns>
         internal bool IsValid()
         {
+            // TODO 論理削除は難しいから廃止予定
             // 論理削除されているものも妥当性検証に含める
             return TilesetDatatable.IsValid(CreateTileRecordList(includeLogicalDelete: true));
         }
@@ -402,6 +413,7 @@
         /// <returns>完了した</returns>
         internal bool SaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
+            // TODO 論理削除は難しいから廃止予定
             // 論理削除されているものも保存する
             return TilesetDatatable.SaveCSV(
                 tileSetSettingsFileLocation: tileSetSettingsFile,
@@ -420,6 +432,7 @@
 
             foreach (var tileVisually in TileRecordVisuallyList)
             {
+                // TODO 論理削除は難しいから廃止予定
                 // 論理削除されているものは除く
                 if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
                 {

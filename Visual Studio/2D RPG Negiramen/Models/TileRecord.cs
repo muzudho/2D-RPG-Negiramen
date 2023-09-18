@@ -31,6 +31,7 @@
         /// <param name="id">Ｉｄ</param>
         /// <param name="rect">レクタングル</param>
         /// <param name="title">タイル・タイトル</param>
+            // TODO 論理削除は難しいから廃止予定
         /// <param name="logicalDelete">論理削除か？</param>
         internal TileRecord(
             Models.TileIdOrEmpty id,
@@ -88,6 +89,7 @@
         internal Models.TileTitle Title { get; }
         #endregion
 
+        // TODO 論理削除は難しいから廃止予定
         #region プロパティ（論理削除）
         /// <summary>
         ///     論理削除

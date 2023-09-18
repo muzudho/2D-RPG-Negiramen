@@ -175,6 +175,7 @@ public class TilesetDatatable
     ///         <item>重たい処理</item>
     ///     </list>
     /// </summary>
+            // TODO 論理削除は難しいから廃止予定
     /// <param name="recordList">タイル一覧。論理削除されているものも含むこと</param>
     /// <returns>そうだ</returns>
     internal static bool IsValid(List<TileRecord> recordList)
@@ -280,6 +281,7 @@ public class TilesetDatatable
     /// <param name="id">タイルＩｄ</param>
     /// <param name="rect">位置とサイズ</param>
     /// <param name="tileTitle">タイル・タイトル</param>
+            // TODO 論理削除は難しいから廃止予定
     /// <param name="logicalDelete">論理削除</param>
     internal void AddTile(
         Models.TileIdOrEmpty id,
@@ -296,6 +298,7 @@ public class TilesetDatatable
     }
     #endregion
 
+    // TODO 論理削除は難しいから廃止予定
     #region メソッド（タイルの論理削除）
     /// <summary>
     ///     タイルの論理削除
@@ -354,6 +357,7 @@ public class TilesetDatatable
     {
         foreach (var record in this.RecordList)
         {
+            // TODO 論理削除は難しいから廃止予定
             // 論理削除されているものは除く
             if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
             {
@@ -375,6 +379,7 @@ public class TilesetDatatable
     {
         foreach (var record in this.RecordList)
         {
+            // TODO 論理削除は難しいから廃止予定
             // 論理削除されているものは除く
             if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
             {
@@ -422,6 +427,7 @@ public class TilesetDatatable
     /// <returns></returns>
     internal bool IsValid()
     {
+        // TODO 論理削除は難しいから廃止予定
         // 論理削除されているものも妥当性チェックで使う
         return TilesetDatatable.IsValid(this.CreateTileRecordList(includeLogicalDelete: true));
     }
@@ -453,6 +459,7 @@ public class TilesetDatatable
     /// <returns>完了した</returns>
     internal bool SaveCSV(DataCsvTilesetCsv tileSetSettingsFile)
     {
+        // TODO 論理削除は難しいから廃止予定
         // 論理削除されているものも保存する
         return TilesetDatatable.SaveCSV(
             tileSetSettingsFileLocation: tileSetSettingsFile,
@@ -471,6 +478,7 @@ public class TilesetDatatable
 
         foreach (var record in this.RecordList)
         {
+            // TODO 論理削除は難しいから廃止予定
             // 論理削除されているものは除く
             if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
             {

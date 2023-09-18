@@ -992,6 +992,7 @@
         ///     <list type="bullet">
         ///         <item>［切抜きカーソルが指すタイル］がある</item>
         ///         <item>［切抜きカーソルが指すタイル］のＩｄが空欄でない</item>
+            // TODO 論理削除は難しいから廃止予定
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
@@ -1170,6 +1171,7 @@
         }
 
         /// <summary>
+            // TODO 論理削除は難しいから廃止予定
         ///     ［切抜きカーソルが指すタイル］の論理削除
         /// </summary>
         public bool SelectedTile_LogicalDeleteAsBool
@@ -1987,6 +1989,7 @@
                         this.InvalidateDeletesButton();
                     }
 
+                    // TODO 論理削除は難しいから廃止予定
                     // タイルを指す（論理削除されているものも含む）
                     this.Subordinates.SelectedTile.SetRecordVisually(
                         tileVisually,
@@ -2058,6 +2061,7 @@
                             // 元画像の位置とサイズ
                             this.SelectedTile_SetSourceRectangle(RectangleInt.Empty);
 
+                            // TODO 論理削除は難しいから廃止予定
                             // 論理削除
                             this.SelectedTile_LogicalDeleteAsBool = false;
 
@@ -2093,6 +2097,7 @@
                                 tileId: tileIdOrEmpty);
                         });
                 },
+                // TODO 論理削除は難しいから廃止予定
                 // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
                 includeLogicalDelete: true);
 
@@ -2200,6 +2205,7 @@
                 this.Subordinates.SelectedTile.RecordVisually.Title = tileTitle;
             }
 
+            // TODO 論理削除は難しいから廃止予定
             // 論理削除フラグ
             if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
             {

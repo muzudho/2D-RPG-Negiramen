@@ -51,6 +51,7 @@ internal class ColoredMap : BindableObject, IDrawable
         {
             if (tileVisually.LogicalDelete == Models.LogicalDelete.True)
             {
+                // TODO 論理削除は難しいから廃止予定
                 // 論理削除されてるから無視
                 // Trace.WriteLine($"[TileCropPage.xaml.cs ContentPage_Loaded] 論理削除されてるから無視　tileVisually: {tileVisually.Dump()}");
                 continue;

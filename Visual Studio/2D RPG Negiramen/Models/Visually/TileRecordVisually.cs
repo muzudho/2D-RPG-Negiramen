@@ -109,6 +109,7 @@
         internal TileTitle Title { get; set; } = TileTitle.Empty;
         #endregion
 
+        // TODO 論理削除は難しいから廃止予定
         #region プロパティ（論理削除）
         /// <summary>
         ///     論理削除
