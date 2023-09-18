@@ -8,6 +8,7 @@
     using System.Collections.ObjectModel;
     using System.Diagnostics;
     using System.Globalization;
+    using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
     using TheFileEntryLocations = _2D_RPG_Negiramen.Models.FileEntries.Locations;
     using TheGraphics = Microsoft.Maui.Graphics;
     using TheHierarchy = _2D_RPG_Negiramen.Hierarchy;
@@ -684,7 +685,6 @@
                 // TODO サイズは変化無しか？
 
                 OnPropertyChanged(nameof(SelectedTile_SourceLeftAsInt));
-                OnPropertyChanged(nameof(SelectedTile_SourceRect));
             }
         }
 
@@ -760,7 +760,6 @@
                 // TODO サイズは変化無しか？
 
                 OnPropertyChanged(nameof(SelectedTile_SourceTopAsInt));
-                OnPropertyChanged(nameof(SelectedTile_SourceRect));
             }
         }
 
@@ -823,7 +822,6 @@
 
                 OnPropertyChanged(nameof(SelectedTile_SourceWidthAsInt));
                 OnPropertyChanged(nameof(SelectedTile_SourceSize));
-                OnPropertyChanged(nameof(SelectedTile_SourceRect));
             }
         }
 
@@ -885,7 +883,6 @@
 
                 OnPropertyChanged(nameof(SelectedTile_SourceHeightAsInt));
                 OnPropertyChanged(nameof(SelectedTile_SourceSize));
-                OnPropertyChanged(nameof(SelectedTile_SourceRect));
             }
         }
 
@@ -1033,59 +1030,38 @@
         #endregion
 
         #region プロパティ（［選択タイル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
-        ///     
-        ///     <list type="bullet">
-        ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
-        ///     </list>
-        /// </summary>
-        public Models.Geometric.RectangleInt SelectedTile_SourceRect
+        internal void SelectedTile_SetSourceRect(TheGeometric.RectangleInt value)
         {
-            get
+            var contents = this.Subordinates.SelectedTile.RecordVisually;
+
+            if (contents.IsNone)
             {
-                var contents = this.Subordinates.SelectedTile.RecordVisually;
+                // ［切抜きカーソル］の指すタイル無し時
 
-                if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］の指すタイル無し時
-                    return Models.Geometric.RectangleInt.Empty;
-                }
-
-                return contents.SourceRectangle;
+                // 値に変化がない
+                if (value == TheGeometric.RectangleInt.Empty) return;
             }
-            set
+            else
             {
-                var contents = this.Subordinates.SelectedTile.RecordVisually;
-
-                if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］の指すタイル無し時
-
-                }
-                else
-                {
-                    // 値に変化がない
-                    if (contents.SourceRectangle == value)
-                        return;
-                }
-
-                this.SelectedTile_SourceLeftAsInt = value.Location.X.AsInt;
-                this.SelectedTile_SourceTopAsInt = value.Location.Y.AsInt;
-                this.SelectedTile_SourceSize = value.Size;
-
-                // 切抜きカーソル。ズーム済み
-                OnPropertyChanged(nameof(SelectedTile_WorkingLeftAsFloat));
-                OnPropertyChanged(nameof(TileCursor_WorkingPointAsMargin));
-                OnPropertyChanged(nameof(SelectedTile_WorkingLeftAsPresentableText));
-
-                OnPropertyChanged(nameof(SelectedTile_WorkingTopAsFloat));
-                OnPropertyChanged(nameof(TileCursor_WorkingPointAsMargin));
-                OnPropertyChanged(nameof(SelectedTile_WorkingTopAsPresentableText));
-
-                this.SelectedTile_WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
-                this.SelectedTile_WorkingHeight = new Models.Geometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt);
+                // 値に変化がない
+                if (contents.SourceRectangle == value) return;
             }
+
+            this.SelectedTile_SourceLeftAsInt = value.Location.X.AsInt;
+            this.SelectedTile_SourceTopAsInt = value.Location.Y.AsInt;
+            this.SelectedTile_SourceSize = value.Size;
+
+            // 切抜きカーソル。ズーム済み
+            OnPropertyChanged(nameof(SelectedTile_WorkingLeftAsFloat));
+            OnPropertyChanged(nameof(TileCursor_WorkingPointAsMargin));
+            OnPropertyChanged(nameof(SelectedTile_WorkingLeftAsPresentableText));
+
+            OnPropertyChanged(nameof(SelectedTile_WorkingTopAsFloat));
+            OnPropertyChanged(nameof(TileCursor_WorkingPointAsMargin));
+            OnPropertyChanged(nameof(SelectedTile_WorkingTopAsPresentableText));
+
+            this.SelectedTile_WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
+            this.SelectedTile_WorkingHeight = new Models.Geometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt);
         }
 
         /// <summary>
@@ -1128,8 +1104,6 @@
                 //
                 this.SelectedTile_SourceWidthAsInt = value.Width.AsInt;
                 this.SelectedTile_SourceHeightAsInt = value.Height.AsInt;
-
-                OnPropertyChanged(nameof(SelectedTile_SourceRect));
             }
         }
 
@@ -2070,7 +2044,7 @@
             // 計算値の反映
             // ============
             //
-            this.SelectedTile_SourceRect = sourceRect;
+            this.SelectedTile_SetSourceRect(sourceRect);
             if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
             {
                 Trace.WriteLine($"［状態遷移］　矩形確定　x:{sourceRect.Location.X.AsInt} y:{sourceRect.Location.Y.AsInt} width:{sourceRect.Size.Width.AsInt} height:{sourceRect.Size.Height.AsInt}");
@@ -2089,7 +2063,7 @@
             // ==================
             //
             this.TilesetSettingsVM.MatchByRectangle(
-                sourceRect: this.SelectedTile_SourceRect,
+                sourceRect: this.Subordinates.SelectedTile.SourceRectangle,
                 some: (tileVisually) =>
                 {
                     if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
@@ -2148,7 +2122,7 @@
                     // ==========
                     //
 
-                    var sourceRectangle = this.SelectedTile_SourceRect;
+                    var sourceRectangle = this.Subordinates.SelectedTile.SourceRectangle;
 
                     void onDeleteButtonEnableChanged()
                     {
@@ -2171,7 +2145,7 @@
                         {
                             Debug.Fail("ここには来ない");
                             // 元画像の位置とサイズ
-                            this.SelectedTile_SourceRect = RectangleInt.Empty;
+                            this.SelectedTile_SetSourceRect(RectangleInt.Empty);
 
                             // 論理削除
                             this.SelectedTile_LogicalDeleteAsBool = false;
@@ -2235,7 +2209,7 @@
         /// </summary>
         internal void RecalculateBetweenCropCursorAndRegisteredTile()
         {
-            if (this.SelectedTile_SourceRect == RectangleInt.Empty)
+            if (this.Subordinates.SelectedTile.SourceRectangle == RectangleInt.Empty)
             {
                 // カーソルが無ければ、交差も無い。合同ともしない
                 this.Subordinates.HasIntersectionBetweenCroppedCursorAndRegisteredTile = false;
@@ -2244,8 +2218,8 @@
             }
 
             // 軽くはない処理
-            this.Subordinates.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.SelectedTile_SourceRect);
-            this.Subordinates.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.SelectedTile_SourceRect);
+            this.Subordinates.HasIntersectionBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.HasIntersection(this.Subordinates.SelectedTile.SourceRectangle);
+            this.Subordinates.IsCongruenceBetweenCroppedCursorAndRegisteredTile = this.TilesetSettingsVM.IsCongruence(this.Subordinates.SelectedTile.SourceRectangle);
         }
         #endregion
 

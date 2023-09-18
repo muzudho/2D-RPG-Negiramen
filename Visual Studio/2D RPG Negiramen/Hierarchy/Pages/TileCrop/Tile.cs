@@ -1,8 +1,8 @@
 ﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.Visually;
+using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
 ///     切抜きカーソルが指すタイル
@@ -17,7 +17,7 @@ internal class Tile
     /// </summary>
     internal Tile()
     {
-        this.WorkingWidthWithoutTrick = WidthFloat.Zero;
+        this.WorkingWidthWithoutTrick = TheGeometric.WidthFloat.Zero;
     }
     #endregion
 
@@ -67,7 +67,7 @@ internal class Tile
     /// <summary>
     ///     トリック幅
     /// </summary>
-    internal WidthFloat TrickWidth { get; set; } = WidthFloat.Zero;
+    internal TheGeometric.WidthFloat TrickWidth { get; set; } = TheGeometric.WidthFloat.Zero;
     #endregion
 
     /// <summary>
@@ -79,7 +79,30 @@ internal class Tile
     ///         <item>仕様変更するときは、TRICK CODE に注意</item>
     ///     </list>
     /// </summary>
-    internal WidthFloat WorkingWidthWithoutTrick { get; set; }
+    internal TheGeometric.WidthFloat WorkingWidthWithoutTrick { get; set; }
+
+    /// <summary>
+    ///     ［切抜きカーソルが指すタイル］の元画像ベースの矩形
+    ///     
+    ///     <list type="bullet">
+    ///         <item>カーソルが無いとき、大きさの無いカーソルを返す</item>
+    ///     </list>
+    /// </summary>
+    internal TheGeometric.RectangleInt SourceRectangle
+    {
+        get
+        {
+            var contents = this.RecordVisually;
+
+            if (contents.IsNone)
+            {
+                // ［切抜きカーソル］の指すタイル無し時
+                return Models.Geometric.RectangleInt.Empty;
+            }
+
+            return contents.SourceRectangle;
+        }
+    }
 
     // - インターナル・メソッド
 
@@ -205,11 +228,11 @@ internal class Tile
     {
         if (TrickWidth.AsFloat == 1.0f)
         {
-            TrickWidth = WidthFloat.Zero;
+            TrickWidth = TheGeometric.WidthFloat.Zero;
         }
         else
         {
-            TrickWidth = WidthFloat.One;
+            TrickWidth = TheGeometric.WidthFloat.One;
         }
     }
     #endregion
