@@ -144,7 +144,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string SelectedTile_WorkingHeightAsPresentableText { get; }
+    string SelectedTile_GetWorkingHeightAsPresentableText { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）

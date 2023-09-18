@@ -597,7 +597,12 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfTileCursor_WorkingHeightAsFloat => this.Subordinates.SelectedTile_GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
+        public float CanvasOfTileCursor_WorkingHeightAsFloat => this.Subordinates.SelectedTile_GetWorkingHeight(
+            zoom: this.Subordinates.ZoomProperties.Value,
+            onChanged: () =>
+            {
+                this.InvalidateSelectedTileWorkingHeight();
+            }).AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
 
         /// <summary>
         ///     ［切抜きカーソル］の線の半分の太さ
@@ -906,7 +911,12 @@
             get => new TheGeometric.SizeFloat(
                     width: new WidthFloat(this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat + this.Subordinates.SelectedTile.TrickWidth.AsFloat),
                     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-                    height: this.Subordinates.SelectedTile_GetWorkingHeight(this.Subordinates.ZoomProperties.Value));
+                    height: this.Subordinates.SelectedTile_GetWorkingHeight(
+                        zoom: this.Subordinates.ZoomProperties.Value,
+                        onChanged: () =>
+                        {
+                            this.InvalidateSelectedTileWorkingHeight();
+                        }));
         }
 
         /// <summary>
@@ -949,7 +959,12 @@
         ///         <item>表示用テキスト</item>
         ///     </list>
         /// </summary>
-        public string SelectedTile_WorkingHeightAsPresentableText => this.Subordinates.SelectedTile_GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat.ToString("F1");
+        public string SelectedTile_GetWorkingHeightAsPresentableText => this.Subordinates.SelectedTile_GetWorkingHeight(
+            zoom: this.Subordinates.ZoomProperties.Value,
+            onChanged: () =>
+            {
+                this.InvalidateSelectedTileWorkingHeight();
+            }).AsFloat.ToString("F1");
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のＩｄ。BASE64表現
@@ -1155,7 +1170,7 @@
             OnPropertyChanged(nameof(SelectedTile_WorkingSizeWithTrick));
 
             OnPropertyChanged(nameof(CanvasOfTileCursor_WorkingHeightAsFloat));
-            OnPropertyChanged(nameof(SelectedTile_WorkingHeightAsPresentableText));
+            OnPropertyChanged(nameof(SelectedTile_GetWorkingHeightAsPresentableText));
         }
         #endregion
 
@@ -1558,7 +1573,7 @@
             OnPropertyChanged(nameof(SelectedTile_WorkingLeftAsPresentableText));   // TODO これは要るか？
             OnPropertyChanged(nameof(SelectedTile_WorkingTopAsPresentableText));   // TODO これは要るか？
             OnPropertyChanged(nameof(SelectedTile_WorkingWidthAsPresentableText));   // TODO これは要るか？
-            OnPropertyChanged(nameof(SelectedTile_WorkingHeightAsPresentableText));   // TODO これは要るか？
+            OnPropertyChanged(nameof(SelectedTile_GetWorkingHeightAsPresentableText));   // TODO これは要るか？
         }
         #endregion
 
