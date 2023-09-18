@@ -66,13 +66,6 @@ public interface ITileCropPageViewModel
     ThicknessOfLine TileCursor_HalfThicknessOfLine { get; }
     #endregion
 
-    #region プロパティ（切抜きカーソル。元画像ベース　関連）
-    /// <summary>
-    ///     切抜きカーソルのサイズ。元画像ベース
-    /// </summary>
-    Models.Geometric.SizeInt SelectedTile_SourceSize { get; }
-    #endregion
-
     #region プロパティ（切抜きカーソル。ズーム済み　関連）
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置（マージンとして）
