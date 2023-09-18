@@ -137,9 +137,14 @@ internal class Tile
     ///         <item>仕様変更するときは、TRICK CODE に注意</item>
     ///     </list>
     /// </summary>
-    internal TheGeometric.HeightFloat WorkingHeight { get; set; } = TheGeometric.HeightFloat.Zero;
+    internal TheGeometric.HeightFloat WorkingHeight => this.workingHeight;
 
+    internal void SetWorkingHeight(TheGeometric.HeightFloat height)
+    {
+        this.workingHeight = height;
+    }
 
+    TheGeometric.HeightFloat workingHeight = TheGeometric.HeightFloat.Zero;
     #endregion
 
     // - インターナル・メソッド
