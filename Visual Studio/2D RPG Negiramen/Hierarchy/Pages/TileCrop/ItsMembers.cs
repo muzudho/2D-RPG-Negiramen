@@ -258,17 +258,9 @@ internal class ItsMembers
     ///         <item>仕様変更するときは、TRICK CODE に注意</item>
     ///     </list>
     /// </summary>
-    internal TheGeometric.HeightFloat SelectedTile_GetWorkingHeight(TheGeometric.Zoom zoom) => this.selectedTile_workingHeight;
+    internal TheGeometric.HeightFloat SelectedTile_GetWorkingHeight(TheGeometric.Zoom zoom) => this.selectedTile_workingHeightBackup;
 
-    internal bool SelectedTile_SetWorkingHeight(TheGeometric.HeightFloat height)
-    {
-        this.selectedTile_workingHeight = height;
-
-        // 変更
-        return true;
-    }
-
-    TheGeometric.HeightFloat selectedTile_workingHeight = TheGeometric.HeightFloat.Zero;
+    TheGeometric.HeightFloat selectedTile_workingHeightBackup = TheGeometric.HeightFloat.Zero;
 
     /// <summary>
     ///     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
@@ -280,6 +272,18 @@ internal class ItsMembers
     /// </summary>
     public float SelectedTile_WorkingHeightAsFloat => this.SelectedTile_GetWorkingHeight(this.ZoomProperties.Value).AsFloat;
 
+    internal void SelectedTile_SetWorkingHeight(
+        TheGeometric.HeightFloat height,
+        Action onChanged)
+    {
+        if (this.selectedTile_workingHeightBackup != height)
+        {
+            this.selectedTile_workingHeightBackup = height;
+
+            onChanged();
+        }
+    }
+
     public void SelectedTile_SetWorkingHeightAsFloat(
         float value,
         Action onChanged)
@@ -287,12 +291,9 @@ internal class ItsMembers
         if (this.SelectedTile_GetWorkingHeight(this.ZoomProperties.Value).AsFloat != value)
         {
             // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-            var isChanged = this.SelectedTile_SetWorkingHeight(new TheGeometric.HeightFloat(value));
-
-            if (isChanged)
-            {
-                onChanged();
-            }
+            this.SelectedTile_SetWorkingHeight(
+                height: new TheGeometric.HeightFloat(value),
+                onChanged: onChanged);
         }
     }
     #endregion

@@ -1067,7 +1067,12 @@
             this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
 
             // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-            this.Subordinates.SelectedTile_SetWorkingHeight(new TheGeometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt));
+            this.Subordinates.SelectedTile_SetWorkingHeight(
+                height: new TheGeometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt),
+                onChanged: () =>
+                {
+                    this.InvalidateSelectedTileWorkingHeight();
+                });
         }
 
         /// <summary>

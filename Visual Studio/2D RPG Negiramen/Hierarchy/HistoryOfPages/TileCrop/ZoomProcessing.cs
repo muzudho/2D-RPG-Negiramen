@@ -110,7 +110,12 @@ internal class ZoomProcessing : IProcessing
             this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Width.AsInt);
 
             // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-            this.Colleagues.PageVM.Subordinates.SelectedTile_SetWorkingHeight(new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Height.AsInt));
+            this.Colleagues.PageVM.Subordinates.SelectedTile_SetWorkingHeight(
+                height: new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Height.AsInt),
+                onChanged: () =>
+                {
+                    this.Colleagues.PageVM.InvalidateSelectedTileWorkingHeight();
+                });
         }
 
         // 全ての［登録タイル］の更新
