@@ -97,9 +97,9 @@
                     -->
                     <HorizontalStackLayout>
                         <Label Text="(" />
-                        <Label Text="{Binding CropTileSourceLeftAsInt}" />
+                        <Label Text="{Binding SelectedTile_SourceLeftAsInt}" />
                         <Label Text="," />
-                        <Label Text="{Binding CropTileSourceTopAsInt}" />
+                        <Label Text="{Binding SelectedTile_SourceTopAsInt}" />
                         <Label Text=") cursor" />
                     </HorizontalStackLayout>
 

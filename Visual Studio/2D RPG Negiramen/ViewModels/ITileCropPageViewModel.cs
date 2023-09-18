@@ -70,7 +70,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     切抜きカーソルのサイズ。元画像ベース
     /// </summary>
-    Models.Geometric.SizeInt CroppedCursorPointedTileSourceSize { get; }
+    Models.Geometric.SizeInt SelectedTile_SourceSize { get; }
     #endregion
 
     #region プロパティ（切抜きカーソル。ズーム済み　関連）

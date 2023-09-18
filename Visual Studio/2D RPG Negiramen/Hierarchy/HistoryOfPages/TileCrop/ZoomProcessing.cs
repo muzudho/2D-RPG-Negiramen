@@ -103,12 +103,12 @@ internal class ZoomProcessing : IProcessing
         {
             //// 位置
             //this.Owner.CroppedCursorPointedTileWorkingLocation = new TheGeometric.PointFloat(
-            //    x: new TheGeometric.XFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.X.AsInt),
-            //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.CroppedCursorPointedTileSourceRect.Location.Y.AsInt));
+            //    x: new TheGeometric.XFloat(this.Owner.ZoomAsFloat * this.Owner.SelectedTile_SourceLeftAsInt.Location.X.AsInt),
+            //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.SelectedTile_SourceLeftAsInt.Location.Y.AsInt));
 
             // サイズ
-            this.Subordinates.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.CroppedCursorPointedTileSourceRect.Size.Width.AsInt);
-            this.Colleagues.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.CroppedCursorPointedTileSourceRect.Size.Height.AsInt);
+            this.Subordinates.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Width.AsInt);
+            this.Colleagues.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新
