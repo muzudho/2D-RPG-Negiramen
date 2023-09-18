@@ -108,6 +108,8 @@ internal class ZoomProcessing : IProcessing
 
             // サイズ
             this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Width.AsInt);
+
+            // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
             this.Colleagues.PageVM.Subordinates.SelectedTile.WorkingHeight = new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Height.AsInt);
         }
 

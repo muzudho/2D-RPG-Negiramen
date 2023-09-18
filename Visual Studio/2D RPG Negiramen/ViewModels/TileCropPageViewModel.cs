@@ -584,6 +584,7 @@
         public float CanvasOfTileCursor_WorkingWidthAsFloat => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
 
         /// <summary>
+        ///     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
         ///     ［切抜きカーソル］のズーム済みの縦幅
         ///         
         ///     <list type="bullet">
@@ -896,6 +897,7 @@
         {
             get => new TheGeometric.SizeFloat(
                     width: new WidthFloat(this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat + this.Subordinates.SelectedTile.TrickWidth.AsFloat),
+                    // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
                     height: this.Subordinates.SelectedTile.WorkingHeight);
         }
 
@@ -931,6 +933,7 @@
         public string SelectedTile_WorkingWidthAsPresentableText => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat.ToString("F1");
 
         /// <summary>
+        ///     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
         ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
         ///         
         ///     <list type="bullet">
@@ -1019,6 +1022,10 @@
         #endregion
 
         #region プロパティ（［選択タイル］　関連）
+        /// <summary>
+        ///     元画像の矩形をセット
+        /// </summary>
+        /// <param name="value"></param>
         internal void SelectedTile_SetSourceRectangle(TheGeometric.RectangleInt value)
         {
             var contents = this.Subordinates.SelectedTile.RecordVisually;
@@ -1050,6 +1057,8 @@
             OnPropertyChanged(nameof(SelectedTile_WorkingTopAsPresentableText));
 
             this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
+
+            // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
             this.Subordinates.SelectedTile.WorkingHeight = new TheGeometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt);
         }
 
@@ -1125,6 +1134,7 @@
         }
 
         /// <summary>
+        ///     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
         ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
         ///         
         ///     <list type="bullet">
@@ -1138,6 +1148,7 @@
             {
                 if (this.Subordinates.SelectedTile.WorkingHeight.AsFloat != value)
                 {
+                    // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
                     this.Subordinates.SelectedTile.WorkingHeight = new TheGeometric.HeightFloat(value);
 
                     // キャンバスを再描画

@@ -125,6 +125,7 @@ internal class Tile
         }
     }
 
+    // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
     #region プロパティ（作業中の縦幅）
     /// <summary>
     ///     作業中の縦幅
@@ -137,6 +138,8 @@ internal class Tile
     ///     </list>
     /// </summary>
     internal TheGeometric.HeightFloat WorkingHeight { get; set; } = TheGeometric.HeightFloat.Zero;
+
+
     #endregion
 
     // - インターナル・メソッド
