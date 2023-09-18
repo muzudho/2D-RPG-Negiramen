@@ -107,7 +107,7 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.SelectedTile_SourceLeftAsInt.Location.Y.AsInt));
 
             // サイズ
-            this.Subordinates.CropCursor.SelectedTile_WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Width.AsInt);
+            this.Subordinates.TileCursor.SelectedTile_WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Width.AsInt);
             this.Colleagues.PageVM.SelectedTile_WorkingHeight = new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Height.AsInt);
         }
 

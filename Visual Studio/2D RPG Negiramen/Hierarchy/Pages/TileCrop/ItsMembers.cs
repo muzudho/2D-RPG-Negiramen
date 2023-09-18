@@ -25,8 +25,8 @@ internal class ItsMembers
         this.PointingDevice = new PointingDevice();
         this.ZoomProperties = new ZoomProperties();
         this.GridUnit = new GridUnit();
-        this.CropCursor = new CropCursor();
-        this.SelectedTile = new SelectedTile();
+        this.TileCursor = new TileCursor();
+        this.SelectedTile = new Tile();
         this.DeletesButton = new Button();
         this.TilesetSourceImageSize = TheGeometric.SizeInt.Empty;
         this.HalfThicknessOfGridLine = new(1);
@@ -73,12 +73,12 @@ internal class ItsMembers
 
     #region プロパティ（切抜きカーソル）
     /// <summary>切抜きカーソル</summary>
-    internal CropCursor CropCursor { get; }
+    internal TileCursor TileCursor { get; }
     #endregion
 
     #region プロパティ（切抜きカーソルが指すタイル）
     /// <summary>切抜きカーソルが指すタイル</summary>
-    internal SelectedTile SelectedTile { get; }
+    internal Tile SelectedTile { get; }
     #endregion
 
     #region プロパティ（削除ボタン）

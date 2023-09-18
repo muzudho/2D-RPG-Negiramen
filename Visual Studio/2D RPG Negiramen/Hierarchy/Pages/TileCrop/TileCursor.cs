@@ -5,7 +5,7 @@ using _2D_RPG_Negiramen.Models.Geometric;
 /// <summary>
 ///     切抜きカーソル
 /// </summary>
-internal class CropCursor
+internal class TileCursor
 {
     // - その他
 
@@ -13,7 +13,7 @@ internal class CropCursor
     /// <summary>
     ///     生成
     /// </summary>
-    internal CropCursor()
+    internal TileCursor()
     {
         this.SelectedTile_WorkingWidthWithoutTrick = WidthFloat.Zero;
     }

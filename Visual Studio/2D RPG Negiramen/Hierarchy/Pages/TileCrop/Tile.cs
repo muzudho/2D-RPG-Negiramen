@@ -6,7 +6,7 @@ using _2D_RPG_Negiramen.Models.Visually;
 /// <summary>
 ///     切抜きカーソルが指すタイル
 /// </summary>
-internal class SelectedTile
+internal class Tile
 {
     // - その他
 
@@ -14,7 +14,7 @@ internal class SelectedTile
     /// <summary>
     ///     生成
     /// </summary>
-    internal SelectedTile()
+    internal Tile()
     {
     }
     #endregion
