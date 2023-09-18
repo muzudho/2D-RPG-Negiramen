@@ -258,19 +258,26 @@ internal class ItsMembers
     ///         <item>仕様変更するときは、TRICK CODE に注意</item>
     ///     </list>
     /// </summary>
-    internal TheGeometric.HeightFloat SelectedTile_GetWorkingHeight(TheGeometric.Zoom zoom) => this.selectedTile_workingHeightBackup;
+    internal TheGeometric.HeightFloat SelectedTile_GetWorkingHeight(
+        TheGeometric.Zoom zoom
+        //,
+        //Action onChanged
+        ) => this.selectedTile_workingHeightBackup;
 
     TheGeometric.HeightFloat selectedTile_workingHeightBackup = TheGeometric.HeightFloat.Zero;
 
-    /// <summary>
-    ///     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-    ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
-    ///         
-    ///     <list type="bullet">
-    ///         <item>カーソルの線の幅を含まない</item>
-    ///     </list>
-    /// </summary>
-    public float SelectedTile_WorkingHeightAsFloat => this.SelectedTile_GetWorkingHeight(this.ZoomProperties.Value).AsFloat;
+    ///// <summary>
+    /////     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
+    /////     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
+    /////         
+    /////     <list type="bullet">
+    /////         <item>カーソルの線の幅を含まない</item>
+    /////     </list>
+    ///// </summary>
+    //public float SelectedTile_GetWorkingHeightAsFloat()
+    //{
+    //    return this.SelectedTile_GetWorkingHeight(this.ZoomProperties.Value).AsFloat;
+    //}
 
     internal void SelectedTile_SetWorkingHeight(
         TheGeometric.HeightFloat height,
