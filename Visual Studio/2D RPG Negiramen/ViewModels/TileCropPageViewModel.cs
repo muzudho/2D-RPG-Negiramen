@@ -1164,7 +1164,7 @@
         ///     
         ///     <see cref="CroppedCursorPointedTileIdOrEmpty"/>
         /// </summary>
-        public string CroppedCursorPointedTileIdAsBASE64
+        public string SelectedTile_IdAsBASE64
         {
             get
             {
@@ -1183,7 +1183,7 @@
         ///     
         ///     <see cref="CroppedCursorPointedTileIdOrEmpty"/>
         /// </summary>
-        public string CropTileIdAsPhoneticCode
+        public string SelectedTile_IdAsPhoneticCode
         {
             get
             {
@@ -1206,12 +1206,12 @@
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledCropTileTitleAsStr => !this.Subordinates.CropTile.RecordVisually.IsNone && !this.Subordinates.CropTile.IdOrEmpty.IsEmpty && !this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
+        public bool SelectedTile_TitleIsEnabled => !this.Subordinates.CropTile.RecordVisually.IsNone && !this.Subordinates.CropTile.IdOrEmpty.IsEmpty && !this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
         /// </summary>
-        public string CropTileTitleAsStr
+        public string SelectedTile_TitleAsStr
         {
             get => this.Subordinates.CropTile.RecordVisually.Title.AsStr;
             set
@@ -1240,7 +1240,7 @@
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］の論理削除
         /// </summary>
-        public bool CropTileLogicalDeleteAsBool
+        public bool SelectedTile_LogicalDeleteAsBool
         {
             get => this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
             set
@@ -1631,10 +1631,9 @@
         /// </summary>
         internal void InvalidateTarget()
         {
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
-            OnPropertyChanged(nameof(CropTileIdAsPhoneticCode));
-            OnPropertyChanged(nameof(CropTileTitleAsStr));
-            OnPropertyChanged(nameof(CropTileLogicalDeleteAsBool));
+            OnPropertyChanged(nameof(SelectedTile_IdAsBASE64));
+            OnPropertyChanged(nameof(SelectedTile_IdAsPhoneticCode));
+            OnPropertyChanged(nameof(SelectedTile_TitleAsStr));
         }
 
         /// <summary>
@@ -1644,10 +1643,10 @@
         {
             OnPropertyChanged(nameof(AddsButton_Hint));
             OnPropertyChanged(nameof(AddsButton_Text));
-            OnPropertyChanged(nameof(IsEnabledCropTileTitleAsStr));
+            OnPropertyChanged(nameof(SelectedTile_TitleIsEnabled));
 
-            OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
-            OnPropertyChanged(nameof(CropTileIdAsPhoneticCode));
+            OnPropertyChanged(nameof(SelectedTile_IdAsBASE64));
+            OnPropertyChanged(nameof(SelectedTile_IdAsPhoneticCode));
         }
 
         internal void InvalidateWorkingTargetTile()
@@ -1663,8 +1662,8 @@
         /// </summary>
         internal void InvalidateTileTitle()
         {
-            OnPropertyChanged(nameof(CropTileTitleAsStr));
-            OnPropertyChanged(nameof(IsEnabledCropTileTitleAsStr));
+            OnPropertyChanged(nameof(SelectedTile_TitleAsStr));
+            OnPropertyChanged(nameof(SelectedTile_TitleIsEnabled));
         }
         #endregion
 
@@ -2175,7 +2174,7 @@
                             this.CroppedCursorPointedTileSourceRect = RectangleInt.Empty;
 
                             // 論理削除
-                            this.CropTileLogicalDeleteAsBool = false;
+                            this.SelectedTile_LogicalDeleteAsBool = false;
 
                             // 変更通知を送りたい
                             this.InvalidateTileIdChange();

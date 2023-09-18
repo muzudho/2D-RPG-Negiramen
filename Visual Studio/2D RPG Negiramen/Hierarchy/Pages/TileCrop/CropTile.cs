@@ -106,7 +106,7 @@ internal class CropTile
             SetIdOrEmpty(
                 value: newValue.Id,
                 onTileIdOrEmpty: onTileIdOrEmpty);
-            // this.CropTileTitleAsStr = newValue.Title.AsStr;
+            // this.SelectedTile_TitleAsStr = newValue.Title.AsStr;
 
             onUpdated();
         }

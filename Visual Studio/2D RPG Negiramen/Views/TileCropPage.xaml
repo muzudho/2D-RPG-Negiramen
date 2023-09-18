@@ -615,15 +615,15 @@
                         <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileIdAsBASE64, Mode=OneWay}"
+                               Text="{Binding SelectedTile_IdAsBASE64, Mode=OneWay}"
                                IsReadOnly="True"
                                BackgroundColor="Transparent"/>
 
-                        <!-- タイル タイトル -->
+                        <!-- 選択タイル タイトル -->
                         <Entry Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="4"
                                Placeholder="草原"
-                               Text="{Binding CropTileTitleAsStr}"
-                               IsEnabled="{Binding IsEnabledCropTileTitleAsStr}"
+                               Text="{Binding SelectedTile_TitleAsStr}"
+                               IsEnabled="{Binding SelectedTile_TitleIsEnabled}"
                                Completed="TileTitleEntry_Completed"/>
 
                         <!--    ◆５段目 ヒント部
@@ -636,12 +636,12 @@
                                Padding="0,0,4,0"
                                Text="{app:Translate HowToRememberControlCode}"/>
 
-                        <!-- コードのおぼえかた -->
+                        <!-- 選択タイル コードのおぼえかた -->
                         <Label Grid.Row="4" Grid.Column="3" Grid.ColumnSpan="4"
                                HorizontalTextAlignment="Start"
                                VerticalTextAlignment="Start"
                                Padding="0,0,4,0"
-                               Text="{Binding CropTileIdAsPhoneticCode}"/>
+                               Text="{Binding SelectedTile_IdAsPhoneticCode}"/>
                     </Grid>
 
                 </Grid>
