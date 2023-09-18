@@ -100,55 +100,7 @@ internal class ItsMembers
     internal ThicknessOfLine HalfThicknessOfGridLine { get; }
     #endregion
 
-    // - インターナル・メソッド
-
-    #region メソッド（追加ボタンの状態取得）
-    /// <summary>
-    ///     追加ボタンの状態取得
-    /// </summary>
-    internal AddsButtonState GetStateOfAddsButton()
-    {
-        // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
-        if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
-        {
-            // 合同のときは「交差中」とは表示しない
-            if (!this.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
-            {
-                // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
-                // 「交差中」
-                return AddsButtonState.Intersecting;
-            }
-        }
-
-        // 「追加」
-        return AddsButtonState.Adds;
-    }
-    #endregion
-
-    #region メソッド（追加ボタンのラベル算出）
-    /// <summary>
-    ///     追加ボタンのラベル算出
-    /// </summary>
-    internal string GetLabelOfAddsButton()
-    {
-        var addsButtonState = this.GetStateOfAddsButton();
-
-        switch (addsButtonState)
-        {
-            case AddsButtonState.Intersecting:
-                // 「交差中」
-                return (string)LocalizationResourceManager.Instance["Intersecting"];
-
-            case AddsButtonState.Adds:
-                // 「追加」
-                return (string)LocalizationResourceManager.Instance["Add"];
-        }
-
-        // それ以外
-        throw new InvalidOperationException("追加ボタンが未知の状態");
-    }
-    #endregion
-
+    #region プロパティ（［追加］ボタンの活性性）
     /// <summary>
     ///     <pre>
     ///         ［追加／復元］ボタンの活性性
@@ -209,6 +161,83 @@ internal class ItsMembers
             }
         }
     }
+    #endregion
+
+    #region プロパティ（作業中の縦幅）
+    /// <summary>
+    ///     作業中の縦幅。（ズーム済みのサイズ）
+    ///     サイズが更新されていれば、カーソルのキャンバスを更新する必要がある
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
+    ///         <item>仕様変更するときは、TRICK CODE に注意</item>
+    ///     </list>
+    /// </summary>
+    internal TheGeometric.HeightFloat SelectedTile_GetOrUpdateWorkingHeight(
+        TheGeometric.Zoom zoom,
+        Action onUpdated)
+    {
+        var value = zoom.AsFloat * this.SelectedTile.SourceRectangle.Size.Height.AsInt;
+
+        if (value != this.selectedTile_workingHeightBackup.AsFloat)
+        {
+            this.selectedTile_workingHeightBackup = new TheGeometric.HeightFloat(value);
+            onUpdated();
+        }
+
+        return this.selectedTile_workingHeightBackup;
+    }
+    #endregion
+
+    // - インターナル・メソッド
+
+    #region メソッド（追加ボタンの状態取得）
+    /// <summary>
+    ///     追加ボタンの状態取得
+    /// </summary>
+    internal AddsButtonState GetStateOfAddsButton()
+    {
+        // 切抜きカーソルが、登録済みタイルのいずれかと交差しているか？
+        if (this.HasIntersectionBetweenCroppedCursorAndRegisteredTile)
+        {
+            // 合同のときは「交差中」とは表示しない
+            if (!this.IsCongruenceBetweenCroppedCursorAndRegisteredTile)
+            {
+                // Trace.WriteLine("[TileCropPage.xml.cs InvalidateAddsButton] 交差中だ");
+                // 「交差中」
+                return AddsButtonState.Intersecting;
+            }
+        }
+
+        // 「追加」
+        return AddsButtonState.Adds;
+    }
+    #endregion
+
+    #region メソッド（追加ボタンのラベル算出）
+    /// <summary>
+    ///     追加ボタンのラベル算出
+    /// </summary>
+    internal string GetLabelOfAddsButton()
+    {
+        var addsButtonState = this.GetStateOfAddsButton();
+
+        switch (addsButtonState)
+        {
+            case AddsButtonState.Intersecting:
+                // 「交差中」
+                return (string)LocalizationResourceManager.Instance["Intersecting"];
+
+            case AddsButtonState.Adds:
+                // 「追加」
+                return (string)LocalizationResourceManager.Instance["Add"];
+        }
+
+        // それ以外
+        throw new InvalidOperationException("追加ボタンが未知の状態");
+    }
+    #endregion
 
     #region メソッド（削除ボタンの活性性）
     /// <summary>
@@ -236,70 +265,7 @@ internal class ItsMembers
     }
     #endregion
 
-
-
-
-
-
-
-
-
-
-    // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-    #region プロパティ（作業中の縦幅）
-    /// <summary>
-    ///     作業中の縦幅
-    ///     ［切抜きカーソル］ズーム済みのサイズ
-    ///     サイズが更新されていれば、カーソルのキャンバスを更新する必要がある
-    ///         
-    ///     <list type="bullet">
-    ///         <item>カーソルの線の幅を含まない</item>
-    ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
-    ///         <item>仕様変更するときは、TRICK CODE に注意</item>
-    ///     </list>
-    /// </summary>
-    internal TheGeometric.HeightFloat SelectedTile_GetWorkingHeight(
-        TheGeometric.Zoom zoom,
-        Action onChanged)
-    {
-        var value = zoom.AsFloat * this.SelectedTile.SourceRectangle.Size.Height.AsInt;
-
-        if (value != this.selectedTile_workingHeightBackup.AsFloat)
-        {
-            this.selectedTile_workingHeightBackup = new TheGeometric.HeightFloat(value);
-            onChanged();
-        }
-
-        return this.selectedTile_workingHeightBackup;
-    }
+    // - プライベート・フィールド
 
     TheGeometric.HeightFloat selectedTile_workingHeightBackup = TheGeometric.HeightFloat.Zero;
-
-    internal void SelectedTile_SetWorkingHeight(
-        TheGeometric.HeightFloat height,
-        Action onChanged)
-    {
-        if (this.selectedTile_workingHeightBackup != height)
-        {
-            this.selectedTile_workingHeightBackup = height;
-
-            onChanged();
-        }
-    }
-
-    public void SelectedTile_SetWorkingHeightAsFloat(
-        float value,
-        Action onChanged)
-    {
-        if (this.SelectedTile_GetWorkingHeight(
-            zoom: this.ZoomProperties.Value,
-            onChanged: onChanged).AsFloat != value)
-        {
-            // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-            this.SelectedTile_SetWorkingHeight(
-                height: new TheGeometric.HeightFloat(value),
-                onChanged: onChanged);
-        }
-    }
-    #endregion
 }

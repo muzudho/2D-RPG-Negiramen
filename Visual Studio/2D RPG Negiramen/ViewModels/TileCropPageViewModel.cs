@@ -405,14 +405,6 @@
                     this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * height;
                     // this.Owner.Owner.InvalidateWorkingGrid();
 
-                    // カーソルの線の幅を含まない
-                    this.Subordinates.SelectedTile_SetWorkingHeightAsFloat(
-                        value: this.ZoomAsFloat * this.Subordinates.GridUnit.SourceValue.Height.AsInt,
-                        onChanged: () =>
-                        {
-                            this.InvalidateSelectedTileWorkingHeight();
-                        });
-
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
                     // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SourceGridTileHeightAsInt set]");
@@ -597,9 +589,9 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfTileCursor_WorkingHeightAsFloat => this.Subordinates.SelectedTile_GetWorkingHeight(
+        public float CanvasOfTileCursor_WorkingHeightAsFloat => this.Subordinates.SelectedTile_GetOrUpdateWorkingHeight(
             zoom: this.Subordinates.ZoomProperties.Value,
-            onChanged: () =>
+            onUpdated: () =>
             {
                 this.InvalidateSelectedTileWorkingHeight();
             }).AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
@@ -879,14 +871,6 @@
 #endif
                         ));
                 }
-
-                // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
-                this.Subordinates.SelectedTile_SetWorkingHeightAsFloat(
-                    value: this.ZoomAsFloat * value,
-                    onChanged: () =>
-                    {
-                        this.InvalidateSelectedTileWorkingHeight();
-                    });
             }
         }
 
@@ -911,9 +895,9 @@
             get => new TheGeometric.SizeFloat(
                     width: new WidthFloat(this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat + this.Subordinates.SelectedTile.TrickWidth.AsFloat),
                     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-                    height: this.Subordinates.SelectedTile_GetWorkingHeight(
+                    height: this.Subordinates.SelectedTile_GetOrUpdateWorkingHeight(
                         zoom: this.Subordinates.ZoomProperties.Value,
-                        onChanged: () =>
+                        onUpdated: () =>
                         {
                             this.InvalidateSelectedTileWorkingHeight();
                         }));
@@ -959,9 +943,9 @@
         ///         <item>表示用テキスト</item>
         ///     </list>
         /// </summary>
-        public string SelectedTile_GetWorkingHeightAsPresentableText => this.Subordinates.SelectedTile_GetWorkingHeight(
+        public string SelectedTile_GetWorkingHeightAsPresentableText => this.Subordinates.SelectedTile_GetOrUpdateWorkingHeight(
             zoom: this.Subordinates.ZoomProperties.Value,
-            onChanged: () =>
+            onUpdated: () =>
             {
                 this.InvalidateSelectedTileWorkingHeight();
             }).AsFloat.ToString("F1");
@@ -1080,14 +1064,6 @@
             OnPropertyChanged(nameof(SelectedTile_WorkingTopAsPresentableText));
 
             this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
-
-            // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-            this.Subordinates.SelectedTile_SetWorkingHeight(
-                height: new TheGeometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt),
-                onChanged: () =>
-                {
-                    this.InvalidateSelectedTileWorkingHeight();
-                });
         }
 
         /// <summary>
