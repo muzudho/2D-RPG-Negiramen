@@ -97,7 +97,7 @@ internal class Tile
             if (contents.IsNone)
             {
                 // ［切抜きカーソル］の指すタイル無し時
-                return Models.Geometric.RectangleInt.Empty;
+                return TheGeometric.RectangleInt.Empty;
             }
 
             return contents.SourceRectangle;
@@ -111,7 +111,7 @@ internal class Tile
     ///         <item>線の太さを含まない</item>
     ///     </list>
     /// </summary>
-    public Models.Geometric.SizeInt SourceSize
+    public TheGeometric.SizeInt SourceSize
     {
         get
         {
@@ -119,11 +119,25 @@ internal class Tile
 
             // ［切抜きカーソル］無し時
             if (contents.IsNone)
-                return Models.Geometric.SizeInt.Empty;
+                return TheGeometric.SizeInt.Empty;
 
             return contents.SourceRectangle.Size;
         }
     }
+
+    #region プロパティ（作業中の縦幅）
+    /// <summary>
+    ///     作業中の縦幅
+    ///     ［切抜きカーソル］ズーム済みのサイズ
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
+    ///         <item>仕様変更するときは、TRICK CODE に注意</item>
+    ///     </list>
+    /// </summary>
+    internal TheGeometric.HeightFloat WorkingHeight { get; set; } = TheGeometric.HeightFloat.Zero;
+    #endregion
 
     // - インターナル・メソッド
 

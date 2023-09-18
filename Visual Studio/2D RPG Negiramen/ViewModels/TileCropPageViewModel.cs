@@ -204,7 +204,7 @@
         ///         <item>グリッドの線の太さを 2px と想定しているので、グリッドの線が画像の端っこで切れないように、グリッドの内部的なキャンバス・サイズを 2px 広げる</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.SizeInt GridCanvasImageSize
+        public TheGeometric.SizeInt GridCanvasImageSize
         {
             get => this.gridCanvasImageSize;
             set
@@ -231,7 +231,7 @@
             {
                 if (this.gridCanvasImageSize.Width.AsInt != value)
                 {
-                    this.gridCanvasImageSize = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.gridCanvasImageSize.Height);
+                    this.gridCanvasImageSize = new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), this.gridCanvasImageSize.Height);
                     OnPropertyChanged(nameof(GridCanvasImageWidthAsInt));
                     OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
@@ -252,7 +252,7 @@
             {
                 if (this.gridCanvasImageSize.Height.AsInt != value)
                 {
-                    this.gridCanvasImageSize = new Models.Geometric.SizeInt(this.gridCanvasImageSize.Width, new Models.Geometric.HeightInt(value));
+                    this.gridCanvasImageSize = new TheGeometric.SizeInt(this.gridCanvasImageSize.Width, new TheGeometric.HeightInt(value));
                     OnPropertyChanged(nameof(GridCanvasImageHeightAsInt));
                     OnPropertyChanged(nameof(GridCanvasImageSize));
                 }
@@ -271,7 +271,7 @@
         /// <summary>
         ///     ［元画像グリッド］の位相の左上表示位置。元画像ベース
         /// </summary>
-        public Models.Geometric.PointInt GridPhaseSourceLocation
+        public TheGeometric.PointInt GridPhaseSourceLocation
         {
             get => this.gridPhaseSourceLocation;
             set
@@ -294,7 +294,7 @@
             {
                 if (this.gridPhaseSourceLocation.X.AsInt != value)
                 {
-                    this.gridPhaseSourceLocation = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), this.gridPhaseSourceLocation.Y);
+                    this.gridPhaseSourceLocation = new TheGeometric.PointInt(new TheGeometric.XInt(value), this.gridPhaseSourceLocation.Y);
                     this.WorkingGridPhaseLeftAsFloat = this.ZoomAsFloat * this.gridPhaseSourceLocation.X.AsInt;
 
                     // キャンバスを再描画
@@ -320,7 +320,7 @@
             {
                 if (this.gridPhaseSourceLocation.Y.AsInt != value)
                 {
-                    this.gridPhaseSourceLocation = new Models.Geometric.PointInt(this.gridPhaseSourceLocation.X, new Models.Geometric.YInt(value));
+                    this.gridPhaseSourceLocation = new TheGeometric.PointInt(this.gridPhaseSourceLocation.X, new TheGeometric.YInt(value));
                     this.WorkingGridPhaseTopAsFloat = (float)(this.ZoomAsFloat * this.gridPhaseSourceLocation.Y.AsInt);
 
                     // キャンバスを再描画
@@ -339,7 +339,7 @@
         /// <summary>
         ///     ［元画像グリッド］のタイルのサイズ。元画像ベース
         /// </summary>
-        public Models.Geometric.SizeInt SourceGridUnit
+        public TheGeometric.SizeInt SourceGridUnit
         {
             get => this.Subordinates.GridUnit.SourceValue;
             set
@@ -365,7 +365,7 @@
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.Subordinates.GridUnit.SourceValue = new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), this.Subordinates.GridUnit.SourceValue.Height);
+                    this.Subordinates.GridUnit.SourceValue = new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), this.Subordinates.GridUnit.SourceValue.Height);
 
                     // 作業グリッド・タイル横幅の再計算
                     var width = this.Subordinates.GridUnit.SourceValue.Width.AsInt;
@@ -398,7 +398,7 @@
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.Subordinates.GridUnit.SourceValue = new Models.Geometric.SizeInt(this.Subordinates.GridUnit.SourceValue.Width, new Models.Geometric.HeightInt(value));
+                    this.Subordinates.GridUnit.SourceValue = new TheGeometric.SizeInt(this.Subordinates.GridUnit.SourceValue.Width, new TheGeometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
                     var height = this.Subordinates.GridUnit.SourceValue.Height.AsInt;
@@ -434,7 +434,7 @@
         /// <summary>
         ///     ［作業グリッド］の位相の左上表示位置
         /// </summary>
-        public Models.Geometric.PointFloat WorkingGridPhase
+        public TheGeometric.PointFloat WorkingGridPhase
         {
             get => this.workingGridPhase;
             set
@@ -457,8 +457,8 @@
             {
                 if (this.workingGridPhase.X.AsFloat != value)
                 {
-                    this.workingGridPhase = new Models.Geometric.PointFloat(
-                        x: new Models.Geometric.XFloat(value),
+                    this.workingGridPhase = new TheGeometric.PointFloat(
+                        x: new TheGeometric.XFloat(value),
                         y: this.workingGridPhase.Y);
 
                     OnPropertyChanged(nameof(WorkingGridPhaseLeftAsFloat));
@@ -477,9 +477,9 @@
             {
                 if (this.workingGridPhase.Y.AsFloat != value)
                 {
-                    this.workingGridPhase = new Models.Geometric.PointFloat(
+                    this.workingGridPhase = new TheGeometric.PointFloat(
                         x: this.workingGridPhase.X,
-                        y: new Models.Geometric.YFloat(value));
+                        y: new TheGeometric.YFloat(value));
 
                     OnPropertyChanged(nameof(WorkingGridPhaseTopAsFloat));
                     OnPropertyChanged(nameof(WorkingGridPhase));
@@ -490,7 +490,7 @@
         /// <summary>
         ///     ［作業グリッド］のタイルのサイズ（読取専用）
         /// </summary>
-        public Models.Geometric.SizeFloat WorkingGridUnit
+        public TheGeometric.SizeFloat WorkingGridUnit
         {
             get => this.workingGridUnit;
             set
@@ -513,8 +513,8 @@
             {
                 if (this.workingGridUnit.Width.AsFloat != value)
                 {
-                    this.workingGridUnit = new Models.Geometric.SizeFloat(
-                        width: new Models.Geometric.WidthFloat(value),
+                    this.workingGridUnit = new TheGeometric.SizeFloat(
+                        width: new TheGeometric.WidthFloat(value),
                         height: this.WorkingGridUnit.Height);
 
                     OnPropertyChanged(nameof(WorkingGridTileWidthAsFloat));
@@ -533,9 +533,9 @@
             {
                 if (this.workingGridUnit.Height.AsFloat != value)
                 {
-                    this.workingGridUnit = new Models.Geometric.SizeFloat(
+                    this.workingGridUnit = new TheGeometric.SizeFloat(
                         width: this.WorkingGridUnit.Width,
-                        height: new Models.Geometric.HeightFloat(value));
+                        height: new TheGeometric.HeightFloat(value));
 
                     OnPropertyChanged(nameof(WorkingGridTileHeightAsFloat));
                     OnPropertyChanged(nameof(WorkingGridUnit));
@@ -591,7 +591,7 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfTileCursor_WorkingHeightAsFloat => this.selectedTile_workingHeight.AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
+        public float CanvasOfTileCursor_WorkingHeightAsFloat => this.Subordinates.SelectedTile.WorkingHeight.AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
 
         /// <summary>
         ///     ［切抜きカーソル］の線の半分の太さ
@@ -640,8 +640,8 @@
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
-                            rect: new Models.Geometric.RectangleInt(
-                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
+                            rect: new TheGeometric.RectangleInt(
+                                location: new TheGeometric.PointInt(new TheGeometric.XInt(value), Models.Geometric.YInt.Empty),
                                 size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
@@ -660,8 +660,8 @@
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
-                            rect: new Models.Geometric.RectangleInt(
-                                location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), currentTileVisually.SourceRectangle.Location.Y),
+                            rect: new TheGeometric.RectangleInt(
+                                location: new TheGeometric.PointInt(new TheGeometric.XInt(value), currentTileVisually.SourceRectangle.Location.Y),
                                 size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title),
                         zoom: this.Subordinates.ZoomProperties.Value
@@ -713,8 +713,8 @@
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
-                            rect: new Models.Geometric.RectangleInt(
-                            location: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
+                            rect: new TheGeometric.RectangleInt(
+                            location: new TheGeometric.PointInt(Models.Geometric.XInt.Empty, new TheGeometric.YInt(value)),
                             size: Models.Geometric.SizeInt.Empty),
                             title: Models.TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
@@ -733,8 +733,8 @@
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
-                            rect: new Models.Geometric.RectangleInt(
-                            location: new Models.Geometric.PointInt(currentTileVisually.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
+                            rect: new TheGeometric.RectangleInt(
+                            location: new TheGeometric.PointInt(currentTileVisually.SourceRectangle.Location.X, new TheGeometric.YInt(value)),
                             size: currentTileVisually.SourceRectangle.Size),
                             title: currentTileVisually.Title),
                         zoom: this.Subordinates.ZoomProperties.Value
@@ -785,7 +785,7 @@
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
-                            rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
+                            rect: new TheGeometric.RectangleInt(Models.Geometric.PointInt.Empty, new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
                             title: Models.TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
@@ -802,7 +802,7 @@
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
-                            rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
+                            rect: new TheGeometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
                             title: currentTileVisually.Title),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
@@ -843,7 +843,7 @@
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
-                            rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
+                            rect: new TheGeometric.RectangleInt(Models.Geometric.PointInt.Empty, new TheGeometric.SizeInt(Models.Geometric.WidthInt.Empty, new TheGeometric.HeightInt(value))),
                             title: Models.TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
@@ -860,7 +860,7 @@
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
-                            rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
+                            rect: new TheGeometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new TheGeometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new TheGeometric.HeightInt(value))),
                             title: currentTileVisually.Title),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
@@ -892,11 +892,11 @@
         ///         <item>カーソルの線の幅を含まない</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.SizeFloat SelectedTile_WorkingSizeWithTrick
+        public TheGeometric.SizeFloat SelectedTile_WorkingSizeWithTrick
         {
-            get => new Models.Geometric.SizeFloat(
+            get => new TheGeometric.SizeFloat(
                     width: new WidthFloat(this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat + this.Subordinates.SelectedTile.TrickWidth.AsFloat),
-                    height: this.SelectedTile_WorkingHeight);
+                    height: this.Subordinates.SelectedTile.WorkingHeight);
         }
 
         /// <summary>
@@ -938,7 +938,7 @@
         ///         <item>表示用テキスト</item>
         ///     </list>
         /// </summary>
-        public string SelectedTile_WorkingHeightAsPresentableText => this.selectedTile_workingHeight.AsFloat.ToString("F1");
+        public string SelectedTile_WorkingHeightAsPresentableText => this.Subordinates.SelectedTile.WorkingHeight.AsFloat.ToString("F1");
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のＩｄ。BASE64表現
@@ -1049,8 +1049,8 @@
             OnPropertyChanged(nameof(TileCursor_WorkingPointAsMargin));
             OnPropertyChanged(nameof(SelectedTile_WorkingTopAsPresentableText));
 
-            this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
-            this.SelectedTile_WorkingHeight = new Models.Geometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt);
+            this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
+            this.Subordinates.SelectedTile.WorkingHeight = new TheGeometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt);
         }
 
         /// <summary>
@@ -1094,12 +1094,6 @@
         /// </summary>
         public float SelectedTile_WorkingTopAsFloat => this.ZoomAsFloat * this.SelectedTile_SourceTopAsInt;
 
-        public Models.Geometric.HeightFloat SelectedTile_WorkingHeight
-        {
-            get => this.selectedTile_workingHeight;
-            set => this.selectedTile_workingHeight = value;
-        }
-
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のズーム済みの横幅
         ///         
@@ -1114,7 +1108,7 @@
             {
                 if (this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat != value)
                 {
-                    this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(value);
+                    this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(value);
 
                     // キャンバスを再描画
                     // RefreshCanvasOfTileCursor(codePlace: "[TileCropPageViewModel SelectedTile_WorkingWidthAsFloat set]");
@@ -1139,12 +1133,12 @@
         /// </summary>
         public float SelectedTile_WorkingHeightAsFloat
         {
-            get => this.selectedTile_workingHeight.AsFloat;
+            get => this.Subordinates.SelectedTile.WorkingHeight.AsFloat;
             set
             {
-                if (this.selectedTile_workingHeight.AsFloat != value)
+                if (this.Subordinates.SelectedTile.WorkingHeight.AsFloat != value)
                 {
-                    this.selectedTile_workingHeight = new Models.Geometric.HeightFloat(value);
+                    this.Subordinates.SelectedTile.WorkingHeight = new TheGeometric.HeightFloat(value);
 
                     // キャンバスを再描画
                     // RefreshCanvasOfTileCursor("[TileCropPageViewModel SelectedTile_WorkingHeightAsFloat set]");
@@ -2189,31 +2183,31 @@
         /// <summary>
         ///     ［タイルセット作業画像］サイズ
         /// </summary>
-        internal Models.Geometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
+        internal TheGeometric.SizeInt workingImageSize = Models.Geometric.SizeInt.Empty;
         #endregion
 
         #region 変更通知フィールド（［元画像グリッド］　関連）
         /// <summary>
         ///     ［元画像グリッド］のキャンバス画像サイズ
         /// </summary>
-        Models.Geometric.SizeInt gridCanvasImageSize = Models.Geometric.SizeInt.Empty;
+        TheGeometric.SizeInt gridCanvasImageSize = Models.Geometric.SizeInt.Empty;
 
         /// <summary>
         ///     ［元画像グリッド］の位相の左上表示位置
         /// </summary>
-        Models.Geometric.PointInt gridPhaseSourceLocation = Models.Geometric.PointInt.Empty;
+        TheGeometric.PointInt gridPhaseSourceLocation = Models.Geometric.PointInt.Empty;
         #endregion
 
         #region 変更通知フィールド（［作業グリッド］　関連）
         /// <summary>
         ///     ［作業グリッド］の単位
         /// </summary>
-        Models.Geometric.SizeFloat workingGridUnit = new(new Models.Geometric.WidthFloat(32.0f), new Models.Geometric.HeightFloat(32.0f));
+        TheGeometric.SizeFloat workingGridUnit = new(new TheGeometric.WidthFloat(32.0f), new TheGeometric.HeightFloat(32.0f));
 
         /// <summary>
         ///     ［作業グリッド］の位相の左上表示位置
         /// </summary>
-        Models.Geometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Zero;
+        TheGeometric.PointFloat workingGridPhase = Models.Geometric.PointFloat.Zero;
         #endregion
 
         #region 変更通知フィールド（［切抜きカーソル］　関連）
@@ -2228,21 +2222,6 @@
         ///     ［追加／上書き］ボタンのラベル
         /// </summary>
         string addsButton_text = string.Empty;
-        #endregion
-
-        // - プライベート・フィールド
-
-        #region フィールド（［切抜きカーソル］　関連）
-        /// <summary>
-        ///     ［切抜きカーソル］ズーム済みのサイズ
-        ///         
-        ///     <list type="bullet">
-        ///         <item>カーソルの線の幅を含まない</item>
-        ///         <item>TODO ★ 現在、範囲選択は、この作業用のサイズを使っているが、ソースの方のサイズを変更するようにできないか？ ワーキングは変数にしないようにしたい</item>
-        ///         <item>仕様変更するときは、TRICK CODE に注意</item>
-        ///     </list>
-        /// </summary>
-        Models.Geometric.HeightFloat selectedTile_workingHeight = Models.Geometric.HeightFloat.Zero;
         #endregion
 
         // - プライベート・メソッド
