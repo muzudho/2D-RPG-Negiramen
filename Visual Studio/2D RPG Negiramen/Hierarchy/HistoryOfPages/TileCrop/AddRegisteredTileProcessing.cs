@@ -5,7 +5,6 @@ using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using _2D_RPG_Negiramen.Models.Visually;
-using TheHistoryOfTileCropPage = _2D_RPG_Negiramen.Hierarchy.HistoryOfPages.TileCrop;
 using TheTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
@@ -32,7 +31,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Colleagues = colleagues;
         this.SetAddsButtonText = (text) =>
         {
-            this.Colleagues.PageVM.AddsButtonText = text;
+            this.Colleagues.PageVM.AddsButton_Text = text;
             this.Colleagues.PageVM.InvalidateAddsButton();
         };
 
@@ -162,11 +161,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         }
 
         //  ［削除］ボタンの再描画
-        this.Colleagues.PageVM.Subordinates.DeletesButtonRefreshEnabled(
-            onEnableChanged: () =>
-            {
-                this.Colleagues.PageVM.InvalidateDeletesButton();
-            });
+        this.Colleagues.PageVM.InvalidateDeletesButton();
 
         //
         // カラーマップの再描画

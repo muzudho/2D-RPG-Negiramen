@@ -47,7 +47,7 @@
 
             this.SetAddsButtonText = (text) =>
             {
-                this.AddsButtonText = text;
+                this.AddsButton_Text = text;
                 this.InvalidateAddsButton();
             };
 
@@ -1223,7 +1223,7 @@
                 this.UpdateByDifference(
                     setAddsButtonText: (text) =>
                     {
-                        this.AddsButtonText = text;
+                        this.AddsButton_Text = text;
                         this.InvalidateAddsButton();
                     },
                     onDeleteButtonEnableChanged: () =>
@@ -1252,7 +1252,7 @@
                 this.UpdateByDifference(
                     setAddsButtonText: (text) =>
                     {
-                        this.AddsButtonText = text;
+                        this.AddsButton_Text = text;
                         this.InvalidateAddsButton();
                     },
                     onDeleteButtonEnableChanged: () =>
@@ -1271,15 +1271,15 @@
         /// <summary>
         ///     ［追加／上書き］ボタンのラベル
         /// </summary>
-        public string AddsButtonText
+        public string AddsButton_Text
         {
-            get => this.addsButtonText;
+            get => this.addsButton_text;
             set
             {
-                if (this.addsButtonText != value)
+                if (this.addsButton_text != value)
                 {
-                    this.addsButtonText = value;
-                    OnPropertyChanged(nameof(AddsButtonText));
+                    this.addsButton_text = value;
+                    OnPropertyChanged(nameof(AddsButton_Text));
                 }
             }
         }
@@ -1287,7 +1287,7 @@
         /// <summary>
         ///     ［追加／上書き］ボタンのツールチップ・ヒント
         /// </summary>
-        public string AddsButtonHint
+        public string AddsButton_Hint
         {
             get
             {
@@ -1329,7 +1329,7 @@
         ///     
         ///     ※４　［交差中］ボタンは、常に不活性
         /// </summary>
-        public bool IsEnabledAddsButton
+        public bool AddsButton_IsEnabled
         {
             get
             {
@@ -1367,9 +1367,9 @@
         ///         <item>透過メソッド</item>
         ///     </list>
         /// </summary>
-        public bool IsEnabledDeletesButton
+        public bool DeletesButton_IsEnabled
         {
-            get => this.Subordinates.DeletesButton.IsEnabled;
+            get => this.Subordinates.DeletesButton_IsEnabled;
         }
         #endregion
 
@@ -1642,8 +1642,8 @@
         /// </summary>
         internal void InvalidateTileIdChange()
         {
-            OnPropertyChanged(nameof(AddsButtonHint));
-            OnPropertyChanged(nameof(AddsButtonText));
+            OnPropertyChanged(nameof(AddsButton_Hint));
+            OnPropertyChanged(nameof(AddsButton_Text));
             OnPropertyChanged(nameof(IsEnabledCropTileTitleAsStr));
 
             OnPropertyChanged(nameof(CroppedCursorPointedTileIdAsBASE64));
@@ -1674,9 +1674,9 @@
         /// </summary>
         internal void InvalidateAddsButton()
         {
-            OnPropertyChanged(nameof(AddsButtonHint));
-            OnPropertyChanged(nameof(AddsButtonText));
-            OnPropertyChanged(nameof(IsEnabledAddsButton));
+            OnPropertyChanged(nameof(AddsButton_Hint));
+            OnPropertyChanged(nameof(AddsButton_Text));
+            OnPropertyChanged(nameof(AddsButton_IsEnabled));
         }
         #endregion
 
@@ -1686,7 +1686,7 @@
         /// </summary>
         internal void InvalidateDeletesButton()
         {
-            OnPropertyChanged(nameof(IsEnabledDeletesButton));
+            OnPropertyChanged(nameof(DeletesButton_IsEnabled));
         }
         #endregion
 
@@ -2215,12 +2215,8 @@
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
             this.SetAddsButtonText(this.Subordinates.GetLabelOfAddsButton());
 
-            // （切抜きカーソル更新後）［削除］ボタン活性化
-            this.Subordinates.DeletesButtonRefreshEnabled(
-                onEnableChanged: () =>
-                {
-                    this.InvalidateDeletesButton();
-                });
+            // （切抜きカーソル更新後）［削除］ボタン再描画
+            this.InvalidateDeletesButton();
 
             // ［追加／復元］ボタン
             this.InvalidateAddsButton();
@@ -2311,8 +2307,7 @@
                 setAddsButtonText(this.Subordinates.GetLabelOfAddsButton());
 
                 // ［削除］ボタン再描画
-                this.Subordinates.DeletesButtonRefreshEnabled(
-                    onEnableChanged: onDeleteButtonEnableChanged);
+                onDeleteButtonEnableChanged();
             }
 
             // タイル・タイトル
@@ -2399,7 +2394,7 @@
         /// <summary>
         ///     ［追加／上書き］ボタンのラベル
         /// </summary>
-        string addsButtonText = string.Empty;
+        string addsButton_text = string.Empty;
         #endregion
 
         // - プライベート・フィールド

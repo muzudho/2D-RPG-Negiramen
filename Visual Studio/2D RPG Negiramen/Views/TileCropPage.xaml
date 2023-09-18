@@ -520,14 +520,14 @@
                             <VerticalStackLayout>
 
                                 <!-- 追加／上書ボタン -->
-                                <Button IsEnabled="{Binding IsEnabledAddsButton}"
-                                        Text="{Binding AddsButtonText}"
-                                        ToolTipProperties.Text="{Binding AddsButtonHint}"
+                                <Button IsEnabled="{Binding AddsButton_IsEnabled}"
+                                        Text="{Binding AddsButton_Text}"
+                                        ToolTipProperties.Text="{Binding AddsButton_Hint}"
                                         Clicked="AddsButton_Clicked"/>
 
                                 <!-- ［削除］ボタン -->
                                 <Button Margin="0,40,0,0"
-                                        IsEnabled="{Binding IsEnabledDeletesButton}"
+                                        IsEnabled="{Binding DeletesButton_IsEnabled}"
                                         Text="{app:Translate Delete}"
                                         Clicked="DeletesButton_Clicked"/>
 

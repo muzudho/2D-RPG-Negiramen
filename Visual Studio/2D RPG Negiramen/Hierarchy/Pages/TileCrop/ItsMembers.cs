@@ -178,41 +178,31 @@ internal class ItsMembers
     }
     #endregion
 
-    #region メソッド（削除ボタンの活性性の再更新）
+    #region メソッド（削除ボタンの活性性）
     /// <summary>
-    ///     削除ボタンの活性性の再更新
+    ///     削除ボタンの活性性
     /// </summary>
-    internal void DeletesButtonRefreshEnabled(
-        Action onEnableChanged)
+    internal bool DeletesButton_IsEnabled
     {
-        var contents = this.CropTile.RecordVisually;
-
-        if (
-            // 切抜きカーソル無し時
-            contents.IsNone
-            // 論理削除時
-            || contents.LogicalDelete.AsBool)
+        get
         {
-            // 不活性
-            this.DeletesButton.SetEnabled(
-                value: false,
-                onChanged: onEnableChanged);
-            return;
-        }
+            var contents = this.CropTile.RecordVisually;
 
-        if (contents.Id == TileIdOrEmpty.Empty)
-        {
-            // Ｉｄ未設定時
-            this.DeletesButton.SetEnabled(
-                value: false,
-                onChanged: onEnableChanged);
-            return;
-        }
+            if (
+                // 切抜きカーソル無し時
+                contents.IsNone
+                // 論理削除時
+                || contents.LogicalDelete.AsBool
+                // Ｉｄ未設定時
+                || contents.Id == TileIdOrEmpty.Empty)
+            {
+                // 不活性
+                return false;
+            }
 
-        // タイル登録済み時
-        this.DeletesButton.SetEnabled(
-            value: true,
-            onChanged: onEnableChanged);
+            // タイル登録済み時
+            return true;
+        }
     }
     #endregion
 }
