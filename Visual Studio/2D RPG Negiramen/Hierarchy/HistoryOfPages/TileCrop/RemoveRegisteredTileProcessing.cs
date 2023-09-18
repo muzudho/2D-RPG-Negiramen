@@ -2,6 +2,7 @@
 
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.History;
+using _2D_RPG_Negiramen.Models.Visually;
 using System.Diagnostics;
 
 /// <summary>
@@ -9,97 +10,114 @@ using System.Diagnostics;
 /// </summary>
 internal class RemoveRegisteredTileProcessing : IProcessing
 {
+    // - その他
+
+    #region その他（生成）
+    /// <summary>
+    ///     生成
+    /// </summary>
+    /// <param name="tileIdOrEmpty">タイルＩｄ</param>
+    /// <returns></returns>
+    internal static RemoveRegisteredTileProcessing FromTileId(
+        MembersOfTileCropPage colleagues,
+        TileIdOrEmpty tileIdOrEmpty)
+    {
+        // ※１ Id が一致する最初の１件を取得
+        TileRecordVisually? removeeTile = colleagues.PageVM.TilesetSettingsVM.TileRecordVisuallyList.Find(item => item.Id == tileIdOrEmpty);
+
+        if (removeeTile != null)
+        {
+            return new RemoveRegisteredTileProcessing(
+                colleagues: colleagues,
+                removeeTile: removeeTile);
+        }
+
+        throw new InvalidOperationException("削除するタイルがありません");
+    }
+
     /// <summary>
     ///     生成
     /// </summary>
     /// <param name="owner"></param>
-    internal RemoveRegisteredTileProcessing(
+    RemoveRegisteredTileProcessing(
         MembersOfTileCropPage colleagues,
-        TileIdOrEmpty tileIdOrEmpty)
+        TileRecordVisually removeeTile)
     {
         this.Colleagues = colleagues;
-        this.TileIdOrEmpty = tileIdOrEmpty;
+        this.RemoveeTile = removeeTile;
     }
+    #endregion
 
+    /// <summary>
+    ///     タイル削除
+    ///     
+    ///     <list type="bullet">
+    ///         <item>※１ あれば、タイルの削除</item>
+    ///         <item>※２ 設定ファイルの保存</item>
+    ///         <item>※３ カラーマップに変更通知</item>
+    ///         <item>※４ タイル情報に変更通知</item>
+    ///         <item>※５ 履歴ボタンの変更通知</item>
+    ///     </list>
+    /// </summary>
     public void Do()
     {
-        //
-        // 設定ファイルの編集
-        // ==================
-        //
-        // TODO ★★ 論理削除は難しいから廃止予定。完全削除にしたい
-        //
-        if (this.Colleagues.PageVM.TilesetSettingsVM.DeleteLogical(
-            // 現在選択中のタイルのＩｄ
-            id: this.TileIdOrEmpty))
+        Trace.WriteLine($"［タイル削除］　Do　TileId: [{this.RemoveeTile.Id.AsBASE64}]");
+
+        // ※１
+        if (this.Colleagues.PageVM.TilesetSettingsVM.RemoveTile(
+            item: this.RemoveeTile))
         {
-            // タイルセット設定ビューモデルに変更あり
+            // 削除に成功したら
+
+            // ※２
+            if (!this.Colleagues.PageVM.TilesetSettingsVM.SaveCsv(this.Colleagues.PageVM.TilesetDatatableFileLocation))
+            {
+                // TODO 保存失敗時のエラー対応
+            }
+
+            // ※３
             this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
+
+            // ※４
+            this.Colleagues.PageVM.RefreshForTileAdd();
+
+            // ※５
+            this.Colleagues.PageVM.InvalidateForHistory();
         }
-
-        // TODO 論理削除は難しいから廃止予定
-        Trace.WriteLine($"［タイル削除］ 　Do　タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
-
-        //
-        // 設定ファイルの保存
-        // ==================
-        //
-        if (this.Colleagues.PageVM.TilesetSettingsVM.SaveCsv(this.Colleagues.PageVM.TilesetDatatableFileLocation))
-        {
-            // 保存成功
-        }
-        else
-        {
-            // TODO 保存失敗時のエラー対応
-        }
-
-        //
-        // カラーマップの再描画
-        // ====================
-        //
-        this.Colleagues.PageVM.RefreshForTileAdd();
-
-        // 履歴ボタンの変更通知
-        this.Colleagues.PageVM.InvalidateForHistory();
     }
 
+    /// <summary>
+    ///     タイル削除のアンドゥ
+    ///     
+    ///     <list type="bullet">
+    ///         <item></item>
+    ///         <item></item>
+    ///         <item></item>
+    ///         <item></item>
+    ///         <item></item>
+    ///     </list>
+    /// </summary>
     public void Undo()
     {
-        //
-        // 設定ファイルの編集
-        // ==================
-        //
-        // TODO 論理削除は難しいから廃止予定
-        //      - 選択中のタイルの論理削除の取消
-        //
-        if (this.Colleagues.PageVM.TilesetSettingsVM.UndeleteLogical(
-            // 現在選択中のタイルのＩｄ
-            id: this.TileIdOrEmpty))
-        {
-            // タイルセット設定ビューモデルに変更あり
-            this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
-        }
+        Trace.WriteLine($"［タイル削除］　Undo　TileId: [{this.RemoveeTile.Id.AsBASE64}]");
 
-        // TODO 論理削除は難しいから廃止予定
-        Trace.WriteLine($"［タイル削除］　Undo　タイルを論理削除 TileId: [{this.TileIdOrEmpty.AsBASE64}]");
+        // 削除したタイルを、再び追加
+        this.Colleagues.PageVM.TilesetSettingsVM.AddTile(
+            item: this.RemoveeTile);
 
         //
         // 設定ファイルの保存
         // ==================
         //
-        if (this.Colleagues.PageVM.TilesetSettingsVM.SaveCsv(this.Colleagues.PageVM.TilesetDatatableFileLocation))
-        {
-            // 保存成功
-        }
-        else
+        if (!this.Colleagues.PageVM.TilesetSettingsVM.SaveCsv(this.Colleagues.PageVM.TilesetDatatableFileLocation))
         {
             // TODO 保存失敗時のエラー対応
         }
 
-        //
-        // カラーマップの再描画
-        // ====================
-        //
+        // カラーマップに変更通知
+        this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
+
+        // タイル情報の変更通知
         this.Colleagues.PageVM.RefreshForTileAdd();
 
         // 履歴ボタンの変更通知
@@ -112,7 +130,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     MembersOfTileCropPage Colleagues { get; }
 
     /// <summary>
-    ///     ［タイル］のＩｄ
+    ///     削除するタイル
     /// </summary>
-    TileIdOrEmpty TileIdOrEmpty { get; }
+    TileRecordVisually RemoveeTile { get; }
 }

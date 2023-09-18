@@ -1886,7 +1886,7 @@
         ///         <item>登録タイル削除</item>
         ///     </list>
         /// </summary>
-        internal void OnDeletesButtonRemoveTile() => App.History.Do(new TheHistoryTileCropPage.RemoveRegisteredTileProcessing(
+        internal void OnDeletesButtonRemoveTile() => App.History.Do(TheHistoryTileCropPage.RemoveRegisteredTileProcessing.FromTileId(
             colleagues: this.Colleagues,
             tileIdOrEmpty: this.Subordinates.SelectedTile.IdOrEmpty));
 

@@ -131,88 +131,24 @@
         }
         #endregion
 
-        // TODO ★★ 論理削除は難しいから廃止予定。完全削除にしたい
-        #region メソッド（タイルの論理削除）
+        #region メソッド（タイルの追加）
         /// <summary>
-        ///     タイルの論理削除
+        ///     タイルの追加
         /// </summary>
-        /// <param name="id">タイルＩｄ</param>
+        /// <param name="removee">タイル</param>
         /// <remarks>完了</remarks>
-        internal bool DeleteLogical(
-            TileIdOrEmpty id)
-        {
-            // 愚直な検索
-            for (int i = 0; i < TileRecordVisuallyList.Count; i++)
-            {
-                var tileVisually = TileRecordVisuallyList[i];
-
-                if (tileVisually.Id == id)
-                {
-                    // TODO 論理削除は難しいから廃止予定
-                    // Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除する　id: [{tileVisually.Id.AsBASE64}]");
-
-                    // TODO ★★ 論理削除は難しいから廃止予定。完全削除にしたい。リストから項目を引っこ抜きたい。（復元用のバックアップは残す）
-                    // 論理削除フラグの差替え
-                    TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
-                        tileRecord: new TileRecord(
-                            id: tileVisually.Id,
-                            rect: tileVisually.SourceRectangle,
-                            title: tileVisually.Title,
-                            logicalDelete: LogicalDelete.True),
-                        zoom: tileVisually.Zoom
-#if DEBUG
-                        , hint: "[TilesetDatatableVisually.cs DeleteLogical]"
-#endif
-                        );
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        internal void AddTile(
+            TileRecordVisually item) => this.TileRecordVisuallyList.Add(item);
         #endregion
 
-        // TODO 論理削除は難しいから廃止予定
-        #region メソッド（タイルの論理削除の取消）
+        #region メソッド（タイルの削除）
         /// <summary>
-        ///     タイルの論理削除の取消
+        ///     タイルの削除
         /// </summary>
-        /// <param name="id">タイルＩｄ</param>
+        /// <param name="item">タイル</param>
         /// <remarks>完了</remarks>
-        internal bool UndeleteLogical(
-            TileIdOrEmpty id)
-        {
-            // 愚直な検索
-            for (int i = 0; i < TileRecordVisuallyList.Count; i++)
-            {
-                var tileVisually = TileRecordVisuallyList[i];
-
-                if (tileVisually.Id == id)
-                {
-                    // TODO 論理削除は難しいから廃止予定
-                    // Trace.WriteLine($"[TilesetSettingsViewModel.cs DeleteLogical] 論理削除の取消　id: [{tileVisually.Id.AsBASE64}]");
-
-                    // TODO 論理削除は難しいから廃止予定
-                    // 論理削除フラグの差替え
-                    TileRecordVisuallyList[i] = TileRecordVisually.FromModel(
-                        tileRecord: new TileRecord(
-                            id: tileVisually.Id,
-                            rect: tileVisually.SourceRectangle,
-                            title: tileVisually.Title,
-                            logicalDelete: LogicalDelete.False),
-                        zoom: tileVisually.Zoom
-#if DEBUG
-                        , hint: "[TilesetDatatableVisually.cs UndeleteLogical]"
-#endif
-                        );
-
-                    return true;
-                }
-            }
-
-            return false;
-        }
+        internal bool RemoveTile(
+            TileRecordVisually item) => this.TileRecordVisuallyList.Remove(item);
         #endregion
 
         #region メソッド（指定のＩｄと一致するレコードを返す）
