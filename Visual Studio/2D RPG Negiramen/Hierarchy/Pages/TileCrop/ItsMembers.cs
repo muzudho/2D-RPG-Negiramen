@@ -1,7 +1,9 @@
 ﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Models;
+using System.Diagnostics;
 using TheGeometric = Models.Geometric;
+using TheTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     メンバー
@@ -171,6 +173,77 @@ internal class ItsMembers
         return string.Empty;
     }
     #endregion
+
+    /// <summary>
+    ///     <pre>
+    ///         ［追加／復元］ボタンの活性性
+    ///         
+    ///         ※１　以下の条件を満たさないと、いずれにしても不活性
+    ///     </pre>
+    ///     <list type="bullet">
+    ///         <item>［切抜きカーソルが指すタイル］が有る</item>
+    ///     </list>
+    ///     
+    ///     ※２　［追加］ボタンは、３状態ある。以下の条件で活性
+    ///     <list type="bullet">
+    ///         <item>Ｉｄが未設定時、かつ、論理削除フラグがＯｆｆ</item>
+    ///     </list>
+    ///     
+    ///     ※３　［復元］ボタンは、以下の条件で活性
+    ///     <list type="bullet">
+    ///         <item>Ｉｄが設定時、かつ、論理削除フラグがＯｎ</item>
+    ///     </list>
+    ///     
+    ///     ※４　［交差中］ボタンは、常に不活性
+    /// </summary>
+    internal bool AddsButton_IsEnabled
+    {
+        get
+        {
+            // ※１
+            if (this.SelectedTile.RecordVisually.IsNone)
+            {
+                return false;
+            }
+
+            var addsButtonState = this.GetStateOfAddsButton();
+            bool enabled;
+
+            switch (addsButtonState)
+            {
+                case TheTileCropPage.AddsButtonState.Adds:
+                    {
+                        // ※２
+                        enabled = this.SelectedTile.RecordVisually.Id == TileIdOrEmpty.Empty && !this.SelectedTile.RecordVisually.LogicalDelete.AsBool;
+                        Trace.WriteLine($"［デバッグ］　追加ボタンの活性性を {enabled} へ");
+                    }
+                    return enabled;
+
+                case TheTileCropPage.AddsButtonState.Restore:
+                    {
+                        // ※３
+
+                        // 画面にマークが見えないのに、タイルＩｄが入っていて、論理削除が False になっているケースがある？
+                        enabled = this.SelectedTile.RecordVisually.Id != TileIdOrEmpty.Empty && this.SelectedTile.RecordVisually.LogicalDelete.AsBool;
+                        Trace.WriteLine($"［デバッグ］　復元ボタンの活性性を {enabled} へ。 selectedTile:{this.SelectedTile.RecordVisually.Dump()}");
+                    }
+                    return enabled;
+
+                case TheTileCropPage.AddsButtonState.Intersecting:
+                    {
+                        // ※４
+                        enabled = false;
+                        Trace.WriteLine($"［デバッグ］　交差中ボタンの活性性を {enabled} へ");
+                    }
+                    return enabled;
+
+                default:
+                    // ※４
+                    Trace.WriteLine($"［デバッグ］　▲異常　追加ボタンの状態 {addsButtonState}");
+                    return false;
+            }
+        }
+    }
 
     #region メソッド（削除ボタンの活性性）
     /// <summary>

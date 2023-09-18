@@ -1200,6 +1200,8 @@
         #endregion
 
         #region 変更通知プロパティ（［追加／上書き］ボタン　関連）
+        public bool AddsButton_IsEnabled => this.Subordinates.AddsButton_IsEnabled;
+
         /// <summary>
         ///     ［追加／上書き］ボタンのラベル
         /// </summary>
@@ -1236,57 +1238,6 @@
 
                 // "残っているタイルの記憶から復元します"
                 return (string)LocalizationResourceManager.Instance["RestoreFromMemoryOfRemainingTiles"];
-            }
-        }
-
-        /// <summary>
-        ///     <pre>
-        ///         ［追加／復元］ボタンの活性性
-        ///         
-        ///         ※１　以下の条件を満たさないと、いずれにしても不活性
-        ///     </pre>
-        ///     <list type="bullet">
-        ///         <item>［切抜きカーソルが指すタイル］が有る</item>
-        ///     </list>
-        ///     
-        ///     ※２　［追加］ボタンは、３状態ある。以下の条件で活性
-        ///     <list type="bullet">
-        ///         <item>Ｉｄが未設定時、かつ、論理削除フラグがＯｆｆ</item>
-        ///     </list>
-        ///     
-        ///     ※３　［復元］ボタンは、以下の条件で活性
-        ///     <list type="bullet">
-        ///         <item>Ｉｄが設定時、かつ、論理削除フラグがＯｎ</item>
-        ///     </list>
-        ///     
-        ///     ※４　［交差中］ボタンは、常に不活性
-        /// </summary>
-        public bool AddsButton_IsEnabled
-        {
-            get
-            {
-                // ※１
-                if (this.Subordinates.SelectedTile.RecordVisually.IsNone)
-                {
-                    return false;
-                }
-
-                var addsButtonState = this.Subordinates.GetStateOfAddsButton();
-
-                switch (addsButtonState)
-                {
-                    case TheTileCropPage.AddsButtonState.Adds:
-                        // ※２
-                        return this.Subordinates.SelectedTile.RecordVisually.Id == TileIdOrEmpty.Empty && !this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool;
-
-                    case TheTileCropPage.AddsButtonState.Restore:
-                        // ※３
-                        return this.Subordinates.SelectedTile.RecordVisually.Id != TileIdOrEmpty.Empty && this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool;
-
-                    default:
-                        // ※４
-                        return false;
-                }
             }
         }
         #endregion
@@ -1921,6 +1872,8 @@
                 // 上書きボタンだが、［上書き］処理をする
                 this.OverwriteTile();
             }
+
+            this.InvalidateAddsButton();
         }
         #endregion
 
