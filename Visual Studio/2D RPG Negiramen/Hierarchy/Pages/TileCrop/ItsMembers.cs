@@ -260,9 +260,12 @@ internal class ItsMembers
     /// </summary>
     internal TheGeometric.HeightFloat SelectedTile_GetWorkingHeight(TheGeometric.Zoom zoom) => this.selectedTile_workingHeight;
 
-    internal void SelectedTile_SetWorkingHeight(TheGeometric.HeightFloat height)
+    internal bool SelectedTile_SetWorkingHeight(TheGeometric.HeightFloat height)
     {
         this.selectedTile_workingHeight = height;
+
+        // 変更
+        return true;
     }
 
     TheGeometric.HeightFloat selectedTile_workingHeight = TheGeometric.HeightFloat.Zero;

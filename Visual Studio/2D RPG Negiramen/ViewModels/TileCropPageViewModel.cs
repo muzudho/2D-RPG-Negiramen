@@ -406,7 +406,12 @@
                     // this.Owner.Owner.InvalidateWorkingGrid();
 
                     // カーソルの線の幅を含まない
-                    this.SelectedTile_SetWorkingHeightAsFloat(this.ZoomAsFloat * this.Subordinates.GridUnit.SourceValue.Height.AsInt);
+                    this.SelectedTile_SetWorkingHeightAsFloat(
+                        value: this.ZoomAsFloat * this.Subordinates.GridUnit.SourceValue.Height.AsInt,
+                        onChanged: () =>
+                        {
+                            this.InvalidateSelectedTileWorkingHeight();
+                        });
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
@@ -871,7 +876,12 @@
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
-                this.SelectedTile_SetWorkingHeightAsFloat(this.ZoomAsFloat * value);
+                this.SelectedTile_SetWorkingHeightAsFloat(
+                    value: this.ZoomAsFloat * value,
+                    onChanged: () =>
+                    {
+                        this.InvalidateSelectedTileWorkingHeight();
+                    });
 
                 OnPropertyChanged(nameof(SelectedTile_SourceHeightAsInt));
             }
@@ -1142,24 +1152,33 @@
         /// </summary>
         public float SelectedTile_WorkingHeightAsFloat => this.Subordinates.SelectedTile_GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat;
 
-        public void SelectedTile_SetWorkingHeightAsFloat(float value)
+        public void SelectedTile_SetWorkingHeightAsFloat(
+            float value,
+            Action onChanged)
         {
             if (this.Subordinates.SelectedTile_GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat != value)
             {
                 // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-                this.Subordinates.SelectedTile_SetWorkingHeight(new TheGeometric.HeightFloat(value));
+                var isChanged = this.Subordinates.SelectedTile_SetWorkingHeight(new TheGeometric.HeightFloat(value));
 
-                // キャンバスを再描画
-                // RefreshCanvasOfTileCursor("[TileCropPageViewModel SelectedTile_WorkingHeightAsFloat set]");
-
-                // キャンバスを再描画後に変更通知
-                OnPropertyChanged(nameof(SelectedTile_WorkingWidthAsFloat));
-                OnPropertyChanged(nameof(SelectedTile_WorkingHeightAsFloat));
-                OnPropertyChanged(nameof(SelectedTile_WorkingSizeWithTrick));
-
-                OnPropertyChanged(nameof(CanvasOfTileCursor_WorkingHeightAsFloat));
-                OnPropertyChanged(nameof(SelectedTile_WorkingHeightAsPresentableText));
+                if (isChanged)
+                {
+                    onChanged();
+                }
             }
+        }
+
+        internal void InvalidateSelectedTileWorkingHeight()
+        {
+            // キャンバスを再描画
+            // RefreshCanvasOfTileCursor("[TileCropPageViewModel SelectedTile_WorkingHeightAsFloat set]");
+
+            // キャンバスを再描画後に変更通知
+            OnPropertyChanged(nameof(SelectedTile_WorkingWidthAsFloat));
+            OnPropertyChanged(nameof(SelectedTile_WorkingSizeWithTrick));
+
+            OnPropertyChanged(nameof(CanvasOfTileCursor_WorkingHeightAsFloat));
+            OnPropertyChanged(nameof(SelectedTile_WorkingHeightAsPresentableText));
         }
         #endregion
 
