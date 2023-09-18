@@ -107,22 +107,18 @@
         /// <param name="id">タイルＩｄ</param>
         /// <param name="rect">位置とサイズ</param>
         /// <param name="title">タイトル</param>
-            // TODO 論理削除は難しいから廃止予定
-        /// <param name="logicalDelete">論理削除</param>
         internal void AddTileVisually(
             TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
             Zoom zoom,
-            TileTitle title,
-            LogicalDelete logicalDelete)
+            TileTitle title)
         {
             TileRecordVisuallyList.Add(
                 TileRecordVisually.FromModel(
                     tileRecord: new TileRecord(
                         id,
                         rect,
-                        title,
-                        logicalDelete),
+                        title),
                     zoom: zoom
 #if DEBUG
                     , hint: "[TilesetDatatableVisually.cs AddTileVisually]"
@@ -213,16 +209,10 @@
         internal void MatchByRectangle(
             TheGeometric.RectangleInt sourceRect,
             LazyArgs.Set<TileRecordVisually> some,
-            Action none,
-            bool includeLogicalDelete = false)
+            Action none)
         {
             foreach (var tileVisually in TileRecordVisuallyList)
             {
-                // TODO 論理削除は難しいから廃止予定
-                // 論理削除されている要素は無視
-                if (tileVisually.LogicalDelete.AsBool && !includeLogicalDelete)
-                    break;
-
                 if (tileVisually.SourceRectangle == sourceRect)
                 {
                     some(tileVisually);
@@ -239,23 +229,15 @@
         ///     全てのレコード（元画像ベース）を取得
         /// </summary>
         /// <returns>ストリーム</returns>
-        internal IEnumerator<TileRecord> GetAllSourceRecords(bool includeLogicalDelete = false)
+        internal IEnumerator<TileRecord> GetAllSourceRecords()
         {
             foreach (var tileVisually in TileRecordVisuallyList)
             {
-                // TODO 論理削除は難しいから廃止予定
-                // 論理削除されているものは除く
-                if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
-                {
-                    continue;
-                }
-
                 // レコードを１件返す
                 yield return new TileRecord(
                     id: tileVisually.Id,
                     rect: tileVisually.SourceRectangle,
-                    title: tileVisually.Title,
-                    logicalDelete: tileVisually.LogicalDelete);
+                    title: tileVisually.Title);
             }
         }
         #endregion
@@ -265,17 +247,10 @@
         ///     全ての矩形（元画像ベース）を取得
         /// </summary>
         /// <returns>ストリーム</returns>
-        internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles(bool includeLogicalDelete = false)
+        internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles()
         {
             foreach (var tileVisually in TileRecordVisuallyList)
             {
-                // TODO 論理削除は難しいから廃止予定
-                // 論理削除されているものは除く
-                if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
-                {
-                    continue;
-                }
-
                 // 矩形を１件返す
                 yield return tileVisually.SourceRectangle;
             }
@@ -317,9 +292,7 @@
         /// <returns></returns>
         internal bool IsValid()
         {
-            // TODO 論理削除は難しいから廃止予定
-            // 論理削除されているものも妥当性検証に含める
-            return TilesetDatatable.IsValid(CreateTileRecordList(includeLogicalDelete: true));
+            return TilesetDatatable.IsValid(CreateTileRecordList());
         }
         #endregion
 
@@ -349,11 +322,9 @@
         /// <returns>完了した</returns>
         internal bool SaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
-            // TODO 論理削除は難しいから廃止予定
-            // 論理削除されているものも保存する
             return TilesetDatatable.SaveCSV(
                 tileSetSettingsFileLocation: tileSetSettingsFile,
-                recordList: GetAllSourceRecords(includeLogicalDelete: true));
+                recordList: GetAllSourceRecords());
         }
         #endregion
 
@@ -362,24 +333,16 @@
         ///     タイルレコード一覧作成
         /// </summary>
         /// <returns>タイルレコード一覧</returns>
-        List<TileRecord> CreateTileRecordList(bool includeLogicalDelete = false)
+        List<TileRecord> CreateTileRecordList()
         {
             var list = new List<TileRecord>();
 
             foreach (var tileVisually in TileRecordVisuallyList)
             {
-                // TODO 論理削除は難しいから廃止予定
-                // 論理削除されているものは除く
-                if (!includeLogicalDelete && tileVisually.LogicalDelete == LogicalDelete.True)
-                {
-                    continue;
-                }
-
                 list.Add(new TileRecord(
                     id: tileVisually.Id,
                     rect: tileVisually.SourceRectangle,
-                    title: tileVisually.Title,
-                    logicalDelete: tileVisually.LogicalDelete));
+                    title: tileVisually.Title));
             }
 
             return list;

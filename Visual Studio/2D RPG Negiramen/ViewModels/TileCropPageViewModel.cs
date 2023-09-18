@@ -643,8 +643,7 @@
                             rect: new Models.Geometric.RectangleInt(
                                 location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), Models.Geometric.YInt.Empty),
                                 size: Models.Geometric.SizeInt.Empty),
-                            title: Models.TileTitle.Empty,
-                            logicalDelete: Models.LogicalDelete.False),
+                            title: Models.TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 1]"
@@ -664,8 +663,7 @@
                             rect: new Models.Geometric.RectangleInt(
                                 location: new Models.Geometric.PointInt(new Models.Geometric.XInt(value), currentTileVisually.SourceRectangle.Location.Y),
                                 size: currentTileVisually.SourceRectangle.Size),
-                            title: currentTileVisually.Title,
-                            logicalDelete: currentTileVisually.LogicalDelete),
+                            title: currentTileVisually.Title),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 2]"
@@ -718,8 +716,7 @@
                             rect: new Models.Geometric.RectangleInt(
                             location: new Models.Geometric.PointInt(Models.Geometric.XInt.Empty, new Models.Geometric.YInt(value)),
                             size: Models.Geometric.SizeInt.Empty),
-                            title: Models.TileTitle.Empty,
-                            logicalDelete: Models.LogicalDelete.False),
+                            title: Models.TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceTopAsInt 1]"
@@ -739,8 +736,7 @@
                             rect: new Models.Geometric.RectangleInt(
                             location: new Models.Geometric.PointInt(currentTileVisually.SourceRectangle.Location.X, new Models.Geometric.YInt(value)),
                             size: currentTileVisually.SourceRectangle.Size),
-                            title: currentTileVisually.Title,
-                            logicalDelete: currentTileVisually.LogicalDelete),
+                            title: currentTileVisually.Title),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceTopAsInt 2]"
@@ -790,8 +786,7 @@
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
-                            title: Models.TileTitle.Empty,
-                            logicalDelete: Models.LogicalDelete.False),
+                            title: Models.TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceWidthAsInt 1]"
@@ -808,8 +803,7 @@
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
-                            title: currentTileVisually.Title,
-                            logicalDelete: currentTileVisually.LogicalDelete),
+                            title: currentTileVisually.Title),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceWidthAsInt 2]"
@@ -850,8 +844,7 @@
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
-                            title: Models.TileTitle.Empty,
-                            logicalDelete: Models.LogicalDelete.False),
+                            title: Models.TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceHeightAsInt 1]"
@@ -868,8 +861,7 @@
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
-                            title: currentTileVisually.Title,
-                            logicalDelete: currentTileVisually.LogicalDelete),
+                            title: currentTileVisually.Title),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceHeightAsInt 2]"
@@ -992,11 +984,9 @@
         ///     <list type="bullet">
         ///         <item>［切抜きカーソルが指すタイル］がある</item>
         ///         <item>［切抜きカーソルが指すタイル］のＩｄが空欄でない</item>
-            // TODO 論理削除は難しいから廃止予定
-        ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool SelectedTile_TitleIsEnabled => !this.Subordinates.SelectedTile.RecordVisually.IsNone && !this.Subordinates.SelectedTile.IdOrEmpty.IsEmpty && !this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool;
+        public bool SelectedTile_TitleIsEnabled => !this.Subordinates.SelectedTile.RecordVisually.IsNone && !this.Subordinates.SelectedTile.IdOrEmpty.IsEmpty;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
@@ -1167,36 +1157,6 @@
                     OnPropertyChanged(nameof(CanvasOfTileCursor_WorkingHeightAsFloat));
                     OnPropertyChanged(nameof(SelectedTile_WorkingHeightAsPresentableText));
                 }
-            }
-        }
-
-        /// <summary>
-            // TODO 論理削除は難しいから廃止予定
-        ///     ［切抜きカーソルが指すタイル］の論理削除
-        /// </summary>
-        public bool SelectedTile_LogicalDeleteAsBool
-        {
-            get => this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool;
-            set
-            {
-                if (this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool == value)
-                    return;
-
-                // 差分更新
-                this.UpdateByDifference(
-                    setAddsButtonText: (text) =>
-                    {
-                        this.AddsButton_Text = text;
-                        this.InvalidateAddsButton();
-                    },
-                    onDeleteButtonEnableChanged: () =>
-                    {
-                        this.InvalidateDeletesButton();
-                    },
-                    logicalDelete: LogicalDelete.FromBool(value));
-
-                // 変更通知を送る
-                this.InvalidateTileIdChange();
             }
         }
         #endregion
@@ -1989,8 +1949,7 @@
                         this.InvalidateDeletesButton();
                     }
 
-                    // TODO 論理削除は難しいから廃止予定
-                    // タイルを指す（論理削除されているものも含む）
+                    // タイルを指す
                     this.Subordinates.SelectedTile.SetRecordVisually(
                         tileVisually,
                         onVanished: () =>
@@ -2048,8 +2007,7 @@
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: sourceRectangle,
-                            title: TileTitle.Empty,
-                            logicalDelete: LogicalDelete.False),
+                            title: TileTitle.Empty),
                         zoom: this.Subordinates.ZoomProperties.Value
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs RefreshTileForm]"
@@ -2060,10 +2018,6 @@
                             Debug.Fail("ここには来ない");
                             // 元画像の位置とサイズ
                             this.SelectedTile_SetSourceRectangle(RectangleInt.Empty);
-
-                            // TODO 論理削除は難しいから廃止予定
-                            // 論理削除
-                            this.SelectedTile_LogicalDeleteAsBool = false;
 
                             // 変更通知を送りたい
                             this.InvalidateTileIdChange();
@@ -2096,10 +2050,7 @@
                                 onDeleteButtonEnableChanged: onDeleteButtonEnableChanged,
                                 tileId: tileIdOrEmpty);
                         });
-                },
-                // TODO 論理削除は難しいから廃止予定
-                // 論理削除されているものも選択できることとする（復元、論理削除の解除のため）
-                includeLogicalDelete: true);
+                });
 
             // （切抜きカーソル更新後）［追加／上書き］ボタン再描画
             this.SetAddsButtonText(this.Subordinates.GetLabelOfAddsButton());
@@ -2180,8 +2131,7 @@
             LazyArgs.Set<string> setAddsButtonText,
             Action onDeleteButtonEnableChanged,
             TileIdOrEmpty? tileId = null,
-            TileTitle? tileTitle = null,
-            LogicalDelete? logicalDelete = null)
+            TileTitle? tileTitle = null)
         {
             var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
@@ -2203,13 +2153,6 @@
             if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
             {
                 this.Subordinates.SelectedTile.RecordVisually.Title = tileTitle;
-            }
-
-            // TODO 論理削除は難しいから廃止予定
-            // 論理削除フラグ
-            if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
-            {
-                this.Subordinates.SelectedTile.RecordVisually.LogicalDelete = logicalDelete;
             }
 
             // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");

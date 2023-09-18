@@ -77,8 +77,7 @@ internal class AddRegisteredTileProcessing : IProcessing
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 zoom: Zoom.IdentityElement,
-                title: Models.TileTitle.Empty,
-                logicalDelete: Models.LogicalDelete.False);
+                title: Models.TileTitle.Empty);
         }
 
         //
@@ -98,9 +97,6 @@ internal class AddRegisteredTileProcessing : IProcessing
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
-
-            // TODO 論理削除は難しいから廃止予定
-            registeredTileVisually.LogicalDelete = this.CroppedCursorVisually.LogicalDelete;
         }
 
         //

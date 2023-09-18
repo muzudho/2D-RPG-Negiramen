@@ -20,8 +20,7 @@
         public TileRecord()
             : this(Models.TileIdOrEmpty.Empty,
                    Geometric.RectangleInt.Empty,
-                   Models.TileTitle.Empty,
-                   Models.LogicalDelete.False)
+                   Models.TileTitle.Empty)
         {
         }
 
@@ -31,18 +30,14 @@
         /// <param name="id">Ｉｄ</param>
         /// <param name="rect">レクタングル</param>
         /// <param name="title">タイル・タイトル</param>
-            // TODO 論理削除は難しいから廃止予定
-        /// <param name="logicalDelete">論理削除か？</param>
         internal TileRecord(
             Models.TileIdOrEmpty id,
             Geometric.RectangleInt rect,
-            Models.TileTitle title,
-            Models.LogicalDelete logicalDelete)
+            Models.TileTitle title)
         {
             this.Id = id ?? throw new ArgumentNullException(nameof(id));
             this.Rectangle = rect ?? throw new ArgumentNullException(nameof(rect));
             this.Title = title ?? throw new ArgumentNullException(nameof(title));
-            this.LogicalDelete = logicalDelete ?? throw new ArgumentNullException(nameof(logicalDelete));
         }
         #endregion
 
@@ -87,18 +82,6 @@
         ///     タイトル
         /// </summary>
         internal Models.TileTitle Title { get; }
-        #endregion
-
-        // TODO 論理削除は難しいから廃止予定
-        #region プロパティ（論理削除）
-        /// <summary>
-        ///     論理削除
-        ///     
-        ///     <list type="bullet">
-        ///         <item>しないなら 0、 するなら 1</item>
-        ///     </list>
-        /// </summary>
-        internal Models.LogicalDelete LogicalDelete { get; }
         #endregion
 
         // - インターナル・メソッド

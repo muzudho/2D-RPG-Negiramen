@@ -87,16 +87,6 @@ public class TilesetDatatable
                     int height = int.Parse(cells[4]);
                     string title = cells[5];
 
-                    Models.LogicalDelete logicalDelete;
-                    if (7 <= cells.Length)
-                    {
-                        logicalDelete = new Models.LogicalDelete(int.Parse(cells[6]));
-                    }
-                    else
-                    {
-                        logicalDelete = Models.LogicalDelete.False;
-                    }
-
                     // TODO とりあえず、 Id, Left, Top, Width, Height, Title の順で並んでいるとする。ちゃんと列名を見て対応したい
                     var tileId = new Models.TileIdOrEmpty(tileIdAsInt);
                     tilesetSettings.AddTile(
@@ -108,8 +98,7 @@ public class TilesetDatatable
                             size: new Models.Geometric.SizeInt(
                                 width: new Models.Geometric.WidthInt(width),
                                 height: new Models.Geometric.HeightInt(height))),
-                        tileTitle: new Models.TileTitle(title),
-                        logicalDelete: logicalDelete);
+                        tileTitle: new Models.TileTitle(title));
 
                     if (usableId < tileId)
                     {
@@ -150,7 +139,7 @@ public class TilesetDatatable
         var builder = new StringBuilder();
 
         // ヘッダー部
-        builder.AppendLine("Id,Left,Top,Width,Height,Title,Delete");
+        builder.AppendLine("Id,Left,Top,Width,Height,Title");
 
         // データ部
         while (recordList.MoveNext())
@@ -158,7 +147,7 @@ public class TilesetDatatable
             TileRecord record = recordList.Current;
 
             // TODO ダブルクォーテーションのエスケープ
-            builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Location.X.AsInt},{record.Rectangle.Location.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Title.AsStr},{record.LogicalDelete.AsInt}");
+            builder.AppendLine($"{record.Id.AsInt},{record.Rectangle.Location.X.AsInt},{record.Rectangle.Location.Y.AsInt},{record.Rectangle.Size.Width.AsInt},{record.Rectangle.Size.Height.AsInt},{record.Title.AsStr}");
         }
 
         // 上書き
@@ -175,8 +164,7 @@ public class TilesetDatatable
     ///         <item>重たい処理</item>
     ///     </list>
     /// </summary>
-            // TODO 論理削除は難しいから廃止予定
-    /// <param name="recordList">タイル一覧。論理削除されているものも含むこと</param>
+    /// <param name="recordList">タイル一覧</param>
     /// <returns>そうだ</returns>
     internal static bool IsValid(List<TileRecord> recordList)
     {
@@ -281,47 +269,16 @@ public class TilesetDatatable
     /// <param name="id">タイルＩｄ</param>
     /// <param name="rect">位置とサイズ</param>
     /// <param name="tileTitle">タイル・タイトル</param>
-            // TODO 論理削除は難しいから廃止予定
-    /// <param name="logicalDelete">論理削除</param>
     internal void AddTile(
         Models.TileIdOrEmpty id,
         Geometric.RectangleInt rect,
-        Models.TileTitle tileTitle,
-        Models.LogicalDelete logicalDelete)
+        Models.TileTitle tileTitle)
     {
         this.RecordList.Add(
             new TileRecord(
                 id,
                 rect,
-                tileTitle,
-                logicalDelete));
-    }
-    #endregion
-
-    // TODO 論理削除は難しいから廃止予定
-    #region メソッド（タイルの論理削除）
-    /// <summary>
-    ///     タイルの論理削除
-    /// </summary>
-    /// <param name="id">タイルＩｄ</param>
-    internal void DeleteLogical(
-        Models.TileIdOrEmpty id)
-    {
-        // 愚直な検索
-        for (int i = 0; i < this.RecordList.Count; i++)
-        {
-            var record = this.RecordList[i];
-
-            if (record.Id == id)
-            {
-                // 差替え
-                this.RecordList[i] = new TileRecord(
-                    id: record.Id,
-                    rect: record.Rectangle,
-                    title: record.Title,
-                    logicalDelete: Models.LogicalDelete.True);
-            }
-        }
+                tileTitle));
     }
     #endregion
 
@@ -353,17 +310,10 @@ public class TilesetDatatable
     ///     全てのレコードを取得
     /// </summary>
     /// <returns>ストリーム</returns>
-    internal IEnumerator<TileRecord> GetAllRecords(bool includeLogicalDelete = false)
+    internal IEnumerator<TileRecord> GetAllRecords()
     {
         foreach (var record in this.RecordList)
         {
-            // TODO 論理削除は難しいから廃止予定
-            // 論理削除されているものは除く
-            if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
-            {
-                continue;
-            }
-
             // レコードを１件返す
             yield return record;
         }
@@ -375,17 +325,10 @@ public class TilesetDatatable
     ///     全ての矩形を取得
     /// </summary>
     /// <returns>ストリーム</returns>
-    internal IEnumerator<TheGeometric.RectangleInt> GetAllRectangles(bool includeLogicalDelete = false)
+    internal IEnumerator<TheGeometric.RectangleInt> GetAllRectangles()
     {
         foreach (var record in this.RecordList)
         {
-            // TODO 論理削除は難しいから廃止予定
-            // 論理削除されているものは除く
-            if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
-            {
-                continue;
-            }
-
             // 矩形を１件返す
             yield return record.Rectangle;
         }
@@ -427,9 +370,7 @@ public class TilesetDatatable
     /// <returns></returns>
     internal bool IsValid()
     {
-        // TODO 論理削除は難しいから廃止予定
-        // 論理削除されているものも妥当性チェックで使う
-        return TilesetDatatable.IsValid(this.CreateTileRecordList(includeLogicalDelete: true));
+        return TilesetDatatable.IsValid(this.CreateTileRecordList());
     }
     #endregion
 
@@ -459,11 +400,9 @@ public class TilesetDatatable
     /// <returns>完了した</returns>
     internal bool SaveCSV(DataCsvTilesetCsv tileSetSettingsFile)
     {
-        // TODO 論理削除は難しいから廃止予定
-        // 論理削除されているものも保存する
         return TilesetDatatable.SaveCSV(
             tileSetSettingsFileLocation: tileSetSettingsFile,
-            recordList: this.GetAllRecords(includeLogicalDelete: true));
+            recordList: this.GetAllRecords());
     }
     #endregion
 
@@ -472,24 +411,16 @@ public class TilesetDatatable
     ///     タイルレコード一覧作成
     /// </summary>
     /// <returns>タイルレコード一覧</returns>
-    List<TileRecord> CreateTileRecordList(bool includeLogicalDelete = false)
+    List<TileRecord> CreateTileRecordList()
     {
         var list = new List<TileRecord>();
 
         foreach (var record in this.RecordList)
         {
-            // TODO 論理削除は難しいから廃止予定
-            // 論理削除されているものは除く
-            if (!includeLogicalDelete && record.LogicalDelete == LogicalDelete.True)
-            {
-                continue;
-            }
-
             list.Add(new TileRecord(
                 id: record.Id,
                 rect: record.Rectangle,
-                title: record.Title,
-                logicalDelete: record.LogicalDelete));
+                title: record.Title));
         }
 
         return list;

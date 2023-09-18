@@ -39,8 +39,7 @@
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
                 Zoom = zoom,
-                Title = tileRecord.Title,
-                LogicalDelete = tileRecord.LogicalDelete,
+                Title = tileRecord.Title
             };
 
 //#if DEBUG
@@ -109,29 +108,6 @@
         internal TileTitle Title { get; set; } = TileTitle.Empty;
         #endregion
 
-        // TODO 論理削除は難しいから廃止予定
-        #region プロパティ（論理削除）
-        /// <summary>
-        ///     論理削除
-        ///     
-        ///     <list type="bullet">
-        ///         <item>しないなら 0、 するなら 1</item>
-        ///     </list>
-        /// </summary>
-        internal LogicalDelete LogicalDelete
-        {
-            get => this.logicalDelete;
-            set
-            {
-                if (this.logicalDelete == value)
-                    return;
-
-                this.logicalDelete = value;
-                // Trace.WriteLine($"[TileRecordVisually.cs LogicalDelete] this.logicalDelete.AsBool: {this.logicalDelete.AsBool}");
-            }
-        }
-        #endregion
-
         #region プロパティ（サイズが無いか？）
         /// <summary>
         ///     サイズが無いか？
@@ -168,7 +144,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {SourceRectangle.Dump()}, WorkingRect: {WorkingRectangle.Dump()}, Title: {Title.AsStr}, LogicalDelete: {LogicalDelete.AsBool}";
+            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {SourceRectangle.Dump()}, WorkingRect: {WorkingRectangle.Dump()}, Title: {Title.AsStr}";
         }
         #endregion
 
@@ -184,7 +160,6 @@
             TileIdOrEmpty? tileIdOrEmpty = null,
             RectangleInt? rectangleInt = null,
             TileTitle? tileTitle = null,
-            LogicalDelete? logicalDelete = null,
             Zoom? zoom = null)
         {
             if (!(tileIdOrEmpty is null))
@@ -200,11 +175,6 @@
             if (!(tileTitle is null))
             {
                 this.Title = tileTitle;
-            }
-
-            if (!(logicalDelete is null))
-            {
-                this.LogicalDelete = logicalDelete;
             }
 
             if(!(zoom is null))
@@ -224,7 +194,6 @@
         Zoom zoom = Zoom.IdentityElement;
         TheGeometric.RectangleInt sourceRectangle = RectangleInt.Empty;
         TheGeometric.RectangleFloat workingRectangle = RectangleFloat.Empty;
-        LogicalDelete logicalDelete = LogicalDelete.False;
 
         // - プライベート・メソッド
 
