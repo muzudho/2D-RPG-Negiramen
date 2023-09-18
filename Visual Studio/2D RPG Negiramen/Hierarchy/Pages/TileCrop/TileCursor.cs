@@ -21,13 +21,6 @@ internal class TileCursor
 
     // - インターナル・プロパティ
 
-    #region プロパティ（トリック幅）
-    /// <summary>
-    ///     トリック幅
-    /// </summary>
-    internal WidthFloat SelectedTile_TrickWidth { get; set; } = WidthFloat.Zero;
-    #endregion
-
     /// <summary>
     ///     ［切抜きカーソル］ズーム済みのサイズ
     ///         
@@ -38,27 +31,4 @@ internal class TileCursor
     ///     </list>
     /// </summary>
     internal WidthFloat SelectedTile_WorkingWidthWithoutTrick { get; set; }
-
-    // - インターナル・メソッド
-
-    /// <summary>
-    ///     <pre>
-    ///         ［切抜きカーソル］ズーム済みのキャンバスの再描画
-    /// 
-    ///         TRICK:  GraphicsView を再描画させたいが、ビューモデルから要求する方法が分からない。
-    ///                 そこで、内部的なグリッド画像の横幅が偶数のときは +1、奇数のときは -1 して
-    ///                 振動させることで、再描画を呼び起こすことにする
-    ///     </pre>
-    /// </summary>
-    internal void RefreshCanvasTrick(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
-    {
-        if (SelectedTile_TrickWidth.AsFloat == 1.0f)
-        {
-            SelectedTile_TrickWidth = WidthFloat.Zero;
-        }
-        else
-        {
-            SelectedTile_TrickWidth = WidthFloat.One;
-        }
-    }
 }

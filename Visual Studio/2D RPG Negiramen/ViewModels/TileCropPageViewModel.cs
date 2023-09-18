@@ -1151,8 +1151,8 @@
         /// </summary>
         public Models.Geometric.WidthFloat SelectedTile_TrickWidth
         {
-            get => this.Subordinates.TileCursor.SelectedTile_TrickWidth;
-            set => this.Subordinates.TileCursor.SelectedTile_TrickWidth = value;
+            get => this.Subordinates.SelectedTile.TrickWidth;
+            set => this.Subordinates.SelectedTile.TrickWidth = value;
         }
 
         ///// <summary>
@@ -1559,7 +1559,7 @@
 
                     this.Subordinates.ZoomProperties.Value = newValue;
 
-                    this.Subordinates.TileCursor.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
+                    this.Subordinates.SelectedTile.RefreshCanvasTrick("[TileCropPageViewModel.cs ZoomAsFloat]");
 
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     doZoomProcessing(
@@ -1882,7 +1882,7 @@
                 this.RefreshTileForm(
                     mouseDrawingOperationState: MouseDrawingOperationState.ButtonDown);
 
-                this.Subordinates.TileCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
+                this.Subordinates.SelectedTile.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスダウン]");
                 // TRICK CODE:
                 this.InvalidateWorkingTargetTile();
             }
@@ -1905,7 +1905,7 @@
                 this.RefreshTileForm(
                     mouseDrawingOperationState: MouseDrawingOperationState.ButtonUp);
 
-                this.Subordinates.TileCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
+                this.Subordinates.SelectedTile.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs TileImage_OnTapped 疑似マウスアップ]");
                 // TRICK CODE:
                 this.InvalidateWorkingTargetTile();
             }
@@ -1936,7 +1936,7 @@
                 this.RefreshTileForm(
                     mouseDrawingOperationState: MouseDrawingOperationState.PointerMove);
 
-                this.Subordinates.TileCursor.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
+                this.Subordinates.SelectedTile.RefreshCanvasTrick(codePlace: "[TileCropPage.xml.cs PointerGestureRecognizer_PointerMoved 疑似マウスドラッグ]");
                 // TRICK CODE:
                 this.InvalidateWorkingTargetTile();
             }
