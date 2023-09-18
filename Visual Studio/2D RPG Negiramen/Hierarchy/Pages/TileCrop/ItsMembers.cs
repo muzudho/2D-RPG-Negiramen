@@ -269,5 +269,31 @@ internal class ItsMembers
     }
 
     TheGeometric.HeightFloat selectedTile_workingHeight = TheGeometric.HeightFloat.Zero;
+
+    /// <summary>
+    ///     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
+    ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
+    ///         
+    ///     <list type="bullet">
+    ///         <item>カーソルの線の幅を含まない</item>
+    ///     </list>
+    /// </summary>
+    public float SelectedTile_WorkingHeightAsFloat => this.SelectedTile_GetWorkingHeight(this.ZoomProperties.Value).AsFloat;
+
+    public void SelectedTile_SetWorkingHeightAsFloat(
+        float value,
+        Action onChanged)
+    {
+        if (this.SelectedTile_GetWorkingHeight(this.ZoomProperties.Value).AsFloat != value)
+        {
+            // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
+            var isChanged = this.SelectedTile_SetWorkingHeight(new TheGeometric.HeightFloat(value));
+
+            if (isChanged)
+            {
+                onChanged();
+            }
+        }
+    }
     #endregion
 }

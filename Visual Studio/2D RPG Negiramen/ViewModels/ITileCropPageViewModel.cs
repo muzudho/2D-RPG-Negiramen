@@ -97,11 +97,6 @@ public interface ITileCropPageViewModel
     public float SelectedTile_WorkingWidthAsFloat { get; }
 
     /// <summary>
-    ///     矩形カーソル。ズーム済みの縦幅。線の太さを含まない
-    /// </summary>
-    public float SelectedTile_WorkingHeightAsFloat { get; }
-
-    /// <summary>
     ///     矩形カーソル。ズーム済みの横幅。線の太さを含む
     /// </summary>
     public float CanvasOfTileCursor_WorkingWidthAsFloat { get; }

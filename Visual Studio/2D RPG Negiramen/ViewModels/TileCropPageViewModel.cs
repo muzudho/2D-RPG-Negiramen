@@ -406,7 +406,7 @@
                     // this.Owner.Owner.InvalidateWorkingGrid();
 
                     // カーソルの線の幅を含まない
-                    this.SelectedTile_SetWorkingHeightAsFloat(
+                    this.Subordinates.SelectedTile_SetWorkingHeightAsFloat(
                         value: this.ZoomAsFloat * this.Subordinates.GridUnit.SourceValue.Height.AsInt,
                         onChanged: () =>
                         {
@@ -876,14 +876,12 @@
                 }
 
                 // 切抜きカーソル。ズーム済みの縦幅（カーソルの線の幅を含まない）
-                this.SelectedTile_SetWorkingHeightAsFloat(
+                this.Subordinates.SelectedTile_SetWorkingHeightAsFloat(
                     value: this.ZoomAsFloat * value,
                     onChanged: () =>
                     {
                         this.InvalidateSelectedTileWorkingHeight();
                     });
-
-                OnPropertyChanged(nameof(SelectedTile_SourceHeightAsInt));
             }
         }
 
@@ -1138,32 +1136,6 @@
 
                     OnPropertyChanged(nameof(CanvasOfTileCursor_WorkingWidthAsFloat));
                     OnPropertyChanged(nameof(SelectedTile_WorkingWidthAsPresentableText));
-                }
-            }
-        }
-
-        /// <summary>
-        ///     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-        ///     ［切抜きカーソルが指すタイル］のズーム済みの縦幅
-        ///         
-        ///     <list type="bullet">
-        ///         <item>カーソルの線の幅を含まない</item>
-        ///     </list>
-        /// </summary>
-        public float SelectedTile_WorkingHeightAsFloat => this.Subordinates.SelectedTile_GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat;
-
-        public void SelectedTile_SetWorkingHeightAsFloat(
-            float value,
-            Action onChanged)
-        {
-            if (this.Subordinates.SelectedTile_GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat != value)
-            {
-                // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-                var isChanged = this.Subordinates.SelectedTile_SetWorkingHeight(new TheGeometric.HeightFloat(value));
-
-                if (isChanged)
-                {
-                    onChanged();
                 }
             }
         }
