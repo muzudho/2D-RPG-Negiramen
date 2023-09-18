@@ -1198,8 +1198,8 @@
                     // "これがタイル１つ分だと登録します"
                     return (string)LocalizationResourceManager.Instance["RegisterThatThisIsForOneTile"];
 
-                // "残っているタイルの記憶から復元します"
-                return (string)LocalizationResourceManager.Instance["RestoreFromMemoryOfRemainingTiles"];
+                // 交差中とか
+                return string.Empty;
             }
         }
         #endregion

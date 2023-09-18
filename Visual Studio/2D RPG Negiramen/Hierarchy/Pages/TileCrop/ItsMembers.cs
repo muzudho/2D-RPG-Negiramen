@@ -120,29 +120,8 @@ internal class ItsMembers
             }
         }
 
-        var contents = this.SelectedTile.RecordVisually;
-
-        if (contents.IsNone)
-        {
-            // ［切抜きカーソル］の指すタイル無し時
-
-            // 「追加」
-            return AddsButtonState.Adds;
-        }
-
-        // 切抜きカーソル有り時
-        // Ｉｄ未設定時
-        if (this.SelectedTile.IdOrEmpty == TileIdOrEmpty.Empty)
-        {
-            // Ｉｄが空欄
-            // ［追加］（新規作成）だ
-
-            // ［追加」
-            return AddsButtonState.Adds;
-        }
-
-        // ［復元」
-        return AddsButtonState.Restore;
+        // 「追加」
+        return AddsButtonState.Adds;
     }
     #endregion
 
@@ -163,14 +142,10 @@ internal class ItsMembers
             case AddsButtonState.Adds:
                 // 「追加」
                 return (string)LocalizationResourceManager.Instance["Add"];
-
-            case AddsButtonState.Restore:
-                // ［復元」
-                return (string)LocalizationResourceManager.Instance["Restore"];
         }
 
         // それ以外
-        return string.Empty;
+        throw new InvalidOperationException("追加ボタンが未知の状態");
     }
     #endregion
 
@@ -216,14 +191,6 @@ internal class ItsMembers
                         // ※２
                         enabled = this.SelectedTile.RecordVisually.Id == TileIdOrEmpty.Empty;
                         Trace.WriteLine($"［デバッグ］　追加ボタンの活性性を {enabled} へ");
-                    }
-                    return enabled;
-
-                case TheTileCropPage.AddsButtonState.Restore:
-                    {
-                        // ※３
-                        enabled = this.SelectedTile.RecordVisually.Id != TileIdOrEmpty.Empty;
-                        Trace.WriteLine($"［デバッグ］　復元ボタンの活性性を {enabled} へ。 selectedTile:{this.SelectedTile.RecordVisually.Dump()}");
                     }
                     return enabled;
 

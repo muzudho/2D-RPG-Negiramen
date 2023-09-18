@@ -511,15 +511,6 @@ namespace _2D_RPG_Negiramen.Resources.Languages {
         }
         
         /// <summary>
-        ///   復元 に類似しているローカライズされた文字列を検索します。
-        /// </summary>
-        internal static string Restore {
-            get {
-                return ResourceManager.GetString("Restore", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   残っているタイルの記憶から復元します に類似しているローカライズされた文字列を検索します。
         /// </summary>
         internal static string RestoreFromMemoryOfRemainingTiles {

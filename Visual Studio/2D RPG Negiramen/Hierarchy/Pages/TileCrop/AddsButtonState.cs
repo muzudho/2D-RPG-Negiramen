@@ -16,11 +16,6 @@ internal enum AddsButtonState
     Adds,
 
     /// <summary>
-    ///     復元
-    /// </summary>
-    Restore,
-
-    /// <summary>
     ///     交差中
     /// </summary>
     Intersecting,
