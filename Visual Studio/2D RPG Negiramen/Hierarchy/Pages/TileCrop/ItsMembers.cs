@@ -260,7 +260,18 @@ internal class ItsMembers
     /// </summary>
     internal TheGeometric.HeightFloat SelectedTile_GetWorkingHeight(
         TheGeometric.Zoom zoom,
-        Action onChanged) => this.selectedTile_workingHeightBackup;
+        Action onChanged)
+    {
+        var value = zoom.AsFloat * this.SelectedTile.SourceRectangle.Size.Height.AsInt;
+
+        if (value != this.selectedTile_workingHeightBackup.AsFloat)
+        {
+            this.selectedTile_workingHeightBackup = new TheGeometric.HeightFloat(value);
+            onChanged();
+        }
+
+        return this.selectedTile_workingHeightBackup;
+    }
 
     TheGeometric.HeightFloat selectedTile_workingHeightBackup = TheGeometric.HeightFloat.Zero;
 
