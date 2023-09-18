@@ -26,7 +26,7 @@ internal class ItsMembers
         this.ZoomProperties = new ZoomProperties();
         this.GridUnit = new GridUnit();
         this.CropCursor = new CropCursor();
-        this.CropTile = new CropTile();
+        this.SelectedTile = new SelectedTile();
         this.DeletesButton = new Button();
         this.TilesetSourceImageSize = TheGeometric.SizeInt.Empty;
         this.HalfThicknessOfGridLine = new(1);
@@ -78,7 +78,7 @@ internal class ItsMembers
 
     #region プロパティ（切抜きカーソルが指すタイル）
     /// <summary>切抜きカーソルが指すタイル</summary>
-    internal CropTile CropTile { get; }
+    internal SelectedTile SelectedTile { get; }
     #endregion
 
     #region プロパティ（削除ボタン）
@@ -124,7 +124,7 @@ internal class ItsMembers
             }
         }
 
-        var contents = this.CropTile.RecordVisually;
+        var contents = this.SelectedTile.RecordVisually;
 
         if (contents.IsNone)
         {
@@ -136,7 +136,7 @@ internal class ItsMembers
 
         // 切抜きカーソル有り時
         // Ｉｄ未設定時
-        if (this.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
+        if (this.SelectedTile.IdOrEmpty == TileIdOrEmpty.Empty)
         {
             // Ｉｄが空欄
             // ［追加］（新規作成）だ
@@ -186,7 +186,7 @@ internal class ItsMembers
     {
         get
         {
-            var contents = this.CropTile.RecordVisually;
+            var contents = this.SelectedTile.RecordVisually;
 
             if (
                 // 切抜きカーソル無し時

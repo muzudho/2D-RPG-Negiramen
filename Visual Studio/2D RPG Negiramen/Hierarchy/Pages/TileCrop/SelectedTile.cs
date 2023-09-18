@@ -1,13 +1,12 @@
 ﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
-using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Visually;
 
 /// <summary>
 ///     切抜きカーソルが指すタイル
 /// </summary>
-internal class CropTile
+internal class SelectedTile
 {
     // - その他
 
@@ -15,7 +14,7 @@ internal class CropTile
     /// <summary>
     ///     生成
     /// </summary>
-    internal CropTile()
+    internal SelectedTile()
     {
     }
     #endregion
@@ -43,7 +42,36 @@ internal class CropTile
     }
     #endregion
 
+    #region プロパティ（Ｉｄ）
+    /// <summary>
+    ///     Ｉｄ
+    /// </summary>
+    public TileIdOrEmpty IdOrEmpty
+    {
+        get
+        {
+            var contents = this.RecordVisually;
 
+            // ［切抜きカーソル］の指すタイル無し時
+            if (contents.IsNone)
+                return TileIdOrEmpty.Empty;
+
+            return contents.Id;
+        }
+    }
+    #endregion
+
+    // - インターナル・メソッド
+
+    #region メソッド（セット・データ）
+    /// <summary>
+    ///     セット・データ
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="onVanished"></param>
+    /// <param name="onUpdated"></param>
+    /// <param name="onUpdateByDifference"></param>
+    /// <param name="onTileIdOrEmpty"></param>
     internal void SetRecordVisually(
         TileRecordVisually value,
         Action onVanished,
@@ -111,31 +139,25 @@ internal class CropTile
             onUpdated();
         }
     }
+    #endregion
 
+    #region メソッド（セット・データ（GUI非更新））
+    /// <summary>
+    ///     セット・データ（GUI非更新）
+    /// </summary>
+    /// <param name="value"></param>
     internal void SetRecordVisuallyNoGuiUpdate(TileRecordVisually value)
     {
         this.recordVisually = value;
     }
-
-    #region プロパティ（Ｉｄ）
-    /// <summary>
-    ///     Ｉｄ
-    /// </summary>
-    public TileIdOrEmpty IdOrEmpty
-    {
-        get
-        {
-            var contents = this.RecordVisually;
-
-            // ［切抜きカーソル］の指すタイル無し時
-            if (contents.IsNone)
-                return TileIdOrEmpty.Empty;
-
-            return contents.Id;
-        }
-    }
     #endregion
 
+    #region メソッド（Ｉｄ設定）
+    /// <summary>
+    ///     Ｉｄ設定
+    /// </summary>
+    /// <param name="value"></param>
+    /// <param name="onTileIdOrEmpty"></param>
     internal void SetIdOrEmpty(
         TileIdOrEmpty value,
         OnTileIdOrEmpty onTileIdOrEmpty)
@@ -147,6 +169,7 @@ internal class CropTile
         onTileIdOrEmpty(
             tileIdOrEmpty: value);
     }
+    #endregion
 
     // - プライベート・プロパティ
 

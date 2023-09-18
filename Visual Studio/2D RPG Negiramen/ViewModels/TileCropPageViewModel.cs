@@ -617,7 +617,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -629,13 +629,13 @@
             }
             set
             {
-                var currentTileVisually = this.Subordinates.CropTile.RecordVisually;
+                var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.Subordinates.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -656,7 +656,7 @@
                     if (currentTileVisually.SourceRectangle.Location.X.AsInt == value)
                         return;
 
-                    this.Subordinates.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -695,7 +695,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -705,13 +705,13 @@
             }
             set
             {
-                var currentTileVisually = this.Subordinates.CropTile.RecordVisually;
+                var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
 
-                    this.Subordinates.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             // 元画像ベース
@@ -732,7 +732,7 @@
                     if (currentTileVisually.SourceRectangle.Location.Y.AsInt == value)
                         return;
 
-                    this.Subordinates.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             // 元画像ベース
@@ -771,7 +771,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -781,13 +781,13 @@
             }
             set
             {
-                var currentTileVisually = this.Subordinates.CropTile.RecordVisually;
+                var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
                     // TODO ★ 循環参照注意
-                    this.Subordinates.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
@@ -805,7 +805,7 @@
                     if (currentTileVisually.SourceRectangle.Size.Width.AsInt == value)
                         return;
 
-                    this.Subordinates.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(new Models.Geometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
@@ -834,7 +834,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -844,12 +844,12 @@
             }
             set
             {
-                var currentTileVisually = this.Subordinates.CropTile.RecordVisually;
+                var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
                 if (currentTileVisually.IsNone)
                 {
                     // ［切抜きカーソル］無し時
-                    this.Subordinates.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: new Models.Geometric.RectangleInt(Models.Geometric.PointInt.Empty, new Models.Geometric.SizeInt(Models.Geometric.WidthInt.Empty, new Models.Geometric.HeightInt(value))),
@@ -867,7 +867,7 @@
                     if (currentTileVisually.SourceRectangle.Size.Height.AsInt == value)
                         return;
 
-                    this.Subordinates.CropTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new Models.Geometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new Models.Geometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new Models.Geometric.HeightInt(value))),
@@ -962,7 +962,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -981,7 +981,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1000,17 +1000,17 @@
         ///         <item>［切抜きカーソルが指すタイル］は論理削除されていない</item>
         ///     </list>
         /// </summary>
-        public bool SelectedTile_TitleIsEnabled => !this.Subordinates.CropTile.RecordVisually.IsNone && !this.Subordinates.CropTile.IdOrEmpty.IsEmpty && !this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
+        public bool SelectedTile_TitleIsEnabled => !this.Subordinates.SelectedTile.RecordVisually.IsNone && !this.Subordinates.SelectedTile.IdOrEmpty.IsEmpty && !this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
         /// </summary>
         public string SelectedTile_TitleAsStr
         {
-            get => this.Subordinates.CropTile.RecordVisually.Title.AsStr;
+            get => this.Subordinates.SelectedTile.RecordVisually.Title.AsStr;
             set
             {
-                if (this.Subordinates.CropTile.RecordVisually.Title.AsStr == value)
+                if (this.Subordinates.SelectedTile.RecordVisually.Title.AsStr == value)
                     return;
 
                 // 差分更新
@@ -1044,7 +1044,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -1056,7 +1056,7 @@
             }
             set
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -1099,7 +1099,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1109,7 +1109,7 @@
             }
             set
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 if (contents.IsNone)
                 {
@@ -1242,10 +1242,10 @@
         /// </summary>
         public bool SelectedTile_LogicalDeleteAsBool
         {
-            get => this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
+            get => this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool;
             set
             {
-                if (this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool == value)
+                if (this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool == value)
                     return;
 
                 // 差分更新
@@ -1291,7 +1291,7 @@
         {
             get
             {
-                var contents = this.Subordinates.CropTile.RecordVisually;
+                var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
                 if (contents.IsNone)
@@ -1334,7 +1334,7 @@
             get
             {
                 // ※１
-                if (this.Subordinates.CropTile.RecordVisually.IsNone)
+                if (this.Subordinates.SelectedTile.RecordVisually.IsNone)
                 {
                     return false;
                 }
@@ -1345,11 +1345,11 @@
                 {
                     case TheTileCropPage.AddsButtonState.Adds:
                         // ※２
-                        return this.Subordinates.CropTile.RecordVisually.Id == TileIdOrEmpty.Empty && !this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
+                        return this.Subordinates.SelectedTile.RecordVisually.Id == TileIdOrEmpty.Empty && !this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool;
 
                     case TheTileCropPage.AddsButtonState.Restore:
                         // ※３
-                        return this.Subordinates.CropTile.RecordVisually.Id != TileIdOrEmpty.Empty && this.Subordinates.CropTile.RecordVisually.LogicalDelete.AsBool;
+                        return this.Subordinates.SelectedTile.RecordVisually.Id != TileIdOrEmpty.Empty && this.Subordinates.SelectedTile.RecordVisually.LogicalDelete.AsBool;
 
                     default:
                         // ※４
@@ -1949,13 +1949,13 @@
         /// </summary>
         internal void OnAddsButtonClicked()
         {
-            if (this.Subordinates.CropTile.IdOrEmpty == TileIdOrEmpty.Empty)
+            if (this.Subordinates.SelectedTile.IdOrEmpty == TileIdOrEmpty.Empty)
             {
                 // Ｉｄが空欄
                 // ［追加］（新規作成）だ
 
                 // 操作対象のタイル
-                TileRecordVisually targetTile = this.Subordinates.CropTile.RecordVisually;
+                TileRecordVisually targetTile = this.Subordinates.SelectedTile.RecordVisually;
 
                 //
                 // 登録タイル追加
@@ -2001,7 +2001,7 @@
         /// </summary>
         internal void OnDeletesButtonRemoveTile() => App.History.Do(new TheHistoryTileCropPage.RemoveRegisteredTileProcessing(
             colleagues: this.Colleagues,
-            tileIdOrEmpty: this.Subordinates.CropTile.IdOrEmpty));
+            tileIdOrEmpty: this.Subordinates.SelectedTile.IdOrEmpty));
 
         // - インターナル・メソッド
 
@@ -2012,7 +2012,7 @@
         internal void OverwriteTile()
         {
             // 操作対象のタイル
-            TileRecordVisually targetTile = this.Subordinates.CropTile.RecordVisually;
+            TileRecordVisually targetTile = this.Subordinates.SelectedTile.RecordVisually;
 
             TileIdOrEmpty tileIdOrEmpty;
 
@@ -2022,7 +2022,7 @@
 
             // Ｉｄが空欄でない
             // ［上書き］（更新）だ
-            tileIdOrEmpty = this.Subordinates.CropTile.IdOrEmpty;
+            tileIdOrEmpty = this.Subordinates.SelectedTile.IdOrEmpty;
 
             // 追加でも、上書きでも、同じ処理でいける
             // ［登録タイル追加］処理
@@ -2103,7 +2103,7 @@
                     }
 
                     // タイルを指す（論理削除されているものも含む）
-                    this.Subordinates.CropTile.SetRecordVisually(
+                    this.Subordinates.SelectedTile.SetRecordVisually(
                         tileVisually,
                         onVanished: () =>
                         {
@@ -2156,7 +2156,7 @@
                     }
 
                     // 選択中のタイルの矩形だけ維持し、タイル・コードと、コメントを空欄にする
-                    this.Subordinates.CropTile.SetRecordVisually(TileRecordVisually.FromModel(
+                    this.Subordinates.SelectedTile.SetRecordVisually(TileRecordVisually.FromModel(
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: sourceRectangle,
@@ -2293,12 +2293,12 @@
             TileTitle? tileTitle = null,
             LogicalDelete? logicalDelete = null)
         {
-            var currentTileVisually = this.Subordinates.CropTile.RecordVisually;
+            var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
             // タイルＩｄ
             if (!(tileId is null) && currentTileVisually.Id != tileId)
             {
-                this.Subordinates.CropTile.RecordVisually.Id = tileId;
+                this.Subordinates.SelectedTile.RecordVisually.Id = tileId;
 
                 // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
@@ -2312,13 +2312,13 @@
             // タイル・タイトル
             if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
             {
-                this.Subordinates.CropTile.RecordVisually.Title = tileTitle;
+                this.Subordinates.SelectedTile.RecordVisually.Title = tileTitle;
             }
 
             // 論理削除フラグ
             if (!(logicalDelete is null) && currentTileVisually.LogicalDelete != logicalDelete)
             {
-                this.Subordinates.CropTile.RecordVisually.LogicalDelete = logicalDelete;
+                this.Subordinates.SelectedTile.RecordVisually.LogicalDelete = logicalDelete;
             }
 
             // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");

@@ -53,7 +53,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.Subordinates.CropTile.SetIdOrEmpty(
+        this.Subordinates.SelectedTile.SetIdOrEmpty(
             value: this.TileIdOrEmpty,
             onTileIdOrEmpty: (TileIdOrEmpty tileIdOrEmpty) =>
             {
@@ -128,7 +128,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.Subordinates.CropTile.SetIdOrEmpty(
+        this.Subordinates.SelectedTile.SetIdOrEmpty(
             value: TileIdOrEmpty.Empty,
             onTileIdOrEmpty: (TileIdOrEmpty tileIdOrEmpty) =>
             {
