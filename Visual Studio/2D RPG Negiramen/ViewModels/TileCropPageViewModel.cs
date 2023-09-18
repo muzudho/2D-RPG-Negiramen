@@ -592,7 +592,7 @@
         ///         <item>切抜きカーソルは、対象範囲に外接する</item>
         ///     </list>
         /// </summary>
-        public float CanvasOfTileCursor_WorkingHeightAsFloat => this.Subordinates.SelectedTile.GetWorkingHeight().AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
+        public float CanvasOfTileCursor_WorkingHeightAsFloat => this.Subordinates.SelectedTile.GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat + (4 * this.TileCursor_HalfThicknessOfLine.AsInt);
 
         /// <summary>
         ///     ［切抜きカーソル］の線の半分の太さ
@@ -898,7 +898,7 @@
             get => new TheGeometric.SizeFloat(
                     width: new WidthFloat(this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat + this.Subordinates.SelectedTile.TrickWidth.AsFloat),
                     // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
-                    height: this.Subordinates.SelectedTile.GetWorkingHeight());
+                    height: this.Subordinates.SelectedTile.GetWorkingHeight(this.Subordinates.ZoomProperties.Value));
         }
 
         /// <summary>
@@ -941,7 +941,7 @@
         ///         <item>表示用テキスト</item>
         ///     </list>
         /// </summary>
-        public string SelectedTile_WorkingHeightAsPresentableText => this.Subordinates.SelectedTile.GetWorkingHeight().AsFloat.ToString("F1");
+        public string SelectedTile_WorkingHeightAsPresentableText => this.Subordinates.SelectedTile.GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat.ToString("F1");
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のＩｄ。BASE64表現
@@ -1140,11 +1140,11 @@
         ///         <item>カーソルの線の幅を含まない</item>
         ///     </list>
         /// </summary>
-        public float SelectedTile_WorkingHeightAsFloat => this.Subordinates.SelectedTile.GetWorkingHeight().AsFloat;
+        public float SelectedTile_WorkingHeightAsFloat => this.Subordinates.SelectedTile.GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat;
 
         public void SelectedTile_SetWorkingHeightAsFloat(float value)
         {
-            if (this.Subordinates.SelectedTile.GetWorkingHeight().AsFloat != value)
+            if (this.Subordinates.SelectedTile.GetWorkingHeight(this.Subordinates.ZoomProperties.Value).AsFloat != value)
             {
                 // TODO ★ 作業中の縦幅は、記憶せず、計算で出したい
                 this.Subordinates.SelectedTile.SetWorkingHeight(new TheGeometric.HeightFloat(value));

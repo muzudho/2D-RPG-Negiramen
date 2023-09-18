@@ -137,7 +137,7 @@ internal class Tile
     ///         <item>仕様変更するときは、TRICK CODE に注意</item>
     ///     </list>
     /// </summary>
-    internal TheGeometric.HeightFloat GetWorkingHeight() => this.workingHeight;
+    internal TheGeometric.HeightFloat GetWorkingHeight(TheGeometric.Zoom zoom) => this.workingHeight;
 
     internal void SetWorkingHeight(TheGeometric.HeightFloat height)
     {
