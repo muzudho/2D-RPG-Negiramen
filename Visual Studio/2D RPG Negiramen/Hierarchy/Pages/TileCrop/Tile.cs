@@ -104,6 +104,27 @@ internal class Tile
         }
     }
 
+    /// <summary>
+    ///     ［切抜きカーソル］元画像ベースのサイズ
+    ///     
+    ///     <list type="bullet">
+    ///         <item>線の太さを含まない</item>
+    ///     </list>
+    /// </summary>
+    public Models.Geometric.SizeInt SourceSize
+    {
+        get
+        {
+            var contents = this.RecordVisually;
+
+            // ［切抜きカーソル］無し時
+            if (contents.IsNone)
+                return Models.Geometric.SizeInt.Empty;
+
+            return contents.SourceRectangle.Size;
+        }
+    }
+
     // - インターナル・メソッド
 
     #region メソッド（セット・データ）

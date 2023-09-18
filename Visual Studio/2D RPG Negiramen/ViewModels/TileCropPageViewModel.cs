@@ -821,7 +821,6 @@
                 SelectedTile_WorkingWidthAsFloat = this.ZoomAsFloat * value;
 
                 OnPropertyChanged(nameof(SelectedTile_SourceWidthAsInt));
-                OnPropertyChanged(nameof(SelectedTile_SourceSize));
             }
         }
 
@@ -882,7 +881,6 @@
                 SelectedTile_WorkingHeightAsFloat = this.ZoomAsFloat * value;
 
                 OnPropertyChanged(nameof(SelectedTile_SourceHeightAsInt));
-                OnPropertyChanged(nameof(SelectedTile_SourceSize));
             }
         }
 
@@ -905,7 +903,7 @@
         public Models.Geometric.SizeFloat SelectedTile_WorkingSizeWithTrick
         {
             get => new Models.Geometric.SizeFloat(
-                    width: new WidthFloat(this.SelectedTile_WorkingWidthWithoutTrick.AsFloat + this.SelectedTile_TrickWidth.AsFloat),
+                    width: new WidthFloat(this.Subordinates.SelectedTile.WorkingWidthWithoutTrick.AsFloat + this.Subordinates.SelectedTile.TrickWidth.AsFloat),
                     height: this.SelectedTile_WorkingHeight);
         }
 
@@ -1030,7 +1028,7 @@
         #endregion
 
         #region プロパティ（［選択タイル］　関連）
-        internal void SelectedTile_SetSourceRect(TheGeometric.RectangleInt value)
+        internal void SelectedTile_SetSourceRectangle(TheGeometric.RectangleInt value)
         {
             var contents = this.Subordinates.SelectedTile.RecordVisually;
 
@@ -1049,7 +1047,7 @@
 
             this.SelectedTile_SourceLeftAsInt = value.Location.X.AsInt;
             this.SelectedTile_SourceTopAsInt = value.Location.Y.AsInt;
-            this.SelectedTile_SourceSize = value.Size;
+            this.SelectedTile_SetSourceSize(value.Size);
 
             // 切抜きカーソル。ズーム済み
             OnPropertyChanged(nameof(SelectedTile_WorkingLeftAsFloat));
@@ -1060,7 +1058,7 @@
             OnPropertyChanged(nameof(TileCursor_WorkingPointAsMargin));
             OnPropertyChanged(nameof(SelectedTile_WorkingTopAsPresentableText));
 
-            this.SelectedTile_WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
+            this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new Models.Geometric.WidthFloat(this.ZoomAsFloat * value.Size.Width.AsInt);
             this.SelectedTile_WorkingHeight = new Models.Geometric.HeightFloat(this.ZoomAsFloat * value.Size.Height.AsInt);
         }
 
@@ -1071,40 +1069,29 @@
         ///         <item>線の太さを含まない</item>
         ///     </list>
         /// </summary>
-        public Models.Geometric.SizeInt SelectedTile_SourceSize
+        public void SelectedTile_SetSourceSize(TheGeometric.SizeInt value)
         {
-            get
-            {
-                var contents = this.Subordinates.SelectedTile.RecordVisually;
+            var contents = this.Subordinates.SelectedTile.RecordVisually;
 
+            if (contents.IsNone)
+            {
                 // ［切抜きカーソル］無し時
-                if (contents.IsNone)
-                    return Models.Geometric.SizeInt.Empty;
 
-                return contents.SourceRectangle.Size;
+                // 値に変化がない
+                if (value == TheGeometric.SizeInt.Empty) return;
             }
-            set
+            else
             {
-                var contents = this.Subordinates.SelectedTile.RecordVisually;
-
-                if (contents.IsNone)
-                {
-                    // ［切抜きカーソル］無し時
-                }
-                else
-                {
-                    // 値に変化がない
-                    if (contents.SourceRectangle.Size == value)
-                        return;
-                }
-
-                //
-                // 選択タイルの横幅と縦幅
-                // ======================
-                //
-                this.SelectedTile_SourceWidthAsInt = value.Width.AsInt;
-                this.SelectedTile_SourceHeightAsInt = value.Height.AsInt;
+                // 値に変化がない
+                if (contents.SourceRectangle.Size == value) return;
             }
+
+            //
+            // 選択タイルの横幅と縦幅
+            // ======================
+            //
+            this.SelectedTile_SourceWidthAsInt = value.Width.AsInt;
+            this.SelectedTile_SourceHeightAsInt = value.Height.AsInt;
         }
 
         /// <summary>
@@ -1115,35 +1102,6 @@
         ///     </list>
         /// </summary>
         public float SelectedTile_WorkingTopAsFloat => this.ZoomAsFloat * this.SelectedTile_SourceTopAsInt;
-
-        /// <summary>
-        ///     ［選択タイル］のトリック幅
-        ///     
-        ///     <list type="bullet">
-        ///         <item>透過メソッド</item>
-        ///     </list>
-        /// </summary>
-        public Models.Geometric.WidthFloat SelectedTile_TrickWidth
-        {
-            get => this.Subordinates.SelectedTile.TrickWidth;
-            set => this.Subordinates.SelectedTile.TrickWidth = value;
-        }
-
-        ///// <summary>
-        /////     ［選択タイル］のトリック幅
-        ///// </summary>
-        //public Models.Geometric.WidthFloat SelectedTile_WorkingWidthWithTrick => new WidthFloat(this.Subordinates.CropCursor.WorkingWidthWithoutTrick.AsFloat + this.SelectedTile_TrickWidth.AsFloat);
-
-        /// <summary>
-        ///     <list type="bullet">
-        ///         <item>透過メソッド</item>
-        ///     </list>
-        /// </summary>
-        public Models.Geometric.WidthFloat SelectedTile_WorkingWidthWithoutTrick
-        {
-            get => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick;
-            set => this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = value;
-        }
 
         public Models.Geometric.HeightFloat SelectedTile_WorkingHeight
         {
@@ -2044,7 +2002,7 @@
             // 計算値の反映
             // ============
             //
-            this.SelectedTile_SetSourceRect(sourceRect);
+            this.SelectedTile_SetSourceRectangle(sourceRect);
             if (mouseDrawingOperationState == MouseDrawingOperationState.ButtonUp)
             {
                 Trace.WriteLine($"［状態遷移］　矩形確定　x:{sourceRect.Location.X.AsInt} y:{sourceRect.Location.Y.AsInt} width:{sourceRect.Size.Width.AsInt} height:{sourceRect.Size.Height.AsInt}");
@@ -2145,7 +2103,7 @@
                         {
                             Debug.Fail("ここには来ない");
                             // 元画像の位置とサイズ
-                            this.SelectedTile_SetSourceRect(RectangleInt.Empty);
+                            this.SelectedTile_SetSourceRectangle(RectangleInt.Empty);
 
                             // 論理削除
                             this.SelectedTile_LogicalDeleteAsBool = false;
