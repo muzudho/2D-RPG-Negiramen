@@ -63,7 +63,7 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     切抜きカーソルの線の半分の太さ
     /// </summary>
-    ThicknessOfLine HalfThicknessOfTileCursorLine { get; }
+    ThicknessOfLine TileCursor_HalfThicknessOfLine { get; }
     #endregion
 
     #region プロパティ（切抜きカーソル。元画像ベース　関連）
@@ -77,17 +77,17 @@ public interface ITileCropPageViewModel
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置（マージンとして）
     /// </summary>
-    public Thickness CroppedCursorWorkingPointAsMargin { get; }
+    public Thickness TileCursor_WorkingPointAsMargin { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置ｘ（マージンとして）
     /// </summary>
-    public float CroppedCursorPointedTileWorkingLeftAsFloat { get; }
+    public float SelectedTile_WorkingLeftAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置ｙ（マージンとして）
     /// </summary>
-    public float CroppedCursorPointedTileWorkingTopAsFloat { get; }
+    public float SelectedTile_WorkingTopAsFloat { get; }
 
     /// <summary>
     ///     切抜きカーソル。ズーム済みのサイズ
@@ -96,27 +96,27 @@ public interface ITileCropPageViewModel
     ///         <item>線の太さを含まない</item>
     ///     </list>
     /// </summary>
-    Models.Geometric.SizeFloat CroppedCursorPointedTileWorkingSizeWithTrick { get; }
+    Models.Geometric.SizeFloat SelectedTile_WorkingSizeWithTrick { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの横幅。線の太さを含まない
     /// </summary>
-    public float CroppedCursorPointedTileWorkingWidthAsFloat { get; }
+    public float SelectedTile_WorkingWidthAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの縦幅。線の太さを含まない
     /// </summary>
-    public float CroppedCursorPointedTileWorkingHeightAsFloat { get; }
+    public float SelectedTile_WorkingHeightAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの横幅。線の太さを含む
     /// </summary>
-    public float CanvasOfCroppedCursorWorkingWidthAsFloat { get; }
+    public float CanvasOfTileCursor_WorkingWidthAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの縦幅。線の太さを含む
     /// </summary>
-    public float CanvasOfCroppedCursorWorkingHeightAsFloat { get; }
+    public float CanvasOfTileCursor_WorkingHeightAsFloat { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置ｘ
@@ -126,7 +126,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string CroppedCursorPointedTileWorkingLeftAsPresentableText { get; }
+    string SelectedTile_WorkingLeftAsPresentableText { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの位置ｙ
@@ -136,7 +136,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string CroppedCursorPointedTileWorkingTopAsPresentableText { get; }
+    string SelectedTile_WorkingTopAsPresentableText { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの横幅
@@ -146,7 +146,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string CroppedCursorPointedTileWorkingWidthAsPresentableText { get; }
+    string SelectedTile_WorkingWidthAsPresentableText { get; }
 
     /// <summary>
     ///     矩形カーソル。ズーム済みの縦幅
@@ -156,7 +156,7 @@ public interface ITileCropPageViewModel
     ///         <item>表示用テキスト</item>
     ///     </list>
     /// </summary>
-    string CroppedCursorPointedTileWorkingHeightAsPresentableText { get; }
+    string SelectedTile_WorkingHeightAsPresentableText { get; }
     #endregion
 
     #region プロパティ（ポインティング・デバイス押下中か？）

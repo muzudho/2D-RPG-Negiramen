@@ -18,18 +18,18 @@
         /// <summary>
         ///     切抜きカーソルの線の半分の太さ
         /// </summary>
-        public ThicknessOfLine HalfThicknessOfTileCursorLine
+        public ThicknessOfLine TileCursor_HalfThicknessOfLine
         {
-            get => (ThicknessOfLine)GetValue(HalfThicknessOfTileCursorLineProperty);
-            set => SetValue(HalfThicknessOfTileCursorLineProperty, value);
+            get => (ThicknessOfLine)GetValue(TileCursor_HalfThicknessOfLineProperty);
+            set => SetValue(TileCursor_HalfThicknessOfLineProperty, value);
         }
 
         /// <summary>
-        ///     <see cref="HalfThicknessOfTileCursorLine"/> に対応
+        ///     <see cref="TileCursor_HalfThicknessOfLine"/> に対応
         /// </summary>
-        public static BindableProperty HalfThicknessOfTileCursorLineProperty = BindableProperty.Create(
+        public static BindableProperty TileCursor_HalfThicknessOfLineProperty = BindableProperty.Create(
             // プロパティ名
-            propertyName: nameof(HalfThicknessOfTileCursorLine),
+            propertyName: nameof(TileCursor_HalfThicknessOfLine),
             // 返却型
             returnType: typeof(ThicknessOfLine),
             // これを含んでいるクラス
@@ -102,7 +102,7 @@
             if (this.CroppedCursorSize.IsEmpty)
             {
                 // カーソルが無いケース
-                // Trace.WriteLine($"[TileCursor Draw] 切抜きカーソルに大きさが無いから描画しない。  this.IsMouseDragging: {this.IsMouseDragging}, this.HalfThicknessOfTileCursorLine.AsInt: {this.HalfThicknessOfTileCursorLine.AsInt}, this.CroppedCursorSize.Width.AsFloat: {this.CroppedCursorSize.Width.AsFloat}, this.CroppedCursorSize.Height.AsFloat: {this.CroppedCursorSize.Height.AsFloat}");
+                // Trace.WriteLine($"[TileCursor Draw] 切抜きカーソルに大きさが無いから描画しない");
                 return;
             }
 
@@ -131,7 +131,7 @@
 
 
             // タイル・カーソルの線の太さの半分
-            int halfThicknessOfLineAsInt = this.HalfThicknessOfTileCursorLine.AsInt;
+            int halfThicknessOfLineAsInt = this.TileCursor_HalfThicknessOfLine.AsInt;
 
             // タイル・カーソルの線の太さ
             var thickness = new Models.ThicknessOfLine(2 * halfThicknessOfLineAsInt);

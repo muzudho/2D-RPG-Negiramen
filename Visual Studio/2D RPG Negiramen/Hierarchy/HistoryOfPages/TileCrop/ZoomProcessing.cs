@@ -107,8 +107,8 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.SelectedTile_SourceLeftAsInt.Location.Y.AsInt));
 
             // サイズ
-            this.Subordinates.CropCursor.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Width.AsInt);
-            this.Colleagues.PageVM.CroppedCursorPointedTileWorkingHeight = new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Height.AsInt);
+            this.Subordinates.CropCursor.SelectedTile_WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Width.AsInt);
+            this.Colleagues.PageVM.SelectedTile_WorkingHeight = new TheGeometric.HeightFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.SelectedTile_SourceRect.Size.Height.AsInt);
         }
 
         // 全ての［登録タイル］の更新

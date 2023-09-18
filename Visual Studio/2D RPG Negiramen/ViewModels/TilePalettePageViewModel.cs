@@ -148,7 +148,7 @@
                     selectedTile_sourceLocation = new Models.Geometric.PointInt(new Models.Geometric.XInt(value), selectedTile_sourceLocation.Y);
                     OnPropertyChanged(nameof(SelectedTile_SourceLeftAsInt));
 
-                    this.croppedCursorWorkingPointAsMargin = new Thickness(
+                    this.tileCursor_workingPointAsMargin = new Thickness(
                         // 左
                         this.SelectedTile_SourceLeftAsInt,
                         // 上
@@ -176,7 +176,7 @@
                     selectedTile_sourceLocation = new Models.Geometric.PointInt(selectedTile_sourceLocation.X, new Models.Geometric.YInt(value));
                     OnPropertyChanged(nameof(SelectedTile_SourceTopAsInt));
 
-                    this.croppedCursorWorkingPointAsMargin = new Thickness(
+                    this.tileCursor_workingPointAsMargin = new Thickness(
                         // 左
                         this.SelectedTile_SourceLeftAsInt,
                         // 上
@@ -194,15 +194,15 @@
         /// <summary>
         ///     矩形カーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        public Thickness CroppedCursorWorkingPointAsMargin
+        public Thickness TileCursor_WorkingPointAsMargin
         {
-            get => this.croppedCursorWorkingPointAsMargin;
+            get => this.tileCursor_workingPointAsMargin;
             private set
             {
-                if (this.croppedCursorWorkingPointAsMargin != value)
+                if (this.tileCursor_workingPointAsMargin != value)
                 {
-                    this.croppedCursorWorkingPointAsMargin = value;
-                    OnPropertyChanged(nameof(CroppedCursorWorkingPointAsMargin));
+                    this.tileCursor_workingPointAsMargin = value;
+                    OnPropertyChanged(nameof(TileCursor_WorkingPointAsMargin));
                 }
             }
         }
@@ -301,6 +301,6 @@
         /// <summary>
         ///     切抜きカーソル。ズーム済みの位置（マージンとして）
         /// </summary>
-        Thickness croppedCursorWorkingPointAsMargin = Thickness.Zero;
+        Thickness tileCursor_workingPointAsMargin = Thickness.Zero;
     }
 }

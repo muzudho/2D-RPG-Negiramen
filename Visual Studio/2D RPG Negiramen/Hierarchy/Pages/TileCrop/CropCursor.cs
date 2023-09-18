@@ -15,7 +15,7 @@ internal class CropCursor
     /// </summary>
     internal CropCursor()
     {
-        this.WorkingWidthWithoutTrick = WidthFloat.Zero;
+        this.SelectedTile_WorkingWidthWithoutTrick = WidthFloat.Zero;
     }
     #endregion
 
@@ -25,7 +25,7 @@ internal class CropCursor
     /// <summary>
     ///     トリック幅
     /// </summary>
-    internal WidthFloat TrickWidth { get; set; } = WidthFloat.Zero;
+    internal WidthFloat SelectedTile_TrickWidth { get; set; } = WidthFloat.Zero;
     #endregion
 
     /// <summary>
@@ -37,7 +37,7 @@ internal class CropCursor
     ///         <item>仕様変更するときは、TRICK CODE に注意</item>
     ///     </list>
     /// </summary>
-    internal WidthFloat WorkingWidthWithoutTrick { get; set; }
+    internal WidthFloat SelectedTile_WorkingWidthWithoutTrick { get; set; }
 
     // - インターナル・メソッド
 
@@ -52,13 +52,13 @@ internal class CropCursor
     /// </summary>
     internal void RefreshCanvasTrick(string codePlace = "[TileCropPageViewModel RefreshCanvasOfTileCursor]")
     {
-        if (TrickWidth.AsFloat == 1.0f)
+        if (SelectedTile_TrickWidth.AsFloat == 1.0f)
         {
-            TrickWidth = WidthFloat.Zero;
+            SelectedTile_TrickWidth = WidthFloat.Zero;
         }
         else
         {
-            TrickWidth = WidthFloat.One;
+            SelectedTile_TrickWidth = WidthFloat.One;
         }
     }
 }

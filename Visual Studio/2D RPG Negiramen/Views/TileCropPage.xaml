@@ -426,14 +426,14 @@
                     ======================
                     -->
                     <GraphicsView HorizontalOptions="Start" VerticalOptions="Start"
-                            Margin="{Binding CroppedCursorWorkingPointAsMargin}"
-                            WidthRequest="{Binding CanvasOfCroppedCursorWorkingWidthAsFloat}" HeightRequest="{Binding CanvasOfCroppedCursorWorkingHeightAsFloat}"
+                            Margin="{Binding TileCursor_WorkingPointAsMargin}"
+                            WidthRequest="{Binding CanvasOfTileCursor_WorkingWidthAsFloat}" HeightRequest="{Binding CanvasOfTileCursor_WorkingHeightAsFloat}"
                             InputTransparent="True"
                             x:Name="croppedCursor1">
                         <GraphicsView.Drawable>
                             <modelsDrawing:CroppedCursor BindingContext="{x:Reference thisContentPage}"
-                                                    HalfThicknessOfTileCursorLine="{Binding TileCropPageVM.HalfThicknessOfTileCursorLine}"
-                                                    CroppedCursorSize="{Binding TileCropPageVM.CroppedCursorPointedTileWorkingSizeWithTrick}"
+                                                    TileCursor_HalfThicknessOfLine="{Binding TileCropPageVM.TileCursor_HalfThicknessOfLine}"
+                                                    CroppedCursorSize="{Binding TileCropPageVM.SelectedTile_WorkingSizeWithTrick}"
                                                     IsMouseDragging="{Binding TileCropPageVM.IsMouseDragging}"/>
                         </GraphicsView.Drawable>
                     </GraphicsView>
@@ -482,28 +482,28 @@
                         <Label Grid.Row="1" Grid.Column="2"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileWorkingLeftAsPresentableText}"
+                               Text="{Binding SelectedTile_WorkingLeftAsPresentableText}"
                                FontSize="24"/>
 
                         <!-- ズーム済み：　［切抜きカーソルが指すタイル］位置Ｙ -->
                         <Label Grid.Row="1" Grid.Column="3"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileWorkingTopAsPresentableText}"
+                               Text="{Binding SelectedTile_WorkingTopAsPresentableText}"
                                FontSize="24"/>
 
                         <!-- ズーム済み：　［切抜きカーソルが指すタイル］横幅 -->
                         <Label Grid.Row="1" Grid.Column="4"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileWorkingWidthAsPresentableText}"
+                               Text="{Binding SelectedTile_WorkingWidthAsPresentableText}"
                                FontSize="24"/>
 
                         <!-- ズーム済み：　［切抜きカーソルが指すタイル］縦幅 -->
                         <Label Grid.Row="1" Grid.Column="5"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CroppedCursorPointedTileWorkingHeightAsPresentableText}"
+                               Text="{Binding SelectedTile_WorkingHeightAsPresentableText}"
                                FontSize="24"/>
                     </Grid>
 
@@ -584,14 +584,14 @@
                         <Label Grid.Row="1" Grid.Column="4"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CropTileSourceWidthAsInt}"
+                               Text="{Binding SelectedTile_SourceWidthAsInt}"
                                FontSize="24"/>
 
                         <!-- 元画像：　［切抜きカーソル］が指すタイル。縦幅 -->
                         <Label Grid.Row="1" Grid.Column="5"
                                HorizontalTextAlignment="End"
                                VerticalTextAlignment="Center"
-                               Text="{Binding CropTileSourceHeightAsInt}"
+                               Text="{Binding SelectedTile_SourceHeightAsInt}"
                                FontSize="24"/>
 
                         <!--    ◆３段目 読み仮名部
