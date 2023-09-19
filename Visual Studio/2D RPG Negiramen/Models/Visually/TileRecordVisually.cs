@@ -78,7 +78,7 @@
         /// <summary>
         ///     サイズが無いか？
         /// </summary>
-        internal bool IsNone => this.TileRecord.Rectangle.RightAsInt - this.TileRecord.Rectangle.LeftAsInt < 1 && this.TileRecord.Rectangle.BottomAsInt - this.TileRecord.Rectangle.TopAsInt < 1;
+        internal bool Rectangle_IsNotNormal => this.TileRecord.Rectangle_IsNotNormal;
         #endregion
 
         // - インターナル・メソッド
@@ -90,7 +90,8 @@
         /// <returns></returns>
         internal string Dump(Zoom zoom)
         {
-            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {this.TileRecord.Rectangle.Dump()}, WorkingRect: {this.GetRefreshWorkingRectangle(
+            return $"Id: {Id.AsBASE64}, IsNone: {this.Rectangle_IsNotNormal}, SourceRect: {this.TileRecord.Rectangle.Dump()}, WorkingRect: {TileRecordHelper.GetRefreshWorkingRectangle(
+                tileRecord: this.TileRecord,
                 zoom: zoom).Dump()}, Title: {Title.AsStr}";
         }
         #endregion
@@ -118,53 +119,5 @@
                 rect: rect,
                 title: this.Title);
         }
-
-        /// <summary>
-        ///     差分更新
-        /// </summary>
-        /// <param name="tileRecord">タイル</param>
-        /// <returns></returns>
-        internal void UpdateByDifference(
-#if DEBUG
-            string hint,
-#endif
-            TileIdOrEmpty? tileIdOrEmpty = null,
-            RectangleInt? rectangleInt = null,
-            TileTitle? tileTitle = null)
-        {
-            if (!(tileIdOrEmpty is null))
-            {
-                this.SetId(tileIdOrEmpty);
-            }
-
-            this.SetRectangle(rectangleInt);
-
-            if (!(tileTitle is null))
-            {
-                this.SetTitle(tileTitle);
-            }
-
-            //#if DEBUG
-            //            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}, hint: {hint}");
-            //#else
-            //            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}");
-            //#endif
-        }
-
-        #region メソッド（［作業画像］の矩形再計算）
-        /// <summary>
-        ///     ［作業画像］の矩形再計算
-        /// </summary>
-        internal RectangleFloat GetRefreshWorkingRectangle(Zoom zoom)
-        {
-            return new RectangleFloat(
-                location: new PointFloat(
-                    x: this.TileRecord.Rectangle.Location.X.ToFloat(),
-                    y: this.TileRecord.Rectangle.Location.Y.ToFloat()),
-                size: new SizeFloat(
-                    width: this.TileRecord.Rectangle.Size.Width.ToFloat(),
-                    height: this.TileRecord.Rectangle.Size.Height.ToFloat())).Multiplicate(zoom);
-        }
-        #endregion
     }
 }

@@ -86,6 +86,13 @@
 
         // - インターナル・メソッド
 
+        #region プロパティ（サイズが無いか？）
+        /// <summary>
+        ///     サイズが無いか？
+        /// </summary>
+        internal bool Rectangle_IsNotNormal => this.Rectangle.RightAsInt - this.Rectangle.LeftAsInt < 1 && this.Rectangle.BottomAsInt - this.Rectangle.TopAsInt < 1;
+        #endregion
+
         #region メソッド（ダンプ）
         /// <summary>
         ///     ダンプ

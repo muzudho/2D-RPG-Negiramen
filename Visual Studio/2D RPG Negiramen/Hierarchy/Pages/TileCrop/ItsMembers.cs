@@ -128,7 +128,7 @@ internal class ItsMembers
         get
         {
             // ※１
-            if (this.SelectedTile.RecordVisually.IsNone)
+            if (this.SelectedTile.RecordVisually.Rectangle_IsNotNormal)
             {
                 return false;
             }
@@ -251,7 +251,7 @@ internal class ItsMembers
 
             if (
                 // 切抜きカーソル無し時
-                contents.IsNone
+                contents.Rectangle_IsNotNormal
                 // Ｉｄ未設定時
                 || contents.Id == TileIdOrEmpty.Empty)
             {

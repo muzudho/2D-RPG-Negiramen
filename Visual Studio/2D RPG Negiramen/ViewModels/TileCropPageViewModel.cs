@@ -632,7 +632,7 @@
             {
                 var contents = this.Subordinates.SelectedTile.RecordVisually;
 
-                if (contents.IsNone)
+                if (contents.Rectangle_IsNotNormal)
                 {
                     // ［切抜きカーソル］無し時
                     return 0;
@@ -644,7 +644,7 @@
             {
                 var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
-                if (currentTileVisually.IsNone)
+                if (currentTileVisually.Rectangle_IsNotNormal)
                 {
                     // ［切抜きカーソル］無し時
 
@@ -706,7 +706,7 @@
                 var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
-                if (contents.IsNone)
+                if (contents.Rectangle_IsNotNormal)
                     return 0;
 
                 return contents.TileRecord.Rectangle.Location.Y.AsInt;
@@ -715,7 +715,7 @@
             {
                 var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
-                if (currentTileVisually.IsNone)
+                if (currentTileVisually.Rectangle_IsNotNormal)
                 {
                     // ［切抜きカーソル］無し時
 
@@ -777,7 +777,7 @@
                 var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
-                if (contents.IsNone)
+                if (contents.Rectangle_IsNotNormal)
                     return 0;
 
                 return contents.TileRecord.Rectangle.Size.Width.AsInt;
@@ -786,7 +786,7 @@
             {
                 var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
-                if (currentTileVisually.IsNone)
+                if (currentTileVisually.Rectangle_IsNotNormal)
                 {
                     // ［切抜きカーソル］無し時
                     // TODO ★ 循環参照注意
@@ -834,7 +834,7 @@
                 var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
-                if (contents.IsNone)
+                if (contents.Rectangle_IsNotNormal)
                     return 0;
 
                 return contents.TileRecord.Rectangle.Size.Height.AsInt;
@@ -843,7 +843,7 @@
             {
                 var currentTileVisually = this.Subordinates.SelectedTile.RecordVisually;
 
-                if (currentTileVisually.IsNone)
+                if (currentTileVisually.Rectangle_IsNotNormal)
                 {
                     // ［切抜きカーソル］無し時
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
@@ -963,7 +963,7 @@
                 var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
-                if (contents.IsNone)
+                if (contents.Rectangle_IsNotNormal)
                     return string.Empty;
 
                 return contents.Id.AsBASE64;
@@ -982,7 +982,7 @@
                 var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
-                if (contents.IsNone)
+                if (contents.Rectangle_IsNotNormal)
                     return string.Empty;
 
                 return contents.Id.AsPhoneticCode;
@@ -997,7 +997,7 @@
         ///         <item>［切抜きカーソルが指すタイル］のＩｄが空欄でない</item>
         ///     </list>
         /// </summary>
-        public bool SelectedTile_TitleIsEnabled => !this.Subordinates.SelectedTile.RecordVisually.IsNone && !this.Subordinates.SelectedTile.IdOrEmpty.IsEmpty;
+        public bool SelectedTile_TitleIsEnabled => !this.Subordinates.SelectedTile.RecordVisually.Rectangle_IsNotNormal && !this.Subordinates.SelectedTile.IdOrEmpty.IsEmpty;
 
         /// <summary>
         ///     ［切抜きカーソルが指すタイル］のタイトル
@@ -1038,7 +1038,7 @@
         {
             var contents = this.Subordinates.SelectedTile.RecordVisually;
 
-            if (contents.IsNone)
+            if (contents.Rectangle_IsNotNormal)
             {
                 // ［切抜きカーソル］の指すタイル無し時
 
@@ -1078,7 +1078,7 @@
         {
             var contents = this.Subordinates.SelectedTile.RecordVisually;
 
-            if (contents.IsNone)
+            if (contents.Rectangle_IsNotNormal)
             {
                 // ［切抜きカーソル］無し時
 
@@ -1180,7 +1180,7 @@
                 var contents = this.Subordinates.SelectedTile.RecordVisually;
 
                 // ［切抜きカーソル］無し時
-                if (contents.IsNone)
+                if (contents.Rectangle_IsNotNormal)
                     return string.Empty;
 
                 // 未選択時
@@ -1800,7 +1800,7 @@
                 // ［追加］（新規作成）だ
 
                 // ［切抜きカーソル］にサイズがなければ、何もしない
-                if (targetTile.IsNone)
+                if (targetTile.Rectangle_IsNotNormal)
                     return;
 
                 // 新しいタイルＩｄを発行
@@ -1864,7 +1864,7 @@
             TileIdOrEmpty tileIdOrEmpty;
 
             // ［切抜きカーソル］にサイズがなければ、何もしない
-            if (targetTile.IsNone)
+            if (targetTile.Rectangle_IsNotNormal)
                 return;
 
             // Ｉｄが空欄でない
@@ -2152,8 +2152,6 @@
             {
                 this.Subordinates.SelectedTile.RecordVisually.SetTitle(tileTitle);
             }
-
-            // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
         }
         #endregion
 

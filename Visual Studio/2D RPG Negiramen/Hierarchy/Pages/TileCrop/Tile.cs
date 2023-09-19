@@ -55,7 +55,7 @@ internal class Tile
             var contents = this.RecordVisually;
 
             // ［切抜きカーソル］の指すタイル無し時
-            if (contents.IsNone)
+            if (contents.Rectangle_IsNotNormal)
                 return TileIdOrEmpty.Empty;
 
             return contents.Id;
@@ -94,7 +94,7 @@ internal class Tile
         {
             var contents = this.RecordVisually;
 
-            if (contents.IsNone)
+            if (contents.Rectangle_IsNotNormal)
             {
                 // ［切抜きカーソル］の指すタイル無し時
                 return TheGeometric.RectangleInt.Empty;
@@ -118,7 +118,7 @@ internal class Tile
             var contents = this.RecordVisually;
 
             // ［切抜きカーソル］無し時
-            if (contents.IsNone)
+            if (contents.Rectangle_IsNotNormal)
                 return TheGeometric.SizeInt.Empty;
 
             return contents.TileRecord.Rectangle.Size;
@@ -149,11 +149,11 @@ internal class Tile
         if (oldTileVisually == value)
             return;
 
-        if (value.IsNone)
+        if (value.Rectangle_IsNotNormal)
         {
             // ［切抜きカーソルが指すタイル］を無しに設定する
 
-            if (oldTileVisually.IsNone)
+            if (oldTileVisually.Rectangle_IsNotNormal)
             {
                 // ［切抜きカーソルが指すタイル］がもともと無く、［切抜きカーソルが指すタイル］を無しに設定するのだから、何もしなくてよい
             }
@@ -179,7 +179,7 @@ internal class Tile
         {
             var newValue = value;
 
-            if (oldTileVisually.IsNone)
+            if (oldTileVisually.Rectangle_IsNotNormal)
             {
                 // ［切抜きカーソル］の指すタイル無し時
 
