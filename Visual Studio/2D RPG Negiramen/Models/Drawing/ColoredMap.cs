@@ -90,7 +90,7 @@ internal class ColoredMap : BindableObject, IDrawable
             canvas.DrawRoundedRectangle(
                 // 枠の線の太さの半分だけサイズを縮める
                 rect: tileVisually.GetRefreshWorkingRectangle(
-                    zoom: tileVisually.Zoom).AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
+                    zoom: this.Zoom).AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
                 cornerRadius: 16.0d);
         }
     }
