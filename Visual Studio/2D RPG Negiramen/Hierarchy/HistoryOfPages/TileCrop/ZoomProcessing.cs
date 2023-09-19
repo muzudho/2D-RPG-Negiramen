@@ -3,7 +3,6 @@
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
-using TheTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［ズーム］処理
@@ -15,17 +14,15 @@ internal class ZoomProcessing : IProcessing
     /// <summary>
     ///     生成
     /// </summary>
-    /// <param name="obsoletedIndoor"></param>
+    /// <param name="colleagues"></param>
     /// <param name="oldValue">変更前の値</param>
     /// <param name="newValue">変更後の値</param>
     internal ZoomProcessing(
         MembersOfTileCropPage colleagues,
-        TheTileCropPage.ItsMembers subordinates,
         Zoom oldValue,
         Zoom newValue)
     {
         this.Colleagues = colleagues;
-        this.Subordinates = subordinates;
         this.OldValue = oldValue;
         this.NewValue = newValue;
     }
@@ -55,7 +52,6 @@ internal class ZoomProcessing : IProcessing
     // - プライベート・プロパティ
 
     MembersOfTileCropPage Colleagues { get; }
-    TheTileCropPage.ItsMembers Subordinates { get; }
 
     /// <summary>
     ///     変更前の値
@@ -89,12 +85,12 @@ internal class ZoomProcessing : IProcessing
         // ［作業グリッド］の再計算
         {
             // 横幅
-            var width = this.Subordinates.GridUnit.SourceValue.Width.AsInt;
+            var width = this.Colleagues.PageVM.Subordinates.GridUnit.SourceValue.Width.AsInt;
             this.Colleagues.PageVM.WorkingGridTileWidthAsFloat = this.Colleagues.PageVM.ZoomAsFloat * width;
             // this.Owner.Owner.InvalidateWorkingGrid();
 
             // 縦幅
-            var height = this.Subordinates.GridUnit.SourceValue.Height.AsInt;
+            var height = this.Colleagues.PageVM.Subordinates.GridUnit.SourceValue.Height.AsInt;
             this.Colleagues.PageVM.WorkingGridTileHeightAsFloat = this.Colleagues.PageVM.ZoomAsFloat * height;
             // this.Owner.Owner.InvalidateWorkingGrid();
         }
@@ -107,7 +103,7 @@ internal class ZoomProcessing : IProcessing
             //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.SelectedTile_SourceLeftAsInt.Location.Y.AsInt));
 
             // サイズ
-            this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Width.AsInt);
+            this.Colleagues.PageVM.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Width.AsInt);
         }
 
         // 変更通知

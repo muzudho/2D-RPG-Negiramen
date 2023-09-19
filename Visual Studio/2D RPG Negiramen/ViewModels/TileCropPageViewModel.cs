@@ -179,7 +179,6 @@
                     // 再帰的にズーム再変更、かつ変更後の影響を処理
                     App.History.Do(new TheHistoryTileCropPage.ZoomProcessing(
                         colleagues: this.Colleagues,    // 権限を委譲
-                        subordinates: this.Subordinates,
                         oldValue: oldValue,
                         newValue: newValue));
                 });
