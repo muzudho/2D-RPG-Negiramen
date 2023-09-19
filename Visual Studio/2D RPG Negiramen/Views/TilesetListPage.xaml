@@ -10,8 +10,8 @@
     SizeChanged="ContentPage_SizeChanged"
     -->
 
-    <!--    画面内タイトルバー
-            ==================
+    <!--    最上段
+            ======
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
@@ -30,17 +30,6 @@
                         SemanticProperties.Hint="Back to the home"
                         Clicked="HomeBtn_Clicked"/>
 
-                <Label VerticalTextAlignment="Center"
-                       Text="＞"
-                       SemanticProperties.Hint="Separator"/>
-
-                <!--    ページ・タイトル
-                        ================
-                -->
-                <Label Text="{app:Translate TilesetList}"
-                       VerticalOptions="Center"
-                       HorizontalOptions="Center"
-                       FontSize="Large"/>
             </HorizontalStackLayout>
 
             <!-- ロケール選択 -->
@@ -55,26 +44,36 @@
         </Grid>
     </Shell.TitleView>
 
-    <!-- ドーナツ本体
-         ============
-    -->
-    <Grid RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
+    <!--    最上段より下
+            ============ -->
+    <Grid RowDefinitions="0,*,68" ColumnDefinitions="20,*,20"
           BackgroundColor="{DynamicResource DonutBody}">
 
         <!-- ドーナツの影
              ============
         -->
-        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="68,*,136" ColumnDefinitions="20,*,20"
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="136,*,136" ColumnDefinitions="20,*,20"
               BackgroundColor="{DynamicResource DonutShadow}">
 
             <!-- ドーナツの影メニュー
                  ====================
             -->
             <Grid Grid.Row="0" Grid.Column="1"
-              RowDefinitions="20,48" ColumnDefinitions="150,*">
+              RowDefinitions="68,20,48" ColumnDefinitions="*">
+
+                <!--    ページ・タイトル
+                        ================ -->
+                <Label
+                    Grid.Row="0"
+                    Text="{app:Translate TilesetList}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center"
+                    FontSize="Large"/>
 
                 <!-- 「インポート」 -->
-                <Button Grid.Row="1" Grid.Column="0"
+                <Button
+                    Grid.Row="2"
+                    WidthRequest="150"
                     Text="{app:Translate Import}"
                     Clicked="ImportButton_Clicked"/>
             </Grid>

@@ -17,28 +17,26 @@
     </ContentPage.BindingContext>
 
     <!--
-        画面内タイトル
-        ==============
+        最上段
+        ======
     -->
     <Shell.TitleView>
         <Grid ColumnDefinitions="*,*"
               BackgroundColor="{DynamicResource DonutBody}">
             <!--
-                パンくずリスト
-                ==============
+                戻るボタン
+                ==========
             -->
             <HorizontalStackLayout Grid.Column="0"
                                    HorizontalOptions="Start">
                 <!--
-                    ページ・タイトル
-                    ================
-                -->
-                <!-- 「ホーム」 -->
+                    アプリケーション・タイトル
+                    ========================== -->
                 <Label VerticalOptions="Center"
                        HorizontalOptions="Center"
                        Margin="16,0,0,0"
                        FontSize="Large"
-                       Text="{app:Translate Home}"/>
+                       Text="{app:Translate _2dRpgNegiramen}"/>
 
             </HorizontalStackLayout>
 
@@ -55,10 +53,10 @@
         </Grid>
     </Shell.TitleView>
 
-    <!-- ドーナツ本体
+    <!-- 最上段より下
          ============
     -->
-    <Grid RowDefinitions="68,*,68" ColumnDefinitions="20,*,20"
+    <Grid RowDefinitions="0,*,68" ColumnDefinitions="20,*,20"
           BackgroundColor="{DynamicResource DonutBody}">
 
         <!-- ドーナツの影
@@ -70,10 +68,10 @@
             <Grid Grid.Row="0" Grid.Column="1"
                   RowDefinitions="20,48">
 
-                <!-- 「２Ｄ　ＲＰＧ　ネギラーメン」 -->
+                <!-- ページ・タイトル -->
                 <Label Grid.Row="1"
                        HorizontalOptions="Center"
-                       Text="{app:Translate _2dRpgNegiramen}"
+                       Text="{app:Translate Home}"
                        FontSize="36"/>
             </Grid>
 
