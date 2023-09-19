@@ -114,109 +114,6 @@
         <Grid Grid.Row="0" Grid.Column="1"
               RowDefinitions="20,48" ColumnDefinitions="64,64,64,64,64,64,64,64,*">
 
-            <!-- 「ひだり」 -->
-            <Label Grid.Row="0" Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Text="{app:Translate Left}"/>
-
-            <!-- 「うえ」 -->
-            <Label Grid.Row="0" Grid.Column="2"
-                    HorizontalTextAlignment="End"
-                    Text="{app:Translate Top}"/>
-
-            <!-- 「よこ」 -->
-            <Label Grid.Row="0" Grid.Column="4"
-                    HorizontalTextAlignment="End"
-                    Text="{app:Translate Width}"/>
-
-            <!-- 「たて」 -->
-            <Label Grid.Row="0" Grid.Column="5"
-                    HorizontalTextAlignment="End"
-                    Text="{app:Translate Height}"/>
-            
-            <!-- 「ズーム」 -->
-            <Label Grid.Row="0" Grid.Column="7"
-                    HorizontalTextAlignment="Start"
-                    VerticalTextAlignment="Center"
-                    Text="{app:Translate Zoom}"/>
-
-            
-            
-            <!-- 「グリッド位相」 -->
-            <Label Grid.Row="1" Grid.Column="0"
-                    HorizontalTextAlignment="End"
-                    VerticalTextAlignment="Center"
-                    Text="{app:Translate GridPhase}"/>
-            
-            <!-- グリッド位相左 -->
-            <Entry Grid.Row="1" Grid.Column="1"
-                    HorizontalTextAlignment="End"
-                    Placeholder="0"
-                    Text="{Binding GridPhaseSourceLeftAsInt}"
-                    BackgroundColor="FloralWhite"/>
-
-            <!-- グリッド位相上 -->
-            <Entry Grid.Row="1" Grid.Column="2"
-                    HorizontalTextAlignment="End"
-                    Placeholder="0"
-                    Text="{Binding GridPhaseSourceTopAsInt}"
-                    BackgroundColor="FloralWhite"/>
-
-            <!-- 「グリッド\n１ます」 -->
-            <Label Grid.Row="1" Grid.Column="3"
-                    HorizontalTextAlignment="End"
-                    VerticalTextAlignment="Center"
-                    Text="{app:Translate GridOne}"/>
-
-            <!-- グリッド・タイル横幅 -->
-            <Entry Grid.Row="1" Grid.Column="4"
-                    HorizontalTextAlignment="End"
-                    Placeholder="32"
-                    Text="{Binding SourceGridTileWidthAsInt}"
-                    BackgroundColor="FloralWhite">
-                <Entry.Behaviors>
-                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                        ValidStyle="{StaticResource ValidEntryStyle}"
-                                                        Flags="ValidateOnValueChanged"
-                                                        MinimumValue="1"
-                                                        MaximumValue="{Binding TileMaxWidthAsInt}"
-                                                        MaximumDecimalPlaces="0" />
-                </Entry.Behaviors>
-            </Entry>
-
-            <!-- グリッド・タイル縦幅 -->
-            <Entry Grid.Row="1" Grid.Column="5"
-                    HorizontalTextAlignment="End"
-                    Placeholder="32"
-                    Text="{Binding SourceGridTileHeightAsInt}"
-                    BackgroundColor="FloralWhite">
-                <Entry.Behaviors>
-                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                        ValidStyle="{StaticResource ValidEntryStyle}"
-                                                        Flags="ValidateOnValueChanged"
-                                                        MinimumValue="1"
-                                                        MaximumValue="{Binding TileMaxHeightAsInt}"
-                                                        MaximumDecimalPlaces="0" />
-                </Entry.Behaviors>
-            </Entry>
-
-            <!-- ズーム -->
-            <Entry Grid.Row="1" Grid.Column="7"
-                    HorizontalTextAlignment="Start"
-                    Placeholder="32"
-                    Text="{Binding ZoomAsFloat}"
-                    BackgroundColor="FloralWhite"
-                    TextChanged="ZoomEntry_TextChanged">
-                <Entry.Behaviors>
-                    <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
-                                                        ValidStyle="{StaticResource ValidEntryStyle}"
-                                                        Flags="ValidateOnValueChanged"
-                                                        MinimumValue="{Binding ZoomMinAsFloat}"
-                                                        MaximumValue="{Binding ZoomMaxAsFloat}"
-                                                        MaximumDecimalPlaces="1" />
-                </Entry.Behaviors>
-            </Entry>
-
         </Grid>
 
         <!-- ドーナツの影
@@ -252,6 +149,32 @@
                     <Label Grid.Row="0" Grid.Column="2"
                            HorizontalTextAlignment="End"
                            Text="{app:Translate Height}"/>
+                    
+                    <!-- 「ひだり」 -->
+                    <Label Grid.Row="0" Grid.Column="4"
+                    HorizontalTextAlignment="End"
+                    Text="{app:Translate Left}"/>
+
+                    <!-- 「うえ」 -->
+                    <Label Grid.Row="0" Grid.Column="5"
+                    HorizontalTextAlignment="End"
+                    Text="{app:Translate Top}"/>
+
+                    <!-- 「よこ」 -->
+                    <Label Grid.Row="0" Grid.Column="7"
+                    HorizontalTextAlignment="End"
+                    Text="{app:Translate Width}"/>
+
+                    <!-- 「たて」 -->
+                    <Label Grid.Row="0" Grid.Column="8"
+                    HorizontalTextAlignment="End"
+                    Text="{app:Translate Height}"/>
+
+                    <!-- 「ズーム」 -->
+                    <Label Grid.Row="0" Grid.Column="10"
+                    HorizontalTextAlignment="Start"
+                    VerticalTextAlignment="Center"
+                    Text="{app:Translate Zoom}"/>
 
 
                     <!--    ◆２段目 入出力行
@@ -276,6 +199,81 @@
                            VerticalTextAlignment="Center"
                            FontSize="24"
                            Text="{Binding TilesetSourceImageHeightAsInt, Mode=OneWay}"/>
+
+                    <!-- 「グリッド位相」 -->
+                    <Label Grid.Row="1" Grid.Column="3"
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                    Text="{app:Translate GridPhase}"/>
+
+                    <!-- グリッド位相左 -->
+                    <Entry Grid.Row="1" Grid.Column="4"
+                    HorizontalTextAlignment="End"
+                    Placeholder="0"
+                    Text="{Binding GridPhaseSourceLeftAsInt}"
+                    BackgroundColor="FloralWhite"/>
+
+                    <!-- グリッド位相上 -->
+                    <Entry Grid.Row="1" Grid.Column="5"
+                    HorizontalTextAlignment="End"
+                    Placeholder="0"
+                    Text="{Binding GridPhaseSourceTopAsInt}"
+                    BackgroundColor="FloralWhite"/>
+
+                    <!-- 「グリッド\n１ます」 -->
+                    <Label Grid.Row="1" Grid.Column="6"
+                    HorizontalTextAlignment="End"
+                    VerticalTextAlignment="Center"
+                    Text="{app:Translate GridOne}"/>
+
+                    <!-- グリッド・タイル横幅 -->
+                    <Entry Grid.Row="1" Grid.Column="7"
+                    HorizontalTextAlignment="End"
+                    Placeholder="32"
+                    Text="{Binding SourceGridTileWidthAsInt}"
+                    BackgroundColor="FloralWhite">
+                        <Entry.Behaviors>
+                            <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                        ValidStyle="{StaticResource ValidEntryStyle}"
+                                                        Flags="ValidateOnValueChanged"
+                                                        MinimumValue="1"
+                                                        MaximumValue="{Binding TileMaxWidthAsInt}"
+                                                        MaximumDecimalPlaces="0" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <!-- グリッド・タイル縦幅 -->
+                    <Entry Grid.Row="1" Grid.Column="8"
+                    HorizontalTextAlignment="End"
+                    Placeholder="32"
+                    Text="{Binding SourceGridTileHeightAsInt}"
+                    BackgroundColor="FloralWhite">
+                        <Entry.Behaviors>
+                            <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                        ValidStyle="{StaticResource ValidEntryStyle}"
+                                                        Flags="ValidateOnValueChanged"
+                                                        MinimumValue="1"
+                                                        MaximumValue="{Binding TileMaxHeightAsInt}"
+                                                        MaximumDecimalPlaces="0" />
+                        </Entry.Behaviors>
+                    </Entry>
+
+                    <!-- ズーム -->
+                    <Entry Grid.Row="1" Grid.Column="10"
+                    HorizontalTextAlignment="Start"
+                    Placeholder="32"
+                    Text="{Binding ZoomAsFloat}"
+                    BackgroundColor="FloralWhite"
+                    TextChanged="ZoomEntry_TextChanged">
+                        <Entry.Behaviors>
+                            <toolkit:NumericValidationBehavior InvalidStyle="{StaticResource InvalidEntryStyle}"
+                                                        ValidStyle="{StaticResource ValidEntryStyle}"
+                                                        Flags="ValidateOnValueChanged"
+                                                        MinimumValue="{Binding ZoomMinAsFloat}"
+                                                        MaximumValue="{Binding ZoomMaxAsFloat}"
+                                                        MaximumDecimalPlaces="1" />
+                        </Entry.Behaviors>
+                    </Entry>
                 </Grid>
 
                 <!--    上メニュー（デバッグ用）
