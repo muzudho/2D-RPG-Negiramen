@@ -1836,6 +1836,7 @@
         }
         #endregion
 
+        #region イベントハンドラ（［削除］ボタン　クリック時）
         /// <summary>
         ///     ［削除］ボタン　クリック時
         ///     
@@ -1846,6 +1847,17 @@
         internal void OnDeletesButtonRemoveTile() => App.History.Do(TheHistoryTileCropPage.RemoveRegisteredTileProcessing.FromTileId(
             colleagues: this.Colleagues,
             tileIdOrEmpty: this.Subordinates.SelectedTile.IdOrEmpty));
+        #endregion
+
+        #region イベントハンドラ（［ズーム］変更時）
+        /// <summary>
+        ///     ［ズーム］変更時
+        /// </summary>
+        internal void OnZoomChanged()
+        {
+            OnPropertyChanged(nameof(this.Zoom));
+        }
+        #endregion
 
         // - インターナル・メソッド
 

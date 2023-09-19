@@ -186,7 +186,7 @@
                     y: this.SourceRectangle.Location.Y.ToFloat()),
                 size: new SizeFloat(
                     width: this.SourceRectangle.Size.Width.ToFloat(),
-                    height: this.SourceRectangle.Size.Height.ToFloat())).Multiplicate(this.Zoom);
+                    height: this.SourceRectangle.Size.Height.ToFloat())).Multiplicate(zoom);
         }
         #endregion
 

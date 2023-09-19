@@ -190,6 +190,8 @@ public partial class TileCropPage : ContentPage
         {
             this.croppedCursor1.Invalidate();
         }
+
+        ((TileCropPageViewModel)this.BindingContext).OnZoomChanged();
     }
     #endregion
 
