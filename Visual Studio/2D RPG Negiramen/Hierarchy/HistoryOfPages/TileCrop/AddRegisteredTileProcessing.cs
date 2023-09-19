@@ -88,7 +88,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SetRectangle(this.CroppedCursorVisually.TileRecord.Rectangle);
 
             // 新・タイル・タイトル
-            registeredTileVisually.Title = this.CroppedCursorVisually.Title;
+            registeredTileVisually.SetTitle(this.CroppedCursorVisually.Title);
         }
 
         //

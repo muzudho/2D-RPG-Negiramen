@@ -32,10 +32,7 @@
             )
         {
             var tileVisually = new TileRecordVisually(
-                tileRecord: tileRecord)
-            {
-                Title = tileRecord.Title
-            };
+                tileRecord: tileRecord);
 
             //#if DEBUG
             //            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}, hint: {hint}");
@@ -74,7 +71,7 @@
         /// <summary>
         ///     タイトル
         /// </summary>
-        internal TileTitle Title { get; set; } = TileTitle.Empty;
+        internal TileTitle Title => this.TileRecord.Title;
         #endregion
 
         #region プロパティ（サイズが無いか？）
@@ -97,6 +94,14 @@
                 zoom: zoom).Dump()}, Title: {Title.AsStr}";
         }
         #endregion
+
+        internal void SetTitle(TileTitle title)
+        {
+            this.TileRecord = new TileRecord(
+                id: this.Id,
+                rect: this.TileRecord.Rectangle,
+                title: title);
+        }
 
         internal void SetId(TileIdOrEmpty id)
         {
@@ -136,7 +141,7 @@
 
             if (!(tileTitle is null))
             {
-                this.Title = tileTitle;
+                this.SetTitle(tileTitle);
             }
 
             //#if DEBUG

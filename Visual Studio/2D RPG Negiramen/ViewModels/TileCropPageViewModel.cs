@@ -2150,7 +2150,7 @@
             // タイル・タイトル
             if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
             {
-                this.Subordinates.SelectedTile.RecordVisually.Title = tileTitle;
+                this.Subordinates.SelectedTile.RecordVisually.SetTitle(tileTitle);
             }
 
             // Trace.WriteLine($"[CropTile.cs UpdateByDifference] SavesRecordVisually.Dump(): {this.SavesRecordVisually.Dump()}");
