@@ -3,7 +3,6 @@
     using _2D_RPG_Negiramen.Coding;
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.FileEntries;
-    using _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
     using TheFileEntryLocations = FileEntries.Locations;
     using TheGeometric = Geometric;

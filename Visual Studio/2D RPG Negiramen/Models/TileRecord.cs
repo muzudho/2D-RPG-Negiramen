@@ -91,10 +91,7 @@
         ///     ダンプ
         /// </summary>
         /// <returns></returns>
-        internal string Dump()
-        {
-            return $"Id:{this.Id.AsBASE64}, Rect:{this.Rectangle.Dump()}, Title:{this.Title.AsStr}";
-        }
+        internal string Dump() => $"Id:{this.Id.AsBASE64}, Rect:{this.Rectangle.Dump()}, Title:{this.Title.AsStr}";
         #endregion
     }
 }

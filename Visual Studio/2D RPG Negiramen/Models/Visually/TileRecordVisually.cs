@@ -18,7 +18,7 @@
         // - その他
 
         #region その他（生成　関連）
-        internal static TileRecordVisually CreateEmpty() => new TileRecordVisually();
+        internal static TileRecordVisually CreateEmpty() => new TileRecordVisually(TileRecord.Empty);
 
         /// <summary>
         ///     生成
@@ -32,7 +32,8 @@
 #endif
             )
         {
-            var tileVisually = new TileRecordVisually()
+            var tileVisually = new TileRecordVisually(
+                tileRecord: tileRecord)
             {
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
@@ -51,8 +52,9 @@
         /// <summary>
         ///     生成
         /// </summary>
-        TileRecordVisually()
+        TileRecordVisually(TileRecord tileRecord)
         {
+            this.TileRecord = tileRecord;
         }
         #endregion
 
@@ -68,6 +70,8 @@
         /// </summary>
         internal TileIdOrEmpty Id { get; set; } = TileIdOrEmpty.Empty;
         #endregion
+
+        internal TileRecord TileRecord { get; }
 
         #region プロパティ（［元画像］　関連）
         /// <summary>
