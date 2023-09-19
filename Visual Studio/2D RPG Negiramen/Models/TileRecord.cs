@@ -98,7 +98,7 @@
         ///     ダンプ
         /// </summary>
         /// <returns></returns>
-        internal string Dump() => $"Id:{this.Id.AsBASE64}, Rect:{this.Rectangle.Dump()}, Title:{this.Title.AsStr}";
+        internal string Dump() => $"Id:{this.Id.AsBASE64}, Rect:{this.Rectangle.Dump()}, Title:{this.Title.AsStr}, Rectangle_IsNotNormal: {this.Rectangle_IsNotNormal}";
         #endregion
     }
 }

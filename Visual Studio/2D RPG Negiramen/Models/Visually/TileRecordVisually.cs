@@ -83,19 +83,6 @@
 
         // - インターナル・メソッド
 
-        #region メソッド（ダンプ）
-        /// <summary>
-        ///     ダンプ
-        /// </summary>
-        /// <returns></returns>
-        internal string Dump(Zoom zoom)
-        {
-            return $"Id: {Id.AsBASE64}, IsNone: {this.Rectangle_IsNotNormal}, SourceRect: {this.TileRecord.Rectangle.Dump()}, WorkingRect: {TileRecordHelper.GetRefreshWorkingRectangle(
-                tileRecord: this.TileRecord,
-                zoom: zoom).Dump()}, Title: {Title.AsStr}";
-        }
-        #endregion
-
         internal void SetTitle(TileTitle title)
         {
             this.TileRecord = new TileRecord(

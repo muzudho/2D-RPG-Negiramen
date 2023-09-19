@@ -2,15 +2,18 @@
 
 using _2D_RPG_Negiramen.Models.Geometric;
 
-class TileRecordHelper
+/// <summary>
+///     ヘルパー
+/// </summary>
+static class TileRecordHelper
 {
-    // - インターナル・メソッド
+    // - インターナル静的メソッド
 
     #region メソッド（［作業画像］の矩形再計算）
     /// <summary>
     ///     ［作業画像］の矩形再計算
     /// </summary>
-    internal RectangleFloat GetRefreshWorkingRectangle(TileRecord tileRecord, Zoom zoom)
+    internal static RectangleFloat GetRefreshWorkingRectangle(TileRecord tileRecord, Zoom zoom)
     {
         return new RectangleFloat(
             location: new PointFloat(
@@ -19,6 +22,19 @@ class TileRecordHelper
             size: new SizeFloat(
                 width: tileRecord.Rectangle.Size.Width.ToFloat(),
                 height: tileRecord.Rectangle.Size.Height.ToFloat())).Multiplicate(zoom);
+    }
+    #endregion
+
+    #region メソッド（ダンプ）
+    /// <summary>
+    ///     ダンプ
+    /// </summary>
+    /// <returns></returns>
+    internal static string Dump(TileRecord tileRecord, Zoom zoom)
+    {
+        return $"{tileRecord.Dump()}, WorkingRect: {TileRecordHelper.GetRefreshWorkingRectangle(
+            tileRecord: tileRecord,
+            zoom: zoom).Dump()}";
     }
     #endregion
 }
