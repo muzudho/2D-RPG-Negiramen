@@ -3,6 +3,7 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
+    using System.Diagnostics;
     using TheGeometric = Geometric;
 
     /// <summary>
@@ -36,15 +37,14 @@
                 tileRecord: tileRecord)
             {
                 Id = tileRecord.Id,
-                SourceRectangle = tileRecord.Rectangle,
                 Title = tileRecord.Title
             };
 
-//#if DEBUG
-//            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}, hint: {hint}");
-//#else
-//            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}");
-//#endif
+            //#if DEBUG
+            //            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}, hint: {hint}");
+            //#else
+            //            Trace.WriteLine($"[TileRecordVisually.cs FromModel] tileVisually.Dump(): {tileVisually.Dump()}");
+            //#endif
 
             return tileVisually;
         }
@@ -71,24 +71,7 @@
         internal TileIdOrEmpty Id { get; set; } = TileIdOrEmpty.Empty;
         #endregion
 
-        internal TileRecord TileRecord { get; }
-
-        #region プロパティ（［元画像］　関連）
-        /// <summary>
-        ///     ［元画像］の矩形
-        /// </summary>
-        internal TheGeometric.RectangleInt SourceRectangle
-        {
-            get => this.sourceRectangle;
-            set
-            {
-                if (this.sourceRectangle == value)
-                    return;
-
-                this.sourceRectangle = value;
-            }
-        }
-        #endregion
+        internal TileRecord TileRecord { get; private set; }
 
         #region プロパティ（タイトル）
         /// <summary>
@@ -101,7 +84,7 @@
         /// <summary>
         ///     サイズが無いか？
         /// </summary>
-        internal bool IsNone => SourceRectangle.RightAsInt - SourceRectangle.LeftAsInt < 1 && SourceRectangle.BottomAsInt - SourceRectangle.TopAsInt < 1;
+        internal bool IsNone => this.TileRecord.Rectangle.RightAsInt - this.TileRecord.Rectangle.LeftAsInt < 1 && this.TileRecord.Rectangle.BottomAsInt - this.TileRecord.Rectangle.TopAsInt < 1;
         #endregion
 
         // - インターナル・メソッド
@@ -113,10 +96,20 @@
         /// <returns></returns>
         internal string Dump(Zoom zoom)
         {
-            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {SourceRectangle.Dump()}, WorkingRect: {this.GetRefreshWorkingRectangle(
+            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {this.TileRecord.Rectangle.Dump()}, WorkingRect: {this.GetRefreshWorkingRectangle(
                 zoom: zoom).Dump()}, Title: {Title.AsStr}";
         }
         #endregion
+
+        internal void SetRectangle(RectangleInt rect)
+        {
+            Debug.Assert(rect != null);
+
+            this.TileRecord = new TileRecord(
+                id: this.Id,
+                rect: rect,
+                title: this.Title);
+        }
 
         /// <summary>
         ///     差分更新
@@ -136,21 +129,18 @@
                 this.Id = tileIdOrEmpty;
             }
 
-            if (!(rectangleInt is null))
-            {
-                this.SourceRectangle = rectangleInt;
-            }
+            this.SetRectangle(rectangleInt);
 
             if (!(tileTitle is null))
             {
                 this.Title = tileTitle;
             }
 
-//#if DEBUG
-//            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}, hint: {hint}");
-//#else
-//            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}");
-//#endif
+            //#if DEBUG
+            //            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}, hint: {hint}");
+            //#else
+            //            Trace.WriteLine($"[TileRecordVisually.cs FromModel] this.Dump(): {this.Dump()}");
+            //#endif
         }
 
         #region メソッド（［作業画像］の矩形再計算）
@@ -161,16 +151,12 @@
         {
             return new RectangleFloat(
                 location: new PointFloat(
-                    x: this.SourceRectangle.Location.X.ToFloat(),
-                    y: this.SourceRectangle.Location.Y.ToFloat()),
+                    x: this.TileRecord.Rectangle.Location.X.ToFloat(),
+                    y: this.TileRecord.Rectangle.Location.Y.ToFloat()),
                 size: new SizeFloat(
-                    width: this.SourceRectangle.Size.Width.ToFloat(),
-                    height: this.SourceRectangle.Size.Height.ToFloat())).Multiplicate(zoom);
+                    width: this.TileRecord.Rectangle.Size.Width.ToFloat(),
+                    height: this.TileRecord.Rectangle.Size.Height.ToFloat())).Multiplicate(zoom);
         }
         #endregion
-
-        // - プライベート・フィールド
-
-        TheGeometric.RectangleInt sourceRectangle = RectangleInt.Empty;
     }
 }

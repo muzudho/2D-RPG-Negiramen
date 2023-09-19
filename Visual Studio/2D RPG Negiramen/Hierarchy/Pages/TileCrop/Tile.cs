@@ -100,7 +100,7 @@ internal class Tile
                 return TheGeometric.RectangleInt.Empty;
             }
 
-            return contents.SourceRectangle;
+            return contents.TileRecord.Rectangle;
         }
     }
 
@@ -121,7 +121,7 @@ internal class Tile
             if (contents.IsNone)
                 return TheGeometric.SizeInt.Empty;
 
-            return contents.SourceRectangle.Size;
+            return contents.TileRecord.Rectangle.Size;
         }
     }
 

@@ -85,7 +85,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
 
             // 新・元画像の位置とサイズ
-            registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
+            registeredTileVisually.SetRectangle(this.CroppedCursorVisually.TileRecord.Rectangle);
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;

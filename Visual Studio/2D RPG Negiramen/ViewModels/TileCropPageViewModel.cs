@@ -638,7 +638,7 @@
                     return 0;
                 }
 
-                return contents.SourceRectangle.Location.X.AsInt;
+                return contents.TileRecord.Rectangle.Location.X.AsInt;
             }
             set
             {
@@ -664,7 +664,7 @@
                 else
                 {
                     // 値に変化がない
-                    if (currentTileVisually.SourceRectangle.Location.X.AsInt == value)
+                    if (currentTileVisually.TileRecord.Rectangle.Location.X.AsInt == value)
                         return;
 
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
@@ -672,8 +672,8 @@
                             id: currentTileVisually.Id,
                             // 元画像ベース
                             rect: new TheGeometric.RectangleInt(
-                                location: new TheGeometric.PointInt(new TheGeometric.XInt(value), currentTileVisually.SourceRectangle.Location.Y),
-                                size: currentTileVisually.SourceRectangle.Size),
+                                location: new TheGeometric.PointInt(new TheGeometric.XInt(value), currentTileVisually.TileRecord.Rectangle.Location.Y),
+                                size: currentTileVisually.TileRecord.Rectangle.Size),
                             title: currentTileVisually.Title)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 2]"
@@ -709,7 +709,7 @@
                 if (contents.IsNone)
                     return 0;
 
-                return contents.SourceRectangle.Location.Y.AsInt;
+                return contents.TileRecord.Rectangle.Location.Y.AsInt;
             }
             set
             {
@@ -735,7 +735,7 @@
                 else
                 {
                     // 値に変化がない
-                    if (currentTileVisually.SourceRectangle.Location.Y.AsInt == value)
+                    if (currentTileVisually.TileRecord.Rectangle.Location.Y.AsInt == value)
                         return;
 
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
@@ -743,8 +743,8 @@
                             id: currentTileVisually.Id,
                             // 元画像ベース
                             rect: new TheGeometric.RectangleInt(
-                            location: new TheGeometric.PointInt(currentTileVisually.SourceRectangle.Location.X, new TheGeometric.YInt(value)),
-                            size: currentTileVisually.SourceRectangle.Size),
+                            location: new TheGeometric.PointInt(currentTileVisually.TileRecord.Rectangle.Location.X, new TheGeometric.YInt(value)),
+                            size: currentTileVisually.TileRecord.Rectangle.Size),
                             title: currentTileVisually.Title)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceTopAsInt 2]"
@@ -780,7 +780,7 @@
                 if (contents.IsNone)
                     return 0;
 
-                return contents.SourceRectangle.Size.Width.AsInt;
+                return contents.TileRecord.Rectangle.Size.Width.AsInt;
             }
             set
             {
@@ -803,13 +803,13 @@
                 else
                 {
                     // 値に変化がない
-                    if (currentTileVisually.SourceRectangle.Size.Width.AsInt == value)
+                    if (currentTileVisually.TileRecord.Rectangle.Size.Width.AsInt == value)
                         return;
 
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
-                            rect: new TheGeometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
+                            rect: new TheGeometric.RectangleInt(currentTileVisually.TileRecord.Rectangle.Location, new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), currentTileVisually.TileRecord.Rectangle.Size.Height)),
                             title: currentTileVisually.Title)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceWidthAsInt 2]"
@@ -837,7 +837,7 @@
                 if (contents.IsNone)
                     return 0;
 
-                return contents.SourceRectangle.Size.Height.AsInt;
+                return contents.TileRecord.Rectangle.Size.Height.AsInt;
             }
             set
             {
@@ -859,13 +859,13 @@
                 else
                 {
                     // 値に変化がない
-                    if (currentTileVisually.SourceRectangle.Size.Height.AsInt == value)
+                    if (currentTileVisually.TileRecord.Rectangle.Size.Height.AsInt == value)
                         return;
 
                     this.Subordinates.SelectedTile.SetRecordVisuallyNoGuiUpdate(TileRecordVisually.FromModel(
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
-                            rect: new TheGeometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new TheGeometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new TheGeometric.HeightInt(value))),
+                            rect: new TheGeometric.RectangleInt(currentTileVisually.TileRecord.Rectangle.Location, new TheGeometric.SizeInt(currentTileVisually.TileRecord.Rectangle.Size.Width, new TheGeometric.HeightInt(value))),
                             title: currentTileVisually.Title)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceHeightAsInt 2]"
@@ -1048,7 +1048,7 @@
             else
             {
                 // 値に変化がない
-                if (contents.SourceRectangle == value) return;
+                if (contents.TileRecord.Rectangle == value) return;
             }
 
             this.SelectedTile_SourceLeftAsInt = value.Location.X.AsInt;
@@ -1088,7 +1088,7 @@
             else
             {
                 // 値に変化がない
-                if (contents.SourceRectangle.Size == value) return;
+                if (contents.TileRecord.Rectangle.Size == value) return;
             }
 
             //
@@ -1813,7 +1813,7 @@
                     colleagues: this.Colleagues,
                     tileVisually: targetTile,
                     newTileIdOrEmpty: newTileIdOrEmpty,
-                    workingRectangle: targetTile.SourceRectangle.Do(this.Subordinates.ZoomProperties.Value)));
+                    workingRectangle: targetTile.TileRecord.Rectangle.Do(this.Subordinates.ZoomProperties.Value)));
 
                 this.InvalidateForHistory();
             }
@@ -1878,7 +1878,7 @@
                 colleagues: this.Colleagues,
                 tileVisually: targetTile,
                 newTileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: targetTile.SourceRectangle.Do(this.Subordinates.ZoomProperties.Value)));
+                workingRectangle: targetTile.TileRecord.Rectangle.Do(this.Subordinates.ZoomProperties.Value)));
 
             this.InvalidateForHistory();
         }
@@ -1958,10 +1958,10 @@
                         onUpdated: () =>
                         {
                             // （変更通知を送っている）
-                            this.SelectedTile_SourceLeftAsInt = tileVisually.SourceRectangle.Location.X.AsInt;
-                            this.SelectedTile_SourceTopAsInt = tileVisually.SourceRectangle.Location.Y.AsInt;
-                            this.SelectedTile_SourceWidthAsInt = tileVisually.SourceRectangle.Size.Width.AsInt;
-                            this.SelectedTile_SourceHeightAsInt = tileVisually.SourceRectangle.Size.Height.AsInt;
+                            this.SelectedTile_SourceLeftAsInt = tileVisually.TileRecord.Rectangle.Location.X.AsInt;
+                            this.SelectedTile_SourceTopAsInt = tileVisually.TileRecord.Rectangle.Location.Y.AsInt;
+                            this.SelectedTile_SourceWidthAsInt = tileVisually.TileRecord.Rectangle.Size.Width.AsInt;
+                            this.SelectedTile_SourceHeightAsInt = tileVisually.TileRecord.Rectangle.Size.Height.AsInt;
 
                             // 変更通知を送りたい
                             this.InvalidateTileIdChange();

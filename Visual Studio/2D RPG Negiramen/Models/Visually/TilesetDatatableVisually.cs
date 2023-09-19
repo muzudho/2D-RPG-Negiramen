@@ -208,7 +208,7 @@
         {
             foreach (var tileVisually in TileRecordVisuallyList)
             {
-                if (tileVisually.SourceRectangle == sourceRect)
+                if (tileVisually.TileRecord.Rectangle == sourceRect)
                 {
                     some(tileVisually);
                     return;
@@ -231,7 +231,7 @@
                 // レコードを１件返す
                 yield return new TileRecord(
                     id: tileVisually.Id,
-                    rect: tileVisually.SourceRectangle,
+                    rect: tileVisually.TileRecord.Rectangle,
                     title: tileVisually.Title);
             }
         }
@@ -247,7 +247,7 @@
             foreach (var tileVisually in TileRecordVisuallyList)
             {
                 // 矩形を１件返す
-                yield return tileVisually.SourceRectangle;
+                yield return tileVisually.TileRecord.Rectangle;
             }
         }
         #endregion
@@ -336,7 +336,7 @@
             {
                 list.Add(new TileRecord(
                     id: tileVisually.Id,
-                    rect: tileVisually.SourceRectangle,
+                    rect: tileVisually.TileRecord.Rectangle,
                     title: tileVisually.Title));
             }
 
