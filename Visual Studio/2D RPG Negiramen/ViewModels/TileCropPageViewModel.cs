@@ -1804,15 +1804,15 @@
                     return;
 
                 // 新しいタイルＩｄを発行
-                TileIdOrEmpty tileIdOrEmpty = this.TilesetSettingsVM.UsableId;
+                TileIdOrEmpty newTileIdOrEmpty = this.TilesetSettingsVM.UsableId;
                 this.TilesetSettingsVM.IncreaseUsableId();
 
                 // 追加でも、上書きでも、同じ処理でいける
                 // ［登録タイル追加］処理
                 App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                     colleagues: this.Colleagues,
-                    croppedCursorVisually: targetTile,
-                    tileIdOrEmpty: tileIdOrEmpty,
+                    tileVisually: targetTile,
+                    newTileIdOrEmpty: newTileIdOrEmpty,
                     workingRectangle: targetTile.SourceRectangle.Do(this.Subordinates.ZoomProperties.Value)));
 
                 this.InvalidateForHistory();
@@ -1864,8 +1864,8 @@
             App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                 // 上位の権限を委譲する
                 colleagues: this.Colleagues,
-                croppedCursorVisually: targetTile,
-                tileIdOrEmpty: tileIdOrEmpty,
+                tileVisually: targetTile,
+                newTileIdOrEmpty: tileIdOrEmpty,
                 workingRectangle: targetTile.SourceRectangle.Do(this.Subordinates.ZoomProperties.Value)));
 
             this.InvalidateForHistory();

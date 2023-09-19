@@ -67,7 +67,7 @@ internal class ColoredMap : BindableObject, IDrawable
             canvas.StrokeSize = 2 * halfFrameThickness;
             canvas.DrawRoundedRectangle(
                 // 枠の線の太さの半分だけサイズを縮める
-                rect: tileVisually.WorkingRectangle.AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
+                rect: tileVisually.GetRefreshWorkingRectangle().AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
                 cornerRadius: 16.0d);
         }
     }

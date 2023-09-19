@@ -5,7 +5,6 @@ using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 using _2D_RPG_Negiramen.Models.Visually;
-using TheTileCropPage = _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 /// <summary>
 ///     ［登録タイル追加］処理
@@ -18,13 +17,13 @@ internal class AddRegisteredTileProcessing : IProcessing
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    /// <param name="croppedCursorVisually"></param>
-    /// <param name="tileIdOrEmpty"></param>
+    /// <param name="tileVisually"></param>
+    /// <param name="newTileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         MembersOfTileCropPage colleagues,
-        TileRecordVisually croppedCursorVisually,
-        TileIdOrEmpty tileIdOrEmpty,
+        TileRecordVisually tileVisually,
+        TileIdOrEmpty newTileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
         this.Colleagues = colleagues;
@@ -34,8 +33,8 @@ internal class AddRegisteredTileProcessing : IProcessing
             this.Colleagues.PageVM.InvalidateAddsButton();
         };
 
-        this.CroppedCursorVisually = croppedCursorVisually;
-        this.TileIdOrEmpty = tileIdOrEmpty;
+        this.CroppedCursorVisually = tileVisually;
+        this.TileIdOrEmpty = newTileIdOrEmpty;
         this.WorkingRectangle = workingRectangle;
     }
 

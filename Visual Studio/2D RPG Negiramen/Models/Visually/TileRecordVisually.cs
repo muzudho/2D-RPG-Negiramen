@@ -3,7 +3,6 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
-    using System.Diagnostics;
     using TheGeometric = Geometric;
 
     /// <summary>
@@ -85,20 +84,8 @@
                     return;
 
                 this.sourceRectangle = value;
-
-                // ［作業画像］の矩形再計算
-                this.RefreshWorkingRectangle();
             }
         }
-        #endregion
-
-        #region プロパティ（［作業画像］　関連）
-        /// <summary>
-        ///     ［作業画像］の矩形（ズーム後）
-        ///     
-        ///     TODO ★ WorkingRectangle を止めて、ズームに置き換えたい
-        /// </summary>
-        internal TheGeometric.RectangleFloat WorkingRectangle => this.workingRectangle;
         #endregion
 
         #region プロパティ（タイトル）
@@ -128,9 +115,6 @@
                     return;
 
                 this.zoom = value;
-
-                // ［作業画像］の矩形再計算
-                this.RefreshWorkingRectangle();
             }
         }
         #endregion
@@ -144,7 +128,7 @@
         /// <returns></returns>
         internal string Dump()
         {
-            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {SourceRectangle.Dump()}, WorkingRect: {WorkingRectangle.Dump()}, Title: {Title.AsStr}";
+            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {SourceRectangle.Dump()}, WorkingRect: {this.GetRefreshWorkingRectangle().Dump()}, Title: {Title.AsStr}";
         }
         #endregion
 
@@ -189,21 +173,13 @@
 //#endif
         }
 
-        // - プライベート・フィールド
-
-        Zoom zoom = Zoom.IdentityElement;
-        TheGeometric.RectangleInt sourceRectangle = RectangleInt.Empty;
-        TheGeometric.RectangleFloat workingRectangle = RectangleFloat.Empty;
-
-        // - プライベート・メソッド
-
         #region メソッド（［作業画像］の矩形再計算）
         /// <summary>
         ///     ［作業画像］の矩形再計算
         /// </summary>
-        void RefreshWorkingRectangle()
+        internal RectangleFloat GetRefreshWorkingRectangle()
         {
-            this.workingRectangle = new RectangleFloat(
+            return new RectangleFloat(
                 location: new PointFloat(
                     x: this.SourceRectangle.Location.X.ToFloat(),
                     y: this.SourceRectangle.Location.Y.ToFloat()),
@@ -212,5 +188,10 @@
                     height: this.SourceRectangle.Size.Height.ToFloat())).Multiplicate(this.Zoom);
         }
         #endregion
+
+        // - プライベート・フィールド
+
+        Zoom zoom = Zoom.IdentityElement;
+        TheGeometric.RectangleInt sourceRectangle = RectangleInt.Empty;
     }
 }
