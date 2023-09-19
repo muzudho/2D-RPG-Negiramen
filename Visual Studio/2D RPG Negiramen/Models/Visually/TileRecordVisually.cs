@@ -3,8 +3,6 @@
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
     using CommunityToolkit.Mvvm.ComponentModel;
-    using System.Diagnostics;
-    using TheGeometric = Geometric;
 
     /// <summary>
     ///     😁 タイル１件分の画面向け記録
@@ -36,7 +34,6 @@
             var tileVisually = new TileRecordVisually(
                 tileRecord: tileRecord)
             {
-                Id = tileRecord.Id,
                 Title = tileRecord.Title
             };
 
@@ -68,12 +65,7 @@
         ///         <item>0 は `MA==` だが、これは空文字として表示する</item>
         ///     </list>
         /// </summary>
-        internal TileIdOrEmpty Id { get; private set; } = TileIdOrEmpty.Empty;
-
-        internal void SetId(TileIdOrEmpty id)
-        {
-            this.Id = id;
-        }
+        internal TileIdOrEmpty Id => this.TileRecord.Id;
         #endregion
 
         internal TileRecord TileRecord { get; private set; }
@@ -106,10 +98,16 @@
         }
         #endregion
 
+        internal void SetId(TileIdOrEmpty id)
+        {
+            this.TileRecord = new TileRecord(
+                id: id,
+                rect: this.TileRecord.Rectangle,
+                title: this.Title);
+        }
+
         internal void SetRectangle(RectangleInt rect)
         {
-            Debug.Assert(rect != null);
-
             this.TileRecord = new TileRecord(
                 id: this.Id,
                 rect: rect,
@@ -131,7 +129,7 @@
         {
             if (!(tileIdOrEmpty is null))
             {
-                this.Id = tileIdOrEmpty;
+                this.SetId(tileIdOrEmpty);
             }
 
             this.SetRectangle(rectangleInt);
