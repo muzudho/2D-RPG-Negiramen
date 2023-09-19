@@ -68,7 +68,12 @@
         ///         <item>0 は `MA==` だが、これは空文字として表示する</item>
         ///     </list>
         /// </summary>
-        internal TileIdOrEmpty Id { get; set; } = TileIdOrEmpty.Empty;
+        internal TileIdOrEmpty Id { get; private set; } = TileIdOrEmpty.Empty;
+
+        internal void SetId(TileIdOrEmpty id)
+        {
+            this.Id = id;
+        }
         #endregion
 
         internal TileRecord TileRecord { get; private set; }

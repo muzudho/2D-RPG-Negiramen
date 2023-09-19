@@ -2136,7 +2136,7 @@
             // タイルＩｄ
             if (!(tileId is null) && currentTileVisually.Id != tileId)
             {
-                this.Subordinates.SelectedTile.RecordVisually.Id = tileId;
+                this.Subordinates.SelectedTile.RecordVisually.SetId(tileId);
 
                 // Ｉｄが入ることで、タイル登録扱いになる。いろいろ再描画する
 
