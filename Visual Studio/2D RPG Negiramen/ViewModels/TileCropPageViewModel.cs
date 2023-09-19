@@ -2,7 +2,6 @@
 {
     using _2D_RPG_Negiramen.Models;
     using _2D_RPG_Negiramen.Models.Geometric;
-    using _2D_RPG_Negiramen.Models.Visually;
     using CommunityToolkit.Mvvm.ComponentModel;
     using SkiaSharp;
     using System.Collections.ObjectModel;
@@ -109,7 +108,7 @@
         /// <summary>
         ///     タイルセット設定ビューモデル
         /// </summary>
-        public TilesetDatatableVisually TilesetSettingsVM
+        public TilesetDatatable TilesetSettingsVM
         {
             get => this._tilesetSettingsVM;
             set
@@ -1541,9 +1540,9 @@
             // タイル設定ファイルの読込
             // ========================
             //
-            if (TilesetDatatableVisually.LoadCSV(
+            if (TilesetDatatable.LoadCSV(
                 tilesetDatatableFileLocation: this.TilesetDatatableFileLocation,
-                tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
+                tilesetDatatableVisually: out TilesetDatatable tilesetDatatableVisually))
             {
                 this.TilesetSettingsVM = tilesetDatatableVisually;
 
@@ -2117,7 +2116,7 @@
         /// <summary>
         ///     ［タイルセット設定］ビューモデル
         /// </summary>
-        TilesetDatatableVisually _tilesetSettingsVM = new();
+        TilesetDatatable _tilesetSettingsVM = new();
 
         /// <summary>
         ///     ［タイルセット設定］のCSVファイル

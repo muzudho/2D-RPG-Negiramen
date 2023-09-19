@@ -1,8 +1,6 @@
-﻿namespace _2D_RPG_Negiramen.Models.Visually
+﻿namespace _2D_RPG_Negiramen.Models
 {
     using _2D_RPG_Negiramen.Coding;
-    using _2D_RPG_Negiramen.Models;
-    using _2D_RPG_Negiramen.Models.FileEntries;
     using CommunityToolkit.Mvvm.ComponentModel;
     using TheFileEntryLocations = FileEntries.Locations;
     using TheGeometric = Geometric;
@@ -14,12 +12,12 @@
     ///         <item>ミュータブル</item>
     ///     </list>
     /// </summary>
-    public class TilesetDatatableVisually : ObservableObject
+    public class TilesetDatatable : ObservableObject
     {
         // - その他
 
         #region その他（生成）
-        internal TilesetDatatableVisually()
+        internal TilesetDatatable()
         {
 
         }
@@ -35,12 +33,12 @@
         /// <returns></returns>
         internal static bool LoadCSV(
             TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tilesetDatatableFileLocation,
-            out TilesetDatatableVisually tilesetDatatableVisually)
+            out TilesetDatatable tilesetDatatableVisually)
         {
             // 既定値の設定（空っぽ）
-            tilesetDatatableVisually = new TilesetDatatableVisually();
+            tilesetDatatableVisually = new TilesetDatatable();
 
-            if (TilesetDatatable.LoadCSV(tilesetDatatableFileLocation, out TilesetDatatable tilesetDatatable, out TileIdOrEmpty usableId))
+            if (FileEntries.TilesetDatatable.LoadCSV(tilesetDatatableFileLocation, out FileEntries.TilesetDatatable tilesetDatatable, out TileIdOrEmpty usableId))
             {
                 tilesetDatatableVisually.UsableId = usableId;
 
@@ -116,7 +114,7 @@
         /// </summary>
         /// <param name="removee">タイル</param>
         /// <remarks>完了</remarks>
-        internal void AddTile(TileRecord item) => this.TileRecordList.Add(item);
+        internal void AddTile(TileRecord item) => TileRecordList.Add(item);
         #endregion
 
         #region メソッド（タイルの削除）
@@ -125,7 +123,7 @@
         /// </summary>
         /// <param name="item">タイル</param>
         /// <remarks>完了</remarks>
-        internal bool RemoveTile(TileRecord item) => this.TileRecordList.Remove(item);
+        internal bool RemoveTile(TileRecord item) => TileRecordList.Remove(item);
         #endregion
 
         #region メソッド（指定のＩｄと一致するレコードを返す）
@@ -243,7 +241,7 @@
         /// <returns>そうだ</returns>
         internal bool HasIntersection(TheGeometric.RectangleInt sourceRectangle)
         {
-            return TilesetDatatable.HasIntersection(sourceRectangle, GetAllSourceRectangles());
+            return FileEntries.TilesetDatatable.HasIntersection(sourceRectangle, GetAllSourceRectangles());
         }
         #endregion
 
@@ -255,7 +253,7 @@
         /// <returns>そうだ</returns>
         internal bool IsCongruence(TheGeometric.RectangleInt sourceRectangle)
         {
-            return TilesetDatatable.IsCongruence(sourceRectangle, GetAllSourceRectangles());
+            return FileEntries.TilesetDatatable.IsCongruence(sourceRectangle, GetAllSourceRectangles());
         }
         #endregion
 
@@ -270,7 +268,7 @@
         /// <returns></returns>
         internal bool IsValid()
         {
-            return TilesetDatatable.IsValid(CreateTileRecordList());
+            return FileEntries.TilesetDatatable.IsValid(CreateTileRecordList());
         }
         #endregion
 
@@ -300,7 +298,7 @@
         /// <returns>完了した</returns>
         internal bool SaveCsv(TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tileSetSettingsFile)
         {
-            return TilesetDatatable.SaveCSV(
+            return FileEntries.TilesetDatatable.SaveCSV(
                 tileSetSettingsFileLocation: tileSetSettingsFile,
                 recordList: GetAllSourceRecords());
         }

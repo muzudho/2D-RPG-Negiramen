@@ -1,6 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing;
 
-using _2D_RPG_Negiramen.Models.Visually;
+using _2D_RPG_Negiramen.Models;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
@@ -14,9 +14,9 @@ internal class ColoredMap : BindableObject, IDrawable
     /// <summary>
     ///     タイルセット設定ビューモデル
     /// </summary>
-    public TilesetDatatableVisually TilesetSettingsVM
+    public TilesetDatatable TilesetSettingsVM
     {
-        get => (TilesetDatatableVisually)GetValue(TilesetSettingsVMProperty);
+        get => (TilesetDatatable)GetValue(TilesetSettingsVMProperty);
         set => SetValue(TilesetSettingsVMProperty, value);
     }
 
@@ -27,7 +27,7 @@ internal class ColoredMap : BindableObject, IDrawable
         // プロパティ名
         propertyName: nameof(TilesetSettingsVM),
         // 返却型
-        returnType: typeof(TilesetDatatableVisually),
+        returnType: typeof(TilesetDatatable),
         // これを含んでいるクラス
         declaringType: typeof(ColoredMap));
     #endregion
