@@ -72,7 +72,6 @@ internal class AddRegisteredTileProcessing : IProcessing
             this.Colleagues.PageVM.TilesetSettingsVM.AddTileVisually(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
-                zoom: Zoom.IdentityElement,
                 title: Models.TileTitle.Empty);
         }
 
@@ -87,9 +86,6 @@ internal class AddRegisteredTileProcessing : IProcessing
 
             // 新・元画像の位置とサイズ
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
-
-            // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.Colleagues.PageVM.Subordinates.ZoomProperties.Value;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;

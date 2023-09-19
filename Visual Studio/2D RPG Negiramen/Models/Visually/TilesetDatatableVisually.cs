@@ -36,7 +36,6 @@
         /// <returns></returns>
         internal static bool LoadCSV(
             TheFileEntryLocations.UnityAssets.DataCsvTilesetCsv tilesetDatatableFileLocation,
-            Zoom zoom,
             out TilesetDatatableVisually tilesetDatatableVisually)
         {
             // 既定値の設定（空っぽ）
@@ -50,8 +49,7 @@
                 {
                     tilesetDatatableVisually.TileRecordVisuallyList.Add(
                         TileRecordVisually.FromModel(
-                            tileRecord: record,
-                            zoom: zoom
+                            tileRecord: record
 #if DEBUG
                             , hint: "[TilesetDatatableVisually.cs LoadCSV]"
 #endif
@@ -110,7 +108,6 @@
         internal void AddTileVisually(
             TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
-            Zoom zoom,
             TileTitle title)
         {
             TileRecordVisuallyList.Add(
@@ -118,8 +115,7 @@
                     tileRecord: new TileRecord(
                         id,
                         rect,
-                        title),
-                    zoom: zoom
+                        title)
 #if DEBUG
                     , hint: "[TilesetDatatableVisually.cs AddTileVisually]"
 #endif

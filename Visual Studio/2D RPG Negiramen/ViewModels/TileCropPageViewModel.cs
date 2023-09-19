@@ -655,8 +655,7 @@
                             rect: new TheGeometric.RectangleInt(
                                 location: new TheGeometric.PointInt(new TheGeometric.XInt(value), Models.Geometric.YInt.Empty),
                                 size: Models.Geometric.SizeInt.Empty),
-                            title: Models.TileTitle.Empty),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: Models.TileTitle.Empty)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 1]"
 #endif
@@ -675,8 +674,7 @@
                             rect: new TheGeometric.RectangleInt(
                                 location: new TheGeometric.PointInt(new TheGeometric.XInt(value), currentTileVisually.SourceRectangle.Location.Y),
                                 size: currentTileVisually.SourceRectangle.Size),
-                            title: currentTileVisually.Title),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: currentTileVisually.Title)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs CropTileSourceLeftAsInt 2]"
 #endif
@@ -728,8 +726,7 @@
                             rect: new TheGeometric.RectangleInt(
                             location: new TheGeometric.PointInt(Models.Geometric.XInt.Empty, new TheGeometric.YInt(value)),
                             size: Models.Geometric.SizeInt.Empty),
-                            title: Models.TileTitle.Empty),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: Models.TileTitle.Empty)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceTopAsInt 1]"
 #endif
@@ -748,8 +745,7 @@
                             rect: new TheGeometric.RectangleInt(
                             location: new TheGeometric.PointInt(currentTileVisually.SourceRectangle.Location.X, new TheGeometric.YInt(value)),
                             size: currentTileVisually.SourceRectangle.Size),
-                            title: currentTileVisually.Title),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: currentTileVisually.Title)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceTopAsInt 2]"
 #endif
@@ -798,8 +794,7 @@
                         tileRecord: new Models.TileRecord(
                             id: Models.TileIdOrEmpty.Empty,
                             rect: new TheGeometric.RectangleInt(Models.Geometric.PointInt.Empty, new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), Models.Geometric.HeightInt.Empty)),
-                            title: Models.TileTitle.Empty),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: Models.TileTitle.Empty)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceWidthAsInt 1]"
 #endif
@@ -815,8 +810,7 @@
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new TheGeometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), currentTileVisually.SourceRectangle.Size.Height)),
-                            title: currentTileVisually.Title),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: currentTileVisually.Title)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceWidthAsInt 2]"
 #endif
@@ -856,8 +850,7 @@
                         tileRecord: new Models.TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: new TheGeometric.RectangleInt(Models.Geometric.PointInt.Empty, new TheGeometric.SizeInt(Models.Geometric.WidthInt.Empty, new TheGeometric.HeightInt(value))),
-                            title: Models.TileTitle.Empty),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: Models.TileTitle.Empty)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceHeightAsInt 1]"
 #endif
@@ -873,8 +866,7 @@
                         tileRecord: new Models.TileRecord(
                             id: currentTileVisually.Id,
                             rect: new TheGeometric.RectangleInt(currentTileVisually.SourceRectangle.Location, new TheGeometric.SizeInt(currentTileVisually.SourceRectangle.Size.Width, new TheGeometric.HeightInt(value))),
-                            title: currentTileVisually.Title),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: currentTileVisually.Title)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs SelectedTile_SourceHeightAsInt 2]"
 #endif
@@ -1591,7 +1583,6 @@
             //
             if (TilesetDatatableVisually.LoadCSV(
                 tilesetDatatableFileLocation: this.TilesetDatatableFileLocation,
-                zoom: this.Subordinates.ZoomProperties.Value,
                 tilesetDatatableVisually: out TilesetDatatableVisually tilesetDatatableVisually))
             {
                 this.TilesetSettingsVM = tilesetDatatableVisually;
@@ -2015,8 +2006,7 @@
                         tileRecord: new TileRecord(
                             id: TileIdOrEmpty.Empty,
                             rect: sourceRectangle,
-                            title: TileTitle.Empty),
-                        zoom: this.Subordinates.ZoomProperties.Value
+                            title: TileTitle.Empty)
 #if DEBUG
                         , hint: "[TileCropPageViewModel.cs RefreshTileForm]"
 #endif

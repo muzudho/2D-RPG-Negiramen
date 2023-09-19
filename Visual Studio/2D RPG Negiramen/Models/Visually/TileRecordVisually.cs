@@ -26,8 +26,7 @@
         /// <param name="tileRecord">タイル</param>
         /// <returns></returns>
         public static TileRecordVisually FromModel(
-            TileRecord tileRecord,
-            Zoom zoom
+            TileRecord tileRecord
 #if DEBUG
             , string hint
 #endif
@@ -37,7 +36,6 @@
             {
                 Id = tileRecord.Id,
                 SourceRectangle = tileRecord.Rectangle,
-                Zoom = zoom,
                 Title = tileRecord.Title
             };
 
@@ -102,23 +100,6 @@
         internal bool IsNone => SourceRectangle.RightAsInt - SourceRectangle.LeftAsInt < 1 && SourceRectangle.BottomAsInt - SourceRectangle.TopAsInt < 1;
         #endregion
 
-        #region プロパティ（ズーム）
-        /// <summary>
-        ///     ズーム
-        /// </summary>
-        internal Zoom Zoom
-        {
-            get => this.zoom;
-            set
-            {
-                if (this.zoom == value)
-                    return;
-
-                this.zoom = value;
-            }
-        }
-        #endregion
-
         // - インターナル・メソッド
 
         #region メソッド（ダンプ）
@@ -144,8 +125,7 @@
 #endif
             TileIdOrEmpty? tileIdOrEmpty = null,
             RectangleInt? rectangleInt = null,
-            TileTitle? tileTitle = null,
-            Zoom? zoom = null)
+            TileTitle? tileTitle = null)
         {
             if (!(tileIdOrEmpty is null))
             {
@@ -160,11 +140,6 @@
             if (!(tileTitle is null))
             {
                 this.Title = tileTitle;
-            }
-
-            if(!(zoom is null))
-            {
-                this.Zoom = zoom;
             }
 
 //#if DEBUG
@@ -192,7 +167,6 @@
 
         // - プライベート・フィールド
 
-        Zoom zoom = Zoom.IdentityElement;
         TheGeometric.RectangleInt sourceRectangle = RectangleInt.Empty;
     }
 }

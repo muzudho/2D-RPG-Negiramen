@@ -110,13 +110,6 @@ internal class ZoomProcessing : IProcessing
             this.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Width.AsInt);
         }
 
-        // 全ての［登録タイル］の更新
-        foreach (var registeredTileVM in this.Colleagues.PageVM.TilesetSettingsVM.TileRecordVisuallyList)
-        {
-            // ズーム
-            registeredTileVM.Zoom = this.Subordinates.ZoomProperties.Value;
-        }
-
         // 変更通知
         this.Colleagues.PageVM.InvalidateForHistory();
     }
