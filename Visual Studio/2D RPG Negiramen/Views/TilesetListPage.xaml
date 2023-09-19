@@ -154,15 +154,8 @@
                 <VerticalStackLayout Grid.Row="1" Grid.RowSpan="3" Grid.Column="0"
                                  Padding="0,0,16,0">
 
-                    <!-- 「タイル切抜き」 -->
-                    <Button WidthRequest="150"
-                        HeightRequest="20"
-                        Text="{app:Translate TileCrop}"
-                        IsEnabled="{Binding IsEnabledTileCropButton}"
-                        Clicked="TileCropButton_Clicked"/>
-
                     <!-- 「タイルセット削除」 -->
-                    <Button Margin="0,16,0,0"
+                    <Button
                         WidthRequest="150"
                         HeightRequest="20"
                         Text="{app:Translate DeleteTileset}"
@@ -216,6 +209,18 @@
                    Completed="TilesetTitleEntry_Completed"/>
             </Grid>
 
+        </Grid>
+        
+        <!-- ドーナツ下側 -->
+        <Grid Grid.Row="2" Grid.Column="1" RowDefinitions="*" ColumnDefinitions="*"
+              HorizontalOptions="Center">
+            <!-- ［タイル切抜き］ボタン -->
+            <Button
+                WidthRequest="150"
+                HeightRequest="20"
+                Text="{app:Translate TileCrop}"
+                IsEnabled="{Binding IsEnabledTileCropButton}"
+                Clicked="TileCropButton_Clicked"/>
         </Grid>
     </Grid>
 
