@@ -126,9 +126,10 @@
         ///     ダンプ
         /// </summary>
         /// <returns></returns>
-        internal string Dump()
+        internal string Dump(Zoom zoom)
         {
-            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {SourceRectangle.Dump()}, WorkingRect: {this.GetRefreshWorkingRectangle().Dump()}, Title: {Title.AsStr}";
+            return $"Id: {Id.AsBASE64}, IsNone: {this.IsNone}, SourceRect: {SourceRectangle.Dump()}, WorkingRect: {this.GetRefreshWorkingRectangle(
+                zoom: zoom).Dump()}, Title: {Title.AsStr}";
         }
         #endregion
 
@@ -177,7 +178,7 @@
         /// <summary>
         ///     ［作業画像］の矩形再計算
         /// </summary>
-        internal RectangleFloat GetRefreshWorkingRectangle()
+        internal RectangleFloat GetRefreshWorkingRectangle(Zoom zoom)
         {
             return new RectangleFloat(
                 location: new PointFloat(

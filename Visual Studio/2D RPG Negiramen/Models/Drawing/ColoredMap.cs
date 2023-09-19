@@ -1,7 +1,7 @@
 ﻿namespace _2D_RPG_Negiramen.Models.Drawing;
 
 using _2D_RPG_Negiramen.Models.Visually;
-using System.Diagnostics;
+using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
 ///     カラーマップ
@@ -28,6 +28,28 @@ internal class ColoredMap : BindableObject, IDrawable
         propertyName: nameof(TilesetSettingsVM),
         // 返却型
         returnType: typeof(TilesetDatatableVisually),
+        // これを含んでいるクラス
+        declaringType: typeof(ColoredMap));
+    #endregion
+
+    #region 束縛可能プロパティ（ズーム）
+    /// <summary>
+    ///     ズーム
+    /// </summary>
+    public TheGeometric.Zoom Zoom
+    {
+        get => (TheGeometric.Zoom)GetValue(ZoomProperty);
+        set => SetValue(ZoomProperty, value);
+    }
+
+    /// <summary>
+    ///     <see cref="TilesetSettingsVM"/>
+    /// </summary>
+    public static BindableProperty ZoomProperty = BindableProperty.Create(
+        // プロパティ名
+        propertyName: nameof(Zoom),
+        // 返却型
+        returnType: typeof(TheGeometric.Zoom),
         // これを含んでいるクラス
         declaringType: typeof(ColoredMap));
     #endregion
@@ -67,7 +89,8 @@ internal class ColoredMap : BindableObject, IDrawable
             canvas.StrokeSize = 2 * halfFrameThickness;
             canvas.DrawRoundedRectangle(
                 // 枠の線の太さの半分だけサイズを縮める
-                rect: tileVisually.GetRefreshWorkingRectangle().AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
+                rect: tileVisually.GetRefreshWorkingRectangle(
+                    zoom: tileVisually.Zoom).AsGraphis().Inflate(-halfFrameThickness, -halfFrameThickness),
                 cornerRadius: 16.0d);
         }
     }

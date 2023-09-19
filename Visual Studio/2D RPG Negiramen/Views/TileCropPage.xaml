@@ -418,7 +418,8 @@
                             InputTransparent="True">
                         <GraphicsView.Drawable>
                             <modelsDrawing:ColoredMap BindingContext="{x:Reference thisContentPage}"
-                                                      TilesetSettingsVM="{Binding TileCropPageVM.TilesetSettingsVM}"/>
+                                                      TilesetSettingsVM="{Binding TileCropPageVM.TilesetSettingsVM}"
+                                                      Zoom="{Binding TileCropPageVM.Zoom}"/>
                         </GraphicsView.Drawable>
                     </GraphicsView>
 

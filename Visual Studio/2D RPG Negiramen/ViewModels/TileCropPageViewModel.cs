@@ -152,6 +152,15 @@
 
         #region 変更通知プロパティ（［ズーム］　関連）
         /// <summary>
+        ///     ［ズーム］オブジェクト形式
+        ///     
+        ///     <list type="bullet">
+        ///         <item>透過メソッド</item>
+        ///     </list>
+        /// </summary>
+        public Zoom Zoom => this.Subordinates.ZoomProperties.Value;
+
+        /// <summary>
         ///     ［ズーム］整数形式
         ///     
         ///     <list type="bullet">
