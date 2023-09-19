@@ -69,7 +69,7 @@ internal class ColoredMap : BindableObject, IDrawable
         }
 
         // 各登録タイル
-        foreach (var tileVisually in this.TilesetSettingsVM.TileRecordVisuallyList)
+        foreach (var tileVisually in this.TilesetSettingsVM.TileRecordList)
         {
             // 枠の線の太さの半分
             int halfFrameThickness = 2;

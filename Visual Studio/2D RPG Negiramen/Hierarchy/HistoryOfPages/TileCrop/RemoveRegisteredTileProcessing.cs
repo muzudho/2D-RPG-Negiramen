@@ -2,7 +2,6 @@
 
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.Models.Visually;
 using System.Diagnostics;
 
 /// <summary>
@@ -23,7 +22,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         TileIdOrEmpty tileIdOrEmpty)
     {
         // ※１ Id が一致する最初の１件を取得
-        TileRecordVisually? removeeTile = colleagues.PageVM.TilesetSettingsVM.TileRecordVisuallyList.Find(item => item.Id == tileIdOrEmpty);
+        TileRecord? removeeTile = colleagues.PageVM.TilesetSettingsVM.TileRecordList.Find(item => item.Id == tileIdOrEmpty);
 
         if (removeeTile != null)
         {
@@ -41,7 +40,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// <param name="owner"></param>
     RemoveRegisteredTileProcessing(
         MembersOfTileCropPage colleagues,
-        TileRecordVisually removeeTile)
+        TileRecord removeeTile)
     {
         this.Colleagues = colleagues;
         this.RemoveeTile = removeeTile;
@@ -132,5 +131,5 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     /// <summary>
     ///     削除するタイル
     /// </summary>
-    TileRecordVisually RemoveeTile { get; }
+    TileRecord RemoveeTile { get; }
 }

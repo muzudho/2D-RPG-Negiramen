@@ -46,13 +46,7 @@
 
                 foreach (TileRecord record in tilesetDatatable.RecordList)
                 {
-                    tilesetDatatableVisually.TileRecordVisuallyList.Add(
-                        TileRecordVisually.FromModel(
-                            tileRecord: record
-#if DEBUG
-                            , hint: "[TilesetDatatableVisually.cs LoadCSV]"
-#endif
-                            ));
+                    tilesetDatatableVisually.TileRecordList.Add(record);
                 }
                 try
                 {
@@ -85,7 +79,7 @@
         /// <summary>
         /// 対象のタイルセットに含まれるすべてのタイルの画面向け記憶
         /// </summary>
-        internal List<TileRecordVisually> TileRecordVisuallyList { get; private set; } = new List<TileRecordVisually>();
+        internal List<TileRecord> TileRecordList { get; private set; } = new List<TileRecord>();
         #endregion
 
         #region プロパティ（次に採番できるＩｄ。１から始まる）
@@ -104,21 +98,15 @@
         /// <param name="id">タイルＩｄ</param>
         /// <param name="rect">位置とサイズ</param>
         /// <param name="title">タイトル</param>
-        internal void AddTileVisually(
+        internal void AddTile(
             TileIdOrEmpty id,
             TheGeometric.RectangleInt rect,
             TileTitle title)
         {
-            TileRecordVisuallyList.Add(
-                TileRecordVisually.FromModel(
-                    tileRecord: new TileRecord(
-                        id,
-                        rect,
-                        title)
-#if DEBUG
-                    , hint: "[TilesetDatatableVisually.cs AddTileVisually]"
-#endif
-                    ));
+            TileRecordList.Add(new TileRecord(
+                id,
+                rect,
+                title));
         }
         #endregion
 
@@ -128,8 +116,7 @@
         /// </summary>
         /// <param name="removee">タイル</param>
         /// <remarks>完了</remarks>
-        internal void AddTile(
-            TileRecordVisually item) => this.TileRecordVisuallyList.Add(item);
+        internal void AddTile(TileRecord item) => this.TileRecordList.Add(item);
         #endregion
 
         #region メソッド（タイルの削除）
@@ -138,8 +125,7 @@
         /// </summary>
         /// <param name="item">タイル</param>
         /// <remarks>完了</remarks>
-        internal bool RemoveTile(
-            TileRecordVisually item) => this.TileRecordVisuallyList.Remove(item);
+        internal bool RemoveTile(TileRecord item) => this.TileRecordList.Remove(item);
         #endregion
 
         #region メソッド（指定のＩｄと一致するレコードを返す）
@@ -147,20 +133,20 @@
         ///     指定のＩｄと一致するレコードを返す
         /// </summary>
         /// <param name="tileId">タイルＩｄ</param>
-        /// <param name="resultVisuallyOrNull">結果</param>
+        /// <param name="resultOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryGetTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        internal bool TryGetTileById(TileIdOrEmpty tileId, out TileRecord? resultOrNull)
         {
-            foreach (var tileVisually in TileRecordVisuallyList)
+            foreach (var tile in TileRecordList)
             {
-                if (tileVisually.Id == tileId)
+                if (tile.Id == tileId)
                 {
-                    resultVisuallyOrNull = tileVisually;
+                    resultOrNull = tile;
                     return true;
                 }
             }
 
-            resultVisuallyOrNull = null;
+            resultOrNull = null;
             return false;
         }
         #endregion
@@ -170,24 +156,24 @@
         ///     Ｉｄを指定してレコードを削除
         /// </summary>
         /// <param name="tileId">タイルＩｄ</param>
-        /// <param name="resultVisuallyOrNull">結果</param>
+        /// <param name="resultOrNull">結果</param>
         /// <returns>有った</returns>
-        internal bool TryRemoveTileById(TileIdOrEmpty tileId, out TileRecordVisually? resultVisuallyOrNull)
+        internal bool TryRemoveTileById(TileIdOrEmpty tileId, out TileRecord? resultOrNull)
         {
-            resultVisuallyOrNull = null;
+            resultOrNull = null;
 
-            foreach (var recordVisually in TileRecordVisuallyList)
+            foreach (var record in TileRecordList)
             {
-                if (recordVisually.Id == tileId)
+                if (record.Id == tileId)
                 {
-                    resultVisuallyOrNull = recordVisually;
+                    resultOrNull = record;
                     break;
                 }
             }
 
-            if (resultVisuallyOrNull != null)
+            if (resultOrNull != null)
             {
-                return TileRecordVisuallyList.Remove(resultVisuallyOrNull);
+                return TileRecordList.Remove(resultOrNull);
             }
 
             return false;
@@ -203,14 +189,14 @@
         /// <returns>有った</returns>
         internal void MatchByRectangle(
             TheGeometric.RectangleInt sourceRect,
-            LazyArgs.Set<TileRecordVisually> some,
+            LazyArgs.Set<TileRecord> some,
             Action none)
         {
-            foreach (var tileVisually in TileRecordVisuallyList)
+            foreach (var tile in TileRecordList)
             {
-                if (tileVisually.TileRecord.Rectangle == sourceRect)
+                if (tile.Rectangle == sourceRect)
                 {
-                    some(tileVisually);
+                    some(tile);
                     return;
                 }
             }
@@ -226,13 +212,10 @@
         /// <returns>ストリーム</returns>
         internal IEnumerator<TileRecord> GetAllSourceRecords()
         {
-            foreach (var tileVisually in TileRecordVisuallyList)
+            foreach (var tile in TileRecordList)
             {
                 // レコードを１件返す
-                yield return new TileRecord(
-                    id: tileVisually.Id,
-                    rect: tileVisually.TileRecord.Rectangle,
-                    title: tileVisually.Title);
+                yield return tile;
             }
         }
         #endregion
@@ -244,10 +227,10 @@
         /// <returns>ストリーム</returns>
         internal IEnumerator<TheGeometric.RectangleInt> GetAllSourceRectangles()
         {
-            foreach (var tileVisually in TileRecordVisuallyList)
+            foreach (var tile in TileRecordList)
             {
                 // 矩形を１件返す
-                yield return tileVisually.TileRecord.Rectangle;
+                yield return tile.Rectangle;
             }
         }
         #endregion
@@ -332,12 +315,9 @@
         {
             var list = new List<TileRecord>();
 
-            foreach (var tileVisually in TileRecordVisuallyList)
+            foreach (var tile in TileRecordList)
             {
-                list.Add(new TileRecord(
-                    id: tileVisually.Id,
-                    rect: tileVisually.TileRecord.Rectangle,
-                    title: tileVisually.Title));
+                list.Add(tile);
             }
 
             return list;

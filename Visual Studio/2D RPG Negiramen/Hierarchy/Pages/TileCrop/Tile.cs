@@ -1,7 +1,6 @@
 ﻿namespace _2D_RPG_Negiramen.Hierarchy.Pages.TileCrop;
 
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.Visually;
 using TheGeometric = _2D_RPG_Negiramen.Models.Geometric;
 
 /// <summary>
@@ -31,17 +30,14 @@ internal class Tile
 
     #region プロパティ（［切抜きカーソルが指すタイル］　関連）
     /// <summary>
-    ///     ［切抜きカーソル］が指すタイル
+    ///     保存データ
     ///     
     ///     <list type="bullet">
-    ///         <item>［切抜きカーソル］が未確定のときも、指しているタイルにアクセスできることに注意</item>
+    ///         <item>［切抜きカーソル］が指すタイルが未確定のときも、指しているタイルにアクセスできることに注意</item>
     ///         <item>TODO ★ ［切抜きカーソル］が指すタイルが無いとき、無いということをセットするのを忘れている？</item>
     ///     </list>
     /// </summary>
-    public TileRecordVisually RecordVisually
-    {
-        get => recordVisually;
-    }
+    public TileRecord Record { get; set; } = TileRecord.Empty;
     #endregion
 
     #region プロパティ（Ｉｄ）
@@ -52,7 +48,7 @@ internal class Tile
     {
         get
         {
-            var contents = this.RecordVisually;
+            var contents = this.Record;
 
             // ［切抜きカーソル］の指すタイル無し時
             if (contents.Rectangle_IsNotNormal)
@@ -92,15 +88,13 @@ internal class Tile
     {
         get
         {
-            var contents = this.RecordVisually;
-
-            if (contents.Rectangle_IsNotNormal)
+            if (this.Record.Rectangle_IsNotNormal)
             {
                 // ［切抜きカーソル］の指すタイル無し時
                 return TheGeometric.RectangleInt.Empty;
             }
 
-            return contents.TileRecord.Rectangle;
+            return this.Record.Rectangle;
         }
     }
 
@@ -115,13 +109,11 @@ internal class Tile
     {
         get
         {
-            var contents = this.RecordVisually;
-
             // ［切抜きカーソル］無し時
-            if (contents.Rectangle_IsNotNormal)
+            if (this.Record.Rectangle_IsNotNormal)
                 return TheGeometric.SizeInt.Empty;
 
-            return contents.TileRecord.Rectangle.Size;
+            return this.Record.Rectangle.Size;
         }
     }
 
@@ -136,24 +128,24 @@ internal class Tile
     /// <param name="onUpdated"></param>
     /// <param name="onUpdateByDifference"></param>
     /// <param name="onTileIdOrEmpty"></param>
-    internal void SetRecordVisually(
-        TileRecordVisually value,
+    internal void SetRecord(
+        TileRecord value,
         Action onVanished,
         Action onUpdated,
         OnUpdateByDifference onUpdateByDifference,
         OnTileIdOrEmpty onTileIdOrEmpty)
     {
-        var oldTileVisually = this.recordVisually;
+        var oldTile = this.Record;
 
         // 値に変化がない
-        if (oldTileVisually == value)
+        if (oldTile == value)
             return;
 
         if (value.Rectangle_IsNotNormal)
         {
             // ［切抜きカーソルが指すタイル］を無しに設定する
 
-            if (oldTileVisually.Rectangle_IsNotNormal)
+            if (oldTile.Rectangle_IsNotNormal)
             {
                 // ［切抜きカーソルが指すタイル］がもともと無く、［切抜きカーソルが指すタイル］を無しに設定するのだから、何もしなくてよい
             }
@@ -170,7 +162,7 @@ internal class Tile
                     onTileIdOrEmpty: onTileIdOrEmpty);
 
                 // 空にする
-                this.recordVisually = TileRecordVisually.CreateEmpty();
+                this.Record = TileRecord.Empty;
 
                 onVanished();
             }
@@ -179,12 +171,12 @@ internal class Tile
         {
             var newValue = value;
 
-            if (oldTileVisually.Rectangle_IsNotNormal)
+            if (oldTile.Rectangle_IsNotNormal)
             {
                 // ［切抜きカーソル］の指すタイル無し時
 
                 // 新規作成
-                this.recordVisually = TileRecordVisually.CreateEmpty();
+                this.Record = TileRecord.Empty;
             }
             else
             {
@@ -210,9 +202,9 @@ internal class Tile
     ///     セット・データ（GUI非更新）
     /// </summary>
     /// <param name="value"></param>
-    internal void SetRecordVisuallyNoGuiUpdate(TileRecordVisually value)
+    internal void SetRecordNoGuiUpdate(TileRecord value)
     {
-        this.recordVisually = value;
+        this.Record = value;
     }
     #endregion
 
@@ -226,7 +218,7 @@ internal class Tile
         TileIdOrEmpty value,
         OnTileIdOrEmpty onTileIdOrEmpty)
     {
-        if (this.RecordVisually.Id == value)
+        if (this.Record.Id == value)
             return;
 
         // 差分更新
@@ -256,19 +248,5 @@ internal class Tile
             TrickWidth = TheGeometric.WidthFloat.One;
         }
     }
-    #endregion
-
-    // - プライベート・プロパティ
-
-    #region プロパティ（保存データ）
-    /// <summary>
-    ///     保存データ
-    ///     
-    ///     <list type="bullet">
-    ///         <item>★循環参照しやすいので注意</item>
-    ///         <item>［切抜きカーソル］が指すタイルが未確定のときも、指しているタイルにアクセスできることに注意</item>
-    ///     </list>
-    /// </summary>
-    TileRecordVisually recordVisually = TileRecordVisually.CreateEmpty();
     #endregion
 }

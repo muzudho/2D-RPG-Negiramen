@@ -4,7 +4,6 @@ using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
 using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
-using _2D_RPG_Negiramen.Models.Visually;
 
 /// <summary>
 ///     ［登録タイル追加］処理
@@ -17,12 +16,12 @@ internal class AddRegisteredTileProcessing : IProcessing
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    /// <param name="tileVisually"></param>
+    /// <param name="tileRecord"></param>
     /// <param name="newTileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         MembersOfTileCropPage colleagues,
-        TileRecordVisually tileVisually,
+        TileRecord tileRecord,
         TileIdOrEmpty newTileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
@@ -33,7 +32,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             this.Colleagues.PageVM.InvalidateAddsButton();
         };
 
-        this.CroppedCursorVisually = tileVisually;
+        this.SelectedTileRecord = tileRecord;
         this.TileIdOrEmpty = newTileIdOrEmpty;
         this.WorkingRectangle = workingRectangle;
     }
@@ -66,10 +65,10 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Colleagues.PageVM.InvalidateTileIdChange();
 
         // リストに登録済みか確認
-        if (!this.Colleagues.PageVM.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecordVisually? registeredTileVisuallyOrNull))
+        if (!this.Colleagues.PageVM.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecord? registeredTileOrNull))
         {
             // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.Colleagues.PageVM.TilesetSettingsVM.AddTileVisually(
+            this.Colleagues.PageVM.TilesetSettingsVM.AddTile(
                 id: this.TileIdOrEmpty,
                 rect: RectangleInt.Empty,
                 title: Models.TileTitle.Empty);
@@ -80,15 +79,15 @@ internal class AddRegisteredTileProcessing : IProcessing
         //
 
         // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.Colleagues.PageVM.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out registeredTileVisuallyOrNull))
+        if (this.Colleagues.PageVM.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out registeredTileOrNull))
         {
-            TileRecordVisually registeredTileVisually = registeredTileVisuallyOrNull ?? throw new NullReferenceException(nameof(registeredTileVisuallyOrNull));
+            TileRecord registeredTile = registeredTileOrNull ?? throw new NullReferenceException(nameof(registeredTileOrNull));
 
-            // 新・元画像の位置とサイズ
-            registeredTileVisually.SetRectangle(this.CroppedCursorVisually.TileRecord.Rectangle);
-
-            // 新・タイル・タイトル
-            registeredTileVisually.SetTitle(this.CroppedCursorVisually.Title);
+            // 差替え
+            this.Colleagues.PageVM.TilesetSettingsVM.AddTile(new TileRecord(
+                id: this.TileIdOrEmpty,
+                rect: this.SelectedTileRecord.Rectangle,
+                title: this.SelectedTileRecord.Title));
         }
 
         //
@@ -133,7 +132,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Colleagues.PageVM.InvalidateTileIdChange();
 
         // リストから削除
-        if (!this.Colleagues.PageVM.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecordVisually? tileRecordVisualBufferOrNull))
+        if (!this.Colleagues.PageVM.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out TileRecord? tileRecordBufferOrNull))
         {
             // TODO 成功しなかったら異常
             throw new Exception();
@@ -168,7 +167,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <summary>
     ///     ［切抜きカーソル］に対応
     /// </summary>
-    TileRecordVisually CroppedCursorVisually { get; }
+    TileRecord SelectedTileRecord { get; }
 
     /// <summary>
     ///     ［タイル］のＩｄ

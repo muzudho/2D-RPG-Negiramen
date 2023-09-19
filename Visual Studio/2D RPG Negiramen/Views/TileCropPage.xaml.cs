@@ -2,8 +2,6 @@
 
 using _2D_RPG_Negiramen.ViewModels;
 using System.Diagnostics;
-using _2D_RPG_Negiramen.Hierarchy.HistoryOfPages.TileCrop;
-using _2D_RPG_Negiramen.Models;
 
 #if IOS || ANDROID || MACCATALYST
 using Microsoft.Maui.Graphics.Platform;

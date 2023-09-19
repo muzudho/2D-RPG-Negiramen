@@ -128,7 +128,7 @@ internal class ItsMembers
         get
         {
             // ※１
-            if (this.SelectedTile.RecordVisually.Rectangle_IsNotNormal)
+            if (this.SelectedTile.Record.Rectangle_IsNotNormal)
             {
                 return false;
             }
@@ -141,7 +141,7 @@ internal class ItsMembers
                 case TheTileCropPage.AddsButtonState.Adds:
                     {
                         // ※２
-                        enabled = this.SelectedTile.RecordVisually.Id == TileIdOrEmpty.Empty;
+                        enabled = this.SelectedTile.Record.Id == TileIdOrEmpty.Empty;
                         Trace.WriteLine($"［デバッグ］　追加ボタンの活性性を {enabled} へ");
                     }
                     return enabled;
@@ -247,7 +247,7 @@ internal class ItsMembers
     {
         get
         {
-            var contents = this.SelectedTile.RecordVisually;
+            var contents = this.SelectedTile.Record;
 
             if (
                 // 切抜きカーソル無し時
