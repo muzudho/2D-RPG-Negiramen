@@ -3089,4 +3089,33 @@ Zzz
 ![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
 「　コード掃除」  
 
+# 📅 この間　サボり
+
+……。  
+
+# 📅 （2023-09-20 wed）ナビゲーションの作り直し
+
+![202309_negiramen_20-0342--Donut.png](https://crieit.now.sh/upload_images/896645149c41ee2f36caa4cd5b5bce9a6509ebdb8bd6b.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　パンくずリストは大変なので廃止した」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　１か月近くサボっていたな」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　その間に阪神タイガースが優勝したわよ」  
+
+![202309_negiramen_20-0345--DeleteDeleteLogical.png](https://crieit.now.sh/upload_images/9626fe64ce61ebc162a83a7b8fa177f26509ec5fc70c7.png)  
+
+![ramen-tabero-futsu2.png](https://crieit.now.sh/upload_images/d27ea8dcfad541918d9094b9aed83e7d61daf8532bbbe.png) 
+「　👆　また、スクリーンショットからは見えないが、論理削除といった機能を　廃止した。  
+論理削除はデバッグを助けるが、論理削除自体のメンテナンスが大変だから嫌になった」  
+
+![kifuwarabe-futsu.png](https://crieit.now.sh/upload_images/beaf94b260ae2602ca8cf7f5bbc769c261daf8686dbda.png)  
+「　そういえば　Unity　が料金体系変更で　ひと騒動やってるらしいぜ」  
+
+![ohkina-hiyoko-futsu2.png](https://crieit.now.sh/upload_images/96fb09724c3ce40ee0861a0fd1da563d61daf8a09d9bc.png)  
+「　Godot への乗り換えも考えないと　いけなくなるのかしらねえ？」  
+
 ＜書きかけ＞
