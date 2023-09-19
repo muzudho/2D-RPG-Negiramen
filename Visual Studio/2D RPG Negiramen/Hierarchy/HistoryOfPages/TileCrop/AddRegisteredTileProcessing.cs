@@ -16,12 +16,12 @@ internal class AddRegisteredTileProcessing : IProcessing
     ///     生成
     /// </summary>
     /// <param name="specObj"></param>
-    /// <param name="tileRecord"></param>
+    /// <param name="tileBackup"></param>
     /// <param name="newTileIdOrEmpty"></param>
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         MembersOfTileCropPage colleagues,
-        TileRecord tileRecord,
+        TileRecord tileBackup,
         TileIdOrEmpty newTileIdOrEmpty,
         RectangleFloat workingRectangle)
     {
@@ -32,7 +32,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             this.Colleagues.PageVM.InvalidateAddsButton();
         };
 
-        this.SelectedTileRecord = tileRecord;
+        this.TileBackup = tileBackup;
         this.TileIdOrEmpty = newTileIdOrEmpty;
         this.WorkingRectangle = workingRectangle;
     }
@@ -61,34 +61,11 @@ internal class AddRegisteredTileProcessing : IProcessing
                     tileId: tileIdOrEmpty);
             });
 
-        // ビューの再描画（タイルＩｄ更新）
-        this.Colleagues.PageVM.InvalidateTileIdChange();
-
-        // リストに登録済みか確認
-        if (!this.Colleagues.PageVM.TilesetSettingsVM.TryGetTileById(this.TileIdOrEmpty, out TileRecord? registeredTileOrNull))
-        {
-            // リストに無ければ、ダミーのタイルを追加（あとですぐ上書きする）
-            this.Colleagues.PageVM.TilesetSettingsVM.AddTile(
-                id: this.TileIdOrEmpty,
-                rect: RectangleInt.Empty,
-                title: Models.TileTitle.Empty);
-        }
-
-        //
-        // この時点で、タイルは必ず登録されている
-        //
-
-        // リストに必ず登録されているはずなので、選択タイルＩｄを使って、タイル・レコードを取得、その内容に、登録タイルを上書き
-        if (this.Colleagues.PageVM.TilesetSettingsVM.TryRemoveTileById(this.TileIdOrEmpty, out registeredTileOrNull))
-        {
-            TileRecord registeredTile = registeredTileOrNull ?? throw new NullReferenceException(nameof(registeredTileOrNull));
-
-            // 差替え
-            this.Colleagues.PageVM.TilesetSettingsVM.AddTile(new TileRecord(
-                id: this.TileIdOrEmpty,
-                rect: this.SelectedTileRecord.Rectangle,
-                title: this.SelectedTileRecord.Title));
-        }
+        // 追加。リストに無いから追加するはず。上書きはあり得ない
+        this.Colleagues.PageVM.TilesetSettingsVM.AddTile(new TileRecord(
+            id: this.TileIdOrEmpty,
+            rect: this.TileBackup.Rectangle,
+            title: this.TileBackup.Title));
 
         //
         // 設定ファイルの保存
@@ -98,6 +75,9 @@ internal class AddRegisteredTileProcessing : IProcessing
         {
             // TODO 保存失敗時のエラー対応
         }
+
+        // ビューの再描画（タイルＩｄ更新）
+        this.Colleagues.PageVM.InvalidateTileIdChange();
 
         //
         // カラーマップの再描画
@@ -165,9 +145,9 @@ internal class AddRegisteredTileProcessing : IProcessing
     MembersOfTileCropPage Colleagues { get; }
 
     /// <summary>
-    ///     ［切抜きカーソル］に対応
+    ///     選択タイルのバックアップ
     /// </summary>
-    TileRecord SelectedTileRecord { get; }
+    TileRecord TileBackup { get; }
 
     /// <summary>
     ///     ［タイル］のＩｄ

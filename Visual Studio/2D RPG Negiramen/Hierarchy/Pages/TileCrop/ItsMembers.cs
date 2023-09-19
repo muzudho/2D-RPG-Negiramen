@@ -74,7 +74,11 @@ internal class ItsMembers
     #endregion
 
     #region プロパティ（切抜きカーソルが指すタイル）
-    /// <summary>切抜きカーソルが指すタイル</summary>
+    /// <summary>
+    ///     切抜きカーソルが指すタイル
+    ///     
+    ///     TODO ★ 選択タイルは Id だけでいいのか？ データが必要になったらデータベースから取り出せばいいし
+    /// </summary>
     internal Tile SelectedTile { get; }
     #endregion
 

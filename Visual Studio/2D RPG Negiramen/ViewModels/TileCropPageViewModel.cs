@@ -1769,7 +1769,7 @@
                 // ［登録タイル追加］処理
                 App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                     colleagues: this.Colleagues,
-                    tileRecord: targetTile,
+                    tileBackup: targetTile,
                     newTileIdOrEmpty: newTileIdOrEmpty,
                     workingRectangle: targetTile.Rectangle.Do(this.Subordinates.ZoomProperties.Value)));
 
@@ -1834,7 +1834,7 @@
             App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                 // 上位の権限を委譲する
                 colleagues: this.Colleagues,
-                tileRecord: targetTile,
+                tileBackup: targetTile,
                 newTileIdOrEmpty: tileIdOrEmpty,
                 workingRectangle: targetTile.Rectangle.Do(this.Subordinates.ZoomProperties.Value)));
 
@@ -2085,10 +2085,8 @@
             TileIdOrEmpty? tileId = null,
             TileTitle? tileTitle = null)
         {
-            var currentTileVisually = this.Subordinates.SelectedTile.Record;
-
             // タイルＩｄ
-            if (!(tileId is null) && currentTileVisually.Id != tileId)
+            if (!(tileId is null) && this.Subordinates.SelectedTile.Record.Id != tileId)
             {
                 this.Subordinates.SelectedTile.Record = TileRecordHelper.ReplaceId(this.Subordinates.SelectedTile.Record, tileId);
 
@@ -2102,7 +2100,7 @@
             }
 
             // タイル・タイトル
-            if (!(tileTitle is null) && currentTileVisually.Title != tileTitle)
+            if (!(tileTitle is null) && this.Subordinates.SelectedTile.Record.Title != tileTitle)
             {
                 this.Subordinates.SelectedTile.Record = TileRecordHelper.ReplaceTitle(this.Subordinates.SelectedTile.Record, tileTitle);
             }
