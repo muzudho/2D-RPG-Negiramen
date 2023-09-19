@@ -23,7 +23,6 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         MembersOfTileCropPage colleagues,
-        TheTileCropPage.ItsMembers subordinates,
         TileRecordVisually croppedCursorVisually,
         TileIdOrEmpty tileIdOrEmpty,
         RectangleFloat workingRectangle)
@@ -34,8 +33,6 @@ internal class AddRegisteredTileProcessing : IProcessing
             this.Colleagues.PageVM.AddsButton_Text = text;
             this.Colleagues.PageVM.InvalidateAddsButton();
         };
-
-        this.Subordinates = subordinates;
 
         this.CroppedCursorVisually = croppedCursorVisually;
         this.TileIdOrEmpty = tileIdOrEmpty;
@@ -53,7 +50,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Do()
     {
         // ［タイル］のＩｄ変更
-        this.Subordinates.SelectedTile.SetIdOrEmpty(
+        this.Colleagues.PageVM.Subordinates.SelectedTile.SetIdOrEmpty(
             value: this.TileIdOrEmpty,
             onTileIdOrEmpty: (TileIdOrEmpty tileIdOrEmpty) =>
             {
@@ -93,7 +90,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             registeredTileVisually.SourceRectangle = this.CroppedCursorVisually.SourceRectangle;
 
             // 新・作業画像の位置とサイズ
-            registeredTileVisually.Zoom = this.Subordinates.ZoomProperties.Value;
+            registeredTileVisually.Zoom = this.Colleagues.PageVM.Subordinates.ZoomProperties.Value;
 
             // 新・タイル・タイトル
             registeredTileVisually.Title = this.CroppedCursorVisually.Title;
@@ -124,7 +121,7 @@ internal class AddRegisteredTileProcessing : IProcessing
     public void Undo()
     {
         // ［タイル］のＩｄ消去
-        this.Subordinates.SelectedTile.SetIdOrEmpty(
+        this.Colleagues.PageVM.Subordinates.SelectedTile.SetIdOrEmpty(
             value: TileIdOrEmpty.Empty,
             onTileIdOrEmpty: (TileIdOrEmpty tileIdOrEmpty) =>
             {
@@ -172,7 +169,6 @@ internal class AddRegisteredTileProcessing : IProcessing
 
     /// <summary>メンバー・ネットワーク</summary>
     MembersOfTileCropPage Colleagues { get; }
-    TheTileCropPage.ItsMembers Subordinates { get; }
 
     /// <summary>
     ///     ［切抜きカーソル］に対応

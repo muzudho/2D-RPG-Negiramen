@@ -1811,7 +1811,6 @@
                 // ［登録タイル追加］処理
                 App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                     colleagues: this.Colleagues,
-                    subordinates: this.Subordinates,
                     croppedCursorVisually: targetTile,
                     tileIdOrEmpty: tileIdOrEmpty,
                     workingRectangle: targetTile.SourceRectangle.Do(this.Subordinates.ZoomProperties.Value)));
@@ -1865,7 +1864,6 @@
             App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                 // 上位の権限を委譲する
                 colleagues: this.Colleagues,
-                subordinates: this.Subordinates,
                 croppedCursorVisually: targetTile,
                 tileIdOrEmpty: tileIdOrEmpty,
                 workingRectangle: targetTile.SourceRectangle.Do(this.Subordinates.ZoomProperties.Value)));
