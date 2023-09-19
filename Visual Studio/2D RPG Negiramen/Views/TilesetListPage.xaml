@@ -46,33 +46,36 @@
 
     <!--    最上段より下
             ============ -->
-    <Grid RowDefinitions="0,*,68" ColumnDefinitions="20,*,20"
-          BackgroundColor="{DynamicResource DonutBody}">
+    <Grid
+        RowDefinitions="*,68" ColumnDefinitions="20,*,20"
+        BackgroundColor="{DynamicResource DonutBody}">
 
         <!-- ドーナツの影
              ============
         -->
-        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="136,*,136" ColumnDefinitions="20,*,20"
-              BackgroundColor="{DynamicResource DonutShadow}">
+        <Grid
+            Grid.Row="0" Grid.Column="1"
+            RowDefinitions="124,*,136" ColumnDefinitions="20,*,20"
+            BackgroundColor="{DynamicResource DonutShadow}">
 
             <!-- ドーナツの影メニュー
                  ====================
             -->
-            <Grid Grid.Row="0" Grid.Column="1"
-              RowDefinitions="68,20,48" ColumnDefinitions="*">
+            <Grid
+                Grid.Row="0" Grid.Column="1"
+                RowDefinitions="68,48" ColumnDefinitions="*">
 
                 <!--    ページ・タイトル
                         ================ -->
                 <Label
                     Grid.Row="0"
                     Text="{app:Translate TilesetList}"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center"
+                    VerticalOptions="Center" HorizontalOptions="Center"
                     FontSize="Large"/>
 
                 <!-- 「インポート」 -->
                 <Button
-                    Grid.Row="2"
+                    Grid.Row="1"
                     WidthRequest="150"
                     Text="{app:Translate Import}"
                     Clicked="ImportButton_Clicked"/>
@@ -211,7 +214,7 @@
         </Grid>
         
         <!-- ドーナツ下側 -->
-        <Grid Grid.Row="2" Grid.Column="1" RowDefinitions="*" ColumnDefinitions="*"
+        <Grid Grid.Row="1" Grid.Column="1" RowDefinitions="*" ColumnDefinitions="*"
               HorizontalOptions="Center">
             <!-- ［タイル切抜き］ボタン -->
             <Button

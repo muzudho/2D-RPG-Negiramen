@@ -82,7 +82,7 @@
 
         <!--    ドーナツの影
                 ============ -->
-        <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="68,68,*,136" ColumnDefinitions="20,*,20"
+        <Grid Grid.Row="0" Grid.Column="1" RowDefinitions="68,68,*,156" ColumnDefinitions="20,*,20"
               BackgroundColor="{DynamicResource DonutShadow}">
 
             <!--    ページ・タイトル
@@ -415,7 +415,9 @@
 
             <!--    ドーナツの影下部
                     ================ -->
-            <Grid Grid.Row="3" Grid.Column="1">
+            <Grid
+                Grid.Row="3" Grid.Column="1">
+                
                 <!--
                     Row     Height          Description
                     ===     =========       ================================================
@@ -478,15 +480,15 @@
                     </Grid>
 
                     <!--    下メニュー
-                    ==================
-                    -->
-                    <Grid Grid.Row="1"
-                          RowDefinitions="20,48,20,48,20" ColumnDefinitions="128,64,64,64,64,64,*">
+                            ========== -->
+                    <Grid
+                        Grid.Row="1"
+                        RowDefinitions="20,48,20,48,20" ColumnDefinitions="128,64,64,64,64,64,*">
 
-                        <!--    ◆ボタン縦並び
-                        ======================
-                        -->
-                        <Grid Grid.Row="0" Grid.Column="0" Grid.RowSpan="5">
+                        <!--    【０】ボタン縦並び
+                                ================== -->
+                        <Grid Grid.Row="0" Grid.Column="0"
+                              Grid.RowSpan="5">
                             <VerticalStackLayout>
 
                                 <!-- 追加／上書ボタン -->
@@ -504,9 +506,9 @@
                             </VerticalStackLayout>
                         </Grid>
 
-                        <!--    ◆１段目 読み仮名部
-                        ===========================
-                        -->
+                        <!--    【０】読み仮名部
+                                ================ -->
+                        
                         <!-- 「ひだり」 -->
                         <Label Grid.Row="0" Grid.Column="2"
                                HorizontalTextAlignment="End"
@@ -527,9 +529,9 @@
                                HorizontalTextAlignment="End"
                                Text="{app:Translate Height}"/>
 
-                        <!--    ◆２段目 入力部
-                        =======================
-                        -->
+                        <!--    【１】 入力部
+                                ============= -->
+                        
                         <!-- 「カーソル」 -->
                         <Label Grid.Row="1" Grid.Column="1"
                                HorizontalTextAlignment="End"
@@ -564,9 +566,8 @@
                                Text="{Binding SelectedTile_SourceHeightAsInt}"
                                FontSize="24"/>
 
-                        <!--    ◆３段目 読み仮名部
-                        ===========================
-                        -->
+                        <!--    【２】 読み仮名部
+                                ================= -->
                         <!-- 「管理コード」 -->
                         <Label Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="2"
                                HorizontalTextAlignment="End"
@@ -578,9 +579,8 @@
                                Padding="20,0,0,0"
                                Text="{app:Translate TileTitle}"/>
 
-                        <!--    ◆４段目 入力部
-                        =======================
-                        -->
+                        <!--    【３】 入力部
+                                ============= -->
                         <!-- 管理コード BASE64形式 -->
                         <Entry Grid.Row="3" Grid.Column="1" Grid.ColumnSpan="2"
                                HorizontalTextAlignment="End"
@@ -596,9 +596,8 @@
                                IsEnabled="{Binding SelectedTile_TitleIsEnabled}"
                                Completed="TileTitleEntry_Completed"/>
 
-                        <!--    ◆５段目 ヒント部
-                        =========================
-                        -->
+                        <!--    【４】 ヒント部
+                                =============== -->
                         <!-- 「コードのおぼえかた」 -->
                         <Label Grid.Row="4" Grid.Column="1" Grid.ColumnSpan="2"
                                HorizontalTextAlignment="End"
