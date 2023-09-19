@@ -348,10 +348,10 @@
         /// </summary>
         public TheGeometric.SizeInt SourceGridUnit
         {
-            get => this.Subordinates.GridUnit.SourceValue;
+            get => this.Subordinates.GridUnit_SourceValue;
             set
             {
-                if (this.Subordinates.GridUnit.SourceValue != value)
+                if (this.Subordinates.GridUnit_SourceValue != value)
                 {
                     this.SourceGridTileWidthAsInt = value.Width.AsInt;
                     this.SourceGridTileHeightAsInt = value.Height.AsInt;
@@ -365,22 +365,22 @@
         /// </summary>
         public int SourceGridTileWidthAsInt
         {
-            get => this.Subordinates.GridUnit.SourceValue.Width.AsInt;
+            get => this.Subordinates.GridUnit_SourceValue.Width.AsInt;
             set
             {
-                if (this.Subordinates.GridUnit.SourceValue.Width.AsInt != value &&
+                if (this.Subordinates.GridUnit_SourceValue.Width.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxWidthAsInt)
                 {
-                    this.Subordinates.GridUnit.SourceValue = new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), this.Subordinates.GridUnit.SourceValue.Height);
+                    this.Subordinates.GridUnit_SourceValue = new TheGeometric.SizeInt(new TheGeometric.WidthInt(value), this.Subordinates.GridUnit_SourceValue.Height);
 
                     // 作業グリッド・タイル横幅の再計算
-                    var width = this.Subordinates.GridUnit.SourceValue.Width.AsInt;
+                    var width = this.Subordinates.GridUnit_SourceValue.Width.AsInt;
                     this.WorkingGridTileWidthAsFloat = this.ZoomAsFloat * width;
                     // this.Owner.Owner.InvalidateWorkingGrid();
 
                     // カーソルの線の幅を含まない
-                    this.SelectedTile_WorkingWidthAsFloat = this.ZoomAsFloat * this.Subordinates.GridUnit.SourceValue.Width.AsInt;
+                    this.SelectedTile_WorkingWidthAsFloat = this.ZoomAsFloat * this.Subordinates.GridUnit_SourceValue.Width.AsInt;
 
                     // キャンバスを再描画
                     InvalidateGraphicsViewOfGrid();
@@ -398,17 +398,17 @@
         /// </summary>
         public int SourceGridTileHeightAsInt
         {
-            get => this.Subordinates.GridUnit.SourceValue.Height.AsInt;
+            get => this.Subordinates.GridUnit_SourceValue.Height.AsInt;
             set
             {
-                if (this.Subordinates.GridUnit.SourceValue.Height.AsInt != value &&
+                if (this.Subordinates.GridUnit_SourceValue.Height.AsInt != value &&
                     // バリデーション
                     0 < value && value <= this.TileMaxHeightAsInt)
                 {
-                    this.Subordinates.GridUnit.SourceValue = new TheGeometric.SizeInt(this.Subordinates.GridUnit.SourceValue.Width, new TheGeometric.HeightInt(value));
+                    this.Subordinates.GridUnit_SourceValue = new TheGeometric.SizeInt(this.Subordinates.GridUnit_SourceValue.Width, new TheGeometric.HeightInt(value));
 
                     // 作業グリッド・タイル横幅の再計算
-                    var height = this.Subordinates.GridUnit.SourceValue.Height.AsInt;
+                    var height = this.Subordinates.GridUnit_SourceValue.Height.AsInt;
                     this.WorkingGridTileHeightAsFloat = this.ZoomAsFloat * height;
                     // this.Owner.Owner.InvalidateWorkingGrid();
 

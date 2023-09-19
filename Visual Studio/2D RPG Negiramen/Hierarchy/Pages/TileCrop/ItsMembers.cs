@@ -26,7 +26,6 @@ internal class ItsMembers
         this.InnerCultureInfo = new InnerCultureInfo();
         this.PointingDevice = new PointingDevice();
         this.ZoomProperties = new ZoomProperties();
-        this.GridUnit = new GridUnit();
         this.SelectedTile = new Tile();
         this.DeletesButton = new Button();
         this.TilesetSourceImageSize = TheGeometric.SizeInt.Empty;
@@ -67,9 +66,11 @@ internal class ItsMembers
     internal ZoomProperties ZoomProperties { get; }
     #endregion
 
-    #region プロパティ（グリッド単位）
-    /// <summary>グリッド単位</summary>
-    internal GridUnit GridUnit { get; }
+    #region プロパティ（［元画像グリッド］の単位）
+    /// <summary>
+    ///     ［元画像グリッド］の単位
+    /// </summary>
+    internal Models.Geometric.SizeInt GridUnit_SourceValue { get; set; } = new(new Models.Geometric.WidthInt(32), new Models.Geometric.HeightInt(32));
     #endregion
 
     #region プロパティ（切抜きカーソルが指すタイル）

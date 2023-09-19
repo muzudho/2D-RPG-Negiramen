@@ -85,12 +85,12 @@ internal class ZoomProcessing : IProcessing
         // ［作業グリッド］の再計算
         {
             // 横幅
-            var width = this.Colleagues.PageVM.Subordinates.GridUnit.SourceValue.Width.AsInt;
+            var width = this.Colleagues.PageVM.Subordinates.GridUnit_SourceValue.Width.AsInt;
             this.Colleagues.PageVM.WorkingGridTileWidthAsFloat = this.Colleagues.PageVM.ZoomAsFloat * width;
             // this.Owner.Owner.InvalidateWorkingGrid();
 
             // 縦幅
-            var height = this.Colleagues.PageVM.Subordinates.GridUnit.SourceValue.Height.AsInt;
+            var height = this.Colleagues.PageVM.Subordinates.GridUnit_SourceValue.Height.AsInt;
             this.Colleagues.PageVM.WorkingGridTileHeightAsFloat = this.Colleagues.PageVM.ZoomAsFloat * height;
             // this.Owner.Owner.InvalidateWorkingGrid();
         }

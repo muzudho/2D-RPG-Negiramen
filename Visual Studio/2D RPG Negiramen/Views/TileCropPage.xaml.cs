@@ -4,16 +4,14 @@ using _2D_RPG_Negiramen.ViewModels;
 using System.Diagnostics;
 
 #if IOS || ANDROID || MACCATALYST
-using Microsoft.Maui.Graphics.Platform;
-using _2D_RPG_Negiramen.Models.Geometric;
-using _2D_RPG_Negiramen.Models.Visually;
+//using Microsoft.Maui.Graphics.Platform;
+//using _2D_RPG_Negiramen.Models.Geometric;
 #elif WINDOWS
-using Microsoft.Maui.Graphics.Win2D;
-using System.Net;
-using SkiaSharp;
-using _2D_RPG_Negiramen.FeatSkia;
-using _2D_RPG_Negiramen.Models.Geometric;
-using _2D_RPG_Negiramen.Models.Visually;
+//using Microsoft.Maui.Graphics.Win2D;
+//using System.Net;
+//using SkiaSharp;
+//using _2D_RPG_Negiramen.FeatSkia;
+//using _2D_RPG_Negiramen.Models.Geometric;
 #endif
 
 /// <summary>
