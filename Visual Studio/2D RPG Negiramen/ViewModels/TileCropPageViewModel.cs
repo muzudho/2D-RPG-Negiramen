@@ -1764,8 +1764,7 @@
                 App.History.Do(new TheHistoryTileCropPage.AddRegisteredTileProcessing(
                     colleagues: this.Colleagues,
                     tileBackup: targetTile,
-                    newTileIdOrEmpty: newTileIdOrEmpty,
-                    workingRectangle: targetTile.Rectangle.Do(this.Subordinates.ZoomProperties.Value)));
+                    newTileIdOrEmpty: newTileIdOrEmpty));
 
                 this.InvalidateForHistory();
             }
@@ -1829,8 +1828,7 @@
                 // 上位の権限を委譲する
                 colleagues: this.Colleagues,
                 tileBackup: targetTile,
-                newTileIdOrEmpty: tileIdOrEmpty,
-                workingRectangle: targetTile.Rectangle.Do(this.Subordinates.ZoomProperties.Value)));
+                newTileIdOrEmpty: tileIdOrEmpty));
 
             this.InvalidateForHistory();
         }

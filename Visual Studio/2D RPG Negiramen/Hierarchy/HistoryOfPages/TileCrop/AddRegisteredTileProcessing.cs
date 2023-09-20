@@ -2,7 +2,6 @@
 
 using _2D_RPG_Negiramen.Coding;
 using _2D_RPG_Negiramen.Models;
-using _2D_RPG_Negiramen.Models.Geometric;
 using _2D_RPG_Negiramen.Models.History;
 
 /// <summary>
@@ -18,12 +17,10 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// <param name="specObj"></param>
     /// <param name="tileBackup"></param>
     /// <param name="newTileIdOrEmpty"></param>
-    /// <param name="workingRectangle"></param>
     internal AddRegisteredTileProcessing(
         MembersOfTileCropPage colleagues,
         TileRecord tileBackup,
-        TileIdOrEmpty newTileIdOrEmpty,
-        RectangleFloat workingRectangle)
+        TileIdOrEmpty newTileIdOrEmpty)
     {
         this.Colleagues = colleagues;
         this.SetAddsButtonText = (text) =>
@@ -34,7 +31,6 @@ internal class AddRegisteredTileProcessing : IProcessing
 
         this.TileBackup = tileBackup;
         this.TileIdOrEmpty = newTileIdOrEmpty;
-        this.WorkingRectangle = workingRectangle;
     }
 
     LazyArgs.Set<string> SetAddsButtonText { get; }
@@ -76,31 +72,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             // TODO 保存失敗時のエラー対応
         }
 
-        // ［追加］ボタンの再描画
-        this.Colleagues.PageVM.InvalidateAddsButton();
-
-        // ［削除］ボタンの再描画
-        this.Colleagues.PageVM.InvalidateDeletesButton();
-
-        // ［タイルＩｄ］の再描画
-        this.Colleagues.PageVM.InvalidateTileIdChange();
-
-        //
-        // カラーマップの再描画
-        // ====================
-        //
-        this.Colleagues.PageVM.TrickChangeWorkingImageSize(
-            onFinished: () =>
-            {
-                // タイル タイトル
-                this.Colleagues.PageVM.InvalidateTileTitle();
-
-                // 追加・削除ボタンの表示状態を更新したい
-                this.Colleagues.PageVM.InvalidateAddsButton();
-
-                // タイルセット作業画像
-                this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
-            });
+        this.InvalidateGui();
     }
     #endregion
 
@@ -144,32 +116,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             // TODO 保存失敗時のエラー対応
         }
 
-        // ［追加］ボタンの再描画
-        this.Colleagues.PageVM.InvalidateAddsButton();
-
-        // ［削除］ボタンの再描画
-        this.Colleagues.PageVM.InvalidateDeletesButton();
-
-        // ［タイルＩｄ］の再描画
-        this.Colleagues.PageVM.InvalidateTileIdChange();
-        this.Colleagues.PageVM.TrickChangeWorkingImageSize(
-            onFinished: () =>
-            {
-                // タイル タイトル
-                this.Colleagues.PageVM.InvalidateTileTitle();
-
-                // 追加・削除ボタンの表示状態を更新したい
-                this.Colleagues.PageVM.InvalidateAddsButton();
-
-                // タイルセット作業画像
-                this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
-            });
-
-        //
-        // カラーマップの再描画
-        // ====================
-        //
-        //this.coloredMapGraphicsView1.Invalidate();
+        this.InvalidateGui();
     }
     #endregion
 
@@ -188,8 +135,30 @@ internal class AddRegisteredTileProcessing : IProcessing
     /// </summary>
     TileIdOrEmpty TileIdOrEmpty { get; }
 
+    // - プライベート・メソッド
+
     /// <summary>
-    ///     タイルセット作業画像の位置とサイズ
+    ///     GUIに変更通知を送るもの
     /// </summary>
-    RectangleFloat WorkingRectangle { get; }
+    void InvalidateGui()
+    {
+        // ［追加］ボタンの変更通知
+        this.Colleagues.PageVM.InvalidateAddsButton();
+
+        // ［削除］ボタンの変更通知
+        this.Colleagues.PageVM.InvalidateDeletesButton();
+
+        // ［タイルＩｄ］の変更通知
+        this.Colleagues.PageVM.InvalidateTileIdChange();
+
+        // ［タイル タイトル］の変更通知
+        this.Colleagues.PageVM.InvalidateTileTitle();
+
+        // ［タイルセット作業画像］のサイズ変更
+        this.Colleagues.PageVM.TrickChangeWorkingImageSize(
+            onFinished: () =>{});
+
+        // ［タイルセット作業画像］（カラーマップ含む）の変更通知
+        this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
+    }
 }
