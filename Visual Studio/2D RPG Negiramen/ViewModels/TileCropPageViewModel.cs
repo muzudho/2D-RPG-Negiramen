@@ -1293,7 +1293,8 @@
         ///         </item>
         ///     </list>
         /// </summary>
-        public void RefreshForTileAdd()
+        public void TrickChangeWorkingImageSize(
+            Action onFinished)
         {
             if (this.TilesetWorkingImageWidthAsInt % 2 == 1)
             {
@@ -1308,14 +1309,7 @@
                     height: new HeightInt(this.workingImageSize.Height.AsInt));
             }
 
-            // タイル タイトル
-            this.InvalidateTileTitle();
-
-            // 追加・削除ボタンの表示状態を更新したい
-            this.InvalidateAddsButton();
-
-            // タイルセット作業画像
-            this.InvalidateTilesetWorkingImage();
+            onFinished();
         }
         #endregion
 

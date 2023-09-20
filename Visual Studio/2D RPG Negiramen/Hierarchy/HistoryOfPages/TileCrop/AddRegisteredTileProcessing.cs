@@ -76,14 +76,31 @@ internal class AddRegisteredTileProcessing : IProcessing
             // TODO 保存失敗時のエラー対応
         }
 
-        // ビューの再描画（タイルＩｄ更新）
+        // ［追加］ボタンの再描画
+        this.Colleagues.PageVM.InvalidateAddsButton();
+
+        // ［削除］ボタンの再描画
+        this.Colleagues.PageVM.InvalidateDeletesButton();
+
+        // ［タイルＩｄ］の再描画
         this.Colleagues.PageVM.InvalidateTileIdChange();
 
         //
         // カラーマップの再描画
         // ====================
         //
-        this.Colleagues.PageVM.RefreshForTileAdd();
+        this.Colleagues.PageVM.TrickChangeWorkingImageSize(
+            onFinished: () =>
+            {
+                // タイル タイトル
+                this.Colleagues.PageVM.InvalidateTileTitle();
+
+                // 追加・削除ボタンの表示状態を更新したい
+                this.Colleagues.PageVM.InvalidateAddsButton();
+
+                // タイルセット作業画像
+                this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
+            });
     }
     #endregion
 
@@ -127,15 +144,32 @@ internal class AddRegisteredTileProcessing : IProcessing
             // TODO 保存失敗時のエラー対応
         }
 
-        //  ［削除］ボタンの再描画
+        // ［追加］ボタンの再描画
+        this.Colleagues.PageVM.InvalidateAddsButton();
+
+        // ［削除］ボタンの再描画
         this.Colleagues.PageVM.InvalidateDeletesButton();
+
+        // ［タイルＩｄ］の再描画
+        this.Colleagues.PageVM.InvalidateTileIdChange();
+        this.Colleagues.PageVM.TrickChangeWorkingImageSize(
+            onFinished: () =>
+            {
+                // タイル タイトル
+                this.Colleagues.PageVM.InvalidateTileTitle();
+
+                // 追加・削除ボタンの表示状態を更新したい
+                this.Colleagues.PageVM.InvalidateAddsButton();
+
+                // タイルセット作業画像
+                this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
+            });
 
         //
         // カラーマップの再描画
         // ====================
         //
         //this.coloredMapGraphicsView1.Invalidate();
-        this.Colleagues.PageVM.RefreshForTileAdd();
     }
     #endregion
 

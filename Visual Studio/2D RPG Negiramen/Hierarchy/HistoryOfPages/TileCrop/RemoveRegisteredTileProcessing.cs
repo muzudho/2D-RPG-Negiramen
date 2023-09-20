@@ -78,7 +78,18 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
 
             // ※４
-            this.Colleagues.PageVM.RefreshForTileAdd();
+            this.Colleagues.PageVM.TrickChangeWorkingImageSize(
+                onFinished: () =>
+                {
+                    // タイル タイトル
+                    this.Colleagues.PageVM.InvalidateTileTitle();
+
+                    // 追加・削除ボタンの表示状態を更新したい
+                    this.Colleagues.PageVM.InvalidateAddsButton();
+
+                    // タイルセット作業画像
+                    this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
+                });
 
             // ※５
             this.Colleagues.PageVM.InvalidateForHistory();
@@ -116,8 +127,19 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         // カラーマップに変更通知
         this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
 
-        // タイル情報の変更通知
-        this.Colleagues.PageVM.RefreshForTileAdd();
+        // 作業画像へ変更通知
+        this.Colleagues.PageVM.TrickChangeWorkingImageSize(
+            onFinished: () =>
+            {
+                // タイル タイトル
+                this.Colleagues.PageVM.InvalidateTileTitle();
+
+                // 追加・削除ボタンの表示状態を更新したい
+                this.Colleagues.PageVM.InvalidateAddsButton();
+
+                // タイルセット作業画像
+                this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
+            });
 
         // 履歴ボタンの変更通知
         this.Colleagues.PageVM.InvalidateForHistory();
