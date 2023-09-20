@@ -72,7 +72,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             // TODO 保存失敗時のエラー対応
         }
 
-        this.InvalidateGui();
+        this.AfterChanged();
     }
     #endregion
 
@@ -116,7 +116,7 @@ internal class AddRegisteredTileProcessing : IProcessing
             // TODO 保存失敗時のエラー対応
         }
 
-        this.InvalidateGui();
+        this.AfterChanged();
     }
     #endregion
 
@@ -138,9 +138,9 @@ internal class AddRegisteredTileProcessing : IProcessing
     // - プライベート・メソッド
 
     /// <summary>
-    ///     GUIに変更通知を送るもの
+    ///     変更後
     /// </summary>
-    void InvalidateGui()
+    void AfterChanged()
     {
         // ［追加］ボタンの変更通知
         this.Colleagues.PageVM.InvalidateAddsButton();

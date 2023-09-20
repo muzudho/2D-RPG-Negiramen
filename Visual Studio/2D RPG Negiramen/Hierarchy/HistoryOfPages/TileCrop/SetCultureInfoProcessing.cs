@@ -23,12 +23,16 @@ internal class SetCultureInfoProcessing : IProcessing
         this.NewValue = newValue;
     }
 
+    // - パブリック・メソッド
+
     /// <summary>
     ///     ドゥー
     /// </summary>
     public void Do()
     {
         this.Colleagues.PageVM.SelectedCultureInfo = this.NewValue;
+
+        this.AfterChanged();
     }
 
     /// <summary>
@@ -37,6 +41,8 @@ internal class SetCultureInfoProcessing : IProcessing
     public void Undo()
     {
         this.Colleagues.PageVM.SelectedCultureInfo = this.OldValue;
+
+        this.AfterChanged();
     }
 
     // - プライベート・プロパティ
@@ -47,4 +53,15 @@ internal class SetCultureInfoProcessing : IProcessing
     CultureInfo OldValue { get; }
 
     CultureInfo NewValue { get; }
+
+    // - プライベート・メソッド
+
+    /// <summary>
+    ///     変更後
+    /// </summary>
+    void AfterChanged()
+    {
+        // 履歴の変更通知
+        this.Colleagues.PageVM.InvalidateForHistory();
+    }
 }

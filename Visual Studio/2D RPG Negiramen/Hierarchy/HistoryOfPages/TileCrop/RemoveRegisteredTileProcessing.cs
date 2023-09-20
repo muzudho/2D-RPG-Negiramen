@@ -72,7 +72,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             }
 
             // GUIの変更通知
-            this.InvalidateGui();
+            this.AfterChanged();
         }
     }
 
@@ -105,7 +105,7 @@ internal class RemoveRegisteredTileProcessing : IProcessing
         }
 
         // GUIの変更通知
-        this.InvalidateGui();
+        this.AfterChanged();
     }
 
     // - プライベート・プロパティ
@@ -121,9 +121,9 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     // - プライベート・メソッド
 
     /// <summary>
-    ///     GUIの変更通知
+    ///     変更後
     /// </summary>
-    void InvalidateGui()
+    void AfterChanged()
     {
         // カラーマップに変更通知
         this.Colleagues.PageVM.InvalidateTilesetSettingsVM();

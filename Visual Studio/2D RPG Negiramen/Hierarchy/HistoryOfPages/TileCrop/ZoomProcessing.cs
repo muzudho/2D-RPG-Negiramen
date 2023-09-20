@@ -66,7 +66,7 @@ internal class ZoomProcessing : IProcessing
     // - プライベート・メソッド
 
     /// <summary>
-    ///     ［ズーム］変更後の影響
+    ///     変更後
     /// </summary>
     void AfterChanged()
     {
