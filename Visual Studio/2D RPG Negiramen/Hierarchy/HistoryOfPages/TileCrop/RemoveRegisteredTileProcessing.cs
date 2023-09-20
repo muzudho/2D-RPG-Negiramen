@@ -53,9 +53,6 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     ///     <list type="bullet">
     ///         <item>※１ あれば、タイルの削除</item>
     ///         <item>※２ 設定ファイルの保存</item>
-    ///         <item>※３ カラーマップに変更通知</item>
-    ///         <item>※４ タイル情報に変更通知</item>
-    ///         <item>※５ 履歴ボタンの変更通知</item>
     ///     </list>
     /// </summary>
     public void Do()
@@ -74,25 +71,8 @@ internal class RemoveRegisteredTileProcessing : IProcessing
                 // TODO 保存失敗時のエラー対応
             }
 
-            // ※３
-            this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
-
-            // ※４
-            this.Colleagues.PageVM.TrickChangeWorkingImageSize(
-                onFinished: () =>
-                {
-                    // タイル タイトル
-                    this.Colleagues.PageVM.InvalidateTileTitle();
-
-                    // 追加・削除ボタンの表示状態を更新したい
-                    this.Colleagues.PageVM.InvalidateAddsButton();
-
-                    // タイルセット作業画像
-                    this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
-                });
-
-            // ※５
-            this.Colleagues.PageVM.InvalidateForHistory();
+            // GUIの変更通知
+            this.InvalidateGui();
         }
     }
 
@@ -124,25 +104,8 @@ internal class RemoveRegisteredTileProcessing : IProcessing
             // TODO 保存失敗時のエラー対応
         }
 
-        // カラーマップに変更通知
-        this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
-
-        // 作業画像へ変更通知
-        this.Colleagues.PageVM.TrickChangeWorkingImageSize(
-            onFinished: () =>
-            {
-                // タイル タイトル
-                this.Colleagues.PageVM.InvalidateTileTitle();
-
-                // 追加・削除ボタンの表示状態を更新したい
-                this.Colleagues.PageVM.InvalidateAddsButton();
-
-                // タイルセット作業画像
-                this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
-            });
-
-        // 履歴ボタンの変更通知
-        this.Colleagues.PageVM.InvalidateForHistory();
+        // GUIの変更通知
+        this.InvalidateGui();
     }
 
     // - プライベート・プロパティ
@@ -154,4 +117,31 @@ internal class RemoveRegisteredTileProcessing : IProcessing
     ///     削除するタイル
     /// </summary>
     TileRecord RemoveeTile { get; }
+
+    // - プライベート・メソッド
+
+    /// <summary>
+    ///     GUIの変更通知
+    /// </summary>
+    void InvalidateGui()
+    {
+        // カラーマップに変更通知
+        this.Colleagues.PageVM.InvalidateTilesetSettingsVM();
+
+        // 作業画像へ変更通知
+        this.Colleagues.PageVM.TrickChangeWorkingImageSize(
+            onFinished: () => { });
+
+        // タイル タイトル
+        this.Colleagues.PageVM.InvalidateTileTitle();
+
+        // 追加・削除ボタンの表示状態を更新したい
+        this.Colleagues.PageVM.InvalidateAddsButton();
+
+        // タイルセット作業画像
+        this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
+
+        // 履歴ボタンの変更通知
+        this.Colleagues.PageVM.InvalidateForHistory();
+    }
 }

@@ -158,7 +158,7 @@ internal class AddRegisteredTileProcessing : IProcessing
         this.Colleagues.PageVM.TrickChangeWorkingImageSize(
             onFinished: () =>{});
 
-        // ［タイルセット作業画像］（カラーマップ含む）の変更通知
+        // ［タイルセット作業画像］の変更通知
         this.Colleagues.PageVM.InvalidateTilesetWorkingImage();
     }
 }
