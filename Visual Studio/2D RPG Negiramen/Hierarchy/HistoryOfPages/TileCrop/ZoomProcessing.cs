@@ -70,43 +70,22 @@ internal class ZoomProcessing : IProcessing
     /// </summary>
     void AfterChanged()
     {
-        // ［タイルセット作業画像］の更新
-        {
-            // 画像の再作成
-            this.Colleagues.PageVM.RemakeWorkingTilesetImage();
-        }
+        // ［タイルセット作業画像］の再作成
+        this.Colleagues.PageVM.RemakeWorkingTilesetImage();
 
-        // ［元画像グリッド］の更新
-        {
-            // キャンバス画像の再作成
-            this.Colleagues.PageVM.RemakeGridCanvasImage();
-        }
+        // ［元画像グリッド］のキャンバス画像の再作成
+        this.Colleagues.PageVM.RemakeGridCanvasImage();
 
-        // ［作業グリッド］の再計算
-        {
-            // 横幅
-            var width = this.Colleagues.PageVM.Subordinates.GridUnit_SourceValue.Width.AsInt;
-            this.Colleagues.PageVM.WorkingGridTileWidthAsFloat = this.Colleagues.PageVM.ZoomAsFloat * width;
-            // this.Owner.Owner.InvalidateWorkingGrid();
+        // ［作業グリッド］の横幅の再計算
+        this.Colleagues.PageVM.WorkingGridTileWidthAsFloat = this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.GridUnit_SourceValue.Width.AsInt;
 
-            // 縦幅
-            var height = this.Colleagues.PageVM.Subordinates.GridUnit_SourceValue.Height.AsInt;
-            this.Colleagues.PageVM.WorkingGridTileHeightAsFloat = this.Colleagues.PageVM.ZoomAsFloat * height;
-            // this.Owner.Owner.InvalidateWorkingGrid();
-        }
+        // ［作業グリッド］の縦幅の再計算
+        this.Colleagues.PageVM.WorkingGridTileHeightAsFloat = this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Subordinates.GridUnit_SourceValue.Height.AsInt;
 
-        // ［切抜きカーソルが指すタイル］更新
-        {
-            //// 位置
-            //this.Owner.CroppedCursorPointedTileWorkingLocation = new TheGeometric.PointFloat(
-            //    x: new TheGeometric.XFloat(this.Owner.ZoomAsFloat * this.Owner.SelectedTile_SourceLeftAsInt.Location.X.AsInt),
-            //    y: new TheGeometric.YFloat(this.Owner.ZoomAsFloat * this.Owner.SelectedTile_SourceLeftAsInt.Location.Y.AsInt));
+        // ［選択タイル］の幅更新
+        this.Colleagues.PageVM.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Width.AsInt);
 
-            // サイズ
-            this.Colleagues.PageVM.Subordinates.SelectedTile.WorkingWidthWithoutTrick = new TheGeometric.WidthFloat(this.Colleagues.PageVM.ZoomAsFloat * this.Colleagues.PageVM.Colleagues.PageVM.Subordinates.SelectedTile.SourceRectangle.Size.Width.AsInt);
-        }
-
-        // 変更通知
+        // 履歴の変更通知
         this.Colleagues.PageVM.InvalidateForHistory();
     }
 }
